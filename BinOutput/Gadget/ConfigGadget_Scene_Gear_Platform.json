@@ -1,0 +1,1036 @@
+{
+///////////////////////////////
+//
+// 仙灵
+//
+////////////////////////////////////
+	"SceneObj_Gear_Platform_Seelie": 
+	{
+		"$type": "ConfigGadget",
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+			"AvatarTriggerEventDistance": 3,
+		},
+		"gadgetAction":
+		{
+			"platformActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "IsFlying",
+					"value": 1,
+					"predicate":
+					{
+						"$type":"ConfigPredicateByPlatform",
+						"isStart":true,
+					},
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "IsFlying",
+					"value": 0,
+					"predicate":
+					{
+						"$type":"ConfigPredicateByPlatform",
+						"isStart":false,
+					},
+				},
+			],
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 1000,
+				"attack" : 100,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime": 1.0,
+				"dieForceDisappearTime": 2.0,
+				//"dieDisappearEffect":"Eff_SceneObj_Seelia_Disappear",
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Gear_Platform_Seelie"
+			},
+		],
+		"audio": 
+		{
+		   "$type": "ConfigGadgetAudio",
+		   "animAudio": 
+		   {
+		     "onTransitionOut": 
+		     [
+		        {
+		        	"currentStateName": "Move",
+		        	"audioEvent": { "text": "Stop_amb_sceneObj_gear_seelie_move" },
+		        	"otherStateNames": [],
+		        	"usage": "Any"
+		        }
+		     ],
+		     "onTransitionIn": 
+		     [
+		        {
+		        	"currentStateName": "Move",
+		        	"audioEvent": { "text": "Play_amb_sceneObj_gear_seelie_move" },
+		        	"otherStateNames": [],
+		        	"usage": "Any"
+		        },
+		     ],
+		 	},
+			"disableEvent":
+			{
+				"text": ""
+			},
+			"destroyEvent":
+			{
+				"text": ""
+			}
+		},	
+	},
+///////////////////////////////
+//
+//移动小车 测试
+//
+////////////////////////////////////
+	"SceneObj_Item_Moving_Gardencart_Test": 
+	{
+		"$type": "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 1000,
+				"attack" : 50,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP": false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "Eff_Hit_QQObject",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime": 1,
+				"dieForceDisappearTime": 4,
+				"useRagDoll": true,
+				"ragDollDieEndTimeDelay": 2.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Buffer_Normal": ["Balloon_Cart_Normal"],
+							"Buffer_Brk1": ["Balloon_Cart_Normal","Balloon_Cart_Effect_Brk1"],
+							"Buffer_Brk2": ["Balloon_Cart_Brk2","Balloon_Cart_Effect_Brk2"],
+							"Dead": ["Balloon_Cart_Dead"],
+						},
+					},
+				},
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"attachPoint" : "RootNode",
+			"offset":
+			{
+				"x": 0,
+				"y": 2,
+				"z": 0,
+			},
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"size": "Grand",
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Item_Moving_Gardencart"
+			},
+			{
+				"abilityID": "ability_02",
+				"abilityName": "SceneObj_Item_Moving_Gardencart_Brk1"
+			},
+			{
+				"abilityID": "ability_03",
+				"abilityName": "SceneObj_Item_Moving_Gardencart_Brk2"
+			},
+		],
+	},	
+///////////////////////////////
+//
+//移动平台
+//
+////////////////////////////////////
+	"SceneObj_Gear_Platform_NormalPlatform": 
+	{
+		"$type": "ConfigGadget",
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 1000,
+				"attack" : 100,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0,
+				"dieForceDisappearTime": 0,
+				"dieDisappearEffect": "",
+			},
+		},
+	},
+///////////////////////////////
+//
+//移动小车
+//
+////////////////////////////////////
+	"SceneObj_Item_Moving_Gardencart": 
+	{
+		"$type": "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"dither":
+		{
+			"showDitherDuration": 2.0,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 1000,
+				"attack" : 50,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP": false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "Eff_Hit_QQObject",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieEndTime" : 1,
+				"dieForceDisappearTime": 1.5,
+				"dieDisappearEffect": "Eff_GunpowderBarrel_Explode",
+			},
+		},
+		"gadgetAction":
+		{
+			"platformActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "IsFlying",
+					"value": 1,
+					"predicate":
+					{
+						"$type":"ConfigPredicateByPlatform",
+						"isStart":true,
+					},
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "IsFlying",
+					"value": 0,
+					"predicate":
+					{
+						"$type":"ConfigPredicateByPlatform",
+						"isStart":false,
+					},
+				},
+			],
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Buffer_Normal": ["Balloon_Cart_Normal"],
+							"Buffer_Brk1": ["Balloon_Cart_Normal","Balloon_Cart_Effect_Brk1"],
+							"Buffer_Brk2": ["Balloon_Cart_Brk2","Balloon_Cart_Effect_Brk2"],
+						},
+					},
+				},
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"attachPoint" : "RootNode",
+			"offset":
+			{
+				"x": 0,
+				"y": 2,
+				"z": 0,
+			},
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"size": "Grand",
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": true,
+		},
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Item_Moving_Gardencart"
+			},
+			{
+				"abilityID": "ability_02",
+				"abilityName": "SceneObj_Item_Moving_Gardencart_Brk1"
+			},
+			{
+				"abilityID": "ability_03",
+				"abilityName": "SceneObj_Item_Moving_Gardencart_Brk2"
+			},
+		],
+	},	
+
+///////////////////////////////
+//
+//移动激光
+//
+////////////////////////////////////
+	"SceneObj_Item_Moving_Trap": 
+	{
+		"$type": "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 1000,
+				"attack" : 100,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0,
+				"dieForceDisappearTime": 0,
+				"dieDisappearEffect": "Eff_GunpowderBarrel_Explode",
+			},
+		},
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"gadget":
+		{
+			"$type": "ConfigGadgetCollidedPattern",
+			"collision":
+			{
+				"targetType": "All",
+				"triggerType": "TriggerAlways",
+				"triggerCD": 0.1,
+			},
+			"collisionActions":
+			[
+				{
+					"$type": "ConfigGadgetTriggerAbility",
+					"abilityName": "SceneObj_Item_Moving_Trap_Attack",
+				},
+				
+			],
+		},
+			"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Item_Moving_Trap_Attack",
+				"abilityName": "SceneObj_Item_Moving_Trap_Attack"
+			},
+		],
+	
+	},	
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	移动靶标
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_MovingTarget" :
+	{
+		"$type" : "ConfigGadget",
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				//"dieDisappearEffect": "Eff_Gear_Platform_WindSlime",
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateFireEffect",
+					"effectPattern": "Eff_Gear_Platform_WindSlime",
+					"gadgetState": "Action01",
+				},
+				{
+					"$type": "ConfigGadgetStateFireEffect",
+					"effectPattern": "Eff_Gear_Platform_WindSlime_Trail",
+					"gadgetState": "Action01",
+				},
+			],
+		},
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	膨膨果靶标
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_BalloonTree_MovingTarget" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 10,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : true,
+				"isLockHP": false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				"dieDisappearEffect": "Eff_SceneObj_Balloon_Destroy",
+				"dieEndTime": 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_BalloonTree_MovingTarget",
+				"abilityName" : "SceneObj_Gear_Platform_BalloonTree_MovingTarget",
+			},
+		],
+	},
+		/////////////////////////////////////////////////////////////
+//
+// 冰元素精灵
+//
+/////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_IceElf":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"keepModifierOutsight": false,
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"common" :
+		{
+			"affectedByWorld": true,
+		},
+		"misc" :
+		{
+			"bornState": "Default",
+	    },
+		
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_IceElf",
+				"abilityName" : "SceneObj_Gear_Platform_IceElf",
+			},
+		],
+	},
+			/////////////////////////////////////////////////////////////
+//
+// 火元素精灵
+//
+/////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_FireElf":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"keepModifierOutsight": false,
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"common" :
+		{
+			"affectedByWorld": true,
+		},
+		"misc" :
+		{
+			"bornState": "Default",
+	    },
+		
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_FireElf",
+				"abilityName" : "SceneObj_Gear_Platform_FireElf",
+			},
+		],
+	},
+		/////////////////////////////////////////////////////////////
+//
+// 电元素精灵
+//
+/////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_ElecElf":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"keepModifierOutsight": false,
+		"move": 
+		{
+			"$type": "ConfigPlatformMove",
+		},
+		"common" :
+		{
+			"affectedByWorld": true,
+		},
+		"misc" :
+		{
+			"bornState": "Default",
+	    },
+		
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_ElecElf",
+				"abilityName" : "SceneObj_Gear_Platform_ElecElf",
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	重力移动平台
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_Gravity" :
+	{
+		"$type" : "ConfigGadget",
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "RectW4_5L4_5H3",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				//"dieDisappearEffect": "Eff_Gear_Platform_WindSlime",
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_Gravity",
+				"abilityName" : "SceneObj_Gear_Platform_Gravity",
+			},
+		],
+	},
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	移动石柱
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_MoveStone" :
+	{
+		"$type" : "ConfigGadget",
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				//"dieDisappearEffect": "Eff_Gear_Platform_WindSlime",
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_MoveStone",
+				"abilityName" : "SceneObj_Gear_Platform_MoveStone",
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	水泡平台
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_Bubble" :
+	{
+		"$type" : "ConfigGadget",
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"attachPoint" : "attachPoint3",
+			"offset":
+			{
+				"x": 0,
+				"y": 0.5,
+				"z": 0,
+			},
+			"radiusOffset": 3.0,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"size": "Grand",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 50,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : false,
+				"isLockHP": false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				//"dieDisappearEffect": "Eff_Gear_Platform_WindSlime",
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_Bubble",
+				"abilityName" : "SceneObj_Gear_Platform_Bubble",
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	拼图机关
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Platform_Jigsaw" :
+	{
+		"$type" : "ConfigGadget",
+		"move": {
+			"$type": "ConfigPlatformMove",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 50,
+				"attack" : 80,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : false,
+				"isLockHP": false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				//"dieDisappearEffect": "Eff_Gear_Platform_WindSlime",
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Platform_Jigsaw",
+				"abilityName" : "SceneObj_Gear_Platform_Jigsaw",
+			},
+		],
+	},
+},

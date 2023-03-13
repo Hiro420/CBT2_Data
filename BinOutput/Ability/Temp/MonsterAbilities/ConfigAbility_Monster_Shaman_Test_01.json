@@ -1,0 +1,75 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  WaterStream
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Shaman_Test_FireBullet",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["NormalAttack_AS"],
+				"modifierName": "Shaman_Test_FireBullet",
+			},
+		],
+		"modifiers":
+		{
+			"Shaman_Test_FireBullet":
+			{
+				"stacking": "Unique",
+				"onAdded":
+				[
+					{
+						"$type": "TriggerBullet",
+						"ownerIsTarget": true,
+						"bulletID": 42103005,
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" : 
+							{		
+								"x": 1.0,
+								"y": 1.0,
+								"z": 1.0,
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+/*{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Shaman_Tornado_Effect",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "Shaman_Tornado_EffectModifier",
+				"target": "Self",
+			},
+		],
+		"modifiers":
+		{
+			"Shaman_Tornado_EffectModifier":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Monster_Abyss_Ice_Cone_Gather",
+					},
+				],	
+			},
+		},
+	},
+},*/
+]

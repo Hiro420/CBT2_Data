@@ -1,0 +1,292 @@
+[
+    {
+        "ID": 1,
+        "GadgetID": 70020001,
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Sunny",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2,
+        "GadgetID": 70020002,
+        "默认是否开启": 1,
+        "TemplateName": "Weather_WindDragon",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/WindDragonEnviroArea",
+        "DefaultWeather": 2,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 3,
+        "GadgetID": 70020003,
+        "默认是否开启": 0,
+        "TemplateName": "Weather_MengDeInStorm",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/MengDeInStorm",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 4,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/Enviro_MengDeWolfBoss",
+        "DefaultWeather": 2,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 1000,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 5,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1001,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1002,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1003,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1004,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1005,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1006,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_City",
+        "Priority": 25,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 1007,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_WindDragon",
+        "Priority": 2000,
+        "区域环境配置": "Data/Environment/WindDragonEnviroArea",
+        "DefaultWeather": 2,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2000,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 5,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2001,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_LiYueAreaQingCeVilla",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/LiYueAreaQingCeVilla",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2002,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2003,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2004,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_StoneNeedles",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/LiYueAreaStoneNeedles",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2005,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_City",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02_City",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2006,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Foggy",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02",
+        "DefaultWeather": 6,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2007,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Sunny",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/LiyueLandLakeMaze",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2008,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 10,
+        "区域环境配置": "Data/Environment/LiyueAreaLiShaCountrySide",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2009,
+        "GadgetID": "",
+        "默认是否开启": 0,
+        "TemplateName": "Weather_LiYueAreaYaoGuangTan",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/LiyueAreaDefault02",
+        "DefaultWeather": 6,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2010,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_LiYueAreaQingCeVilla",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/LiYueAreaQingCeVilla",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 0
+    },
+    {
+        "ID": 2011,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/LiYueAreaBeachMine",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2012,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Sunny",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/LiyueAreaBlackForest",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 2013,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Sunny",
+        "Priority": 100,
+        "区域环境配置": "Data/Environment/LiyueAreaSaltOfGround",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 90001,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_ThunderStorm",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/MengdeAreaDefault03",
+        "DefaultWeather": 4,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 3000,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/Level/Level_XianglingPlotLevel01_EnviroArea",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    },
+    {
+        "ID": 3001,
+        "GadgetID": "",
+        "默认是否开启": 1,
+        "TemplateName": "Weather_Standard",
+        "Priority": 50,
+        "区域环境配置": "Data/Environment/Level/Level_XianglingPlotLevel01_EnviroArea_1",
+        "DefaultWeather": 1,
+        "是否固定使用DefaultWeather": 1
+    }
+]

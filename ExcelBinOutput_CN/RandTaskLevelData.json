@@ -1,0 +1,722 @@
+[
+    {
+        "ID": 1,
+        "MinEnvZoneLevel": 1,
+        "MaxEnvZoneLevel": 1,
+        "难度等级": 0
+    },
+    {
+        "ID": 2,
+        "MinEnvZoneLevel": 2,
+        "MaxEnvZoneLevel": 2,
+        "难度等级": 1
+    },
+    {
+        "ID": 3,
+        "MinEnvZoneLevel": 3,
+        "MaxEnvZoneLevel": 3,
+        "难度等级": 2
+    },
+    {
+        "ID": 4,
+        "MinEnvZoneLevel": 4,
+        "MaxEnvZoneLevel": 4,
+        "难度等级": 3
+    },
+    {
+        "ID": 5,
+        "MinEnvZoneLevel": 5,
+        "MaxEnvZoneLevel": 5,
+        "难度等级": 4
+    },
+    {
+        "ID": 6,
+        "MinEnvZoneLevel": 6,
+        "MaxEnvZoneLevel": 6,
+        "难度等级": 5
+    },
+    {
+        "ID": 7,
+        "MinEnvZoneLevel": 7,
+        "MaxEnvZoneLevel": 7,
+        "难度等级": 6
+    },
+    {
+        "ID": 8,
+        "MinEnvZoneLevel": 8,
+        "MaxEnvZoneLevel": 8,
+        "难度等级": 7
+    },
+    {
+        "ID": 9,
+        "MinEnvZoneLevel": 9,
+        "MaxEnvZoneLevel": 9,
+        "难度等级": 8
+    },
+    {
+        "ID": 10,
+        "MinEnvZoneLevel": 10,
+        "MaxEnvZoneLevel": 10,
+        "难度等级": 9
+    },
+    {
+        "ID": 11,
+        "MinEnvZoneLevel": 11,
+        "MaxEnvZoneLevel": 11,
+        "难度等级": 10
+    },
+    {
+        "ID": 12,
+        "MinEnvZoneLevel": 12,
+        "MaxEnvZoneLevel": 12,
+        "难度等级": 11
+    },
+    {
+        "ID": 13,
+        "MinEnvZoneLevel": 13,
+        "MaxEnvZoneLevel": 13,
+        "难度等级": 12
+    },
+    {
+        "ID": 14,
+        "MinEnvZoneLevel": 14,
+        "MaxEnvZoneLevel": 14,
+        "难度等级": 13
+    },
+    {
+        "ID": 15,
+        "MinEnvZoneLevel": 15,
+        "MaxEnvZoneLevel": 15,
+        "难度等级": 14
+    },
+    {
+        "ID": 16,
+        "MinEnvZoneLevel": 16,
+        "MaxEnvZoneLevel": 16,
+        "难度等级": 15
+    },
+    {
+        "ID": 17,
+        "MinEnvZoneLevel": 17,
+        "MaxEnvZoneLevel": 17,
+        "难度等级": 16
+    },
+    {
+        "ID": 18,
+        "MinEnvZoneLevel": 18,
+        "MaxEnvZoneLevel": 18,
+        "难度等级": 17
+    },
+    {
+        "ID": 19,
+        "MinEnvZoneLevel": 19,
+        "MaxEnvZoneLevel": 19,
+        "难度等级": 18
+    },
+    {
+        "ID": 20,
+        "MinEnvZoneLevel": 20,
+        "MaxEnvZoneLevel": 20,
+        "难度等级": 19
+    },
+    {
+        "ID": 21,
+        "MinEnvZoneLevel": 21,
+        "MaxEnvZoneLevel": 21,
+        "难度等级": 20
+    },
+    {
+        "ID": 22,
+        "MinEnvZoneLevel": 22,
+        "MaxEnvZoneLevel": 22,
+        "难度等级": 21
+    },
+    {
+        "ID": 23,
+        "MinEnvZoneLevel": 23,
+        "MaxEnvZoneLevel": 23,
+        "难度等级": 22
+    },
+    {
+        "ID": 24,
+        "MinEnvZoneLevel": 24,
+        "MaxEnvZoneLevel": 24,
+        "难度等级": 23
+    },
+    {
+        "ID": 25,
+        "MinEnvZoneLevel": 25,
+        "MaxEnvZoneLevel": 25,
+        "难度等级": 24
+    },
+    {
+        "ID": 26,
+        "MinEnvZoneLevel": 26,
+        "MaxEnvZoneLevel": 26,
+        "难度等级": 25
+    },
+    {
+        "ID": 27,
+        "MinEnvZoneLevel": 27,
+        "MaxEnvZoneLevel": 27,
+        "难度等级": 26
+    },
+    {
+        "ID": 28,
+        "MinEnvZoneLevel": 28,
+        "MaxEnvZoneLevel": 28,
+        "难度等级": 27
+    },
+    {
+        "ID": 29,
+        "MinEnvZoneLevel": 29,
+        "MaxEnvZoneLevel": 29,
+        "难度等级": 28
+    },
+    {
+        "ID": 30,
+        "MinEnvZoneLevel": 30,
+        "MaxEnvZoneLevel": 30,
+        "难度等级": 29
+    },
+    {
+        "ID": 31,
+        "MinEnvZoneLevel": 31,
+        "MaxEnvZoneLevel": 31,
+        "难度等级": 30
+    },
+    {
+        "ID": 32,
+        "MinEnvZoneLevel": 32,
+        "MaxEnvZoneLevel": 32,
+        "难度等级": 31
+    },
+    {
+        "ID": 33,
+        "MinEnvZoneLevel": 33,
+        "MaxEnvZoneLevel": 33,
+        "难度等级": 32
+    },
+    {
+        "ID": 34,
+        "MinEnvZoneLevel": 34,
+        "MaxEnvZoneLevel": 34,
+        "难度等级": 33
+    },
+    {
+        "ID": 35,
+        "MinEnvZoneLevel": 35,
+        "MaxEnvZoneLevel": 35,
+        "难度等级": 34
+    },
+    {
+        "ID": 36,
+        "MinEnvZoneLevel": 36,
+        "MaxEnvZoneLevel": 36,
+        "难度等级": 35
+    },
+    {
+        "ID": 37,
+        "MinEnvZoneLevel": 37,
+        "MaxEnvZoneLevel": 37,
+        "难度等级": 36
+    },
+    {
+        "ID": 38,
+        "MinEnvZoneLevel": 38,
+        "MaxEnvZoneLevel": 38,
+        "难度等级": 37
+    },
+    {
+        "ID": 39,
+        "MinEnvZoneLevel": 39,
+        "MaxEnvZoneLevel": 39,
+        "难度等级": 38
+    },
+    {
+        "ID": 40,
+        "MinEnvZoneLevel": 40,
+        "MaxEnvZoneLevel": 40,
+        "难度等级": 39
+    },
+    {
+        "ID": 41,
+        "MinEnvZoneLevel": 41,
+        "MaxEnvZoneLevel": 41,
+        "难度等级": 40
+    },
+    {
+        "ID": 42,
+        "MinEnvZoneLevel": 42,
+        "MaxEnvZoneLevel": 42,
+        "难度等级": 41
+    },
+    {
+        "ID": 43,
+        "MinEnvZoneLevel": 43,
+        "MaxEnvZoneLevel": 43,
+        "难度等级": 42
+    },
+    {
+        "ID": 44,
+        "MinEnvZoneLevel": 44,
+        "MaxEnvZoneLevel": 44,
+        "难度等级": 43
+    },
+    {
+        "ID": 45,
+        "MinEnvZoneLevel": 45,
+        "MaxEnvZoneLevel": 45,
+        "难度等级": 44
+    },
+    {
+        "ID": 46,
+        "MinEnvZoneLevel": 46,
+        "MaxEnvZoneLevel": 46,
+        "难度等级": 45
+    },
+    {
+        "ID": 47,
+        "MinEnvZoneLevel": 47,
+        "MaxEnvZoneLevel": 47,
+        "难度等级": 46
+    },
+    {
+        "ID": 48,
+        "MinEnvZoneLevel": 48,
+        "MaxEnvZoneLevel": 48,
+        "难度等级": 47
+    },
+    {
+        "ID": 49,
+        "MinEnvZoneLevel": 49,
+        "MaxEnvZoneLevel": 49,
+        "难度等级": 48
+    },
+    {
+        "ID": 50,
+        "MinEnvZoneLevel": 50,
+        "MaxEnvZoneLevel": 50,
+        "难度等级": 49
+    },
+    {
+        "ID": 51,
+        "MinEnvZoneLevel": 51,
+        "MaxEnvZoneLevel": 51,
+        "难度等级": 50
+    },
+    {
+        "ID": 52,
+        "MinEnvZoneLevel": 52,
+        "MaxEnvZoneLevel": 52,
+        "难度等级": 51
+    },
+    {
+        "ID": 53,
+        "MinEnvZoneLevel": 53,
+        "MaxEnvZoneLevel": 53,
+        "难度等级": 52
+    },
+    {
+        "ID": 54,
+        "MinEnvZoneLevel": 54,
+        "MaxEnvZoneLevel": 54,
+        "难度等级": 53
+    },
+    {
+        "ID": 55,
+        "MinEnvZoneLevel": 55,
+        "MaxEnvZoneLevel": 55,
+        "难度等级": 54
+    },
+    {
+        "ID": 56,
+        "MinEnvZoneLevel": 56,
+        "MaxEnvZoneLevel": 56,
+        "难度等级": 55
+    },
+    {
+        "ID": 57,
+        "MinEnvZoneLevel": 57,
+        "MaxEnvZoneLevel": 57,
+        "难度等级": 56
+    },
+    {
+        "ID": 58,
+        "MinEnvZoneLevel": 58,
+        "MaxEnvZoneLevel": 58,
+        "难度等级": 57
+    },
+    {
+        "ID": 59,
+        "MinEnvZoneLevel": 59,
+        "MaxEnvZoneLevel": 59,
+        "难度等级": 58
+    },
+    {
+        "ID": 60,
+        "MinEnvZoneLevel": 60,
+        "MaxEnvZoneLevel": 60,
+        "难度等级": 59
+    },
+    {
+        "ID": 61,
+        "MinEnvZoneLevel": 61,
+        "MaxEnvZoneLevel": 61,
+        "难度等级": 60
+    },
+    {
+        "ID": 62,
+        "MinEnvZoneLevel": 62,
+        "MaxEnvZoneLevel": 62,
+        "难度等级": 61
+    },
+    {
+        "ID": 63,
+        "MinEnvZoneLevel": 63,
+        "MaxEnvZoneLevel": 63,
+        "难度等级": 62
+    },
+    {
+        "ID": 64,
+        "MinEnvZoneLevel": 64,
+        "MaxEnvZoneLevel": 64,
+        "难度等级": 63
+    },
+    {
+        "ID": 65,
+        "MinEnvZoneLevel": 65,
+        "MaxEnvZoneLevel": 65,
+        "难度等级": 64
+    },
+    {
+        "ID": 66,
+        "MinEnvZoneLevel": 66,
+        "MaxEnvZoneLevel": 66,
+        "难度等级": 65
+    },
+    {
+        "ID": 67,
+        "MinEnvZoneLevel": 67,
+        "MaxEnvZoneLevel": 67,
+        "难度等级": 66
+    },
+    {
+        "ID": 68,
+        "MinEnvZoneLevel": 68,
+        "MaxEnvZoneLevel": 68,
+        "难度等级": 67
+    },
+    {
+        "ID": 69,
+        "MinEnvZoneLevel": 69,
+        "MaxEnvZoneLevel": 69,
+        "难度等级": 68
+    },
+    {
+        "ID": 70,
+        "MinEnvZoneLevel": 70,
+        "MaxEnvZoneLevel": 70,
+        "难度等级": 69
+    },
+    {
+        "ID": 71,
+        "MinEnvZoneLevel": 71,
+        "MaxEnvZoneLevel": 71,
+        "难度等级": 70
+    },
+    {
+        "ID": 72,
+        "MinEnvZoneLevel": 72,
+        "MaxEnvZoneLevel": 72,
+        "难度等级": 71
+    },
+    {
+        "ID": 73,
+        "MinEnvZoneLevel": 73,
+        "MaxEnvZoneLevel": 73,
+        "难度等级": 72
+    },
+    {
+        "ID": 74,
+        "MinEnvZoneLevel": 74,
+        "MaxEnvZoneLevel": 74,
+        "难度等级": 73
+    },
+    {
+        "ID": 75,
+        "MinEnvZoneLevel": 75,
+        "MaxEnvZoneLevel": 75,
+        "难度等级": 74
+    },
+    {
+        "ID": 76,
+        "MinEnvZoneLevel": 76,
+        "MaxEnvZoneLevel": 76,
+        "难度等级": 75
+    },
+    {
+        "ID": 77,
+        "MinEnvZoneLevel": 77,
+        "MaxEnvZoneLevel": 77,
+        "难度等级": 76
+    },
+    {
+        "ID": 78,
+        "MinEnvZoneLevel": 78,
+        "MaxEnvZoneLevel": 78,
+        "难度等级": 77
+    },
+    {
+        "ID": 79,
+        "MinEnvZoneLevel": 79,
+        "MaxEnvZoneLevel": 79,
+        "难度等级": 78
+    },
+    {
+        "ID": 80,
+        "MinEnvZoneLevel": 80,
+        "MaxEnvZoneLevel": 80,
+        "难度等级": 79
+    },
+    {
+        "ID": 81,
+        "MinEnvZoneLevel": 81,
+        "MaxEnvZoneLevel": 81,
+        "难度等级": 80
+    },
+    {
+        "ID": 82,
+        "MinEnvZoneLevel": 82,
+        "MaxEnvZoneLevel": 82,
+        "难度等级": 81
+    },
+    {
+        "ID": 83,
+        "MinEnvZoneLevel": 83,
+        "MaxEnvZoneLevel": 83,
+        "难度等级": 82
+    },
+    {
+        "ID": 84,
+        "MinEnvZoneLevel": 84,
+        "MaxEnvZoneLevel": 84,
+        "难度等级": 83
+    },
+    {
+        "ID": 85,
+        "MinEnvZoneLevel": 85,
+        "MaxEnvZoneLevel": 85,
+        "难度等级": 84
+    },
+    {
+        "ID": 86,
+        "MinEnvZoneLevel": 86,
+        "MaxEnvZoneLevel": 86,
+        "难度等级": 85
+    },
+    {
+        "ID": 87,
+        "MinEnvZoneLevel": 87,
+        "MaxEnvZoneLevel": 87,
+        "难度等级": 86
+    },
+    {
+        "ID": 88,
+        "MinEnvZoneLevel": 88,
+        "MaxEnvZoneLevel": 88,
+        "难度等级": 87
+    },
+    {
+        "ID": 89,
+        "MinEnvZoneLevel": 89,
+        "MaxEnvZoneLevel": 89,
+        "难度等级": 88
+    },
+    {
+        "ID": 90,
+        "MinEnvZoneLevel": 90,
+        "MaxEnvZoneLevel": 90,
+        "难度等级": 89
+    },
+    {
+        "ID": 91,
+        "MinEnvZoneLevel": 91,
+        "MaxEnvZoneLevel": 91,
+        "难度等级": 90
+    },
+    {
+        "ID": 92,
+        "MinEnvZoneLevel": 92,
+        "MaxEnvZoneLevel": 92,
+        "难度等级": 91
+    },
+    {
+        "ID": 93,
+        "MinEnvZoneLevel": 93,
+        "MaxEnvZoneLevel": 93,
+        "难度等级": 92
+    },
+    {
+        "ID": 94,
+        "MinEnvZoneLevel": 94,
+        "MaxEnvZoneLevel": 94,
+        "难度等级": 93
+    },
+    {
+        "ID": 95,
+        "MinEnvZoneLevel": 95,
+        "MaxEnvZoneLevel": 95,
+        "难度等级": 94
+    },
+    {
+        "ID": 96,
+        "MinEnvZoneLevel": 96,
+        "MaxEnvZoneLevel": 96,
+        "难度等级": 95
+    },
+    {
+        "ID": 97,
+        "MinEnvZoneLevel": 97,
+        "MaxEnvZoneLevel": 97,
+        "难度等级": 96
+    },
+    {
+        "ID": 98,
+        "MinEnvZoneLevel": 98,
+        "MaxEnvZoneLevel": 98,
+        "难度等级": 97
+    },
+    {
+        "ID": 99,
+        "MinEnvZoneLevel": 99,
+        "MaxEnvZoneLevel": 99,
+        "难度等级": 98
+    },
+    {
+        "ID": 100,
+        "MinEnvZoneLevel": 100,
+        "MaxEnvZoneLevel": 100,
+        "难度等级": 99
+    },
+    {
+        "ID": 101,
+        "MinEnvZoneLevel": 101,
+        "MaxEnvZoneLevel": 101,
+        "难度等级": 100
+    },
+    {
+        "ID": 102,
+        "MinEnvZoneLevel": 102,
+        "MaxEnvZoneLevel": 102,
+        "难度等级": 101
+    },
+    {
+        "ID": 103,
+        "MinEnvZoneLevel": 103,
+        "MaxEnvZoneLevel": 103,
+        "难度等级": 102
+    },
+    {
+        "ID": 104,
+        "MinEnvZoneLevel": 104,
+        "MaxEnvZoneLevel": 104,
+        "难度等级": 103
+    },
+    {
+        "ID": 105,
+        "MinEnvZoneLevel": 105,
+        "MaxEnvZoneLevel": 105,
+        "难度等级": 104
+    },
+    {
+        "ID": 106,
+        "MinEnvZoneLevel": 106,
+        "MaxEnvZoneLevel": 106,
+        "难度等级": 105
+    },
+    {
+        "ID": 107,
+        "MinEnvZoneLevel": 107,
+        "MaxEnvZoneLevel": 107,
+        "难度等级": 106
+    },
+    {
+        "ID": 108,
+        "MinEnvZoneLevel": 108,
+        "MaxEnvZoneLevel": 108,
+        "难度等级": 107
+    },
+    {
+        "ID": 109,
+        "MinEnvZoneLevel": 109,
+        "MaxEnvZoneLevel": 109,
+        "难度等级": 108
+    },
+    {
+        "ID": 110,
+        "MinEnvZoneLevel": 110,
+        "MaxEnvZoneLevel": 110,
+        "难度等级": 109
+    },
+    {
+        "ID": 111,
+        "MinEnvZoneLevel": 111,
+        "MaxEnvZoneLevel": 111,
+        "难度等级": 110
+    },
+    {
+        "ID": 112,
+        "MinEnvZoneLevel": 112,
+        "MaxEnvZoneLevel": 112,
+        "难度等级": 111
+    },
+    {
+        "ID": 113,
+        "MinEnvZoneLevel": 113,
+        "MaxEnvZoneLevel": 113,
+        "难度等级": 112
+    },
+    {
+        "ID": 114,
+        "MinEnvZoneLevel": 114,
+        "MaxEnvZoneLevel": 114,
+        "难度等级": 113
+    },
+    {
+        "ID": 115,
+        "MinEnvZoneLevel": 115,
+        "MaxEnvZoneLevel": 115,
+        "难度等级": 114
+    },
+    {
+        "ID": 116,
+        "MinEnvZoneLevel": 116,
+        "MaxEnvZoneLevel": 116,
+        "难度等级": 115
+    },
+    {
+        "ID": 117,
+        "MinEnvZoneLevel": 117,
+        "MaxEnvZoneLevel": 117,
+        "难度等级": 116
+    },
+    {
+        "ID": 118,
+        "MinEnvZoneLevel": 118,
+        "MaxEnvZoneLevel": 118,
+        "难度等级": 117
+    },
+    {
+        "ID": 119,
+        "MinEnvZoneLevel": 119,
+        "MaxEnvZoneLevel": 119,
+        "难度等级": 118
+    },
+    {
+        "ID": 120,
+        "MinEnvZoneLevel": 120,
+        "MaxEnvZoneLevel": 120,
+        "难度等级": 119
+    }
+]

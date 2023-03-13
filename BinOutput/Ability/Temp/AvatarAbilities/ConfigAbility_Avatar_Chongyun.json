@@ -1,0 +1,1927 @@
+[
+
+////////////////////////////////////////////////////////////////
+//
+//  元素战技 冰刺创生
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_CrystalImpact",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName":"TestCone1",
+				},	
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10402,
+					"cdRatio": 1,
+				},
+			],
+			"modifiers":
+			{
+				"TestCone1":
+				{
+					"duration":0.1,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41034001,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 1.5,
+								}
+							},
+						},				
+		            ],
+		            "onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName":"TestCone2",
+						},	
+					],		            
+				},
+
+				"TestCone2":
+				{
+					"duration":0.1,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41034002,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 2.5,
+								}
+							},
+						},
+		            ],
+		            "onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName":"TestCone3",
+						},	
+					],		            
+				},
+
+				"TestCone3":
+				{
+					"duration":0.4,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41034003,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 4,
+								}
+							},
+						},
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41034201,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 4,
+								}
+							},
+						},						
+		            ],
+		            "onRemoved":
+					[
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41034001,
+								"sortType": "Default",
+							},
+						},	
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41034002,
+								"sortType": "Default",
+							},
+						},	
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41034003,
+								"sortType": "Default",
+							},
+						},			
+						{
+							"$type": "TriggerAbility",
+							"abilityName": "Avatar_Chongyun_CrystalImpact_Explode",
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Diluc_FireBlade_Ground_02",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0, 
+									"y": 0.0, 
+									"z": 1.0, 
+								}
+							},
+						}		
+
+					],		            
+				},
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  元素战技 冰刺爆裂伤害
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_CrystalImpact_Explode",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName":"ExplodeDamage",
+				},	
+			],
+			"modifiers":
+			{
+				"ExplodeDamage":
+				{
+					"duration":0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"fanAngle": 360.0,
+									"radius": 4.0,
+									"height":3.0,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 2.0,
+										}
+									},
+									// "checkHitLayerType": "Both",
+								},
+								"attackInfo":
+								{
+									"attackTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": 0.1,
+										"strikeType": "Default",
+										"attackType": "Melee",
+										"elementType": "Ice",
+										"elementDurability": 50,
+										"elementRank": 1.5,
+										"enBreak": 140,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Air",	//hitlevel = 4
+										"hitImpulseX": 0,	//hitlevel = 4
+										"hitImpulseY": 800,	//hitlevel = 4
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0.02,
+										"muteHitText": false,
+									},
+									"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "Center",
+										"shakeRange": 0.36,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+						        	},
+								}
+							}
+						},						
+		            ],	            
+				},
+
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  元素战技 冰刺伤害
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Skillobj_Chongyun_CrystalImpact",
+			"onAdded": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName":"CrystalImpactDamage",
+				},	
+			],
+			"modifiers":
+			{
+				"CrystalImpactDamage":
+				{
+					"duration":0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"fanAngle": 360.0,
+									"radius": 2.0,
+									"height":2.0,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										}
+									},
+									// "checkHitLayerType": "Both",
+								},
+								"attackInfo":
+								{
+									"attackTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": 0.1,
+										"strikeType": "Default",
+										"attackType": "Melee",
+										"elementType": "Ice",
+										"elementDurability": 50,
+										"elementRank": 1.5,
+										"enBreak": 140,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Light",	//hitlevel = 4
+										"hitImpulseX": 200,	//hitlevel = 4
+										"hitImpulseY": 600,	//hitlevel = 4
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0.02,
+										"muteHitText": false,
+									},
+									"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "Center",
+										"shakeRange": 0.36,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+						        	},
+								}
+							}
+						},						
+		            ],	            
+				},
+
+			},
+		},
+	},
+
+///////////////////////////////////////////////////
+///
+/// 元素战技 冰晶创生
+///
+//////////////////////////////////////////////////
+
+	{
+		"Default":
+			{
+				"$type": "ConfigAbility",
+				"abilityName": "Avatar_Chongyun_IceCrystal",
+				// "abilityMixins":
+				// [
+				// 	{
+				// 		"$type": "RejectAttackMixin",//在草地上被烧炸了有点儿奇怪
+				// 		"attackTag": "BurningDamage",
+				// 	},
+				// ],
+				"onAdded":
+				[
+					{
+						"$type": "SetRandomOverrideMapValue",
+						"overrideMapKey": "MineLifeTime",
+						"valueRangeMin": 28,
+						"valueRangeMax": 30,
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"Check_Timer",
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"Life_Timer",
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Chongyun_IceCrystal",
+					},
+				],
+				"modifiers":
+				{
+					"Life_Timer":
+					{
+						"duration":"%MineLifeTime",//应该是一个随机值
+						"onRemoved":
+						[
+							{
+								"$type": "FireEffect",
+								"effectPattern": "Eff_Klee_ElementalArt_Mine_Explode",
+							},
+							// {
+							// 	"$type": "TriggerAttackEvent",
+							// 	// "target":"Owner",
+							// 	"targetType": "Enemy",
+							// 	"attackEvent":
+							// 	{
+							// 		"attackPattern":
+							// 		{
+							// 			"$type": "ConfigAttackSphere",
+							// 			"triggerType": "TriggerNoRepeat",
+							// 			"radius": 1,
+							// 			"born":
+							// 			{
+							// 				"$type": "ConfigBornByTarget",
+							// 			},
+							// 		},
+							// 		"attackInfo":
+							// 		{
+							// 			"canBeModifiedBy" : "OriginOwner",
+							// 			"attackTag" : "Elemental_Art",
+							// 			// "attenuationTag": "Elemental_Burst",
+							// 			"attackProperty":
+							// 			{
+							// 				"damagePercentage":"%ElementalArt_Mine_Damage",
+							// 				"elementType": "Fire",
+							// 				"elementDurability": 25,
+							// 				"elementRank":1.5,
+							// 				"enBreak": 260,
+							// 			},
+							// 			"hitPattern":
+							// 			{
+							// 				"hitLevel": "Air",	//hitlevel = 5
+							// 				"hitImpulseX": 480,	//hitlevel = 3
+							// 				"hitImpulseY": 600,	//hitlevel = 3
+							// 				"retreatType": "ByAttacker",
+							// 				"canBeDefenceHalt" : true,
+							// 				"hitHaltTime" : 0.0,
+							// 				"hitHaltTimeScale" : 0.0,
+							// 				"muteHitText" : false,
+							// 			},
+							// 			"forceCameraShake": false,
+							//         	"cameraShake":
+							//         	{
+							//         		"shakeType": "CustomVector",
+							// 				"shakeRange": 0.3,
+							// 				"shakeTime": 0.12,
+							// 				"shakedistance": 30,
+							// 				"shakeDir":
+							// 				{
+							// 					"x": 0,
+							// 					"y": -1,
+							// 					"z": 0,
+							// 				},
+							//         	},
+							// 		}
+							// 	},
+							// },
+							{
+								"$type":"KillSelf",
+							},
+						],
+					},
+					"Check_Timer":
+					{
+						"duration":0.5,
+						"onRemoved":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"CheckAlliance",
+							},
+						],
+					},
+					"CheckAlliance":
+					{
+						"thinkInterval":0.1,
+						"onThinkInterval":
+						[
+							{
+								"$type": "Predicated",
+								"otherTargets":
+								{
+									"$type": "SelectTargetsByShape",
+									"shapeName": "CircleR1.5",
+									"centerBasedOn": "Self",
+									"campTargetType": "All",
+									"campBasedOn": "Self",
+								},
+								"targetPredicates":
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Avatar"],
+									},
+								],
+								"successActions":
+								[
+									{
+										"$type":"ApplyModifier",
+										"modifierName":"Enchanted_Ice_Handler",
+										"target":"Target",
+									},
+									{
+										"$type":"KillSelf",
+									},									
+								],
+							},
+						],
+					},
+					"Enchanted_Ice_Handler":
+					{
+						"onAdded":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"Enchanted_Ice_Mark",
+							},
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"Enchanted_Ice_Mark_Selector",							
+							}
+						]
+					},
+					"Enchanted_Ice_Mark_Selector":
+					{
+						"onAdded":
+						[
+							{					
+								"$type":"ApplyModifier",
+								"modifierName":"Enchanted_Ice",
+								"otherTargets":
+								{
+									"$type":"SelectTargetsByEquipParts",
+									"equipPartNames":["equip01","sheathPoint"],
+								},
+							},	
+						]
+					},
+
+					"Enchanted_Ice":	
+					{
+						"duration" : 10.0,
+						"stacking" : "Refresh",
+						"overrideWeaponElement" : true,
+						"elementType" : "Ice",
+						"elementDurability" : 200,
+					},		
+
+					"Enchanted_Ice_Mark":	
+					{
+						"duration" : 10.0,
+						"stacking" : "Refresh",
+						"onAdded" :
+						[
+							{
+								"$type" : "AttachEffect",
+								"effectPattern" : "Eff_Avatar_Boy_Claymore_Razor_ClawMark_Sign_1",
+							},
+						],
+					},					
+					// "UNIQUE_Klee_Mine_Explode_Avatar":
+					// {
+					// 	"duration":1.5,//不要短时间内触发多次
+					// 	"isUnique": true,
+					// 	"onAdded":
+					// 	[
+					// 		{
+					// 			"$type": "TriggerAttackEvent",
+					// 			"targetType": "SelfCamp",
+					// 			"doOffStage" : true,
+					// 			"attackEvent":
+					// 			{
+					// 				"attackPattern":
+					// 				{
+					// 					"$type": "ConfigAttackSphere",
+					// 					"triggerType": "TriggerNoRepeat",
+					// 					"radius": 1,
+					// 					"born":
+					// 					{
+					// 						"$type": "ConfigBornByTarget",
+					// 					},
+					// 				},
+					// 				"attackInfo":
+					// 				{
+					// 					"canBeModifiedBy" : "OriginOwner",
+					// 					"attackTag" : "Elemental_Art",
+					// 					// "attenuationTag": "Elemental_Burst",
+					// 					"attackProperty":
+					// 					{
+					// 						"damagePercentage":2,
+					// 						"elementType": "Fire",
+					// 						"elementDurability": 25,
+					// 						"elementRank":1.5,
+					// 						"enBreak": 130,
+					// 					},
+					// 					"hitPattern":
+					// 					{
+					// 						"hitLevel": "Mute",	//hitlevel = 5
+					// 						"hitImpulseX": 0,	//hitlevel = 5
+					// 						"hitImpulseY": 0,	//hitlevel = 5
+					// 						"retreatType": "ByTangent",
+					// 						"canBeDefenceHalt" : true,
+					// 						"hitHaltTime" : 0.0,
+					// 						"hitHaltTimeScale" : 0.0,
+					// 						"muteHitText" : false,
+					// 					},
+					// 					"forceCameraShake": false,
+					// 				}
+					// 			},
+					// 			"predicates":
+					// 			[
+					// 				{
+					// 					"$type":"ByTargetGlobalValue",
+					// 					"key":"_Is_Klee",
+					// 					"value":0,
+					// 					"compareType":"NoneOrEqual",
+					// 				},
+					// 			],
+					// 		},
+					// 		{
+					// 			"$type": "EnableRocketJump",
+					// 			"enable": true,
+					// 			"type":"KleeMineExplode",
+					// 			"extention":
+					// 			{
+					// 				"xzMultiplier": 2.3,
+					// 				"yMultiplier": 4.5,
+					// 			}
+					// 		},
+					// 		{
+					// 			"$type":"ForceTriggerJump",
+					// 		},
+					// 	],
+					// 	"onRemoved":
+					// 	[
+					// 		{
+					// 			"doOffStage" : true,
+					// 			"$type": "EnableRocketJump",
+					// 			"enable": false,
+					// 			"type":"KleeMineExplode",
+					// 		},
+					// 	],
+					// },
+				},
+				"abilitySpecials":
+				{
+					"ElementalArt_Mine_Damage":0,
+					"MineLifeTime":0,
+				},
+			},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  刃冢实体
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Skillobj_ChongyunTest_ClaymoreTrap",
+			// "abilityMixins":
+			// [
+			// 	{
+			// 		"$type": "AttachModifierToSelfGlobalValueMixin",	//记录并显示每次打到的敌人个数
+			// 		"globalValueKey": "_ABILITY_Zhongli_PrimoPillar_EnemyCount",
+			// 		"valueSteps" : [-0.5, 0.5, 1.5, 2.5],
+			// 		"removeAppliedModifier": true,
+			// 		"modifierNameSteps" : ["Blank", "StatueCount_effect_1", "StatueCount_effect_2"],
+			// 	},
+			// ],
+			"onAdded":
+			[
+				// {
+				// 	"$type": "AttachEffect",
+				// 	"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Stone",
+				// },
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Zhongli_RockSacrifice_Mark",	//标记可被钟离献祭的创生物
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+				// {
+				// 	"$type" : "AddGlobalValue",
+				// 	"key" : "_ABILITY_Zhongli_PrimoPillar_EnemyCount",
+				// 	"value" : 0,
+				// 	"useLimitRange" : true,
+				// 	"maxValue" : 2,
+				// 	"minValue" : 0,
+				// },
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PrimoPillar_RockWave",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PillarLife",
+				},
+			],
+
+			"modifiers":
+			{
+				"PillarLife":	//存在控制器，可被升级效果增强
+				{
+					"duration": "%Duration",
+				},
+				"Blank":
+				{
+					"duration": 0.1,
+				},
+				// "StatueCount_effect_1":
+				// {
+				// 	"onAdded":
+				// 	[
+				// 		{
+				// 			"$type" : "AttachEffect",
+				// 			"effectPattern" : "Eff_Avatar_Male_Pole_Zhongli_RockStand_Count1",
+				// 			"born": 
+				// 			{
+				// 				"$type": "ConfigBornBySelf",
+				// 				"offset": 
+				// 				{
+				// 					"x": 1,
+				// 					"y": 1.5,
+				// 					"z": 0,
+				// 				},
+				// 			},
+				// 		},
+				// 	]
+				// },
+				// "StatueCount_effect_2":
+				// {
+				// 	"onAdded":
+				// 	[
+				// 		{
+				// 			"$type" : "AttachEffect",
+				// 			"effectPattern" : "Eff_Avatar_Male_Pole_Zhongli_RockStand_Count1",
+				// 			"born": 
+				// 			{
+				// 				"$type": "ConfigBornBySelf",
+				// 				"offset": 
+				// 				{
+				// 					"x": -1,
+				// 					"y": 1.5,
+				// 					"z": 0,
+				// 				},
+				// 			},
+				// 		},
+				// 	],
+				// },
+				// "StatueCount_effect_3":
+				// {
+				// 	"onAdded":
+				// 	[
+				// 		{
+				// 			"$type" : "AttachEffect",
+				// 			"effectPattern" : "Eff_Lisa_StaticElec_Number3",
+				// 			"born": 
+				// 			{
+				// 				"$type": "ConfigBornBySelf",
+				// 				"offset": 
+				// 				{
+				// 					"x": 0,
+				// 					"y": 1.5,
+				// 					"z": 0,
+				// 				},
+				// 			},
+				// 		},
+				// 	],
+				// },
+				"PrimoPillar_RockWave":	//周期性发射震荡波和给周围上buff
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 2.5,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.5,
+											"z": 0.0,
+										}
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag" : "Elemental_Art",				
+									"attackProperty":
+									{
+										"damagePercentage": "%Icespine_Damage",
+										"elementType": "Ice",
+										"strikeType": "Default",
+										"elementDurability": 50,
+										"elementRank" : 1.5,
+										"enBreak": 110,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Air",	//hitlevel = 7
+						          		"hitImpulseX": 0,	//hitlevel = 7
+						          		"hitImpulseY": 800,	//hitlevel = 7
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0.05,
+										"muteHitText": false
+									},
+								},
+							},
+						},
+					],
+					"thinkInterval": 1.5,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Zhongli_PrimoPillar_EnemyCount",	//每次攻击时重置敌人计数器
+							"value" : -2,
+							"useLimitRange" : true,
+							"maxValue" : 2,
+							"minValue" : 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Girl_Sword_Ayaka_LiquidStrike_OutFloor",
+						},
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"size":
+									{
+										"x": 13.0,
+										"y": 1.0,
+										"z": 13.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.4,
+											"z": -6.5,
+										}
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag" : "Elemental_Art",
+									"attenuationTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%PillarDamage",
+										"elementType": "Ice",
+										"elementDurability": 25,
+										"strikeType": "Blunt",
+										"attackType": "Melee",
+										"enBreak": 0,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Shake",	//hitlevel = 1
+						          		"hitImpulseX": 0,	//hitlevel = 1
+						          		"hitImpulseY": 0,	//hitlevel = 1
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_RockDurability",	//给角色和敌人上岩buff
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR2",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Monster"],
+									// "isAuthority": 1,
+								},
+							],
+						},
+	
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Enchanted_Ice_Handler",	//给角色和敌人上岩buff
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR2",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Avatar"],
+									// "isAuthority": 1,
+								},
+							],
+						},		
+
+
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "EnemyCount",	//敌人计数器
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR8",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Monster"],
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockResonance",	//天赋解锁后周围岩创生物回共鸣一起震荡
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "RockResonance",
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Gadget","Field","Bullet"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockSacrifice_Mark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"Enchanted_Ice_Handler":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Enchanted_Ice_Mark",
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Enchanted_Ice_Mark_Selector",							
+						}
+					]
+				},
+				"Enchanted_Ice_Mark_Selector":
+				{
+					"onAdded":
+					[
+						{					
+							"$type":"ApplyModifier",
+							"modifierName":"Enchanted_Ice",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames":["equip01","sheathPoint"],
+							},
+						},	
+					]
+				},
+
+				"Enchanted_Ice":	
+				{
+					"duration" : 10.0,
+					"stacking" : "Refresh",
+					"overrideWeaponElement" : true,
+					"elementType" : "Ice",
+					"elementDurability" : 200,
+				},		
+
+				"Enchanted_Ice_Mark":	
+				{
+					"duration" : 10.0,
+					"stacking" : "Refresh",
+					"onAdded" :
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_Avatar_Boy_Claymore_Razor_ClawMark_Sign_1",
+						},
+					],
+				},
+
+				"EnemyCount":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Zhongli_PrimoPillar_EnemyCount",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 2,
+							"minValue" : 0,
+							"target": "Caster",	//给柱子返回敌人计数
+						},
+					],
+				},
+				"UNIQUE_RockDurability":
+				{
+					"duration": 1.5,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"elementType": "Ice",
+					"elementDurability": 25,
+				},
+				"RockResonance":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Attack",
+						},
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"size":
+									{
+										"x": 13.0,
+										"y": 1.0,
+										"z": 13.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.4,
+											"z": -6.5,
+										}
+									},
+								},
+								"attackInfo":
+								{
+									// "canBeModifiedBy": "OriginOwner",
+									"attackTag" : "Elemental_Art",
+									"attenuationTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%PillarDamage",
+										"elementType": "Ice",
+										"elementDurability": 25,
+										"strikeType": "Blunt",
+										"attackType": "Melee",
+										"enBreak": 0,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Shake",	//hitlevel = 1
+						          		"hitImpulseX": 0,	//hitlevel = 1
+						          		"hitImpulseY": 0,	//hitlevel = 1
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"EnemyCount": 0,
+				"Icespine_Damage" : 2,				
+				"Duration": 30,
+				"PillarDamage": 0,
+			},
+		},
+	},
+
+
+////////////////////////////////////////////////////////////////
+//
+//  重击 ExtraAttack
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Beidou_ExtraAttack_Chongyun",
+			"abilityMixins":
+			[
+				{
+					"$type": "ButtonHoldChargeMixin",
+					"skillID": 10401,
+					"chargeTime": 0.25,
+					"secondChargeTime":5,
+					"OnBeginUncharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+						{
+							"$type":"ResetAnimatorTrigger",
+							"triggerID": "EndHoldTrigger",
+						},
+					],
+					"OnReleaseUncharged":
+					[
+					],
+					"OnBeginCharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 6,
+						},
+					],
+					"OnReleaseCharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "EndHoldTrigger", //制造一个持续0.5秒的modifier，remove的时候都add一下trigger并移除trigger
+						},
+						{
+							"$type":"ApplyModifier",  //因为在第二击进入时可能已经松开按键了，导致EndHoldTrigger被干掉。所以设置了一个modifier保持这个trigger1秒，transation一般都小于一秒，就没问题了。
+							"modifierName":"SetTrigger",
+						},
+					],
+					"OnBeginSecondCharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "EndHoldTrigger",
+						},
+					],
+					"chargeStateIDs": ["Attack01_BS","Attack01","Attack02","Attack03","Attack04","ExtraAttack_BS","ExtraAttack","ExtraAttack1"],
+				},
+				{
+					"$type":"AvatarSteerByCameraMixin",
+					"stateIDs": ["ExtraAttack1"],
+					"angularSpeed" : 360,
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs":["ExtraAttack1","ExtraAttack2","ExtraAttack3"],
+					"modifierName":"Camera"
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs":["ExtraAttack1",],
+					"modifierName":"Cost"
+				}
+			],
+			"modifiers":
+			{
+				"SetTrigger":
+				{
+					"duration":1,
+					"onRemoved":
+					[
+						{
+							"$type":"SetAnimatorTrigger",
+							"triggerID":"EndHoldTrigger",
+						},
+					],
+				},
+				"Camera":
+				{
+					"onRemoved":
+					[
+						{
+							"$type":"AvatarExitCameraShot",
+							"doOffStage":true,
+						},
+					],
+					"onAvatarOut":
+					[
+						{
+							"$type":"AvatarExitCameraShot",
+							"doOffStage":true,
+						},
+					],
+				},
+				"Cost":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "CostStaminaMixin",
+							"costStaminaDelta": 40,
+							"onStaminaEmpty":
+							[
+								{
+									"$type" : "SetAnimatorTrigger",
+									"triggerID" : "EndHoldTrigger",
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Bullet_Chongyun_TestBlade
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Bullet_Chongyun_TestBlade",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet_Tail",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit",
+					"born":
+					{
+						"$type": "ConfigBornByCollisionPoint",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							}
+						}
+					},
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Extra",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+					},
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"duration": 0.0,
+							"triggerType": "TriggerNoRepeat",
+							"radius": 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": 0.5,
+								"elementType": "Ice",
+								"attackType": "Range",
+								"strikeType": "Pierce",
+								"elementDurability": 25,
+								"elementRank":1.5,
+								"enBreak": 25,
+							},
+							"hitPattern":
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Air",	//hitlevel = 7
+				          		"hitImpulseX": 0,	//hitlevel = 7
+				          		"hitImpulseY": 800,	//hitlevel = 7
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.0,
+								"hitHaltTimeScale": 0.05,
+										"muteHitText": false
+							},
+							"forceCameraShake": false,
+						}
+					},
+				},
+				{
+					"$type": "Predicated",
+					"target": "Team",
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",	//天赋：给敌人减防
+							"value": 1,
+							"compareType": "Equal",
+						},
+					],
+					"successActions": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Target",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff",
+						},
+					],
+				},
+				{
+					"$type": "KillSelf"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff":
+				{
+					"duration": 4,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"state": "DefenseDown",
+					"isLimitedProperties": false,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta" : "%WaterSubHurtDelta",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"ElementalBurst_Bullet_Damage": 0,
+				"WaterSubHurtDelta": 0,
+			},
+		},
+	},
+
+
+//////////////////////////////////
+//
+//  元素爆发：发动
+//
+//////////////////////////////////
+
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_SoulUnleash_Initiate",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "Predicated",
+					"target" : "Self",	
+					"targetPredicates" :
+					[
+						{
+							"$type":"ByHasAttackTarget",
+						},
+					],
+					"successActions" :
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName":"LaunchAttack_HasTarget",
+						},						
+					],
+					"failActions" :
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName":"LaunchAttack_NoTarget",
+						},	
+					],
+				},
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10403,
+					"cdRatio": 1,
+				},
+			],
+			"modifiers":
+			{
+				"LaunchAttack_HasTarget":
+				{
+					"duration":0.5,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"target": "SelfAttackTarget",
+							"gadgetID": 41034111,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+
+				},
+				"LaunchAttack_NoTarget":
+				{
+					"duration":0.5,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41034111,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 4.0,
+								},
+							},							
+						}
+					]
+				},				
+			},			
+		},
+	},
+
+//////////////////////////////////
+//
+//  元素爆发：将周围的敌人推开
+//	
+//////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_SoulUnleash_PushBack",
+			"onAbilityStart":
+			[
+				{
+					///需要一个气浪类的特效，先用迪卢克的代替
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Diluc_FireCross_Aoe",
+					"born":
+					{
+						"$type":"ConfigBornByTarget",
+						"offset":
+						{
+							"x":0,
+							"y":0,
+							"z":0,
+						},
+						"alongGround":true,
+					},
+				},
+				{
+					"$type":"TriggerAttackEvent",
+					"targetType":"Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackCircle",
+							"triggerType": "TriggerNoRepeat",
+							"fanAngle": 360.0,
+							"radius": 4,
+							"ignoreMassive":true,
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag":"Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"strikeType": "None",//特意不要命中特效，便于大特效表现。
+								"attackType": "None",
+								"element":"Ice",
+								"elementDurability": 1,
+								"enBreak": 400,
+				        	},
+							"hitPattern":
+							{
+								"onHitEffectName": "",
+				          		"hitLevel": "Heavy",	//hitlevel = 3
+				          		"hitImpulseX": 400,	//hitlevel = 3
+				          		"hitImpulseY": 0,	//hitlevel = 3
+				          		"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+				          		"hitHaltTime": 0.00,
+				          		"hitHaltTimeScale":0.01,
+				          		"muteHitText": false,
+				          		"retreatType":"ByHitDirection",
+				        	},
+						},
+					},
+				},
+			],
+			"modifiers":
+			{
+			},
+		},
+	},	
+
+//////////////////////////////////
+//
+//  元素爆发：灵刃创生
+//
+//////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_SoulUnleash_Summon",
+			"onAdded":
+			[		
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Delay",
+				},	
+				{
+					///发动时需要一个特效，先用迪卢克的代替
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Diluc_FireCross_Aoe1",
+				},								
+			],
+			"onAbilityStart":
+			[
+				// {
+				// 	"$type": "ActCameraRadialBlur",
+				// 	"cameraRadialBlur":
+				// 	{
+				// 		"power": 0.8,
+				// 		"blurTime": 0.25,
+				// 		"fadeTime": 0.3,
+				// 	},
+				// },
+
+			],
+			"modifiers":
+			{
+				"Delay":
+				{
+					"duration":0.35,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"SummonBlade1",
+						},
+					],
+				},
+				"SummonBlade1":
+				{
+					"duration":0.4,
+					"onAdded":
+					[
+						{
+					        "$type": "TriggerBullet",
+					        "bulletID": 41034101,
+					        "born": 
+				          	{
+					            "$type": "ConfigBornByTarget",
+					            "offset": 
+					            {
+					              "x": 0.0,
+					              "y": 6.0,
+					              "z": -4.0,
+					            },
+								"direction":
+								{
+									"$type": "ConfigDirectionByLookAtEntity"
+								}			            
+							},
+							"trackTarget": "SelfAttackTarget",
+						},						
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"SummonBlade2",
+						},
+					],
+				},
+				"SummonBlade2":
+				{
+					"duration":0.4,
+					"onAdded":
+					[
+						{
+					        "$type": "TriggerBullet",
+					        "bulletID": 41034101,
+					        "born": 
+				          	{
+					            "$type": "ConfigBornByTarget",
+					            "offset": 
+					            {
+					              "x": 3.5,
+					              "y": 6.0,
+					              "z": 2,
+					            },
+								"direction":
+								{
+									"$type": "ConfigDirectionByLookAtEntity"
+								}			            
+							},
+							"trackTarget": "SelfAttackTarget",
+						},		
+					],			
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"SummonBlade3",
+						},
+					],					
+				},
+				"SummonBlade3":
+				{
+					"duration":1,
+					"onAdded":
+					[
+						{
+					        "$type": "TriggerBullet",
+					        "bulletID": 41034101,
+					        "born": 
+				          	{
+					            "$type": "ConfigBornByTarget",
+					            "offset": 
+					            {
+					              "x": -3.5,
+					              "y": 6.0,
+					              "z": 2,
+					            },
+								"direction":
+								{
+									"$type": "ConfigDirectionByLookAtEntity"
+								}			            
+							},
+							"trackTarget": "SelfAttackTarget",
+						},	
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Damage":5,
+			},
+		},
+	},
+
+//////////////////////////////////
+//
+//  元素爆发：飞行和命中
+//	
+//////////////////////////////////
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_SoulUnleash_Hit",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "BladeEffect",
+					"target": "Self",
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type": "RemoveModifier",
+					"modifierName": "BladeEffect",
+				},
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Avatar_Chongyun_Ult_PlaceHolder01",
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"onGround": true,
+					},
+				},
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Avatar_Chongyun_Ult_PlaceHolder02",
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"onGround": true,
+					},
+				},
+				{
+					"$type": "TriggerAbility",
+					"abilityName": "Avatar_Chongyun_SoulUnleash_Damage",
+				},
+			],
+			"modifiers":
+			{
+				"BladeEffect":
+				{
+					"elementType": "Frozen",
+					"elementDurability": 100,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_TestBlade_Bullet_1",
+						},
+					],	
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+						},
+					],			
+				},
+			},
+		},
+	},	
+
+//////////////////////////////////
+//
+//  元素爆发：造成伤害
+//	
+//////////////////////////////////
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Chongyun_SoulUnleash_Damage",
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "TriggerAttackEvent",
+					"targetType" : "Enemy",
+					"attackEvent": 
+					{
+						"attackPattern" : 
+						{
+							"$type" : "ConfigAttackCircle",
+							"triggerType" : "TriggerNoRepeat",
+							"height": 2.0,
+							"fanAngle" : 360.0,
+							"radius" : 3,
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1.0,
+								"strikeType": "Default",
+								"attackType": "Default",
+								"elementType": "Ice",
+								"elementDurability": 50,
+								"enBreak": 110,
+							},
+							"hitPattern" :
+							{
+				                "onHitEffectName": "",
+				                "hitLevel": "Air", //hitlevel = 5
+				                "hitImpulseX": 0, //hitlevel = 5
+				                "hitImpulseY": 600, //hitlevel = 5
+				                "reboundRatio": 0,
+				                "hitHaltTime": 0.0,
+				                "hitHaltTimeScale": 0.05,
+				                "muteHitText": false,
+			                },
+							"forceCameraShake": false,
+							"cameraShake":
+							{
+								"shakeType": "CustomVector",
+								"shakeRange": 0.36,
+								"shakeTime": 0.12,
+								"shakeDistance": 30,
+								"shakeDir":
+								{
+									"x": -0.2,
+									"y": 1,
+									"z": 0
+								},
+							},
+						},
+					},
+				},
+			],
+		},
+	},	
+]

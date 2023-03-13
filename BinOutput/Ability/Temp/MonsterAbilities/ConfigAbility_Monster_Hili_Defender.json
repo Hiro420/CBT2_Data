@@ -1,0 +1,78 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  RushAttack_Defender
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Hili_Defender_ShieldRush",
+		"abilityMixins": 
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["ShieldRush_BS"],
+				"startNormalizedTime" : 0.2,
+				"endNormalizedTime" : 1.0,
+				"angularSpeed" : 180,
+				"attackTrigger" : "",
+				"attackDistance" : 2,
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["ShieldRush_Rush"],
+				"modifierName": "Rush",
+			},
+			{
+				"$type": "AttackHittingSceneMixin",
+				"animEventIDs": ["ShieldRush_HitScene"],
+				"onHittingScene":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "CrashTrigger",
+					},
+					{
+						"$type": "ActCameraShake",
+						"cameraShake":
+						{
+							"shakeRange": 0.36,
+							"shakeTime": 0.24,
+						},
+					},	
+				],
+			},
+		],
+		"modifiers" : 
+		{
+			"Rush" : 
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Hili_None_ShieldRush_Loop",
+					},
+				],
+				"onAttackLanded":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "NextSkillTrigger",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar"],
+								"useEventSource" : true,
+							},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+]

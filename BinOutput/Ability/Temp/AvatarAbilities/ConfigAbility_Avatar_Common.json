@@ -1,0 +1,388 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  冲刺时的无敌帧
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_SprintBS_Invincible",
+/*			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "SprintBS",
+					"modifierName": "SprintBS_Invincible",
+					"normalizeStart": 0.1,
+					"normalizeEnd": 0.16,
+				}
+			],*/
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "ApplyModifier",
+					"modifierName" : "SprintBS_Invincible",
+					"target" : "Self",
+				},
+			],
+			"modifiers":
+			{
+/*				"SprintBS_Invincible":
+				{
+					"duration": 0.3,
+					"state": "IsGhostToEnemy",	
+				},	*/
+				"SprintBS_Invincible":
+				{
+					"duration": 0.3,
+					"stacking": "Multiple",
+					"stackingOption":
+					{
+						"maxModifierNumForMultipleType": 2,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "EnableHitBoxByName",
+							"hitBoxNames" : ["HitBox"],
+							"setEnable" : false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "EnableHitBoxByName",
+							"hitBoxNames" : ["HitBox"],
+							"setEnable" : true,
+						},
+					],
+					"properties":
+					{
+						"Actor_EndureDelta": 0,
+					},
+				},		
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  一定次数的Shake受击会变成Light
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_BeHit_Gauge",
+			"abilityMixins": 
+			[
+				{
+					"$type" : "HitLevelGaugeMixin",
+					"fromHitLevel" : "Shake",
+					"toHitLevel" : "Light",
+					"maxCharge" : 100,
+					"minChargeDelta" : 20,
+					"maxChargeDelta" : 30,
+					"fadeTime" : 0.1,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  角色固定对冰冻效果时间减免（试做）
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Freeze_Duration_Reducer",
+			"onAdded":
+			[
+				{
+					"$type" : "AttachAbilityStateResistance",
+					"resistanceListID": 14002,
+					"durationRatio" : 0.4,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  少女法器击飞隐身弹起效果
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Girl_Catalyst_HitFallToGround_Hide",
+			"abilityMixins":
+			[
+				{
+					"$type" : "AttachToNormalizedTimeMixin",
+					"stateID" : "Hit_Throw_Ground",
+					"modifierName" : "Girl_Catalyst_HitFallToGround_Visible_Handler",
+					"normalizeStart":0.155,
+					"normalizeEnd":0.272,
+				},
+				{
+					"$type" : "AttachToNormalizedTimeMixin",
+					"stateID" : "Hit_Throw_Ground",
+					"modifierName" : "Girl_Catalyst_HitFallToGround_HideSpark",
+					"normalizeStart":0.115,
+					"normalizeEnd":0.272,
+				},
+			],
+			"modifiers":
+			{
+				"Girl_Catalyst_HitFallToGround_HideSpark":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Avatar_Girl_Catalyst_HitFallToGround_HideSpark",
+						},
+					],
+				},
+				"Girl_Catalyst_HitFallToGround_Visible_Handler":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "TriggerSetVisible",	
+							"visible": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": true,
+							"doOffStage":true,
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Avatar_Girl_Catalyst_HitFallToGround_ShowSpark",
+						},
+					],
+				},
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  弓箭手瞄准射击表情
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"Avatar_Bow_Aim_EmoController",
+			"abilityMixins":
+			[
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs":["Aim",],
+					"modifierName":"AimLoop_EmoController",
+				},
+			],
+			"modifiers":
+			{
+				"AimLoop_EmoController":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"PlayEmoSync",
+							"emoSyncAssetPath":"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_Bow_Fight_Aim",
+						},
+						{
+							"$type":"ControlEmotion",
+							"toggleBlink":false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"PlayEmoSync",
+							"emoSyncAssetPath":"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_Normal",
+						},
+						{
+							"$type":"ControlEmotion",
+							"toggleBlink":true,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  岩属性创生物创生时检测技能
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_RockGadget_Summon_Detect",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RockGadget_Summon_Detect",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RockGadget_Summon_Suicide",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_COMMON_GADGET_ISSUMMON",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"RockGadget_Summon_Detect":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "All",
+							"canHitHead" : false,
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"size" :
+									{
+										"x" : 2.8,
+										"y" : 4.2,
+										"z" : 2.8,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 2.0,
+											"z": -1.4,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "Gadget_Summon_Detect",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType" : "None",
+										"elementDurability" : 0,
+										"elementRank" : 1.0,
+										"enBreak": 0,
+									},
+								},
+							},
+						},
+
+					],
+				},
+				"RockGadget_Summon_Suicide":
+				{
+					"onAttackLanded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type":"ByAny",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_COMMON_GADGET_ISSUMMON",
+											"value": 0,
+											"compareType": "MoreThan",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_SCENE_GADGET_ISSUMMON",
+											"value": 0,
+											"compareType": "MoreThan",
+										},
+									],
+								}
+							],
+							"successActions":
+							[
+								{
+									"$type": "KillSelf",
+									"target": "Self",
+								},
+								{
+									"$type": "ActCameraShake",
+									"cameraShake":
+									{
+										"shakeRange": 0.04,
+										"shakeTime": 0.08,
+									},
+								},
+							],
+						},
+					],
+				},			
+			}
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  岩创生物重量变化（迭代完combat.property的配置，要干掉）
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "RocketGadget_WeightRatio",
+			"onAdded": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RocketGadget_WeightRatio",
+					"target": "Self",
+				},
+			],
+			"modifiers":
+			{
+				"RocketGadget_WeightRatio":
+				{
+					"properties":
+					{
+						"Entity_WeightRatio":2,
+					},
+				},				
+			}
+		},
+	},
+]

@@ -1,0 +1,134 @@
+{
+	////////////////////////////////////////////////////////////////
+//
+//  默认Gather掉落
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Quest_Clue01": 
+	{
+		"$type": "ConfigGadget",
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP": true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime" : 2,
+				"dieForceDisappearTime": 2,
+			},
+		},
+	},
+	////////////////////////////////////////////////////////////////
+//
+//  找猫玩法交互
+//
+////////////////////////////////////////////////////////////////	
+	"SceneObj_Quest_FindCat":
+	{
+		"$type": "ConfigGadget",
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.1,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},		
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target": "GroupMonsterEntity",
+			"attachPoint" : "RootNode",
+			"followRotation": true,
+		},
+	},
+	"SceneObj_Quest_Fish":
+	{
+		"$type": "ConfigGadget",
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Event_Fish",
+				"abilityName" : "SceneObj_Event_Fish",
+			},
+		],
+
+
+	},
+		////////////////////////////////////////////////////////////////
+//
+//  赌石玩法石头(套娃岩变色)
+//
+////////////////////////////////////////////////////////////////	
+
+	////////////////////////////////////////////////////////////////
+//
+//  赌石玩法基座
+//
+////////////////////////////////////////////////////////////////	
+	"SceneObj_Quest_GamblingRockCreater_1" :
+	{
+		"$type" : "ConfigGadget",
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Quest_GamblingRockCreate_1",
+			},
+		],
+	},
+		"SceneObj_Quest_GamblingRockCreater_2" :
+	{
+		"$type" : "ConfigGadget",
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Quest_GamblingRockCreate_2",
+			},
+		],
+	},
+		"SceneObj_Quest_GamblingRockCreater_3" :
+	{
+		"$type" : "ConfigGadget",
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Quest_GamblingRockCreate_3",
+			},
+		],
+	},
+
+},

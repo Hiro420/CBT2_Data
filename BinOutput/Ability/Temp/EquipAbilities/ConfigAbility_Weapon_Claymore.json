@@ -1,0 +1,2641 @@
+[
+
+    //cd检测已过。
+
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  备用，测试
+    //
+    //  西风大剑武器词缀，小技能暴击的时候可能获得元素球。
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_Zephyrus",
+            "abilityMixins":
+            [
+                {
+                    "$type": "OnAvatarUseSkillMixin",
+                    "onTriggerSkill":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Claymore_Zephyrus_Handler",
+                            "target": "Self",
+                        }
+                    ]
+
+                }
+            ],
+            "onAdded":
+            [
+
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_Zephyrus_Handler":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "duration": 4,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Ball",
+                            "target": "Self",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByHitCritical",
+                                },
+                            ]
+                        }
+                    ],
+                },
+                "UNIQUE_Ball":
+                {
+                    "duration": 1.0,
+                    "isUnique": true,
+                    "stacking": "Unique",
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "GenerateElemBall",
+                            "configID": 2008,
+                            "baseEnergy": 6,
+                            "ratio": "%GetElementRatio",
+                            "born":
+                            {
+                                "$type": "ConfigBornByTarget",
+                                "offset":
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 1.0,
+                                },
+                            },
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "GetElementRatio": 1.0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  备用 每次攻击附带%rate固定伤害和%rate2百分比角色伤害。   OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_ExtraPhyDamagePerHit",
+            "abilityMixins":
+            [
+            ],
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_ExtraPhyDamagePerHit_Handler"
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_ExtraPhyDamagePerHit_Handler":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                // {// 限制普攻，因为被火烧的时候还会加伤害T T。不限制类型就炸了。
+                                // 	"$type" : "ByAttackTags",
+                                // 	"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06",]
+                                // },
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ], //不限制普攻的话，至少限制别烧自己……
+                                },
+                                {
+                                    "$type": "ByHitDamage", //例如风压剑这种，额外造成伤害的话不太合适，并且玩家难以理解。（虽然巨剑没有风压剑）
+                                    "damage": 0,
+                                    "logic": "Greater",
+                                },
+                                {
+                                    "$type": "ByNot",
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type": "ByAttackTags",
+                                            "attackTags":
+                                            [
+                                                "WeaponSkill"
+                                            ],
+                                        },
+                                    ],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "DamageByAttackValue", //这个效果格挡后伤害仍然会给出，但是打元素盾后伤害不会出现，因为元素盾主人是锁血状态。
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornByAttachPoint",
+                                        "attachPointName": "RootNode",
+                                        "offset":
+                                        {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0,
+                                        },
+                                    },
+                                    "target": "Target",
+                                    "attackInfo":
+                                    {
+                                        "attackTag": "WeaponSkill",
+                                        "attackProperty":
+                                        {
+                                            "damagePercentage": "%Rate2",
+                                            "damageExtra": "%Rate",
+                                            "elementType": "None",
+                                            "strikeType": "Default",
+                                            "enBreak": 25,
+                                        },
+                                        "hitPattern":
+                                        {
+                                            "onHitEffectName": "default",
+                                            "hitLevel": "Mute",
+                                            "hitImpulseX": 0,
+                                            "hitImpulseY": 0,
+                                            "reboundRatio": 0,
+                                            "hitHaltTime": 0.0,
+                                            "hitHaltTimeScale": 0.01,
+                                            "muteHitText": false,
+                                        },
+                                        "forceCameraShake": false,
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 2,
+                "Rate2": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12301
+    //
+    //  生命值低于rate%时，提升分支攻击时的霸体值和伤害   ok
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_LowHPAddExtraAttackEndura",
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToPredicateMixin",
+                    "modifierName": "UNIQUE_Claymore_LowHPAddExtraAttackEndura_Handler",
+                    "onEvent": "HP",
+                    "predicates":
+                    [
+                        {
+                            "$type": "ByTargetHPRatio",
+                            "target": "Self",
+                            "HPRatio": "%HPRate",
+                            "logic": "LesserOrEqual",
+                        },
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_LowHPAddExtraAttackEndura_Handler":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "AttachToStateIDMixin",
+                            "stateIDs":
+                            [
+                                "ExtraAttack",
+                                "ExtraAttack1",
+                                "ExtraAttack2",
+                                "ExtraAttack3"
+                            ], //由于命名问题，实际上extraattack就是BS起手阶段，然后ExtraAttack数字最大的会作为收尾动作。
+                            "target": "Self",
+                            "modifierName": "UNIQUE_Claymore_LowHPAddExtraAttackEndura",
+                        },
+                    ],
+                    "stacking": "Unique",
+                    "isUnique": true,
+                },
+                "UNIQUE_Claymore_LowHPAddExtraAttackEndura":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "state": "AttackUp",
+                    "isLimitedProperties": true,
+                    "modifierMixins":
+                    [
+                        {
+                            "$type":"ModifyDamageMixin",
+                            "damagePercentageRatio":"%Rate",
+                            "attackTags":["ExtraAttack"],
+                        },
+                    ],
+                    "properties":
+                    {
+                        "Actor_EndureDelta": 0.6,
+                    },
+                    // "onAdded":
+                    // [
+                    // 	{
+                    // 		"$type":"AttachEffect",
+                    // 		"effectPattern":"Eff_Avatar_Properties_Shield",
+                    // 	},
+                    // ]
+                },
+            },
+            "abilitySpecials":
+            {
+                "HPRate":0,
+                "Rate":0,
+            },
+        },
+    },
+    ///////////////////////////////////////////////////////////////
+    //
+    //
+    // 12302
+    //
+    // 对雷 火附着单位增加20%伤害
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_DamageUpToEnemy",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_DamageUpToEnemy_Handler",
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_DamageUpToEnemy_Handler":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "ModifyDamageMixin",
+                            "ignoreEventInfo": true,
+                            // "bonusCritical":"%Rate",
+                            "damagePercentageRatio": "%Rate", //暴击率太弟弟了,不用
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    // "target":"Target",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self", //emmm,用Applier基本能解决想要的self需求。
+                                    "skillID": 10101
+                                },
+                                {
+                                    "$type": "ByAny",
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type": "ByHasElement", //Predicate的目标默认是Target，就是传进来的参数.
+                                            // "target":"Target",
+                                            "element": "Electric",
+                                        },
+                                        {
+                                            "$type": "ByHasElement", //Predicate的目标默认是Target，就是传进来的参数.
+                                            // "target":"Target",
+                                            "element": "Fire",
+                                        },
+                                    ],
+                                }
+                            ],
+                        },
+                    ],
+                    "isUnique": true,
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12303
+    //
+    //  系列，武器词缀_击杀目标恢复角色固定生命值；
+    //
+    ////////////////////////////////////////////////////////////////
+    // {
+    //     "Default":
+    //     {
+    //         "$type": "ConfigAbility",
+    //         "abilityName": "Weapon_Claymore_HealAmountHPonEnemyKilled",
+    //         "onAdded":
+    //         [
+    //             {
+    //                 "$type": "AttachModifier",
+    //                 "modifierName": "UNIQUE_Claymore_HealAmountHPonEnemyKilled_Handler"
+    //             },
+    //         ],
+    //         "modifiers":
+    //         {
+    //             "UNIQUE_Claymore_HealAmountHPonEnemyKilled_Handler":
+    //             {
+    //                 "stacking": "Unique",
+    //                 "isUnique": true,
+    //                 "onAttackLanded":
+    //                 [
+    //                     {
+    //                         "$type": "AttachModifier",
+    //                         "modifierName": "Weapon_Claymore_HealAmountHPonEnemyKilled_Mark",
+    //                         "target": "Target",
+    //                         "predicates":
+    //                         [
+    //                             {
+    //                                 "$type": "ByEntityTypes",
+    //                                 "entityTypes":
+    //                                 [
+    //                                     "Monster",
+    //                                 ],
+    //                             },
+    //                             // {
+    //                             // 	"$type":"ByTargetHPRatio",
+    //                             // 	"HPRatio":0,
+    //                             // 	"logic":"Greater"
+    //                             // },
+    //                         ],
+    //                     },
+    //                     { //这里还是需要加上，目前只对攻击者本身保证onAttackLanded和onKill的顺序，对攻击者的owner没法保证
+    //                         "$type": "Predicated",
+    //                         "target": "Target",
+    //                         "targetPredicates":
+    //                         [
+    //                             {
+    //                                 "$type": "ByEntityTypes",
+    //                                 "entityTypes":
+    //                                 [
+    //                                     "Monster",
+    //                                 ],
+    //                             },
+    //                             {
+    //                                 "$type": "ByTargetGlobalValue",
+    //                                 "key": "_ABILITY_GlobalWeapon_Claymore_HealAmountHPonEnemyKilled_Mark",
+    //                                 "value": 0,
+    //                                 "compareType": "NoneOrEqual",
+    //                             },
+    //                             {
+    //                                 "$type": "ByTargetHPRatio",
+    //                                 "HPRatio": 0,
+    //                                 "logic": "LesserOrEqual"
+    //                             }, //单机测试，有时会回两次血，提交后再测一下。
+    //                         ],
+    //                         "successActions":
+    //                         [
+    //                             {
+				// 					"$type" : "AttachModifier",
+				// 					"modifierName" : "Weapon_Claymore_HealAmountHPonEnemyKilled_Heal",
+				// 					"target" : "Self",
+				// 				},
+    //                             /*{
+    //                                 "$type": "HealHP",
+    //                                 "target": "Self",
+    //                                 "amount": "%HealAmount",
+    //                             },*/
+    //                         ],
+    //                     },
+    //                 ],
+    //             },
+    //             "Weapon_Claymore_HealAmountHPonEnemyKilled_Mark":
+    //             {
+    //                 "duration": 10.0,
+    //                 "stacking": "Refresh",
+    //                 "onAdded":
+    //                 [
+    //                     {
+    //                         "$type": "AddGlobalValue",
+    //                         "value": 1,
+    //                         "key": "_ABILITY_GlobalWeapon_Claymore_HealAmountHPonEnemyKilled_Mark",
+    //                         "maxValue": 1,
+    //                     },
+    //                 ],
+    //                 "onKill":
+    //                 [
+    //                     {
+				// 			"$type" : "ApplyModifier",
+				// 			"modifierName" : "Weapon_Claymore_HealAmountHPonEnemyKilled_Heal",
+				// 			"target" : "Caster",
+				// 		},
+    //                    /* {
+    //                         "$type": "HealHP", //怪死了之后，先通知客户端执行onkill，然后回到服务端执行heal，怪已死导致这个没有释放者会没法执行
+    //                         "target": "Caster",
+    //                         "amount": "%HealAmount",
+    //                     },*/
+    //                 ],
+    //             },
+    //             "Weapon_Claymore_HealAmountHPonEnemyKilled_Heal" :
+				// {
+				// 	"duration" : 0.5,
+				// 	"stacking" : "Multiple",//如果需要cd，将回血的堆叠写成unique
+				// 	"onAdded" :
+				// 	[
+				// 		{
+				// 			"$type" : "HealHP",
+				// 			"amount" : "%HealAmount",
+				// 		},
+				// 	],
+				// },
+    //         },
+    //         "abilitySpecials":
+    //         {
+    //             "HealAmount": 0,
+    //         },
+    //     },
+    // },
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_HealAmountHPonEnemyKilled",
+            "abilityMixins":
+            [
+                {
+                    "$type":"DoActionByKillingMixin",
+                    //算的是此角色最后一击的tag。不一定是击杀那一击（可能是别人击杀的）
+                    "detectWindow":1, //这段时间之后击杀都算，但是无论是modifiermixin还是abilitymixin都需要角色在场。
+                    "onKill":
+                    [
+                        {
+                            "$type":"Predicated", //务必要用这个写法，不然other无法传递给predicate
+                            "target":"Other",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type":"ByEntityTypes",
+                                    "target":"Target",
+                                    "entityTypes":["Monster",],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type" : "HealHP",
+                                    "target":"Self",
+                                    "amountByTargetMaxHPRatio": "%HealAmount",
+                                },
+                            ],
+                        },
+                    ]
+                },
+            ],
+            "abilitySpecials":
+            {
+                "HealAmount": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12304
+    //
+    // 下面是即将换上来的武器技能，主要是元素附着和元素反应。,触发后增加“攻击”即可
+    //
+    // 触发火系相关反应，提升攻击20%~40%，持续12秒。
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_AttacktUpAfterReaction",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_AttacktUpAfterReaction_Handler",
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_AttacktUpAfterReaction_Handler":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "DoActionByElementReactionMixin",
+                            "range": 20, //这个就是默认值
+                            "entityTypes":
+                            [
+                                "Monster",
+                            ],
+                            "reactionTypes":
+                            [
+                                "Explode",
+                                "Stream",
+                                "Burning",
+                                "Melt",
+                                "SwirlFire",
+                            ],
+                            "actions":
+                            [
+                                {
+                                    "$type": "AttachModifier",
+                                    "modifierName": "UNIQUE_Claymore_AttacktUpAfterReaction",
+                                }
+                            ],
+                        }, //一个检测发生了元素反应的mixin
+                    ],
+                    "isUnique": true,
+                },
+                "UNIQUE_Claymore_AttacktUpAfterReaction":
+                {
+                    "duration": 12,
+                    "state": "AttackUp",
+                    "isUnique": true,
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_AttackRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+        //这个列表是所有元素反应["Explode","Stream","Burning","Melt","Freeze","Shock","Superconductor","SwirlFire","SwirlWater","SwirlElectric","SwirlIce",],
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12305
+    //
+    //  元素战技后一段时间，普攻和重击附加3次50%攻击力aoe(有X秒cd)。持续8秒，此效果8秒只能触发1次(这个触发间隔有待商榷） OK
+    //
+    //  由于描述问题，建议去掉3次这个限制。而且大剑攻速确实很慢，去掉吧。
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_NormalAttackExtraDamageAfterSkill",
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin",
+                    "globalValueKey": "_ABILITY_Claymore_NormalAttackExtraDamageAfterSkill",
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_NormalAttackExtraDamageAfterSkill_CD",
+                        "UNIQUE_Claymore_NormalAttackExtraDamageAfterSkill_Handler"
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_NormalAttackExtraDamageAfterSkill_Handler":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "OnAvatarUseSkillMixin",
+                            "onTriggerSkill":
+                            [
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "doOffStage": true,
+                                    "key": "_ABILITY_Claymore_NormalAttackExtraDamageAfterSkill",
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": -1,
+                                    "minValue": -1,
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type": "BySkillReady",
+                                            "target": "Self",
+                                            "skillID": 10101,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                    "isUnique": true,
+                },
+                "UNIQUE_Claymore_NormalAttackExtraDamageAfterSkill_CD":
+                {
+                    "duration": 0.5,              //设计略微改了，所以变成稳定可以触发了。写0.5秒cd意思一下。
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Claymore_NormalAttackExtraDamage",
+                        },
+                        {
+                            "$type": "AddGlobalValue",                              //控制能触发次数上限，目前10不做限制。
+                            "key": "_ABILITY_Claymore_AttackBuffValue",
+                            "value": 10,
+                            "useLimitRange": true,
+                            "maxValue": 10,
+                            "minValue": 0,
+                        },
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Claymore_AttackBlast",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 1,
+                            "minValue": 0,
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_NormalAttackExtraDamageAfterSkill",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_NormalAttackExtraDamage":
+                {
+                    "isUnique": true,
+                    "stacking": "Refresh", //为防止重复触发，重复触发了至少保证效果能再启动
+                    "duration": "%Time",
+                   // "duration": 15,
+                    "state": "AttackUp",
+                    "onAdded":
+                    [
+                    ],
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "NormalAttack_01",
+                                        "NormalAttack_02",
+                                        "NormalAttack_03",
+                                        "NormalAttack_04",
+                                        "NormalAttack_05",
+                                        "NormalAttack_06",
+                                        "ExtraAttack"
+                                    ]
+                                },
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_AttackBlast",
+                                    "value": 0,
+                                    "compareType": "MoreThan"
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "key": "_ABILITY_Claymore_AttackBlast", //这个爆炸伤害需要触发一次后进入1小段不应期，防止1次攻击全发动特效。
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": 1,
+                                    "minValue": 0,
+                                },
+                                {
+                                    "$type": "FireEffect",
+                                    "target": "Target",
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornByTarget",
+                                        "offset":
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.7,
+                                            "z": 0.0,
+                                        },
+                                    },
+                                    "effectPattern": "Eff_Weapon_Blast_R30",
+                                },
+                                {
+                                    "$type": "TriggerAttackEvent",
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornByTarget",
+                                    },
+                                    "targetType": "Enemy",
+                                    "attackEvent":
+                                    {
+                                        "attackPattern":
+                                        {
+                                            "$type": "ConfigAttackCircle",
+                                            "triggerType": "TriggerNoRepeat",
+                                            "fanAngle": 360.0,
+                                            "radius": 3,
+                                            "born":
+                                            {
+                                                "$type": "ConfigBornByTarget",
+                                                "offset":
+                                                {
+                                                    "x": 0.0,
+                                                    "y": 0.0,
+                                                    "z": 0.0,
+                                                },
+                                            },
+                                        },
+                                        "attackInfo":
+                                        {
+                                            "attackTag": "WeaponSkill",
+                                            "attackProperty":
+                                            {
+                                                "damagePercentage": "%Rate",
+                                                "elementType": "None",
+                                                "strikeType": "Default",
+                                                "enBreak": 50,
+                                            },
+                                            "hitPattern":
+                                            {
+                                                "onHitEffectName": "default",
+                                                "hitLevel": "Light", //hitlevel = 3
+                                                "hitImpulseX": 200, //hitlevel = 3
+                                                "hitImpulseY": 0, //hitlevel = 3
+                                                "reboundRatio": 0,
+                                                "canBeDefenceHalt": true,
+                                                "hitHaltTime": 0.00,
+                                                "hitHaltTimeScale": 0.01,
+                                                "muteHitText": false
+                                            },
+                                            "forceCameraShake": false,
+                                        },
+                                    },
+                                },
+                                {
+                                    "$type": "ApplyModifier",
+                                    "target": "Self",
+                                    "modifierName": "UNIQUE_Weapon_Claymore_MinusGlobalValue", //延迟恢复这个爆炸变量
+                                },
+                            ]
+                        },
+                    ],
+                },
+                "UNIQUE_Weapon_Claymore_MinusGlobalValue":
+                {
+                    "isUnique": true,
+                    "stacking": "Unique",
+                    "duration": "%CDTime",
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_AttackBuffValue",
+                            "value": -1,
+                            "useLimitRange": true,
+                            "maxValue": 10,
+                            "minValue": 0,
+                        },
+                        {
+                            "$type": "RemoveUniqueModifier",
+                            "modifierName": "UNIQUE_Claymore_NormalAttackExtraDamage",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_AttackBuffValue",
+                                    "value": 0,
+                                    "compareType": "LessAndEqual"
+                                },
+                            ],
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_AttackBlast",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 1,
+                            "minValue": 0,
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_AttackBuffValue",
+                                    "value": 0,
+                                    "compareType": "MoreThan"
+                                },
+                            ],
+                        },
+                    ],
+                },
+            },
+            "onRemoved":
+            [
+                {
+                    "$type":"RemoveUniqueModifier",
+                    "modifierName":"UNIQUE_Claymore_NormalAttackExtraDamage",
+                    "doOffStage":true,
+                },
+            ],
+            "abilitySpecials":
+            {
+                "Rate": 0,
+                "Time": 0,
+                "CDTime": 0, //内置cd
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12306
+    //
+    //  普通攻击和重击 命中提升攻击力%,最多4层。   ok
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_AttackUpBuff",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_AttackUpBuff_Handler"
+                },
+            ],
+            "onRemoved":
+            [
+                {
+                    "$type": "RemoveUniqueModifier",
+                    "modifierName": "UNIQUE_Claymore_AttackUp",
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_AttackUpBuff_Handler":
+                {
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "NormalAttack_01",
+                                        "NormalAttack_02",
+                                        "NormalAttack_03",
+                                        "NormalAttack_04",
+                                        "NormalAttack_05",
+                                        "NormalAttack_06",
+                                        "ExtraAttack"
+                                    ]
+                                },
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "ApplyModifier",
+                                    "modifierName": "UNIQUE_Claymore_ApplyBuff",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_ApplyBuff":
+                {
+                    "isUnique": true,
+                    "duration": 0.5,
+                    "stacking": "Unique",
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Claymore_AttackUp",
+                            "target": "Self",
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AttackUp":
+                {
+                    "duration": 6,
+                    "state":"AttackUp",
+                    "isLimitedProperties": true,
+                    "stacking": "MultipleAllRefresh",
+                    "stackingOption":
+                    {
+                        "maxModifierNumForMultipleType": 4,
+                    },
+                    "isUnique": true,
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_AttackRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ///////////////////////////////////////////////////////////////////
+    //
+    //  12401
+    //
+    //  造成的伤害暴击时，有【X%】的概率制造一个通用原子能量球。 需内置cd。目前只有5秒。(需要加cd) OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_GenerateBallWhenCritic",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_GenerateBallWhenCritic_Handler"
+                }
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_GenerateBallWhenCritic_Handler":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Randomed",
+                            "target": "Target",
+                            "chance": "%Rate",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByHitCritical",
+                                },
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "target": "Target",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "AttachModifier",
+                                    "modifierName": "UNIQUE_Claymore_GenerateBallWhenCritic",
+                                    "target": "Self",
+                                }
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_GenerateBallWhenCritic":
+                {
+                    "duration": "%CDTime",
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "GenerateElemBall",
+                            "configID": 2024,
+                            "baseEnergy": 2,
+                            "ratio": 1,
+                            "born":
+                            {
+                                "$type": "ConfigBornByTarget",
+                                "offset":
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                },
+                                "bornRandom":
+                                {
+                                    "$type": "BornRandomFromCenter",
+                                    "minRandomRange": 1,
+                                    "maxRandomRange": 3,
+                                },
+                            },
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+                "CDTime": 0,
+            },
+        },
+    },
+
+    ///////////////////////////////////////////////////////////////////
+    //
+    //  12402
+    //
+    //  小技能每次造成的伤害时，有【X%】的概率重置该技能cd。  ok
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_ResetCDWhenSkillHit",
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin",
+                    "globalValueKey": "_ABILITY_Weapon_Claymore_ResetCDWhenSkillHit",
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_ResetCDWhenSkillHit_CD",
+                        "UNIQUE_Claymore_ResetCDWhenSkillHit_Handler",
+                    ],
+                },
+            ],
+            // "onAdded":
+            // [
+            // 	{
+            // 		"$type":"AttachModifier",
+            // 		"modifierName":"UNIQUE_Claymore_ResetCDWhenSkillHit_Handler"
+            // 	}
+            // ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_ResetCDWhenSkillHit_Handler": //控制一下效果触发的周期
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type":"Predicated",
+                            "target":"Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type":"ByEntityTypes",
+                                    "entityTypes":["Monster",],
+                                },
+                                {
+                                    "$type":"ByHitDamage",
+                                    "damage":0,
+                                    "logic":"Greater"
+                                },
+                                {
+                                    "$type":"ByAttackTags",
+                                    "attackTags":["Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra",],
+                                },
+                                {
+                                    "$type":"BySkillReady",
+                                    "target":"Self",
+                                    "skillID":10101,
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type":"AttachModifier",
+                                    "target":"Self",
+                                    "modifierName":"UNIQUE_Claymore_ResetCDWhenSkillHit_SanCheck",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_ResetCDWhenSkillHit_SanCheck":
+                {
+                    "duration": 1.9,
+                    "stacking": "Multiple",
+                    "stackingOption":
+                    {
+                        "maxModifierNumForMultipleType": 3,
+                    },
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "Randomed",
+                            "chance": "%Rate",
+                            "successActions":
+                            [
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Weapon_Claymore_ResetCDWhenSkillHit",
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": -1,
+                                    "minValue": -1,
+                                    // "doOffStage":true, //这个可选，后台的话触不触发都可接受。
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_ResetCDWhenSkillHit_CD":
+                {
+                    "duration": "%CDTime",
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AvatarSkillStart",
+                            "skillID": 10101,
+                            "cdRatio": "%CDTime*0.1",
+                        },
+                        {
+                            "$type": "ModifyAvatarSkillCD",
+                            "skillSlot":
+                            [
+                                2,
+                            ],
+                            "cdRatio": -1,
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Weapon_Claymore_ResetCDWhenSkillHit",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                            "doOffStage": true, //这个非常重要。。必须场下也能改回去。
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0, //概率太低先加高吧。
+                "CDTime": 0,
+            },
+        },
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12403
+    //
+    //  受击时获得最大血量%rate的护盾 OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_GetShieldBeingHit",
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin", // 类似于一个永续的转换器，每次全局值变动就会apply一个modifier.(并不是只在apply时生效一次)，初始globalvalue会被设成0.
+                    "globalValueKey": "_ABILITY_Weapon_Claymore_GetShieldBeingHit", //不配置初始值的话默认为0
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_GetShieldBeingHit_CD",
+                        "UNIQUE_Claymore_GetShieldBeingHit_Handler",
+                    ],
+                },
+            ],
+            "onAdded":
+            [
+                // {
+                // 	"$type":"AttachModifier",
+                // 	"modifierName":"UNIQUE_Claymore_GetShieldBeingHit_Handler",
+                // }
+                // {
+                // 	"$type":"AddGlobalValue",
+                // 	"key":"_ABILITY_Weapon_Claymore_GetShieldBeingHit",
+                // 	"value":1,
+                // 	"useLimitRange":true,
+                // 	"maxValue":0,
+                // 	"minValue":0,
+                // 	"doOffStage":true,//这个非常重要。。必须场下也能加上去,加了也是为了保证初始是否会是0
+                // },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_GetShieldBeingHit_Handler": //控制一下效果触发的周期
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onBeingHit":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Weapon_Claymore_GetShieldBeingHit",
+                            "value": -1,
+                            "useLimitRange": true,
+                            "maxValue": -1,
+                            "minValue": -1,
+                            "predicates":
+                            [
+                                {
+                                    "$type": "BySkillReady",
+                                    "skillID": 10101,
+                                },
+                                {
+                                    "$type":"ByHitDamage",
+                                    "damage":1,
+                                    "compareType":"GreaterOrEqual",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_GetShieldBeingHit_CD":
+                {
+                    "duration": "%CDTime",
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AvatarSkillStart",
+                            "skillID": 10101,
+                            "cdRatio": "%CDTime*0.1",
+                        },
+                        {
+                            "$type": "AttachModifier",
+                            "modifierName": "UNIQUE_Claymore_GetShieldBeingHit_Shield",
+                            "target": "Self",
+                        },
+                    ],
+                    "onRemoved": //在ability移除的时候，还会把key重置为0.所以一定要注意remove时一定是恢复全局值到默认值（0）
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Weapon_Claymore_GetShieldBeingHit",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                            "doOffStage": true, //这个非常重要。。必须场下也能改回去。
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_GetShieldBeingHit_Shield":
+                {
+                    "duration": 10.0,
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AttachEffect",
+                            "effectPattern": "Eff_Avatar_Properties_Shield",
+                        },
+                    ],
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "EliteShieldMixin",
+                            "elementType": "None",
+                            "shieldHPRatio": "%Rate",
+                            // "costShieldRatioName" : "costShieldRatio",
+                            "showDamageText": "INFO_ELITE_DEFENCE",
+                            "onShieldBroken":
+                            [
+                                {
+                                    "$type": "FireEffect",
+                                    "effectPattern": "Eff_Avatar_Properties_Shield_AS",
+                                },
+                            ],
+                        },
+                    ],
+                    "onKill":
+                    [
+                        {
+                            "$type": "RemoveUniqueModifier",
+                            "modifierName": "UNIQUE_Claymore_GetShieldBeingHit_Shield",
+                        },
+                    ],
+                }
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+                "CDTime": 0,
+            },
+        },
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    // 12404
+    //
+    // 重攻击命中后增加20%攻击和20%防御，持续10秒，冷却20秒。 OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_AtkDefUpWhenExtraAttack",
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin", // 类似于一个永续的转换器，每次全局值变动就会apply一个modifier.(并不是只在apply时生效一次)，初始globalvalue会被设成0.
+                    "globalValueKey": "_ABILITY_Weapon_Claymore_AtkDefUpWhenExtraAttack", //不配置初始值的话默认为0
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_AtkDefUpWhenExtraAttack_CD",
+                        "UNIQUE_Claymore_AtkDefUpWhenExtraAttack_Handler",
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_AtkDefUpWhenExtraAttack_Handler":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ],
+                                },
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "ExtraAttack"
+                                    ],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Weapon_Claymore_AtkDefUpWhenExtraAttack",
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": -1,
+                                    "minValue": -1,
+                                    "predicates": //这里需要判断skillready所以尽量只放一个action
+                                    [
+                                        {
+                                            "$type": "BySkillReady",
+                                            "skillID": 10101
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AtkDefUpWhenExtraAttack_CD":
+                {
+                    "isUnique": true,
+                    "duration": 20,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AvatarSkillStart",
+                            "skillID": 10101,
+                            "cdRatio": 2,
+                        },
+                        {
+                            "$type": "AttachModifier", //这里用attach的话，移除ability时就不用remove了。
+                            "modifierName": "UNIQUE_Claymore_AtkDefUpWhenExtraAttack",
+                        },
+                    ],
+                    "onRemoved": //在ability移除的时候，还会把key重置为0.所以一定要注意remove时一定是恢复全局值到默认值（0）
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Weapon_Claymore_AtkDefUpWhenExtraAttack",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                            "doOffStage": true, //这个非常重要。。必须场下也能改回去。
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AtkDefUpWhenExtraAttack":
+                {
+                    "duration": 10,
+                    "isUnique": true,
+                    "state": "AttackUp",
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_AttackRatio": "%Rate",
+                        "Actor_DefenceRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    // （备用）
+    // 每次攻击暴击增加%Rate，发动暴击后解除。 ok
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_CritUpWhenHitNoCrit",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_CritUpWhenHitNoCrit_Handler"
+                }
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_CritUpWhenHitNoCrit_Handler":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "ByHitDamage",
+                                    "damage": 0,
+                                    "logic": "Greater",
+                                },
+                                {
+                                    "$type": "ByNot",
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type": "ByHitCritical",
+                                        },
+                                    ],
+                                },
+                            ],
+                            "successActions": //在success里嵌套predicated会有问题，因为丢失target了。
+                            [
+                                {
+                                    "$type": "AttachModifier",
+                                    "modifierName": "UNIQUE_Claymore_CritUpWhenHitNoCrit_CD", //如果攻击频率太高则不会叠加。
+                                },
+                            ],
+                        },
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ], //男女主大招会打中友军，如果写avatar就会触发
+                                },
+                                {
+                                    "$type": "ByHitDamage",
+                                    "damage": 0,
+                                    "logic": "Greater",
+                                },
+                                {
+                                    "$type": "ByHitCritical",
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "RemoveModifier",
+                                    "modifierName": "UNIQUE_Claymore_CritUpWhenHitNoCrit",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_CritUpWhenHitNoCrit_CD":
+                {
+                    "stacking": "Unique",
+                    "isUnique": true,
+                    "duration": 0.5,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Claymore_CritUpWhenHitNoCrit",
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_CritUpWhenHitNoCrit":
+                {
+                    "stacking": "Multiple",
+                    "stackingOption":
+                    {
+                        "maxModifierNumForMultipleType": 5,
+                    },
+                    "isUnique": true,
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_CriticalDelta": "%Rate",
+                    },
+                },
+            },
+            "onRemoved":
+            [
+                {
+                    "$type": "RemoveModifier",
+                    "modifierName": "UNIQUE_Claymore_CritUpWhenHitNoCrit",
+                    "doOffStage": true,
+                },
+            ],
+            "abilitySpecials":
+            {
+                "Rate": 0.04,
+            },
+        },
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12405 对带有雷、水附着的单位伤害提高30%  OK  可以通过添加extraattack测试。
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_DamageUpToElectricEnemy",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_DamageUpToElectricEnemy_Handler",
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_DamageUpToElectricEnemy_Handler":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "ModifyDamageMixin",
+                            // "target":"Target",
+                            "ignoreEventInfo": true,
+                            // "bonusCritical":"%Rate",
+                            "damagePercentageRatio": "%Rate", //暴击率太弟弟了,不用
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    // "target":"Target",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self", //emmm,用Applier基本能解决想要的self需求。
+                                    "skillID": 10101
+                                },
+                                {
+                                    "$type": "ByAny",
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type": "ByHasElement", //Predicate的目标默认是Target，就是传进来的参数.
+                                            // "target":"Target",
+                                            "element": "Electric",
+                                        },
+                                        {
+                                            "$type": "ByHasElement", //Predicate的目标默认是Target，就是传进来的参数.
+                                            // "target":"Target",
+                                            "element": "Water",
+                                        },
+                                    ],
+                                }
+                            ],
+                        },
+                    ],
+                    "isUnique": true,
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12406 普通攻击和重攻击命中30%概率引发空间爆裂，造成范围伤害。15秒只能触发一次  OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_AOEDamage",
+            /*"onAbilityStart":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"test_modify",
+				},
+			],*/
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin",
+                    "globalValueKey": "_ABILITY_Claymore_AOEDamage",
+                    "defaultGlobalValueOnCreate": 0,
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_AOEDamage_CD",
+                        "UNIQUE_Claymore_AOEDamage_Handler"
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                /*"test_modify":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Claymore_AOEDamage",
+							"defaultGlobalValueOnCreate":0,
+							"valueSteps" : [-1.5,-0.5, 0.5],
+							"removeAppliedModifier":true,
+							"modifierNameSteps" : ["UNIQUE_Claymore_AOEDamage_CD","UNIQUE_Claymore_AOEDamage_Handler"],
+						},
+					],
+				},*/
+                "UNIQUE_Claymore_AOEDamage_Handler":
+                {
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "NormalAttack_01",
+                                        "NormalAttack_02",
+                                        "NormalAttack_03",
+                                        "NormalAttack_04",
+                                        "NormalAttack_05",
+                                        "NormalAttack_06",
+                                        "ExtraAttack"
+                                    ]
+                                },
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "Randomed",
+                                    "target": "Target",
+                                    "chance": "%C_Rate",
+                                    "successActions":
+                                    [
+                                        {
+                                            "$type": "FireEffect",
+                                            "target": "Target",
+                                            "born":
+                                            {
+                                                "$type": "ConfigBornByTarget",
+                                                "offset":
+                                                {
+                                                    "x": 0.0,
+                                                    "y": 0.7,
+                                                    "z": 0.0,
+                                                },
+                                            },
+                                            "effectPattern": "Eff_Weapon_Blast_R30",
+                                        },
+                                        {
+                                            "$type": "TriggerAttackEvent",
+                                            "born":
+                                            {
+                                                "$type": "ConfigBornByTarget",
+                                            },
+                                            "targetType": "Enemy",
+                                            "attackEvent":
+                                            {
+                                                "attackPattern":
+                                                {
+                                                    "$type": "ConfigAttackCircle",
+                                                    "triggerType": "TriggerNoRepeat",
+                                                    "fanAngle": 360.0,
+                                                    "radius": 3,
+                                                    "born":
+                                                    {
+                                                        "$type": "ConfigBornByTarget",
+                                                        "offset":
+                                                        {
+                                                            "x": 0.0,
+                                                            "y": 0.0,
+                                                            "z": 0.0,
+                                                        },
+                                                    },
+                                                },
+                                                "attackInfo":
+                                                {
+                                                    "attackTag": "WeaponSkill",
+                                                    "attackProperty":
+                                                    {
+                                                        "damagePercentage": "%D_Rate",
+                                                        "elementType": "None",
+                                                        "strikeType": "Default",
+                                                        "enBreak": 100,
+                                                    },
+                                                    "hitPattern":
+                                                    {
+                                                        "onHitEffectName": "default",
+                                                        "hitLevel": "Light", //hitlevel = 3
+                                                        "hitImpulseX": 200, //hitlevel = 3
+                                                        "hitImpulseY": 0, //hitlevel = 3
+                                                        "reboundRatio": 0,
+                                                        "canBeDefenceHalt": true,
+                                                        "hitHaltTime": 0.00,
+                                                        "hitHaltTimeScale": 0.01,
+                                                        "muteHitText": false
+                                                    },
+                                                    "forceCameraShake": false,
+                                                },
+                                            },
+                                        },
+                                        {
+                                            "$type": "AddGlobalValue",
+                                            "key": "_ABILITY_Claymore_AOEDamage",
+                                            "value": -1,
+                                            "useLimitRange": true,
+                                            "maxValue": -1,
+                                            "minValue": -1,
+                                        },
+                                    ],
+                                },
+                            ]
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AOEDamage_CD":
+                {
+                    "duration": 15,
+                    "isUnique": true,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AvatarSkillStart",
+                            "skillID": 10101,
+                            "cdRatio": 1.5,
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_AOEDamage",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "C_Rate": 0,
+                "D_Rate": 0,
+            },
+        },
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12407 命中提升攻防，叠加4层。 （一般来说间隔0.3比较舒服，0.5则是大剑类可以保证每次叠上，就看是否想要常驻了） OK
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_AttackGainAKTDEFBuff",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_AttackGainAKTDEFBuff_Handler",
+                },
+            ],
+            "onRemoved":
+            [
+                {
+                    "$type": "RemoveModifier",
+                    "modifierName": "UNIQUE_Claymore_AttackGainAKTDEFBuff",
+                    "doOffStage": true,
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_AttackGainAKTDEFBuff_Handler":
+                {
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ],
+                                },
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "NormalAttack_01",
+                                        "NormalAttack_02",
+                                        "NormalAttack_03",
+                                        "NormalAttack_04",
+                                        "NormalAttack_05",
+                                        "NormalAttack_06",
+                                        "ExtraAttack"
+                                    ],
+                                },
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "ApplyModifier",
+                                    "target": "Self",
+                                    "modifierName": "UNIQUE_Claymore_AttackGainAKTDEFBuff_CD",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AttackGainAKTDEFBuff_CD":
+                {
+                    "isUnique": true,
+                    "stacking": "Unique",
+                    "duration": 0.5,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ApplyModifier",
+                            "modifierName": "UNIQUE_Claymore_AttackGainAKTDEFBuff",
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_AttackGainAKTDEFBuff":
+                {
+                    "isUnique": true,
+                    "duration": 6,
+                    "stacking": "MultipleAllRefresh",
+                    "state": "AttackUp",
+                    "stackingOption":
+                    {
+                        "maxModifierNumForMultipleType": 4,
+                    },
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_AttackRatio": "%Rate",
+                        "Actor_DefenceRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12408 所有攻击无视敌人xx%防御力 OK   暂时做不了物理攻击/普攻/重击这样的区分
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_IgnoreDefense",
+            "onAdded":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "UNIQUE_Claymore_IgnoreDefense",
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_IgnoreDefense":
+                {
+                    "isUnique": true,
+                    "isLimitedProperties":true,
+                    "properties":
+                    {
+                        "Actor_DefenseIgnoreRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12501
+    //        全伤害提升10%，填表实现。
+    //        释放充能技后，剑上环绕风，普攻附加风之刃效果，持续20秒或8次攻击。 重复触发刷新效果。 ok
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_Legend_Dvalin",
+            "abilityMixins":
+            [
+                {
+                    "$type": "OnAvatarUseSkillMixin",
+                    "onTriggerUltimateSkill":
+                    [
+                        {
+                            "$type": "AttachModifier",
+                            "modifierName": "UNIQUE_Claymore_Legend_Dvalin",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                        },
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Claymore_Legend_Dvalin",
+                            "value": "%Count",
+                            "useLimitRange": true,
+                            "maxValue": "%Count",
+                            "minValue": "%Count",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                        },
+                        {
+                            "$type": "AddGlobalValue",
+                            "key": "_ABILITY_Claymore_Legend_Dvalin_AttackBlast", //这个爆炸伤害需要触发一次后进入1小段不应期，防止1次攻击全发动特效。
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 1,
+                            "minValue": 1,
+                            "predicates":
+                            [
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "UNIQUE_Claymore_Legend_Dvalin":
+                {
+                    "duration": "%Time",
+                    "isUnique": true,
+                    "state": "AttackUp",
+                    "onAdded":
+                    [ //重置部分不能放到这里，因为20秒内再放一次大会导致无法刷新初始参数。
+                    ],
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                {
+                                    "$type": "ByAttackTags",
+                                    "attackTags":
+                                    [
+                                        "NormalAttack_01",
+                                        "NormalAttack_02",
+                                        "NormalAttack_03",
+                                        "NormalAttack_04",
+                                        "NormalAttack_05",
+                                        "NormalAttack_06",
+                                        "ExtraAttack"
+                                    ]
+                                },
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_Legend_Dvalin_AttackBlast",
+                                    "value": 0,
+                                    "compareType": "MoreThan"
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "key": "_ABILITY_Claymore_Legend_Dvalin_AttackBlast", //这个爆炸伤害需要触发一次后进入1小段不应期，防止1次攻击全发动特效。
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": 1,
+                                    "minValue": 0,
+                                },
+                                {
+                                    "$type": "TriggerBullet",
+                                    "bulletID": 40010002,
+                                    "campID": 1001,
+                                    // "campTargetType": "Alliance",
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornBySelf",
+                                        "offset":
+                                        {
+                                            "x": 0.0,
+                                            "y": 1.2,
+                                            "z": 0.5,
+                                        },
+                                    },
+                                },
+                                {
+                                    "$type": "ApplyModifier",
+                                    "target": "Self",
+                                    "modifierName": "UNIQUE_Weapon_Claymore_MinusGlobalValue", //延迟恢复这个爆炸变量
+                                },
+                            ]
+                        },
+                    ],
+                },
+                "UNIQUE_Weapon_Claymore_MinusGlobalValue":
+                {
+                    "isUnique": true,
+                    "stacking": "Unique",
+                    "duration": 0.3,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_Legend_Dvalin",
+                            "value": -1,
+                        },
+                        {
+                            "$type": "RemoveUniqueModifier",
+                            "modifierName": "UNIQUE_Claymore_Legend_Dvalin",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_Legend_Dvalin",
+                                    "value": 0,
+                                    "compareType": "LessAndEqual"
+                                },
+                            ],
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_Legend_Dvalin_AttackBlast",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 1,
+                            "minValue": 0,
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByTargetGlobalValue",
+                                    "target": "Self",
+                                    "key": "_ABILITY_Claymore_Legend_Dvalin",
+                                    "value": 0,
+                                    "compareType": "MoreThan"
+                                },
+                            ],
+                        },
+                    ],
+                },
+            },
+            "abilitySpecials":
+            {
+                "Time": 0,
+                "Count": 0,
+            },
+        },
+    },
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_AttackWave_Bullet",
+            "onAbilityStart":
+            [
+                {
+                    "$type": "TriggerAttackEvent",
+                    "targetType": "Enemy",
+                    "attackEvent":
+                    {
+                        "attackPattern":
+                        {
+                            "$type": "ConfigAttackBox",
+                            "triggerType": "TriggerNoRepeat",
+                            "size":
+                            {
+                                "x": 0.1,
+                                "y": 0.1,
+                                "z": 0.1,
+                            },
+                            "born":
+                            {
+                                "$type": "ConfigBornByCollisionPoint"
+                            },
+                        },
+                        "attackInfo":
+                        {
+                            "canBeModifiedBy": "OriginOwner",
+                            "attackProperty":
+                            {
+                                "damagePercentage": "%D_Rate",
+                                "strikeType": "None",
+                                "attackType": "Default",
+                                "enBreak": 50,
+                            },
+                            "hitPattern":
+                            {
+                                "onHitEffectName": "default",
+                                "hitLevel": "Light", //hitlevel = 2
+                                "hitImpulseX": 200, //hitlevel = 2
+                                "hitImpulseY": 0, //hitlevel = 2
+                                "reboundRatio": 0,
+                                "canBeDefenceHalt": false,
+                                "hitHaltTime": 0.0,
+                                "hitHaltTimeScale": 0.05,
+                                "muteHitText": false
+                            },
+                            "forceCameraShake": false,
+                        },
+                    },
+
+                },
+            ],
+            "abilitySpecials":
+            {
+                "D_Rate": 0,
+            }
+        },
+    },
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_AttackWave_Bullet_Material",
+            "onAdded":
+            [
+                {
+                    "$type": "FireEffect",
+                    "effectPattern": "Eff_Weapon_AttackWave",
+                    "target": "Self",
+                },
+            ],
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12502
+    //        命中血量低于xx敌人，全队基础攻击力提升xx，持续xx秒。  OK
+    //        基础攻击力提升xx，填表实现。
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_Legend_Wolfmound",
+            "onAbilityStart":
+            [
+                {
+                    "$type": "ApplyModifier",
+                    "modifierName": "test_modify",
+                },
+            ],
+            "onRemoved":
+            [
+                {
+                    "$type": "RemoveUniqueModifier",
+                    "modifierName": "UNIQUE_Claymore_Legend_Wolfmound",
+                },
+            ],
+            "abilityMixins":
+            [
+                {
+                    "$type": "AttachModifierToSelfGlobalValueMixin",
+                    "globalValueKey": "_ABILITY_Claymore_Legend_Wolfmound",
+                    "valueSteps":
+                    [
+                        -1.5,
+                        -0.5,
+                        0.5
+                    ],
+                    "removeAppliedModifier": true,
+                    "modifierNameSteps":
+                    [
+                        "UNIQUE_Claymore_Legend_Wolfmound_CD",
+                        "UNIQUE_Claymore_Legend_Wolfmound_Handler"
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "test_modify":
+                {
+                    "modifierMixins":
+                    [
+                        {
+                            "$type": "AttachModifierToSelfGlobalValueMixin",
+                            "globalValueKey": "_ABILITY_Claymore_Legend_Wolfmound",
+                            "valueSteps":
+                            [
+                                -1.5,
+                                -0.5,
+                                0.5
+                            ],
+                            "removeAppliedModifier": true,
+                            "modifierNameSteps":
+                            [
+                                "UNIQUE_Claymore_Legend_Wolfmound_CD",
+                                "UNIQUE_Claymore_Legend_Wolfmound_Handler"
+                            ],
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_Legend_Wolfmound_Handler":
+                {
+                    "isUnique": true,
+                    "onAttackLanded":
+                    [
+                        {
+                            "$type": "Predicated",
+                            "target": "Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster",
+                                    ],
+                                },
+                                /*{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"]
+								},*/
+                                {
+                                    "$type": "ByTargetHPRatio",
+                                    // "target":"Target",
+                                    "HPRatio": 0.3,
+                                    "logic": "LesserOrEqual",
+                                },
+                                {
+                                    "$type": "BySkillReady",
+                                    "target": "Self",
+                                    "skillID": 10101,
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type": "FireEffect",
+                                    "target": "Self",
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornByTarget",
+                                        "offset":
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                        },
+                                    },
+                                    "effectPattern": "Eff_Weapon_TriggerRed",
+                                },
+                                // {
+                                //     "$type": "ApplyModifier",
+                                //     "target": "CurTeamAvatars",
+                                //     "modifierName": "UNIQUE_Claymore_Legend_Wolfmound",
+                                // },
+                                {
+                                    "$type": "ApplyModifier",
+                                    // "otherTargets":
+                                    // {
+                                    //     "$type": "SelectTargetsByShape",
+                                    //     "shapeName": "CircleR40H10",
+                                    //     "centerBasedOn": "Self",
+                                    //     "campTargetType": "Alliance",
+                                    //     "campBasedOn": "Self",
+                                    // },
+                                    "target": "AllPlayerAvatars",
+                                    "predicates":
+                                    [
+                                        {
+                                            "$type":"ByEntityTypes",
+                                            "entityTypes":["Avatar",],
+                                        },
+                                        {
+                                            "$type":"ByTargetPositionToSelfPosition",
+                                            "compareType":"XZ",
+                                            "value":40,
+                                            "logic": "LesserOrEqual",
+                                        },
+                                    ],
+                                    "modifierName": "UNIQUE_Claymore_Legend_Wolfmound", //这里有个问题，注意这个buff是不会回收的。只能让角色战斗中不能换武器了。
+                                },
+                                {
+                                    "$type": "AddGlobalValue",
+                                    "key": "_ABILITY_Claymore_Legend_Wolfmound",
+                                    "value": -1,
+                                    "useLimitRange": true,
+                                    "maxValue": -1,
+                                    "minValue": -1,
+                                },
+                            ]
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_Legend_Wolfmound_CD":
+                {
+                    "isUnique": true,
+                    "duration": 30,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "AvatarSkillStart",
+                            "skillID": 10101,
+                            "cdRatio": 3,
+                        },
+                    ],
+                    "onRemoved":
+                    [
+                        {
+                            "$type": "AddGlobalValue",
+                            "doOffStage": true,
+                            "key": "_ABILITY_Claymore_Legend_Wolfmound",
+                            "value": 1,
+                            "useLimitRange": true,
+                            "maxValue": 0,
+                            "minValue": 0,
+                        },
+                    ],
+                },
+                "UNIQUE_Claymore_Legend_Wolfmound":
+                {
+                    "isUnique": true,
+                    "duration": 12,
+                    "state": "AttackUp",
+                    "isLimitedProperties": true,
+                    "properties":
+                    {
+                        "Actor_AttackRatio": "%Rate",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0,
+            },
+        },
+    },
+    ////////////////////////////////////////////////////////////////
+    //
+    //  12503命中敌人获得各种各样效果
+    //
+    ////////////////////////////////////////////////////////////////
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_Claymore_Legend_Widsith",
+            "onAdded":
+            [
+            ],
+            "modifiers":
+            {
+
+            },
+            "abilitySpecials":
+            {
+                "Rate": 0.03,
+            },
+        },
+    },
+
+
+
+]

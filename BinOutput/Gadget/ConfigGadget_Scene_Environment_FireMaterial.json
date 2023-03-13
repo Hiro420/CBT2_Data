@@ -1,0 +1,476 @@
+{
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 不灭之火
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_ImmortalFire":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_ImmortalFire",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_ImmortalFire"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 仪式火堆
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Ceremony_Fires":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "AllExcludeGWGO",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Ceremony_Fires",
+
+				"abilityName" : "SceneObj_Environment_Ceremony_Fires"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//火盆
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_FireBasin":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "AllExcludeGWGO",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_FireBasin_Interact",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_FireBasin_Interact"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	挂壁火把
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_Torch01":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "AllExcludeGWGO",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_Torch01_Interact",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_Torch01_Interact"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//篝火
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_Bornfires":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "AllExcludeGWGO",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_BornFires_Interact",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_BornFires_Interact"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//烹饪锅
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_CookingPot":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Cook_Btn",
+			"uiName": "UI_COOKING_QTE_TITLE"
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": false,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_CookingPot_Interact",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_CookingPot_Interact"
+			},
+		],
+	},
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//蒙德烹饪锅
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_FireMaterial_CookingPot_NoLight":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Cook_Btn",
+			"uiName": "UI_COOKING_QTE_TITLE"
+		},
+		"common":
+		{
+			"affectedByWorld": true,
+		},
+		"keepModifierOutSight": false,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+				"ignoreDamageToSelf":true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"customAttackShape":
+		{
+			"sphere":
+			{
+				"customAttackSphere_Radius": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_FireMaterial_CookingPot_NoLight",
+
+				"abilityName" : "SceneObj_Environment_FireMaterial_CookingPot_NoLight"
+			},
+		],
+	},
+},

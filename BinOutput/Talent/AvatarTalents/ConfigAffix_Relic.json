@@ -1,0 +1,914 @@
+{
+///使用方法注释：
+///		1、调整能力
+///		{
+///			"$type" : "ModifyAbility",
+///			"abilityName" : "Avatar_Qin_Captain",
+///			"paramSpecial" : "CriticalHurt_Up",需要修改的参数名字，只能填1个。所以多个的话需要多个ModifierAbiltiy
+///			"paramDelta" : 0.01,加上指定数值
+///			"paramRatio" : 0,提升指定比例
+///		}
+///		ConfigAbilityCommon.cs中有AbilityProperty，可以调整角色全局的攻击，攻速，攻击，血量，防御，抵抗等等。
+///		2、添加能力
+///		{
+///			"$type" : "AddAbility",
+///			"abilityName": "Avatar_Qin_Captain",仅有一个参数，abiltiyName
+///		}
+///		3、替换攻击
+///		{
+///			"$type": "ReplaceEventPatternMixin",
+///		"oldPatterns": ["Monster_Slime_Fire_02_NormalAttack"],
+///			"newPatterns": ["Monster_Slime_Fire_02_NormalAttack_Fire"],如果需要替换攻击盒，可以用ModifyDamageMixin改变盒子伤害。
+///		}
+///		4、解锁参数
+///		{
+///			"$type" : "UnlockTalentParam",
+///			"abilityName" : "Avatar_Qin_IceShield_ImpactTriggerBack_L",
+///			"talentParam" : "Qin_TriggerBack",
+///		}
+///		需要配套功能： 即需要unlock这个predicates才能走过去。
+///			"predicates" :
+///				[
+///					{
+///						"$type" : "ByUnlockTalentParam",
+///						"talentParam" : "Keaya_TriggerBack",
+///					},
+///				],
+///
+///		5、解锁controller内容
+///		{
+///			"$type" : "UnlockControllerConditions",
+///			"conditionName" : "XXXX",
+///		}
+///		6、调整技能cd
+///		public partial class ModifySkillCD : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public float cdDelta; // cdDelta
+///		public float cdRatio; // cdRatio
+///
+///		7、调整技能消耗
+///		public partial class ModifySkillCost : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public float costDelta; // costDelta
+///		public float costRatio; // costRatio
+///
+///		8、调整技能充能次数
+///			public partial class ModifySkillPoint : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public int pointDelta; // pointDelta
+///		9、替换Abiltiy
+///		{
+///			"UnlockByTalentID":xxx,
+///			"$type":"ReplaceAbiltiy",
+///			"KeyAbilityName":"xx",
+///			"NewAbiltiyName":"xx",
+///			"ParamSpecial1":"xx",
+///			"ParamMedthod1":"xx",
+///		}
+///
+///		注意！！！！
+///
+///		需要修改MetaConfig，将对应的talent加入这个表。
+///
+
+////////////////////////////////////////////////////////////////
+//
+//近战武器角色攻击力提升12%
+//
+////////////////////////////////////////////////////////////////
+	"Relic_FighterAttackUp_Lv5":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_FighterAttackUp_Lv5",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Relic_FighterAttackUp_Lv5",
+			"paramSpecial" : "AttackRatio",
+			"paramDelta" : "%1",
+		}
+	],
+////////////////////////////////////////////////////////////////
+//
+//远程武器角色攻击力提升12%
+//
+////////////////////////////////////////////////////////////////
+	"Relic_RangerAttackUp_Lv5":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_RangerAttackUp_Lv5",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Relic_RangerAttackUp_Lv5",
+			"paramSpecial" : "AttackRatio",
+			"paramDelta" : "%1",
+		}
+	],
+////////////////////////////////////////////////////////////////
+//
+//换人时元素伤害加成提高
+//
+////////////////////////////////////////////////////////////////
+	"Relic_ElementDamageUpWhenChangeChar_Lv5":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ElementDamageUpWhenChangeChar_Lv5",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Relic_ElementDamageUpWhenChangeChar_Lv5",
+			"paramSpecial" : "ElementDamageUp",
+			"paramDelta" : "%1",
+		}
+	],
+////////////////////////////////////////////////////////////////
+//
+//吃到充能球后攻击力提高
+//
+////////////////////////////////////////////////////////////////
+	"Relic_AttackUpAfterElementBall_Lv5":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_AttackUpAfterElementBall_Lv5",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Relic_AttackUpAfterElementBall_Lv5",
+			"paramSpecial" : "AttackRatio",
+			"paramDelta" : "%1",
+		}
+	],
+////////////////////////////////////////////////////////////////
+//
+//  Relic_GiantKiller
+//
+//  对生命值高于X%的敌人，造成的伤害增加Y%。
+//
+////////////////////////////////////////////////////////////////
+	"Relic_GiantKiller":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_GiantKiller",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_GiantKiller",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_GiantKiller",
+		  	"paramSpecial": "HPRatio",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_ExtraAtkCritUp
+//
+//  重击的暴击率提高X%。
+//
+////////////////////////////////////////////////////////////////
+	"Relic_ExtraAtkCritUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ExtraAtkCritUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ExtraAtkCritUp",
+		  	"paramSpecial": "CritRate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  210003
+//
+//  队伍中每有一种元素类型的角色，自身获得20%相应元素抗性。
+//
+///////////////////////////////////////////////////////////////
+	"Relic_AbsorbTeamElemResist":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_AbsorbTeamElemResist",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_AbsorbTeamElemResist",
+		  	"paramSpecial": "ResistUp",
+		  	"paramDelta": "%1",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//  210004
+//
+//  受到某元素类型伤害后，相应抗性提升25%，持续10秒 冷却时间xx
+//
+///////////////////////////////////////////////////////////////
+	"Relic_ElemDmgEnhanceElemResist":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ElemDmgEnhanceElemResist",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ElemDmgEnhanceElemResist",
+		  	"paramSpecial": "ResistUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ElemDmgEnhanceElemResist",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%2",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ElemDmgEnhanceElemResist",
+		  	"paramSpecial": "CDTime",
+		  	"paramDelta": "%3",
+		},
+	],
+////////////////////////////////////////////////////////////////
+//
+//  Relic_LowHPGainExtraCritRate
+//
+//  生命值低于X%时，暴击率额外提升Y%。
+//
+////////////////////////////////////////////////////////////////
+	"Relic_LowHPGainExtraCritRate":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_LowHPGainExtraCritRate",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_LowHPGainExtraCritRate",
+		  	"paramSpecial": "CritRate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_LowHPGainExtraCritRate",
+		  	"paramSpecial": "HPRatio",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//	Relic_SkillDamageUp
+//  元素战技伤害提升。
+//
+////////////////////////////////////////////////////////////////
+	"Relic_SkillDamageUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_SkillDamageUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillDamageUp",
+		  	"paramSpecial": "DamagePer",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+////////////////////////////////////////////////////////////////
+//
+//  Relic_SkillEnhanceNormalAtkAndExtraAtk
+//
+//  施放元素战技后，普通攻击和重击造成的伤害提高X%。该效果持续Y秒，最多叠加Z层.
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_SkillEnhanceNormalAtkAndExtraAtk":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_SkillEnhanceNormalAtkAndExtraAtk",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillEnhanceNormalAtkAndExtraAtk",
+		  	"paramSpecial": "duration",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillEnhanceNormalAtkAndExtraAtk",
+		  	"paramSpecial": "stack",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillEnhanceNormalAtkAndExtraAtk",
+		  	"paramSpecial": "DmgRate",
+		  	"paramDelta": "%3",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_ChestHealSelf
+//
+//  开启宝箱时，在X秒内恢复自身Y%生命值。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_ChestHealSelf":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ChestHealSelf",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ChestHealSelf",
+		  	"paramSpecial": "HealDuration",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ChestHealSelf",
+		  	"paramSpecial": "HealInterval",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ChestHealSelf",
+		  	"paramSpecial": "HealRatio",
+		  	"paramDelta": "%3",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_UltHealSelf
+//
+//  使用元素爆发时，立即恢复自身Y%生命值。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_UltHealSelf":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_UltHealSelf",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_UltHealSelf",
+		  	"paramSpecial": "HealRatio",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_UltHealSelf",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_UltGainEnergyForTeam
+//
+//  每次使用元素爆发后，队伍中其他成员恢复5点能量。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_UltGainEnergyForTeam":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_UltGainEnergyForTeam",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_UltGainEnergyForTeam",
+		  	"paramSpecial": "EnergyAmount",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_CoinHealSelf
+//
+//  每次拾取金币时，立即恢复X点生命值。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_CoinHealSelf":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_CoinHealSelf",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_CoinHealSelf",
+		  	"paramSpecial": "HealAmount",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_RestoreEnergyGainExtraEnergyForTeam
+//
+//  每当获得元素能量时，队伍中弓箭和法器类角色额外获得1点能量。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_RestoreEnergyGainExtraEnergyForTeam":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_RestoreEnergyGainExtraEnergyForTeam",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_RestoreEnergyGainExtraEnergyForTeam",
+		  	"paramSpecial": "EnergyAmount",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//214004
+//
+//  释放充能技时，全队获得15%治疗加成
+//
+///////////////////////////////////////////////////////////////
+	"Relic_SkillEnhanceCured":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_SkillEnhanceCured",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillEnhanceCured",
+		  	"paramSpecial": "HealUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_SkillEnhanceCured",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%2",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//215001
+//
+//  近战武器角色，普攻伤害提升X%
+//
+///////////////////////////////////////////////////////////////
+	"Relic_MeleeAttackUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_MeleeAttackUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_MeleeAttackUp",
+		  	"paramSpecial": "DmgRate",
+		  	"paramDelta": "%1",
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  215002
+//
+//  造成的扩散反应伤害提升X%。扩散会同时削弱敌人对应的元素抗性X%，持续x秒。
+//
+///////////////////////////////////////////////////////////////
+	"Relic_ReactionWindEnhance":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ReactionWindEnhance",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionWindEnhance",
+		  	"paramSpecial": "ReactionUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionWindEnhance",
+		  	"paramSpecial": "ResistDown",
+		  	"paramDelta": "%2",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionWindEnhance",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%3",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//  215003
+//
+//  远程武器角色，普攻伤害提升X%
+//
+///////////////////////////////////////////////////////////////
+	"Relci_RangerAttackUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relci_RangerAttackUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relci_RangerAttackUp",
+		  	"paramSpecial": "DmgRate",
+		  	"paramDelta": "%1",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//  215004
+//
+//  冰相关元素反应提升X%
+//
+///////////////////////////////////////////////////////////////
+	"Relic_ReactionIceEnhance":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ReactionIceEnhance",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionIceEnhance",
+		  	"paramSpecial": "ReactionUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionIceEnhance",
+		  	"paramSpecial": "MeltUp",
+		  	"paramDelta": "%2",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionIceEnhance",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%3",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionIceEnhance",
+		  	"paramSpecial": "IceUp",
+		  	"paramDelta": "%4",
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  215005
+//
+//  电相关元素反应提升X%
+//
+///////////////////////////////////////////////////////////////
+	"Relic_ReactionElectricEnhance":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ReactionElectricEnhance",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionElectricEnhance",
+		  	"paramSpecial": "ReactionUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionElectricEnhance",
+		  	"paramSpecial": "CDTime",
+		  	"paramDelta": "%2",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//  215006
+//
+//  超载、点燃伤害提升20%，每次释放战技，使2件套效果提升100%，最多提高300%。
+//
+///////////////////////////////////////////////////////////////
+	"Relic_ReactionFireEnhance":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ReactionFireEnhance",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionFireEnhance",
+		  	"paramSpecial": "ReactionUp",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionFireEnhance",
+		  	"paramSpecial": "MeltUp",
+		  	"paramDelta": "%2",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionFireEnhance",
+		  	"paramSpecial": "FireUp",
+		  	"paramDelta": "%3",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionFireEnhance",
+		  	"paramSpecial": "ExtraPercent",
+		  	"paramDelta": "%4",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionFireEnhance",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%5",
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  215007
+//
+//  对血量高于self的敌人暴击率提高30%，对血量低于self的敌人暴击伤害提升30%
+//
+///////////////////////////////////////////////////////////////
+	"Relic_CompareHPEnhanceCrit":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_CompareHPEnhanceCrit",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_CompareHPEnhanceCrit",
+		  	"paramSpecial": "Crit",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_CompareHPEnhanceCrit",
+		  	"paramSpecial": "CritHurt",
+		  	"paramDelta": "%2",
+		},
+	],
+///////////////////////////////////////////////////////////////
+//
+//  215008
+//
+//  击杀敌人后，重击不消耗体力且伤害提升30%
+//
+///////////////////////////////////////////////////////////////
+	"Relic_KillEnhanceExtraAtk":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_KillEnhanceExtraAtk",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillEnhanceExtraAtk",
+		  	"paramSpecial": "Dura",
+		  	"paramDelta": "%1",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillEnhanceExtraAtk",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%2",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillEnhanceExtraAtk",
+		  	"paramSpecial": "StaminaReduce",
+		  	"paramDelta": "%3",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillEnhanceExtraAtk",
+		  	"paramSpecial": "CDTime",
+		  	"paramDelta": "%4",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_DamageUpAgainstIceAndFrozen
+//
+//  对受到寒冷、冻结效果影响的敌人，造成的伤害提升15%
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_DamageUpAgainstIceAndFrozen":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_DamageUpAgainstIceAndFrozen",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_DamageUpAgainstIceAndFrozen",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  对受到雷元素附着效果影响的敌人，伤害提升15%。
+//
+///////////////////////////////////////////////////////////////
+
+	"Relic_DamageUpAgainstElectric":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_DamageUpAgainstElectric",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_DamageUpAgainstElectric",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  对受到火元素附着、点燃效果影响的敌人，伤害提升15%。
+//
+///////////////////////////////////////////////////////////////
+
+	"Relic_DamageUpAgainstFireAndBurning":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_DamageUpAgainstFireAndBurning",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_DamageUpAgainstFireAndBurning",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+///////////////////////////////////////////////////////////////
+//
+//  触发元素反应后，队伍中所有角色的元素精通提高30点，持续7秒。
+//
+///////////////////////////////////////////////////////////////
+
+	"Relic_ReactionGainExtraElemMasteryForTeam":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_ReactionGainExtraElemMasteryForTeam",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionGainExtraElemMasteryForTeam",
+		  	"paramSpecial": "duration",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_ReactionGainExtraElemMasteryForTeam",
+		  	"paramSpecial": "ElemMastery",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  击杀敌人时，有25%概率使元素战技立即完成冷却，每15秒只能触发1次。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_KillingRefreshSkill":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_KillingRefreshSkill",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillingRefreshSkill",
+		  	"paramSpecial": "CDTime",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_KillingRefreshSkill",
+		  	"paramSpecial": "Rate",
+		  	"paramDelta": "%2",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_AllElemResistUp
+//
+//  全元素抗性提高15%。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_AllElemResistUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_AllElemResistUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_AllElemResistUp",
+		  	"paramSpecial": "ResistUp",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  Relic_AtkAndExtraAtkUp
+//
+//  角色造成普攻和重击伤害提高20%。
+//
+////////////////////////////////////////////////////////////////
+
+	"Relic_AtkAndExtraAtkUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Relic_AtkAndExtraAtkUp",
+		},
+		{
+		  	"$type": "ModifyAbility",
+		  	"abilityName": "Relic_AtkAndExtraAtkUp",
+		  	"paramSpecial": "DmgRate",
+		  	"paramDelta": "%1",
+		  	"paramRatio": 0,
+		},
+	],
+
+}

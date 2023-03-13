@@ -1,0 +1,152 @@
+[
+    {
+        "属性名": "Actor_MaxHPRatio",
+        "下限": 0,
+        "上限": 3
+    },
+    {
+        "属性名": "Actor_DefenceRatio",
+        "下限": 0,
+        "上限": 3
+    },
+    {
+        "属性名": "Actor_AttackRatio",
+        "下限": 0,
+        "上限": 3
+    },
+    {
+        "属性名": "Actor_CriticalDelta",
+        "下限": 0,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_AntiCriticalDelta",
+        "下限": 0,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_CriticalHurtDelta",
+        "下限": 0,
+        "上限": 3
+    },
+    {
+        "属性名": "Actor_ChargeEfficiencyDelta",
+        "下限": 0,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_AddHurtDelta",
+        "下限": 0,
+        "上限": 3
+    },
+    {
+        "属性名": "Actor_SubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_HealAddDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_HealedAddDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_FireAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_ElecAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_WaterAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_GrassAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_WindAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_IceAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_RockAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_PhysicalAddHurtDelta",
+        "下限": 0,
+        "上限": 2
+    },
+    {
+        "属性名": "Actor_FireSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_ElecSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_WaterSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_GrassSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_WindSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_IceSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_RockSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_PhysicalSubHurtDelta",
+        "下限": -1,
+        "上限": 1
+    },
+    {
+        "属性名": "Actor_AddGravityScale",
+        "下限": -2,
+        "上限": 99
+    },
+    {
+        "属性名": "Actor_SkillCDMinusRatio",
+        "下限": -2,
+        "上限": 0
+    },
+    {
+        "属性名": "Actor_ShieldCostMinusRatio",
+        "下限": -2,
+        "上限": 0
+    }
+]

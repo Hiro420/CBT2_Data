@@ -1,0 +1,1458 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  Team_TeamChargeMark
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Team_TeamChargeMark",
+			"onAdded" : 
+			[
+				{
+					"$type" : "ApplyModifier",
+					"modifierName" : "TeamChargeMark_Decay",		//队伍充能层数随时间衰减
+				},
+			],
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_Ability_TeamChargeMark",
+					"valueSteps" : [ 19.5, 20.5 ],		//充满层数设置
+					"removeAppliedModifier" : true,
+					"modifierNameSteps" : [ "Blank" ],
+					"actionQueues":
+					[
+						[
+							{
+								"$type" : "AddGlobalValue",
+								"key" : "_Ability_TeamFullChargeMark",		//充满时增加队伍充满标记
+								"value" : 1,
+								"useLimitRange" : true,
+								"maxValue" : 1,
+								"minValue" : 0,
+							},
+							{
+								"$type" : "AddGlobalValue",
+								"key" : "_Ability_TeamChargeMark",		//并且清空队伍充能层数
+								"value" : -20,
+								"useLimitRange" : true,
+								"maxValue" : 20,
+								"minValue" : 0,
+							},
+						],
+					],
+				},
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_Ability_TeamFullChargeMark",
+					"valueSteps" : [-0.5, 0.5, 1.5],		//根据是否有队伍充满标记调整特效
+					"removeAppliedModifier" : true,
+					"modifierNameSteps" : [ "Blank" , "Blank" ],
+					"actionQueues":
+					[
+						[
+							{
+								"$type" : "RemoveModifier",
+								"doOffStage" : true,
+								"modifierName" : "TeamFullChargeEffect",		//换人时通过移除充能标记，移除充满特效
+								"target": "CurTeamAvatars",
+							},
+						],
+						[
+							{
+								"$type" : "ApplyModifier",
+								"modifierName" : "TeamFullChargeEffect",		//充满时为当前角色增加充满特效
+								"target": "CurLocalAvatar",
+							},
+						],
+					],
+				},
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_Ability_AvatarFullChargeMark",
+					"valueSteps" : [-0.5, 0.5, 1.5],		//根据是否发动小技能增强调整特效
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["Blank","Blank"],
+					"actionQueues":
+					[
+						[
+							{
+								"$type" : "RemoveModifier",
+								"doOffStage" : true,
+								"modifierName" : "AvatarFullChargeEffect",		//时间结束或使用小技能后通过移除小技能增强效果，移除小技能增强特效
+								"target": "CurTeamAvatars",
+							},
+						],
+						[
+							{
+								"$type" : "ApplyModifier",
+								"doOffStage" : true,
+								"modifierName" : "AvatarFullChargeEffect",		//发动时为角色增加发动特效
+								"target": "CurTeamAvatars",
+							},
+						],
+					],
+				},
+			],
+			"modifiers":
+			{
+				"Blank":
+				{
+					"duration" : 0.1,
+				},
+				"TeamChargeMark_Decay" : 
+				{
+					"thinkInterval" : 5.0,		//充能层数衰减间隔
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_Ability_TeamChargeMark",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 20,
+							"minValue" : 0,
+						},
+					],
+				},
+				"TeamFullChargeEffect":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern": "Eff_Avatar_WhiteBox_TeamChargeMark",
+							"doOffStage" : true,
+						},
+					],
+				},
+				"AvatarFullChargeEffect" :
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern": "",
+							"doOffStage" : true,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Combat Test Aura 
+//  **Frequently changed due to balance adjustment**
+//
+////////////////////////////////////////////////////////////////
+	// {
+	// 	"Default": 
+	// 	{
+	// 		"$type": "ConfigAbility",
+	// 		"abilityName": "Combat_TestAura_Avatar",
+	// 		"onAdded":
+	// 		[
+	// 			{
+	// 				"$type" : "ApplyModifier",
+	// 				"target" : "Self",
+	// 				"modifierName" : "Combat_TestAura_Detect",
+	// 			},
+	// 		],
+	// 		"modifiers":
+	// 		{
+	// 			"Combat_TestAura_Detect":
+	// 			{
+	// 				"onAdded" :
+	// 				[
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Override",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_NormalAttack",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_ExtraAttack",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Elemental_Art",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Elemental_Burst",
+	// 					},
+	// 				],
+	// 				"thinkInterval" : 3.0,
+	// 				"onThinkInterval" :
+	// 				[
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Override",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_NormalAttack",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_ExtraAttack",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Elemental_Art",
+	// 					},
+	// 					{
+	// 						"$type" : "ApplyModifier",
+	// 						"doOffStage" : true,
+	// 						"target" : "CurTeamAvatars",
+	// 						"modifierName" : "UNIQUE_Combat_TestAura_Elemental_Burst",
+	// 					},
+	// 				],
+	// 			},
+	// 			"UNIQUE_Combat_TestAura_Override" :
+	// 			{
+	// 				"isUnique" : true,
+	// 				"properties":
+	// 				{
+	// 					"Actor_AddHurtDelta" : "%Override_AddHurtDelta",
+	// 					"Actor_CriticalDelta" : "%Override_CriticalDelta",
+	// 					"Actor_MaxHPRatio" : "%Override_MaxHPRatio",
+	// 					"Actor_ChargeEfficiencyDelta" : "%Override_ChargeEfficiencyDelta",
+	// 					"Actor_FireAddHurtDelta" : "%Override_FireAddHurtDelta",
+	// 					"Actor_ElecAddHurtDelta" : "%Override_ElecAddHurtDelta",
+	// 					"Actor_WaterAddHurtDelta" : "%Override_WaterAddHurtDelta",
+	// 					"Actor_GrassAddHurtDelta" : "%Override_GrassAddHurtDelta",
+	// 					"Actor_WindAddHurtDelta" : "%Override_WindAddHurtDelta",
+	// 					"Actor_IceAddHurtDelta" : "%Override_IceAddHurtDelta",
+	// 					"Actor_RockAddHurtDelta" : "%Override_RockAddHurtDelta",
+	// 				},
+	// 			},
+	// 			"UNIQUE_Combat_TestAura_NormalAttack":
+	// 			{
+	// 				"isUnique" : true,
+	// 				"modifierMixins":
+	// 				[
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_01", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_02", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_03", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_04", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_05", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "NormalAttack_06", 
+	// 						"damagePercentageRatio" : "%NormalAttack_DamageRatio",
+	// 					},
+	// 				],
+	// 			},
+	// 			"UNIQUE_Combat_TestAura_ExtraAttack":
+	// 			{
+	// 				"isUnique" : true,
+	// 				"modifierMixins":
+	// 				[
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "ExtraAttack", 
+	// 						"damagePercentageRatio" : "%ExtraAttack_DamageRatio",
+	// 					},
+	// 				],
+	// 			},
+	// 			"UNIQUE_Combat_TestAura_Elemental_Art":
+	// 			{
+	// 				"isUnique" : true,
+	// 				"modifierMixins":
+	// 				[
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art", 
+	// 						"damagePercentageRatio" : "%Elemental_Art_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art_Hold", 
+	// 						"damagePercentageRatio" : "%Elemental_Art_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art_Extra", 
+	// 						"damagePercentageRatio" : "%Elemental_Art_DamageRatio",
+	// 					},
+	// 				],
+	// 			},
+	// 			"UNIQUE_Combat_TestAura_Elemental_Burst":
+	// 			{
+	// 				"isUnique" : true,
+	// 				"modifierMixins":
+	// 				[
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art", 
+	// 						"damagePercentageRatio" : "%Elemental_Burst_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art_Hold", 
+	// 						"damagePercentageRatio" : "%Elemental_Burst_DamageRatio",
+	// 					},
+	// 					{
+	// 						"$type" : "ModifyDamageMixin",
+	// 						"attackTag" : "Elemental_Art_Extra", 
+	// 						"damagePercentageRatio" : "%Elemental_Burst_DamageRatio",
+	// 					},
+	// 				],
+	// 			},
+	// 		},
+	// 		"abilitySpecials" : 
+	// 		{
+	// 			"Override_AddHurtDelta" : -0.25,
+	// 			"Override_CriticalDelta" : 0.0,
+	// 			"Override_MaxHPRatio" : 0.0,
+	// 			"Override_ChargeEfficiencyDelta" : 0.0,
+	// 			"NormalAttack_DamageRatio" : 1.0,
+	// 			"ExtraAttack_DamageRatio" : 1.0,
+	// 			"Elemental_Art_DamageRatio" : 1.0,
+	// 			"Elemental_Burst_DamageRatio" : 1.0,
+	// 			"Override_FireAddHurtDelta" : 1.0,
+	// 			"Override_ElecAddHurtDelta" : 1.0,
+	// 			"Override_WaterAddHurtDelta" : 1.0,
+	// 			"Override_GrassAddHurtDelta" : 1.0,
+	// 			"Override_WindAddHurtDelta" : 1.0,
+	// 			"Override_IceAddHurtDelta" : 1.0,
+	// 			"Override_RockAddHurtDelta" : 1.0,
+	// 		},
+	// 	},
+	// },
+	// 
+	// 
+////////////////////////////////////////////////////////////////
+//
+//  TeamTalentSwitch
+//
+////////////////////////////////////////////////////////////////
+	
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"TeamTalentSwitch",
+			"onAbilityStart":
+			[
+				// {
+				// 	"$type":"ApplyModifier",
+				// 	"modifierName":"UNIQUE_TeamTalentSwitch",
+				// 	"target":"CurTeamAvatars",
+				// 	"doOffStage":true,
+				// },
+			],
+			"modifiers":
+			{
+				"UNIQUE_TeamTalentSwitch":
+				{
+					"isUnique":true,
+					"stacking":"Unique",
+					"duration":10,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_TeamTalent_Switch",
+							"doOffStage":true,
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_WhiteBox_TeamTalent_Switch",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_TeamTalent_Switch",
+							"doOffStage":true,
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					]
+				},
+			},
+		},
+	},
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"TeamTalent_CoolDown_Trigger",
+			"onAbilityStart":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"UNIQUE_CoolDown_Trigger",
+					"target":"CurTeamAvatars",
+					"doOffStage":true,
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_CoolDown_Trigger":
+				{
+					"isUnique":true,
+					"stacking":"Unique",
+					"duration":1,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_TeamTalent_CoolDown_Trigger",
+							"doOffStage":true,
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_TeamTalent_CoolDown_Trigger",
+							"doOffStage":true,
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Team_Talent_ReduceFlyStamina 全隊飛行時的體力消耗降低
+//
+////////////////////////////////////////////////////////////////	
+
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"Team_Talent_ReduceFlyStamina",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "TeamStatusMixin",
+				},
+
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "DelayTrigger",
+				},
+			],
+			// "onAbilityStart":
+			// [
+			// 	{
+			// 		"$type":"AddGlobalValue",
+			// 		"key":"_ABILITY_Team_Talent_ReduceFlyStamina",
+			// 		"value": -2,
+			// 		"useLimitRange" : true,
+			// 		"maxValue" : 0,
+			// 		"minValue" : 0,		
+			// 	},
+			// 	{
+			// 		"$type": "ApplyModifier",
+			// 		"modifierName": "ReduceFlyStamina_Trigger",
+			// 		"target": "CurTeamAvatars",
+			// 	},
+			// ],
+			"modifiers":
+			{
+				"DelayTrigger":
+				{
+					"duration":2,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_ReduceFlyStamina",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,		
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ReduceFlyStamina_Trigger",
+							"target": "CurTeamAvatars",
+						},
+					]
+				},
+				"TeamStatusMixin":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByTeamStatusMixin",
+							"actions":
+							[
+
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ReduceFlyStamina_Trigger1",
+								},
+							]
+						},
+						{
+							"$type":"AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey":"_ABILITY_Team_Talent_ReduceFlyStamina",
+							"defaultGlobalValueOnCreate":0,					
+							"valueSteps" : [0.5,1.5,2.5],
+							"removeAppliedModifier":true,
+							"modifierNameSteps":["FlyStaminaReduction_Level1","FlyStaminaReduction_Level2"],
+						}
+					],
+				},
+				"ReduceFlyStamina_Trigger1":
+				{
+					"duration":0.1,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_ReduceFlyStamina",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,							
+						},							
+						{
+							"$type":"ApplyModifier",
+							"modifierName": "ReduceFlyStamina_Trigger",
+							"target": "CurTeamAvatars",							
+						},
+
+					]
+				},
+				"ReduceFlyStamina_Trigger":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_ReduceFlyStamina_Trigger",
+							"value": 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_ReduceFlyStamina_Trigger",
+							"value": -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					]
+				},
+				"FlyStaminaReduction_Level1":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"FlyStaminaReduction_Handler",
+						}
+					]
+				},
+				"FlyStaminaReduction_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs": [ "Fly" ],
+							"modifierName": "Avatar_Level1_Talent_ReduceFlyStamina",
+						}
+					]
+				},
+				"Avatar_Level1_Talent_ReduceFlyStamina":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":"%Level1_Talent_ReduceFlyStamina",
+					}
+				},
+				"FlyStaminaReduction_Level2":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"FlyStaminaReduction_Handler2",
+						}
+					]
+				},
+				"FlyStaminaReduction_Handler2":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs": [ "Fly" ],
+							"modifierName": "Avatar_Level2_Talent_ReduceFlyStamina",
+						}
+					]
+				},
+				"Avatar_Level2_Talent_ReduceFlyStamina":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":"%Level2_Talent_ReduceFlyStamina",
+					}
+				}				
+			},
+			"abilitySpecials":
+			{
+				"Level1_Talent_ReduceFlyStamina":-0.2,
+				"Level2_Talent_ReduceFlyStamina":-0.3,				
+			}
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Team_Talent_ReduceFallDamage 全隊掉落時受到伤害降低
+//
+////////////////////////////////////////////////////////////////	
+
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"Team_Talent_FallingDamageReduction",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "FallingTeamStatusMixin",
+				},
+
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "DelayTrigger1",
+				},
+			],
+			"modifiers":
+			{
+				"DelayTrigger1":
+				{
+					"duration":2,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_FallingDamageReduction",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,		
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "FallingDamageReduction_Trigger",
+							"target": "CurTeamAvatars",
+						},
+					]
+				},
+				"FallingTeamStatusMixin":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByTeamStatusMixin",
+							"actions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "FallingDamageReduction_Trigger1",
+								},
+							]
+						},
+						{
+							"$type":"AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey":"_ABILITY_Team_Talent_FallingDamageReduction",
+							"defaultGlobalValueOnCreate":0,					
+							"valueSteps" : [0.5,1.5,2.5],
+							"removeAppliedModifier":true,
+							"modifierNameSteps":["FallingDamageReduction_Level1","Blank"],
+						}
+					],
+				},
+				"FallingDamageReduction_Trigger1":
+				{
+					"duration":0.1,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_FallingDamageReduction",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,							
+						},							
+						{
+							"$type":"ApplyModifier",
+							"modifierName": "FallingDamageReduction_Trigger",
+							"target": "CurTeamAvatars",							
+						},
+
+					]
+				},
+				"FallingDamageReduction_Trigger":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_FallingDamageReduction_Trigger",
+							"value": 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_FallingDamageReduction_Trigger",
+							"value": -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					]
+				},
+				"Blank":
+				{
+				},
+				"FallingDamageReduction_Level1":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"FallingDamageReduction_Handler",
+						}
+					]
+				},
+				"FallingDamageReduction_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToAnimatorStateIDMixin",
+							"stateIDs": [ "DropDown","FallOnGroundLit","FallOnGround","FallToGroundRun","FallToGroundRunHard","FallToGroundSprint"],
+							"modifierName": "Avatar_Level1_Talent_FallingDamageReduction",
+						}
+					]
+				},
+				"Avatar_Level1_Talent_FallingDamageReduction":
+				{
+					"properties":
+					{
+						"Actor_FallingDamageRatio":"%Level1_Talent_FallingDamageReduction",
+					}
+				},			
+			},
+			"abilitySpecials":
+			{
+				"Level1_Talent_FallingDamageReduction":-0.3,			
+			}
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Team_Talent_DashStaminaReduction 全隊疾跑体力消耗降低
+//
+////////////////////////////////////////////////////////////////	
+
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"Team_Talent_DashStaminaReduction",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "DashTeamStatusMixin",
+				},
+
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "DelayTrigger2",
+				},
+			],
+			"modifiers":
+			{
+				"DelayTrigger2":
+				{
+					"duration":2,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_DashStaminaReduction",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,		
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "DashStaminaReduction_Trigger",
+							"target": "CurTeamAvatars",
+						},
+					]
+				},
+				"DashTeamStatusMixin":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByTeamStatusMixin",
+							"actions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "DashStaminaReduction_Trigger1",
+								},
+							]
+						},
+						{
+							"$type":"AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey":"_ABILITY_Team_Talent_DashStaminaReduction",
+							"defaultGlobalValueOnCreate":0,					
+							"valueSteps" : [0.5,1.5,2.5],
+							"removeAppliedModifier":true,
+							"modifierNameSteps":["DashStaminaReduction_Level1","Blank"],
+						}
+					],
+				},
+				"DashStaminaReduction_Trigger1":
+				{
+					"duration":0.1,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Team_Talent_DashStaminaReduction",
+							"value": -2,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,							
+						},							
+						{
+							"$type":"ApplyModifier",
+							"modifierName": "DashStaminaReduction_Trigger",
+							"target": "CurTeamAvatars",							
+						},
+
+					]
+				},
+				"DashStaminaReduction_Trigger":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_DashStaminaReduction_Trigger",
+							"value": 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Talent_DashStaminaReduction_Trigger",
+							"value": -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					]
+				},
+				"Blank":
+				{
+				},
+				"DashStaminaReduction_Level1":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"DashStaminaReduction_Handler",
+						}
+					]
+				},
+				"DashStaminaReduction_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToStateIDMixin",
+							"stateIDs": ["Sprint","SprintBS"],
+							"modifierName": "Avatar_Level1_Talent_DashStaminaReduction",
+						},
+					]
+				},
+				"Avatar_Level1_Talent_DashStaminaReduction":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":"%Level1_Talent_DashStaminaReduction",
+					}
+				},			
+			},
+			"abilitySpecials":
+			{
+				"Level1_Talent_DashStaminaReduction":-0.2,			
+			}
+		},
+	},
+
+	////////////////////////////////////////////////////////////////
+	//
+	//  Team_WindSeedManager 全队风种子管理
+	//
+	////////////////////////////////////////////////////////////////	
+
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"Team_WindSeedSpawner_Manager",
+		     
+		      "abilityMixins": [
+		        {
+		          "$type": "WindSeedSpawnerMixin",
+				  "refreshEnable" :  false,
+		          "spawnerRadius": 15,
+		          "spawnerHeightAngle": 30.0,
+		          "spawnerAreaAngle": 120.0,
+		          "moveSuppressSpeed": 0.5,
+		          "moveRefreshAngleFreeze": 15.0,
+		          "moveRefreshAngleSlow" :  45.0,
+		          "minNumPerSpawn": 1,
+		          "maxNumPerSpawn" : 2,
+		          "maxSwapNumPerSpawn" : 1,
+		          "minSeparateRange": 6,
+		          "maxSeparateRange" : 10.0,
+
+		          "removeSeedDistance" : 30.0,
+		          "refreshMeterPerMeter" : 6.0,
+		          "refreshMeterPerSecond" : 15.0,
+		          "refreshMeterPerDistRemove" : 0.0,
+		          "refreshMeterMax": 100.0,
+
+		          "globalValueKey" :  "_HAS_ELEMFORCE_WIND",
+		          "spawnNumArray": [ 1, 2, 2, 0 ],
+		          "seedGadgetID" : 70900332,
+		        },
+      		],
+		}
+	},
+	////////////////////////////////////////////////////////////////
+	//
+	//  WindSeed_Bullet_Manager 风子弹管理
+	//
+	////////////////////////////////////////////////////////////////	
+
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName":"WindSeed_Bullet_Manager",
+		     "onAbilityStart":
+		     [
+		     	{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMFORCE_WIND",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 3,
+					"minValue": 0,
+				},
+				//子弹小于2个时，触发pre特效
+				{
+					"$type": "FireEffect",
+					"target": "Team",
+					"effectPattern": "Eff_Item_WindSeed_Pre",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": 2,
+							"compareType": "LessAndEqual",
+						},
+					],
+				},
+				//初始子弹
+				{
+					"$type": "ApplyModifier",
+					"target": "Team",
+					"modifierName": "WindSeed",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": 1,
+							"compareType": "LessAndEqual",
+						},
+					],
+				},
+				//二次触发加持续时间
+				{
+					"$type": "AddElementDurability",
+					"target": "Team",
+					"modifierName": "WindSeed",
+					"value": 50,
+					"useLimitRange": true,
+					"maxValue": 50.0,
+					"minValue": 0.0,
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": 2,
+							"compareType": "Equal",
+						},
+					],
+				},
+				//二次触发加子弹特效
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Bullet_Eff2",
+					//"$type": "KillSelf",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR2",
+						"centerBasedOn": "CurLocalAvatar",
+						"campTargetType": "All",
+						"campBasedOn": "CurLocalAvatar",
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_IS_ELEMENT_WIND_BULLET",
+							"value": 1,
+							"compareType": "Equal",
+						},
+						{
+							"$type": "ByTargetGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": 2,
+							"compareType": "Equal",
+						},
+					],
+				},
+				//第三次上爆炸modifer
+				{
+					"$type": "ApplyModifier",
+					"target": "Team",
+					"modifierName": "WindSeed_Explode",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": 3,
+							"compareType": "Equal",
+						},
+					],
+				},
+		     ],
+		    "modifiers":
+		    {
+				"WindForce_Avatar_Handler":
+				{
+					"isLimitedProperties": true,
+					"modifierMixins":
+					[
+						{
+							"$type":"OnAvatarUseSkillMixin",
+							"onTriggerUltimateSkill":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Team",
+									"key": "_HAS_ELEMFORCE_WIND",
+									"value": 3,
+									"useLimitRange": true,
+									"maxValue": 3,
+									"minValue": 3,
+									"predicates":
+									[
+										{
+											"$type":"ByAvatarElementType",
+											"target": "CurLocalAvatar",
+											"elementType":"Wind",
+										},
+										// {
+										// 	"$type": "ByTargetGlobalValue",
+										// 	"target": "Team",
+										// 	"key": "_HAS_ELEMFORCE_WIND",
+										// 	"value": 1,
+										// 	"compareType": "MoreThan",
+										// },
+									],
+								},
+								{
+									"$type": "ApplyModifier",
+									"target": "Team",
+									"modifierName": "WindSeed_Explode",
+									"predicates":
+									[
+										{
+											"$type":"ByAvatarElementType",
+											"target": "CurLocalAvatar",
+											"elementType":"Wind",
+										},
+										// {
+										// 	"$type": "ByTargetGlobalValue",
+										// 	"target": "Team",
+										// 	"key": "_HAS_ELEMFORCE_WIND",
+										// 	"value": 1,
+										// 	"compareType": "MoreThan",
+										// },
+									],
+								},
+							],
+							"onTriggerSkill":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Team",
+									"key": "_HAS_ELEMFORCE_WIND",
+									"value": 3,
+									"useLimitRange": true,
+									"maxValue": 3,
+									"minValue": 3,
+									"predicates":
+									[
+										{
+											"$type":"ByAvatarElementType",
+											"target": "CurLocalAvatar",
+											"elementType":"Wind",
+										},
+										// {
+										// 	"$type": "ByTargetGlobalValue",
+										// 	"target": "Team",
+										// 	"key": "_HAS_ELEMFORCE_WIND",
+										// 	"value": 1,
+										// 	"compareType": "MoreThan",
+										// },
+									],
+								},
+								{
+									"$type": "ApplyModifier",
+									"target": "Team",
+									"modifierName": "WindSeed_Explode",
+									"predicates":
+									[
+										{
+											"$type":"ByAvatarElementType",
+											"target": "CurLocalAvatar",
+											"elementType":"Wind",
+										},
+										// {
+										// 	"$type": "ByTargetGlobalValue",
+										// 	"target": "Team",
+										// 	"key": "_HAS_ELEMFORCE_WIND",
+										// 	"value": 1,
+										// 	"compareType": "MoreThan",
+										// },
+									],
+								},
+							],
+						},
+					],
+					"properties":
+					{
+						"Actor_CostStaminaRatio" : -0.3,
+					},
+				},
+				"WindSeed":
+				{
+					"duration": 15,
+					"elementType": "None",
+					"elementDurability": 50,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"target": "CurLocalAvatar",
+							"gadgetID": 70900333,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"ownerIsTarget": true,
+							//"byServer": true,
+						},
+						{
+							"$type": "AttachModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "WindForce_Avatar_Handler",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Kill_Bullet",
+							//"$type": "KillSelf",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR2",
+								"centerBasedOn": "CurLocalAvatar",
+								"campTargetType": "All",
+								"campBasedOn": "CurLocalAvatar",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMENT_WIND_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+					],
+				},
+				"Kill_Bullet":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"KillSelf",
+						},
+					],
+				},
+				"Bullet_Eff2":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_02",
+						},
+					],
+				},
+				"Bullet_Eff3":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_03",
+						},
+					],
+				},
+				"WindSeed_Explode":
+				{
+					"duration": 0.1,
+					"stacking":"Unique",
+					"fireEventWhenApply":true,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Bullet_Eff3",
+							//"$type": "KillSelf",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR2",
+								"centerBasedOn": "CurLocalAvatar",
+								"campTargetType": "All",
+								"campBasedOn": "CurLocalAvatar",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMENT_WIND_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						//直接杀掉风子弹
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Kill_Bullet",
+							//"$type": "KillSelf",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR2",
+								"centerBasedOn": "CurLocalAvatar",
+								"campTargetType": "All",
+								"campBasedOn": "CurLocalAvatar",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMENT_WIND_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "WindSeed",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_WindSeed_Merge",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70900321,
+							"campTargetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"direction":
+								{
+									"$type": "ConfigDirectionByWorld",
+									"eularAngles":
+									{
+										"x" : 0,
+										"y" : 0,
+										"z" : 0,
+									},
+								},
+							},
+						},
+						// {
+						// 	"$type": "ApplyModifier",
+						// 	"modifierName": "Kill_Bullet",
+						// 	//"$type": "KillSelf",
+						// 	"otherTargets":
+						// 	{
+						// 		"$type": "SelectTargetsByShape",
+						// 		"shapeName": "CircleR5",
+						// 		"centerBasedOn": "CurLocalAvatar",
+						// 		"campTargetType": "All",
+						// 		"campBasedOn": "CurLocalAvatar",
+						// 	},
+						// 	"predicates":
+						// 	[
+						// 		{
+						// 			"$type": "ByTargetGlobalValue",
+						// 			"key": "_IS_ELEMENT_WIND_BULLET",
+						// 			"value": 1,
+						// 			"compareType": "Equal",
+						// 		},
+						// 	],
+						// },
+					],
+				},
+		    },
+		}
+	},
+]

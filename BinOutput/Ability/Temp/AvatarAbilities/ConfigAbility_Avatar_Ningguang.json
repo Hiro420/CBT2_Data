@@ -1,0 +1,6188 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  _NormalAttack_Dummy
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_NormalAttack_Dummy",
+			"onAbilityStart": 
+			[
+				{
+					"$type":"Predicated",
+					"target":"Target",
+					"targetPredicates":
+					[
+						{
+							"$type":"ByTargetGlobalValue",
+							"key":"_IS_SERVANTSTONE",
+							"value":1,
+							"compareType":"Equal",
+						},						
+					],
+					"successActions":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Ningguang_Nano_Boost",
+							"target":"Owner",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Ningguang_NanoBoost_Wall",
+							"born":
+							{
+								"$type": "ConfigBornByHitPoint",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0.3,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					],
+				}
+			],
+			"modifiers":
+			{
+				"Ningguang_Nano_Boost":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NanoBoost",
+						},
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_NANOBOOST",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AttackUp",
+						},
+					],
+				},
+				"AttackUp":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["Elemental_Burst","NormalAttack_01"],
+							"damagePercentageRatio":"%NanoBoost_AttackUp",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"NanoBoost_AttackUp":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Ningguang_NormalAttackDamage
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_NormalAttackDamage",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Ningguang_NormalAttack_Bullet_Trail",
+				},
+				{
+					"$type":"AttachModifier",
+					"modifierName":"NormalAttackElementBall",
+					"target":"Self",
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+				{
+					"$type": "CreateGadget",//创建子弹穿门的检测器
+					"gadgetID": 41027019,
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						// "attachPointName" : "RootNode",
+						"offset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"doOffStage" : true,
+					"attackEvent": 
+					{
+						"attackPattern": 
+						{
+							"$type": "ConfigAttackSphere",
+							"duration": 0.0,
+							"triggerType": "TriggerNoRepeat",
+							"radius": 0.5,
+							"born": 
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag":"NormalAttack_01",
+							"attenuationTag": "NormalAttack",
+							"attackProperty": 
+							{
+								"damagePercentage": "%NormalAttack_Damage",
+								"elementType": "Rock",
+								"elementDurability": 0,
+								"enBreak": 45,
+								"attackType":"Default",
+								"strikeType":"Blunt",
+							},
+							"hitPattern": 
+							{
+								"onHitEffectName": "Eff_Ningguang_NormalAttack_Bullet_Hit",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.0,
+								"hitHaltTimeScale": 0.05,
+								"muteHitText": false,
+							},
+							"forceCameraShake": false,
+						}
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByNot",
+							"predicates":
+							[
+								{
+									"$type" : "ByUnlockTalentParam",
+									"talentParam" : "Ningguang_Constellation_1",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_Blast",
+					"predicates":
+					[
+						{
+							"$type" : "ByUnlockTalentParam",
+							"talentParam" : "Ningguang_Constellation_1",
+						},
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 0,
+							"forceByCaster":true,
+							"compareType": "NoneOrEqual",
+						},
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_Blast_NanoBoost",
+					"predicates":
+					[
+						{
+							"$type" : "ByUnlockTalentParam",
+							"talentParam" : "Ningguang_Constellation_1",
+						},
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 1,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_NanoBoost",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 1,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+						{
+							"$type":"ByNot",
+							"predicates":
+							[
+								{
+									"$type" : "ByUnlockTalentParam",
+									"talentParam" : "Ningguang_Constellation_1",
+								},
+							],						
+						}
+					],
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"doOffStage" : true,
+					"attackEvent": 
+					{
+						"attackPattern": 
+						{
+							"$type": "ConfigAttackSphere",
+							"duration": 0.0,
+							"triggerType": "TriggerNoRepeat",
+							"radius": 3.5,
+							"born": 
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag":"NormalAttack_01",
+							"attenuationTag": "NormalAttack",
+							"attackProperty": 
+							{
+								"damagePercentage": "%NormalAttack_Damage",
+								"elementType": "Rock",
+								"elementDurability": 0,
+								"enBreak": 45,
+								"attackType":"Default",
+								"strikeType":"Blunt",
+							},
+							"hitPattern": 
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.0,
+								"hitHaltTimeScale": 0.05,
+								"muteHitText": false,
+							},
+							"forceCameraShake": false,
+						}
+					},
+					"predicates":
+					[
+						{
+							"$type" : "ByUnlockTalentParam",
+							"talentParam" : "Ningguang_Constellation_1",
+						},
+					],
+				},
+				{
+					"$type": "FireHitEffect",
+					"hitScene":
+					{
+						"defaultEffect":"Eff_Ningguang_NormalAttack_Bullet_Hit",
+					},
+				},
+			],
+			"modifiers":
+			{
+				"Timer":
+				{
+					"duration":0.6,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":20,
+					},
+				},
+				"NormalAttackElementBall":
+				{
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["NormalAttack_01"],
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+								{
+				                 	"$type": "ByTargetGlobalValue",
+				                 	"key": "_ANIMAL_ENTITY_TYPE",
+				                 	"value": 0,
+				                 	"compareType": "NoneOrEqual",
+				                },
+							],
+							"successActions":
+							[
+								{
+									"$type": "AttachModifier",
+									"modifierName": "Ball",
+									"target": "Self",
+								},
+							],
+						},
+					],
+				},
+				"Ball":
+				{
+					"duration": 1.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type":"Randomed",
+							"chance":0.5,
+							"successActions":
+							[
+								{
+									"$type": "GenerateElemBall",
+									"configID": 2023,
+									"baseEnergy": 3,
+									"ratio": 1,
+									"born":
+									{
+										"$type": "ConfigBornByTarget",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},					
+								},
+							],
+						},
+					],
+				},
+			},
+
+			"abilitySpecials" :
+			{
+				"NormalAttack_Damage" : 0.0,
+			},	
+		},
+	},
+//普攻未命中消失表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_NormalAttack_LifeOver_Fx",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Ningguang_NormalAttack_Bullet_Hit",
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_Blast",
+					"predicates":
+					[
+						{
+							"$type" : "ByUnlockTalentParam",
+							"talentParam" : "Ningguang_Constellation_1",
+						},
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 0,
+							"forceByCaster":true,
+							"compareType": "NoneOrEqual",
+						},
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_Blast_NanoBoost",
+					"predicates":
+					[
+						{
+							"$type" : "ByUnlockTalentParam",
+							"talentParam" : "Ningguang_Constellation_1",
+						},
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 1,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_NormalAttack_Bullet_Hit_NanoBoost",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_NANOBOOST",
+							"value": 1,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+						{
+							"$type":"ByNot",
+							"predicates":
+							[
+								{
+									"$type" : "ByUnlockTalentParam",
+									"talentParam" : "Ningguang_Constellation_1",
+								},
+							],						
+						}
+					],
+				},
+			],
+		},
+	},
+//其余子弹未命中消失表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Elemental_Burst_LifeOver_Orange",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Disappear_Orange",
+				},
+			],
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Elemental_Burst_LifeOver_Red",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Disappear_Red",
+				},
+			],
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Elemental_Burst_LifeOver_Yellow",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Disappear_Yellow",
+				},
+			],
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Set NormalAttack & ExtraAttack Trigger
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ExtraAttack",
+			"abilityMixins":
+			[
+				{
+					"$type": "ButtonHoldChargeMixin",
+					"skillID": 10271,
+					"chargeTime": 0.05,
+					"secondChargeTime": 0.15,
+					"OnBeginUncharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+							"predicates":
+							[
+								{
+									"$type" : "ByAnimatorInt",
+									"value" : 0,
+									"parameter" : "ComboCount",
+									"logic" : "Equal",
+								},
+							],
+						},
+						{
+							"$type":"Randomed",
+							"chance":0.3,
+							"successActions":
+							[
+								{
+									"$type": "SetAnimatorInt",
+									"intID": "SkillID",
+									"value": 11,
+									"predicates":
+									[
+										{
+											"$type" : "ByAnimatorInt",
+											"value" : 0,
+											"parameter" : "ComboCount",
+											"logic" : "Equal",
+										},
+									],
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type":"Randomed",
+									"chance":0.5,
+									"successActions":
+									[
+										{
+											"$type": "SetAnimatorInt",
+											"intID": "SkillID",
+											"value": 21,
+											"predicates":
+											[
+												{
+													"$type" : "ByAnimatorInt",
+													"value" : 0,
+													"parameter" : "ComboCount",
+													"logic" : "Equal",
+												},
+											],
+										},
+									],
+									"failActions":
+									[
+										{
+											"$type": "SetAnimatorInt",
+											"intID": "SkillID",
+											"value": 31,
+											"predicates":
+											[
+												{
+													"$type" : "ByAnimatorInt",
+													"value" : 0,
+													"parameter" : "ComboCount",
+													"logic" : "Equal",
+												},
+											],
+										},
+									],
+								},
+							],
+						},
+						// {
+						// 	"$type": "SetAnimatorInt",
+						// 	"intID": "SkillID",
+						// 	"value": 99,
+						// 	"predicates":
+						// 	[
+						// 		{
+						// 			"$type" : "ByAnimatorInt",
+						// 			"value" : 0,
+						// 			"parameter" : "ComboCount",
+						// 			"logic" : "Equal",
+						// 		},
+						// 	],
+						// },
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+					],
+					"OnReleaseUncharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+					],
+					"OnBeginCharged":
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": true,
+						},
+					],
+					"OnReleaseCharged":
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"OnBeginSecondCharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 6,
+							"predicates":
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Catalyst_Stamina_Cost*%Ningguang_ExtraAttack_StaminaCost+%Flexible_Stamina",
+									"logic": "GreaterOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+							"predicates":
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Catalyst_Stamina_Cost*%Ningguang_ExtraAttack_StaminaCost+%Flexible_Stamina",//留出服务器误差体力
+									"logic": "Lesser",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"chargeStateIDs": ["Ningguang_Attack01","Ningguang_Attack02","Ningguang_Attack03","ExtraAttack_BS","ExtraAttack_Charge","ExtraAttack","ExtraAttack_AS"],
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack_Charge"],
+					"modifierName": "ExtraAttack_StaminaCost",
+				},
+			],
+			"modifiers":
+			{
+				"ExtraAttack_StaminaCost":
+				{
+					// "duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10003,
+							"costStaminaRatio":"%Ningguang_ExtraAttack_StaminaCost*%ExtraAttack_Catalyst_Stamina_Cost",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Ningguang_ExtraAttack_StaminaCost": 1,
+				"ExtraAttack_Catalyst_Stamina_Cost": 0,//读表
+				"Flexible_Stamina":-2,
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ExtraAttack_Fx",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack_Charge","ExtraAttack"],
+					"modifierName": "Ningguang_ExtraAttack_FX",
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_ExtraAttack_Blast",
+					"born":
+					{
+						"$type":"ConfigBornBySelf",
+						"offset":
+						{
+							"x":0,
+							"y":0,
+							"z":5,
+						},
+						"onGround":true,
+					},
+				},
+				{
+					"$type":"RemoveModifier",
+					"modifierName":"Ningguang_ExtraAttack_FX",
+				},
+			],
+			"modifiers":
+			{
+				"Ningguang_ExtraAttack_FX":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ExtraAttack",
+							"born":
+							{
+								"$type":"ConfigBornBySelf",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":5,
+								},
+								"onGround":true,
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ExtraAttack_Damage",
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"ExtraAttack_GenerateElemBall",
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "TriggerAttackEvent",
+					"targetType" : "Enemy",
+					"attackEvent":
+					{
+						"attackPattern" :
+						{
+							"$type" : "ConfigAttackSphere",
+							"triggerType" : "TriggerNoRepeat",
+							"radius" : 3.0,
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset" :
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 5.0,
+								},
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "ExtraAttack",
+							"attackProperty":
+							{
+								"damagePercentage": "%Ningguang_ExtraAttack",
+								"strikeType": "Blunt",
+								"elementType": "Rock",
+								"elementDurability": 0,
+								"enBreak" : 180,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Heavy",	//hitlevel = 3
+				          		"hitImpulseX": 200,	//hitlevel = 3
+				          		"hitImpulseY": 0,	//hitlevel = 3
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": true,
+				        	"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.12,
+								"shakeTime": 0.36,
+								"shakeDistance": 30,
+								"shakeDir":
+								{
+									"x": 0,
+									"y": -1,
+									"z": 0,
+								},
+								"extension":
+								{
+									"baseCycle": 0.72,
+									"cycleDamping": 0,
+									"rangeAttenuation": 0.3,
+								},
+				        	},
+						},
+					},
+				},
+			],
+			"modifiers":
+			{
+				"ExtraAttack_GenerateElemBall":
+				{
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ExtraAttack"],
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+								{
+				                	"$type": "ByTargetGlobalValue",
+				                	"key": "_ANIMAL_ENTITY_TYPE",
+				                	"value": 0,
+				                	"compareType": "NoneOrEqual",
+				                },
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ExtraAttack_Ball",
+									"target":"Target",
+								},
+							],
+						},
+					],
+				},
+				"ExtraAttack_Ball":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"Randomed",
+							"chance":0.5,
+							"successActions":
+							[
+								{
+									"$type":"GenerateElemBall",
+									"configID":2023,
+									"baseEnergy": 3,
+									"ratio": 1,
+									"born":
+									{
+										"$type": "ConfigBornByTarget",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Ningguang_ExtraAttack": 0,
+			},	
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  NormalAttack Hide Weapon
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_HideWeapon",
+			"onAbilityStart": 
+			[
+
+			],
+			"abilityMixins":
+			[
+				// {
+				// 	"$type":"AttachToStateIDMixin",
+				// 	"stateIDs": ["Ningguang_Attack01","Ningguang_Attack02","Ningguang_Attack03"], 
+				// 	"modifierName": "NormalAttack_HideWeapon", 
+				// },
+				{
+					"$type":"AttachToNormalizedTimeMixin",
+					"stateID":"Ningguang_Attack01",
+					"modifierName":"Ningguang_Attack01_ClearTrigger",
+					"normalizeStart":0.12,
+					"normalizeEnd":0.45,
+				},
+				{
+					"$type":"AttachToNormalizedTimeMixin",
+					"stateID":"Ningguang_Attack02",
+					"modifierName":"Ningguang_Attack02_ClearTrigger",
+					"normalizeStart":0.14,
+					"normalizeEnd":0.4,
+				},
+				{
+					"$type":"AttachToNormalizedTimeMixin",
+					"stateID":"Ningguang_Attack03",
+					"modifierName":"Ningguang_Attack03_ClearTrigger",
+					"normalizeStart":0.12,
+					"normalizeEnd":0.4,
+				},
+			],
+			"modifiers":
+			{
+				"NormalAttack_HideWeapon":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "TriggerHideWeapon",
+							"visible": false,
+							"partNames": ["sheathPoint","equip01","equip02","equip03"],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerHideWeapon",
+							"visible": true,
+							"doOffStage":true,
+							"partNames": ["sheathPoint","equip01","equip02","equip03"],
+						},
+					]
+				},
+				"Ningguang_Attack01_ClearTrigger":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					]
+				},
+				"Ningguang_Attack02_ClearTrigger":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					]
+				},
+				"Ningguang_Attack03_ClearTrigger":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Attack01
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Attack01",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Ningguang_Attack01",
+					"modifierName": "Ningguang_Attack01_Fx",
+					"normalizeStart":0.05,
+					"normalizeEnd":0.5,
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Constellation_BulletTrigger_Queue",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 7,
+					"minValue" : 0,
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027013,
+						"sortType": "Default",
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByTargetGlobalValue",
+							"key":"_ABILITY_Constellation_Attack_Up",
+							"value":1,
+							"forceByCaster":true,
+							"compareType":"Equal",
+						}
+					]
+				},	
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackL",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackR",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				// {
+				// 	"$type" : "Predicated",
+				// 	"target" : "SelfAttackTarget",
+				// 	"targetPredicates":
+				// 	[
+				// 		{
+				// 			"$type" : "ByTargetPositionToSelfPosition",
+				// 			"compareType": "XZ",
+				// 			"value": 8.0,
+				// 			"logic": "GreaterOrEqual",
+				// 		},
+				// 	],
+				// 	"successActions":
+				// 	[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": -20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": 20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					// ],
+					// "failActions":
+					// [
+					// 	{
+					// 		"$type": "TriggerBullet",
+					// 		"bulletID": 41027001,
+					// 		"born": 
+					// 		{
+					// 			"$type": "ConfigBornByAttachPoint",
+					// 			"attachPointName" : "PRIVATE_AttackL",
+					// 			"offset": 
+					// 			{
+					// 				"x": 0.0,
+					// 				"y": 0.0,
+					// 				"z": 0.0,
+					// 			},
+					// 			"direction":
+					// 			{
+					// 				"$type": "ConfigDirectionByEntity",
+					// 				"angleOffset":
+					// 				{
+					// 					"x": 0.0,
+					// 					"y": 0.0,
+					// 					"z": 0.0,
+					// 				},
+					// 			},
+					// 		},
+					// 	},
+					// 	{
+					// 		"$type": "TriggerBullet",
+					// 		"bulletID": 41027001,
+					// 		"born": 
+					// 		{
+					// 			"$type": "ConfigBornByAttachPoint",
+					// 			"attachPointName" : "PRIVATE_AttackR",
+					// 			"offset": 
+					// 			{
+					// 				"x": 0.0,
+					// 				"y": 0.0,
+					// 				"z": 0.0,
+					// 			},
+					// 			"direction":
+					// 			{
+					// 				"$type": "ConfigDirectionByEntity",
+					// 				"angleOffset":
+					// 				{
+					// 					"x": 0.0,
+					// 					"y": 0.0,
+					// 					"z": 0.0,
+					// 				},
+					// 			},
+					// 		},
+					// 	},
+					// ],
+				// },
+			],
+			"modifiers":
+			{
+				"Ningguang_Attack01_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Attack02
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Attack02",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Ningguang_Attack02",
+					"modifierName": "Ningguang_Attack02_Fx",
+					"normalizeStart":0.05,
+					"normalizeEnd":0.5,
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Constellation_BulletTrigger_Queue",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 7,
+					"minValue" : 0,
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027013,
+						"sortType": "Default",
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByTargetGlobalValue",
+							"key":"_ABILITY_Constellation_Attack_Up",
+							"value":1,
+							"forceByCaster":true,
+							"compareType":"Equal",
+						}
+					]
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackL",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackR",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				// {
+				// 	"$type" : "Predicated",
+				// 	"target" : "SelfAttackTarget",
+				// 	"targetPredicates":
+				// 	[
+				// 		{
+				// 			"$type" : "ByTargetPositionToSelfPosition",
+				// 			"compareType": "XZ",
+				// 			"value": 8.0,
+				// 			"logic": "GreaterOrEqual",
+				// 		},
+				// 	],
+				// 	"successActions":
+				// 	[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": -20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": 20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					// ],
+					// "failActions":
+					// [
+					// 	{
+					// 		"$type": "TriggerBullet",
+					// 		"bulletID": 41027001,
+					// 		"born": 
+					// 		{
+					// 			"$type": "ConfigBornByAttachPoint",
+					// 			"attachPointName" : "PRIVATE_AttackL",
+					// 			"offset": 
+					// 			{
+					// 				"x": 0.0,
+					// 				"y": 0.0,
+					// 				"z": 0.0,
+					// 			},
+					// 			"direction":
+					// 			{
+					// 				"$type": "ConfigDirectionByEntity",
+					// 				"angleOffset":
+					// 				{
+					// 					"x": 0.0,
+					// 					"y": 0.0,
+					// 					"z": 0.0,
+					// 				},
+					// 			},
+					// 		},
+					// 	},
+					// 	{
+					// 		"$type": "TriggerBullet",
+					// 		"bulletID": 41027001,
+					// 		"born": 
+					// 		{
+					// 			"$type": "ConfigBornByAttachPoint",
+					// 			"attachPointName" : "PRIVATE_AttackR",
+					// 			"offset": 
+					// 			{
+					// 				"x": 0.0,
+					// 				"y": 0.0,
+					// 				"z": 0.0,
+					// 			},
+					// 			"direction":
+					// 			{
+					// 				"$type": "ConfigDirectionByEntity",
+					// 				"angleOffset":
+					// 				{
+					// 					"x": 0.0,
+					// 					"y": 0.0,
+					// 					"z": 0.0,
+					// 				},
+					// 			},
+					// 		},
+					// 	},
+					// ],
+				// },
+			],
+			"modifiers":
+			{
+				"Ningguang_Attack02_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Attack03
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Attack03",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Ningguang_Attack03",
+					"modifierName": "Ningguang_Attack03_Fx",
+					"normalizeStart":0.05,
+					"normalizeEnd":0.5,
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Constellation_BulletTrigger_Queue",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 7,
+					"minValue" : 0,
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027013,
+						"sortType": "Default",
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByTargetGlobalValue",
+							"key":"_ABILITY_Constellation_Attack_Up",
+							"value":1,
+							"forceByCaster":true,
+							"compareType":"Equal",
+						}
+					]
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackL",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027012,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackR",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+					],
+				},
+				// {
+				// 	"$type" : "Predicated",
+				// 	"target" : "SelfAttackTarget",
+				// 	"targetPredicates":
+				// 	[
+				// 		{
+				// 			"$type" : "ByTargetPositionToSelfPosition",
+				// 			"compareType": "XZ",
+				// 			"value": 8.0,
+				// 			"logic": "GreaterOrEqual",
+				// 		},
+				// 	],
+				// 	"successActions":
+				// 	[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": -20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027001,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": -15.0,
+										"y": 20.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						},
+				// 	],
+				// 	"failActions":
+				// 	[
+				// 		{
+				// 			"$type": "TriggerBullet",
+				// 			"bulletID": 41027001,
+				// 			"born": 
+				// 			{
+				// 				"$type": "ConfigBornByAttachPoint",
+				// 				"attachPointName" : "PRIVATE_AttackL",
+				// 				"offset": 
+				// 				{
+				// 					"x": 0.0,
+				// 					"y": 0.0,
+				// 					"z": 0.0,
+				// 				},
+				// 				"direction":
+				// 				{
+				// 					"$type": "ConfigDirectionByEntity",
+				// 					"angleOffset":
+				// 					{
+				// 						"x": 0.0,
+				// 						"y": 0.0,
+				// 						"z": 0.0,
+				// 					},
+				// 				},
+				// 			},
+				// 		},
+				// 		{
+				// 			"$type": "TriggerBullet",
+				// 			"bulletID": 41027001,
+				// 			"born": 
+				// 			{
+				// 				"$type": "ConfigBornByAttachPoint",
+				// 				"attachPointName" : "PRIVATE_AttackR",
+				// 				"offset": 
+				// 				{
+				// 					"x": 0.0,
+				// 					"y": 0.0,
+				// 					"z": 0.0,
+				// 				},
+				// 				"direction":
+				// 				{
+				// 					"$type": "ConfigDirectionByEntity",
+				// 					"angleOffset":
+				// 					{
+				// 						"x": 0.0,
+				// 						"y": 0.0,
+				// 						"z": 0.0,
+				// 					},
+				// 				},
+				// 			},
+				// 		},
+				// 	],
+				// },
+			],
+			"modifiers":
+			{
+				"Ningguang_Attack03_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackR",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_NormalAttack",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "PRIVATE_AttackL",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  Attack04
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Attack04",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027001,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackL",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+						},
+					},
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 41027001,
+					"born": 
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "PRIVATE_AttackR",
+						"offset": 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+						},
+					},
+				},
+			],
+			"modifiers":
+			{
+
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  ServantStone
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ServantStone",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ServantStone_BS"],
+					"modifierName": "GadgetKiller",
+				},
+			],
+			"onAbilityStart": 
+			[
+				// {
+				// 	"$type":"KillGadget",
+				// 	"gadgetInfo":
+				// 	{
+				// 		"$type": "SelectTargetsByChildren",
+				// 		"configID": 41027000,
+				// 		"sortType": "Default",
+				// 	},
+				// 	"doOffStage":true,
+				// },
+				{
+					"$type": "CreateGadget",
+					"gadgetID": 41027000,
+					"campID": 1001,
+					"campTargetType": "Enemy",
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+						"onGround": true,
+						// "alongGround": true,
+						"onGroundIgnoreWater":true,
+						"onGroundRaycastUpDist":4,
+					},
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"ElementalArt_Mark"					
+				},
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10272,
+					"cdRatio": 1.0,
+				},
+			],
+			"onAvatarOut":
+			[
+				{
+					"$type":"KillGadget",
+					"gadgetInfo":
+					{
+						"$type": "SelectTargetsByChildren",
+						"configID": 41027013,
+						"sortType": "Default",
+					},
+					"doOffStage":true,
+				},
+			],
+			"modifiers":
+			{
+				"ElementalArt_Mark":
+				{
+					"duration":1,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_AVATAR_Ningguang_ELementalArt_IsCharge",
+							"value" : 0,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"GadgetKiller":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41027000,
+								"sortType": "Default",
+							},
+							"doOffStage":true,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Charge_ServantStone",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "CreateGadget",
+					"gadgetID": 41027000,
+					"campID": 1001,
+					"campTargetType": "Enemy",
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+						"onGround": true,
+						// "alongGround": true,
+						"onGroundRaycastUpDist":4,
+					},
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"ElementalArt_Charge_Mark"					
+				},
+			],
+			"modifiers":
+			{
+				"ElementalArt_Charge_Mark":
+				{
+					"duration":1,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_AVATAR_Ningguang_ELementalArt_IsCharge",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_AVATAR_Ningguang_ELementalArt_IsCharge",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Change_Gadget_BornState",
+			"abilityMixins":
+			[
+				// {
+				// 	"$type": "SkillButtonHoldChargeMixin",
+				// 	"skillID": 10272,
+				// 	"beforeStateIDs" : ["ServantStone_BS"],
+				// 	"chargeLoopStateIDs" : ["ServantStone_Charge",],
+				// 	"chargeLoopDurations" : [ 0.4 ],
+				// 	"nextLoopTriggerID" : "NextLoopTrigger",
+				// 	"endHoldTrigger" : "EndHoldTrigger",
+				// },
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type":"SetAnimatorTrigger",
+					"triggerID":"BornToOpen",
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027000,
+						"sortType": "Default",
+						// "topLimit": 2,
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",//
+							"key": "_AVATAR_Ningguang_ELementalArt_IsCharge",
+							"value": 0,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+					]
+				},
+				{
+					"$type":"SetAnimatorTrigger",
+					"triggerID":"BornToClose",
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027000,
+						"sortType": "Default",
+						// "topLimit": 2,
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",//
+							"key": "_AVATAR_Ningguang_ELementalArt_IsCharge",
+							"value": 1,
+							"forceByCaster":true,
+							"compareType": "Equal",
+						},
+					]
+				},
+			],
+			"modifiers":
+			{
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ServantStone_Switch",
+			"onAbilityStart": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"ServantStone_Switch",//防止快速连点两次、发两遍Trigger（好像不行，再看看）
+					"target":"Self",
+				},
+			],
+			"modifiers":
+			{
+				"ServantStone_Switch":
+				{
+					"duration":0.3,
+					"onAdded":
+					[
+						{
+							"$type":"SetAnimatorTrigger",
+							"triggerID":"Switch",
+							"otherTargets" :
+							{
+								"$type":"SelectTargetsByChildren",
+								"configID" :41027000,
+								"sortType": "Reversed",
+								// "topLimit": 1,
+							},
+						},
+						{
+							"$type": "AvatarSkillStart",
+							"skillID": 10273,
+							"cdRatio": 1.0,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ServantStone_Material",
+			"onAbilityStart": 
+			[
+			],
+			"onAdded":
+			[
+				// {
+				// 	"$type":"ApplyModifier",
+				// 	"target":"Owner",
+				// 	"modifierName":"ServantStone_ChangeSkill",
+				// },
+				{
+					"$type":"TriggerAbility",
+					"target":"Owner",
+					"abilityName":"Avatar_Ningguang_Change_Gadget_BornState",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Ningguang_SkillUpgrade_2_HpUp",
+					"predicates":
+					[
+						{
+							"$type":"ByUnlockTalentParam",
+							"talentParam":"Ningguang_SkillUpgrade_2",
+						},
+					],
+				},
+				{
+					"$type":"AttachModifier",
+					"modifierName":"ServantStone_Fx",
+				},
+				// {
+				// 	"$type":"ApplyModifier",
+				// 	"target":"Self",
+				// 	"modifierName":"ServantStone_GenerateElemBall_Handler",
+				// },
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"ServantStone_GenerateElemBall_Timer",
+				},
+				{
+					"$type":"AddGlobalValue",
+					"key":"_IS_SERVANTSTONE",
+					"value":1,
+				}
+			],
+			"onKill":
+			[
+				{
+					"$type":"RemoveModifier",
+					"target":"Owner",
+					"modifierName":"ServantStone_ChangeSkill",
+				},
+				{
+					"$type":"RemoveModifier",
+					"target":"Self",
+					"modifierName":"ServantStone_Fx",
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_ElementalArt_02_Model_Disappear",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type":"DoActionByStateIDMixin",
+					"stateIDs":["BornToOpen",],
+					"enterActions":
+					[
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"BornToOpen",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"InVisible",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Ningguang_ElementArt_Particle_2",
+						},
+					],
+				},
+				{
+					"$type":"DoActionByStateIDMixin",
+					"stateIDs":["BornToClosed",],
+					"enterActions":
+					[
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"BornToClosed",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"InVisible",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+						// {
+						// 	"$type":"FireEffect",
+						// 	"effectPattern":"Eff_Ningguang_ElementArt_Particle_1",
+						// },
+					],
+				},
+				{
+					"$type":"DoActionByStateIDMixin",
+					"stateIDs":["Open",],
+					"enterActions":
+					[
+						// {
+						// 	"$type":"FireEffect",
+						// 	"effectPattern":"Eff_Ningguang_ElementArt_Particle_3",
+						// },
+					],
+				},
+				{
+					"$type":"DoActionByStateIDMixin",
+					"stateIDs":["Closed",],
+					"enterActions":
+					[
+						// {
+						// 	"$type":"FireEffect",
+						// 	"effectPattern":"Eff_Ningguang_ElementArt_Particle_4",
+						// },
+					],
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["Open"], 
+					"modifierName": "ServantStone_Open", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["Closed"], 
+					"modifierName": "ServantStone_Closed", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["BornToOpen"], 
+					"modifierName": "ServantStone_BornToOpen", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["BornToClosed"], 
+					"modifierName": "ServantStone_BornToClosed", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["Closed","BornToClosed"], 
+					"modifierName": "ServantStone_Invincible", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["OpenToImpact"], 
+					"modifierName": "GemStone_Impact_FromOpen", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["CloseToImpact"], 
+					"modifierName": "GemStone_Impact_FromClosed", 
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["Open","BornToOpen"], 
+					"modifierName": "ServantStone_Open_BeHit_Handler", 
+				},
+			],
+			"modifiers":
+			{
+				"ServantStone_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+					],
+				},
+				"ServantStone_Open":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"CloseToOpen",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"CloseToOpen",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"TurnDirectionHandler",
+							"target":"Self",
+						},
+					],
+					"onKill":
+					[
+						// {
+						// 	"$type":"FireEffect",
+						// 	"effectPattern":"Eff_Ningguang_ElementalArt_02_Model_Disappear",
+						// },
+					],
+					"onRemoved":
+					[
+					],
+				},
+				"TurnDirectionHandler"://让创生物延迟转身，看起来没有那么突兀
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"target":"Owner",
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+								},
+							],
+						},
+					],
+				},
+				"ServantStone_Open_BeHit_Handler":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Ningguang_ElementalArt_02_Model_Hit",
+							"born":
+							{
+								"$type": "ConfigBornByHitPoint",
+							},
+						},
+						// {
+						// 	"$type":"AddGlobalValue",
+						// 	"key" : "_GenerateElemBall_Count",
+						// 	"value" : -1,
+						// 	"useLimitRange" : true,
+						// 	"maxValue" : 4,
+						// 	"minValue" : 0,
+						// },
+					],
+				},
+				"ServantStone_Closed":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"canHitHead" : false,
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"height": 1.5,
+									"fanAngle": 360.0,
+									"radius": 3.0,
+									"checkHitScene": false,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy" : "OriginOwner",
+									"attackTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%Damage_Elemental_Art",
+										"strikeType": "Blunt",
+										"elementType" : "Rock",
+										"elementDurability" : 25,
+										"elementRank" : 1.5,
+										"enBreak": 50,
+									},
+									"hitPattern" :
+									{
+										"hitLevel": "Air",	//hitlevel = 5
+										"hitImpulseX": 480,	//hitlevel = 5
+										"hitImpulseY": 600,	//hitlevel = 5
+										"retreatType": "ByHitDirection",
+										"reboundRatio" : 0,
+										"canBeDefenceHalt" : true,
+										"hitHaltTime" : 0.05,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": false,
+									"cameraShake":
+									{
+										"shakeRange": 0.3,
+										"shakeTime": 0.15,
+									},
+								},
+							},
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"OpenToClose",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"OpenToClose",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+					],
+					"onRemoved":
+					[
+					],
+					"onAttackLanded":
+					[
+					],
+					"onKill":
+					[
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Ningguang_ElementalArt_01_Model_Disappear",
+						},
+					],
+				},
+				"ServantStone_Invincible":
+				{
+					"state": "IsGhostToEnemy",
+				},
+				"ServantStone_ChangeSkill":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "SwitchSkillIDMixin",
+							"fromSkillID": 10272,
+							"toSkillID": 10273,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "EntityDoSkill",//这个是用来触发凝光小技能CD的，不能直接用AvatarSkillStart，因为instancedAbility.caster.GetEntity() is AvatarEntity
+							// "target":"OriginOwner",
+							"doOffStage":true,
+							"skillID": 10275,
+						},
+					],
+				},
+				"GemStone_Impact_FromClosed":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "GemStone_Impact_Timer",
+						},
+						{
+							"$type": "HideUIBillBoard",
+							"hide": true,
+						},
+						{
+							"$type":"CreateGadget",
+							"gadgetID":41027002,
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"CloseToOpen",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Closed",
+						},
+					],
+				},
+				"GemStone_Impact_FromOpen":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "GemStone_Impact_Timer",
+						},
+						{
+							"$type": "HideUIBillBoard",
+							"hide": true,
+						},
+						{
+							"$type":"CreateGadget",
+							"gadgetID":41027002,
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type":"SendEffectTrigger",
+							"parameter":"OpenToClose",
+							"effectPattern":"Eff_Ningguang_ElementArt_ServantStone_Open",
+						},
+					],
+				},
+				"GemStone_Impact_Timer":
+				{
+					"duration":0.3,
+					"onRemoved":
+					[
+						{
+							"$type":"KillSelf",
+						},
+					],
+				},
+				"Ningguang_SkillUpgrade_2_HpUp":
+				{
+					"properties":
+					{
+						"Actor_MaxHPRatio" : "%SkillUpgrade_2_HpUpPercentageRatio",
+					},
+				},
+				"ServantStone_BornToOpen":
+				{
+					"onKill":
+					[
+						// {
+						// 	"$type":"FireEffect",
+						// 	"effectPattern":"Eff_Ningguang_ElementalArt_02_Model_Disappear",
+						// },
+					],
+				},
+				"ServantStone_BornToClosed":
+				{
+					"onKill":
+					[
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Ningguang_ElementalArt_01_Model_Disappear",
+						},
+					],
+				},
+				"ServantStone_GenerateElemBall_Timer":
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"target":"Self",
+							"modifierName":"ServantStone_GenerateElemBall_Handler",
+						},
+					],
+				},
+				"ServantStone_GenerateElemBall_Handler":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key" : "_GenerateElemBall_Count",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onBeingHit":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2023,
+							"baseEnergy": 3,
+							"ratio": 2,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 1.0,
+									"z": 1.0,
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByTargetGlobalValue",
+									"key":"_GenerateElemBall_Count",
+									"value":1,
+									"forceByCaster":true,
+									"compareType":"MoreThanAndEqual",
+								},
+							],					
+						},
+						{
+							"$type":"AddGlobalValue",
+							"key" : "_GenerateElemBall_Count",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 4,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Damage_Elemental_Art":0,
+				"SkillUpgrade_2_HpUpPercentageRatio":0,
+			},	
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Trigger_ElementalArt_CD",
+			"onAbilityStart": 
+			[
+				// {
+				// 	"$type": "AvatarSkillStart",
+				// 	"skillID": 10272,
+				// 	"cdRatio": 3.0,
+				// },
+			],
+			"modifiers":
+			{
+
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  GemStone_Impact
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_GemStone_Impact",
+			"onAbilityStart": 
+			[
+				{
+					"$type":"CreateGadget",
+					"gadgetID":41027007,
+					"born":
+					{
+						"$type":"ConfigBornBySelf",
+						"offset":
+						{
+							"x":0,
+							"y":0.0,
+							"z":0.0,
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByHasAttackTarget",
+						},
+					],
+				},
+				{
+					"$type":"CreateGadget",
+					"gadgetID":41027017,
+					"born":
+					{
+						"$type":"ConfigBornBySelf",
+						"offset":
+						{
+							"x":0,
+							"y":0.0,
+							"z":0.0,
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByHasAttackTarget",
+								},
+							],
+						}
+					],
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Ningguang_Elemental_Burst_TriggerBullet",
+					"born":
+					{
+						"$type":"ConfigBornBySelf",
+						"offset":
+						{
+							"x":0,
+							"y":0.5,
+							"z":0.0,
+						},
+					},
+				},
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10274,
+					"cdRatio": 1.0,
+				},
+				{
+					"$type":"SetAnimatorTrigger",
+					"triggerID":"GemStone_Impact",
+					"otherTargets" :
+					{
+						"$type":"SelectTargetsByChildren",
+						"configID" :41027000,
+						"sortType": "Reversed",
+						"topLimit": 2,
+					},
+				},
+				{
+					"$type" : "ActCameraRadialBlur",
+					"cameraRadialBlur" :
+					{
+						"power": 1,
+						"blurTime": 0.2,
+						"fadeTime": 0.1,
+					},
+				},
+				// {//尝试在释放充能技前推一下周围的怪
+				// 	"$type":"AvatarDoBlink",
+				// 	"PreferInput":false,
+				// 	"Distance":-1.5,
+				// },
+				// {
+				// 	"$type" : "TriggerAttackEvent",
+				// 	"targetType" : "Enemy",
+				// 	"attackEvent":
+				// 	{
+				// 		"attackPattern":
+				// 		{
+				// 			"$type": "ConfigAttackCircle",
+				// 			"triggerType": "TriggerNoRepeat",
+				// 			"fanAngle": 360.0,
+				// 			"radius": 5.0,
+				// 			"born":
+				// 			{
+				// 				"$type": "ConfigBornBySelf",
+				// 				"offset":
+				// 				{
+				// 					"x" : 0.0,
+				// 					"y" : 0.0,
+				// 					"z" : 0.0,
+				// 				},
+				// 			},
+				// 		},
+				// 		"attackInfo":
+				// 		{
+				// 			"attackProperty":
+				// 			{
+				// 				"damagePercentage": 0,
+				// 				"elementType": "Rock",
+				// 				"elementDurability": 0,
+				// 				"enBreak" : 100,
+				// 			},
+				// 			"hitPattern":
+				// 			{
+				// 				"onHitEffectName": "default",
+				// 				"hitLevel": "Heavy",	//hitlevel = 2
+				//           		"hitImpulseX": 200,	//hitlevel = 2
+				//           		"hitImpulseY": 0,	//hitlevel = 2
+				// 				"reboundRatio": 0,
+				// 				"canBeDefenceHalt": false,
+				// 				"hitHaltTime": 0.0,
+				// 				"hitHaltTimeScale": 0.05,
+				// 				"muteHitText": true,
+				// 			},
+				// 			"forceCameraShake": false,
+				// 			"cameraShake": {},
+				// 		}
+				// 	},
+				// },
+				{
+					"$type":"KillGadget",
+					"gadgetInfo":
+					{
+						"$type": "SelectTargetsByChildren",
+						"configID": 41027013,
+						"sortType": "Default",
+					},
+					"doOffStage":true,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["GemStone_Impact",],
+					"modifierName":"Camera_Remover_Handler",
+				},
+				{
+					"$type":"AttachToStateIDMixin",
+					"stateIDs": ["GemStone_Impact",],
+					"modifierName":"Elemental_Burst_Invincible",
+				},
+			],
+			"onAdded":
+			[
+
+			],
+			"modifiers":
+			{
+				"Camera_Remover_Handler":
+				{
+					"onAvatarOut":
+					[
+						{
+							"$type" : "AvatarExitCameraShot",
+							"doOffStage" : true,
+						},
+						// {
+						// 	"$type" : "AvatarCameraParam",
+						// 	"lockParam" : true,
+						// 	"cameraParam" :
+						// 	{
+						// 		"forceRadius" : 6.0,
+						// 		"forceRadiusDuration" : 0.1,
+						// 	},
+						// },
+						// {
+						// 	"$type" : "AvatarCameraParam",
+						// 	"lockParam" : false,
+						// 	"cameraParam" :
+						// 	{
+						// 		"forceRadius" : 6.0,
+						// 		"forceRadiusDuration" : 0,
+						// 	},
+						// },
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AvatarExitCameraShot",
+							"doOffStage" : true,
+						},
+						// {
+						// 	"$type" : "AvatarCameraParam",
+						// 	"lockParam" : true,
+						// 	"cameraParam" :
+						// 	{
+						// 		"forceRadius" : 6.0,
+						// 		"forceRadiusDuration" : 0.2,
+						// 	},
+						// },
+						// {
+						// 	"$type" : "AvatarCameraParam",
+						// 	"lockParam" : false,
+						// 	"cameraParam" :
+						// 	{
+						// 		"forceRadius" : 6.0,
+						// 		"forceRadiusDuration" : 0,
+						// 	},
+						// },
+					],
+				},
+				"Elemental_Burst_Invincible":
+				{
+					"state": "Invincible",
+					"onAdded":
+					[
+						{
+							"$type" : "AttachAbilityStateResistance",
+							"resistanceListID": 11002,
+						},
+					],	
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_BulletTrigger",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachModifier",
+					"target":"Self",
+					"modifierName":"Bullet_Trigger_Timer",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+					"valueSteps" : [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps" : ["TriggerBullet_1", "TriggerBullet_2","TriggerBullet_3", "TriggerBullet_4","TriggerBullet_5", "TriggerBullet_6",],
+				},
+			],
+			"modifiers":
+			{
+				"Bullet_Trigger_Timer":
+				{
+					"duration":0.8,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Bullet_Trigger_Counter",
+						},
+					],
+				},
+				"Bullet_Trigger_Counter":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 0,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,
+						},	
+					],
+					"thinkInterval":0.03,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 6,
+							"minValue" : 0,
+						},
+					],
+				},
+				"TriggerBullet_1":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027003,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit1",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_2":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027004,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit2",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_3":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027008,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit3",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_4":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027009,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit4",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_5":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027010,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit5",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_6":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027011,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit6",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_BulletTrigger_WithOutTarget",
+			"onAdded": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Create_Attack_Target",
+					"target":"Self",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+					"valueSteps" : [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps" : ["TriggerBullet_1", "TriggerBullet_2","TriggerBullet_3", "TriggerBullet_4","TriggerBullet_5", "TriggerBullet_6",],
+				},
+			],
+			"modifiers":
+			{
+				"Create_Attack_Target":
+				{
+					"duration":0.8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 41027018,
+							"campID": 4001,
+							"campTargetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 8.0,
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Bullet_Trigger_Counter",
+							"target":"Self",
+						},
+					],
+				},
+				"Bullet_Trigger_Counter":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 0,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,
+						},	
+					],
+					"thinkInterval":0.03,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 6,
+							"minValue" : 0,
+						},
+					],
+				},
+				"TriggerBullet_1":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027003,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit1",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_2":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027004,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit2",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_3":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027008,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit3",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_4":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027009,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit4",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_5":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027010,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit5",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"TriggerBullet_6":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"turnToTargetImmediately":true,
+							"turnToTargetKeepUpAxisDirection":true,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027011,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit6",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+			},	
+		},
+	},
+//释放充能技时，小技能创生物的子弹发射器
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_ServantStoneTrigger",
+			"onAdded":
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_GemStone_Impact",
+				},
+				{
+					"$type":"AttachModifier",
+					"target":"Self",
+					"modifierName":"Bullet_Trigger_Timer",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+					"valueSteps" : [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps" : ["TriggerBullet_1", "TriggerBullet_2","TriggerBullet_3", "TriggerBullet_4","TriggerBullet_5", "TriggerBullet_6",],
+				},
+			],
+			"modifiers":
+			{
+				"Bullet_Trigger_Timer":
+				{
+					"duration":2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ALESystem",
+						},
+					],
+				},
+				"ALESystem"://Auto Lock Enemy System
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 0,
+							"useLimitRange" : true,
+							"maxValue" : 0,
+							"minValue" : 0,
+						},	
+					],
+					"thinkInterval":0.08,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_ElementalBurst_BulletTrigger_Queue",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 6,
+							"minValue" : 0,
+						},
+					],
+				},
+				"TriggerBullet_1":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027003,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit1",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+				"TriggerBullet_2":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027004,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit2",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+				"TriggerBullet_3":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027008,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit3",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+				"TriggerBullet_4":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027009,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit4",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+				"TriggerBullet_5":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027010,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit5",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+				"TriggerBullet_6":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR15",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Random",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster","Gadget"],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027011,//41027003
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit6",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByHasAttackTarget",
+								},
+							],
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+
+			},
+		},
+	},
+//充能技子弹伤害
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_ElementalBurst_Bullet_Damage",
+			"onAdded":
+			[
+				{
+					"$type": "CreateGadget",//创建子弹穿门的检测器
+					"gadgetID": 41027019,
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						// "attachPointName" : "RootNode",
+						"offset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"doOffStage" : true,
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"duration": 0.0,
+							"triggerType": "TriggerNoRepeat",
+							"radius": 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": "%ElementalBurst_Bullet_Damage",
+								"elementType": "Rock",
+								"strikeType":"Blunt",
+								"elementDurability": 50,
+								"elementRank":1.5,
+								"enBreak": 30,
+							},
+							"hitPattern":
+							{
+								"hitLevel": "Heavy",	//hitlevel = 5
+								"hitImpulseX": 480,	//hitlevel = 5
+								"hitImpulseY": 600,	//hitlevel = 5
+								"retreatType": "ByOriginOwner",
+								"canBeDefenceHalt" : true,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+						}
+					},
+				},
+			],
+			"modifiers":
+			{
+			},
+			"abilitySpecials" :
+			{
+				"ElementalBurst_Bullet_Damage":1,
+			},
+		},
+	},
+
+//充能技子弹命中表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_Hit_Fx_1",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireHitEffect",
+					"hitEntity": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Orange",
+					"hitScene":
+					{
+						"defaultEffect" : "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Orange",
+					},
+				},
+			],
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_Hit_Fx_2",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireHitEffect",
+					"hitEntity": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Red",
+					"hitScene":
+					{
+						"defaultEffect" : "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Red",
+					},
+				},
+			],
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_Hit_Fx_3",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "FireHitEffect",
+					"hitEntity": "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Yellow",
+					"hitScene":
+					{
+						"defaultEffect" : "Eff_Ningguang_Elemental_Burst_Bullet_Trail_Hit_Yellow",
+					},
+				},
+			],
+		},
+	},
+
+//子弹1表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_1_Material",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_Elemental_Burst_Bullet_Trail_Orange",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "SetVisble",
+					"target": "Self",
+				},
+				{
+					"$type": "SetRandomOverrideMapValue",
+					"overrideMapKey": "RandomTimeRatio",
+					"valueRangeMin": 0.3,
+					"valueRangeMax": 0.6,
+				},
+				// {
+				// 	"$type": "ApplyModifier",
+				// 	"modifierName": "RandomSpeed",
+				// 	"target": "Self",
+				// },
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"modifiers":
+			{
+				"SetVisble":
+				{
+					"duration" : 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": true,
+						},
+					],
+				},
+				"RandomSpeed":
+				{
+					"properties":
+					{
+						"Animator_OverallSpeedRatioMultiplied" : "%RandomSpeedRatio",
+					},
+				},
+				"Timer":
+				{
+					"duration":"%RandomTimeRatio",
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":"%VelocityRatio",
+					},
+				},					
+			},
+			"abilitySpecials":
+			{
+				"RandomSpeedRatio":0,
+				"RandomTimeRatio":0,
+				"VelocityRatio":6,
+			},
+		},
+	},
+//子弹2表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_2_Material",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_Elemental_Burst_Bullet_Trail_Red",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "SetVisble",
+					"target": "Self",
+				},
+				{
+					"$type": "SetRandomOverrideMapValue",
+					"overrideMapKey": "RandomTimeRatio",
+					"valueRangeMin": 0.3,
+					"valueRangeMax": 0.6,
+				},
+				// {
+				// 	"$type": "ApplyModifier",
+				// 	"modifierName": "RandomSpeed",
+				// 	"target": "Self",
+				// },
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"modifiers":
+			{
+				"SetVisble":
+				{
+					"duration" : 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": true,
+						},
+					],
+				},	
+				"RandomSpeed":
+				{
+					"properties":
+					{
+						"Animator_OverallSpeedRatioMultiplied" : "%RandomSpeedRatio",
+					},
+				},
+				"Timer":
+				{
+					"duration":"%RandomTimeRatio",
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":"%VelocityRatio",
+					},
+				},					
+			},
+			"abilitySpecials":
+			{
+				"RandomSpeedRatio":0,
+				"RandomTimeRatio":0,
+				"VelocityRatio":6,
+			},
+		},
+	},
+//子弹3表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ElementalBurst_Bullet_3_Material",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_Elemental_Burst_Bullet_Trail_Yellow",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "SetVisble",
+					"target": "Self",
+				},
+				{
+					"$type": "SetRandomOverrideMapValue",
+					"overrideMapKey": "RandomTimeRatio",
+					"valueRangeMin": 0.3,
+					"valueRangeMax": 0.6,
+				},
+				// {
+				// 	"$type": "ApplyModifier",
+				// 	"modifierName": "RandomSpeed",
+				// 	"target": "Self",
+				// },
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"modifiers":
+			{
+				"SetVisble":
+				{
+					"duration" : 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerSetVisible",
+							"visible": true,
+						},
+					],
+				},	
+				"RandomSpeed":
+				{
+					"properties":
+					{
+						"Animator_OverallSpeedRatioMultiplied" : "%RandomSpeedRatio",
+					},
+				},
+				"Timer":
+				{
+					"duration":"%RandomTimeRatio",
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":"%VelocityRatio",
+					},
+				},				
+			},
+			"abilitySpecials":
+			{
+				"RandomSpeedRatio":0,
+				"RandomTimeRatio":0,
+				"VelocityRatio":6,
+			},
+		},
+	},
+
+
+////////////////////////////////////////////////////////////////
+//
+//  以下为凝光天赋新增逻辑
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_2",
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Ningguang_Constellation_2_Timer",
+					"predicates":
+					[
+						{
+							"$type":"ByUnlockTalentParam",
+							"talentParam":"Ningguang_Constellation_2",
+						},
+					],
+				},
+			],
+			"modifiers":
+			{
+				"Ningguang_Constellation_2_Timer":
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Constellation_2_Explode",
+						},
+					],
+				},
+				"Constellation_2_Explode":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Ningguang_ElementArt_Particle_ShockWave",
+						},
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"canHitHead" : false,
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"height": 1.5,
+									"fanAngle": 360.0,
+									"radius": 5.0,
+									"checkHitScene": false,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%Damage_Explode",
+										"strikeType": "Blunt",
+										"elementType" : "Rock",
+										"elementDurability" : 0,
+										"elementRank" : 1.5,
+										"enBreak": 133.2,
+									},
+									"hitPattern" :
+									{
+										"hitLevel": "Air",	//hitlevel = 5
+										"hitImpulseX": 480,	//hitlevel = 5
+										"hitImpulseY": 600,	//hitlevel = 5
+										"retreatType": "ByHitDirection",
+										"reboundRatio" : 0,
+										"canBeDefenceHalt" : true,
+										"hitHaltTime" : 0.05,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": true,
+									"cameraShake":
+									{
+										"shakeRange": 0.3,
+										"shakeTime": 0.15,
+									},
+								},
+							},
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"canHitHead" : false,
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"height": 1.5,
+									"fanAngle": 360.0,
+									"radius": 3.0,
+									"checkHitScene": false,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%Damage_Explode",
+										"strikeType": "Blunt",
+										"elementType" : "Rock",
+										"elementDurability" : 0,
+										"elementRank" : 1.5,
+										"enBreak": 133.2,
+									},
+									"hitPattern" :
+									{
+										"hitLevel": "Air",	//hitlevel = 5
+										"hitImpulseX": 480,	//hitlevel = 5
+										"hitImpulseY": 600,	//hitlevel = 5
+										"retreatType": "ByHitDirection",
+										"reboundRatio" : 0,
+										"canBeDefenceHalt" : true,
+										"hitHaltTime" : 0.05,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": true,
+									"cameraShake":
+									{
+										"shakeRange": 0.3,
+										"shakeTime": 0.15,
+									},
+								},
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Ningguang_ElementArt_Particle_ShockWave",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Damage_Explode":0.6,
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_4",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin", 
+					"stateIDs": ["Open","BornToOpen"], 
+					"modifierName": "ServantStone_Shield_ElementDefenceUp_Handler",
+					"predicates":
+					[
+						{
+							"$type":"ByUnlockTalentParam",
+							"talentParam":"Ningguang_Constellation_4",
+						},
+					], 
+				},
+			],
+			"modifiers":
+			{
+				"ServantStone_Shield_ElementDefenceUp_Handler":
+				{
+					"thinkInterval":0.25,
+					"onThinkInterval":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ServantStone_Shield_ElementDefenceUp",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "Alliance",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes":["Avatar"],
+								},
+							],
+						},
+					],
+				},
+				"ServantStone_Shield_ElementDefenceUp":
+				{
+					"duration":0.5,
+					"stacking":"Refresh",
+					"isLimitedProperties":true,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Avatar_Properties_Defense_Up",
+						},
+					],
+					"properties":
+					{
+						"Actor_FireSubHurtDelta" : 0.1,
+						"Actor_ElecSubHurtDelta" : 0.1,
+						"Actor_WaterSubHurtDelta" : 0.1,
+						"Actor_GrassSubHurtDelta" : 0.1,
+						"Actor_WindSubHurtDelta" : 0.1,
+						"Actor_IceSubHurtDelta" : 0.1,
+						"Actor_RockSubHurtDelta" : 0.1,
+					},
+					"modifierMixins":
+					[
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_ReviveElemEnergy",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin", 
+					"stateIDs": ["Open","BornToOpen"], 
+					"modifierName": "ServantStone_Shield_ReviveElemEnergy_Handler", 
+				},
+			],
+			"modifiers":
+			{
+				"ServantStone_Shield_ReviveElemEnergy_Handler":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ServantStone_Shield_ReviveElemEnergy_Timer",
+						},
+					]
+				},
+				"ServantStone_Shield_ReviveElemEnergy_Timer":
+				{
+					"duration":1.5,
+					"onAdded":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ServantStone_Shield_ReviveElemEnergy",
+							"target":"Owner",
+						},
+					],
+				},
+				"ServantStone_Shield_ReviveElemEnergy":
+				{
+					"duration" : 0.6,
+					"modifierMixins":
+					[
+						{
+							"$type": "ReviveElemEnergyMixin",
+							"type": "Both",
+							"period": 0.5,
+							"baseEnergy": 1,
+							"ratio": "%Ningguang_ReviveElemEnergyRatio",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Ningguang_ReviveElemEnergyRatio":0,
+			},
+
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_6",
+			"onAdded":
+			[
+				// {
+				// 	"$type":"ApplyModifier",
+				// 	"modifierName":"Ningguang_ElementalBurst_Attack_Up",
+				// 	"doOffStage":true,
+				// },
+			],
+			"abilityMixins":
+			[
+				// {
+				// 	"$type": "DoActionByEnergyChangeMixin", 
+				// 	"type": "Both", 
+				// 	"elementTypes":[ "Fire" , "Water" , "Grass" , "Electric" , "Ice" , "Rock" , "Wind"],
+				// 	"doWhenEnergyMax":true,
+				// 	"onGainEnergyByAll":
+				// 	[
+				// 		{
+				// 			"$type":"Randomed",
+				// 			"change":0.2,
+				// 			"successActions":
+				// 			[
+				// 				{//天赋测试
+				// 					"$type": "CreateGadget",
+				// 					"gadgetID": 41027013,
+				// 					"campID": 1001,
+				// 					"campTargetType": "Enemy",
+				// 					"born":
+				// 					{
+				// 						"$type": "ConfigBornByTarget",
+				// 						"offset" :
+				// 						{
+				// 							"x": 0.0,
+				// 							"y": -1.0,
+				// 							"z": 0.0,
+				// 						},
+				// 					},
+				// 				},
+				// 			],
+				// 		},
+				// 	],
+				// },
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["GemStone_Impact"],
+					"modifierName": "Ningguang_Constellation_6_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"Ningguang_Constellation_6_Handler":
+				{
+					"onRemoved":
+					[
+						{//天赋测试
+							"$type": "CreateGadget",
+							"gadgetID": 41027013,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": -1.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Constellation_6_DamagePercentageRatio":0,
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_PermanentSkill_1",
+			"onKill": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Modify_ElementalArt_CD",
+					"target":"Owner",
+					"predicates":
+					[
+						{
+							"$type":"ByUnlockTalentParam",
+							"talentParam":"Ningguang_PermanentSkill_1",
+						},
+					],
+				}
+			],
+			"modifiers":
+			{
+				"Modify_ElementalArt_CD":
+				{
+					"duration":1,
+					"onAdded":
+					[
+						{
+							"$type" : "ModifyAvatarSkillCD",
+							"skillID" : 10272,
+							"cdRatio" : -1,
+							"doOffStage":true,
+						},
+					],
+				}
+			},
+			"abilitySpecials" :
+			{
+
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_PermanentSkill_2",
+			"abilityMixins": 
+			[
+				{
+					"$type":"DoActionByEnergyChangeMixin",
+					"elementTypes":["Electric","Fire","Water","Rock","None","Wind","Grass","Ice"],
+					"doWhenEnergyMax":true,
+					"onGainEnergyByAll":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName" : "PermanentSkill_2_CriticalUp",
+							"target": "Self",
+						},
+					],
+				},
+			],
+			"modifiers":
+			{
+				"PermanentSkill_2_CriticalUp":
+				{
+					"duration":10,
+					"properties" :
+					{
+						"Actor_CriticalDelta" : "%PermanentSkill_CriticalRatio",
+					},
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Avatar_Properties_Attack_Up",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"PermanentSkill_CriticalRatio":0.12,
+			},
+		},
+	},
+
+//命之座子弹发射器
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_Attack_Up_BulletTrigger",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"target":"OriginOwner",
+					"modifierName":"Constellation_ALESystem",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_1_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_2_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_3_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_4_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_5_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_6_Fx",
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Self",
+					"modifierName":"Bullet_7_Fx",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Constellation_BulletTrigger_Queue",
+					"valueSteps" : [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5,7.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps" : ["TriggerBullet_1", "TriggerBullet_2","TriggerBullet_3", "TriggerBullet_4","TriggerBullet_5", "TriggerBullet_6","TriggerBullet_7"],
+				},
+			],
+			"modifiers":
+			{
+				"Constellation_ALESystem"://Auto Lock Enemy System
+				{
+					"duration":22,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Constellation_Attack_Up",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage":true,
+						},	
+					],
+				},
+				"TriggerBullet_1":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027014,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit1",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_1_Fx",
+						},
+					]
+				},
+				"TriggerBullet_2":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027015,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit2",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_2_Fx",
+						},
+					]
+				},
+				"TriggerBullet_3":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027014,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit3",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_3_Fx",
+						},
+					]
+				},
+				"TriggerBullet_4":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027016,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit4",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_4_Fx",
+						},
+					]
+				},
+				"TriggerBullet_5":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027015,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit5",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_5_Fx",
+						},
+					]
+				},
+				"TriggerBullet_6":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027014,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit6",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_6_Fx",
+						},
+					]
+				},
+				"TriggerBullet_7":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "SectorR15D90",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1,
+								"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41027016,
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit7",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Bullet_7_Fx",
+						},
+					]
+				},
+				"Bullet_1_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Orange_1",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit1",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_2_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Red_1",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit2",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_3_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Orange_2",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit3",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_4_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Yellow_1",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit4",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_5_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Red_2",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit5",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_6_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Orange_3",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit6",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+				"Bullet_7_Fx":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Yellow_2",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Ponit7",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByDefault",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+
+			},
+		},
+	},
+
+//命之座子弹1表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_Bullet_1_Material",
+			"abilityMixins":
+			[
+				{
+					"$type":"ModifyDamageMixin",
+					"attackTags":["Elemental_Burst"],
+					"damagePercentageRatio":-0.4,
+				},
+			],
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Orange_Trail",
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"onAbilityStart":
+			[
+
+			],
+			"modifiers":
+			{	
+				"Timer":
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":8,
+					},
+				},				
+			},
+			"abilitySpecials":
+			{
+
+			},
+		},
+	},
+//命之座子弹2表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_Bullet_2_Material",
+			"abilityMixins":
+			[
+				{
+					"$type":"ModifyDamageMixin",
+					"attackTags":["Elemental_Burst"],
+					"damagePercentageRatio":-0.4,
+				},
+			],
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Red_Trail",
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"onAbilityStart":
+			[
+
+			],
+			"modifiers":
+			{	
+				"Timer":
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":8,
+					},
+				},				
+			},
+			"abilitySpecials":
+			{
+
+			},
+		},
+	},
+//命之座子弹3表现
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_Constellation_Bullet_3_Material",
+			"abilityMixins":
+			[
+				{
+					"$type":"ModifyDamageMixin",
+					"attackTags":["Elemental_Burst"],
+					"damagePercentageRatio":-0.4,
+				},
+			],
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Ningguang_ElementalBurst_Attack_Up_Funnel_Yellow_Trail",
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Timer",
+				},
+			],
+			"onAbilityStart":
+			[
+
+			],
+			"modifiers":
+			{	
+				"Timer":
+				{
+					"duration":0.2,
+					"onRemoved":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"AngularVelocityUp",
+						},
+					],
+				},
+				"AngularVelocityUp":
+				{
+					"properties":
+					{
+						"Actor_BulletMoveAngularVelocityRatio":8,
+					},
+				},				
+			},
+			"abilitySpecials":
+			{
+
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Ningguang_SkillUpgrade_3",
+			"onAdded": 
+			[
+			],
+			"abilityMixins":
+			[
+				{
+					"$type":"ModifyDamageMixin",
+					"attackTags": ["Elemental_Burst"],
+					"damagePercentage": "%SkillUpgrade_3_DamagePercentage",
+				},
+			],
+			"modifiers":
+			{
+
+			},
+			"abilitySpecials" :
+			{
+				"SkillUpgrade_3_DamagePercentage":0,
+			},
+		},
+	},
+]

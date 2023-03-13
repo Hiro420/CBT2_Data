@@ -1,0 +1,1160 @@
+[
+////////////////////////////////////////////////////////////
+//
+// 仙灵
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_Seelie",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_SceneObj_SeeliaFootprint",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_SceneObj_Seelie_MoveTrail",
+				},
+			],
+			"onKill":
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_SceneObj_Seelia_Disappear",
+				},	
+			],
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 膨膨果
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_BalloonTree_MovingTarget",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "GrassMaterial",
+					"target": "Self",
+				},
+			],
+			"modifiers": 
+			{
+				"GrassMaterial":
+				{
+					"elementType": "None",
+					"elementDurability": 50,
+					"isElementDurabilityMutable": false,
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	推车
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Item_Moving_Gardencart",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Gardencart",
+				},
+			],
+			"modifiers":
+			{
+				"Gardencart":
+				{
+					"onBeingHit":
+					[
+						
+					],
+					"onAttaklanded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "HurtSelf",
+							"target": "Target",
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Gadget"],
+								},
+							],
+						},
+					],
+					"thinkInterval": 2,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerTaunt",
+							"careValue": 10,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR25",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+							],
+						},
+						{
+							"$type" : "DamageByAttackValue",
+							"otherTargets":
+							{
+					            "$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5H20",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+							},
+								
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 1.0,
+										"strikeType": "None",
+										"elementType": "None",
+										"elementDurability": 20,
+										"enBreak": 500.0,
+									},
+									"hitPattern" :
+									{
+										"hitLevel": "Mute",	//hitlevel = 2
+										"hitImpulseX": 50,	//hitlevel = 2
+										"hitImpulseY": 800,	//hitlevel = 2
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : true,
+									},
+								},
+								"predicates":
+							    [
+								    {
+									   "$type" : "ByEntityTypes",
+									   "entityTypes" : ["Gadget"],
+								    },
+							    ],
+							},
+				
+					],
+				},
+				"Taunted_FX":
+				{
+					"duration": 9,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Ambor_Dummy_Taunted",
+						},
+					],
+				},
+				"HurtSelf":
+				{
+					"onRemoved":
+					[
+						{
+							"$type":"DamageByAttackValue",
+							"target" : "Caster",
+                            "attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 1.0,
+									"strikeType": "Blunt",
+									"elementType": "Rock",
+									"elementDurability": 20,
+									"enBreak": 500.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 2
+									"hitImpulseX": 50,	//hitlevel = 2
+									"hitImpulseY": 800,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : true,
+								},
+							},
+						},
+					],
+				}
+			},
+		},
+	},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Item_Moving_Gardencart_Brk1",
+		"onAbilityStart":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Cart_Brk1_Effect",
+			},
+		],
+		"modifiers": 
+		{
+			"Cart_Brk1_Effect":
+			{
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Balloon_Broken_FanBase_01",
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Balloon_Broken_Base_01",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Item_Moving_Gardencart_Brk2",
+		"onAbilityStart":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Cart_Brk2_Effect",
+			},
+		],
+		"modifiers": 
+		{
+			"Cart_Brk2_Effect":
+			{
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Balloon_Broken_Fan_01",
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Balloon_Broken_Balloon_01",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////
+//
+// 冰元素移动精灵
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_IceElf",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "ElementIce",
+					"target": "Self",
+				},
+			],
+			"modifiers": 
+			{
+				"ElementIce": 
+				{
+					"elementType": "Ice",
+					"elementDurability": 50,
+					"thinkInterval":0.5,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_IceFlower01_Idle",
+						},			
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern" : 
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType" : "TriggerNoRepeat",
+									"fanAngle" : 360.0,
+									"radius" : 1.5,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x" : 0.0,
+											"y" : 0.0,
+											"z" : 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"strikeType": "Default",
+										"elementType": "Ice",
+										"elementDurability": 10,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName": "default",
+										"hitLevel" : "Mute",
+										"hitImpulseX" : 0,
+										"hitImpulseY" : 0,
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+					],
+				},
+				"Delay": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_IceflowerBundle01",
+						},			
+					],
+					"duration": 5,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ElementIce",
+						},
+					],
+				},
+			},
+		},
+	},
+		////////////////////////////////////////////////////////////
+//
+// 火元素移动精灵
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_FireElf",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "ElementFire",
+					"target": "Self",
+				},
+			],
+			"modifiers": 
+			{
+				"ElementFire": 
+				{
+					"elementType": "Fire",
+					"elementDurability": 50,
+					"thinkInterval":0.5,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Fire_Basin",
+						},			
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern" : 
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType" : "TriggerNoRepeat",
+									"fanAngle" : 360.0,
+									"radius" : 1.5,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x" : 0.0,
+											"y" : 0.0,
+											"z" : 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"strikeType": "Default",
+										"elementType": "Fire",
+										"elementDurability": 10,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName": "default",
+										"hitLevel" : "Mute",
+										"hitImpulseX" : 0,
+										"hitImpulseY" : 0,
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+					],
+				},
+				"Delay": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+							},
+						},		
+					],
+					"duration": 5,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ElementFire",
+						},
+					],
+				},
+			},
+		},
+	},
+		///////////////////////////////////////////////////////////
+//
+//	电元素精灵
+//
+///////////////////////////////////////////////////////////
+		{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_ElecElf",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "UNIQUE_Shocking_Modifier",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "Is_Electric_Pile",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 1,
+				},
+				{
+					"$type" : "DamageByAttackValue",
+					"target" : "Self",
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0,
+							"elementType" : "Electric",
+							"elementDurability" : 50,
+							"strikeType": "None",
+							"ignoreAttackerProperty": true,
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "none",
+							"hitLevel": "Mute",	//hitlevel = 0
+							"hitImpulseX": 0,	//hitlevel = 0
+							"hitImpulseY": 0,	//hitlevel = 0
+							"reboundRatio" : 0,
+							"hitHaltTime" : 0.0,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText" : false,
+						},
+					},
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Shocking_Modifier" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"elementType" : "Electric",
+					"elementDurability": 50,
+					"overrideWeaponElement" : false,
+					"isElementDurabilityMutable": false,
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_Element_Shock_Loop",
+						},
+						/*
+						//防止自己被回传
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar", "Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+					*/
+					],
+					
+					"thinkInterval" : 1.5,
+					"onThinkInterval" :
+					[
+						//防止自己被回传
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar", "Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+					],
+				},
+				"ConductShock" :
+				{
+					/*"isUnique" : true,*/
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern" : "Eff_Element_Conduct_Lightning",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"attachPointTargetType":"Applier",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type" : "DamageByAttackValue",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag": "ElectricPlieDamage",
+								"attackProperty":
+								{
+									"damagePercentage":1.0,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 25,
+									"elementRank": 1.5,
+									"enBreak": 30,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "Eff_Element_Shock_Damage",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 0,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Shocked":
+				{
+					"duration" : 2.0,
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 重力移动平台
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_Gravity",
+			"onFieldEnter": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RockMove",
+				},
+			],
+			"onFieldExit": 
+			[
+				{
+					"$type" : "Predicated",
+					"target" : "Target",
+					"targetPredicates" :
+					[
+						{
+							"$type" : "ByTargetGlobalValue",
+							"key" : "GoingDown",
+							"value" : 1,
+							"compareType" : "Equal",
+						},
+					],
+					"successActions" :
+					[
+						{
+							"$type": "ExecuteGroupTrigger",
+							"sourceName": "GravityPlatform",
+							"param1": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "GoingDown",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"failActions" :
+					[
+
+					],
+				},
+				{
+					"$type": "RemoveModifier",
+					"modifierName": "RockMove",
+				},
+			],
+			"modifiers": 
+			{
+				"RockMove":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "CurLocalAvatar",
+							"targetPredicates" :
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "_Gravity_Rock",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+							],
+							"successActions" :
+							[
+								{
+									"$type": "ExecuteGroupTrigger",
+									"sourceName": "GravityPlatform",
+									"param1": 1,
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key" : "GoingDown",
+									"value" : 1,
+									"useLimitRange" : true,
+									"maxValue" : 1,
+									"minValue" : 0,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "RockMove",
+								},
+							],
+							"failActions" :
+							[
+
+							],
+						},
+					],
+					"thinkInterval":0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "CurLocalAvatar",
+							"targetPredicates" :
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "_Gravity_Rock",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+							],
+							"successActions" :
+							[
+								{
+									"$type": "ExecuteGroupTrigger",
+									"sourceName": "GravityPlatform",
+									"param1": 1,
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key" : "GoingDown",
+									"value" : 1,
+									"useLimitRange" : true,
+									"maxValue" : 1,
+									"minValue" : 0,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "RockMove",
+								},
+							],
+							"failActions" :
+							[
+
+							],
+						},
+					],
+				},	
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 水泡移动平台
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_Bubble",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Normal",
+				},
+				{
+					"$type" : "AttachEffect",
+					"effectPattern" : "Eff_Monster_Abyss_Water_Bubble",
+				},
+			],
+			"modifiers": 
+			{
+				"Normal":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin",
+							"shapeName": "CircleR10",
+							"strength" : 15,
+							"targetType": "All",
+							"innerRadius" : 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+	////////////////////////////////////////////////////////////
+//
+// 移动石柱
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_MoveStone",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+			],
+			"onFieldEnter": 
+			[
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 3,
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "IN_ACTIVE",
+							"value": 0,
+							"compareType": "Equal",
+						},
+					],
+				},
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 1,
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "IN_ACTIVE",
+							"value": 0,
+							"compareType": "Equal",
+						},
+					],
+				},
+			],
+			"onFieldExit": 
+			[
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay",
+				},
+			],
+			"modifiers": 
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "IN_ACTIVE",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "IN_ACTIVE",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 1,
+						},
+					],
+				},
+				"Delay":
+				{
+					"duration":3,
+					"onRemoved":
+					[
+						//当机关变为action02状态后，切入下降路径；下降到终点后，将移动平台设置为GadgetState.Default，并切换到上升路径
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 2,
+						},
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 重力测量仪
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_WhiteBox_Weight",
+			"abilityMixins":
+			[
+				{
+					"$type": "WeightDetectRegionMixin",						
+					"globalValueKey": "TOTAL_WEIGHT",
+					"onWeightChanged":
+					[
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "TOTAL_WEIGHT",
+							"overrideMapKey": "total_weight",
+						},
+						{
+							"$type": "SetAnimatorFloat",
+							"floatID": "WeightValue",
+							"value": "%total_weight",
+						},
+					],
+				},
+			],
+			"abilitySpecials":
+			{
+				"total_weight": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 拼图机关
+//
+////////////////////////////////////////////////////////////	
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Platform_Jigsaw",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "Is_Jigsaw",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 1,
+				},
+			],
+		},
+	},
+]

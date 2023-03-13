@@ -1,0 +1,3992 @@
+/*
+ *	！！！
+ *	这里的技能都是使用Item时触发的技能
+*/
+[
+/////////////////////////////////////////////////////
+
+//各种食物的功效技能，需要将技能添加到ConfigGlobalCombat.json中
+
+
+/////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_RecoverHP",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "RecoverHPModifier",
+					"target": "Target",
+					"doOffStage" : true,
+				},
+			],
+			"modifiers": 
+			{
+				"RecoverHPModifier": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 15,
+					"thinkInterval" : 2,
+					"onThinkInterval" :
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 8,
+							"doOffStage" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.01,
+							"doOffStage" : true,
+						},	
+						// {
+						// 	"$type": "FireEffect",
+						// 	"effectPattern": "Eff_Element_Steam",
+						// },
+					],
+				},
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			//临时版本，后续需要把玩家等级考虑进来 by DLJ
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_RecoverInstantHP",
+			"onAbilityStart": 
+			[
+				{           
+					"$type" : "HealHP",
+					"target": "Target",
+					"amountByTargetMaxHPRatio" : 0,
+					"doOffStage" : true,
+				},	
+				{           
+					"$type" : "HealHP",
+					"target": "Target",
+					"amount" : 300,
+					"doOffStage" : true,
+				},
+			],
+		},
+	},
+
+	{
+		"Default": 
+		{
+			//此处的ability是SBuff对应的ability
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_Attack",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "AttackModifier",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"AttackModifier": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackRatio": 0.3,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_MoveSpeed",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "MoveSpeedModifier",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"MoveSpeedModifier": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"duration": 30,
+					"properties": 
+					{
+						"Animator_MoveSpeedRatio": 0.5,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_Defence",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "DefenceModifier",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"DefenceModifier": 
+				{
+					//"isLimitedProperties" : true,
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceRatio": 0.3,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Item_Food_MaxHP",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "MaxHPModifier",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"MaxHPModifier": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_MaxHPRatio": 0.5,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+//**************************************************************************************************************************************************************************************************
+
+	{
+		//当前角色立即恢复a点HP，每b秒恢复c点HP，持续d秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "ReHP_Ins&Con",
+			
+			"modifiers": 
+			{
+				//当前角色立即恢复5%HP，每5秒恢复75HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv1_1": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 85,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.025,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复5%HP，每5秒恢复85HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv1_2": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 100,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.025,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复5%HP，每5秒恢复115HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv1_3": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 125,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.025,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复5%HP，每5秒恢复140HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv1_4": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 155,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.025,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+
+				//当前角色立即恢复10%HP，每5秒恢复110HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv2_1": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 165,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.05,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复10%HP，每5秒恢复145HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv2_2": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 195,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.05,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复10%HP，每5秒恢复205HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv2_3": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 255,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.05,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复10%HP，每5秒恢复265HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv2_4": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 315,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.05,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+
+				//当前角色立即恢复15%HP，每5秒恢复155HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv3_1": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 350,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.075,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复15%HP，每5秒恢复230HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv3_2": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 425,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.075,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复15%HP，每5秒恢复385HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv3_3": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 580,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.075,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+				//当前角色立即恢复15%HP，每5秒恢复540HP，持续30秒
+				"ReHP_Ins&Con_Modifier_lv3_4": 
+				{
+					//"reduceDurablityIgnoreTimeScale" : true,
+					//"thinkIntervalIgnoreTimeScale" : true,
+					"duration": 31,
+					"thinkInterval" : 5,
+					"onThinkInterval" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : 735,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+					],
+					"onAdded": 
+					[
+						{
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.075,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+
+				//当前角色立即恢复8%HP与750点HP
+				"ReHP_Ins&Con_Modifier_lv51_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 750,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.08,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},							
+					],
+				},
+				//当前角色立即恢复9%HP与850点HP
+				"ReHP_Ins&Con_Modifier_lv51_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 850,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.09,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},							
+					],
+				},
+				//当前角色立即恢复10%HP与1100点HP
+				"ReHP_Ins&Con_Modifier_lv51_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1100,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.1,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},							
+					],
+				},
+				//当前角色立即恢复12%HP与1300点HP
+				"ReHP_Ins&Con_Modifier_lv51_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1300,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.12,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+
+				//当前角色立即恢复20%HP与900点HP
+				"ReHP_Ins&Con_Modifier_lv52_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 900,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.2,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复22%HP与1100点HP
+				"ReHP_Ins&Con_Modifier_lv52_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1100,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.22,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复26%HP与1450点HP
+				"ReHP_Ins&Con_Modifier_lv52_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1450,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.26,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复30%HP与1850点HP
+				"ReHP_Ins&Con_Modifier_lv52_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1850,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.3,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+
+				//当前角色立即恢复30%HP与750点HP
+				"ReHP_Ins&Con_Modifier_lv53_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 750,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.3,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复32%HP与1250点HP
+				"ReHP_Ins&Con_Modifier_lv53_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 1250,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.32,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复36%HP与2150点HP
+				"ReHP_Ins&Con_Modifier_lv53_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 2150,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.36,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				//当前角色立即恢复40%HP与3100点HP
+				"ReHP_Ins&Con_Modifier_lv53_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 3100,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.4,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},						
+					],
+				},
+				
+			},
+		},
+	},
+
+
+
+	{
+		//队伍角色攻击增加x点，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Atk_Team",
+			//队伍角色攻击增加13点，持续300秒
+			"modifiers": 
+			{
+				"Atk_Team_Modifier_lv1_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 13,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加15点，持续300秒
+		
+				"Atk_Team_Modifier_lv1_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 15,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加18点，持续300秒
+		
+				"Atk_Team_Modifier_lv1_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 18,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加22点，持续300秒
+		
+				"Atk_Team_Modifier_lv1_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 22,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加31点，持续300秒
+		
+				"Atk_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 31,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加35点，持续300秒
+		
+				"Atk_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 35,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加44点，持续300秒
+		
+				"Atk_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 44,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+		//队伍角色攻击增加53点，持续300秒		
+
+				"Atk_Team_Modifier_lv2_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 53,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加66点，持续300秒
+		
+				"Atk_Team_Modifier_lv3_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 65,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加76点，持续300秒
+		
+				"Atk_Team_Modifier_lv3_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 75,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加95点，持续300秒
+		
+				"Atk_Team_Modifier_lv3_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 93,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色攻击增加114点，持续300秒
+		
+				"Atk_Team_Modifier_lv3_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 112,
+					},
+					"state":"AttackUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+
+
+    {
+		//队伍角色防御增加x点，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Def_Team",
+			//队伍角色防御增加24点，持续300秒
+			"modifiers": 
+			{
+				"Def_Team_Modifier_lv1_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 31,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加27点，持续300秒
+		
+				"Def_Team_Modifier_lv1_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 35,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加34点，持续300秒
+		
+				"Def_Team_Modifier_lv1_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 44,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加40点，持续300秒
+		
+				"Def_Team_Modifier_lv1_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 52,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加57点，持续300秒
+		
+				"Def_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 62,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加65点，持续300秒
+		
+				"Def_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 70,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加81点，持续300秒
+		
+				"Def_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 88,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+		//队伍角色防御增加97点，持续300秒
+				
+				"Def_Team_Modifier_lv2_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 106,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+	
+		//队伍角色防御增加107点，持续300秒
+		
+				"Def_Team_Modifier_lv3_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 108,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加122点，持续300秒
+		
+				"Def_Team_Modifier_lv3_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 123,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色防御增加152点，持续300秒
+		
+				"Def_Team_Modifier_lv3_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 154,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色防御增加183点，持续300秒
+		
+				"Def_Team_Modifier_lv3_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 185,
+					},
+					"state":"DefenseUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+
+
+	{
+		//队伍角色电系伤害提升x%，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Elec_Team",
+			//队伍角色电系伤害提升12%，持续300秒
+			"modifiers": 
+			{
+				"Elec_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecAddHurtDelta": 0.12,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色电系伤害提升18%，持续300秒
+		
+				"Elec_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecAddHurtDelta": 0.18,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色电系伤害提升24%，持续300秒
+		
+				"Elec_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecAddHurtDelta": 0.24,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		//队伍角色火系伤害提升x%，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Fire_Team",
+			//队伍角色火系伤害提升12%，持续300秒
+			"modifiers": 
+			{
+				"Fire_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireAddHurtDelta": 0.12,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色火系伤害提升18%，持续300秒
+		
+				"Fire_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireAddHurtDelta": 0.18,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色火系伤害提升24%，持续300秒
+		
+				"Fire_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireAddHurtDelta": 0.24,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		//队伍角色水系伤害提升12%，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Water_Team",
+			//队伍角色水系伤害提升12%，持续300秒
+			"modifiers": 
+			{
+				"Water_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterAddHurtDelta": 0.12,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色水系伤害提升18%，持续300秒
+		
+				"Water_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterAddHurtDelta": 0.18,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色水系伤害提升24%，持续300秒
+		
+				"Water_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterAddHurtDelta": 0.24,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		//复活类效果
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "revive_buff",
+			
+			"modifiers": 
+			{
+		//当前角色立即恢复50HP	
+				"revive_buff_Modifier_lv1_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 50,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},					
+					],
+				},
+			
+		//当前角色立即恢复100HP
+		
+				"revive_buff_Modifier_lv1_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 100,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复150HP
+		
+				"revive_buff_Modifier_lv1_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 150,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						
+					],
+				},
+			
+		//当前角色立即恢复10%+150HP
+		
+				"revive_buff_Modifier_lv1_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"properties": 
+					{
+						"Actor_DefenceDelta": 50,
+					},
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 150,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.1,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复250HP	
+				"revive_buff_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 250,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						
+					],
+				},
+			
+		//当前角色立即恢复400HP
+		
+				"revive_buff_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 400,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						
+					],
+				},
+			
+		//当前角色立即恢复550HP
+		
+				"revive_buff_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 550,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						
+					],
+				},
+			
+		//当前角色立即恢复15%HP，防御增加15点
+		
+				"revive_buff_Modifier_lv2_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"properties": 
+					{
+						"Actor_DefenceDelta": 50,
+					},
+					"state":"DefenseUp",
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.15,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复15%+400HP
+		
+				"revive_buff_Modifier_lv3_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 400,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.15,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复25%+600HP
+		
+				"revive_buff_Modifier_lv3_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 600,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.25,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复35%+800HP
+		
+				"revive_buff_Modifier_lv3_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+							"amount" : 800,
+							"doOffStage" : true,
+							"ignoreAbilityProperty" : true,
+						},
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.35,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			
+		//当前角色立即恢复40%HP
+		
+				"revive_buff_Modifier_lv3_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						{           
+							"$type" : "HealHP",
+
+							"amountByTargetMaxHPRatio" : 0.4,
+							"doOffStage" : true,
+						},	
+						
+					],
+				},
+			},
+		},
+	},
+
+    {
+		//暴击加成类buff
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Critical_Team",
+			
+			"modifiers": 
+			{
+		//队伍角色暴击几率提升3%，持续300秒	
+				"Critical_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.03,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色暴击几率提升5%，持续300秒
+		
+				"Critical_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.05,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色暴击几率提升7%，持续300秒
+		
+				"Critical_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.07,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				
+			
+			
+		//队伍角色暴击几率提升5%，持续300秒	
+				"Critical_Team_Modifier_lv3_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.05,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色暴击几率提升8%，持续300秒
+		
+				"Critical_Team_Modifier_lv3_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.08,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色暴击几率提升10%，持续300秒
+		
+				"Critical_Team_Modifier_lv3_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.1,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色暴击几率提升10%，持续300秒，同时加暴击伤害10%
+		
+				"Critical_Team_Modifier_lv3_4": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.1,
+						"Actor_CriticalHurtDelta":0.1,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+		//队伍角色物理增伤提升10%，持续300秒	
+				"Physical_Team_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_PhysicalAddHurtDelta": 0.1,
+					},
+					"state":"AttackUp",					
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+		//队伍角色物理增伤提升15%，持续300秒
+		
+				"Physical_Team_Modifier_lv2_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_PhysicalAddHurtDelta": 0.15,
+					},
+					"state":"AttackUp",					
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+		//队伍角色物理增伤提升20%，持续300秒
+		
+				"Physical_Team_Modifier_lv2_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_PhysicalAddHurtDelta": 0.2,
+					},
+					"state":"AttackUp",					
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},	
+			},
+		},
+	},
+
+	{
+		//飞行体力消耗降低20%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Fly_lv3_1",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Fly_Modifier_lv3_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Fly_Modifier_lv3_1": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Fly",],
+							"modifierName" : "Stamina_Fly_Modifier_lv3_1_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Fly_Modifier_lv3_1_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.2,
+					},
+				},
+			},
+		},
+	},
+	
+	{
+		//飞行体力消耗降低27%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Fly_lv3_2",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Fly_Modifier_lv3_2",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Fly_Modifier_lv3_2": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Fly",],
+							"modifierName" : "Stamina_Fly_Modifier_lv3_2_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Fly_Modifier_lv3_2_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.27,
+					},
+				},
+			},
+		},
+	},
+	
+	{
+		//飞行体力消耗降低35%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Fly_lv3_3",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Fly_Modifier_lv3_3",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Fly_Modifier_lv3_3": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Fly",],
+							"modifierName" : "Stamina_Fly_Modifier_lv3_3_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Fly_Modifier_lv3_3_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.35,
+					},
+				},
+			},
+		},
+	},
+
+	{
+		//爬飞冲体力消耗降低20%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Climb_lv3_1",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Climb_Modifier_lv3_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Climb_Modifier_lv3_1": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Climb","Fly","SprintBS","Sprint",],
+							"modifierName" : "Stamina_Climb_Modifier_lv3_1_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Climb_Modifier_lv3_1_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.2,
+					},
+				},
+			},
+		},
+	},
+
+	{
+		//爬飞冲体力消耗降低27%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Climb_lv3_2",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Climb_Modifier_lv3_2",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Climb_Modifier_lv3_2": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Climb","Fly","SprintBS","Sprint",],
+							"modifierName" : "Stamina_Climb_Modifier_lv3_2_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Climb_Modifier_lv3_2_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.27,
+					},
+				},
+			},
+		},
+	},
+
+	{
+		//爬飞冲体力消耗降低35%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Climb_lv3_3",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Climb_Modifier_lv3_3",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Climb_Modifier_lv3_3": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["Climb","Fly","SprintBS","Sprint",],
+							"modifierName" : "Stamina_Climb_Modifier_lv3_3_x",//名字需要一样
+						},
+					],
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+				"Stamina_Climb_Modifier_lv3_3_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.35,
+					},
+				},
+			},
+		},
+	},
+
+    {
+		//队伍角色移动速度提高30%，持续60秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MoveSpeed_lv2_1",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "MoveSpeed_Modifier_lv2_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"MoveSpeed_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Animator_MoveSpeedRatio": 0.3,
+					},
+					"state":"SpeedUp",
+					/*"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+    {
+		//队伍角色水火电冰抗性增加15%，持续300秒
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Def_Element_lv2_1",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Def_Element_Modifier_lv2_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+			//队伍角色水火电冰抗性增加25%，持续300秒
+				"Def_Element_Modifier_lv2_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.25,
+						"Actor_FireSubHurtDelta": 0.25,
+						"Actor_ElecSubHurtDelta": 0.25,
+						"Actor_IceSubHurtDelta": 0.25,
+
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			//队伍角色水火电冰抗性增加8%，持续300秒	
+				"Def_Element_Modifier_lv1_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.08,
+						"Actor_FireSubHurtDelta": 0.08,
+						"Actor_ElecSubHurtDelta": 0.08,
+						"Actor_IceSubHurtDelta": 0.08,
+
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			//队伍角色水火电冰抗性增加10%，持续300秒	
+				"Def_Element_Modifier_lv1_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.10,
+						"Actor_FireSubHurtDelta": 0.10,
+						"Actor_ElecSubHurtDelta": 0.10,
+						"Actor_IceSubHurtDelta": 0.10,
+
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			//队伍角色水火电冰抗性增加15%，持续300秒	
+				"Def_Element_Modifier_lv1_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.15,
+						"Actor_FireSubHurtDelta": 0.15,
+						"Actor_ElecSubHurtDelta": 0.15,
+						"Actor_IceSubHurtDelta": 0.15,
+
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},	
+				
+			},
+		},
+	},
+
+	{
+		//队伍角色元素抗性提升
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Element_Def_Team",			
+			"modifiers": 
+			{
+				//队伍角色火系抗性提升25%，持续300秒
+				"Element_Def_Fire": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+				//队伍角色水系抗性提升25%，持续300秒		
+				"Element_Def_Water": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+				//队伍角色冰系抗性提升25%，持续300秒		
+				"Element_Def_Ice": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_IceSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色风系抗性提升25%，持续300秒		
+				"Element_Def_Wind": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WindSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色电系抗性提升25%，持续300秒		
+				"Element_Def_Elec": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色岩系抗性提升25%，持续300秒		
+				"Element_Def_Rock": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_RockSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色草系抗性提升25%，持续300秒		
+				"Element_Def_Grass": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_GrassSubHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+	{
+		//队伍角色元素伤害提升
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Element_Atk_Team",			
+			"modifiers": 
+			{
+				//队伍角色火系伤害提升25%，持续300秒
+				"Element_Atk_Fire": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+				//队伍角色水系伤害提升25%，持续300秒		
+				"Element_Atk_Water": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			
+				//队伍角色冰系伤害提升25%，持续300秒		
+				"Element_Atk_Ice": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_IceAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色风系伤害提升25%，持续300秒		
+				"Element_Atk_Wind": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WindAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色电系伤害提升25%，持续300秒		
+				"Element_Atk_Elec": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色岩系伤害提升25%，持续300秒		
+				"Element_Atk_Rock": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_RockAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+
+				//队伍角色草系伤害提升25%，持续300秒		
+				"Element_Atk_Grass": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_GrassAddHurtDelta": 0.25,
+					},
+/*					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Steam",
+						},
+					],*/
+				},
+			},
+		},
+	},
+
+//************************************************************************************************************************************************************************************************
+	{
+		//地城攻击
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Atk_Dungeon",
+			
+			"modifiers": 
+			{
+				//攻击百分比30%
+				"Atk_Dungeon_Ratio": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackRatio": 0.3,
+					},
+					"state":"AttackUp",
+				},
+
+				//攻击力50点
+				"Atk_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackDelta": 50,
+					},
+					"state":"AttackUp",					
+				},
+
+				//暴击10%&爆伤20%
+				"Critical_Dungeon":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_CriticalDelta": 0.1,
+						"Actor_CriticalHurtDelta": 0.2,
+					},
+					"state":"AttackUp",					
+				},
+
+				//物理伤害40%
+				"PhyAdd_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_PhysicalAddHurtDelta": 0.4,
+					},
+					"state":"AttackUp",					
+				},
+
+				//元素精通提升30点
+				"ElemMastery_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElemMasteryDelta": 30,
+					},
+					"state":"AttackUp",					
+				},
+
+				//充能效率提升30%
+				"ChargeEfficiency_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ChargeEfficiencyDelta": 0.3,
+					},
+					"state":"AttackUp",					
+				},
+
+				//元素战技造成的伤害提升X%
+				"Element_Art_Dungeon_Ratio":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra"],
+							"damagePercentageRatio":0.15,
+						},
+					],
+					"state":"AttackUp",					
+				},
+
+				//普通攻击与重击造成的伤害提高X%
+				"NormalAttack_Dungeon_Ratio":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio":0.15,
+						},
+					],
+					"state":"AttackUp",					
+				},
+
+
+				//元素爆发造成的伤害提升X%
+				"Elemental_Burst_Dungeon_Ratio":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["Elemental_Burst"],
+							"damagePercentageRatio":0.15,
+						},
+					],
+					"state":"AttackUp",					
+				},
+
+				"Sprint_Attack_Ratio": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByStateIDMixin",
+							"stateIDs" : ["SprintBS","Sprint",],
+							"enterActions":
+							[
+		                        {
+		                            "$type":"ApplyModifier",
+		                            "target":"Self",
+		                            "modifierName":"Sprint_Attack_Ratio_CD",
+		                        },
+							],
+						},
+					],
+				},
+
+				"Sprint_Attack_Ratio_CD":
+				{
+					"duration":15,
+					"stacking": "Unique",
+                    "onAdded":
+                    [
+                        {
+                            "$type":"ApplyModifier",
+                            "target":"Self",
+                            "modifierName":"Sprint_Attack_Ratio_Sub",
+                        },
+                    ],
+				},
+				"Sprint_Attack_Ratio_Sub":
+				{
+					"duration":8,
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackRatio": 0.15,
+					},
+					"state":"AttackUp",
+				},
+
+				//1091657新增-生命值高于X%时，攻击力提升X%
+				"Atk_HighHP_Dungeon": 
+                {
+                	"onAdded":
+                	[
+                		 {
+                            "$type":"ApplyModifier",
+                            "target":"Self",
+                            "modifierName":"Atk_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "GreaterOrEqual",
+		                        },
+		                    ],
+                        },
+                	],
+                	"modifierMixins":
+					[
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Atk_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "GreaterOrEqual",
+		                        },
+		                    ],
+						},
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Del_Atk_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "Lesser",
+		                        },
+		                    ],
+						},
+					],
+                },
+				"Del_Atk_HighHP_Dungeon_Sub":
+                {
+                	"onAdded":
+                	[
+						{
+				          "$type": "RemoveModifier",
+				          "modifierName": "Atk_HighHP_Dungeon_Sub",
+				        },
+                	],
+                },
+				"Atk_HighHP_Dungeon_Sub":
+                {
+                    "properties":
+                    {
+                        "Actor_AttackRatio": 0.3,
+                    },
+					"state":"AttackUp",		
+                },
+
+				//1091657新增-生命值低于X%时，攻击力提升X%
+				"Atk_LowHP_Dungeon": 
+                {
+					"onAdded":
+                	[
+                		 {
+                            "$type":"ApplyModifier",
+                            "target":"Self",
+                            "modifierName":"Atk_LowHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "LesserOrEqual",
+		                        },
+		                    ],
+                        },
+                	],
+                	"modifierMixins":
+					[
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Atk_LowHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "LesserOrEqual",
+		                        },
+		                    ],
+						},
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Del_Atk_LowHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "Greater",
+		                        },
+		                    ],
+						},
+					],
+                },
+				"Del_Atk_LowHP_Dungeon_Sub":
+                {
+                	"onAdded":
+                	[
+						{
+				          "$type": "RemoveModifier",
+				          "modifierName": "Atk_LowHP_Dungeon_Sub",
+				        },
+                	],
+                },
+				"Atk_LowHP_Dungeon_Sub":
+                {
+                    "properties":
+                    {
+                        "Actor_AttackRatio": 0.6,
+                    },
+					"state":"AttackUp",		
+                },
+
+
+				//1091657新增-防御降低A%，攻击力提升B%
+				"AtkUp_DefDown_Dungeon":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_AttackRatio": 0.4,
+						"Actor_DefenceRatio": -0.15,
+					},
+					"state":"AttackUp",		
+				},
+			},
+		},
+	},
+
+	//1091657新增-对特定敌人（可配置）造成的伤害提升X%
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Atk_FeatureTag_Dungeon",
+			"onAbilityStart":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"Atk_FeatureTag_Dungeon_1",
+				},
+			],
+			"modifiers":
+			{
+				"Atk_FeatureTag_Dungeon_1":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							"damagePercentageRatio":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"ByHasFeatureTag",
+									"featureTagIDs":[4001],
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0.3
+			},
+		},
+	},
+
+	//1091657新增-特定武器类型的角色（可配置复数项）的攻击力提升X%
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Atk_WeaponType_Dungeon",
+            "onAbilityStart":
+            [
+                {
+                    "$type": "AttachModifier",
+                    "modifierName": "Atk_WeaponType_Dungeon_1",
+                    "predicates":
+                    [
+                        {
+                            "$type": "ByAny",
+                            "predicates":
+                            [
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Avatar"
+                                    ],
+                                },
+                                {
+                                    "$type": "ByEntityTypes",
+                                    "entityTypes":
+                                    [
+                                        "Monster"
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "$type": "ByHasFeatureTag",
+                            "featureTagIDs":
+                            [
+                                1051
+                            ],
+                        },
+                    ],
+                },
+            ],
+            "modifiers":
+            {
+                "Atk_WeaponType_Dungeon_1":
+                {
+                    "properties":
+                    {
+                        "Actor_AddHurtDelta": "%Value",
+                    },
+                },
+            },
+            "abilitySpecials":
+            {
+                "Value": 0.5,
+            },
+        },
+    },
+
+	{
+		//地城防御
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Def_Dungeon",
+			
+			"modifiers": 
+			{
+				//提升防御百分比40%
+				"Def_Dungeon_Ratio": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceRatio": 0.4,
+					},
+					"state":"DefenseUp",					
+				},
+
+				//提升防御力70点
+				"Def_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_DefenceDelta": 70,
+					},
+					"state":"DefenseUp",					
+				},
+
+				//火系抗性提升30%
+				"Element_Dungeon_Def_Fire": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_FireSubHurtDelta": 0.3,
+					},
+				},
+			
+				//水系抗性提升30%	
+				"Element_Dungeon_Def_Water": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WaterSubHurtDelta": 0.3,
+					},
+				},
+			
+				//冰系抗性提升30%
+				"Element_Dungeon_Def_Ice": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_IceSubHurtDelta": 0.3,
+					},
+				},
+
+				//风系抗性提升30%
+				"Element_Dungeon_Def_Wind": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_WindSubHurtDelta": 0.3,
+					},
+				},
+
+				//电系抗性提升30%
+				"Element_Dungeon_Def_Elec": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_ElecSubHurtDelta": 0.3,
+					},
+				},
+
+				//岩系抗性提升30%
+				"Element_Dungeon_Def_Rock": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_RockSubHurtDelta": 0.3,
+					},
+				},
+
+				//草系抗性提升30%
+				"Element_Dungeon_Def_Grass": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_GrassSubHurtDelta": 0.3,
+					},
+				},
+
+				//全系抗性提升25%
+				"Element_Dungeon_Def_All": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_GrassSubHurtDelta": 0.25,
+						"Actor_RockSubHurtDelta": 0.25,
+						"Actor_ElecSubHurtDelta": 0.25,
+						"Actor_WindSubHurtDelta": 0.25,
+						"Actor_IceSubHurtDelta": 0.25,
+						"Actor_WaterSubHurtDelta": 0.25,
+						"Actor_FireSubHurtDelta": 0.25,
+					},
+				},
+
+				//物理抗性提升25%
+				"PhySub_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_PhysicalSubHurtDelta": 0.25,
+					},
+
+				},
+
+				//基础生命值提升30%
+				"MaxHP_Dungeon_Ratio":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_MaxHPRatio": 0.3,
+					},				
+				},
+
+
+				//1091657新增-特定元素（可配置）抗性提升X%
+				"SubHurt_Dungeon_Delta":
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+			            "Actor_FireSubHurtDelta": 0.5,
+			            "Actor_ElecSubHurtDelta": 0.5,
+			            "Actor_WaterSubHurtDelta": 0.5,
+			            "Actor_GrassSubHurtDelta": 0.5,
+			            "Actor_WindSubHurtDelta": 0.5,
+			            "Actor_IceSubHurtDelta": 0.5,
+			            "Actor_RockSubHurtDelta": 0.5,
+					},
+				},
+
+				//1091657新增-生命值高于X%时，防御提升X%
+				"Def_HighHP_Dungeon": 
+                {
+					"onAdded":
+                	[
+                		 {
+                            "$type":"ApplyModifier",
+                            "target":"Self",
+                            "modifierName":"Def_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "GreaterOrEqual",
+		                        },
+		                    ],
+                        },
+                	],
+                	"modifierMixins":
+					[
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Def_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "GreaterOrEqual",
+		                        },
+		                    ],
+						},
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Del_Def_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "Lesser",
+		                        },
+		                    ],
+						},
+					],
+                },
+				"Del_Def_HighHP_Dungeon_Sub":
+                {
+                	"onAdded":
+                	[
+						{
+				          "$type": "RemoveModifier",
+				          "modifierName": "Def_HighHP_Dungeon_Sub",
+				        },
+                	],
+                },
+				"Def_HighHP_Dungeon_Sub":
+                {
+                    "properties":
+                    {
+                        "Actor_DefenceRatio": 0.4,
+                    },
+					"state":"DefenseUp",	
+                },
+
+				//1091657新增-生命值低于X%时，防御提升X%
+				"Def_LowHP_Dungeon": 
+                {
+        			"onAdded":
+                	[
+                		 {
+                            "$type":"ApplyModifier",
+                            "target":"Self",
+                            "modifierName":"Def_LowHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "LesserOrEqual",
+		                        },
+		                    ],
+                        },
+                	],
+                	"modifierMixins":
+					[
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Def_HighHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "LesserOrEqual",
+		                        },
+		                    ],
+						},
+						{
+							"$type":"AttachModifierToPredicateMixin", 
+							"onEvent":"HP",
+							"modifierName":"Del_Def_LowHP_Dungeon_Sub",
+							"predicates":
+		                    [
+		                        {
+		                            "$type": "ByTargetHPRatio",
+		                            "HPRatio": 0.5,
+		                            "logic": "Greater",
+		                        },
+		                    ],
+						},
+					],
+                },
+				"Del_Def_LowHP_Dungeon_Sub":
+                {
+                	"onAdded":
+                	[
+						{
+				          "$type": "RemoveModifier",
+				          "modifierName": "Def_LowHP_Dungeon_Sub",
+				        },
+                	],
+                },
+				"Def_LowHP_Dungeon_Sub":
+                {
+                    "properties":
+                    {
+                        "Actor_DefenceRatio": 0.8,
+                    },
+                },
+			},
+		},
+	},
+
+	{
+		//地城辅助
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Support_Dungeon",
+			
+			"modifiers": 
+			{	
+				//1091657新增-角色造成的治疗效果提升X%	
+				"Heal_Dungeon_Ratio": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_HealAddDelta": 0.15,
+					},
+				},	
+
+
+				//1091657新增-每打倒一个敌人当前角色恢复生命值X%
+				"KillHealHp_Dungeon_Ratio": 
+				{
+                	"modifierMixins":
+					[
+						{
+							"$type":"DoActionByKillingMixin",
+							"detectWindow":1, 
+							"onKill":
+							[
+								{
+									"$type":"Predicated", 
+									"target":"Other",
+									"targetPredicates":
+									[
+										{
+											"$type":"ByEntityTypes",
+											"target":"Target",
+											"entityTypes":["Monster",],
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type" : "HealHP",
+											"target":"Self",
+		                          			"amountByTargetMaxHPRatio": 0.05,
+										},
+									],
+								},
+							]
+						},
+					],
+				},		
+
+				//1091657新增-每打倒一个敌人当前角色获得某种增益效果（可配置，包括提升攻击力、防御力、元素精通）
+				"KillGetBuff_Dungeon_1": 
+				{
+                	"modifierMixins":
+					[
+						{
+							"$type":"DoActionByKillingMixin",
+							"detectWindow":1, 
+							"onKill":
+							[
+								{
+									"$type":"Predicated", 
+									"target":"Other",
+									"targetPredicates":
+									[
+										{
+											"$type":"ByEntityTypes",
+											"target":"Target",
+											"entityTypes":["Monster",],
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type" : "ApplyModifier",
+											"target" : "Self",
+											"modifierName" : "KillGetBuff_Dungeon_Sub_1",
+										},
+									],
+								},
+							]
+						},
+					],
+				},	
+				"KillGetBuff_Dungeon_Sub_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_HealAddDelta": 0.3,
+					},
+				},
+
+				//1091657新增-普攻速度提升X%
+				"AttackSpeed_Dungeon":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToStateIDMixin",
+							"stateIDs": ["Attack01_BS","Attack01","Attack02","Attack03","Attack04","Attack05","Attack06"],
+							"modifierName": "AttackSpeed_Dungeon_Sub",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"AttackSpeed_Dungeon_Sub",
+							"doOffStage":true,
+						}
+					],
+				},
+				"AttackSpeed_Dungeon_Sub":
+				{
+					"isLimitedProperties":true,
+					"state":"SpeedUp",
+					"properties":
+					{
+						"Animator_OverallSpeedRatio" : 0.2,
+					},
+				},
+
+				//1091657新增-施放元素爆发的时候，回复X%的生命值
+				"UltimateSkillHealHp_Dungeon":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"OnAvatarUseSkillMixin",
+							"onTriggerUltimateSkill":
+							[
+		                        {
+		                            "$type": "HealHP",
+		                            "amountByTargetMaxHPRatio": 0.25,
+		                            "target":"Self",
+		                        },
+							],
+						},
+					],
+				},
+
+				//1091657新增-打倒敌人时，有X%的概率重置元素战技的冷却时间，该效果N秒内最多生效1次
+				"ResetCDWhenKill_Dungeon":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByKillingMixin",
+							"detectWindow":1, 
+							"onKill":
+							[
+								{
+									"$type":"Predicated", 
+									"target":"Other",
+									"targetPredicates":
+									[
+										{
+											"$type":"ByEntityTypes",
+											"target":"Target",
+											"entityTypes":["Monster",],
+										},
+									],
+									"successActions":
+									[
+		                                {
+		                                    "$type":"ApplyModifier",
+		                                    "target":"Self",
+		                                    "modifierName":"ResetCDWhenKill_Dungeon_Random",
+		                                },
+									],
+								},
+							]
+						},
+					],
+				},
+				"ResetCDWhenKill_Dungeon_Random":
+                {
+                    "duration": 1.9,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "Randomed",
+                            "chance": 0.5,
+                            "successActions":
+                            [
+                                {
+                                    "$type":"ApplyModifier",
+                                    "target":"Self",
+                                    "modifierName":"ResetCDWhenKill_Dungeon_Sub",
+                                },
+                            ],
+                        },
+                    ],
+                },
+				"ResetCDWhenKill_Dungeon_Sub":
+                {
+					"stacking": "Unique",
+                    "duration": 30, //CD时间
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ModifyAvatarSkillCD",
+                            "skillSlot":
+                            [
+                                2,
+                            ],
+                            "cdRatio": -1,
+                        },
+                    ],
+                },
+
+				//1091657新增-释放重击体力消耗降低X%
+				"Stamina_ExtraAttack_Dungeon": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs": ["ExtraAttack_BS","ExtraAttack_Charge","ExtraAttack","ExtraAttack_AS","ExtraAttack1","ExtraAttack2","ExtraAttack3"],
+							"modifierName" : "Stamina_ExtraAttack_Dungeon_Sub",
+						},
+					],
+				},
+				"Stamina_ExtraAttack_Dungeon_Sub":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.3,
+					},
+				},
+
+				//1091657新增-CD缩短
+				"SkillCD_Dungeon_Ratio": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Actor_SkillCDMinusRatio": 0.2,
+					},
+				},
+
+			},
+		},
+	},
+
+	{
+		//冲刺体力消耗降低30%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Stamina_Sprint_Dungeon",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Stamina_Sprint_Dungeon_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"Stamina_Sprint_Dungeon_1": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"AttachToStateIDMixin",
+							"stateIDs" : ["SprintBS","Sprint",],
+							"modifierName" : "Stamina_Sprint_Dungeon_1_x",//名字需要一样
+						},
+					],
+				},
+				"Stamina_Sprint_Dungeon_1_x":
+				{
+					"properties":
+					{
+						"Actor_CostStaminaRatio":-0.3,
+					},
+				},
+			},
+		},
+	},
+
+	{
+		//移动速度提高30%
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MoveSpeed_Dungeon",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "MoveSpeed_Dungeon_1",
+					"target": "Target",
+				},
+			],
+			"modifiers": 
+			{
+				"MoveSpeed_Dungeon_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					"properties": 
+					{
+						"Animator_MoveSpeedRatio": 0.3,
+					},
+					"state":"SpeedUp",
+				},
+			},
+		},
+	},
+
+	{
+		
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "ReHP_Ins&Con_Dungeon",
+			
+			"modifiers": 
+			{
+				//恢复25%生命值
+				"ReHP_Ins&Con_Dungeon_1": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 850,
+							"doOffStage" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.25,
+							"doOffStage" : true,
+						},							
+					],
+				},
+
+				//恢复50%生命值
+				"ReHP_Ins&Con_Dungeon_2": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 850,
+							"doOffStage" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.5,
+							"doOffStage" : true,
+						},							
+					],
+				},
+
+				//恢复70%生命值
+				"ReHP_Ins&Con_Dungeon_3": 
+				{
+					"reduceDurablityIgnoreTimeScale" : true,
+					
+					"onAdded": 
+					[
+						/*{           
+							"$type" : "HealHP",
+							"amount" : 850,
+							"doOffStage" : true,
+						},*/
+						{           
+							"$type" : "HealHP",
+							"amountByTargetMaxHPRatio" : 0.7,
+							"doOffStage" : true,
+						},							
+					],
+				},
+			},
+		},
+	},
+
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Atk_HitHeadBox_Dungeon",
+            "abilityMixins":
+            [
+            ],
+            "onAdded":
+            [
+            ],
+            "onAbilityStart":
+            [
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Atk_HitBox_Dungeon",
+					"target": "Target",
+				},
+            ],
+            "modifiers":
+            {
+                "Atk_HitBox_Dungeon":
+                {
+                    "onAttackLanded":
+                    [               
+                        {
+                            "$type": "Predicated",
+							"target": "Other",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type": "ByHitBoxName",
+                                    "hitBoxNames":
+                                    [
+                                        "HeadBox"
+                                    ],
+                                },
+                            ],
+                            "successActions":
+                            [
+
+                                {
+                                    "$type": "DamageByAttackValue",
+                                    "attacker":"Self",
+									"target": "Other",
+                                    "attackInfo":
+                                    {
+                                        "attackProperty":
+                                        {
+                                            "damagePercentage": 0.2,
+                                            "strikeType": "Pierce",
+                                            "attackType": "Range",
+                                            "enBreak": 20,
+                                        },
+                                        "hitPattern":
+                                        {
+                                            "onHitEffectName": "default",
+                                            "hitLevel": "Mute", //hitlevel = 1
+                                            "hitImpulseX": 0, //hitlevel = 1
+                                            "hitImpulseY": 0, //hitlevel = 1
+                                            "retreatType": "ByHitDirection",
+                                            "reboundRatio": 0,
+                                            "canBeDefenceHalt": true,
+                                            "hitHaltTime": 0.06,
+                                            "hitHaltTimeScale": 0.01,
+                                            "muteHitText": false
+                                        },
+                                    },
+                                },
+
+                            ],
+                        },
+                    ],
+                },
+
+            },
+        },
+    },
+
+    {
+	    "Default":
+	    {
+	        "$type": "ConfigAbility",
+	        "abilityName": "Suport_ResetCDWhenSkillHit_Dungeon",
+	        "abilityMixins":
+	        [
+	        ],
+	        "onAdded":
+	        [
+	        ],
+	        "onAbilityStart":
+	        [
+	            {
+	                "$type": "AttachModifier",
+	                "modifierName": "ResetCDWhenSkillHit_Dungeon",
+					"target": "Target",
+	            },
+	        ],
+	        "modifiers":
+	        {			
+	        	//1091657新增-元素战技命中时，有X%的概率重置冷却时间，该效果N秒内最多生效1次
+				"ResetCDWhenSkillHit_Dungeon":
+				{
+					"onAttackLanded":
+                    [
+                        {
+                            "$type":"Predicated",
+                            "target":"Target",
+                            "targetPredicates":
+                            [
+                                {
+                                    "$type":"ByEntityTypes",
+                                    "entityTypes":["Monster",],
+                                },
+                                {
+                                    "$type":"ByHitDamage",
+                                    "damage":0,
+                                    "logic":"Greater"
+                                },
+                                {
+                                    "$type":"ByAttackTags",
+                                    "attackTags":["Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra",],
+                                },
+                            ],
+                            "successActions":
+                            [
+                                {
+                                    "$type":"ApplyModifier",
+                                    "target":"Self",
+                                    "modifierName":"ResetCDWhenSkillHit_Dungeon_Random",
+                                },
+                            ],
+                        },
+                    ],
+				},
+				"ResetCDWhenSkillHit_Dungeon_Random":
+                {
+                    "duration": 1.9,
+                    "onAdded":
+                    [
+                        {
+                            "$type": "Randomed",
+                            "chance": 0.5,
+                            "successActions":
+                            [
+                                {
+                                    "$type":"ApplyModifier",
+                                    "target":"Self",
+                                    "modifierName":"ResetCDWhenSkillHit_Dungeon_Sub",
+                                },
+                            ],
+                        },
+                    ],
+                },
+				"ResetCDWhenSkillHit_Dungeon_Sub":
+                {
+					"stacking": "Unique",
+                    "duration": 30, //CD时间
+                    "onAdded":
+                    [
+                        {
+                            "$type": "ModifyAvatarSkillCD",
+                            "skillSlot":
+                            [
+                                2,
+                            ],
+                            "cdRatio": -1,
+                        },
+                    ],
+                },
+	        },
+	    },
+	},
+
+
+    {
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Atk_State_Dungeon_1",
+            "abilityMixins":
+            [
+            ],
+            "onAdded":
+            [
+            ],
+            "onAbilityStart":
+            [
+                {
+                    "$type": "ApplyModifier",
+                    "modifierName": "Atk_State_Dungeon_1",
+                },
+            ],
+            "modifiers":
+            {
+				"Atk_State_Dungeon_1":
+				{
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates" :
+							[
+								{
+					            	"$type": "ByAny",
+					            	"predicates": 
+					            	[
+										{
+											"$type" : "ByHasAbilityState",
+											"abilityState" : "ElementFreeze",
+										},
+					              ],
+					            },
+							],
+							"successActions":
+							[
+								{
+									"$type" : "DamageByAttackValue",
+									"otherTargets":
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR1",
+										"centerBasedOn": "Target",
+										"campTargetType": "Enemy",
+										"campBasedOn": "Self",
+									},
+									"attackInfo":
+									{
+										"attackProperty":
+										{
+											"damagePercentage": 0.2,
+											"strikeType": "Pierce",
+							 				"attackType": "Range",
+							 				"bonusCritical": 1,
+							 				"bonusCriticalHurt": 0,
+							 				"enBreak" : 20,
+										},
+										"hitPattern":
+										{
+							          		"onHitEffectName": "default",
+							          		"hitLevel": "Mute",	//hitlevel = 1
+							          		"hitImpulseX": 0,	//hitlevel = 1
+							          		"hitImpulseY": 0,	//hitlevel = 1
+											"retreatType": "ByHitDirection",
+							          		"reboundRatio": 0,
+											"canBeDefenceHalt": true,
+							          		"hitHaltTime": 0.06,
+							          		"hitHaltTimeScale": 0.01,
+							          		"muteHitText": false
+							        	},
+							        	"forceCameraShake": false,
+							        	"cameraShake":
+							        	{
+							        		"shakeType": "CustomVector",
+											"shakeRange": 0.12,
+											"shakeTime": 0.12,
+											"shakeDistance": 30,
+											"shakeDir":
+											{
+												"x":-1,
+												"y":0,
+												"z":0,
+											},
+							        	},
+									},
+								},
+							],
+						},
+					],
+				},
+            },
+        },
+    },
+
+]

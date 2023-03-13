@@ -1,0 +1,1314 @@
+[
+/////////////////////////////////////////////////////////
+//
+//不灭之火
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_ImmortalFire",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					/*
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},	
+					],
+					*/
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_TorchPuzzle_Torch_Fire",
+						},
+					],
+					"onRemoved":
+					[
+
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+// 仪式火堆
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_Ceremony_Fires",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_Fire_Camp_01",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//高脚火盆
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_FireBasin_Interact",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},	
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_Fire_Basin",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	挂壁火盆
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_Torch01_Interact",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_Fire_Basin",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},		
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//篝火
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_BornFires_Interact",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_Fire_Basin",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//烹饪锅
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_CookingPot_Interact",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_Fire_Camp",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+//蒙德烹饪锅
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_FireMaterial_CookingPot_NoLight",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMutexMixin",
+					"gadgetStates": [0, 201],
+					"modifierNames": [["Fire_Off"], ["Fire_On"]],
+				},
+			
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_FIRE_GADGET_ATTACK",
+					"value": -2,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": -1,
+				},
+			],
+			"modifiers": 
+			{
+				"Fire_Off":
+				{
+					"elementType": "Grass",
+					"elementDurability": 1,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type": "ByHasElement",
+											"element": "Ice",
+										},
+									],
+								}
+							],
+						},
+					],
+				},
+				"Fire_On":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Burning",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Burning",
+						},
+					],
+				},
+				"Burning":
+				{
+					"elementType": "Fire",
+					"elementDurability": 15,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_FireCook_01NoLight",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_FIRE_GADGET_ATTACK",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius": 0.4,
+									"ignoreMassive" : true,
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attachPoint",
+										"offset":
+										{
+											"z": 0.0,
+										},
+									},
+									"size" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0,
+									},
+									"muteHitBehindScene" : false,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Fire",
+										"elementDurability": 5,
+										"strikeType": "Default",
+										"damageExtra": 5,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.5,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							//"sourceName": "FireSourceChange",
+							"param1": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "FireBasin_Smoke",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "attachPoint",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+]

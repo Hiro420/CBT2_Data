@@ -1,0 +1,1195 @@
+[
+
+
+////////////////////////////////////////////////////////////////
+//
+//  备用 回能加血
+//  西风长枪武器词缀，HealWhenGetEnegy
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_Zephyrus",
+			"abilityMixins":
+			[
+				{
+					"$type":"DoActionByEnergyChangeMixin",
+					"elementTypes":["Water","Fire","Electric","Ice","Frozen","Wind","Rock"],
+					"doWhenEnergyMax":true,
+					"onGainEnergyMax":
+					[
+						{
+							"$type":"AttachModifier",
+							"modifierName":"UNIQUE_Pole_Zephyrus_Handler"
+						}
+					],
+				},
+			],
+			"onAdded":
+			[
+
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_Zephyrus_Handler"://控制一下效果触发的周期
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"duration":5,
+					"onAdded":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"UNIQUE_Pole_Zephyrus_Heal",
+						}
+					],
+				},
+				"UNIQUE_Pole_Zephyrus_Heal" :
+				{
+					"duration":5.0,
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAdded":
+					[
+						{
+							"$type": "HealHP",
+							"doOffStage" : true,
+							"amountByTargetMaxHPRatio": "%HealHP",
+						},
+					],
+					"modifierMixins":
+					[
+
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+					"HealHP" : 0.03,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  (备用)
+//
+//  普通攻击伤害提升20%~32%,受到伤害后进入10秒cd OK
+//
+// ////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit", //这个没写成skillcd因为冷却时间太短，可以不用记录。如果想做屏蔽武器技能的场景可能会有问题。
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Weapon_Pole_NormalAttackUpUnlessBeinghit",
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_NormalAttackUp_CD","UNIQUE_Pole_NormalAttackUpUnlessBeinghit",],
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_NormalAttackUpUnlessBeinghit":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"],
+							"damagePercentageRatio":"%Rate",
+						},
+					],
+					"onBeingHit":
+					[
+						// {
+						// 	"$type":"Predicated",
+						// 	"targetPredicates":
+						// 	[
+						// 		{
+						// 			"$type":"ByHitDamage",
+						// 			"damage":1,
+						// 			"logic":"GreaterOrEqual",
+						// 		},
+						// 	],
+						// 	"successActions":
+						// 	[
+								{
+									"$type":"AddGlobalValue",
+									"target":"Self",
+									"key":"_ABILITY_Weapon_Pole_NormalAttackUpUnlessBeinghit",
+									"value":-1,
+									"useLimitRange":true,
+									"maxValue":-1,
+									"minValue":-1,
+									"predicates":
+									[
+		                                {
+		                                    "$type":"ByHitDamage",
+		                                    "damage":1,
+		                                    "compareType":"GreaterOrEqual",
+		                                },
+									],
+								},
+						// 	],
+						// },
+					],
+				},
+				"UNIQUE_NormalAttackUp_CD":
+				{
+					"isUnique":true,
+					"duration":10,
+					"onAdded":
+					[
+						{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":1,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_Pole_NormalAttackUpUnlessBeinghit",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0.2,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13301
+//
+//  普通攻击伤害提升13%~25% OK
+//
+// ////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_NormalAttackUp", //这个没写成skillcd因为冷却时间太短，可以不用记录。如果想做屏蔽武器技能的场景可能会有问题。
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName":"UNIQUE_Pole_NormalAttackUp",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_NormalAttackUp":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"],
+							"damagePercentageRatio":"%Rate",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13302
+//
+//  ，cd10秒，冷却完成后对命中目标造成60%~100%攻击力伤害 OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_ExtraDamageWhenCDReady",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Weapon_Pole_ExtraDamageWhenCDReady",
+					"defaultGlobalValueOnCreate":0,
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_Pole_ExtraDamageWhenCDReady_CD","UNIQUE_Pole_ExtraDamageWhenCDReady_Handler",],
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_ExtraDamageWhenCDReady_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"]
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",//用这个可以找到action的self值
+									"skillID":10101,
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"DamageByAttackValue",  //这个效果格挡后伤害仍然会给出，但是打元素盾后伤害不会出现，因为元素盾主人是锁血状态。
+									"target":"Target",
+									"born":
+									{
+										"$type":"ConfigBornByTarget",
+										"offset":
+										{
+											"x":0,
+											"y":0,
+											"z":0,
+										},
+									},
+									"attackInfo":
+									{
+										"attackProperty":
+										{
+											"damagePercentage": "%Rate",
+											"elementType":"None",
+											"strikeType":"Default",
+											"enBreak" : 50,
+										},
+										"hitPattern" :
+										{
+											"onHitEffectName" : "default",
+											"hitLevel" : "Light",
+											"hitImpulseX" : 200,
+											"hitImpulseY" : 0,
+											"reboundRatio" : 0,
+											"hitHaltTime" : 0.0,
+											"hitHaltTimeScale" : 0.01,
+											"muteHitText" : false,
+										},
+										"forceCameraShake": false,
+									},
+								},
+								{
+									"$type":"ApplyModifier",
+									"modifierName":"UNIQUE_Pole_ExtraDamageWhenCDReady_Keep",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Pole_ExtraDamageWhenCDReady_Keep":
+				{
+					"duration":0.06,
+					"isUnique":true,
+					"stacking":"Unique",
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"target":"Self",
+							"key":"_ABILITY_Weapon_Pole_ExtraDamageWhenCDReady",
+							"value":-1,
+							"useLimitRange":true,
+							"maxValue":-1,
+							"minValue":-1,
+						},
+					],
+				},
+				"UNIQUE_Pole_ExtraDamageWhenCDReady_CD":
+				{
+					"duration":"%CDTime",
+					"isUnique":true,
+					"onAdded":
+					[
+						{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":"%CDTime*0.1",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_Pole_ExtraDamageWhenCDReady",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+
+				},
+			},
+			"abilitySpecials" :
+			{
+					"Rate" : 0,
+					"CDTime": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13303
+//
+//  对史莱姆增加26%~40%伤害   OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_SlimeKiller",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_SlimeKiller_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_SlimeKiller_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							"damagePercentageRatio":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"ByHasFeatureTag",
+									"featureTagIDs":[4002],
+								},
+								/*{
+									"$type":"BySkillReady",
+									"target":"Applier",//emmm,用Applier基本能解决想要的self需求。
+									"skillID":10101
+								},*/
+							],
+						},
+					],
+					"isUnique":true,
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13401 对带有水、火附着的单位伤害提高30%  （提升暴击率太弟弟了，用全伤 OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_DamageUpToWaterEnemy",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_DamageUpToWaterEnemy_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_DamageUpToWaterEnemy_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							// "bonusCritical":"%Rate",
+							"damagePercentageRatio":"%Rate",//暴击率太弟弟了,不用
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",//emmm,用Applier基本能解决想要的self需求。
+									"skillID":10101
+								},
+								{
+									"$type":"ByAny",
+									"predicates":
+									[
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Water",
+										},
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Fire",
+										},
+									],
+								}
+							],
+						},
+					],
+					"isUnique":true,
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13402 拾取微粒后下3次普通攻击附带20~60%伤害 OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_NormalAttackExtraDamageWhenGetEnergyBall",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_NormalAttackExtraDamageWhenGetEnergyBall_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_NormalAttackExtraDamageWhenGetEnergyBall_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByEnergyChangeMixin",
+							"elementTypes":["Electric","Fire","Water","Grass","Ice","Wind","Rock"],
+							"doWhenEnergyMax":true,
+							"onGainEnergyByBall":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Pole_NormalAttackExtraDamage",
+									"predicates":
+									[
+										{
+											"$type":"BySkillReady",
+											"target":"Self",
+											"skillID":10101,
+										},
+									],
+								},
+								/*{
+									"$type":"AddGlobalValue",
+									"key":"_ABILITY_Pole_AttackBuffValue",
+									"value":3,
+									"useLimitRange":true,
+									"maxValue":3,
+									"minValue":0,
+								},*/
+							],
+						},
+					],
+					"isUnique":true,
+				},
+				"UNIQUE_Pole_NormalAttackExtraDamage":
+				{
+					"isUnique":true,
+					"duration":5,
+					"state":"AttackUp",
+					"onAttackLanded":
+					[
+						{
+							"$type":"Predicated",
+							"target":"Target",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"]
+								},
+							],
+							"successActions":
+							[
+								/*{
+									"$type":"ApplyModifier",
+									"target":"Self",
+									"modifierName":"UNIQUE_Weapon_Pole_MinusGlobalValue",
+								},*/
+								{
+									"$type":"DamageByAttackValue",  //这个效果格挡后伤害仍然会给出，但是打元素盾后伤害不会出现，因为元素盾主人是锁血状态。
+									"target":"Target",
+									"born":
+									{
+										"$type":"ConfigBornByTarget",
+										"offset":
+										{
+											"x":0,
+											"y":0,
+											"z":0,
+										},
+									},
+									"attackInfo":
+									{
+										"attackProperty":
+										{
+											"damagePercentage": "%Rate",
+											"elementType":"None",
+											"strikeType":"Default",
+											"enBreak" : 25,
+										},
+										"hitPattern" :
+										{
+											"onHitEffectName" : "default",
+											"hitLevel" : "Mute",
+											"hitImpulseX" : 0,
+											"hitImpulseY" : 0,
+											"reboundRatio" : 0,
+											"hitHaltTime" : 0.0,
+											"hitHaltTimeScale" : 0.01,
+											"muteHitText" : false,
+										},
+										"forceCameraShake": false,
+									},
+								},
+							]
+						},
+					],
+				},
+				/*"UNIQUE_Weapon_Pole_MinusGlobalValue":
+				{
+					"isUnique":true,
+					"stacking":"Unique",
+					"duration":0.1,
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Pole_AttackBuffValue",
+							"value":-1,
+							"useLimitRange":true,
+							"maxValue":3,
+							"minValue":0,
+						},
+					],
+				},*/
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13403 释放小技能后提升普通攻击和重攻击伤害，叠加2层。 OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_NormalAttackAndExtraAttackUpAfterSkill",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_NormalAttackAndExtraAttackUpAfterSkill_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_NormalAttackAndExtraAttackUpAfterSkill_Handler":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"OnAvatarUseSkillMixin",
+							"onTriggerSkill":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Pole_NormalAttackAndExtraAttackUpAfterSkill",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Pole_NormalAttackAndExtraAttackUpAfterSkill":
+				{
+					"duration":12,
+					"stacking":"MultipleAllRefresh",
+					"stackingOption":
+					{
+						"maxModifierNumForMultipleType":2,
+					},
+					"state":"AttackUp",
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"target":"Target",
+									"entityTypes":["Monster",],
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13404 入场获得xx%攻击力提升 OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_AttackUpWhenEnter",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_AttackUpWhenEnter_Handler"
+				},
+			],
+			/*"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Pole_AttackUpWhenEnter",//初始默认为0
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_Pole_AttackUpWhenEnter_HandlerCD","UNIQUE_Pole_AttackUpWhenEnter_Handler",],
+				},
+			],*/
+			"modifiers":
+			{
+				"UNIQUE_Pole_AttackUpWhenEnter_Handler":
+				{
+					"isUnique":true,
+					"onAvatarIn":
+					[
+						{
+							"$type":"AttachModifier",
+							"modifierName":"UNIQUE_Pole_AttackUpWhenEnter",
+						},
+					],
+				},
+				"UNIQUE_Pole_AttackUpWhenEnter":
+				{
+					"state":"AttackUp",
+					"duration":"%Time",
+					"isUnique":true,
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AttackRatio" : "%Rate",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+				"Time":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13504
+//
+//  对任何元素附着加伤，并且有10%攻速。 记得测过的。OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_DamageUpToAllElement",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Weapon_Pole_DamageUpToAllElement_Handler",
+				},
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_AttackSpeedUp_Handler"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Weapon_Pole_DamageUpToAllElement_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							"damagePercentageRatio":"%D_Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								/*{
+									"$type":"BySkillReady",
+									"target":"Applier",//emmm,用Applier基本能解决想要的self需求。
+									"skillID":10101
+								},*/
+								{
+									"$type":"ByAny",
+									"target":"Target",
+									"predicates":
+									[
+										{
+											"$type":"ByHasElement",
+											"element": "Water",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Electric",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Fire",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Ice",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Frozen",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Grass",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Wind",
+										},
+										{
+											"$type":"ByHasElement",
+											"element": "Rock",
+										},
+									],
+								},
+							],
+						},
+					],
+					"isUnique":true,
+				},
+				"UNIQUE_Pole_AttackSpeedUp_Handler":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToStateIDMixin",
+							"stateIDs": ["Attack01","Attack02","Attack03","Attack04","Attack05","Attack06"],
+							"modifierName": "UNIQUE_Pole_AttackSpeedUp",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"UNIQUE_Pole_AttackSpeedUp",
+							"doOffStage":true,
+						}
+					],
+				},
+				"UNIQUE_Pole_AttackSpeedUp":
+				{
+					"isUnique":true,
+					"isLimitedProperties":true,
+					"properties":
+					{
+						"Animator_OverallSpeedRatio" : "%Rate",
+					},
+				},
+			},
+      "abilitySpecials": {
+        "Rate": 0,
+        "D_Rate": 0,
+      },
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  13505
+//
+//  命中提升攻击力%，，满层数技能伤害提升25%。  OK
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_AttackUpAndSkillDamageUp",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_AttackUpAndSkillDamageUp_Handler"
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Pole_13502_AttackBuffLevel",
+					"defaultGlobalValueOnCreate":0,
+					"valueSteps" : [-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,100],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["Blank","UNIQUE_Pole_AttackUpA","UNIQUE_Pole_AttackUpB","UNIQUE_Pole_AttackUpA","UNIQUE_Pole_AttackUpB","UNIQUE_Pole_AttackUpA","UNIQUE_Pole_AttackUpB","UNIQUE_Pole_SkillDamageUp",],
+				},
+			],
+			"modifiers":
+			{
+				"Blank":
+				{},
+				"UNIQUE_Pole_AttackUpAndSkillDamageUp_Handler":
+				{
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type":"Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								/*{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"]
+								},*/
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes":["Monster"],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"ApplyModifier",
+									"modifierName":"UNIQUE_Pole_AddGlobalValue",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Pole_AddGlobalValue":
+				{
+					"isUnique":true,
+					"duration":0.3,
+					"stacking":"Unique",
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Pole_BuffTime",
+							"target": "Self",
+						},
+						{
+							"$type":"SetGlobalValueToOverrideMap",
+							"globalValueKey":"_ABILITY_Pole_13502_AttackBuffLevel",
+							"overrideMapKey":"Buff_Level",
+						},
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Pole_13502_AttackBuffLevel",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":7,
+						},
+					],
+				},
+				"UNIQUE_Pole_BuffTime"://properties值并不会实时更新，只能删掉modifier重加的时候才会更新。所以加攻不能放在这里。
+				{
+					"isUnique":true,
+					"duration":6,
+					"stacking":"Refresh",
+					/*"modifierMixins"://这个mixin怎么回事。。不该有这个mixin
+					[
+						{
+							"$type": "AttachToStateIDMixin", //写在这里只写一个attackspeedup的modifier
+							"stateIDs": ["Attack01_BS","Attack01","Attack02","Attack03","Attack04",],
+							"modifierName": "AttackSpeedUp",
+						},
+					],*/
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Pole_13502_AttackBuffLevel",
+							"value" : -100,
+							"useLimitRange" : true,
+							"maxValue" : 7,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					],
+				},
+				"UNIQUE_Pole_AttackUpA":
+				{
+					"isLimitedProperties":true,
+					"isUnique":true,
+					"properties":
+					{
+						"Actor_AttackRatio" : "%Rate*%Buff_Level+%Rate", //因为这个override总是差1（无论什么顺序都是global先变导致buff先上，然后才global传递到override）
+					},
+				},
+				"UNIQUE_Pole_AttackUpB":
+				{
+					"isLimitedProperties":true,
+					"isUnique":true,
+					"properties":
+					{
+						"Actor_AttackRatio" : "%Rate*%Buff_Level+%Rate",
+					},
+				},
+				"UNIQUE_Pole_SkillDamageUp":
+				{
+					"isLimitedProperties":true,
+					"isUnique":true,
+					"state":"AttackUp",
+					"onAdded":
+					[
+						{
+							"$type":"FireEffect",
+							"effectPattern" :"Eff_Weapon_TriggerGreen",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"attackTags":["Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra","Elemental_Burst"],
+							"damagePercentageRatio":"%Rate2",
+						},
+					],
+					"properties":
+					{
+						"Actor_AttackRatio" : "%Rate*%Buff_Level+%Rate",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+				"Rate2":0,
+				"Buff_Level":0,
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//
+// 13601 只用于json搜索和affixid，不是武器id
+// 下面是即将换上来的武器技能，主要是元素附着和元素反应。,触发后增加“攻击”即可
+// 触发冰系相关反应，提升攻击20%~40%，持续12秒。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_AttacktUpAfterReaction",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_AttacktUpAfterReaction_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_AttacktUpAfterReaction_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByElementReactionMixin",
+							"range":20,//这个就是默认值
+							"entityTypes":["Monster",],
+							"reactionTypes":["Explode","Stream","Burning","Melt","Shock","Freeze","SwirlFire","SwirlWater",],//冰相关
+							"actions":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Pole_AttacktUpAfterReaction",
+								}
+							],
+						},	//一个检测发生了元素反应的mixin
+					],
+					"isUnique":true,
+				},
+				"UNIQUE_Pole_AttacktUpAfterReaction":
+				{
+					"duration":20,
+					"state":"AttackUp",
+					"isUnique":true,
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AttackRatio":"%Rate",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+			//这个列表是所有元素反应["Explode","Stream","Burning","Melt","Freeze","Shock","Superconductor","SwirlFire","SwirlWater","SwirlElectric","SwirlIce",],
+	},
+///////////////////////////////////////////////////////////////
+//
+//
+// 13602 只用于json搜索和affixid，不是武器id
+//
+// 对水、冰附着单位增加20%伤害
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Pole_DamageUpToEnemy",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Pole_DamageUpToEnemy_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Pole_DamageUpToEnemy_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							// "bonusCritical":"%Rate",
+							"damagePercentageRatio":"%Rate",//暴击率太弟弟了,不用
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",//emmm,用Applier基本能解决想要的self需求。
+									"skillID":10101
+								},
+								{
+									"$type":"ByAny",
+									"predicates":
+									[
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Water",
+										},
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Fire",
+										},
+									],
+								}
+							],
+						},
+					],
+					"isUnique":true,
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0.14,
+			}
+		},
+	},
+
+
+
+
+
+]

@@ -1,0 +1,79 @@
+[
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 毒水，草系伤害
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WaterMaterial_PoisonAttack",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "poison",
+				},
+			],
+			"modifiers":
+			{
+				"poison":
+				{
+					"duration": 0,
+					"thinkInterval": 0.25,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "All",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "Both",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attackPoint",
+									},
+									"size" : 
+									{
+										"x" : 20,
+										"y" : 60,
+										"z" : 1,
+									},
+									"muteHitBehindScene" : true,
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.25,
+										"elementType": "Grass",
+										"elementDurability": 50,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.25,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+		}
+	},
+]

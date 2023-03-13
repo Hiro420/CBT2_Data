@@ -1,0 +1,312 @@
+{
+////////////////////////////////////////////////////////////////
+//
+//  命之座1 霜杀墨染樱 神里流·冰华对处于寒冷或冻结状态下的敌人造成的伤害提高20%。
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_1":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Ayaka_Icespine_Strike_New",
+			"talentParam" : "Avatar_Ayaka_EarlyWinter",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  命之座2 间水月 元素充能效率提高16%，神里流·霜灭的冷却时间减少5秒。
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_2":
+	[
+		{
+			"$type" : "ModifySkillCD",
+			"skillID" : 10019,
+			"cdDelta" : -2,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  命之座3 强化神里流·霜灭 增加神里流·霜灭的技能等级（脚本为空）
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_3":
+	[
+		{
+			"$type" : "AddTalentExtraLevel",
+			"talentType" : "AvatarSkill",
+			"talentIndex" : 9,
+			"extraLevel" : 3,
+		}
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  命之座4 盈缺流返 元素能量槽高于50%时，全伤害提升；元素能量槽低于50%时，暴击率提升
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_4":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Avatar_Ayaka_Talent_EbbAndFlow",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  命之座5 强化神里流·冰华 增加神里流·冰华的技能等级（脚本为空）
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_5":
+	[
+		{
+			"$type" : "AddTalentExtraLevel",
+			"talentType" : "AvatarSkill",
+			"talentIndex" : 2,
+			"extraLevel" : 3,
+		}
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  命之座6 三重关雪扉 施放神里流·霜灭时，会向侧面放出额外2个较小的冰刃风暴，各自能造成20%的伤害。
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_Constellation_6":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Ayaka_FrozenWindmill",
+			"talentParam" : "Avatar_Ayaka_Oboro",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  固有得意技1 寒天宣命祝词 普通攻击命中处于寒冷或冻结状态下的敌人时，分别有6%/18%的概率缩短神里流·冰华0.5秒冷却时间。
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_PermanentSkill_1":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Avatar_Ayaka_Talent_IceDance",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  固有得意技2 天罪国罪镇词 暗杀模式激活
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_PermanentSkill_2":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Ayaka_Liquid_TriggerAbility",
+			"talentParam" : "Avatar_Ayaka_YayoiKaeshi",
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  技能升级1 普通攻击和重击
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_SkillUpgrade_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_01_DamagePercentage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_02_DamagePercentage",
+			"paramDelta" : "%2",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_03_DamagePercentage",
+			"paramDelta" : "%3",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_04_1_DamagePercentage",
+			"paramDelta" : "%4",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_04_2_DamagePercentage",
+			"paramDelta" : "%5",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_04_3_DamagePercentage",
+			"paramDelta" : "%6",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_NormalAttack_DamageHandler",
+			"paramSpecial" : "NormalAttack_05_DamagePercentage",
+			"paramDelta" : "%7",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_ExtraAttack_Damage_Gadget",
+			"paramSpecial" : "Ayaka_ExtraAttack_Damage",
+			"paramDelta" : "%8",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_ExtraAttack",
+			"paramSpecial" : "ExtraAttack_Sword_Stamina_Cost",
+			"paramDelta" : "%9",
+			"paramRatio" : 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  技能升级2 神里流·冰华的伤害
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_SkillUpgrade_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_Icespine_Strike_New",
+			"paramSpecial" : "Icespine_Damage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  技能升级X 神里流·霰步体力消耗
+//
+////////////////////////////////////////////////////////////////
+
+	"Ayaka_SkillMove":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_Liquid_TriggerAbility",
+			"paramSpecial" : "StaminaStartCost",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "StaminaCost",
+			"paramDelta" : "%2",
+			"paramRatio" : 0,
+		},
+	],
+////////////////////////////////////////////////////////////////
+//
+//  技能升级3 神里流·霜灭的伤害
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_SkillUpgrade_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_FrozenWindmillDamage",
+			"paramSpecial" : "FrozenWindmill_SliceDamage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_FrozenWindmill_Sub_Damage",
+			"paramSpecial" : "FrozenWindmill_SliceDamage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_FrozenWindmillDissipate",
+			"paramSpecial" : "FrozenWindmill_BlastDamage",
+			"paramDelta" : "%2",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_FrozenWindmill_Sub_Dissipate",
+			"paramSpecial" : "FrozenWindmill_BlastDamage",
+			"paramDelta" : "%2",
+			"paramRatio" : 0,
+		},
+	],
+
+////////////////////////////////////////////////////////////////
+//
+//  天赋 凛莲华 凛瞬身的移动速度提升，现身冲击影响范围扩大
+//
+////////////////////////////////////////////////////////////////
+	"Ayaka_RinRenka_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "LiquidStrike_MoveSpeedRatio",
+			"paramDelta" : 0.1,
+			"paramRatio" : 0,
+		},
+	],
+	"Ayaka_RinRenka_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "LiquidStrike_MoveSpeedRatio",
+			"paramDelta" : 0.1,
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "Ice_Bloom_Radius",
+			"paramDelta" : 0,
+			"paramRatio" : 0.15,
+		},
+	],
+	"Ayaka_RinRenka_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "LiquidStrike_MoveSpeedRatio",
+			"paramDelta" : 0.1,
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Ayaka_LiquidStrike",
+			"paramSpecial" : "Ice_Bloom_Radius",
+			"paramDelta" : 0,
+			"paramRatio" : 0.15,
+		},
+	],
+
+},

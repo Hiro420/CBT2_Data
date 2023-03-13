@@ -1,0 +1,5467 @@
+[
+  /**/
+  //===============================================================充能技
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_E_CrowQueen",
+      "abilityMixins": [
+        {
+          "$type": "AvatarSteerByCameraMixin",
+          "stateIDs": [
+            "CrowQueen_BS",
+            "CrowQueen_Move",
+            "CrowQueen_MoveStandby"
+          ],
+          "angularSpeed": 120,
+        }, //AvatarSteerByCameraMixin
+      ],
+      "onAdded": [
+        //{
+        //  "$type": "ApplyModifier",
+        //  "modifierName": "UNIQUE_Avatar_ChargeEfficiencyDelta",
+        //  "target": "Self",
+        //},
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "AvatarSkillStart",
+          "skillID": 10313,
+          "cdRatio": 1,
+        }, //AvatarSkillStart.
+        {
+          "$type": "TurnDirection",
+          "turnMode": "OnlyCamera",
+        },
+        {
+          "$type": "RemoveModifier",
+          "modifierName": "DoSkill_Handle",
+        }, //RemoveModifier:DoSkill_Handle
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "DoSkill_Handle",
+        }, //ApplyModifier:DoSkill_Handle
+      ],
+      "modifiers": {
+        "DoSkill_Handle": {
+          "duration": "%CrowQueen_Time+%CrowQueen_BS_DelayTime",
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "DoSkill_Delay",
+            }, //RM:DoSkill_Delay
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "DoSkill_Delay",
+            }, //AM:DoSkill_Delay
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Skill_E_SpecialSkin",
+            }, //角色材质变化
+            {
+              "$type": "RemoveUniqueModifier",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Ball_Show",
+              "target": "Self",
+            },
+
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "DoSkill",
+            }, //RM:DoSkill
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Skill_E_SpecialToNormalSkin",
+            }, //角色材质恢复
+          ],
+          "onKill": [
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "DoSkill_Handle",
+            }, //RM:DoSkill
+          ],
+          "modifierMixins": [
+            {
+              "$type": "TriggerWeatherMixin",
+              "type": "Skill",
+              "weatherPattern": "Fischl_Skill_E_CrowQueen",
+              "transDuration": 0.35,
+            }, //天气效果
+          ],
+        },
+        "DoSkill_Delay": {
+          "duration": "%CrowQueen_BS_DelayTime",
+          "state": "Invincible",
+          "stacking": "Refresh",
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "DoSkill",
+            }, //RM:DoSkill
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "DoSkill",
+            }, //AM:DoSkill
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "DoCamera",
+            }, //AM:DoCamera
+
+          ],
+        },
+        "DoCamera": {
+          "duration": 0.07,
+          "onAdded": [
+            {
+              "$type": "AvatarEnterCameraShot",
+              "cameraMoveCfgPath": "Camera_Fischl_Skill_E_Loop",
+              "target": "Self",
+            },
+          ],
+        },
+        "DoSkill": {
+          "stacking": "MultipleAllRefresh",
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "doOffStage": false,
+              "modifierName": "CrowQueen_DoAttack_Once",
+            }, //AttachModifer:CrowQueen_DoAttack_Once
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Hide_Avatar",
+            }, //AM:Hide_Avatar
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Effect_CrowHandler",
+            }, //AM:Effect_CrowHandler
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "setEnable": false,
+            }, //关闭碰撞，穿小怪
+            {
+              "$type": "AttachModifier",
+              "modifierName": "CrowQueen_DoAttackEventThinkInterval",
+            }, //AttachModifer:CrowQueen_DoAttackEventThinkInterval删除？？？？？？？？？？
+            {
+              "$type": "TriggerAbility",
+              "abilityID": "Ability_Fischl_Skill_S_ControlCrow_Hide",
+              "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Hide",
+            }, //Ability_Fischl_Skill_S_ControlCrow_Hide
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceListID": 11003,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Hide_Avatar_OnRemoved",
+            }, //材质恢复
+            {
+              "$type": "ApplyModifier",
+              "doOffStage": true,
+              "modifierName": "CrowQueen_Talent_314_DoHeal",
+            }, //AttachModifer:CrowQueen_Talent_314_DoHeal
+            {
+              "$type": "TriggerSetVisible",
+              "doOffStage": true,
+              "visible": true,
+            }, //设置角色可见
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "doOffStage": true,
+              "setEnable": true,
+            }, //关闭碰撞，穿小怪
+            {
+              "$type": "FireEffect",
+              "doOffStage": true,
+              "effectPattern": "Eff_Fischl_E_Skill_Appear",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "RootNode",
+              },
+            }, //特效
+            {
+              "$type": "SetGlobalPos",
+              "doOffStage": true,
+              "key": "CrowPos",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "target": "Self",
+                "offset": {
+                  "x": 1.0,
+                  "y": 0.0,
+                  "z": 0.5,
+                },
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                }
+              },
+            }, //SetGlobalPos
+            {
+              "$type": "TriggerAbility",
+              "doOffStage": true,
+              "abilityID": "Ability_Fischl_Skill_S_ControlCrow_Show",
+              "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Show",
+            }, //Ability_Fischl_Skill_S_ControlCrow_Show
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "Effect_Crow",
+            }, //RM:Effect_Crow
+            {
+              "$type": "AvatarExitCameraShot",
+              "doOffStage": true,
+            },
+          ],
+          "properties": {
+            "Animator_MoveSpeedRatio": "%CrowQueen_MoveSpeedRatio",
+            "Actor_SubHurtDelta": "%AS_Fischl_ProudSkill_33_SubHurt",
+            "Actor_EndureDelta": 0, //护盾期间霸体
+          },
+          "onAvatarOut": [
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "DoSkill_Handle",
+            },
+          ],
+        },
+        "Hide_Avatar": {
+          "duration": 0.04,
+          "onRemoved": [
+            {
+              "$type": "TriggerSetVisible",
+              "visible": false,
+            }, //设置角色不可见
+          ],
+        },
+        "Effect_CrowHandler": {
+          "duration": 0.08,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_E_Skill_Disappear",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "RootNode",
+              },
+            }, //特效
+          ],
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Effect_Crow",
+            },
+            {
+              "$type": "ActCameraRadialBlur",
+              "cameraRadialBlur": {
+                "power": 0.8,
+                "blurTime": 0.2,
+                "fadeTime": 0.1,
+              },
+            }, //屏幕模糊
+
+          ],
+        },
+        "Effect_Crow": {
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "DungeonFogEffects",
+              "enable": true,
+              "cameraFogEffectName": "Eff_Camera_Fischl_Skill_E_CrowQueen",
+              "localOffset": {
+                "x": 0,
+                "y": 0,
+                "z": -3,
+              },
+            }, //DungeonFogEffects
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_E_Skill_CrowsArea_Loop",
+            }, //绑特效:Eff_Fischl_E_Skill_CrowsArea_Loop
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_Skill_E_Crow",
+            }, //绑特效:Eff_Fischl_Skill_E_Crow
+            {
+              "$type": "ApplyModifier",
+              "doOffStage": true,
+              "modifierName": "ResetCameraParam",
+            }, //ApplyModifier:ResetCameraParam
+          ],
+          "onRemoved": [
+            {
+              "$type": "DungeonFogEffects",
+              "doOffStage": true,
+              "enable": false,
+              "cameraFogEffectName": "Eff_Camera_Fischl_Skill_E_CrowQueen",
+              "localOffset": {
+                "x": 0,
+                "y": 0,
+                "z": -3,
+              },
+            },
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "FlyCamera",
+            },
+          ],
+        },
+        "ResetCameraParam": {
+          "duration": 0.16,
+          "doOffStage": true,
+          "onRemoved": [
+            //{
+            //  "$type": "AvatarExitCameraShot",
+            //  "doOffStage": true,
+            //},
+            //{
+            //  "$type": "AvatarCameraParam",
+            //  "lockParam": true,
+            //  "cameraParam": {
+            //    "forceRadius": 10.0,
+            //    "forceRadiusDuration": 0.6,
+            //  },
+            //},
+            //{
+            //  "doOffStage": true,
+            //  "$type": "AvatarCameraParam",
+            //  "lockParam": false,
+            //  "cameraParam": {
+            //    "forceRadius": 10.0,
+            //    "forceRadiusDuration": 0.6,
+            //  },
+            //},
+            {
+              "$type": "ApplyModifier",
+              "doOffStage": true,
+              "modifierName": "FlyCamera",
+            }, //ApplyModifier:ResetCameraParam
+          ],
+        },
+        "FlyCamera": {
+          "onAdded": [
+            //{
+            //  "$type": "AvatarEnterCameraShot",
+            //  "cameraMoveCfgPath": "Camera_Venti_WindBlade",
+            //},
+          ],
+          "onRemoved": [
+
+          ],
+
+        },
+        "CrowQueen_DoAttackEventThinkInterval": {
+          "thinkInterval": 0.35,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "CrowQueen_DoAttack_Loop",
+            }, //ApplyModifier:CrowQueen_DoAttack
+          ],
+        },
+        "CrowQueen_DoAttack_Loop": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "duration": 0.0,
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 3,
+                  "ignoreMassive": true,
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationTag": "Elemental_Burst",
+                  "attackTag": "Elemental_Burst",
+                  "attackProperty": {
+                    "damagePercentage": "%AS_Fischl_ProudSkill_33_LoopDamage_AttackRatio",
+                    "bonusCritical": 0,
+                    "elementType": "Electric",
+                    "elementDurability": 25,
+                    "strikeType": "Blunt",
+                    "enBreak": 150,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "default",
+                    "hitLevel": "Air", //hitlevel = 2
+                    "retreatType": "ByTangent",
+                    "hitImpulseX": 800, //hitlevel = 2
+                    "hitImpulseY": 100, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.01,
+                    "muteHitText": false,
+                  },
+                  "forceCameraShake": false,
+                  "cameraShake": {
+                    "shakeType": "Center",
+                    "shakeRange": 0.05,
+                    "shakeTime": 0.06,
+                  },
+                }
+              },
+            },
+          ],
+        }, //删除？？？？？？？？？？
+
+        "CrowQueen_DoAttack_Once": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "duration": 0.0,
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 5,
+                  "ignoreMassive": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ArrowRainPos",
+                  },
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationTag": "Elemental_Burst",
+                  "attackTag": "Elemental_Burst",
+                  "attackProperty": {
+                    "damagePercentage": "%AS_Fischl_Talent_334_OnceDamage_AttackRatio",
+                    "bonusCritical": 0,
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "strikeType": "Pierce",
+                    "enBreak": 500,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "default",
+                    "hitLevel": "Heavy", //hitlevel = 3
+                    "hitImpulseX": 200, //hitlevel = 3
+                    "hitImpulseY": 0, //hitlevel = 3
+                    "retreatType": "ByOriginOwner",
+                    "reboundRatio": 0,
+                    "canBeDefenceHalt": false,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.01,
+                    "muteHitText": false
+                  },
+                  "forceCameraShake": false,
+                  "cameraShake": {
+                  },
+                }
+              },
+            }, //伤害
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "shakeType": "Center",
+                "shakeRange": 0.3,
+                "shakeTime": 0.2,
+                "shakeDistance": 30,
+                "extension": {
+                  "rangeAttenuation": 0.3,
+                },
+              },
+            }, //震动
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_CrowQueen_LastAttack",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "attachPointName": "RootNode",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.2,
+                  "z": 0.0,
+                },
+              },
+            }, //特效
+          ],
+        },
+        "CrowQueen_Talent_314_DoHeal": {
+          "duration": 0.3,
+          "doOffStage": true,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "HealHP",
+              "target": "Applier",
+              "doOffStage": true,
+              "amountByCasterMaxHPRatio": "%AS_Fischl_Talent_334_HealHp_MaxHpRatio",
+              "predicates": [
+                {
+                  "$type": "ByUnlockTalentParam",
+                  "talentParam": "Avatar_Fischl_Talent_334",
+                },
+              ],
+            },
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ReviveElemEnergyMixin",
+              "doOffStage": true,
+              "type": "Both",
+              "period": 0.2,
+              "baseEnergy": "%AS_Fischl_ProudSkill_33_ReviveElemEnergy",
+              "ratio": 1,
+            },
+          ],
+        },
+        //"UNIQUE_Avatar_ChargeEfficiencyDelta": {
+        //  "isUnique": true,
+        //  "stacking": "Unique",
+        //  "properties": {
+        //    "Actor_ChargeEfficiencyDelta": "%AS_Fischl_Talent_334_ChargeEfficiency_Delta",
+        //  },
+        //},
+      },
+      "abilitySpecials": {
+        "CrowQueen_MoveSpeedRatio": 0,
+        "CrowQueen_Time": 4,
+        "CrowQueen_BS_DelayTime": 0.2,
+
+        "AS_Fischl_ProudSkill_33_SubHurt": 0,
+        "AS_Fischl_ProudSkill_33_LoopDamage_AttackRatio": 1,
+        "AS_Fischl_ProudSkill_33_ReviveElemEnergy": 0, //天赋加成
+
+        //"AS_Fischl_ProudSkill_33_OnceDamage_AttackRatio": 0.2,
+        "AS_Fischl_Talent_334_OnceDamage_AttackRatio": 0, //天赋加成
+
+        "AS_Fischl_Talent_334_HealHp_MaxHpRatio": 0,
+      },
+    },
+  }, //Ability_Fischl_Skill_E_CrowQueen
+  /**/
+
+  //====================================================蓄力射击
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_PressShoot",
+      "abilityMixins": [
+        {
+          "$type": "ButtonHoldChargeMixin",
+          "skillID": 10311,
+          "chargeTime": 0.2,
+          "OnBeginUncharged": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "DoSkill",
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "intID": "SkillID",
+              "value": 100,
+            },
+          ],
+          "OnReleaseUncharged": [
+            {
+              "$type": "SetCameraLockTime",
+              "lockTime": 0.3,
+            },
+            {
+              "$type": "EntityDoSkill",
+              "skillID": 10315,
+              "isHold": true,
+            },
+          ],
+          "OnBeginCharged": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "DoSkill",
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "intID": "SkillID",
+              "value": 101,
+            },
+          ],
+          "OnReleaseCharged": [
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 10311,
+            },
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 10314,
+            },
+            {
+              "$type": "EntityDoSkill",
+              "skillID": 10315,
+              "isHold": true,
+            },
+          ],
+          "chargeStateIDs": [
+            "ShootBS",
+            "Shoot",
+            "FastAim",
+            "FastAimShoot"
+          ],
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FastAim",
+            "FastAimShoot"
+          ],
+          "modifierName": "KeepFastAiming",
+        },
+        {
+          // 当快速瞄准射击结束时，会设置FastAimShootFinish，使得动画从FastAim状态出来，同时会通过FastAimShooting防止在射击过程中点击了瞄准按钮直接退出
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FastAimShoot"
+          ],
+          "modifierName": "SetFastAimShooting",
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "ShootBS",
+            "FastAim",
+            "FastAimShoot"
+          ],
+          "modifierName": "SetNeedAimEndStates",
+        },
+      ],
+      "modifiers": {
+        "KeepFastAiming": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "FastAiming",
+              "value": true,
+            },
+            {
+              "$type": "AvatarEnterFocus",
+              "cameraFollowLower": {
+                "x": 0.755,
+                "y": 0.17,
+                "z": -1.9
+              },
+              "cameraFollowUpper": {
+                "x": 0.755,
+                "y": 0.37,
+                "z": -1.6
+              },
+              "cameraFastFocusMode": true,
+              "faceToTarget": true,
+              "faceToTargetAngleThreshold": 360,
+              "assistance": {
+                "ps4": {
+                  "useFocusSticky": true,
+                  "useGyro": false,
+                },
+                "other": {
+                  "useFocusSticky": true,
+                  "useGyro": true,
+                },
+              },
+              "canMove": true,
+              "vcam_fov": 30,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "FastAiming",
+              "value": false,
+            },
+            {
+              "$type": "AvatarExitFocus",
+              "keepRotation": true,
+            },
+          ],
+        },
+        "SetFastAimShooting": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "FastAimShooting",
+              "value": true,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "FastAimShooting",
+              "value": false,
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "AimEnd",
+              "predicates": [
+                {
+                  "$type": "ByAnimatorBool",
+                  "parameter": "FastAiming",
+                  "value": true
+                },
+              ]
+            },
+          ]
+        },
+        "SetNeedAimEndStates": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "InStatesNeedAimEnd",
+              "value": true,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "InStatesNeedAimEnd",
+              "value": false,
+            },
+          ]
+        }
+      },
+    },
+  }, //Avatar_Fischl_PressShoot  （按普通攻击）
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_AimPressShoot",
+      "abilityMixins": [
+        {
+          "$type": "ButtonHoldChargeMixin",
+          "skillID": 10314,
+          "chargeTime": 0,
+          "OnReleaseCharged": [
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 10311,
+            },
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 10314,
+            },
+            {
+              "$type": "EntityDoSkill",
+              "skillID": 10315,
+              "isHold": true,
+            },
+          ],
+          "chargeStateIDs": [
+            "Aim",
+            "AimShoot"
+          ],
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Aim",
+            "AimShoot"
+          ],
+          "modifierName": "KeepAiming",
+        },
+        {
+          // 通过AimShooting防止在射击过程中点击了瞄准按钮直接退出
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "AimShoot"
+          ],
+          "modifierName": "SetAimShooting",
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Aim",
+            "AimShoot"
+          ],
+          "modifierName": "SetNeedAimEndStates",
+        },
+      ],
+      "modifiers": {
+        "KeepAiming": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "Aiming",
+              "value": true,
+            },
+            {
+              "$type": "AvatarEnterFocus",
+              "cameraFollowLower": {
+                "x": 0.755,
+                "y": 0.17,
+                "z": -1.9
+              },
+              "cameraFollowUpper": {
+                "x": 0.755,
+                "y": 0.37,
+                "z": -1.6
+              },
+              "cameraFastFocusMode": true,
+              "faceToTarget": true,
+              "faceToTargetAngleThreshold": 360,
+              "assistance": {
+                "ps4": {
+                  "useFocusSticky": true,
+                  "useGyro": false,
+                },
+                "other": {
+                  "useFocusSticky": true,
+                  "useGyro": true,
+                },
+              },
+              "canMove": true,
+              "vcam_fov": 30,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "Aiming",
+              "value": false,
+            },
+            {
+              "$type": "AvatarExitFocus",
+              "keepRotation": true,
+            },
+          ],
+        },
+        "SetAimShooting": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "AimShooting",
+              "value": true,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "AimShooting",
+              "value": false,
+            },
+          ]
+        },
+        "SetNeedAimEndStates": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "InStatesNeedAimEnd",
+              "value": true,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "boolID": "InStatesNeedAimEnd",
+              "value": false,
+            },
+          ]
+        }
+      },
+    },
+  }, //Avatar_Fischl_AimPressShoot  （按瞄准射击）
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootAimingArrow_FX",
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Aim",
+            "FastAim",
+          ],
+          "modifierName": "Fischl_Arrow_FX",
+        },
+      ],
+      "modifiers": {
+        "Fischl_Arrow_FX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Bow_Arrow",
+            },
+          ]
+        }
+      }
+    }
+  }, //Avatar_Fischl_ShootAimingArrow_FX
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootAimingArrow_Charge",
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Aim",
+            "FastAim",
+          ],
+          "modifierName": "ShootAimingArrow_Charge_Handler",
+        }, //AttachToStateIDMixin:ShootAimingArrow_Charge_Handler
+        {
+          "$type": "AttachToStateIDMixin", //播放瞄准蓄力特效
+          "stateIDs": [
+            "Aim",
+            "AimShoot",
+            "FastAim",
+            "FastAimShoot"
+          ],
+          "modifierName": "ShowAimingEffect_Handler",
+        }, //AttachToStateIDMixin:ShowAimingEffect_Handler
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Aim",
+            "FastAim",
+            "FastAimShoot",
+            "AimShoot"
+          ],
+          "modifierName": "ShootAimingArrow_Charge_Remove",
+        }, //AttachToStateIDMixin:ShootAimingArrow_Charge_Remove
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Enchanted_Time",
+          "value": -5,
+          "useLimitRange": true,
+          "maxValue": 5,
+          "minValue": 0,
+        },
+        {
+          "$type": "RemoveModifier",
+          "modifierName": "AimChargeMark",
+        },
+        {
+          "$type": "RemoveModifier",
+          "modifierName": "Magic_Arrow_Glow_02",
+        },
+        {
+          "$type": "RemoveModifier",
+          "modifierName": "Magic_Arrow_Glow_01",
+        },
+      ],
+      "modifiers": {
+        "ShowAimingEffect_Handler": {
+          "onAdded": [
+
+          ],
+          "thinkInterval": 0.1,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "modifierName": "Magic_Arrow_Glow_01",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Enchanted_Time",
+                  "value": 1,
+                  "forceByCaster": true,
+                  "compareType": "Equal",
+                },
+              ]
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Magic_Arrow_Glow_02",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Enchanted_Time",
+                  "value": 4,
+                  "forceByCaster": true,
+                  "compareType": "MoreThanAndEqual",
+                },
+              ]
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Ball_Show",
+              "target": "Self",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "Magic_Arrow_Glow_02",
+            },
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "Magic_Arrow_Glow_01",
+            }
+          ]
+        },
+        "ShootAimingArrow_Charge_Handler": {
+          "thinkInterval": 0.3,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "AimChargeMark",
+            },
+          ],
+        },
+        "ShootAimingArrow_Charge_Remove": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Enchanted_Time",
+              "value": -5,
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "AimChargeMark",
+            }
+          ],
+        },
+        "AimChargeMark": {
+          "stacking": "MultipleRefreshNoRemove",
+          "stackingOption": {
+            "maxModifierNumForMultipleType": 5,
+          },
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Enchanted_Time",
+              "value": 1,
+              "useLimitRange": true,
+              "maxValue": 5,
+              "minValue": 0,
+            },
+          ],
+        },
+        "Magic_Arrow_Glow_01": {
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "ClearGlobalValue",
+              "key": "_Fischl_Crow_AimShoot",
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Fischl_Crow_AimShoot",
+              "value": 0,
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Once_01",
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Loop_01",
+            },
+          ],
+        },
+        "Magic_Arrow_Glow_02": {
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "target": "Self",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_Crow_AimShoot",
+                  "value": 0,
+                },
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Once_02",
+                },
+                {
+                  "$type": "AttachEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Loop_02",
+                },
+              ],
+              "failActions": [
+                {
+                  "$type": "AttachEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Once_02",
+                },
+                {
+                  "$type": "AttachEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_Glow_Loop_02",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootAimingArrow_Charge  （角色蓄力）
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_Aiming",
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "target": "Self",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Enchanted_Time",
+              "value": 3,
+              "forceByCaster": true,
+              "compareType": "LessAndEqual",
+            },
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031006,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "FocusAnchor",
+                  "attachPointTargetType": "Self",
+                }
+              },
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ElectricMagic_ShootArrow",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponR",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": 0.9, // + means forward, - means backward
+                }
+              },
+            }, //FireEffect
+          ],
+          "failActions": [
+            {
+              "$type": "Predicated",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_Crow_AimShoot",
+                  "value": 0,
+                },
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "bulletID": 41031007,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "attachPointName": "WeaponL",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0,
+                    },
+                    "direction": {
+                      "$type": "ConfigDirectionByAttachPoint",
+                      "attachPointName": "FocusAnchor",
+                      "attachPointTargetType": "Self",
+                    }
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Enchanted_Time",
+                      "value": 4,
+                      "forceByCaster": true,
+                      "compareType": "MoreThanAndEqual",
+                    },
+                  ]
+                }, //TriggerBullet
+                {
+                  "$type": "FireEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_OnShooting",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "attachPointName": "WeaponR",
+                    "offset": {
+                      "x": 0.0, // + means up, - means down
+                      "y": 0.0, // + means left, - means right
+                      "z": 0.9, // + means forward, - means backward
+                    }
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Enchanted_Time",
+                      "value": 4,
+                      "forceByCaster": true,
+                      "compareType": "MoreThanAndEqual",
+                    },
+                  ]
+                }, //FireEffect
+              ],
+              "failActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "bulletID": 41031014,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "attachPointName": "FocusAnchor",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 1.0,
+                    },
+                    "direction": {
+                      "$type": "ConfigDirectionByDefault",
+                      "angleOffset": {
+                        "x": 2.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                      },
+                    }
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Enchanted_Time",
+                      "value": 4,
+                      "forceByCaster": true,
+                      "compareType": "MoreThanAndEqual",
+                    },
+                  ]
+                }, //TriggerBullet
+                {
+                  "$type": "FireEffect",
+                  "effectPattern": "Eff_ElectricMagic_Arrow_OnShooting",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "attachPointName": "WeaponR",
+                    "offset": {
+                      "x": 0.0, // + means up, - means down
+                      "y": 0.0, // + means left, - means right
+                      "z": 0.9, // + means forward, - means backward
+                    }
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Enchanted_Time",
+                      "value": 4,
+                      "forceByCaster": true,
+                      "compareType": "MoreThanAndEqual",
+                    },
+                  ],
+                }, //FireEffect
+              ],
+            },
+          ],
+        },
+
+
+        //===========================================
+
+        //===========================================
+        {
+          "$type": "ActCameraShake",
+          "cameraShake": {
+            "shakeType": "Center",
+            "shakeRange": 0.2,
+            "shakeTime": 0.12,
+            "shakeDistance": 30,
+            "extension": {
+              "baseOnCamera": true,
+            },
+          },
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Enchanted_Time",
+              "value": 4,
+              "forceByCaster": true,
+              "compareType": "MoreThanAndEqual",
+            },
+          ]
+        }, //ActCameraShake
+      ],
+    },
+  }, //Avatar_Fischl_ShootArrow_Aiming  （射击）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ExtraAttack_Element_Hit",
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Enchanted_Electric",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "AimingArrowElementBall",
+          "target": "Self",
+        },
+        {
+          "$type": "SetOverrideMapValue",
+          "overrideMapKey": "_IS_FISCHL_ARROW_FIND_CROW",
+          "value": 0,
+        }
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "SetOverrideMapValue",
+          "overrideMapKey": "_IS_FISCHL_ARROW_FIND_CROW",
+          "value": 1,
+          "otherTargets": {
+            "$type": "SelectTargetsByShape",
+            "shapeName": "CircleR2",
+            "centerBasedOn": "Self",
+            "campTargetType": "All",
+            "campBasedOn": "Self",
+          },
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Fischl_SkillGadget_Crow",
+              "value": 1,
+              "compareType": "Equal",
+            },
+            {
+              "$type": "ByUnlockTalentParam",
+              "talentParam": "Avatar_Fischl_ProudSkill_21",
+            },
+          ],
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "DoAttack",
+          "predicates": [
+            {
+              "$type": "ByTargetOverrideMapValue",
+              "target": "Self",
+              "targetAbilityName": "Avatar_Fischl_ExtraAttack_Element_Hit",
+              "targetKey": "_IS_FISCHL_ARROW_FIND_CROW",
+              "targetValue": 0,
+              "logic": "Equal",
+            },
+          ],
+        },
+        {
+          "$type": "TriggerAbility",
+          "abilityID": "Avatar_Fischl_ExtraAttack_Element_FindCrow",
+          "abilityName": "Avatar_Fischl_ExtraAttack_Element_FindCrow",
+          "predicates": [
+            {
+              "$type": "ByTargetOverrideMapValue",
+              "target": "Self",
+              "targetAbilityName": "Avatar_Fischl_ExtraAttack_Element_Hit",
+              "targetKey": "_IS_FISCHL_ARROW_FIND_CROW",
+              "targetValue": 1,
+              "logic": "Equal",
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "DoAttack": {
+          "duration": 1.0,
+          "onAdded": [
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackBox",
+                  "triggerType": "TriggerNoRepeat",
+                  "size": {
+                    "x": 0.1,
+                    "y": 0.1,
+                    "z": 1.0,
+                  },
+                  "born": {
+                    "$type": "ConfigBornByCollisionPoint",
+                    "offset": {
+                      "x": 0.0, // + means up, - means down
+                      "y": 0.0, // + means left, - means right
+                      "z": -0.5, // + means forward, - means backward
+                    }
+                  },
+                  "checkHitLayerType": "Both",
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attackTag": "ExtraAttack",
+                  "attackProperty": {
+                    "damagePercentage": "%Fischl_ProudSkill_31_P7_ChargeElementDamage_Percentage",
+                    "strikeType": "Pierce",
+                    "elementType": "Electric",
+                    "elementDurability": 25,
+                    "enBreak": 20,
+                    "enHeadBreak": 60,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "Eff_ElectricMagic_Arrow_Hit",
+                    "hitLevel": "Light", //hitlevel = 2
+                    "hitImpulseX": 200, //hitlevel = 2
+                    "hitImpulseY": 0, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.01,
+                    "muteHitText": false,
+                  },
+                  "canHitHead": true,
+                  "hitHeadPattern": {
+                    "onHitEffectName": "Eff_ElectricMagic_Arrow_Hit", //爆头特效
+                    "hitLevel": "Air", //hitlevel = 5
+                    "hitImpulseX": 480, //hitlevel = 5
+                    "hitImpulseY": 600, //hitlevel = 5
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.12,
+                    "hitHaltTimeScale": 0.01,
+                    "muteHitText": false,
+                  },
+                  "bulletWane": {
+                    "waneDelay": 0.7, // 表示从Bullet创生之后这么久，开始套用衰减规则
+                    "damageWaneInterval": 0.05, // 伤害衰减周期，每过这么久，进行一次伤害衰减
+                    "damageWaneRatio": 0.1, // 每次进行伤害衰减时，按照DamageWaneRatio的比例，在damagePercentage上进行【扣除】，最多扣除到0
+                    "hitLevelWaneInterval": 0.1, // 受击等级衰减周期，每过这么久，进行一次受击等级衰减，每次将当前受击等级往下降一级：Air→Heavy→Light→Shake→Mute
+                    "hitLevelWaneMin": "Mute", // 受击等级最少衰减为这个等级。如果原本就不高于这个等级，则不予衰减。
+                    "damageWaneMinRatio": 0.1,
+                    "elementDurabilityWaneInterval": 0.05,
+                    "elementDurabilityWaneRatio": 0.1,
+                    "elementDurabilityWaneMinRatio": 0.1,
+                  },
+                },
+              },
+              "predicates": [
+                {
+                  "$type": "ByHasElement",
+                  "element": "Electric",
+                },
+              ],
+            },
+          ],
+        },
+        "ShootArrow_Enchanted_Electric": {
+          "elementType": "Electric",
+          "elementDurability": 20,
+          "onAdded": [
+          ]
+        },
+        "AimingArrowElementBall": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "attackTags": [
+                    "ExtraAttack"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "modifierName": "Ball",
+                  "target": "Target",
+                },
+              ],
+            },
+          ],
+        },
+        "Ball": {
+          "duration": 1.0,
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "GenerateElemBall",
+                  "configID": 2020,
+                  "baseEnergy": 3,
+                  "ratio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "Fischl_ProudSkill_31_P7_ChargeElementDamage_Percentage": 0,
+      },
+    },
+  }, //Avatar_Fischl_ExtraAttack_Element_Hit
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ExtraAttack_Element_BulletFx",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "ArrowEffectModifier",
+          "target": "Self",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "FireHitEffect",
+          "predicates": [
+            {
+              "$type": "ByHasElement",
+              "element": "Electric",
+            },
+          ],
+          "hitScene": {
+            "defaultEffect": "Eff_ElectricMagic_Arrow_Hit",
+            "surfaceEffect": {
+              "Water": "Eff_Arrow_Hit_Water"
+            }
+          },
+        },
+        {
+          "$type": "FireHitEffect",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByHasElement",
+                  "element": "Electric",
+                },
+              ],
+            },
+          ],
+          "hitScene": {
+            "defaultEffect": "Eff_Arrow_Hit_Earth",
+            "surfaceEffect": {
+              "Water": "Eff_Arrow_Hit_Water"
+            }
+          },
+        },
+      ],
+      "modifiers": {
+        "ArrowEffectModifier": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_ElectricMagic_Arrow_Fly_Trail",
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_ElectricMagic_Arrow_Fly_Particle",
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ExtraAttack_Element_BulletFx
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ExtraAttack_WithoutElement_Hit",
+      "onAdded": [
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1.0,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -0.5, // + means forward, - means backward
+                }
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attackTag": "ExtraAttack",
+              "attenuationTag": "ExtraAttack",
+              "attackProperty": {
+                "damagePercentage": "%Fischl_ProudSkill_31_P6_ExtraAttack_WithoutElement_Damage_Percentage",
+                "strikeType": "Pierce",
+                "enBreak": 10,
+                "enHeadBreak": 30,
+              },
+              "hitPattern": {
+                "onHitEffectName": "default",
+                "hitLevel": "Light", //hitlevel = 2
+                "hitImpulseX": 200, //hitlevel = 2
+                "hitImpulseY": 0, //hitlevel = 2
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "canHitHead": true,
+              "hitHeadPattern": {
+                "onHitEffectName": "Eff_Arrow_Hit_Head",
+                "hitLevel": "Air", //hitlevel = 5
+                "hitImpulseX": 480, //hitlevel = 5
+                "hitImpulseY": 600, //hitlevel = 5
+                "reboundRatio": 0,
+                "hitHaltTime": 0.12,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "bulletWane": {
+                "waneDelay": 0.7, // 表示从Bullet创生之后这么久，开始套用衰减规则
+                "damageWaneInterval": 0.05, // 伤害衰减周期，每过这么久，进行一次伤害衰减
+                "damageWaneRatio": 0.1, // 每次进行伤害衰减时，按照DamageWaneRatio的比例，在damagePercentage上进行【扣除】，最多扣除到0
+                "hitLevelWaneInterval": 0.1, // 受击等级衰减周期，每过这么久，进行一次受击等级衰减，每次将当前受击等级往下降一级：Air→Heavy→Light→Shake→Mute
+                "hitLevelWaneMin": "Mute", // 受击等级最少衰减为这个等级。如果原本就不高于这个等级，则不予衰减。
+                "damageWaneMinRatio": 0.1,
+                "elementDurabilityWaneInterval": 0.05,
+                "elementDurabilityWaneRatio": 0.1,
+                "elementDurabilityWaneMinRatio": 0.1,
+              },
+            }
+          },
+        },
+      ],
+      "abilitySpecials": {
+        "Fischl_ProudSkill_31_P6_ExtraAttack_WithoutElement_Damage_Percentage": 0,
+      },
+    },
+  }, //Avatar_Fischl_ExtraAttack_WithoutElement_Hit
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ExtraAttack_WithoutElement_BulletFx",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Venti_Arrow_Fly_Big",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "FireHitEffect",
+          "hitScene": {
+            "defaultEffect": "Eff_Arrow_Hit_Earth",
+            "surfaceEffect": {
+              "Water": "Eff_Arrow_Hit_Water",
+            }
+          },
+        },
+      ],
+    },
+  }, //Avatar_Fischl_ExtraAttack_WithoutElement_BulletFx
+
+
+  /**/
+  //====================================================普通攻击
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_01",
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031001,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "WeaponL",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Fx"
+        },
+      ],
+      "modifiers": {
+        "ShootArrow_Fx": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_ShootArrow_Small",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootArrow_01
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_02",
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031002,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "WeaponL",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Fx"
+        }
+      ],
+      "modifiers": {
+        "ShootArrow_Fx": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_ShootArrow_Small",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootArrow_02
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_03",
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031003,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "WeaponL",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Fx"
+        }
+      ],
+      "modifiers": {
+        "ShootArrow_Fx": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_ShootArrow_Big",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootArrow_03
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_04",
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031004,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "WeaponL",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Fx"
+        }
+      ],
+      "modifiers": {
+        "ShootArrow_Fx": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_ShootArrow_Small",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootArrow_04
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ShootArrow_05",
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031005,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "WeaponL",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShootArrow_Fx"
+        }
+      ],
+      "modifiers": {
+        "ShootArrow_Fx": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_ShootArrow_Big_Attack05",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "WeaponL",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ShootArrow_05
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_NormalAttack_Smoke",
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_ShootArrow_Smoke",
+        },
+      ],
+    },
+  }, //Avatar_Fischl_NormalAttack_Smoke
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Effect_Fischl_ShootArrow_Trail_Light_Fx",
+      "onAdded": [
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_Attack_Small",
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "Fischl_ProudSkill_31",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "Fischl_ProudSkill_31": {
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_01"
+              ],
+              "damagePercentage": "%Fischl_ProudSkill_31_P1_Damage_Percentage",
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_02"
+              ],
+              "damagePercentage": "%Fischl_ProudSkill_31_P2_Damage_Percentage",
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_04"
+              ],
+              "damagePercentage": "%Fischl_ProudSkill_31_P4_Damage_Percentage",
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "Fischl_ProudSkill_31_P1_Damage_Percentage": 0,
+        "Fischl_ProudSkill_31_P2_Damage_Percentage": 0,
+        "Fischl_ProudSkill_31_P4_Damage_Percentage": 0,
+      },
+
+    },
+  }, //Effect_Fischl_ShootArrow_Trail_Light_Fx(攻击1-2-4拖尾)
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Effect_Fischl_ShootArrow_Trail_Fx",
+      "onAdded": [
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_Attack_Big",
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "Fischl_ProudSkill_31",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "Fischl_ProudSkill_31": {
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_03"
+              ],
+              "damagePercentage": "%Fischl_ProudSkill_31_P3_Damage_Percentage",
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_05"
+              ],
+              "damagePercentage": "%Fischl_ProudSkill_31_P5_Damage_Percentage",
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "Fischl_ProudSkill_31_P3_Damage_Percentage": 0,
+        "Fischl_ProudSkill_31_P5_Damage_Percentage": 0,
+      },
+    },
+  }, //Effect_Fischl_ShootArrow_Trail_Fx(攻击3-5拖尾)
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Effect_Fischl_ShootArrow_Hit_Fx",
+      "onAbilityStart": [
+        {
+          "$type": "FireHitEffect",
+          "hitScene": {
+            "defaultEffect": "Eff_Arrow_Hit_Earth",
+            "surfaceEffect": {
+              "Water": "Eff_Arrow_Hit_Water"
+            }
+          },
+        },
+      ],
+    },
+  }, //Effect_Fischl_ShootArrow_Hit_Fx
+
+  /**/
+  //===============================================================电乌鸦
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_CrowSummon_Aim",
+      "onAdded": [
+      ],
+      "abilityMixins": [
+        {
+          "$type": "SkillButtonHoldChargeMixin",
+          "skillID": 10312,
+          "beforeStateIDs": [
+            "SummonCrow_BS"
+          ],
+          "chargeLoopStateIDs": [
+            "SummonCrow_Charge",
+            "SummonCrow_Charge_Loop",
+          ],
+          "chargeLoopDurations": [
+            10,
+            10
+          ],
+          "nextLoopTriggerID": "NextLoopTrigger",
+          "endHoldTrigger": "EndHoldTrigger",
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SummonCrow_Charge",
+            "SummonCrow_Charge_Loop",
+            "SummonCrow_Charge_2",
+          ], //Hogyoku_Charge_2 是为了让相机退出的时机跟动作错开一些
+          "modifierName": "Focus",
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SummonCrow_Charge_Loop",
+          ],
+          "modifierName": "Charge",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031012,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "offset": {
+              "x": 0.2,
+              "y": 1.0,
+              "z": 0.6,
+            },
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "FocusAnchor",
+              "attachPointTargetType": "Self",
+              "maxAngle": 30,
+            }
+          },
+        },
+      ],
+      "modifiers": {
+        "Focus": {
+          "onAdded": [
+            {
+              "$type": "AvatarEnterFocus",
+              "cameraFollowLower": {
+                "x": 0.8,
+                "y": 0.2,
+                "z": -2.5,
+              },
+              "cameraFollowUpper": {
+                "x": 0.5,
+                "y": -0.2,
+                "z": 0.0,
+              },
+              "cameraFastFocusMode": true,
+              "dragButtonName": "Skill2",
+              "assistance": {
+                "ps4": {
+                  "useGyro": false,
+                },
+                "other": {
+                  "useGyro": true,
+                },
+              },
+              "canMove": false,
+              "showCrosshair": false,
+            },
+            {
+              "$type": "PlayEmoSync",
+              "emoSyncAssetPath": "Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_Bow_Fight_Aim",
+            },
+            {
+              "$type": "ControlEmotion",
+              "toggleBlink": false,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AvatarExitFocus",
+              "keepRotation": true,
+            },
+            {
+              "$type": "PlayEmoSync",
+              "emoSyncAssetPath": "Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_Normal",
+            },
+            {
+              "$type": "ControlEmotion",
+              "toggleBlink": true,
+            },
+          ],
+        },
+        "Charge": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Fischl_SummonCrow_Aim",
+              "value": 10,
+              "useLimitRange": true,
+              "maxValue": 10,
+              "minValue": 10,
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Aim_TargetPoint_Line",
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_E_Skill_Hand_Once",
+            },
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_E_Skill_Hand_Loop",
+            },
+          ],
+        },
+      },
+    },
+  }, //Ability_Fischl_Skill_S_CrowSummon_Aim
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_CrowSummon_NoAim",
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalPos",
+          "key": "CrowPos",
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "target": "Self",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.5,
+            },
+            "onGround": true,
+            "onGroundIgnoreWater": true,
+            "alongGround": true,
+            "onGroundRaycastUpDist": 2,
+          },
+        }, //SetGlobalPos
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_SummonCrow_Aim",
+          "value": 0,
+          "useLimitRange": true,
+          "maxValue": 0,
+          "minValue": 0,
+        },
+        {
+          "$type": "TriggerAbility",
+          "abilityID": "Ability_Fischl_Skill_S_CrowSummon",
+          "abilityName": "Ability_Fischl_Skill_S_CrowSummon",
+        }, //TriggerAbility
+      ],
+    },
+  }, //Ability_Fischl_Skill_S_CrowSummon_NoAim
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_CrowSummon_Aim_TriggerBullet",
+      "onAdded": [
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalPos",
+          "key": "CrowPos",
+          "target": "OriginOwner",
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+          },
+          "predicates": [
+            {
+              "$type": "ByTargetAltitude",
+              "value": 0.95,
+              "logic": "GreaterOrEqual",
+            },
+          ],
+        },
+        {
+          "$type": "SetGlobalPos",
+          "key": "CrowPos",
+          "target": "OriginOwner",
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+          },
+          "predicates": [
+            {
+              "$type": "ByTargetAltitude",
+              "value": 0.7,
+              "logic": "Lesser",
+            },
+          ],
+        },
+        {
+          "$type": "TriggerAbility",
+          "target": "OriginOwner",
+          "abilityID": "Ability_Fischl_Skill_S_CrowSummon",
+          "abilityName": "Ability_Fischl_Skill_S_CrowSummon",
+        }, //TriggerAbility
+      ],
+      "modifiers": {
+      },
+      "abilitySpecials": {
+      },
+    },
+  }, //Ability_Fischl_Skill_S_CrowSummon_Aim_TriggerBullet
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_CrowSummon_Aim_TriggerBullet_LifeOver",
+      "onAdded": [
+        //{
+        //  "$type": "ApplyModifier",
+        //  "modifierName": "HogyokuBullet_Elem_Ball",
+        //},
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalPos",
+          "key": "CrowPos",
+          "target": "OriginOwner",
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "target": "Self",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 10.0,
+            },
+            "onGround": true,
+            "onGroundIgnoreWater": true,
+            "alongGround": true,
+            "onGroundRaycastUpDist": 2,
+          },
+        },
+        {
+          "$type": "TriggerAbility",
+          "target": "OriginOwner",
+          "abilityID": "Ability_Fischl_Skill_S_CrowSummon",
+          "abilityName": "Ability_Fischl_Skill_S_CrowSummon",
+        }, //TriggerAbility
+      ],
+      "modifiers": {
+      },
+      "abilitySpecials": {
+      },
+    },
+  }, //Ability_Fischl_Skill_S_CrowSummon_Aim_TriggerBullet_LifeOver
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_CrowSummon",
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "globalValueKey": "_Fischl_Crow_Left_Time",
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+          ],
+          "removeAppliedModifier": true,
+          "modifierNameSteps": [
+            "AttachModifier_Steps_0", //Global_0
+            "AttachModifier_Steps_1", //Global_1
+            "AttachModifier_Steps_2" //Global_2
+          ],
+        },
+      ],
+      "onAdded": [
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "DoSkill",
+          "target": "Self",
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "DoSkill_GlobalValueLogic_1",
+          "target": "Self",
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "DoSkill_GlobalValueLogic_2",
+          "target": "Self",
+        },
+        {
+          "$type": "Predicated",
+          "targetPredicates": [
+            {
+              "$type": "ByUnlockTalentParam",
+              "talentParam": "Avatar_Fischl_Talent_B",
+            },
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Talent_B_SummonAttack",
+              "target": "Self",
+            },
+          ],
+          "failActions": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Normal_SummonAttack",
+              "target": "Self",
+            },
+          ],
+        },
+      ],
+      "onAvatarOut": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_Crow_State",
+          "doOffStage": true,
+          "value": 0,
+          "useLimitRange": true,
+          "maxValue": 0,
+          "minValue": 0,
+          "otherTargets": {
+            "$type": "SelectTargetsByChildren",
+            "configID": 41031008,
+          },
+        },
+      ],
+      "onAvatarIn": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_Crow_State",
+          "doOffStage": true,
+          "value": 1,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "minValue": 1,
+          "otherTargets": {
+            "$type": "SelectTargetsByChildren",
+            "configID": 41031008,
+          },
+        },
+      ],
+      "modifiers": {
+        "DoSkill": {
+          "duration": 0.3,
+          "onAdded": [
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 10312,
+              "cdRatio": 1,
+            }, //AvatarSkillStart
+            {
+              "$type": "CreateGadget",
+              "gadgetID": 41031008,
+              "campID": 3001,
+              "campTargetType": "Enemy",
+              "lifeByOwnerIsAlive": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+              },
+            }, //召唤乌鸦
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_E_Skill_Hand_OnSummon",
+            }, //FireEffect:Eff_Fischl_E_Skill_Hand_OnSummon
+          ],
+          "modifierMixins": [
+            {
+              "$type": "DoActionByCreateGadgetMixin",
+              "actionQueue": [
+                {
+                  "$type": "ApplyModifier",
+                  "modifierName": "ShowEffect_CreateGadgetHandle",
+                  "target": "Target",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Fischl_SkillGadget_Crow",
+                      "value": 1,
+                      "compareType": "Equal",
+                    },
+                  ],
+                },
+              ],
+            }, //DoActionByCreateGadgetMixin
+          ],
+        },
+        "DoSkill_GlobalValueLogic_1": {
+          "stacking": "Multiple",
+          "doOffStage": true,
+          "duration": "%AS_Fischl_ProudSkill_32_P4_Time+%AS_Fischl_ProudSkill_22_P2_TimeUp",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Fischl_Crow_Left_Time",
+              "doOffStage": true,
+              "value": 2,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "minValue": 2,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "doOffStage": true,
+              "key": "_Fischl_Crow_Left_Time",
+              "value": 1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 1,
+            },
+          ],
+        },
+        "DoSkill_GlobalValueLogic_2": {
+          "stacking": "Multiple",
+          "doOffStage": true,
+          "duration": "%AS_Fischl_ProudSkill_32_P4_Time+%AS_Fischl_ProudSkill_22_P2_TimeUp",
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "doOffStage": true,
+              "key": "_Fischl_Crow_Left_Time",
+              "value": 1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 1,
+            },
+          ],
+        },
+        "AttachModifier_Steps_0": {
+        },
+        "AttachModifier_Steps_1": {
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Death",
+              "doOffStage": true,
+              "ownedByLevel": true,
+              "doAfterDie": false,
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 41031008,
+              },
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Spine",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SkillGadget_Crow",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "KillGadget",
+              "doOffStage": true,
+              "gadgetInfo": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 41031008,
+              },
+            },
+          ],
+        },
+        "AttachModifier_Steps_2": {
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Ball_Show",
+              "target": "Self",
+            },
+          ],
+          "modifierMixins": [
+            {
+              "$type": "SwitchSkillIDMixin",
+              "doOffStage": true,
+              "target": "OriginOwner",
+              "fromSkillID": 10312,
+              "toSkillID": 10316,
+            },
+          ],
+        },
+        "ShowEffect_CreateGadgetHandle": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "ShowEffect_NoAim",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SummonCrow_Aim",
+                  "target": "Applier",
+                  "value": 0,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Crow_Summon_Show_NoAim",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SummonCrow_Aim",
+                  "target": "Applier",
+                  "value": 0,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "ShowEffect_Aim",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SummonCrow_Aim",
+                  "target": "Applier",
+                  "value": 0,
+                  "compareType": "MoreThan",
+                },
+              ],
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Crow_Summon_Show_Aim",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SummonCrow_Aim",
+                  "target": "Applier",
+                  "value": 0,
+                  "compareType": "MoreThan",
+                },
+              ],
+            },
+          ],
+        },
+        "ShowEffect_NoAim": {
+          "duration": 0.13,
+          "onAdded": [
+          ],
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Summon",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Spine",
+              },
+            },
+          ],
+        },
+        "ShowEffect_Aim": {
+          "duration": 0.13,
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Summon_Aim",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Spine",
+              },
+            },
+          ],
+        },
+        "Talent_B_SummonAttack": {
+          "duration": 0.2,
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Talent_B",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+              },
+            }, //FireEffect:Eff_Fischl_E_Skill_Hand_OnSummon
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "duration": 0.0,
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 3,
+                  "ignoreMassive": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "CrowPos",
+                  },
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationTag": "Elemental_Art",
+                  "attackTag": "Elemental_Art",
+                  "attackProperty": {
+                    "damagePercentage": "%AS_Fischl_ProudSkill_32_P2_SummonAttack+%AS_Fischl_Talent_332_Damage_AttackRatio",
+                    "bonusCritical": 0,
+                    "elementType": "Electric",
+                    "elementDurability": 25,
+                    "strikeType": "Pierce",
+                    "enBreak": 80,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "Eff_Fischl_Talent_B_Hit",
+                    "hitLevel": "Light", //hitlevel = 2
+                    "hitImpulseX": 200, //hitlevel = 2
+                    "hitImpulseY": 0, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+        "Normal_SummonAttack": {
+          "duration": 0.2,
+          "onRemoved": [
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "duration": 0.0,
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2,
+                  "ignoreMassive": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "CrowPos",
+                  },
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationTag": "Elemental_Art",
+                  "attackTag": "Elemental_Art",
+                  "attackProperty": {
+                    "damagePercentage": "%AS_Fischl_ProudSkill_32_P2_SummonAttack",
+                    "bonusCritical": 0,
+                    "elementType": "Electric",
+                    "elementDurability": 25,
+                    "strikeType": "Pierce",
+                    "enBreak": 80,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "Eff_Fischl_Talent_B_Hit",
+                    "hitLevel": "Light", //hitlevel = 2
+                    "hitImpulseX": 200, //hitlevel = 2
+                    "hitImpulseY": 0, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+
+      },
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_22_P2_TimeUp": 0,
+        "AS_Fischl_Talent_332_Damage_AttackRatio": 0,
+        "AS_Fischl_ProudSkill_32_P2_SummonAttack": 0,
+        "AS_Fischl_ProudSkill_32_P4_Time": 0,
+      },
+    },
+  }, //Ability_Fischl_Skill_S_CrowSummon
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_ControlCrow_NoAim",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "CrowBlink_Hide&Show",
+        },
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_E_Skill_Hand_OnControl",
+        },
+      ],
+      "modifiers": {
+        "CrowBlink_Hide&Show": {
+          "duration": 0.1,
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "abilityID": "Ability_Fischl_Skill_S_ControlCrow_Hide",
+              "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Hide",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "SetGlobalPos",
+              "key": "CrowPos",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "target": "Self",
+                "offset": {
+                  "x": 1.0,
+                  "y": 0.0,
+                  "z": 0.5,
+                },
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                }
+              },
+            }, //SetGlobalPos
+            {
+              "$type": "TriggerAbility",
+              "abilityID": "Ability_Fischl_Skill_S_ControlCrow_Show",
+              "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Show",
+            },
+          ],
+        },
+      },
+
+    },
+  }, //Ability_Fischl_Skill_S_ControlCrow_NoAim
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Hide",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "CrowBlink_Hide",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Fischl_Crow_Left_Time",
+              "target": "Self",
+              "value": 2,
+              "compareType": "MoreThanAndEqual",
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "CrowBlink_Hide": {
+          "duration": 0.25,
+          "onAdded": [
+            {
+              "$type": "KillGadget",
+              "gadgetInfo": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 41031008,
+              },
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Contnrol_Hide",
+              "ownedByLevel": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Ability_Fischl_Skill_S_ControlCrow_Hide
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Ability_Fischl_Skill_S_ControlCrow_Show",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "doOffStage": true,
+          "modifierName": "CrowBlink_Show",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Fischl_Crow_Left_Time",
+              "value": 2,
+              "compareType": "MoreThanAndEqual",
+            },
+          ],
+        },
+        //{
+        //  "$type": "ApplyModifier",
+        //  "modifierName": "Talent_B",
+        //  "target": "Self",
+        //  "predicates": [
+        //    {
+        //      "$type": "ByUnlockTalentParam",
+        //      "talentParam": "Avatar_Fischl_Talent_B",
+        //    },
+        //  ],
+        //},
+      ],
+      "modifiers": {
+        "CrowBlink_Show": {
+          "duration": 1,
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "AvatarSkillStart",
+              "doOffStage": true,
+              "skillID": 10316,
+              "cdRatio": 1,
+            },
+            {
+              "$type": "CreateGadget",
+              "doOffStage": true,
+              "gadgetID": 41031008,
+              "campID": 3001,
+              "campTargetType": "Enemy",
+              "lifeByOwnerIsAlive": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+              },
+            }, //CreateGadget
+            {
+              "$type": "FireEffect",
+              "doOffStage": true,
+              "effectPattern": "Eff_Fischl_S_Skill_Contnrol_Show",
+              "ownedByLevel": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+              },
+            }, //FireEffect
+          ],
+          "modifierMixins": [
+            {
+              "$type": "DoActionByCreateGadgetMixin",
+              "doOffStage": true,
+              "actionQueue": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "doOffStage": true,
+                  "triggerID": "Crow_Control_Show",
+                  "target": "Target",
+                },
+              ],
+            },
+          ],
+        },
+        "Talent_B": {
+          "duration": 0.2,
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Talent_B",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "CrowPos",
+              },
+            }, //FireEffect:Eff_Fischl_E_Skill_Hand_OnSummon
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "Enemy",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "duration": 0.0,
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 3,
+                  "ignoreMassive": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "CrowPos",
+                  },
+                },
+                "attackInfo": {
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationTag": "Elemental_Art",
+                  "attackTag": "Elemental_Art",
+                  "attackProperty": {
+                    "damagePercentage": "%AS_Fischl_Talent_332_Damage_AttackRatio",
+                    "bonusCritical": 0,
+                    "elementType": "Electric",
+                    "elementDurability": 25,
+                    "strikeType": "Pierce",
+                    "enBreak": 80,
+                  },
+                  "hitPattern": {
+                    "onHitEffectName": "Eff_Fischl_Talent_B_Hit",
+                    "hitLevel": "Light", //hitlevel = 2
+                    "hitImpulseX": 200, //hitlevel = 2
+                    "hitImpulseY": 0, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        //"AS_Fischl_Talent_332_Damage_AttackRatio": 0,
+      },
+    },
+  }, //Ability_Fischl_Skill_S_ControlCrow_Show
+
+  /**/
+  //==========================================================施工现场（创生物）
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Crow_Skill_S_SummonShowEffect",
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "ShowEffect",
+        },
+      ],
+      "modifiers": {
+        "ShowEffect": {
+          "duration": 0.36,
+          "onAdded": [
+            //{
+            //  "$type": "FireEffect",
+            //  "effectPattern": "Eff_Fischl_S_Skill_Summon",
+            //  "born": {
+            //    "$type": "ConfigBornBySelf",
+            //  },
+            //},
+          ],
+          "onRemoved": [
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_Fischl_S_Skill_Summon",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "RootNode",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_Crow_Skill_S_SummonShowEffect
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Crow_BeAttackedTrigger_Init",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "ElementElectric",
+          "target": "Self",
+        },
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_Crow_BeAttackedTrigger",
+          "value": 1,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "minValue": 1,
+        },
+      ],
+      "modifiers": {
+        "ElementElectric": {
+          "elementType": "Electric",
+          "elementDurability": 100,
+          "onRemoved": [
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_Crow_BeAttackedTrigger_Init
+  /**/
+  //==========================================================施工现场（创生物）
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Skill_S_Crow_Handle",
+      //"abilityMixins": [
+      //  {
+      //    "$type": "AttachModifierToSelfGlobalValueMixin",
+      //    "globalValueKey": "_Fischl_Crow_State",
+      //    "valueSteps": [
+      //      -0.5,
+      //      0.5,
+      //      1.5,
+      //    ],
+      //    "removeAppliedModifier": true,
+      //    "modifierNameSteps": [
+      //      "AttachModifier_Steps_0", //Global_0
+      //      "AttachModifier_Steps_1", //Global_1
+      //    ],
+      //  },
+      //],
+      "onAdded": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_Crow_State",
+          "doOffStage": true,
+          "value": 1,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "minValue": 1,
+        },
+        //{
+        //  "$type": "AttachModifier",
+        //  "modifierName": "CheckCreatorDistance",
+        //  "target": "Self",
+        //},
+        {
+          "$type": "AttachModifier",
+          "modifierName": "CheckCreator",
+          "target": "Self",
+        },
+        {
+          "$type": "SetGlobalPos",
+          "key": "CrowPos",
+          "target": "OriginOwner",
+          "born": {
+            "$type": "ConfigBornBySelf",
+          },
+        },
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Fischl_SkillGadget_Crow",
+          "value": 1,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "minValue": 1,
+        },
+        {
+          "$type": "CreateGadget",
+          "gadgetID": 41031010,
+          "campID": 3001,
+          "campTargetType": "Enemy",
+          "lifeByOwnerIsAlive": true,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "target": "Self",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+          },
+        }, //召唤受击盒
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_S_Skill_Show_Trail",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "Spine",
+          },
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "AutoAttack",
+          "target": "Self",
+        },
+        {
+          "$type": "AttachModifier",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_Fischl_Skill_S_Crow_TeamHandler",
+          "target": "Team",
+          "predicates": [
+            {
+              "$type": "ByUnlockTalentParam",
+              "talentParam": "Avatar_Fischl_ProudSkill_22",
+            },
+          ],
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Corw_Invincible",
+        },
+      ],
+      "onKill": [
+        {
+          "$type": "ClearGlobalValue",
+          "key": "_Fischl_SkillGadget_Crow",
+        },
+        {
+          "$type": "RemoveModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_Fischl_Skill_S_Crow_TeamHandler",
+        },
+      ],
+      "modifiers": {
+        "Corw_Invincible": {
+          "state": "IsGhostToEnemy",
+        },
+        "CheckCreator": {
+          "thinkInterval": 0.1,
+          "onThinkInterval": [
+            {
+              "$type": "KillSelf",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "target": "OriginOwner",
+                  "key": "_Fischl_Crow_Left_Time",
+                  "value": 1,
+                  "compareType": "LessAndEqual",
+                },
+              ],
+            },
+          ],
+        },
+        "CheckCreatorDistance": {
+          "thinkInterval": 0.1,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "modifierName": "CreatorOutRange",
+              "predicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "target": "OriginOwner",
+                  "compareType": "XYZ",
+                  "value": 10,
+                  "logic": "Greater",
+                },
+              ],
+            },
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "CreatorOutRange",
+              "predicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "target": "OriginOwner",
+                  "compareType": "XYZ",
+                  "value": 10,
+                  "logic": "LesserOrEqual",
+                },
+              ],
+            },
+          ],
+        },
+        "CreatorOutRange": {
+          "onAdded": [
+            //{
+            //  "$type": "AttachEffect",
+            //  "target": "Self",
+            //  "effectPattern": "Eff_Temp_Fischl_Attack_Range",
+            //},
+          ],
+        },
+        "AutoAttack": {
+          "thinkInterval": 1,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "targetPredicates": [
+                //{
+                //  "$type": "ByIsCombat",
+                //  "target": "OriginOwner",
+                //},
+                //{
+                //  "$type": "ByTargetGlobalValue",
+                //  "key": "_Fischl_Crow_State",
+                //  "value": 0,
+                //  "compareType": "Equal",
+                //},
+              ],
+              "successActions": [
+                {
+                  "$type": "SetSelfAttackTarget",
+                  "turnToTargetImmediately": true,
+                  "otherTargets": {
+                    "$type": "SelectTargetsByShape",
+                    "shapeName": "CircleLockEnemyR10H6HC",
+                    "centerBasedOn": "Self",
+                    "campTargetType": "Enemy",
+                    "campBasedOn": "Self",
+                    "sortType": "Nearest",
+                    "topLimit": 1,
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "entityTypes": [
+                        "Monster",
+                      ],
+                    },
+                  ],
+                },
+                {
+                  "$type": "Predicated",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByHasAttackTarget",
+                    },
+                    {
+                      "$type": "ByTargetPositionToSelfPosition",
+                      "compareType": "XYZ",
+                      "target": "SelfAttackTarget",
+                      "value": 10,
+                      "logic": "LesserOrEqual",
+                    },
+                    {
+                      "$type": "ByTargetHPValue",
+                      "target": "SelfAttackTarget",
+                      "HP": 0,
+                      "logic": "Greater",
+                    },
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "modifierName": "AutoAttack_RandomAttackPoint",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        "AutoAttack_RandomAttackPoint": {
+          "thinkInterval": 0.1,
+          "duration": "%AS_Fischl_ProudSkill_22_P1_AttackTimes",
+          "onThinkInterval": [
+            {
+              "$type": "SetRandomOverrideMapValue",
+              "overrideMapKey": "RandomAttackPoint",
+              "valueRangeMin": 1,
+              "valueRangeMax": 4,
+            },
+            {
+              "$type": "Predicated",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetOverrideMapValue",
+                  "targetKey": "RandomAttackPoint",
+                  "targetValue": 1,
+                  "logic": "LesserOrEqual",
+                },
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "modifierName": "Auto_AttackPoint_1",
+                },
+              ],
+              "failActions": [
+                {
+                  "$type": "Predicated",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetOverrideMapValue",
+                      "targetKey": "RandomAttackPoint",
+                      "targetValue": 2,
+                      "logic": "LesserOrEqual",
+                    },
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "modifierName": "Auto_AttackPoint_2",
+                    },
+                  ],
+                  "failActions": [
+                    {
+                      "$type": "Predicated",
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetOverrideMapValue",
+                          "targetKey": "RandomAttackPoint",
+                          "targetValue": 3,
+                          "logic": "LesserOrEqual",
+                        },
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "ApplyModifier",
+                          "modifierName": "Auto_AttackPoint_3",
+                        },
+                      ],
+                      "failActions": [
+                        {
+                          "$type": "ApplyModifier",
+                          "modifierName": "Auto_AttackPoint_4",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "AutoAttack_RandomAttackPoint_Talent",
+              "predicates": [
+                {
+                  "$type": "ByUnlockTalentParam",
+                  "talentParam": "Avatar_Fischl_Talent_336",
+                },
+              ],
+            },
+          ],
+        },
+        "AutoAttack_RandomAttackPoint_Talent": {
+          "thinkInterval": 0.1,
+          "duration": "%AS_Fischl_Talent_336_AttackTimesUp",
+          "onThinkInterval": [
+            {
+              "$type": "SetRandomOverrideMapValue",
+              "overrideMapKey": "RandomAttackPoint",
+              "valueRangeMin": 1,
+              "valueRangeMax": 4,
+            },
+            {
+              "$type": "Predicated",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetOverrideMapValue",
+                  "targetKey": "RandomAttackPoint",
+                  "targetValue": 1,
+                  "logic": "LesserOrEqual",
+                },
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "modifierName": "Auto_AttackPoint_1_Talent",
+                },
+              ],
+              "failActions": [
+                {
+                  "$type": "Predicated",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetOverrideMapValue",
+                      "targetKey": "RandomAttackPoint",
+                      "targetValue": 2,
+                      "logic": "LesserOrEqual",
+                    },
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "modifierName": "Auto_AttackPoint_2_Talent",
+                    },
+                  ],
+                  "failActions": [
+                    {
+                      "$type": "Predicated",
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetOverrideMapValue",
+                          "targetKey": "RandomAttackPoint",
+                          "targetValue": 3,
+                          "logic": "LesserOrEqual",
+                        },
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "ApplyModifier",
+                          "modifierName": "Auto_AttackPoint_3_Talent",
+                        },
+                      ],
+                      "failActions": [
+                        {
+                          "$type": "ApplyModifier",
+                          "modifierName": "Auto_AttackPoint_4_Talent",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+        "Auto_AttackPoint_1": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP1",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031016,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP1",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+            },
+          ],
+        },
+        "Auto_AttackPoint_2": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP2",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031018,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP2",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+
+            },
+          ],
+        },
+        "Auto_AttackPoint_3": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP3",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031016,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP3",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+
+            },
+          ],
+        },
+        "Auto_AttackPoint_4": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP4",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031018,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP4",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+            },
+          ],
+        },
+
+        "Auto_AttackPoint_1_Talent": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP1",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031019,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP1",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+            },
+          ],
+        },
+        "Auto_AttackPoint_2_Talent": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP2",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031020,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP2",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+
+            },
+          ],
+        },
+        "Auto_AttackPoint_3_Talent": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP3",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031019,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP3",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+
+            },
+          ],
+        },
+        "Auto_AttackPoint_4_Talent": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP4",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031020,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "AP4",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "randomAngleHor": 45,
+                  "angleOffset": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                  },
+                },
+              },
+            },
+          ],
+        },
+
+        "UNIQUE_Fischl_Skill_S_Crow_TeamHandler": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "CrowAttackAttach",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_Crow_Left_Time",
+                  "value": 0,
+                  "compareType": "LessAndEqual",
+                },
+              ],
+            },
+          ],
+        },
+        "CrowAttackAttach": {
+          "modifierMixins": [
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Lisa_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Venti_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ambor_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Ningguang_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Barbara_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Gandalfr_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Tartaglia_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack01"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack02"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack03"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack04"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack05"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Klee_Attack06"
+              ],
+              "modifierName": "UNIQUE_DoCrowAttack",
+            },
+          ],
+        },
+        "UNIQUE_DoCrowAttack": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "target": "Caster",
+              "abilityID": "Avatar_Fischl_Talent_D_Crow_NormalAttack",
+              "abilityName": "Avatar_Fischl_Talent_D_Crow_NormalAttack",
+              "forceUseSelfCurrentAttackTarget": true,
+              "predicates": [
+                {
+                  "$type": "ByHasAttackTarget",
+                },
+              ],
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_22_P1_Damage_AttackRatio": 0,
+
+        "AS_Fischl_ProudSkill_22_P1_AttackTimes": 0.24,
+        "AS_Fischl_Talent_336_AttackTimesUp": 0,
+      },
+    },
+  }, //Avatar_Fischl_Skill_S_Crow_Handle
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ElectricalCrow_Crow_Attack",
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Fischl_Crow_Left_Time",
+              "value": 1,
+              "compareType": "MoreThan",
+            },
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "target": "Self",
+              "abilityID": "Avatar_Fischl_Talent_D_Crow_NormalAttack",
+              "abilityName": "Avatar_Fischl_Talent_D_Crow_NormalAttack",
+              "forceUseSelfCurrentAttackTarget": true,
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "target": "Caster",
+                "configID": 41031008,
+              },
+              "predicates": [
+                {
+                  "$type": "ByUnlockTalentParam",
+                  "talentParam": "Avatar_Fischl_ProudSkill_22",
+                },
+              ],
+            },
+          ],
+          "failActions": [
+            {
+              "$type": "TriggerAbility",
+              "abilityID": "Avatar_Fischl_Talent_A_Show",
+              "abilityName": "Avatar_Fischl_Talent_A_Show",
+              "predicates": [
+                {
+                  "$type": "ByUnlockTalentParam",
+                  "talentParam": "Avatar_Fischl_Talent_A",
+                },
+              ],
+            },
+          ],
+          "predicates": [
+            {
+              "$type": "ByHasAttackTarget",
+            },
+          ],
+        },
+      ],
+    },
+  }, //Avatar_Fischl_ElectricalCrow_Crow_Attack
+  /**/
+  //=================================================
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_D_Crow_NormalAttack",
+      "onAbilityStart": [
+        {
+          "$type": "SetSelfAttackTarget",
+          "turnToTargetImmediately": true,
+          "target": "Target",
+        },
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "Attack_01",
+          "predicates": [
+            {
+              "$type": "ByTargetPositionToSelfPosition",
+              "target": "SelfAttackTarget",
+              "compareType": "XYZ",
+              "value": 15,
+              "logic": "LesserOrEqual",
+            },
+          ],
+        },
+        //{
+        //  "$type": "ApplyModifier",
+        //  "modifierName": "Attack_02",
+        //  "predicates": [
+        //    {
+        //      "$type": "ByUnlockTalentParam",
+        //      "talentParam": "Avatar_Fischl_Talent_336",
+        //    },
+        //    {
+        //      "$type": "ByTargetPositionToSelfPosition",
+        //      "target": "SelfAttackTarget",
+        //      "compareType": "XYZ",
+        //      "value": 15,
+        //      "logic": "LesserOrEqual",
+        //    },
+        //  ],
+        //},
+      ],
+      "modifiers": {
+        "Attack_01": {
+          "duration": 0.01,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Crow_Attack_01",
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Mouth",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031009,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Mouth",
+              },
+            },
+          ],
+        },
+        "Attack_02": {
+          "duration": 0.2,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "triggerID": "Crow_Attack_01",
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Skill_S_Crow_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Mouth",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031017,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "Mouth",
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "AS_Fischl_Damage_AttackRatio": 1,
+      },
+
+    },
+  }, //Avatar_Fischl_Talent_D_Crow_NormalAttack
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_D_Crow_NormalAttack_01",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Crow_NormalAttackTrail",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "target": "OriginOwner",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -1, // + means forward, - means backward
+                },
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationTag": "Elemental_Art",
+              "attackTag": "Elemental_Art",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_22_Damage_AttackRatio",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 25,
+                "enBreak": 10,
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Crow_NormalAttackHit",
+                "hitLevel": "Mute", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "forceCameraShake": false,
+              "cameraShake": {
+                "shakeRange": 0.02,
+                "shakeTime": 0.1,
+              },
+            },
+          },
+        },
+      ],
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_22_Damage_AttackRatio": 0,
+      },
+    },
+  }, //Avatar_Fischl_Talent_D_Crow_NormalAttack_01
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_D_Crow_NormalAttack_02",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Crow_NormalAttackTrail",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "target": "OriginOwner",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -1, // + means forward, - means backward
+                },
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationTag": "Elemental_Art",
+              "attackTag": "Elemental_Art",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_22_Damage_AttackRatio*%AS_Fischl_Talent_336_Damage_Ratio",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 0,
+                "enBreak": 10,
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Crow_NormalAttackHit",
+                "hitLevel": "Mute", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "forceCameraShake": false,
+              "cameraShake": {
+                "shakeRange": 0.02,
+                "shakeTime": 0.1,
+              },
+            },
+          },
+        },
+      ],
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_22_Damage_AttackRatio": 0,
+        "AS_Fischl_Talent_336_Damage_Ratio": 0,
+      },
+    },
+  }, //Avatar_Fischl_Talent_D_Crow_NormalAttack_02
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_A_Show",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "Attack",
+        },
+        {
+          "$type": "SendEffectTrigger",
+          "parameter": "Eff_Ani_Fischl_Talent_A_NormalAttack",
+          "effectPattern": "Eff_Fischl_Talent_A_Loop",
+        },
+      ],
+      "onAvatarOut": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_Ball_Show",
+        },
+
+      ],
+      "modifiers": {
+        "Attack": {
+          "duration": 0.1,
+          "stacking": "Multiple",
+          "onAdded": [
+          ],
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Fischl_Talent_A_NormalAttackOnShooting",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "PRIVATE_TalentA",
+              },
+            },
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 41031015,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "attachPointName": "PRIVATE_TalentA",
+              },
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "UNIQUE_Ball_Show",
+            }, //此处是为了防止反复创建特效，保持1个Modifier
+          ],
+        },
+        "UNIQUE_Ball_Show": {
+          "stacking": "Refresh",
+          "doOffStage": true,
+          "isUnique": true,
+          "duration": 3,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Ball_Show_AttachEffect",
+            }, //此处是为了防止反复创建特效，保持1个Modifier
+            {
+              "$type": "SendEffectTrigger",
+              "parameter": "Eff_Ani_Fischl_Talent_A_Show",
+              "effectPattern": "Eff_Fischl_Talent_A_Loop",
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "parameter": "Eff_Ani_Fischl_Talent_A_NormalAttack",
+              "effectPattern": "Eff_Fischl_Talent_A_Loop",
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Fischl_Talent_A_IsShow",
+              "value": 1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 1,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "doOffStage": true,
+              "modifierName": "Ball_Hide",
+            },
+            {
+              "$type": "AddGlobalValue",
+              "doOffStage": true,
+              "key": "_Fischl_Talent_A_IsShow",
+              "value": 0,
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        },
+        "Ball_Show_AttachEffect": {
+          "doOffStage": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "doOffStage": true,
+              "effectPattern": "Eff_Fischl_Talent_A_Loop",
+            },
+          ],
+        },
+        "Ball_Hide": {
+          "stacking": "Refresh",
+          "doOffStage": true,
+          "duration": 0.2,
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "doOffStage": true,
+              "parameter": "Eff_Ani_Fischl_Talent_A_Hide",
+              "effectPattern": "Eff_Fischl_Talent_A_Loop",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "doOffStage": true,
+              "modifierName": "Ball_Hide_RemovehEffect",
+            }, //ApplyModifier:RemoveModifier_Steps_1
+          ],
+        },
+        "Ball_Hide_RemovehEffect": {
+          "doOffStage": true,
+          "duration": 0.01,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "doOffStage": true,
+              "modifierName": "Ball_Show_AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_Talent_A_IsShow",
+                  "value": 0,
+                  "compareType": "Equal",
+                },
+              ], //延迟删除是确认管理的值是否是需要删除的，如果不用就无事发生
+            }, //RemoveModifier:AttachModifier_Steps_1
+          ], //真正清除特效
+        },
+      },
+    },
+  }, //Avatar_Fischl_Talent_A_Show
+
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_A_Handler",
+      "abilityMixins": [
+        //{
+        //  "$type": "AttachModifierToSelfGlobalValueMixin",
+        //  "doOffStage": true,
+        //  "globalValueKey": "_Fischl_Talent_A_IsShow",
+        //  "valueSteps": [
+        //    -0.5,
+        //    0.5,
+        //    1.5,
+        //  ],
+        //  "removeAppliedModifier": false,
+        //  "modifierNameSteps": [
+        //    "AttachModifier_Steps_0", //Global_0
+        //    "AttachModifier_Steps_1", //Global_1
+        //  ],
+        //},
+      ],
+      "onAbilityStart": [
+      ],
+      "onAvatarOut": [
+        //{
+        //  "$type": "AddGlobalValue",
+        //  "doOffStage": true,
+        //  "key": "_Fischl_Talent_A_IsShow",
+        //  "value": 0,
+        //  "useLimitRange": true,
+        //  "maxValue": 0,
+        //  "minValue": 0,
+        //}, //隐藏小球
+      ],
+      "modifiers": {
+        //"AttachModifier_Steps_1": {
+        //  "stacking": "Multiple",
+        //  "onAdded": [
+        //    {
+        //      "$type": "ApplyModifier",
+        //      "target": "Applier",
+        //      "doOffStage": true,
+        //      "modifierName": "AttachEffect",
+        //    }, //此处是为了防止反复创建特效，保持1个Modifier
+        //    {
+        //      "$type": "SendEffectTrigger",
+        //      "target": "Applier",
+        //      "parameter": "Eff_Ani_Fischl_Talent_A_Show",
+        //      "effectPattern": "Eff_Fischl_Talent_A_Loop",
+        //    },
+        //    {
+        //      "$type": "SendEffectTrigger",
+        //      "target": "Applier",
+        //      "parameter": "Eff_Ani_Fischl_Talent_A_NormalAttack",
+        //      "effectPattern": "Eff_Fischl_Talent_A_Loop",
+        //    },
+        //  ],
+        //  "onRemoved": [
+
+        //  ],
+        //},
+        //"AttachEffect": {
+        //  "doOffStage": true,
+        //  "stacking": "Multiple",
+        //  "onAdded": [
+        //    {
+        //      "$type": "AttachEffect",
+        //      "target": "Applier",
+        //      "effectPattern": "Eff_Fischl_Talent_A_Loop",
+        //    },
+        //  ],
+        //},
+        //"AttachModifier_Steps_0": {
+        //  "stacking": "Multiple",
+        //  "doOffStage": true,
+        //  "duration": 0.2,
+        //  "onAdded": [
+        //    {
+        //      "$type": "SendEffectTrigger",
+        //      "target": "Applier",
+        //      "doOffStage": true,
+        //      "parameter": "Eff_Ani_Fischl_Talent_A_Hide",
+        //      "effectPattern": "Eff_Fischl_Talent_A_Loop",
+        //    },
+        //  ],
+        //  "onRemoved": [
+        //    {
+        //      "$type": "ApplyModifier",
+        //      "target": "Applier",
+        //      "doOffStage": true,
+        //      "modifierName": "RemoveModifier_Steps_1",
+        //      "predicates": [
+        //        {
+        //          "$type": "ByTargetGlobalValue",
+        //          "key": "_Fischl_Talent_A_IsShow",
+        //          "value": 0,
+        //          "compareType": "Equal",
+        //        },
+        //      ], //延迟删除是确认管理的值是否是需要删除的，如果不用就无事发生
+        //    }, //ApplyModifier:RemoveModifier_Steps_1
+        //  ],
+        //},
+        //"RemoveModifier_Steps_1": {
+        //  "doOffStage": true,
+        //  "duration": 0.01,
+        //  "onAdded": [
+        //    {
+        //      "$type": "RemoveModifier",
+        //      "target": "Applier",
+        //      "doOffStage": true,
+        //      "modifierName": "AttachEffect",
+        //    }, //RemoveModifier:AttachModifier_Steps_1
+        //    {
+        //      "$type": "RemoveModifier",
+        //      "target": "Applier",
+        //      "doOffStage": true,
+        //      "modifierName": "AttachModifier_Steps_1",
+        //    }, //RemoveModifier:AttachModifier_Steps_1
+        //  ], //真正清除特效
+        //},
+      },
+    },
+  }, //Avatar_Fischl_Talent_A_Handler
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_A_NormalAttack_Hit",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Talent_A_NormalAttackTrail",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -1, // + means forward, - means backward
+                },
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attackTag": "NormalAttack_01",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_Talent_331_Damage_AttackRatio",
+                "strikeType": "Pierce",
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Talent_A_Hit",
+                "hitLevel": "Mute", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "forceCameraShake": false,
+              "cameraShake": {
+                "shakeRange": 0.02,
+                "shakeTime": 0.1,
+              },
+            },
+          },
+        },
+      ],
+      "abilitySpecials": {
+        "AS_Fischl_Talent_331_Damage_AttackRatio": 0,
+      },
+
+    },
+  }, //Avatar_Fischl_Talent_A_NormalAttack_AttachEffect
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_ExtraAttack_Element_FindCrow",
+      "abilityMixins": [
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "FindCrowPos",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByUnlockTalentParam",
+              "talentParam": "Avatar_Fischl_ProudSkill_21",
+            },
+          ],
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "TriggerExtreAttack",
+          "otherTargets": {
+            "$type": "SelectTargetsByShape",
+            "shapeName": "CircleR3",
+            "centerBasedOn": "Self",
+            "campTargetType": "All",
+            "campBasedOn": "Self",
+          },
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Fischl_SkillGadget_Crow",
+              "value": 1,
+              "compareType": "Equal",
+            },
+          ],
+        },
+      ],
+
+      "onRemove": [
+      ],
+      "modifiers": {
+        "FindCrowPos": {
+          "thinkInterval": 0.1,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "TriggerExtreAttack",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "shapeName": "CircleR3",
+                "centerBasedOn": "Self",
+                "campTargetType": "All",
+                "campBasedOn": "Self",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Fischl_SkillGadget_Crow",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+          ],
+        },
+        "TriggerExtreAttack": {
+          "duration": 1,
+          "stacking": "Multiple",
+          "onAdded": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "turnToTargetImmediately": true,
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "shapeName": "CircleLockEnemyR15H10HC",
+                "centerBasedOn": "Self",
+                "campTargetType": "Enemy",
+                "campBasedOn": "Self",
+                "sortType": "Nearest",
+                "topLimit": 1,
+              },
+            },
+            {
+              "$type": "TriggerAbility",
+              "target": "Target",
+              "abilityID": "Avatar_Fischl_Talent_C_ExtreAttack",
+              "abilityName": "Avatar_Fischl_Talent_C_ExtreAttack",
+              "predicates": [
+                {
+                  "$type": "ByHasAttackTarget",
+                },
+              ],
+            }, //TriggerAbility
+            {
+              "$type": "KillSelf",
+              "target": "Applier",
+              "predicates": [
+                {
+                  "$type": "ByHasAttackTarget",
+                },
+              ],
+            }, //KillSelf
+          ],
+        },
+      },
+    },
+  }, //Avatar_Fischl_ExtraAttack_Element_FindCrow（Talent_B）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_C_ExtreAttack",
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "triggerID": "Crow_Talent_C_ExtreAttack",
+        },
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_Talent_C_NormalAttackOnShooting",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "Mouth",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+          },
+        }, //FireEffect
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_Talent_C_BeTrigger",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "Spine",
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+            },
+          },
+        }, //FireEffect
+
+        {
+          "$type": "TriggerBullet",
+          "bulletID": 41031011,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "attachPointName": "Mouth",
+          },
+        }, //召唤受击盒
+      ],
+      "modifiers": {
+      },
+    },
+  }, //Avatar_Fischl_Talent_C_ExtreAttack
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Talent_C_Hit",
+      "onAdded": [
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "effectPattern": "Eff_Fischl_Talent_C_Hit",
+          "target": "Target",
+          "born": {
+            "$type": "ConfigBornByTarget",
+          },
+        },
+        {
+          "$type": "TriggerAttackEvent",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": 0.0, // + means forward, - means backward
+                }
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attackTag": "ExtraAttack",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_21_Damage_AttackRatio*%Fischl_ProudSkill_31_P7_ChargeElementDamage_Percentage",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 25,
+                "enBreak": 40,
+              },
+              "hitPattern": {
+                "onHitEffectName": "",
+                "hitLevel": "Shake", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+              "forceCameraShake": false,
+              "cameraShake": {
+                "shakeRange": 0.02,
+                "shakeTime": 0.1,
+              },
+            },
+          },
+        },
+      ],
+      //"modifiers": {
+      //  "Avatar_Fischl_Talent_C_Hit_ShowHitEffect": {
+      //    "onAttackLanded": [
+      //      {
+
+      //      },
+      //    ],
+      //  },
+      //},
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_21_Damage_AttackRatio": 0,
+        "Fischl_ProudSkill_31_P7_ChargeElementDamage_Percentage": 0,
+
+      },
+
+    },
+  }, //Avatar_Fischl_Talent_C_Hit
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_01",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Talent_D_Trail",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "AttackElementBall",
+          "target": "Self",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "doOffStage": true,
+          "target": "OriginOwner",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1.0,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -0.5, // + means forward, - means backward
+                }
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationTag": "Elemental_Art",
+              "attackTag": "Elemental_Art",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_32_Damage_AttackRatio",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 25,
+                "enBreak": 10,
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Talent_D_Hit",
+                "hitLevel": "Shake", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+            },
+          },
+        },
+      ],
+      "modifiers": {
+        "AttackElementBall": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "attackTags": [
+                    "ExtraAttack"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "modifierName": "Ball",
+                  "target": "Target",
+                },
+              ],
+            },
+          ],
+        },
+        "Ball": {
+          "duration": 1.0,
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "Randomed",
+              "chance": 0.25,
+              "successActions": [
+                {
+                  "$type": "GenerateElemBall",
+                  "configID": 2020,
+                  "baseEnergy": 2,
+                  "ratio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_32_Damage_AttackRatio": 0,
+      },
+    },
+  }, //Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_01
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_02",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Talent_D_Trail",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "doOffStage": true,
+          "target": "OriginOwner",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1.0,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -0.5, // + means forward, - means backward
+                }
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationTag": "Elemental_Art",
+              "attackTag": "Elemental_Art",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_32_Damage_AttackRatio",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 25,
+                "enBreak": 10,
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Talent_D_Hit",
+                "hitLevel": "Mute", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+            },
+          },
+        },
+      ],
+      "modifiers": {
+        "AttackElementBall": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "attackTags": [
+                    "ExtraAttack"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "modifierName": "Ball",
+                  "target": "Target",
+                },
+              ],
+            },
+          ],
+        },
+        "Ball": {
+          "duration": 1.0,
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "Randomed",
+              "chance": 0.25,
+              "successActions": [
+                {
+                  "$type": "GenerateElemBall",
+                  "configID": 2020,
+                  "baseEnergy": 2,
+                  "ratio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_32_Damage_AttackRatio": 0,
+      },
+    },
+  }, //Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_02
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Fischl_Skill_S_Crow_AutoAttack_Talent_Hit",
+      "onAdded": [
+        {
+          "$type": "AttachEffect",
+          "effectPattern": "Eff_Fischl_Talent_D_Trail",
+        },
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "doOffStage": true,
+          "target": "OriginOwner",
+          "targetType": "Enemy",
+          "attackEvent": {
+            "attackPattern": {
+              "$type": "ConfigAttackBox",
+              "triggerType": "TriggerNoRepeat",
+              "size": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 1.0,
+              },
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "offset": {
+                  "x": 0.0, // + means up, - means down
+                  "y": 0.0, // + means left, - means right
+                  "z": -0.5, // + means forward, - means backward
+                }
+              },
+              "checkHitLayerType": "Both",
+            },
+            "attackInfo": {
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationTag": "Elemental_Art",
+              "attackTag": "Elemental_Art",
+              "attackProperty": {
+                "damagePercentage": "%AS_Fischl_ProudSkill_32_Damage_AttackRatio*%AS_Fischl_Talent_336_Damage_AttackRatio",
+                "strikeType": "Pierce",
+                "elementType": "Electric",
+                "elementDurability": 0,
+                "enBreak": 10,
+              },
+              "hitPattern": {
+                "onHitEffectName": "Eff_Fischl_Talent_D_Hit",
+                "hitLevel": "Mute", //hitlevel = 1
+                "hitImpulseX": 0, //hitlevel = 1
+                "hitImpulseY": 0, //hitlevel = 1
+                "reboundRatio": 0,
+                "hitHaltTime": 0.0,
+                "hitHaltTimeScale": 0.01,
+                "muteHitText": false,
+              },
+            },
+          },
+        },
+      ],
+      "abilitySpecials": {
+        "AS_Fischl_ProudSkill_32_Damage_AttackRatio": 0,
+        "AS_Fischl_Talent_336_Damage_AttackRatio": 0,
+      },
+    },
+  }, //Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_02
+
+
+]

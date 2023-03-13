@@ -1,0 +1,4839 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  Monster Elite
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterEliteAbility",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterElite",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterElite":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  元素恢复
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementRecovery_Ice",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Check",
+			
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Count",
+				
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "MonsterAffix_ElementRecovery_Ice",
+				
+			},
+		
+		],
+		"modifiers" : 
+		{
+			"Check":
+			{
+
+				"onBeingHit":
+				[
+
+					{
+						"$type": "RemoveModifier",
+			        	"modifierName": "MonsterAffix_ElementRecovery_Ice",
+						"predicates":
+				     	[
+						  {
+							"$type": "ByHitElement",
+     						"element": "Fire",
+						  },
+					    ]
+					},
+				
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Count",
+						"predicates":
+					    [
+						  {
+							"$type": "ByHitElement",
+     						"element": "Fire",
+						  },
+					    ]
+					},
+				],	
+			
+					
+			},
+
+			"Count":
+			{
+				"duration": 5,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+				        "modifierName": "MonsterAffix_ElementRecovery_Ice",
+					},
+
+				],		
+			},
+			"MonsterAffix_ElementRecovery_Ice":
+			{
+				"thinkInterval": 1,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "AddElementDurability",
+						"value" : 30,
+						"elementType" : "Frozen",
+						"modifierName": "UNIQUE_Shield",
+						"useLimitRange": true,
+						"maxValue": 700.0,
+						"minValue": 0.0,
+					},
+				],
+				"onRemoved":
+				[
+                    {
+                        "$type" : "AddElementDurability",
+						"value" : 0,
+						"elementType" : "Frozen",
+						"modifierName": "UNIQUE_Shield",
+						"useLimitRange": true,
+						"maxValue": 700.0,
+						"minValue": 0.0,
+			        },
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  提升单体血量
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImprove_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImprove_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImprove_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 0.2,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImprove_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImprove_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImprove_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImprove_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImprove_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImprove_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  提升单体攻击力
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkImprove_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkImprove_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkImprove_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 0.2,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkImprove_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkImprove_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkImprove_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkImprove_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkImprove_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkImprove_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  元素含量提升
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_DurabilityImprove_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : 0.2,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : -0.2,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_DurabilityImprove_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : 0.5,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : -0.5,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_DurabilityImprove_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_DurabilityImprove_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : 1.0,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_DURABILITYIMPROVE",
+						"value" : -1.0,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  元素含量提升
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_GapReduce_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_GapReduce_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_GapReduce_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : -0.167,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : 0.167,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_GapReduce_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_GapReduce_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_GapReduce_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : -0.333,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : 0.333,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementShield_GapReduce_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementShield_GapReduce_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementShield_GapReduce_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : -0.5,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_MONSTERAFFIX_ELEMENTSHIELD_GAPREDUCE",
+						"value" : 0.5,
+						"useLimitRange" : true,
+						"maxValue" : 0,
+						"minValue" : -0.999,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  魔改_受到电元素攻击时怪物降低防御
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementHit_BreakDefence",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Check",
+			
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Count",
+				
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "AddDefence",
+				
+			},
+		],
+		"modifiers" : 
+		{
+			"Check":
+			{
+
+				"onBeingHit":
+				[
+
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "AddDefence",
+							"predicates":
+					[
+						{
+							"$type": "ByHitElement",
+     						"element": "Electric",
+						},
+					]
+					},
+				
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Count",
+							"predicates":
+					[
+						{
+							"$type": "ByHitElement",
+     						"element": "Electric",
+						},
+					]
+					},
+				],	
+			
+					
+			},
+			"AddDefence":
+			{
+                
+				"properties":
+				{
+					"Actor_DefenceRatio": 4,
+				},
+                "onAdded":
+                [
+                   {
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_WindCrystal_Monster",
+					},
+                ],
+
+			},
+		
+			"Count":
+			{
+				"duration": 7,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "AddDefence",
+					},
+
+				],		
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  提升单个怪物AI出手频率
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_AISkillCD_Revise01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Furious",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Furious":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "SetAISkillCDMultiplier",
+						"multiplier": 0.8,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_AISkillCD_Revise02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Furious",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Furious":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "SetAISkillCDMultiplier",
+						"multiplier": 0.5,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  提升怪物火伤
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_FireAddHurtDelta_Improve",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_FireAddHurtDelta_Improve",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_FireAddHurtDelta_Improve":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_FireAddHurtDelta": 2,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  强击
+//  提升单体50%攻击力
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Bash",
+		"onAdded":
+		[
+			// {
+			// 	"$type": "AttachModifier",
+			// 	"modifierName": "UNIQUE_MonsterAffix_Bash",
+			// 	"target": "Self",
+			// },
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Bash":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  铁壁
+//  提升单体50%防御力
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_IronDefense",
+		"onAdded":
+		[
+			// {
+			// 	"$type": "AttachModifier",
+			// 	"modifierName": "UNIQUE_MonsterAffix_IronDefense",
+			// 	"target": "Self",
+			// },
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_IronDefense":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"state": "DefenseUp",
+				"properties":
+				{
+					"Actor_DefenceRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  不屈
+//  一段时间内没有受到攻击，则会回复生命值
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Indomitable",
+		"onAdded":
+		[
+			// {
+			// 	"$type": "ApplyModifier",
+			// 	"modifierName": "Check",
+			// },
+			// {
+			// 	"$type": "ApplyModifier",
+			// 	"modifierName": "Count",
+			// },
+		],
+		"modifiers" : 
+		{
+			"Check":
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Recovering",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Count",
+					},
+				],				
+			},
+			"Recovering":
+			{
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "HealHP",
+						"amountByTargetMaxHPRatio": 0.025,
+					},
+					{
+					 	"$type": "FireEffect",
+					 	"effectPattern": "Eff_Qin_DandelionWind_Heal",
+					 	"born":
+					 	{
+					 		"$type": "ConfigBornByAttachPoint",
+					 		"attachPointName":"RootNode",
+					 	},
+					},
+				],
+			},
+			"Count":
+			{
+				"duration": 7.0,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Recovering",
+					},
+				],		
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  彩虹
+//  提升全元素20%抗性
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Rainbow_01",
+		"onAdded":
+		[
+			// {
+			// 	"$type": "AttachModifier",
+			// 	"modifierName": "UNIQUE_MonsterAffix_Rainbow_01",
+			// 	"target": "Self",
+			// },
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Rainbow_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_FireSubHurtDelta": 0.2,
+					"Actor_WaterSubHurtDelta": 0.2,
+					"Actor_GrassSubHurtDelta": 0.2,
+					"Actor_ElecSubHurtDelta": 0.2,
+					"Actor_WindSubHurtDelta": 0.2,
+					"Actor_IceSubHurtDelta": 0.2,
+					"Actor_RockSubHurtDelta": 0.2,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  虚弱
+//  降低单体40%攻击力
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Weak",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Weak",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Weak":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": -0.4,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  (Big World Effect) Crystal Monster
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Crystal_Wind",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Crystal_Wind",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Crystal_Wind":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_WindCrystal_Monster",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  元素状态抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_BurningResist",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_BurningResist",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_BurningResist":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "BurningDamage",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ShockResist",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ShockResist",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ShockResist":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "ShockDamage",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_IceAllResist",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_IceAllResist",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_IceAllResist":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachAbilityStateResistance",
+						"resistanceListID": 13001,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  水元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Water_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Water_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Water"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Water_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WaterSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Water_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Water_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Water"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Water_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WaterSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Water_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Water_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Water"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Water_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WaterSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  火元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Fire_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Fire_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Fire"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Fire_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "BurningDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_FireSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Fire_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Fire_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Fire"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Fire_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "BurningDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_FireSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Fire_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Fire_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Fire"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Fire_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "BurningDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_FireSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  风元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Wind_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Wind_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Wind"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Wind_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WindSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Wind_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Wind_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Wind"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Wind_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WindSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Wind_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Wind_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Wind"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Wind_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_WindSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  岩元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Rock_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Rock_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Rock"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Rock_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_RockSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Rock_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Rock_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Rock"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Rock_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_RockSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Rock_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Rock_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Rock"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Rock_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_RockSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  冰元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Ice_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Ice_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Ice"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Ice_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_IceSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Ice_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Ice_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Ice"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Ice_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_IceSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Ice_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Ice_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Ice"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Ice_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_IceSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  草元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Grass_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Grass_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Grass"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Grass_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_GrassSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Grass_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Grass_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Grass"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Grass_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_GrassSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Grass_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Grass_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Grass"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Grass_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_GrassSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  电元素抵抗
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Electric_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Electric_01",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Electric"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Electric_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "ShockDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_ElecSubHurtDelta": 0.5,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Electric_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Electric_02",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Electric"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Electric_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "ShockDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_ElecSubHurtDelta": 0.7,
+				},
+			},
+		},
+	},
+},
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_ElementResist_Electric_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_ElementResist_Electric_03",
+				"target": "Self",
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type":"TriggerResistDamageTextMixin",
+				"elementTypes":["Electric"],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_ElementResist_Electric_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "ShockDamage",
+					},
+				],
+				"properties":
+				{
+					"Actor_ElecSubHurtDelta": 1.0,
+				},
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Monster Elite
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_LupiBoreas_Razor",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_MONSTERAFFIX_LUPIBOREAS_RAZOR",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Summon_Lifetime",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_MONSTERAFFIX_SUMMON_LIFETIME",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Thoarder_Weasel
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Thoarder_Weasel_Level_01",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_THOARDER_WEASEL_LEVEL01",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Thoarder_Weasel_Level_02",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_THOARDER_WEASEL_LEVEL02",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Thoarder_Weasel_Level_03",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_THOARDER_WEASEL_LEVEL03",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Slime_Ice_IronDefence_Father
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Slime_Ice_IronDefence_Father",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_SLIME_ICE_IRONDEFENCE_FATHER",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Slime_Ice_IronDefence_Child
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Slime_Ice_IronDefence_Child",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_SLIME_ICE_IRONDEFENCE_CHILD",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "UNIQUE_MonsterAffix_Slime_Ice_IronDefence",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR50",
+					"centerBasedOn": "Self",
+					"campTargetType": "Alliance",
+					"campBasedOn": "Self",
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_SLIME_ICE_IRONDEFENCE_FATHER",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Slime_Ice_IronDefence":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"state": "DefenseUp",
+				"properties":
+				{
+					"Actor_PhysicalSubHurtDelta":0.9,
+					"Actor_FireSubHurtDelta" : 0.9,
+					"Actor_ElecSubHurtDelta" : 0.9,
+					"Actor_WaterSubHurtDelta" : 0.9,
+					"Actor_GrassSubHurtDelta" : 0.9,
+					"Actor_WindSubHurtDelta" : 0.9,
+					"Actor_RockSubHurtDelta" : 0.9,
+				},
+				"thinkInterval": 0.1,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"value"  : -9,
+						"key"  : "_SLIME_ICE_IRONDEFENCE_TAG",
+						"useLimitRange"  :true,
+						"maxValue"  : 1,
+						"minValue"  : 0,
+					},
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR50",
+							"centerBasedOn": "Self",
+							"campTargetType": "Alliance",
+							"campBasedOn": "Self",
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key"  : "_SLIME_ICE_IRONDEFENCE_CHILD",
+								"value"  : 1,
+								"compareType"  : "Equal",
+							},
+						],
+						"successActions": 
+						[
+
+							{
+								"$type" : "AddGlobalValue",
+								"value"  : 1,
+								"key"  : "_SLIME_ICE_IRONDEFENCE_TAG",
+								"useLimitRange"  :true,
+								"maxValue"  : 1,
+								"minValue"  : 0,
+							},
+						],
+					},
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_Slime_Ice_IronDefence",
+						"target"  : "Self",
+						"predicates"  : 
+						[
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key"  : "_SLIME_ICE_IRONDEFENCE_TAG",
+								"value"  : 0,
+								"compareType"  : "NoneOrEqual",
+							},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpDecrease_01
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpDecrease_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpDecrease_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpDecrease_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": -0.6,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_MuteTaunt
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_MuteTaunt",
+		"onAdded": 
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "MuteTaunt",
+				"target" : "Self",
+				"doOffStage" : true,
+			},
+		],
+		"modifiers":
+		{
+			"MuteTaunt":
+			{
+				"state":"MuteTaunt",
+			},
+		},
+	},
+},	
+
+////////////////爬塔专用词缀
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForAbyssus_01--1201
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForAbyssus_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 0.1,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForAbyssus_02--1211
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForAbyssus_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForAbyssus_03--1221
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForAbyssus_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 1.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForAbyssus_04--1231
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForAbyssus_04",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_04",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_04":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 1.5,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForAbyssus_05--1241
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForAbyssus_05",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_05",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForAbyssus_05":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 2.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////事件专用词缀
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForEvent_01--1401
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForEvent_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForEvent_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForEvent_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForEvent_02--1402
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForEvent_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForEvent_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForEvent_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 1.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpImproveForEvent_03--1403
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpImproveForEvent_03",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpImproveForEvent_03",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpImproveForEvent_03":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": 2.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_DefImproveForEvent_01--1404
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_DefImproveForEvent_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_DefImproveForEvent_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_DefImproveForEvent_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"state": "DefenseUp",
+				"properties":
+				{
+					"Actor_DefenceRatio": 1.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_DefImproveForEvent_02--1405
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_DefImproveForEvent_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_DefImproveForEvent_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_DefImproveForEvent_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"state": "DefenseUp",
+				"properties":
+				{
+					"Actor_DefenceRatio": 2.0,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_AtkImproveForEvent_01--1406
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkImproveForEvent_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkImproveForEvent_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkImproveForEvent_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 0.2,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_AtkImproveForEvent_02--1407
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkImproveForEvent_02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkImproveForEvent_02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkImproveForEvent_02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": 0.5,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_AISkillCDForEvent_Revise01--1408
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_AISkillCDForEvent_Revise01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_AISkillCDForEvent_Revise01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_AISkillCDForEvent_Revise01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "SetAISkillCDMultiplier",
+						"multiplier": 0.7,
+					},
+				],
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_AISkillCDForEvent_Revise02--1409
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_AISkillCDForEvent_Revise02",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_AISkillCDForEvent_Revise02",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_AISkillCDForEvent_Revise02":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "SetAISkillCDMultiplier",
+						"multiplier": 0.5,
+					},
+				],
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_HpDecreaseForEvent_01--1410
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_HpDecreaseForEvent_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_HpDecreaseForEvent_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_HpDecreaseForEvent_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_MaxHPRatio": -0.6,
+				},
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_AtkDecreaseForEvent_01--1411
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default" : 
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "MonsterAffix_Property_AtkDecreaseForEvent_01",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_MonsterAffix_Property_AtkDecreaseForEvent_01",
+				"target": "Self",
+			},
+		],
+		"modifiers" : 
+		{
+			"UNIQUE_MonsterAffix_Property_AtkDecreaseForEvent_01":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"properties":
+				{
+					"Actor_AttackRatio": -0.4,
+				},
+			},
+		},
+	},
+},
+
+////////////////元素V2设计相关白盒
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_IronDefence_Father
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Property_IronDefence_Father",
+		"onAdded":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "MonsterAffix_Property_IronDefence_Host",
+			},
+		],
+		"modifiers":
+		{
+			"MonsterAffix_Property_IronDefence_Host":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName"  : "MonsterAffix_Property_IronDefence_TriggerEffect",
+					},
+				],
+				"thinkInterval": 0.2,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_Property_IronDefence_Slave",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Alliance",
+							"campBasedOn": "Self",
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetIsSelf",
+								"isSelf"  : false,
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes"  : ["Monster"],
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveModifier",
+						"modifierName"  : "MonsterAffix_Property_IronDefence_Slave",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR10",
+							"centerBasedOn": "Self",
+							"campTargetType": "Alliance",
+							"campBasedOn": "Self",
+						},
+					},
+				],
+			},
+			"MonsterAffix_Property_IronDefence_Slave":
+			{
+				"duration": 0.4,
+				"stacking": "Unique",
+				"state": "DefenseUp",
+				"properties":
+				{
+					"Actor_PhysicalSubHurtDelta":0.9,
+					"Actor_FireSubHurtDelta" : 0.9,
+					"Actor_ElecSubHurtDelta" : 0.9,
+					"Actor_IceSubHurtDelta" : 0.9,
+					"Actor_WaterSubHurtDelta" : 0.9,
+					"Actor_GrassSubHurtDelta" : 0.9,
+					"Actor_WindSubHurtDelta" : 0.9,
+					"Actor_RockSubHurtDelta" : 0.9,
+				},
+			},
+			"MonsterAffix_Property_IronDefence_TriggerEffect":
+			{
+				"thinkInterval": 1,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_Follow_AlertCircle_10",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Property_IronDefence_Child
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Property_IronDefence_Child",
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_RippleHeal //治疗涟漪
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_RippleHeal",
+		"onAdded":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "MonsterAffix_RippleHeal_Father",
+				"target"  : "Self",
+			},
+		],
+		"modifiers":
+		{
+			"MonsterAffix_RippleHeal_Father":
+			{
+
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_FollowRain //不高兴
+//
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_AntiUncritical //波纹漩涡
+//
+////////////////////////////////////////////////////////////////
+
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_AntiUncritical",
+		"onAdded":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "MonsterAffix_WhiteBox_AntiUncritical",
+			},
+		],
+		"modifiers":
+		{
+			"MonsterAffix_WhiteBox_AntiUncritical":
+			{
+				"onBeingHit":
+				[
+
+				],
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_Thorns //电浆力场
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_Thorns",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_MonsterAffix_WhiteBox_Thorns",
+				"predicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes"  : ["Monster"],
+					},
+				],
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type" : "AttachToGadgetStateMixin",
+				"gadgetState"  : 201,
+				"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_Thorns_ForGadget",
+				"isUnique"  : true,
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_MonsterAffix_WhiteBox_Thorns":
+			{
+				"isUnique": true,
+				"onBeingHit":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_Thorns",
+						"predicates"  : 
+						[
+							{
+								"$type":"ByAttackTags",
+								"attackTags":["ExplodeDamage"],
+							},
+						],
+					},
+				],
+				"thinkInterval": 15,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_Thorns_Active",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_Thorns_Recover",
+						"target"  : "Self",
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_Thorns_Active":
+			{
+				"duration": 5,
+				"thinkInterval": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_Electric_ElementShield_BS",
+					},
+				],
+				"onThinkInterval":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"value"  : -9,
+						"key"  : "_MONSTERAFFIX_WHITEBOX_THORNS_COOLDOWN",
+						"useLimitRange"  : true,
+						"maxValue"  : 1,
+						"minValue"  : 0,
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.5,
+								"elementType" : "Electric",
+								"elementDurability" : 25,
+								"strikeType": "None",
+								"enBreak" : 0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "none",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"reboundRatio" : 0,
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+						},
+						"target"  : "Target",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key"  : "_MONSTERAFFIX_WHITEBOX_THORNS_COOLDOWN",
+								"value"  : 0,
+								"forceByCaster"  : true,
+								"compareType"  : "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.5,
+								"elementType" : "Electric",
+								"elementDurability" : 25,
+								"strikeType": "None",
+								"enBreak" : 0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "none",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"reboundRatio" : 0,
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+						},
+						"target"  : "TargetOwner",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key"  : "_MONSTERAFFIX_WHITEBOX_THORNS_COOLDOWN",
+								"value"  : 0,
+								"forceByCaster"  : true,
+								"compareType"  : "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type" : "AddGlobalValue",
+						"value"  : 1,
+						"key"  : "_MONSTERAFFIX_WHITEBOX_THORNS_COOLDOWN",
+						"useLimitRange"  : true,
+						"maxValue"  : 1,
+						"minValue"  : 0,
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_Thorns_Recover":
+			{
+				"duration": 30,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_Thorns",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_Thorns_ForGadget":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_Thorns",
+					},
+				]
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_RandomThunder //电离空气
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_RandomThunder",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_MonsterAffix_WhiteBox_RandomThunder",
+				"predicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes"  : ["Monster"],
+					},
+				],
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type" : "AttachToGadgetStateMixin",
+				"gadgetState"  : 201,
+				"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_RandomThunder_ForGadget",
+				"isUnique"  : true,
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_MonsterAffix_WhiteBox_RandomThunder":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_Electric_ElementShield_BS",
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_RandomThunder",
+						"predicates"  : 
+						[
+							{
+								"$type":"ByAttackTags",
+								"attackTags":["SuperconductorDamage"],
+							},
+						],
+					},
+				],
+				"thinkInterval": 5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_RandomThunder_HitLatency",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR10",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+							"topLimit":1,
+							"sortType": "Random",
+						},
+						"predicates"  : 
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes"  : ["Avatar"],
+							},
+						],
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_Follow_AlertCircle_20",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_RandomThunder_Recover",
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_RandomThunder_HitLatency":
+			{
+				"duration": 0.2,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_RandomThunder_Hit",
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_RandomThunder_Hit":
+			{
+				"duration": 1,
+				"onAdded":
+				[	
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Fatuus_Summoner_ThunderDrop",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"onGround": true,
+							"alongGround": true,
+						},
+					},	
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height":1,
+								"radius": 2,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+									"onGround": true,
+									"alongGround": true,
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 1.0,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 50,
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+								"forceCameraShake": true,
+								"cameraShake":
+								{
+									"shakeType": "CustomVector",
+									"shakeRange": 0.04,
+									"shakeTime": 0.09,
+									"shakeDistance": 20,
+									"shakeDir":
+									{
+										"x": 0,
+										"y": 1,
+										"z": 0,
+									},
+								},
+							},
+						},
+					},	
+				],
+			},
+			"MonsterAffix_WhiteBox_RandomThunder_Recover":
+			{
+				"duration": 30,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_RandomThunder",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_RandomThunder_ForGadget":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_RandomThunder",
+					},
+				],
+			},
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_AntiElement //不动如岩
+//
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_LowAttack_Impulse //脉冲波
+//
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_EnergyLeakage //噬能之火
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type":"ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_EnergyLeakage",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Host",
+				"predicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes"  : ["Monster"],
+					},
+				],
+			},
+			{
+				"$type": "SetSystemValueToOverrideMap",
+				"key": "MonsterAffix_ElementLevelCo",
+				"type": "ElementLevelCo",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_TeamRemover",
+				"target"  : "AllPlayerAvatars",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Host":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_FootCircle_Fire",
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_ImpulseArea_Fire",
+					},
+				],
+				"thinkInterval": 15,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_Impulse_Fire",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_Impulse1",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_Impulse2",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_Impulse3",
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_EnergyLeakage_Impulse1":
+			{
+				"duration": 0.2,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 5,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_EnergyLeakage_Impulse2":
+			{
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 10,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_EnergyLeakage_Impulse3":
+			{
+				"duration": 1.1,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_EnergyLeakage_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 15,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_EnergyLeakage_TeamSearcher":
+			{
+				"duration": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Team",
+						"target": "Team",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetHPRatio",
+								"target" : "Caster",
+								"HPRatio"  : 0,
+								"logic"  : "Greater",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_EnergyLeakage_TeamRemover":
+			{
+				"duration": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Team",
+						"target"  : "Team",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Team":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_EnergyLeakage",
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_EnergyLeakage_OnAdded",
+						"target": "CurLocalAvatar",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Slave",
+						"target"  : "CurLocalAvatar",
+					},
+				],
+				"thinkInterval": 1,
+				"onThinkInterval":
+				[
+					{
+						"$type": "DamageByAttackValue",
+						"attacker": "Caster",
+						"target": "CurLocalAvatar",
+						"born": 
+						{
+							"$type": "ConfigBornBySelf",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo": 
+						{
+							"attackProperty": 
+							{
+								"ignoreAttackerProperty": true,
+								"damageExtra": "%EnergyLeakage_DamageRatio*%MonsterAffix_ElementLevelCo",
+								"strikeType": "None",
+								"elementType": "Fire",
+								"elementDurability": 0,
+								"enBreak": 0,
+							},
+							"hitPattern": 
+							{
+								"onHitEffectName": "",
+								"hitLevel": "Mute",
+								"hitImpulseX": 0,
+								"hitImpulseY": 0,
+								"retreatType": "ByHitDirection",
+								"reboundRatio": 0,
+								"hitHaltTime": 0.0,
+								"hitHaltTimeScale": 0.05,
+								"muteHitText": false,
+							},
+							"forceCameraShake": false,
+						},
+					},
+				],
+				"modifierMixins":
+				[
+					{
+						"$type":"CurLocalAvatarMixin",
+						"modifierName":"UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Slave",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Slave",
+						"target"  : "CurTeamAvatars",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Slave":
+			{
+				"isUnique": true,
+				"elementType": "Fire",
+				"elementDurability": 25,
+				"modifierMixins":
+				[
+					{
+						"$type": "ReviveElemEnergyMixin",
+						"type": "Both",
+						"period": 3,
+						"baseEnergy": -5,
+						"ratio": 1,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_EnergyLeakage_Team",
+						"target"  : "Team",
+						"predicates"  : 
+						[
+							{
+								"$type" : "ByNot",
+								"predicates"  : 
+								[
+									{
+										"$type" : "ByHasElement",
+										"target": "Self",
+										"element"  : "Fire",
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"MonsterAffix_ElementLevelCo": 0,
+			"EnergyLeakage_DamageRatio": 0.3,
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_Rejuvenation //回春
+//
+////////////////////////////////////////////////////////////////‘
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_Close_Impulse //镰鼬
+//
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_CoolDown_Increase //迟滞之冰
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type":"ConfigAbility",
+		"abilityName": "MonsterAffix_WhiteBox_CoolDown_Increase",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Host",
+				"predicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes"  : ["Monster"],
+					},
+				],
+			},
+			{
+				"$type": "SetSystemValueToOverrideMap",
+				"key": "MonsterAffix_ElementLevelCo",
+				"type": "ElementLevelCo",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_TeamRemover",
+				"target"  : "AllPlayerAvatars",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Host":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_FootCircle_Ice",
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_ImpulseArea_Ice",
+					},
+				],
+				"thinkInterval": 15,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_Impulse_Ice",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_Impulse1",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_Impulse2",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_Impulse3",
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_CoolDownIncrease_Impulse1":
+			{
+				"duration": 0.2,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 5,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_CoolDownIncrease_Impulse2":
+			{
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 10,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_CoolDownIncrease_Impulse3":
+			{
+				"duration": 1.1,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "MonsterAffix_WhiteBox_CoolDownIncrease_TeamSearcher",
+						"target": "AllPlayerAvatars",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetPositionToSelfPosition",
+								"compareType"  : "XZ",
+								"value"  : 15,
+								"logic"  : "LesserOrEqual",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_CoolDownIncrease_TeamSearcher":
+			{
+				"duration": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Team",
+						"target": "Team",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetHPRatio",
+								"target" : "Caster",
+								"HPRatio"  : 0,
+								"logic"  : "Greater",
+							},
+						],
+					},
+				],
+			},
+			"MonsterAffix_WhiteBox_CoolDownIncrease_TeamRemover":
+			{
+				"duration": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Team",
+						"target"  : "Team",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Team":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_CoolDownIncrease",
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_CommonSkill_CoolDownIncrease_OnAdded",
+						"target": "CurLocalAvatar",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Slave",
+						"target"  : "CurLocalAvatar",
+					},
+				],
+				"thinkInterval": 1,
+				"onThinkInterval":
+				[
+					{
+						"$type": "DamageByAttackValue",
+						"attacker": "Caster",
+						"target": "CurLocalAvatar",
+						"born": 
+						{
+							"$type": "ConfigBornBySelf",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo": 
+						{
+							"attackProperty": 
+							{
+								"ignoreAttackerProperty": true,
+								"damageExtra": "%CoolDownIncrease_DamageRatio*%MonsterAffix_ElementLevelCo",
+								"strikeType": "None",
+								"elementType": "Ice",
+								"elementDurability": 0,
+								"enBreak": 0,
+							},
+							"hitPattern": 
+							{
+								"onHitEffectName": "",
+								"hitLevel": "Mute",
+								"hitImpulseX": 0,
+								"hitImpulseY": 0,
+								"retreatType": "ByHitDirection",
+								"reboundRatio": 0,
+								"hitHaltTime": 0.0,
+								"hitHaltTimeScale": 0.05,
+								"muteHitText": false,
+							},
+							"forceCameraShake": false,
+						},
+					},
+				],
+				"modifierMixins":
+				[
+					{
+						"$type":"CurLocalAvatarMixin",
+						"modifierName":"UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Slave",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Slave",
+						"target"  : "CurTeamAvatars",
+					},
+				],
+			},
+			"UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Slave":
+			{
+				"isUnique": true,				
+				"elementType": "Ice",
+				"elementDurability": 25,
+				"properties":
+				{
+					"Actor_CostStaminaRatio": 0.5,
+					"Actor_SkillCDMinusRatio": -1,
+				},
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveUniqueModifier",
+						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CoolDownIncrease_Team",
+						"target"  : "Team",
+						"predicates":
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" : 
+								[
+									{
+										"$type" : "ByHasElement",
+										"element"  : "Ice",
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"MonsterAffix_ElementLevelCo": 0,
+			"CoolDownIncrease_DamageRatio": 0.3,
+		},
+	},
+},
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_PoisonGrass //五毒草
+//
+////////////////////////////////////////////////////////////////
+// {
+// 	"Default":
+// 	{
+// 		"$type":"ConfigAbility",
+// 		"abilityName": "MonsterAffix_WhiteBox_PoisonGrass",
+// 		"onAdded":
+// 		[
+// 			{
+// 				"$type" : "ApplyModifier",
+// 				"modifierName"  : "MonsterAffix_WhiteBox_PoisonGrass_Host",
+// 			},
+// 		],
+// 		"modifiers":
+// 		{
+// 			"MonsterAffix_WhiteBox_PoisonGrass_Host":
+// 			{
+// 				"thinkInterval": 10,
+// 				"onThinkInterval":
+// 				[
+// 					{
+// 						"$type" : "ApplyModifier",
+// 						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_PoisonGrass_Slave",
+// 						"target": "AllPlayerAvatars",
+// 						"predicates":
+// 						[
+// 							{
+// 								"$type" : "ByTargetPositionToSelfPosition",
+// 								"target": "CurLocalAvatar",
+// 								"compareType"  : "XZ",
+// 								"value"  : 15,
+// 								"logic"  : "LesserOrEqual",
+// 							},
+// 						],
+// 					}
+// 				],
+// 			},
+// 			"UNIQUE_MonsterAffix_WhiteBox_PoisonGrass_Slave":
+// 			{
+// 				"isUnique": true,
+// 				"properties":
+// 				{
+// 					"Actor_HealedAddDelta": -1,
+// 				},
+// 				"onAdded":
+// 				[
+// 					{
+// 						"$type" : "AttachEffect",
+// 						"effectPattern"  : "Eff_Monster_Grass_ElementShield_BS",
+// 						"scale"  : 1.0,
+// 					},
+// 				],
+// 				"onBeingHit":
+// 				[
+// 					{
+// 						"$type" : "RemoveUniqueModifier",
+// 						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_PoisonGrass_Slave",
+// 						"predicates":
+// 						[
+// 							{
+// 								"$type" : "ByAttackTags",
+// 								"attackTags"  : ["BurningDamage"],
+// 							},
+// 						],
+// 					},
+// 				],
+// 				"thinkInterval": 1,
+// 				"onThinkInterval":
+// 				[
+// 					{
+// 						"$type" : "DamageByAttackValue",
+// 						"attacker": "Caster",
+// 						"attackInfo":
+// 						{
+// 							"attackProperty":
+// 							{
+// 								"damagePercentage": 0.2,
+// 								"elementType" : "Grass",
+// 								"elementDurability" : 25,
+// 								"strikeType": "None",
+// 								"enBreak" : 0,
+// 							},
+// 							"hitPattern" :
+// 							{
+// 								"onHitEffectName" : "none",
+// 								"hitLevel": "Mute",	//hitlevel = 0
+// 								"hitImpulseX": 0,	//hitlevel = 0
+// 								"hitImpulseY": 0,	//hitlevel = 0
+// 								"reboundRatio" : 0,
+// 								"canBeDefenceHalt" : false,
+// 								"hitHaltTime" : 0.0,
+// 								"hitHaltTimeScale" : 0.0,
+// 								"muteHitText" : true,
+// 							},
+// 						},
+// 						"target"  : "Self",
+// 					},
+// 				],
+// 			},
+// 		},
+// 	},
+// },
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_CostStamina_Increase //迟钝
+//
+////////////////////////////////////////////////////////////////
+// {
+// 	"Default":
+// 	{
+// 		"$type":"ConfigAbility",
+// 		"abilityName": "MonsterAffix_WhiteBox_CostStamina_Increase",
+// 		"onAdded":
+// 		[
+// 			{
+// 				"$type" : "ApplyModifier",
+// 				"modifierName"  : "MonsterAffix_WhiteBox_CostStamina_Increase_Host",
+// 			},
+// 		],
+// 		"onKill":
+// 		[
+// 			{
+// 				"$type" : "RemoveUniqueModifier",
+// 				"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CostStamina_Increase_Slave",
+// 				"target"  : "AllPlayerAvatars",
+// 			},
+// 		],
+// 		"modifiers":
+// 		{
+// 			"MonsterAffix_WhiteBox_CostStamina_Increase_Host":
+// 			{
+// 				"thinkInterval": 10,
+// 				"onThinkInterval":
+// 				[
+// 					{
+// 						"$type" : "ApplyModifier",
+// 						"modifierName"  : "UNIQUE_MonsterAffix_WhiteBox_CostStamina_Increase_Slave",
+// 						"target": "AllPlayerAvatars",
+// 						"predicates":
+// 						[
+// 							{
+// 								"$type" : "ByTargetPositionToSelfPosition",
+// 								"target": "CurLocalAvatar",
+// 								"compareType"  : "XZ",
+// 								"value"  : 15,
+// 								"logic"  : "LesserOrEqual",
+// 							},
+// 						],
+// 					},
+// 				],
+// 			},
+// 			"UNIQUE_MonsterAffix_WhiteBox_CostStamina_Increase_Slave":
+// 			{
+// 				"isUnique": true,
+// 				"properties":
+// 				{
+// 					"Actor_CostStaminaRatio": 999,
+// 				},
+// 				"onAdded":
+// 				[
+// 					{
+// 						"$type" : "AttachEffect",
+// 						"effectPattern"  : "Eff_Monster_Rock_ElementShield_BS",
+// 						"scale"  : 1.0,
+// 					},
+// 				],
+// 				"thinkInterval": 0.5,
+// 				"onThinkInterval":
+// 				[
+// 					{
+// 						"$type" : "DamageByAttackValue",
+// 						"attacker": "Caster",
+// 						"attackInfo":
+// 						{
+// 							"attackProperty":
+// 							{
+// 								"damagePercentage": 0.2,
+// 								"elementType" : "Grass",
+// 								"elementDurability" : 25,
+// 								"strikeType": "None",
+// 								"enBreak" : 0,
+// 							},
+// 							"hitPattern" :
+// 							{
+// 								"onHitEffectName" : "none",
+// 								"hitLevel": "Mute",	//hitlevel = 0
+// 								"hitImpulseX": 0,	//hitlevel = 0
+// 								"hitImpulseY": 0,	//hitlevel = 0
+// 								"reboundRatio" : 0,
+// 								"canBeDefenceHalt" : false,
+// 								"hitHaltTime" : 0.0,
+// 								"hitHaltTimeScale" : 0.0,
+// 								"muteHitText" : false,
+// 							},
+// 						},
+// 						"target"  : "Self",
+// 					},
+// 				],
+// 			},
+// 		},
+// 	},
+// },
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_BlackHole //黑洞
+//
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_WhiteBox_DeathRattle //亡语
+//
+////////////////////////////////////////////////////////////////
+
+/////////元素增幅器
+////////////////////////////////////////////////////////////////
+//
+//   MonsterPowerUp_Amplifier_Fire//元素增幅器-火
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName": "MonsterPowerUp_Amplifier_Fire",
+			"abilityMixins":
+			[
+				{
+					"$type" : "AttachToGadgetStateMixin",
+					"gadgetState"  : 201,
+					"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Fire_Host",
+					"isUnique"  : true,
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_MonsterPowerUp_Amplifier_Fire_Host":
+				{
+					"isUnique": true,
+					"thinkInterval": 10,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern"  : "Eff_SceneObj_MonsterPowerUp_Wave",
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Fire_Slave",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"predicates"  : 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"value"  : 0,
+									"compareType"  : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByAny",
+									"predicates"  : 
+									[
+										{
+											"$type" : "ByNot",
+											"predicates"  : 
+											[
+												{
+													"$type":"ByHasFeatureTag",
+													"featureTagIDs":[3005],
+												},
+											],
+										},
+										{
+											"$type" : "ByHasElement",
+											"element"  : "Fire",
+										},
+									],
+								},
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Fire",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Water",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Grass",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Electric",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Ice",
+								// 		},
+								// 	],
+								// },
+							],
+						},
+						{
+							"$type" : "Predicated",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"targetPredicates": 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+							],
+							"successActions" : 
+							[
+								{
+									"$type" : "AddElementDurability",
+									"target": "Target",
+									"value" : 25,
+									"elementType" : "Fire",
+									"modifierName": "UNIQUE_MonsterPowerUp_Amplifier_Fire_Slave",
+									"useLimitRange": true,
+									"maxValue": 50.0,
+									"minValue": 0.0,
+								},
+								{
+									"$type" : "AddGlobalValue",
+									"target": "Target",
+									"value"  : 1,
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"useLimitRange"  : true,
+									"maxValue"  : 0,
+									"minValue"  : -2,
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_MonsterPowerUp_Amplifier_Fire_Slave":
+				{
+					"isUnique": true,
+					"state": "AttackUp",
+					"elementType": "Fire",
+					"elementDurability": 50,
+					"properties":
+					{
+						"Actor_AttackRatio": 0.4,
+						"Actor_FireSubHurtDelta": 1,
+					},
+					"modifierMixins":
+					[
+						{
+							"$type": "ElementOuterGlowEffectMixin",
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_ElementEhance_Fire",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"value"  : -2,
+							"key"  : "_AMPLIFIER_COOLDOWN",
+							"useLimitRange"  : true,
+							"maxValue"  : 0,
+							"minValue"  : -2,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//   MonsterPowerUp_Amplifier_Ice//元素增幅器-冰
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName": "MonsterPowerUp_Amplifier_Ice",
+			"abilityMixins":
+			[
+				{
+					"$type" : "AttachToGadgetStateMixin",
+					"gadgetState"  : 201,
+					"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Ice_Host",
+					"isUnique"  : true,
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_MonsterPowerUp_Amplifier_Ice_Host":
+				{
+					"isUnique": true,
+					"thinkInterval": 10,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern"  : "Eff_SceneObj_MonsterPowerUp_Wave",
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Ice_Slave",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"predicates"  : 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"value"  : 0,
+									"compareType"  : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByAny",
+									"predicates"  : 
+									[
+										{
+											"$type" : "ByNot",
+											"predicates"  : 
+											[
+												{
+													"$type":"ByHasFeatureTag",
+													"featureTagIDs":[3005],
+												},
+											],
+										},
+										{
+											"$type" : "ByHasElement",
+											"element"  : "Frozen",
+										},
+										{
+											"$type" : "ByHasElement",
+											"element"  : "Ice",
+										},
+									],
+								},
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Fire",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Water",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Grass",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Electric",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Ice",
+								// 		},
+								// 	],
+								// },
+							],
+						},
+						{
+							"$type" : "Predicated",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+							},
+							"targetPredicates": 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+							],
+							"successActions" : 
+							[
+								{
+									"$type" : "AddElementDurability",
+									"target": "Target",
+									"value" : 25,
+									"elementType" : "Ice",
+									"modifierName": "UNIQUE_MonsterPowerUp_Amplifier_Ice_Slave",
+									"useLimitRange": true,
+									"maxValue": 50.0,
+									"minValue": 0.0,
+								},
+								{
+									"$type" : "AddGlobalValue",
+									"target": "Target",
+									"value"  : 1,
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"useLimitRange"  : true,
+									"maxValue"  : 0,
+									"minValue"  : -2,
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_MonsterPowerUp_Amplifier_Ice_Slave":
+				{
+					"isUnique": true,
+					"state": "DefenseUp",
+					"elementType": "Ice",
+					"elementDurability": 50,
+					"properties":
+					{
+						"Actor_DefenceRatio": 1.0,
+						"Actor_IceSubHurtDelta" : 1,
+					},
+					"modifierMixins":
+					[
+						{
+							"$type": "ElementOuterGlowEffectMixin",
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_ElementEhance_Ice",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"value"  : -2,
+							"key"  : "_AMPLIFIER_COOLDOWN",
+							"useLimitRange"  : true,
+							"maxValue"  : 0,
+							"minValue"  : -2,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//   MonsterPowerUp_Amplifier_Electric//元素增幅器-雷
+//
+////////////////////////////////////////////////////////////////
+	{	
+		"Default":
+		{
+			"$type":"ConfigAbility",
+			"abilityName": "MonsterPowerUp_Amplifier_Electric",
+			"abilityMixins":
+			[
+				{
+					"$type" : "AttachToGadgetStateMixin",
+					"gadgetState"  : 201,
+					"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Electric_Host",
+					"isUnique"  : true,
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_MonsterPowerUp_Amplifier_Electric_Host":
+				{
+					"isUnique": true,
+					"thinkInterval": 10,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern"  : "Eff_SceneObj_MonsterPowerUp_Wave",
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName"  : "UNIQUE_MonsterPowerUp_Amplifier_Electric_Slave",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"predicates"  : 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"value"  : 0,
+									"compareType"  : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByAny",
+									"predicates"  : 
+									[
+										{
+											"$type" : "ByNot",
+											"predicates"  : 
+											[
+												{
+													"$type":"ByHasFeatureTag",
+													"featureTagIDs":[3005],
+												},
+											],
+										},
+										{
+											"$type" : "ByHasElement",
+											"element"  : "Electric",
+										},
+									],
+								},
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Fire",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Water",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Grass",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Electric",
+								// 		},
+								// 	],
+								// },
+								// {
+								// 	"$type" : "ByNot",
+								// 	"predicates"  : 
+								// 	[
+								// 		{
+								// 			"$type" : "ByHasElement",
+								// 			"element"  : "Ice",
+								// 		},
+								// 	],
+								// },
+							],
+						},
+						{
+							"$type" : "Predicated",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR30",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"targetPredicates": 
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes"  : ["Monster"],
+								},
+							],
+							"successActions" : 
+							[
+								{
+									"$type" : "AddElementDurability",
+									"target": "Target",
+									"value" : 25,
+									"elementType" : "Electric",
+									"modifierName": "UNIQUE_MonsterPowerUp_Amplifier_Electric_Slave",
+									"useLimitRange": true,
+									"maxValue": 50.0,
+									"minValue": 0.0,
+								},
+								{
+									"$type" : "AddGlobalValue",
+									"target": "Target",
+									"value"  : 1,
+									"key"  : "_AMPLIFIER_COOLDOWN",
+									"useLimitRange"  : true,
+									"maxValue"  : 0,
+									"minValue"  : -2,
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_MonsterPowerUp_Amplifier_Electric_Slave":
+				{
+					"isUnique": true,
+					"state": "SpeedUp",
+					"elementType": "Electric",
+					"elementDurability": 50,
+					"properties":
+					{
+						"Actor_ElecSubHurtDelta" : 1,
+					},
+					"modifierMixins":
+					[
+						{
+							"$type": "ElementOuterGlowEffectMixin",
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_ElementEhance_Electric",
+						},
+						{
+							"$type": "SetAISkillCDMultiplier",
+							"multiplier": 0.5,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"value"  : -2,
+							"key"  : "_AMPLIFIER_COOLDOWN",
+							"useLimitRange"  : true,
+							"maxValue"  : 0,
+							"minValue"  : -2,
+						},
+						{
+							"$type": "SetAISkillCDMultiplier",
+							"multiplier": 1,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  MonsterAffix_Thoarder_Weasel
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "MonsterAffix_Dvalin_S04_FirstSight",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_DVALIN_S04_FIRSTSIGHT_",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+	},
+},
+]

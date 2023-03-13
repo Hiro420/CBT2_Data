@@ -1,0 +1,4153 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  ExtraAttack
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_ExtraAttack",
+			"abilityMixins":
+			[
+				{
+					"$type": "ButtonHoldChargeMixin",
+					"skillID": 10301,
+					"chargeTime": 0.12,
+					"secondChargeTime": 0.35,
+					"OnBeginUncharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 99,
+							"predicates":
+							[
+								{
+									"$type": "ByAny",
+									"predicates":
+									[
+										{
+											"$type": "ByAnimatorInt",
+											"value": 0,
+											"parameter": "ComboCount",
+											"logic": "Equal",
+										},
+										{
+											"$type": "ByAnimatorInt",
+											"value": 6,
+											"parameter": "ComboCount",
+											"logic": "Equal",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+					],
+					"OnReleaseUncharged":
+					[
+/*						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+					],
+					"OnBeginCharged":
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": true,
+						},
+					],
+					"OnReleaseCharged":
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+/*						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"OnBeginSecondCharged":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+							"predicates":
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Pole_Stamina_Cost+%Flexible_Stamina",
+									"logic": "GreaterOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 6,
+							"predicates":
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Pole_Stamina_Cost+%Flexible_Stamina",
+									"logic": "GreaterOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"OnReleaseSecondCharged":
+					[
+
+					],
+					"chargeStateIDs": [ "Attack01","Attack02","Attack03","Attack04","Attack05","Run"],
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack"],
+					"modifierName": "ExtraAttack_StaminaCost",
+				},
+			],
+			"modifiers":
+			{
+				"ExtraAttack_StaminaCost":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AvatarSkillStart",
+							"skillID": 10002,
+							"costStaminaRatio":"%ExtraAttack_Pole_Stamina_Cost",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"ExtraAttack_Pole_Stamina_Cost": 0,
+				"Flexible_Stamina":-2,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_PillarOrShield_HoldCharge 小技能长按/点按判断
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_PillarOrShield_HoldCharge",
+			"abilityMixins":
+			[
+				{
+					"$type": "SkillButtonHoldChargeMixin",	//长短按二择
+					"skillID": 10302,
+					"beforeStateIDs": ["PillarOrShield_BS"],
+					"chargeLoopStateIDs": ["PillarOrShield_Charge"],
+					"chargeLoopDurations": [ 3 ],
+					"nextLoopTriggerID": "NextLoopTrigger",
+					"endHoldTrigger": "EndHoldTrigger",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["PillarOrShield_BS", "PillarOrShield_Charge"],
+					"modifierName": "Eff_PillarOrShield",
+				},
+			],
+			"modifiers":
+			{
+				"Eff_PillarOrShield":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Hand",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_SetHairEmissionScaler	//魔神角色头发表现
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_SetHairEmissionScaler",
+			"abilityMixins": 
+			[
+				{
+		        	"$type": "AttachToStateIDMixin",
+		        	"stateIDs": ["PrimoPillar_AS", "RockShield", "RockShield_AS", "GeoOrder", "GeoOrder_AS",],
+		        	"modifierName": "UNIQUE_HairEmissionScaler",
+		        },
+		        {
+		        	"$type": "AttachToNormalizedTimeMixin",
+		        	"stateID": "PrimoPillar",
+		        	"modifierName": "HairEmissionScaler_Handler",
+		        	"normalizeStart": 0.68,
+		        },
+			],
+			"modifiers":
+			{
+				"HairEmissionScaler_Handler":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_HairEmissionScaler",
+						},
+					],
+				},
+				"UNIQUE_HairEmissionScaler":
+				{
+					"isUnique": true,
+					"stacking": "Refresh",
+					"onAdded":
+					[
+						{
+			            	"$type": "SetEmissionScaler",
+			            	"materialType": "Hair",
+			            	"value": 20,
+			            },
+					],
+					"onRemoved":
+					[
+						{
+			            	"$type": "SetEmissionScaler",
+			            	"materialType": "Hair",
+			            	"value": 1,
+			            },
+			            {
+			            	"$type": "FireEffect",
+			            	"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_HairEmission_Dissipate",
+			            	"born":
+			            	{
+			            		"$type": "ConfigBornByAttachPoint",
+			            		"attachPointName": "PRIVATE_Hair",
+			            	},
+			            },
+					],
+					"onKill":
+					[
+						{
+			            	"$type": "RemoveUniqueModifier",
+			            	"modifierName": "UNIQUE_HairEmissionScaler",
+			            },
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_PrimoPillar 钟离点按小技能：石枪
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_PrimoPillar",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["PrimoPillar"],	//管理特效，地上的fire，手上的attach
+					"modifierName": "PillarEffect_Alert",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type": "SetGlobalPos",
+					"key": "EffPillarHandPos",	//定位手上的特效位置
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName": "PRIVATE_RHand",
+						"attachPointTargetType": "Self",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+				{
+					"$type": "SetGlobalDir",
+					"key": "EffPillarHandDir",	//定位手上的特效位置
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName": "PRIVATE_RHand",
+						"attachPointTargetType": "Self",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+				{
+					"$type": "CreateGadget",
+					"gadgetID": 41030002,
+					"campID": 1001,
+					"campTargetType": "Enemy",
+					"born":
+					{
+						"$type": "ConfigBornByGlobalValue",	//柱子不跟人走
+						"positionKey": "PrimoPillarPos",
+						"directionKey": "PrimoPillarDir",
+						"onGround": true,
+						"alongGround": true,
+						"onGroundIgnoreWater": true,
+						"onGroundRaycastUpDist": 4,
+					},
+				},
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Hand1_01",
+					"born":
+					{
+						"$type": "ConfigBornByGlobalValue",	//定位手上的特效位置
+						"positionKey": "EffPillarHandPos",
+						"directionKey": "EffPillarHandDir",
+					},
+				},
+				{
+					"$type": "AvatarSkillStart",	//天赋：随便点，不要钱
+					"skillID": 10302,
+					"cdRatio": 0.083,
+					"predicates":
+					[
+						{
+							"$type": "ByUnlockTalentParam",
+							"talentParam": "PillarFever",
+						},
+					],
+				},
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10302,
+					"cdRatio": 0.333,
+					"predicates":
+					[
+						{
+							"$type": "ByNot",
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "PillarFever",
+								},
+							],
+						},
+					],
+				},
+			],
+			"modifiers":
+			{
+				"PillarEffect_Alert":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "KillGadget",	//先干掉再创建，数量最大1个
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41030002,
+								"sortType": "Default",
+							}
+						},
+						{
+							"$type": "SetGlobalPos",
+							"key": "PrimoPillarPos",	//先定位再放柱子和特效，不跟人走
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 3.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type": "SetGlobalDir",
+							"key": "PrimoPillarDir",	//先定位再放柱子和创生特效，不跟人走
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type": "FireEffect",	//地上的预警特效用fire
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Prelude",
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "PrimoPillarPos",
+								"directionKey": "PrimoPillarDir",
+							},
+						},
+						{
+							"$type": "AttachEffect",	//手上的特效用attach
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Hand1",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Zhongli_PrimoPillar 点按的柱子
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Zhongli_PrimoPillar",
+			"onAdded":
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born_Stone",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Born",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PrimoPillar_RockWave",	//震荡及buff
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PillarLife",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PillarShake",
+				},
+			/////////////////////////临   时   方   案/////////////////
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PrimoPillar_RockDurability_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"PrimoPillar_RockDurability_Handler":
+				{
+					"elementType":"Rock",
+					"elementDurability":100,
+					"onBeingHit":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Recover_RockDurability",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+				"Recover_RockDurability":
+				{
+					"duration":0.5,
+					"onAdded":
+					[
+						{
+							"$type" : "AddElementDurability",
+							"value" : 100,
+							"modifierName":"PrimoPillar_RockDurability_Handler",
+							"elementType" : "Rock",
+							"useLimitRange": true,
+							"maxValue": 100.0,
+						},
+					],
+				},
+				"PillarLife":
+				{
+					"duration": "%Duration",
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+				"PillarShake":
+				{
+					"duration": 0.06,
+					"onRemoved":
+					[
+						{
+							"$type": "ActCameraShake",
+				        	"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.24,
+								"shakeTime": 0.12,
+								"shakeDistance": 60,
+								"shakeDir":
+								{
+									"x": 0,
+									"y": -1,
+									"z": 0,
+								},
+								"extension":
+								{
+									"baseOnCamera": true,
+								},
+				        	},
+						},
+					],
+				},
+				"PrimoPillar_RockWave":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",	//开幕击退
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackSphere",
+									"triggerType": "TriggerNoRepeat",
+									"radius": 2.0,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"useRotation": true,
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "Elemental_Art",
+									"attenuationTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%PillarDamage1",
+										"elementType": "Rock",
+										"elementDurability": 50,
+										"strikeType": "Blunt",
+										"attackType": "Melee",
+										"enBreak": 200,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Heavy",	//hitlevel = 4
+						          		"hitImpulseX": 800,	//hitlevel = 4
+						          		"hitImpulseY": 0,	//hitlevel = 4
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+					"thinkInterval": 2.0,
+					"onThinkInterval":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Attack",	//攻击震荡特效
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 8.0,
+										"y": 4.0,
+										"z": 8.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": -4.0,
+										},
+										"useRotation": true,
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "Elemental_Art",
+									"attenuationTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%PillarDamage2",
+										"elementType": "Rock",
+										"elementDurability": 25,
+										"strikeType": "Blunt",
+										"attackType": "Melee",
+										"enBreak": 0,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Shake",	//hitlevel = 1
+						          		"hitImpulseX": 0,	//hitlevel = 1
+						          		"hitImpulseY": 0,	//hitlevel = 1
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						// {
+						// 	"$type": "ApplyModifier",
+						// 	"modifierName": "UNIQUE_RockDurability",	//给敌人上岩buff
+						// 	"otherTargets":
+						// 	{
+						// 		"$type": "SelectTargetsByShape",
+						// 		"shapeName": "RectW8L8H4",
+						// 		"centerBasedOn": "Self",
+						// 		"campTargetType": "All",
+						// 		"campBasedOn": "Self",
+						// 	},
+						// 	"predicates":
+						// 	[
+						// 		{
+						// 			"$type": "ByEntityTypes",
+						// 			"entityTypes": ["Monster"],
+						// 		},
+						// 	],
+						// },
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockResonance",	//天赋：周围岩创生物回共鸣一起震荡
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR8H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "RockResonance",
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Gadget","Field","Bullet"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_COMMON_GADGET_ISSUMMON",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_RockDurability":
+				{
+					"duration": 4.0,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"elementType": "Rock",
+					"elementDurability": 25,
+				},
+				"RockResonance":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockStand_Attack",
+						},
+						// {
+						// 	"$type": "ApplyModifier",
+						// 	"modifierName": "UNIQUE_RockDurability",	//给敌人上岩buff
+						// 	"otherTargets":
+						// 	{
+						// 		"$type": "SelectTargetsByShape",
+						// 		"shapeName": "RectW8L8H4",
+						// 		"centerBasedOn": "Self",
+						// 		"campTargetType": "All",
+						// 		"campBasedOn": "Self",
+						// 	},
+						// 	"predicates":
+						// 	[
+						// 		{
+						// 			"$type": "ByEntityTypes",
+						// 			"entityTypes": ["Monster"],
+						// 		},
+						// 	],
+						// },
+						{
+							"$type": "TriggerAttackEvent",
+							"target": "Caster",	//让钟离的柱子来打伤害，吃钟离的buff
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 8.0,
+										"y": 4.0,
+										"z": 8.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": -4.0,
+										},
+										"useRotation": true,
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "Elemental_Art",
+									"attenuationTag": "Elemental_Art",
+									"attackProperty":
+									{
+										"damagePercentage": "%PillarDamage2",
+										"elementType": "Rock",
+										"elementDurability": 25,
+										"strikeType": "Blunt",
+										"attackType": "Melee",
+										"enBreak": 0,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+										"hitLevel": "Shake",	//hitlevel = 1
+						          		"hitImpulseX": 0,	//hitlevel = 1
+						          		"hitImpulseY": 0,	//hitlevel = 1
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"EnemyCount": 0,
+				"Duration": 30,
+				"PillarDamage1": 0,
+				"PillarDamage2": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_RockShield 长按的岩盾
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_RockShield",
+			// "passOn": true,
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Zhongli_OnKillHandler",	//如果钟离挂了，就干掉护盾
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Zhongli_RockShield_Mark",	//护盾启动器，方便从外部启动
+					"valueSteps": [-0.5, 0.5, 1.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps": ["Blank", "Blank"],
+					"actionQueues":
+					[
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "RockShield_End",
+							},
+						],
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "RockShield_Start",
+							},
+						],
+					],
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RockShieldBallASMark",	//控制长按掉球，护盾非自然结束切换AS特效
+					"target": "Team",
+				},
+				{
+					"$type": "RemoveUniqueModifier",
+					"modifierName": "UNIQUE_Zhongli_RockShield_NoHeal",
+					"target": "Team",
+				},
+				{
+					"$type": "RemoveUniqueModifier",
+					"modifierName": "UNIQUE_Zhongli_RockShield_Heal",	//重复触发时先移除再加上
+					"target": "Team",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key": "_ABILITY_Zhongli_RockShield_Level",	//保证护盾启动时等级不为null，顺利启动护盾特效
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": "%ShieldMaxLevel",
+					"minValue": 0,
+				},
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10302,
+					"cdRatio": 1.0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "RockReunion_Start",	//先吸取别人的岩，后创建盾
+				},
+			],
+			"modifiers":
+			{
+				"Blank": {},
+				"RockShieldBallASMark":
+				{
+					"duration": 1.0,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_AS_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Ball_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_AS_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Ball_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Zhongli_OnKillHandler":
+				{
+					"onKill":
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_Heal",
+							"target": "Team",
+							"doOffStage": true,
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_NoHeal",
+							"target": "Team",
+							"doOffStage": true,
+						},
+					],
+				},
+				"RockShield_Start":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_Ball_Mark",	//非长按生成时不掉球
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall",	//造盾的时候掉球，数量跟护盾等级走
+									"target": "Self",
+									"doOffStage": true,
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall_Extra1",
+									"target": "Self",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"target": "Team",
+											"key": "_ABILITY_Zhongli_RockShield_Level",
+											"value": 2,
+											"compareType": "MoreThanAndEqual",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall_Extra2",
+									"target": "Self",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"target": "Team",
+											"key": "_ABILITY_Zhongli_RockShield_Level",
+											"value": 4,
+											"compareType": "MoreThanAndEqual",
+										},
+									],
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Level",	//天赋：护盾等级自动+1
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "ExtraShieldLevel",
+								},
+							],
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Zhongli_RockShield_Level",	//根据献祭成果写入护盾等级
+							"overrideMapKey": "ShieldLevel",
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Level",	//把护盾等级转移给Team
+							"value": "%ShieldLevel",
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"doOffStage": true,
+							"target": "Team",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_ShieldExtraDuability",	//重置天赋和护盾等级对护盾吸收量的加成
+							"value": -2,
+							"useLimitRange": true,
+							"maxValue": 2,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ShieldExtraDuability",	//计算天赋和护盾等级对护盾吸收量的加成
+							"doOffStage": true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Level",	//护盾等级转移后干掉角色的
+							"value": -5,
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"doOffStage": true,
+							"target": "CurTeamAvatars",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_Heal",	//天赋：护盾受击可以治疗角色
+							"target": "Team",	//全局盾要加在Team上
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "ShieldWithHeal",
+								},
+							],
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_NoHeal",
+							"target": "Team",
+							"predicates":
+							[
+								{
+									"$type": "ByNot",
+									"predicates":
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "ShieldWithHeal",
+										},
+									],
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+				"ElementBall":
+				{
+					"duration": 1.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2023,
+							"baseEnergy": 6,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 0.5,
+									"maxRandomRange": 1.5,
+								},
+							},
+							"doOffStage": true,
+						},
+					],
+				},
+				"ElementBall_Extra1":
+				{
+					"duration": 1.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2023,
+							"baseEnergy": 3,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 0.5,
+									"maxRandomRange": 1.5,
+								},
+							},
+							"doOffStage": true,
+						},
+					],
+				},
+				"ElementBall_Extra2":
+				{
+					"duration": 1.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2023,
+							"baseEnergy": 3,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 0.5,
+									"maxRandomRange": 1.5,
+								},
+							},
+							"doOffStage": true,
+						},
+					],
+				},
+				"RockShield_End":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Zhongli_RockShield_Level",	//护盾结束时重置护盾等级
+							"value": -5,
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"ShieldExtraDuability":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_ShieldExtraDuability",	//计算天赋对护盾加成
+							"value": "%ShieldBaseDuability",
+							"useLimitRange": true,
+							"maxValue": 2,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_ShieldExtraDuability",	//计算护盾等级对护盾加成
+							"value": "%ShieldLevel*%ShieldLevelDuability",
+							"useLimitRange": true,
+							"maxValue": 2,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Zhongli_ShieldExtraDuability",	//总加成结果写入
+							"overrideMapKey": "ShieldExtraDuability",
+							"doOffStage": true,
+						},
+					],
+				},
+				"RockReunion_Start":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "ActCameraShake",
+				        	"cameraShake":
+				        	{
+				        		"shakeType": "Center",
+								"shakeRange": 0.4,
+								"shakeTime": 0.12,
+								"shakeDistance": 60,
+								"extension":
+								{
+									"baseOnCamera": true,
+								},
+				        	},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_BS",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockSacrifice",	//通知岩属性创生物准备献祭
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit": 20,
+                				"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Gadget","Field","Bullet"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_COMMON_GADGET_ISSUMMON",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockTribute",	//抽取周围敌人身上的岩属性附着
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit": 20,
+                				"sortType": "Nearest",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Monster","Gadget","Field","Bullet","MonsterEquip"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_COMMON_GADGET_ISSUMMON",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockReunion_End",
+							"doOffStage": true,
+						},
+					],
+				},
+				"RockReunion_End":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_Recycle_Absorb",
+							"doOffStage": true,
+						},
+					],
+				},
+				"RockSacrifice":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Level",	//护盾等级加1，不清楚当前角色是否为钟离，全队接受通知
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"target": "CurTeamAvatars",
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+				"RockTribute":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByHasElement",
+									"element": "Rock",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddElementDurability",	//抽取岩附着
+									"value": -50.0,
+									"elementType": "Rock",
+									"sortModifier": "All",
+									// "useLimitRange": true,
+									// "minValue": 0.0,
+									// "maxValue": 100.0,
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_Level",	//提供护盾等级
+									"value": 1,
+									"useLimitRange": true,
+									"maxValue": "%ShieldMaxLevel",
+									"minValue": 0,
+									"target": "CurTeamAvatars",
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "RockTribute_ReviveElemEnergy",	//天赋：抽取能量有概率回复能量
+									"target": "Caster",
+									"predicates":
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "RockSacrificeEnergy",
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"RockTribute_ReviveElemEnergy":
+				{
+					"duration": 0.1,
+					"stacking": "Multiple",
+					"modifierMixins":
+					[
+						{
+							"$type": "ReviveElemEnergyMixin",
+			            	"type": "Both",
+				            "period": 0.07,
+				            "baseEnergy": 5,
+				            "ratio": 1,
+						},
+					],
+				},
+				"UNIQUE_Zhongli_RockShield_NoHeal":
+				{
+					"duration": "%ShieldTime",	//护盾时长受等级影响
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "GlobalMainShieldMixin",
+							"shieldType": "default",
+							"shieldHPRatio": "%ShieldExtraDuability",	//护盾吸收量受等级和天赋影响
+							"shieldEffectGlobalValueKey": "_ABILITY_Zhongli_RockShield_Level",	//根据护盾等级表现分三档
+							"shieldEffectValueSteps": [-0.5, 5.5],
+							"shieldEffectNameSteps": ["Eff_Avatar_Male_Pole_Zhongli_RockShield"],
+							"followAvatarRotation": true,
+							"targetMuteHitEffect": true,
+							"showDamageText": "INFO_ELITE_DEFENCE",
+							"childShieldModifierName": "UNIQUE_Zhongli_RockShield_Child"
+						},
+						{
+							"$type": "DoActionByTeamStatusMixin",	//钟离出队伍时移除大招和护盾
+							"actions":
+							[
+								{
+									"$type": "RemoveUniqueModifier",
+									"modifierName": "UNIQUE_Zhongli_RockShield_NoHeal",
+									"target": "Team",
+									"predicates":
+									[
+										{
+											"$type": "ByCurTeamHasFeatureTag",
+											"featureTagID": 1099,
+											"number": 0,
+											"logic": "Equal",
+										},
+									],
+								},
+							]
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ShieldBornEffect",
+						},
+					],
+				},
+				"UNIQUE_Zhongli_RockShield_Heal":
+				{
+					"duration": "%ShieldTime",
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "GlobalMainShieldMixin",
+							"shieldType": "default",
+							"shieldHPRatio": "%ShieldExtraDuability",
+							"shieldEffectGlobalValueKey": "_ABILITY_Zhongli_RockShield_Level",
+							"shieldEffectValueSteps": [-0.5, 5.5],
+							"shieldEffectNameSteps": ["Eff_Avatar_Male_Pole_Zhongli_RockShield"],
+							"followAvatarRotation": true,
+							"targetMuteHitEffect": true,
+							"showDamageText": "INFO_ELITE_DEFENCE",
+							"amountByGetDamage": 0.5, //天赋：护盾拥有受击治疗效果
+							"childShieldModifierName": "UNIQUE_Zhongli_RockShield_Child"	//天赋：护盾拥有受击治疗效果
+						},
+						{
+							"$type": "DoActionByTeamStatusMixin",	//钟离出队伍时移除大招和护盾
+							"actions":
+							[
+								{
+									"$type": "RemoveUniqueModifier",
+									"modifierName": "UNIQUE_Zhongli_RockShield_Heal",
+									"target": "Team",
+									"predicates":
+									[
+										{
+											"$type": "ByCurTeamHasFeatureTag",
+											"featureTagID": 1099,
+											"number": 0,
+											"logic": "Equal",
+										},
+									],
+								},
+							]
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ShieldBornEffect",
+						},
+					],
+				},
+				"UNIQUE_Zhongli_RockShield_Child":
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "GlobalSubShieldMixin",
+						},
+					],
+					"properties":
+					{
+						"Actor_EndureDelta": 0,	//护盾期间霸体
+					},
+					"onBeingHit":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByHitEnBreak",
+									"enBreak": 0,
+									"logic": "Greater",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Zhongli_RockShield_OnBeingHit_Handler",
+								},
+							],
+						},
+					],
+					"thinkInterval": 2.0,
+					"onThinkInterval":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_Child_RockBuff",
+							"target": "Self",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_AS_Mark",	//非自然结束切换AS特效
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_AS",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_AS01",
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "CurTeamAvatars",
+						},
+					],
+				},
+				"Zhongli_RockShield_OnBeingHit_Handler":
+				{
+					"duration": 0.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Monster"],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "SetGlobalDir",
+									"target": "Target",
+									"key": "_ABILITY_Zhongli_RockShield_Hit",	//方向适配
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"direction":
+										{
+											"$type": "ConfigDirectionByLookAtEntity",
+										},
+									},
+									"setTarget": false,
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SetGlobalDir",
+									"target": "TargetOriginOwner",
+									"key": "_ABILITY_Zhongli_RockShield_Hit",	//方向适配
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"direction":
+										{
+											"$type": "ConfigDirectionByLookAtEntity",
+										},
+									},
+									"setTarget": false,
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Hit_0",	//清除X轴干扰
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Hit_1",	//清除Z轴干扰
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_Recycle_Trigger",	//护盾受击特效
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 1.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByGlobalValue",
+									"directionKey": "_ABILITY_Zhongli_RockShield_Hit",	//方向适配
+									// "angleOffset":
+									// {
+									// 	"x": 0.0,
+									// 	"y": 180.0,
+									// 	"z": 0.0,
+									// },
+								},
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_Hit",	//跟当前角色旋转，TeamEntity不会跟着人旋转，护盾本体特效的旋转跟随是mixin做的，另外特效设置为Deallocate，隐藏状态下不播
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ShieldHitEffect",
+							"target": "Team",
+						},
+					],
+				},
+				"ShieldBornEffect":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_Level",	//创生特效二择
+									"value": 3,
+									"compareType": "MoreThanAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_01",
+									"target": "CurLocalAvatar",	//跟当前角色旋转，TeamEntity不会跟着人旋转，护盾本体特效的旋转跟随是mixin做的，另外特效设置为Deallocate，隐藏状态下不播
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldBorn2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield_02",
+									"target": "CurLocalAvatar",	//跟当前角色旋转，TeamEntity不会跟着人旋转，护盾本体特效的旋转跟随是mixin做的，另外特效设置为Deallocate，隐藏状态下不播
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldBorn1",
+								},
+							],
+						},
+					],
+				},
+				"ShieldHitEffect": 	//受击特效二择
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_Level",
+									"value": 3,
+									"compareType": "MoreThanAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldHit2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldHit1",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Zhongli_RockShield_Child_RockBuff":
+				{
+					"isUnique": true,
+					"duration": 2.1,
+					"stacking": "Refresh",
+					"state": "ElementStickRock",
+					"elementType": "Rock",
+					"elementDurability": 25,
+				}
+			},
+			"abilitySpecials":
+			{
+				"ShieldLevel": 0,
+				"ShieldLevelDuability": 0,
+				"ShieldBaseDuability": 0,
+				"ShieldExtraDuability": 0,
+				"ShieldTime": 20,
+				"ShieldMaxLevel": 4,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_GeoOrder 充能技陨石
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_GeoOrder",
+			"onAbilityStart":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "GeoOrder",	//陨石和爆炸
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["GeoOrder"],
+					"modifierName": "GeoOrder_CameraShot",	//相机控制（和联带特效控制）
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["GeoOrder"],
+					"modifierName": "UNIQUE_GeoOrder_Weather_Controller",	//天气控制
+				},
+				{
+					"$type": "AttachToStateIDMixin",		//保证表演完整性
+					"stateIDs": ["GeoOrder", "GeoOrder_AS"],
+					"modifierName": "GeoOrder_State",
+				},
+			],
+			"modifiers":
+			{
+				"GeoOrder_CameraShot":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",	//镜头能放出来吗？会被挡住吗？
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByAttackNotHitScene",
+									"attackPattern":
+									{
+										"$type": "ConfigAttackCircle",
+										"triggerType": "TriggerNoRepeat",
+										"fanAngle": 360.0,
+										"radius": 1.0,
+										"height": 1.4,
+										"born":
+										{
+											"$type": "ConfigBornBySelf",
+											"offset":
+											{
+												"x": 0.0,
+												"y": 1.7,
+												"z": 0.0,
+											},
+										},
+									},
+								},
+								{
+									"$type": "ByAttackNotHitScene",
+									"attackPattern":
+									{
+										"$type": "ConfigAttackBox",
+										"triggerType": "TriggerNoRepeat",
+										"size":
+										{
+											"x": 5.0,
+											"y": 20.2,
+											"z": 5.0,
+										},
+										"born":
+										{
+											"$type": "ConfigBornBySelf",
+											"offset":
+											{
+												"x": -5.73,
+												"y": 8.81,
+												"z": -5.26,
+											},
+											"direction":
+											{
+												"$type": "ConfigDirectionByEntity",
+												"angleOffset":
+												{
+													"x": -50.0,
+													"y": 20.3,
+													"z": 0.0,
+												}
+											}
+										},
+									},
+								},
+							],
+							"successActions": 	//能放出来镜头
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "HideShieldInGeoOrder",	//隐藏护盾
+									"target": "Team",
+								},
+								{
+									"$type": "AvatarEnterCameraShot",
+									"cameraMoveCfgPath": "Camera_Zhongli_GeoOrder",
+								},
+								{
+									"$type": "SetAnimatorTrigger",
+									"triggerID": "GeoOrderSkin_Weak",	//弱边缘光
+								},
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_BS",	//云层特效
+								},
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement",	//气浪碎石
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SetAnimatorTrigger",
+									"triggerID": "GeoOrderSkin_Strong",	//强边缘光
+								},
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_BS_01",	//无镜头的纯净特效
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ExtraShakeAfterGeoOrder",	//没镜头的情况下额外震屏
+								},
+								{
+									"$type": "SetGlobalPos",	//定点播放预警和爆炸
+									"key": "GeoOrderPos",
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 5.0,
+										},
+									},
+								},
+								{
+									"$type": "SetGlobalDir",	//定点播放预警和爆炸
+									"key": "GeoOrderDir",
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 5.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											}
+										}
+									},
+								},
+								{
+									"$type": "Predicated",
+									"target": "Self",
+									"targetPredicates":
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "GeoOrderASMaxShield",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type": "FireEffect",	//爆炸预警
+											"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_AlertCircle_Talent",
+											"born":
+											{
+												"$type": "ConfigBornByGlobalValue",
+												"positionKey": "GeoOrderPos",
+												"directionKey": "GeoOrderDir",
+												"onGround": true,
+												"alongGround": true,
+												"onGroundRaycastUpDist": 4,
+											},
+										},
+									],
+									"failActions":
+									[
+										{
+											"$type": "FireEffect",
+											"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_AlertCircle",
+											"born":
+											{
+												"$type": "ConfigBornByGlobalValue",
+												"positionKey": "GeoOrderPos",
+												"directionKey": "GeoOrderDir",
+												"onGround": true,
+												"alongGround": true,
+												"onGroundRaycastUpDist": 4,
+											},
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "EnableHeadControl",
+							"enable": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AvatarExitCameraShot",
+						},
+						{
+							"$type": "AvatarCameraParam",
+							"cameraParam":
+							{
+								"forceRadius": 4.0,
+								"forceRadiusDuration": 0,
+								"shouldKeepForceRadius": true,
+							},
+						},
+						{
+							"$type": "EnableHeadControl",
+							"enable": true,
+						},
+					],
+				},
+				"HideShieldInGeoOrder":
+				{
+					"duration": "%Timer+0.1",
+					"onAdded":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+							"parameter": "HideShield",
+							"doOffStage": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_RockShield_Level",	//护盾重现显示特效二择
+									"value": 3,
+									"compareType": "MoreThanAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldL2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockShield",
+									"parameter": "ShieldL1",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_GeoOrder_Weather_Controller":
+				{
+					"isUnique": true,
+					"modifierMixins":
+					[
+						{
+							"$type": "TriggerWeatherMixin",
+							"type": "Skill",
+							"weatherPattern": "Zhongli_GeoOrder",
+							"transDuration": 0.2,
+							"duration": 4,
+						},
+						{
+							"$type": "TriggerWeatherMixin",
+							"type": "Weather",
+							"weatherPattern": "ClearSky_NoWind",
+							"transDuration": 0.1,
+							"duration": 4,
+						},
+					],
+				},
+				"GeoOrder":
+				{
+					"duration": "%Timer",
+					"onAdded":
+					[
+						{
+							"$type": "AvatarSkillStart",
+							"skillID": 10303,
+							"cdRatio": 1.0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_Fall",
+						},
+						{
+							"$type": "SetGlobalPos",	//定点播放预警和爆炸
+							"key": "GeoOrderPos",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 5.0,
+								},
+							},
+						},
+						{
+							"$type": "SetGlobalDir",	//定点播放预警和爆炸
+							"key": "GeoOrderDir",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 5.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									}
+								}
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "GeoOrderASMaxShield",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "FireEffect",	//爆炸
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_Breakout_Talent",
+									"born":
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "GeoOrderPos",
+										"directionKey": "GeoOrderDir",
+									},
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "FireEffect",
+									"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_RockJudgement_Breakout",
+									"born":
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "GeoOrderPos",
+										"directionKey": "GeoOrderDir",
+									},
+								},
+							],
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+					    		    "fanAngle": 360.0,
+					   			    "radius": "%Radius",
+					   			    "height": 3.0,
+					          		"born":
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "GeoOrderPos",
+										"directionKey": "GeoOrderDir",
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "Elemental_Burst",
+									"attackProperty":
+									{
+										"damagePercentage": "%Damage",
+						          		"elementType": "Rock",
+						          		"elementDurability": 0,
+						          		"strikeType": "Blunt",
+						          		"attackType": "Range",
+						          		"enBreak": 500,
+						        	},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+						          		"hitLevel": "Air",	//hitlevel = 6
+										"hitImpulseX": 655,	//hitlevel = 6
+										"hitImpulseY": 800,	//hitlevel = 6
+										"retreatType": "ByHitDirection",
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0.05,
+										"muteHitText": false,
+						        	},
+						        }
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "GeoOrder_CameraRadialBlur",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "GeoOrderASMaxShield",	//天赋：爆炸时激活满级护盾
+							"target": "CurTeamAvatars",
+							"predicates":
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "GeoOrderASMaxShield",
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+				"GeoOrder_CameraRadialBlur":
+				{
+					"duration": 0.4,
+					"onAdded":
+					[
+						{
+							"$type": "ActCameraRadialBlur",
+							"cameraRadialBlur":
+							{
+								"power": 10,
+								"blurTime": 0.01,
+								"fadeTime": 0.44,
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ActCameraRadialBlur",
+							"cameraRadialBlur":
+							{
+								"power": 3,
+								"blurTime": 0.01,
+								"fadeTime": 0.6,
+							},
+						},
+					],
+				},
+				"ExtraShakeAfterGeoOrder":
+				{
+					"duration": "%Timer+0.1",
+					"onRemoved":
+					[
+						{
+							"$type": "ActCameraShake",
+				        	"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.4,
+								"shakeTime": 0.48,
+								"shakeDistance": 60,
+								"shakeDir":
+								{
+									"x": 0,
+									"y": -1,
+									"z": 0,
+								},
+								"extension":
+								{
+									"baseOnCamera": true,
+									"rangeAttenuation": 0.1,
+								},
+				        	},
+						},
+					],
+				},
+				"GeoOrderASMaxShield":
+				{
+					"duration": 1.0,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockShield_NOAS",	//非自然结束切换AS特效
+							"target": "Team",
+							"doOffStage": true,
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_Heal",
+							"target": "Team",
+							"doOffStage": true,
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Zhongli_RockShield_NoHeal",
+							"target": "Team",
+							"doOffStage": true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Level",
+							"value": 5,
+							"useLimitRange": true,
+							"maxValue": "%ShieldMaxLevel",
+							"minValue": 0,
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"GeoOrder_State":
+				{
+					"state": "Invincible",
+					"onAdded":
+					[
+						{
+							"$type": "AttachAbilityStateResistance",
+							"resistanceListID": 11002,
+						},
+					],
+				},
+				"RockShield_NOAS":
+				{
+					"duration": 1.0,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_AS_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_RockShield_AS_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Damage": 0,
+				"Radius": 7.5,
+				"Timer": 1.65,
+				"ShieldMaxLevel": 4,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_RockFever 天赋，对岩属性附着的敌人伤害增加
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_RockFever",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "UNIQUE_ZhongliRockAttackUp",
+					"target": "Self",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_ZhongliRockAttackUp":
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "ModifyDamageMixin",
+							"ignoreEventInfo": true,
+							"damagePercentageRatio": "%DPRatio",
+							"predicates":
+							[
+								{
+									"$type": "ByHasElement",
+									"element": "Rock",
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"DPRatio": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_HideWeaponControl 控制实体枪的隐藏和出现
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_HideWeaponControl",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_ABILITY_Zhongli_WeaponVisible_Mark",	//需要标记，避免连续两次隐藏武器后无法一个action就显现
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack01",
+					"modifierName": "HideWeaponOnEnter",
+					"normalizeEnd": 0.2,	//不提前结束会导致普攻01进01无法重复触发
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack02"],
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack04"],
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack05"],
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack06"],	//1，2，4，5，6，进就隐
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack","ExtraAttack_AS"],
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["GeoOrder","GeoOrder_AS"],
+					"modifierName": "HideWeaponOnEnter",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack01", "Attack02", "Attack03", "Attack04", "Attack05", "Attack06","ExtraAttack","ExtraAttack_AS","GeoOrder","GeoOrder_AS"],	//出普攻则显
+					"modifierName": "ShowWeaponOnExit",
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack01",
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.48,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack02",
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.06,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack04",
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.56,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack05",
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.61,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack06",	//1，4，5，收招显现，2，6，出招显现
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.17,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack_AS",
+					"modifierName": "ShowWeaponOnEnter",
+					"normalizeStart": 0.266,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack01",
+					"modifierName": "HideSpear01OnExit",
+					"normalizeEnd": 0.448,	//最长持续时间与自然持续时间相等
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack05"],	//幻影枪进下一击时隐藏
+					"modifierName": "HideSpear04OnEnter_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"HideWeaponOnEnter":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerHideWeapon",
+							"visible": false,
+							"partNames": ["equip01", "equip02", "sheathPoint"],
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Zhongli_WeaponVisible_Mark",
+									"value": 1,
+									"forceByCaster": true,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_WeaponVisible_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"ShowWeaponOnEnter":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerHideWeapon",
+							"visible": true,
+							"partNames": ["equip01", "equip02", "sheathPoint"],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_WeaponVisible_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"ShowWeaponOnExit":
+				{
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerHideWeapon",
+							"visible": true,
+							"partNames": ["equip01", "equip02", "sheathPoint"],
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Zhongli_WeaponVisible_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"HideSpear01OnExit":
+				{
+					// "duration": 0.97,
+					"onRemoved":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_NormalAttack01",
+							"parameter": "HideSpear",
+							"doOffStage": true,
+						},
+					],
+				},
+				"HideSpear04OnEnter_Handler":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "HideSpear04OnEnter",
+						},
+					],
+				},
+				"HideSpear04OnEnter":
+				{
+					"duration": 0.1,	//延迟0.1秒再消失，和普攻05的枪无缝衔接
+					"onRemoved":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_NormalAttack04",
+							"parameter": "HideSpear",
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Zhongli_NormalAttack 普攻伤害和特殊控制
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Zhongli_NormalAttack",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack01",
+					"modifierName": "Attack01",
+					"normalizeStart": 0.045,
+					"normalizeEnd": 0.2,	//不提前结束会导致普攻01进01无法重复触发
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack02",
+					"modifierName": "Attack02",
+					"normalizeStart": 0.046,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack03",
+					"modifierName": "Attack03",
+					"normalizeStart": 0.045,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack04",
+					"modifierName": "Attack04",
+					"normalizeStart": 0.075,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack05",
+					"modifierName": "Attack05_PreciseLance",
+					"normalizeStart": 0.02,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Attack06",
+					"modifierName": "Attack06",
+					"normalizeStart": 0.163,
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack"],
+					"modifierName": "BulletBlink",
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "Eff_Blink_Off",
+					"normalizeStart": 0.95,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "LetLanceRain1",
+					"normalizeStart": 0.2,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "LetLanceRain2",
+					"normalizeStart": 0.4,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "LetLanceRain3",
+					"normalizeStart": 0.6,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "LetLanceRain4",
+					"normalizeStart": 0.8,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "ExtraAttack",
+					"modifierName": "LetLanceRain5",
+					"normalizeEnd": 0.95,
+				},
+			],
+			"modifiers":
+			{
+				"Attack01":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByHasAttackTarget",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "SelfAttackTarget",
+									"targetPredicates":
+									[
+										{
+											"$type": "ByTargetPositionToSelfPosition",	//根据和敌人距离，控制击退距离
+											"compareType": "XZ",
+											"value": 2.0,
+											"logic": "LesserOrEqual",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type": "TriggerAttackEvent",
+											"targetType": "Enemy",
+											"attackEvent":
+											{
+												"attackPattern":
+												{
+													"$type": "ConfigAttackBox",
+													"triggerType": "TriggerNoRepeat",
+													"size":
+													{
+														"x": 1.5,
+														"y": 1.8,
+														"z": 3.8,
+													},
+													"born":
+													{
+														"$type": "ConfigBornBySelf",
+														"offset":
+														{
+															"x": 0.0,
+															"y": 0.85,
+															"z": 0.0,
+														},
+													},
+									        	},
+												"attackInfo":
+												{
+													"attackTag": "NormalAttack_01",
+													"attenuationTag": "NormalAttack",
+													"attackProperty":
+													{
+														"damagePercentage": "%Attack01",
+														"strikeType": "Spear",
+												  		"elementDurability": 25,
+														"overrideByWeapon": true,
+										 				"attackType": "Melee",
+										 				"bonusCritical": 0,
+										 				"bonusCriticalHurt": 0,
+										 				"enBreak": 28.8,
+													},
+													"hitPattern":
+													{
+										          		"onHitEffectName": "default",
+										          		"hitLevel": "Heavy",	//hitlevel = 4
+										          		"hitImpulseX": 800,	//hitlevel = 4
+										          		"hitImpulseY": 0,	//hitlevel = 4
+										          		"reboundRatio": 0,
+														"canBeDefenceHalt": true,
+										          		"hitHaltTime": 0.02,
+										          		"hitHaltTimeScale": 0.01,
+										          		"muteHitText": false
+										        	},
+										        	"forceCameraShake": false,
+										        	"cameraShake":
+										        	{
+										        		"shakeType": "CustomVector",
+														"shakeRange": 0.12,
+														"shakeTime": 0.12,
+														"shakeDistance": 30,
+														"shakeDir":
+														{
+															"x": -1,
+															"y": 0,
+															"z": 0,
+														},
+										        	},
+												}
+											},
+										},
+									],
+									"failActions":
+									[
+										{
+											"$type": "TriggerAttackEvent",
+											"targetType": "Enemy",
+											"attackEvent":
+											{
+												"attackPattern":
+												{
+													"$type": "ConfigAttackBox",
+													"triggerType": "TriggerNoRepeat",
+													"size":
+													{
+														"x": 1.5,
+														"y": 1.8,
+														"z": 3.8,
+													},
+													"born":
+													{
+														"$type": "ConfigBornBySelf",
+														"offset":
+														{
+															"x": 0.0,
+															"y": 0.85,
+															"z": 0.0,
+														},
+													},
+									        	},
+												"attackInfo":
+												{
+													"attackTag": "NormalAttack_01",
+													"attenuationTag": "NormalAttack",
+													"attackProperty":
+													{
+														"damagePercentage": "%Attack01",
+														"strikeType": "Spear",
+												  		"elementDurability": 25,
+														"overrideByWeapon": true,
+										 				"attackType": "Melee",
+										 				"bonusCritical": 0,
+										 				"bonusCriticalHurt": 0,
+										 				"enBreak": 28.8,
+													},
+													"hitPattern":
+													{
+										          		"onHitEffectName": "default",
+										          		"hitLevel": "Heavy",	//hitlevel = 3
+										          		"hitImpulseX": 200,	//hitlevel = 3
+										          		"hitImpulseY": 0,	//hitlevel = 3
+										          		"reboundRatio": 0,
+														"canBeDefenceHalt": true,
+										          		"hitHaltTime": 0.02,
+										          		"hitHaltTimeScale": 0.01,
+										          		"muteHitText": false
+										        	},
+										        	"forceCameraShake": false,
+										        	"cameraShake":
+										        	{
+										        		"shakeType": "CustomVector",
+														"shakeRange": 0.12,
+														"shakeTime": 0.12,
+														"shakeDistance": 30,
+														"shakeDir":
+														{
+															"x": -1,
+															"y": 0,
+															"z": 0,
+														},
+										        	},
+												}
+											},
+										},
+									],
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "TriggerAttackEvent",
+									"targetType": "Enemy",
+									"attackEvent":
+									{
+										"attackPattern":
+										{
+											"$type": "ConfigAttackBox",
+											"triggerType": "TriggerNoRepeat",
+											"size":
+											{
+												"x": 1.5,
+												"y": 1.8,
+												"z": 3.8,
+											},
+											"born":
+											{
+												"$type": "ConfigBornBySelf",
+												"offset":
+												{
+													"x": 0.0,
+													"y": 0.85,
+													"z": 0.0,
+												},
+											},
+							        	},
+										"attackInfo":
+										{
+											"attackTag": "NormalAttack_01",
+											"attenuationTag": "NormalAttack",
+											"attackProperty":
+											{
+												"damagePercentage": "%Attack01",
+												"strikeType": "Spear",
+										  		"elementDurability": 25,
+												"overrideByWeapon": true,
+								 				"attackType": "Melee",
+								 				"bonusCritical": 0,
+								 				"bonusCriticalHurt": 0,
+								 				"enBreak": 28.8,
+											},
+											"hitPattern":
+											{
+								          		"onHitEffectName": "default",
+								          		"hitLevel": "Heavy",	//hitlevel = 3
+								          		"hitImpulseX": 200,	//hitlevel = 3
+								          		"hitImpulseY": 0,	//hitlevel = 3
+								          		"reboundRatio": 0,
+												"canBeDefenceHalt": true,
+								          		"hitHaltTime": 0.02,
+								          		"hitHaltTimeScale": 0.01,
+								          		"muteHitText": false
+								        	},
+								        	"forceCameraShake": false,
+								        	"cameraShake":
+								        	{
+								        		"shakeType": "CustomVector",
+												"shakeRange": 0.12,
+												"shakeTime": 0.12,
+												"shakeDistance": 30,
+												"shakeDir":
+												{
+													"x": -1,
+													"y": 0,
+													"z": 0,
+												},
+								        	},
+										}
+									},
+								},
+							],
+						},
+					],
+				},
+				"Attack02":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackCircle",
+									"height": 1.5,
+									"triggerType": "TriggerNoRepeat",
+									"fanAngle": 180.0,
+									"radius": 2.0,
+									"radiusRatio": 0.0,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": -0.1,
+											"z": 0.8,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "NormalAttack_02",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack02",
+										"strikeType": "Slash",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						          		"attackType": "Melee",
+						          		"bonusCritical": 0,
+						          		"bonusCriticalHurt": 0,
+						          		"enBreak": 29.6,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "default",
+						          		"hitLevel": "Heavy",	//hitlevel = 3
+						          		"hitImpulseX": 200,	//hitlevel = 3
+						          		"hitImpulseY": 0,	//hitlevel = 3
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": true,
+						          		"hitHaltTime": 0.02,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								}
+							},
+						},
+					],
+				},
+				"Attack03":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.8,
+										"z": 1.5
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.85,
+											"z": 0.5
+										}
+									}
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "NormalAttack_03",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack03",
+										"strikeType": "Spear",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 36.8,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Heavy",	//hitlevel = 3
+						          		"hitImpulseX": 200,	//hitlevel = 3
+						          		"hitImpulseY": 0,	//hitlevel = 3
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": true,
+						          		"hitHaltTime": 0.06,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": -1,
+											"z": 0,
+										},
+						        	},
+								}
+							},
+						},
+					],
+				},
+				"Attack04":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackCircle",
+									"height": 1.9,
+									"triggerType": "TriggerNoRepeat",
+									"fanAngle": 360.0,
+									"radius": 1.7,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": -0.1,
+											"z": 1.8,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "NormalAttack_04",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack04",
+										"strikeType": "Spear",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 40,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Heavy",	//hitlevel = 4
+						          		"hitImpulseX": 800,	//hitlevel = 4
+						          		"hitImpulseY": 0,	//hitlevel = 4
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": true,
+						          		"hitHaltTime": 0.06,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 1,
+											"z": 0,
+										},
+						        	},
+								}
+							},
+						},
+					],
+				},
+				"Attack05_PreciseLance":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41030001,	//加gadget保证攻击事件不会因为进下一击被切断
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.5,
+								},
+							},
+						},
+					],
+				},
+				"Attack06":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.7,
+										"z": 4.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.8,
+											"z": 0.2,
+										},
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "NormalAttack_06",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack06",
+										"strikeType": "Spear",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 53.36,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Air",	//hitlevel = 6
+										"hitImpulseX": 655,	//hitlevel = 6
+										"hitImpulseY": 800,	//hitlevel = 6
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": true,
+						          		"hitHaltTime": 0.06,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								},
+							},
+						},
+					],
+				},
+				"LetLanceRain1":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0,
+									"y": 0,
+									"z": 0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+								"onGround": true,
+								"onGroundIgnoreWater": true,
+								"alongGround": true,
+							},
+						},
+					],
+				},
+				"LetLanceRain2":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0.1,
+									"y": 0,
+									"z": 0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+								"onGround": true,
+								"onGroundIgnoreWater": true,
+								"alongGround": true,
+							},
+						},
+					],
+				},
+				"LetLanceRain3":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0,
+									"y": 0,
+									"z": 0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+								"onGround": true,
+								"onGroundIgnoreWater": true,
+								"alongGround": true,
+							},
+						},
+					],
+				},
+				"LetLanceRain4":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": -0.1,
+									"y": 0,
+									"z": 0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+								"onGround": true,
+								"onGroundIgnoreWater": true,
+								"alongGround": true,
+							},
+						},
+					],
+				},
+				"LetLanceRain5":
+				{
+					// "duration": 0.1,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack02",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x": 0,
+									"y": 0,
+									"z": 1,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+								},
+								"onGround": true,
+								"onGroundIgnoreWater": true,
+								"alongGround": true,
+							},
+						},
+					],
+				},
+				"BulletBlink":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack_HideSpark",
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41030003,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "RootNode",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+						{
+							"$type": "TriggerSetVisible",
+							"visible": false,
+						},
+						{
+							"$type": "EnablePushColliderName",
+							"pushColliderNames": ["PushCollider"],
+							"setEnable": false,
+						},
+						{
+							"$type": "EnablePushColliderName",
+							"pushColliderNames": ["PushColliderExtra"],
+							"setEnable": true,
+						},
+						// {
+						// 	"$type": "RushMove",
+						// 	"toPos":
+						// 	{
+						// 		"$type": "ConfigBornBySelf",
+						// 		"offset":
+						// 		{
+						// 			"x": 0.0,
+						// 			"y": 0.0,
+						// 			"z": 10.0,
+						// 		},
+						// 	},
+						// 	"minRange": 1.5,
+						// 	"maxRange": 1.5,
+						// 	"timeRange": 0.3,
+						// },
+					],
+					"onRemoved":
+					[
+						// {
+						// 	"$type": "ActCameraShake",
+				  //       	"cameraShake":
+				  //       	{
+				  //       		"shakeType": "Center",
+						// 		"shakeRange": 0.12,
+						// 		"shakeTime": 0.12,
+						// 		"shakeDistance": 30,
+						// 		"extension":
+						// 		{
+						// 			"baseOnCamera": true,
+						// 		},
+				  //       	},
+						// },
+						{
+							"$type": "TriggerSetVisible",
+							"visible": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "EnablePushColliderName",
+							"pushColliderNames": ["PushCollider"],
+							"setEnable": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "EnablePushColliderName",
+							"pushColliderNames": ["PushColliderExtra"],
+							"setEnable": false,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Eff_Blink_Off":
+				{
+					// "duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_ExtraAttack_ShowSpark",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.8,
+								"z": 0.0,
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Attack01": 0,
+				"Attack02": 0,
+				"Attack03": 0,
+				"Attack04": 0,
+				// "Attack05": 0,
+				"Attack06": 0,
+				// "ExtraAttack": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Zhongli_Attack05 //gadget的攻击事件
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Zhongli_Attack05",
+			"onAdded":
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Avatar_Male_Pole_Zhongli_NormalAttack05_Follow",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Lance_Attack_1",
+				},
+			],
+			"modifiers":
+			{
+				"Lance_Attack_1":
+				{
+					"duration": 0.23,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 3.1,
+										"z": 2.8,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.9,
+											"z": -0.2,
+										},
+									},
+					        	},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "NormalAttack_05",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack05",
+										"strikeType": "Slash",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 9.8,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Light",	//hitlevel = 2
+						          		"hitImpulseX": 200,	//hitlevel = 2
+						          		"hitImpulseY": 0,	//hitlevel = 2
+						          		"retreatType": "ByOriginOwner",
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+						          		"hitHaltTime": 0.0,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								},
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Lance_Attack_2",
+						},
+					],
+				},
+				"Lance_Attack_2":
+				{
+					"duration": 0.08,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 3.1,
+										"z": 3.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.9,
+											"z": -0.5,
+										},
+									},
+					        	},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "NormalAttack_05",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack05",
+										"strikeType": "Slash",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 9.8,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Light",	//hitlevel = 2
+						          		"hitImpulseX": 200,	//hitlevel = 2
+						          		"hitImpulseY": 0,	//hitlevel = 2
+						          		"retreatType": "ByOriginOwner",
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+						          		"hitHaltTime": 0.0,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								},
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Lance_Attack_3",
+						},
+					],
+				},
+				"Lance_Attack_3":
+				{
+					"duration": 0.15,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 3.1,
+										"z": 3.8,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.9,
+											"z": -1.3,
+										},
+									},
+					        	},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "NormalAttack_05",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack05",
+										"strikeType": "Slash",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 9.8,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Light",	//hitlevel = 2
+						          		"hitImpulseX": 200,	//hitlevel = 2
+						          		"hitImpulseY": 0,	//hitlevel = 2
+						          		"retreatType": "ByOriginOwner",
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+						          		"hitHaltTime": 0.0,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								},
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Lance_Attack_4",
+						},
+					],
+				},
+				"Lance_Attack_4":
+				{
+					"duration": 0.08,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 3.1,
+										"z": 4.1,
+									},
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.9,
+											"z": -1.6,
+										},
+									},
+					        	},
+								"attackInfo":
+								{
+									"canBeModifiedBy": "OriginOwner",
+									"attackTag": "NormalAttack_05",
+									"attenuationTag": "NormalAttack",
+									"attackProperty":
+									{
+										"damagePercentage": "%Attack05",
+										"strikeType": "Slash",
+								  		"elementDurability": 25,
+										"overrideByWeapon": true,
+						 				"attackType": "Melee",
+						 				"bonusCritical": 0,
+						 				"bonusCriticalHurt": 0,
+						 				"enBreak": 9.8,
+									},
+									"hitPattern":
+									{
+						          		"onHitEffectName": "default",
+						          		"hitLevel": "Light",	//hitlevel = 2
+						          		"hitImpulseX": 200,	//hitlevel = 2
+						          		"hitImpulseY": 0,	//hitlevel = 2
+						          		"retreatType": "ByOriginOwner",
+						          		"reboundRatio": 0,
+										"canBeDefenceHalt": false,
+						          		"hitHaltTime": 0.0,
+						          		"hitHaltTimeScale": 0.01,
+						          		"muteHitText": false
+						        	},
+						        	"forceCameraShake": false,
+						        	"cameraShake":
+						        	{
+						        		"shakeType": "CustomVector",
+										"shakeRange": 0.12,
+										"shakeTime": 0.12,
+										"shakeDistance": 30,
+										"shakeDir":
+										{
+											"x": -1,
+											"y": 0,
+											"z": 0,
+										},
+						        	},
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Attack05": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Zhongli_ExtraAttack
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Zhongli_ExtraAttack",
+			"onAbilityStart":
+			[
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"triggerType": "TriggerNoRepeat",
+							"filterByFrame": true,
+							"radius": 1.0,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+			        	},
+						"attackInfo":
+						{
+							"attackTag": "ExtraAttack",
+							"canBeModifiedBy": "OriginOwner",
+							"attenuationTag": "NormalAttack",
+							"attackProperty":
+							{
+								"damagePercentage": "%ExtraAttack",
+								"strikeType": "Spear",
+						  		"elementDurability": 25,
+								"overrideByWeapon": true,
+				 				"attackType": "Melee",
+				 				"bonusCritical": 0,
+				 				"bonusCriticalHurt": 0,
+				 				"enBreak": 96,
+							},
+							"hitPattern":
+							{
+				          		"onHitEffectName": "default",
+				          		"hitLevel": "Air",	//hitlevel = special
+								"hitImpulseX": 0,	//hitlevel = special
+								"hitImpulseY": 450,	//hitlevel = special
+								"retreatType": "ByHitDirection",
+				          		"reboundRatio": 0,
+								"canBeDefenceHalt": true,
+				          		"hitHaltTime": 0.06,
+				          		"hitHaltTimeScale": 0.01,
+				          		"muteHitText": false
+				        	},
+				        	"forceCameraShake": false,
+				        	"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.12,
+								"shakeTime": 0.12,
+								"shakeDistance": 30,
+								"shakeDir":
+								{
+									"x": -1,
+									"y": 0,
+									"z": 0,
+								},
+				        	},
+						},
+					},
+				},
+			],
+			"abilitySpecials":
+			{
+				"ExtraAttack": 0,
+			},
+		},
+	},
+]

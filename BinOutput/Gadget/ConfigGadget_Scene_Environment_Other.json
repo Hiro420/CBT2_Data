@@ -1,0 +1,190 @@
+{
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 30米监测器
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Field_30":
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				
+				"abilityName" : "SceneObj_Environment_Field_30",
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//竞技场守卫
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Other_AreaGuardian":
+	{
+		"$type" : "ConfigGadget",
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Other_AreaGuardian",
+				
+				"abilityName" : "SceneObj_Environment_Other_AreaGuardian"
+			},
+		],
+	},
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//遗迹猎者（仿竞技场守卫）
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Other_Formathr":
+	{
+		"$type" : "ConfigGadget",
+		"keepModifierOutSight": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+	},
+	
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//猎鹿人今日推荐
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Bulletin1":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : false,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Bulletin_Btn",
+			"uiName": "UI_BULLETIN_QTE_TITLE1"
+		},
+	},
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//晨曦酒庄招募书
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Bulletin2":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : false,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Bulletin_Btn",
+			"uiName": "UI_BULLETIN_QTE_TITLE2"
+		},
+	},
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//降魔印查看
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_Bulletin3":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : false,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Bulletin_Btn",
+			"uiName": "UI_BULLETIN_QTE_TITLE3"
+		},
+	},
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//可莉的木牌
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////	
+	"SceneObj_Environment_KleeBoard":
+	{
+		"$type" : "ConfigGadget",
+		"hasModel" : false,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Bulletin_Btn",
+			"uiName": "UI_BULLETIN_QTE_TITLE4"
+		},
+	},
+},

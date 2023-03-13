@@ -1,0 +1,94 @@
+[
+    {
+        "ID": 1,
+        "配置路径": "TEST/TEST_Chest_CutSence"
+    },
+    {
+        "ID": 2,
+        "配置路径": "TEST/TEST_GoddessLvUp_CutSence"
+    },
+    {
+        "ID": 3,
+        "配置路径": "Scene_CutScene/Cs_Scene_GoddessUpgrade_01"
+    },
+    {
+        "ID": 4,
+        "配置路径": "Scene_CutScene/Cs_Scene_DungeonGate_01"
+    },
+    {
+        "ID": 5,
+        "配置路径": "Scene_CutScene/Cs_Scene_DungeonGate_02"
+    },
+    {
+        "ID": 6,
+        "配置路径": "Scene_CutScene/Cs_Scene_GoddessActive"
+    },
+    {
+        "ID": 7,
+        "配置路径": "Scene_CutScene/Cs_Scene_GoddessUpgradeDefault"
+    },
+    {
+        "ID": 8,
+        "配置路径": "Scene_CutScene/Cs_Scene_DragonNestSealGate"
+    },
+    {
+        "ID": 9,
+        "配置路径": "Scene_CutScene/Cs_MDAQ501_SwordBreak01"
+    },
+    {
+        "ID": 200201,
+        "配置路径": "Scene_CutScene/Cs_MDAQ071_DvalinCombat2"
+    },
+    {
+        "ID": 10,
+        "配置路径": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen01"
+    },
+    {
+        "ID": 11,
+        "配置路径": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen02"
+    },
+    {
+        "ID": 12,
+        "配置路径": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen03"
+    },
+    {
+        "ID": 13,
+        "配置路径": "Scene_CutScene/Cs_RecyclableDungeon_GetReward"
+    },
+    {
+        "ID": 2101401,
+        "配置路径": "Scene_CutScene/Cs_LYIQ21014_LiYueShow"
+    },
+    {
+        "ID": 133104440,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_TripleCampSeals"
+    },
+    {
+        "ID": 133104488,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_CalcifPoolDungeonUnlock"
+    },
+    {
+        "ID": 133103334,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_StoneNiddlesRiseField"
+    },
+    {
+        "ID": 310301001,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_01"
+    },
+    {
+        "ID": 310301002,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_02"
+    },
+    {
+        "ID": 310301003,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_03"
+    },
+    {
+        "ID": 310301501,
+        "配置路径": "Scene_CutScene/Cs_Scene_JueYunJianTempleUnlock"
+    },
+    {
+        "ID": 310624801,
+        "配置路径": "Scene_CutScene/Cs_Scene_LY_DunYuLingPuzzle"
+    }
+]

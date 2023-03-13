@@ -1,0 +1,750 @@
+
+{
+	"logSetting":
+	{
+		"sendEngineLogToServer": true,
+	},
+	"dieData":
+	{
+		"$type": "ConfigCommonVisualDieData",
+		"dieEndTime": 3,
+		"dieEndMaxTime": 10,
+	},
+	"hitData":
+	{
+		"$type": "ConfigCommonHitData",
+		"minHitVX": 1,
+		"maxHitVX": 1000,
+		"minHitVY": 8,
+		"maxHitVY": 1000,
+		"gravity": 2,
+		"hitRetreatFriction": 3,
+		"airFrictionX": 0.5,
+		"airFrictionY": 2,
+		"dieRetreatRatio": 1.5,
+		"dieRetreatAdd": 20,
+		"dieRetreatAirXAdd": 5,
+		"dieRetreatAirYAdd": 6,
+	},
+	"collisionData":
+	{
+		"$type": "ConfigGlobalCollision",
+		"highSpdThreshold": 35,
+	},
+	"aiData":
+	{
+		"$type" : "ConfigGlobalAI",
+		"avatarMeleeSlotRadius": 2,
+		"facingMoveTurnInterval": 0.8,
+		"facingMoveMinAvoidanceVelecity": 0.375,
+		"avoidanceUpdateInterval": 0.1,
+		"avoidanceRadius": 2.0,
+		"avoidanceForce": 50,
+		"lod0": 0,
+		"lod1": 30,
+		"lod2": 50,
+		"publicCDs":
+		{
+			"meleeAttack_long":
+			{
+				"$type" : "ConfigPublicAISkillCD",
+				"name":"meleeAttack_long",
+				"minInterval": 15.0,
+			},
+			"rangedAttack_long":
+			{
+				"$type" : "ConfigPublicAISkillCD",
+				"name":"rangedAttack",
+				"minInterval": 5.0,
+			},
+			"RandomAction":
+			{
+				"$type" : "ConfigPublicAISkillCD",
+				"name":"RandomAction",
+				"minInterval": 1.5,
+			},
+		},
+		"defaultWeatherNeuronMapping":
+		{
+			"Rain": ["WEATHER_BAD"],
+			"Storm": ["WEATHER_BAD"],
+		},
+		"useServerPathfinding" : true,
+	},
+	"moveData":
+	{
+		"noGroundStayInPlace" : false,
+		"syncInterval":
+		{
+			"lod0":
+			{
+				"defaultValue": 0.1,
+				"specificValue":
+				{
+					"EnvAnimal": 0.5
+				}
+			},
+			"lod1":
+			{
+				"defaultValue": 0.2,
+				"specificValue":
+				{
+					"EnvAnimal": 1.0
+				}
+			},
+			"lod2":
+			{
+				"defaultValue": -1
+			}
+		}
+	},
+	"elementBladeData":
+	{
+		"Fire":
+		{
+			"slash" : "Eff_ElementAlter_Fire",
+			"colorA" : "FF790000",
+			"colorB" : "FFE6A500",
+		},
+		"Water":
+		{
+			"slash" : "Eff_ElementAlter_Water",
+			"colorA" : "0056FF00",
+			"colorB" : "A3CEFF00",
+		},
+		"Wind":
+		{
+			"slash" : "Eff_ElementAlter_Wind",
+			"colorA" : "03C1DB00",
+			"colorB" : "C9FFFD00",
+		},
+		"Ice":
+		{
+			"slash" : "Eff_ElementAlter_Water",
+			"colorA" : "6599FF00",
+			"colorB" : "EBF1FF00",
+		},
+		"Electric":
+		{
+			"slash" : "Eff_ElementAlter_Electric",
+			"colorA" : "3714FB00",
+			"colorB" : "F9EBFF00",
+		},
+	},
+	"fireGrassAirflowData":
+	{
+		"$type": "ConfigFireGrassAirflowField",
+		"enable": false,
+		"gadgetId": 40200008,
+		"triggerNum": 3,
+		"height": 10,
+		"up": true,
+		"velocity": 10,
+		"heightSpeed": -1,
+		"antiGravityRatio" : 0.6,
+	},
+	"miscs":
+	{
+		"airFlowAcc": -1.8,
+		"paimonGadgetID": 90000003,
+		"cureEffect": "Eff_AvatarCommon_Heal",
+		"gadgetUICameraLookCfgPath": "TEST/TEST_Chest_CutSence",
+		"gadgetUICutSenceCfgPath": "TEST/TEST_Chest_CutSence",
+		"weaponAnimCurvePath": "Data/ScriptData/Gadget/WeaponAnim",
+		"avatarFocus":
+		{
+			"ps4":
+			{
+				"cameraHorMoveSpeed": 1.8,
+				"cameraVerMoveSpeed": 4.5,
+				"cameraHorStickyRatio": 0.5,
+				"cameraVerStickyRatio": 0.4,
+				"autoFocusHorSpeed": 30,
+				"autoFocusVerSpeed": 30,
+				"autoFocusRangeCoef": 2.5,
+				"gyroHorMoveSpeed": 12,
+				"gyroVerMoveSpeed": 0.4,
+			},
+			"other":
+			{
+				"cameraHorMoveSpeed": 1.6,
+				"cameraVerMoveSpeed": 4,
+				"cameraHorStickyRatio": 0.6,
+				"cameraVerStickyRatio": 0.5,
+				"autoFocusHorSpeed": 30,
+				"autoFocusVerSpeed": 30,
+				"autoFocusRangeCoef": 2.5,
+				"gyroHorMoveSpeed": 16,
+				"gyroVerMoveSpeed": 0.3,
+			},
+			"pc":
+			{
+				"cameraHorMoveSpeed": 0.9,
+				"cameraVerMoveSpeed": 1.5,
+				"cameraHorStickyRatio": 0.6,
+				"cameraVerStickyRatio": 0.5,
+				"autoFocusHorSpeed": 30,
+				"autoFocusVerSpeed": 30,
+				"autoFocusRangeCoef": 2.5,
+				"gyroHorMoveSpeed": 16,
+				"gyroVerMoveSpeed": 0.3,
+			},
+		}
+	},
+	"lockTarget" :
+	{
+		"lockWeightOutCameraParam" : 0,
+		"lockWeightRelockParam" : 1.2,
+		"clearLockTargetOutCombat" : 2,
+		"clearLockTargetInCombat" : 3,
+		"forceLockTargetInCombat" : 0,
+	},
+	"attackAttenuation":
+	{
+		"resetCycle": 5,
+		"durabilitySequence": [1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0],
+		"enbreakSequence": [1,0.6,0.3,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],
+	},
+	"defaultAbilities":
+	{
+		"monterEliteAbilityName": "MonsterEliteAbility",
+		"nonHumanoidMoveAbilities":
+		[
+			"Unique_AbilityCrash",
+		],
+		"levelDefaultAbilities":
+		[
+			"AI_LeaveCombat_Reset",
+			"LevelAbility_Combat_Watcher",
+		],
+		"levelElementAbilities":
+		[
+			"SceneAbility_WaterArea",
+			"SceneAbility_Rain",
+			"SceneAbility_Thunder",
+			"ElementAbility_Burning",
+			"ElementAbility_Wet",
+			"ElementAbility_Ice",
+			"ElementAbility_Growing",
+			"ElementAbility_Steam",
+			"ElementAbility_Explode",
+			"ElementAbility_Melt",
+			"ElementAbility_Freeze",
+			"ElementAbility_Frozen",
+			"ElementAbility_Electric",
+			"ElementAbility_Rock",
+			"ElementAbility_Overload",
+			"ElementAbility_Wind",
+			"ElementAbility_StickElectric",
+			"ElementAbility_Fire",
+			"ElementAbility_Superconductor",
+			"ElementAbility_Swirl_Fire",
+			"ElementAbility_Swirl_Electric",
+			"ElementAbility_Swirl_Water",
+			"ElementAbility_Swirl_Ice",
+			"ElementAbility_StickRock",
+			"ElementAbility_StickWater",
+		],
+		"levelItemAbilities":
+		[
+			"Item_Food_RecoverHP",
+			"Item_Food_RecoverInstantHP",
+			"Item_Food_MoveSpeed",
+		],
+		"levelSBuffAbilities":
+		[
+			"Item_Food_Attack",
+			"Item_Food_Defence",
+			"Item_Food_MaxHP",
+			"ReHP_Ins&Con",
+			"Atk_Team",
+			"Def_Team",
+			"Elec_Team",
+			"Fire_Team",
+            "Water_Team",
+            "revive_buff",
+            "Critical_Team",
+            "Stamina_Fly_lv3_1",
+            "Stamina_Fly_lv3_2",
+            "Stamina_Fly_lv3_3",
+            "Stamina_Climb_lv3_1",
+            "Stamina_Climb_lv3_2",
+            "Stamina_Climb_lv3_3",
+            "MoveSpeed_lv2_1",
+            "Def_Element_lv2_1",
+            "Element_Def_Team",
+            "Element_Atk_Team",
+			"Atk_Dungeon",
+			"Atk_FeatureTag_Dungeon",
+			"Atk_WeaponType_Dungeon",
+			"Def_Dungeon",
+			"Support_Dungeon",
+			"Stamina_Sprint_Dungeon",
+			"MoveSpeed_Dungeon",
+			"ReHP_Ins&Con_Dungeon",
+			"Suport_ResetCDWhenSkillHit_Dungeon",
+			"Atk_HitHeadBox_Dungeon",
+		],
+		"dungeonAbilities":
+		[
+
+		],
+		"defaultTeamAbilities":
+		[
+			"TeamTalentSwitch",
+			"TeamTalent_CoolDown_Trigger",
+			"Team_Talent_ReduceFlyStamina",
+			"Team_Talent_FallingDamageReduction",
+			"Team_Talent_DashStaminaReduction",
+			"Team_WindSeedSpawner_Manager",
+			"WindSeed_Bullet_Manager",
+		],
+		"defaultMPLevelAbilities":
+		[
+			"ElementAbility_BurningTileAttackManager",
+		],
+		"defaultAvatarAbilities":
+		[
+			"Avatar_DefaultAbility_VisionReplaceDieInvincible",//角色死亡导致切换，下一个上场的角色短暂无敌
+			"Avatar_DefaultAbility_AvartarInShaderChange",
+		],
+	},
+	"elemReactDamage":
+	{
+		"Burning":
+		{
+			// "Grass": 0.5,
+		},
+		"Stream":
+		{
+			// "Water": 0.5,
+			// "Fire": 0.5,
+			// "Ice": 0.5,
+		},
+		"Explode":
+		{
+
+		},
+		"GrassGrowing":
+		{
+
+		},
+		"Shock":
+		{
+			// "Water":0.5,
+		},
+		"Freeze":
+		{
+			// "Water":0.5,
+		},
+		"Melt":
+		{
+			// "Fire":0.5,
+			// "Ice": 0.5,
+		},
+	},
+	"elemAmplifyDamage":
+	{
+		"Stream":
+		{
+			"Water": 1.0,
+			"Fire": 0.5,
+		},
+		"Melt":
+		{
+			"Fire":1.0,
+			"Ice": 0.5,
+		},
+	},
+	"elemPrority":
+	[
+		"Electric",
+		"Fire",
+		"Wind",
+		"Ice",
+		"Frozen",
+		"Water",
+		"Grass",
+		"Rock",
+		"None"
+	],
+	"shakeOff":
+	{
+		"reduceDurability" : 8,
+		"interval" : 0.12,
+		"shakeLifeTime" : 0.2,
+		"shakeValue" : 0.03,
+		/*"shakePeriod" : 0.03,
+		"shakeSmoothRatio" : 1,
+		"shakeAlongAngle" : 0,
+		"shakeRotAngle" : 0,
+		"shakeNoiseRatio" : 0,
+		"shakeDirRatio" : 0,
+		"shakeZRatio" : 1,*/
+	},
+	"elementShield":
+	{
+		"row": ["None", "Fire", "Water", "Grass", "Ice", "Electric", "Wind", "Rock"],
+		"shieldDamageRatiosMap":
+		{
+			//None
+			"None":
+			{
+				"elementType" : "None",
+				"damageRatio": [ 1,	1, 1, 1, 1, 1, 1, 1 ],
+				"restraint": [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+			},
+			//Fire
+			"Fire":
+			{
+				"elementType" : "Fire",
+				"damageRatio": [ 1, 0, 1, 1, 1, 1, 1, 1 ],
+				"restraint": [ 1, 1, 0, 1, 0, 0, 1, 1 ],
+			},
+			//Water
+			"Water":
+			{
+				"elementType" : "Water",
+				"damageRatio": [ 1, 1, 0, 1, 1, 1, 1, 1 ],
+				"restraint": [ 1, 0, 1, 1, 0, 0, 1, 1 ],
+			},
+			//Grass
+			"Grass":
+			{
+				"elementType" : "Grass",
+				"damageRatio": [ 1, 1, 1, 0, 1, 1, 1, 1 ],
+				"restraint": [ 1, 0, 1, 1, 1, 1, 1, 1 ],
+			},
+			//Ice
+			"Ice":
+			{
+				"elementType" : "Ice",
+				"damageRatio": [ 1, 1, 1, 1, 0, 1, 1, 1 ],
+				"restraint": [ 1, 0, 0, 1, 1, 1, 1, 1 ],
+			},
+			//Frozen
+			"Frozen":
+			{
+				"elementType" : "Frozen",
+				"damageRatio": [ 1, 1, 1, 1, 0, 1, 1, 1 ],
+				"restraint": [ 1, 0, 1, 1, 1, 1, 1, 1 ],
+			},
+			//Electric
+			"Electric":
+			{
+				"elementType" : "Electric",
+				"damageRatio": [ 1, 1, 1, 1, 1, 0, 1, 1 ],
+				"restraint": [ 1, 0, 0, 1, 1, 1, 1, 1 ],
+			},
+			//Wind
+			"Wind":
+			{
+				"elementType" : "Wind",
+				"damageRatio": [ 1, 1, 1, 1, 1, 1, 0, 1 ],
+				"restraint": [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+			},
+			//Rock
+			"Rock":
+			{
+				"elementType" : "Rock",
+				"damageRatio": [ 1, 1, 1, 1, 1, 1, 1, 0 ],
+				"restraint": [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+			},
+		},
+	},
+	"eliteShield":
+	{
+		"row": ["None", "Fire", "Water", "Grass", "Ice", "Electric", "Wind", "Rock"],
+		"shieldDamageRatiosMap" :
+		{
+			//default
+			"default":
+			{
+				"type" : "default",
+				"damageRatio": [ 1,	1, 1, 1, 1, 1, 1, 1 ],
+			},
+			//xingqiu
+			"xingqiu":
+			{
+				"type" : "default",
+				"damageRatio": [ 1,	1, 1, 1, 1, 1, 1, 1 ],
+				"damageSufferRatio": [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+			},
+			//Fire
+			"Avatar_Fire":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 0.4, 1, 1, 1, 1, 1, 1 ],
+			},
+			//Water
+			"Avatar_Water":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 0.4, 1, 1, 1, 1, 1 ],
+			},
+			//Grass
+			"Avatar_Grass":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 0.4, 1, 1, 1, 1 ],
+			},
+			//Ice
+			"Avatar_Ice":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 1, 0.4, 1, 1, 1 ],
+			},
+			//Frozen
+			"Avatar_Frozen":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 1, 0.4, 1, 1, 1 ],
+			},
+			//Electric
+			"Avatar_Electric":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 1, 1, 0.4, 1, 1 ],
+			},
+			//Wind
+			"Avatar_Wind":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 1, 1, 1, 0.4, 1 ],
+			},
+			//Rock
+			"Avatar_Rock":
+			{
+				"type" : "default",
+				"damageRatio": [ 1, 1, 1, 1, 1, 1, 1, 0.4 ],
+			},
+		},
+	},
+	"globalSwitch":
+	{
+		"enableMultiPlayer" : true,
+		"enableAnimatorInterleave": true,
+		"enableMixinModifierDetachCallback": true,
+	},
+	"elemUI":
+	{
+		"showIconEntityTypes":
+		[
+			"Monster"
+		],
+		"showReactionEntityTypes":
+		[
+			"Monster","Avatar",
+		],
+		"iconRecoverTime": 0.5,
+		"iconDisappearTime": 2.0,
+		"iconDisappearRound": 2,
+		"iconShowDistance": 24,
+		"overrideElemPath":
+		{
+			"Burning": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Eff_KeepBurning",
+			"Frozen": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Eff_KeepFrozen",
+		},
+		"reactionElemPath":
+		{
+			"Burning": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Burning",
+			"Explode": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Explode",
+			"Freeze": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Freeze",
+			"Melt": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Melt",
+			"Shock": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Shock",
+			"Stream": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Stream",
+			"Superconductor": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/Superconductor",
+			"SwirlElectric": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/SwirlElectric",
+			"SwirlFire": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/SwirlFire",
+			"SwirlIce": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/SwirlIce",
+			"SwirlWater": "ART/UI/Menus/Widget/InLevel/Billboard/EffElemReaction/SwirlWater",
+		},
+	},
+	"rejectElementReaction":
+	{
+		"ElementFreeze":
+		[
+			"Stream","Wet","Shock","SwirlWater","Fire",
+		],
+		"ElementFrozen":
+		[
+			"Stream","Wet","Shock","SwirlWater","Fire",
+		],
+	},
+	"luaSafetySwitch":
+	{
+		"tickWorld": false,
+		"tickWorldCD": 300000,
+		"tickChest": true,
+		"tickMonster" : true,
+	},
+	"gadgetCreationLimits":
+	[
+		{
+			"tag": "Rock",
+			"gadgetIDs":
+			[
+				41005004,
+				41027000,
+				41029002,
+			],
+			"maxValue": 3,
+		},
+		{
+			"tag": "Klee_Mine",
+			"gadgetIDs":
+			[
+				41029007,
+			],
+			"maxValue": 8,
+		},
+	],
+	"globalInteraction":
+	{
+		"talkEnableAngle": 180.0,
+	},
+	"lampOffset":
+	[
+        {
+          "x": 0,
+          "y": 0.3,
+          "z": 1.5
+        },
+        {
+          "x": 1.2,
+          "y": 0.1,
+          "z": 1.3
+        },
+         {
+          "x": -1.2,
+          "y": 0,
+          "z": 1.3
+        },
+        {
+          "x": 0.8,
+          "y": 0.2,
+          "z": 2.4
+        },
+        {
+          "x": -0.8,
+          "y": 0,
+          "z": 2.4
+        },
+        {
+          "x": 1.9,
+          "y": 0.1,
+          "z": 2.0
+        },
+        {
+          "x": -1.9,
+          "y": 0,
+          "z": 2.0
+        },
+        {
+          "x": 0,
+          "y": 0.3,
+          "z": 3.0
+        },
+        {
+          "x": 0.9,
+          "y": 0,
+          "z": 3.6
+        },
+        {
+          "x": -0.9,
+          "y": 0.4,
+          "z": 3.6
+        },
+        {
+          "x": 1.8,
+          "y": 0.2,
+          "z": 3.0
+        },
+       {
+          "x": -1.8,
+          "y": 0.1,
+          "z": 3.0
+        },
+    ],
+	"tempComponentBudget":
+	{	
+		"MoleMole.HumanoidMoveFSM" : 4.5,
+		"MoleMole.LCAIBeta" : 1.5,
+		"MoleMole.VCPlatformMove" : 1.2,
+		"MoleMole.VCCameraCharacterAmbientSensors" : 0.8,
+		"MoleMole.VCAnimatorEvent" : 0.7,
+		"MoleMole.LevelSceneWaterPlugin" : 0.7,
+		"MoleMole.LevelSceneColliderChangePlugin" : 0.6,
+		"MoleMole.LevelChangeAvatarPlugin" : 0.6,
+		"MoleMole.LCAvatarAutoPickup" : 0.6,
+		"MoleMole.LCAIManager" : 0.6,
+		"MoleMole.VCFollowMove" : 0.5,
+		"MoleMole.LCSelectPickup" : 0.5,
+		"MoleMole.VCCharacterRendering" : 0.4,
+		"MoleMole.MPActorAbilityPlugin" : 0.3,
+		"MoleMole.VCAvatarEquipController" : 0.3,
+		"MoleMole.LCMonsterCombat" : 0.2,
+		"MoleMole.VCAvatarPerform" : 0.3,
+		"MoleMole.VCAvatarModel" : 0.3,
+		"MoleMole.LevelSceneGrassPlugin" : 0.3,
+		"MoleMole.VCAvatarFocus" : 0.3,
+		"MoleMole.VCAvatarHeadController" : 0.3,
+		"MoleMole.LevelSceneIcePlugin" : 0.3,
+		"MoleMole.LCGadgetCombat" : 0.2,
+		"MoleMole.AudioAvatarMovePlugin" : 0.2,
+		"MoleMole.AudioWeatherPlugin" : 0.2,
+		"MoleMole.ShaderLerpPlugin" : 0.1,
+		"MoleMole.LCBaseInter" : 0.2,
+		"MoleMole.LevelSceneAirflowFieldPlugin" : 0.2,
+		"MoleMole.VCEquipModel" : 0.2,
+		"MoleMole.VCMonsterHeadController" : 0.2,
+		"MoleMole.VCBillboard" : 0.2,
+		"MoleMole.VCCombatBillboardPlugin" : 0.2,
+		"MoleMole.LCAvatarCombat" : 0.2,
+		"MoleMole.LevelSceneSurfacePlugin" : 0.2,
+		"MoleMole.HumanoidMoveEffectPlugin" : 0.2,
+		"MoleMole.AudioMonsterMovePlugin" : 0.1,
+		"MoleMole.VCGroupAutoPickable" : 0.1,
+		"MoleMole.AudioPatrollerPlugin" : 0.1,
+		"MoleMole.LCAbilityElement" : 0.1,
+		"MoleMole.VCMonsterEquipController" : 0.1,
+		"MoleMole.HumanoidMoveSyncPlugin" : 0.1,
+		"MoleMole.VCEquipSetDitherValue" : 0.1,
+		"MoleMole.VCMonsterSetDitherValue" : 0.1,
+		"MoleMole.LCScenePropCombat" : 0.1,
+		"MoleMole.AnimatorMoveSyncPlugin" : 0.1,
+		"MoleMole.VCSyncAnimator" : 0.1,
+		"MoleMole.AudioMusicStatePlugin" : 0.1,
+		"MoleMole.PushColliderPlugin" : 0.1,
+		"MoleMole.CollisionPlugin" : 0.1,
+		"MoleMole.LCTimer" : 0.1,
+		"MoleMole.VCWindmillMove" : 0.1,
+		"MoleMole.AudioNpcMovePlugin" : 0.1,
+		"MoleMole.VCAvatarCombat" : 0.1,
+		"MoleMole.VCBaseSetDitherValue" : 0.1,
+		"MoleMole.VCFaceAnimation" : 0.1,
+		"MoleMole.VCAutoPickable" : 0.1,
+		"MoleMole.VCBulletMove" : 0.1,
+		"MoleMole.LCRadarHint" : 0.1,
+		"MoleMole.LCEquip" : 0.1,
+		"MoleMole.AimWalkPlugin" : 0.1,
+		"MoleMole.LCAirflowField" : 0.1,
+		"MoleMole.VCMonsterCombat" : 0.1,
+		"MoleMole.LCMonsterEquipController" : 0.1,
+		"MoleMole.LevelSceneDebugPlugin" : 0.1,
+		"MoleMole.LCActorTrigger" : 0.1,
+		"MoleMole.AudioTeamVoiceStreamPlugin" : 0.1,
+		"MoleMole.VCNpcHeadController" : 0.1,
+		"MoleMole.VCMonsterAIController" : 0.1,
+		"TickBeforeReady" : 0.1,
+		"MoleMole.LCLevel" : 0.1,
+		"MoleMole.LCRiseField" : 0.1,
+		"MoleMole.LCPose" : 0.1,
+		"MoleMole.VCPartController" : 0.1,
+		"MoleMole.VCLocalInputController" : 0.1,
+		"MoleMole.LevelSceneBushPlugin" : 0.1,
+		"MoleMole.VCBaseEmotion" : 0.1,
+		"MoleMole.VCNormalPickable" : 0.1,
+		"MoleMole.LCTalent" : 0.1,
+	},
+}

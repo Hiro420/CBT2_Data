@@ -1,0 +1,1952 @@
+[
+    {
+        "ID": 1001,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1002,
+        "类型": 1,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1003,
+        "类型": 1,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1004,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1005,
+        "类型": 3,
+        "LevelEntityConfig": "Level_Sneak",
+        "entity排序": "",
+        "指定角色列表": "10000005,10000007",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1006,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1008,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1009,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1011,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1013,
+        "类型": 3,
+        "LevelEntityConfig": "Level_Sneak",
+        "entity排序": "",
+        "指定角色列表": "10000005,10000007",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1015,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Sneak",
+        "entity排序": "",
+        "指定角色列表": "10000005,10000007",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1016,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1017,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1018,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1019,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1023,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1024,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1030,
+        "类型": 1,
+        "LevelEntityConfig": "Level_Sneak",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1031,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1,
+        "类型": 1,
+        "LevelEntityConfig": "Level_BigWorld",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2,
+        "类型": 1,
+        "LevelEntityConfig": "Level_BigWorld",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 3,
+        "类型": 1,
+        "LevelEntityConfig": "Level_BigWorld",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20000,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20005,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20006,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20007,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20008,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20009,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20010,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20011,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20012,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20013,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20014,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20015,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20016,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20017,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Dvalin_S01",
+        "entity排序": 1,
+        "指定角色列表": "10000005,10000007",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20018,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Dvalin_S04",
+        "entity排序": 1,
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20019,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20020,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Dvalin_S00",
+        "entity排序": 1,
+        "指定角色列表": "10000005,10000007",
+        "指定角色上限": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20022,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20023,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20024,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20025,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Dvalin_S04_Recycle",
+        "entity排序": 1,
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20026,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20027,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 20031,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30001,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30100,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30101,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30102,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30103,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30104,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30200,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30201,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30202,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30203,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30204,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30300,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30301,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30302,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30303,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30304,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30400,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30401,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30402,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30403,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30404,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30500,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30501,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30502,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30503,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30504,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30600,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30601,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30602,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30603,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30604,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30700,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30701,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30702,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30703,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30704,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30800,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30801,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30802,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30803,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30804,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30900,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30901,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30902,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30903,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 30904,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31000,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31001,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31002,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31003,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31004,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31100,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31101,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31102,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31103,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31104,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31200,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31201,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31202,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31203,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 31204,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40001,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40002,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40003,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40004,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40005,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40006,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40007,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40008,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40009,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40010,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40012,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40013,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40014,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40100,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40101,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40102,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40103,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40200,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40201,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40202,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40203,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40300,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40301,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40302,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40303,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40400,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40401,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40402,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40403,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40404,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40405,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40406,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40407,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40500,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40501,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40502,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40503,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Explode_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40504,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40505,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40506,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40507,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40508,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40509,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Swril_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40510,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Freeze_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40511,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40512,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40513,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40600,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Superconductor_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40601,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40602,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Superconductor_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40603,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Freeze_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40604,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Explode_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40605,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Electric_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40606,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40607,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Stream_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40608,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40609,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40610,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40611,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40612,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Swril_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40613,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40614,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40615,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40616,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40700,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40701,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40702,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 40703,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50000,
+        "类型": 3,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50002,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Cold",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50003,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50004,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50005,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50006,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50007,
+        "类型": 2,
+        "LevelEntityConfig": "Level_ClimbTest1",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50008,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50009,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50010,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50011,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Explode_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50012,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Swril_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50013,
+        "类型": 2,
+        "LevelEntityConfig": "Level_Melt_Test",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50014,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50015,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50016,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50017,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50018,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50019,
+        "类型": 2,
+        "LevelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 50020,
+        "类型": 2,
+        "LevelEntityConfig": "",
+        "entity排序": "",
+        "指定角色列表": "",
+        "指定角色上限": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    }
+]

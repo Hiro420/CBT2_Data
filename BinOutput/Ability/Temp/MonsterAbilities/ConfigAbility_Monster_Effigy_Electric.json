@@ -1,0 +1,5318 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  State
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_StandyEffect",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS","Standby_AS","Struggle","Warning","RushAway_AS","SingleAtk_Rush","MultiAtk_Rush","FistAtk_Rush"],
+				"modifierName": "UNIQUE_CoreStandyEffect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS","Standby_AS","Struggle","Warning","RushAway_AS"],
+				"modifierName": "UNIQUE_CoreStandyCubeEffect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Born","StandbyFree"],
+				"modifierName": "UNIQUE_CoreStandyFreeEffect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["ElectricRush_BS","ElectricRush_Loop","ElectricRush_AS","ElectricBarrage","ElectricDefence","SingleAtk","MultiAtk","AreaAtk","RangeAtk","FistAtk","ElectricDefenceRush","AreaRush","ElectricBarrageRush"],
+				"modifierName": "UNIQUE_CoreAttackEffect",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_CoreStandyEffect":
+			{
+				"isUnique":true,
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_CoreState_Standby",
+					},
+				],
+			},
+			"UNIQUE_CoreStandyCubeEffect":
+			{
+				"isUnique":true,
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore_Cube",
+					},
+					{
+						"$type": "SetPoseBool",
+						"boolID": "CoreOut",
+						"value": false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type":"FireEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore_CubeAS",
+					},
+				],
+			},
+			"UNIQUE_CoreStandyFreeEffect":
+			{
+				"isUnique":true,
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_CoreState_Idle",
+					},
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "ToShaderState1",
+					},
+				],
+			},
+			"UNIQUE_CoreAttackEffect":
+			{
+				"isUnique":true,
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_CoreState_Attack",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_ShaderState1ToState2",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "ResetAnimatorTrigger",
+				"triggerID": "ToShaderState1",
+			},
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState2",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_ShaderState2ToState1",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "ResetAnimatorTrigger",
+				"triggerID": "ToShaderState2",
+			},
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState1",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_CoreOutAS",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["SingleAtk_CoreOutAS","MultiAtk_CoreOutAS","FistAtk_CoreOutAS"],
+				"modifierName": "UNIQUE_SetRender",
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "UNIQUE_SetRender",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_SetRender":
+			{
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Shield
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_Shield",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1, 101],
+				"modifierName": "ShieldModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1],
+				"modifierName": "ShaderNoneToState1",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["SingleAtk_CoreOutLoop","MultiAtk_CoreOutLoop","FistAtk_CoreOutLoop"],
+				"modifierName": "SetRenders_CoreOutLoop",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+				"setEnable": true,
+			},
+		],
+		"modifiers":
+		{
+			"ShieldModifier":
+			{
+				"state": "LockHP",
+				"properties":
+				{
+					"Actor_SubHurtDelta" : "%SubHurtDelta",
+				},
+				"onAdded": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+ 					},
+					{
+						"$type": "AttachAbilityStateResistance",
+						"resistanceListID": 12002,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+ 					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ShieldBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+							"alongGround": true,
+						},
+					},
+				],
+			},
+			"ShaderNoneToState1":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": false,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": true,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+				],
+			},
+			"SetRenders_CoreOutLoop":
+			{
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"SubHurtDelta" : 0.99,
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Core
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_Core",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201,301],
+				"modifierName": "CoreModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201],
+				"modifierName": "BeingHitDetect",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1, 101,201],
+				"modifierName": "EffectModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [101,201],
+				"modifierName": "EnergyCoreState",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["CoreHitBox"],
+				"setEnable": false,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Core"],
+				"setEnable"  : false,
+			},
+			{
+				"$type": "HideUIBillBoard",
+				"hide": false,
+			},
+			{
+				"$type": "AttachAbilityStateResistance",
+				"resistanceListID": 12001,
+			},
+		],
+		"modifiers":
+		{
+			"BeingHitDetect":
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "Shake",
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_CoreBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+						},
+					},
+				],
+			},
+			"CoreModifier":
+			{
+				"elementType": "Electric",
+				"elementDurability": 100,
+				"isElementDurabilityMutable": false,
+				"onAdded": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+				],
+			},
+			"EffectModifier":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore",
+					},
+				],
+			},
+			"EnergyCoreState":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore",
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Reborn
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RebornPose",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301],
+				"modifierName": "RebornModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301],
+				"modifierName": "DenyLockOn",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301],
+				"modifierName": "GhostToEmeny",
+			},
+		],
+		"modifiers":
+		{
+			"DenyLockOn":
+			{
+				"state": "DenyLockOn",
+			},
+			"GhostToEmeny":
+			{
+				"state": "IsGhostToEnemy",
+			},
+			"RebornModifier":
+			{
+				"state": "Invincible",
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [601,701,801],
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_HpDetect",
+		"abilityMixins" :
+		[
+			{
+				"$type": "AttachModifierToHPPercentMixin",
+				"valueSteps": [0.05],
+				"modifierNameSteps": ["Effigy_Empty","UNIQUE_Effigy_TriggerReborn"],
+			},
+		],
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"UNIQUE_Effigy_Limbo",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_Limbo":
+			{
+				"isUnique": true,
+				"state" : "Limbo",
+				"properties" :
+				{
+					"Actor_HpThresholdRatio": 0.0,
+				},
+				"onRemoved" :
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_CoreRebornDie",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					{
+						"$type": "RemoveUniqueModifier",
+						"modifierName" : "UNIQUE_Reborn",
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004006,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type":"KillSelf",
+					},
+				],
+			},
+			"UNIQUE_Effigy_TriggerReborn":
+			{
+				"isUnique": true,
+				"onAdded" :
+				[
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_SetDyingPose",
+					},
+				],
+			},
+			"Effigy_Empty":
+			{
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_CreateRebornPart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Dying"],
+				"modifierName": "UNIQUE_DyingInvincible",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_RebornPart_Count",
+				"value" : 3,
+				"useLimitRange" : true,
+				"maxValue" : 3,
+				"minValue" : 0,
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "RebornEffectTimer",
+				"target": "Self",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "RebornStartEffectTimer",
+				"target": "Self",
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": true,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "RebornState",
+				"value": false,
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName" : "UNIQUE_CoreAttackEffect",
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName" : "UNIQUE_CoreStandyEffect",
+			},
+		],
+		"modifiers":
+		{
+			"RebornStartEffectTimer":
+			{
+				"duration": 1.75,
+				"onAdded":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_CoreRebornDie_BS",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "RebornStartEffect",
+						"target": "Self",
+					},
+				],
+			},
+			"RebornStartEffect":
+			{
+				"duration": 1.75,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ChargePart_Split2",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByEntity",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 2.0,
+									"z": 0.0,
+								},
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ChargePart_Split2",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByEntity",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 118.0,
+									"z": 0.0,
+								},
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 1,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ChargePart_Split2",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByEntity",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": -122.0,
+									"z": 0.0,
+								},
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 2,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+				],
+			},
+			"RebornEffectTimer":
+			{
+				"duration": 2.75,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "UNIQUE_Reborn",
+						"target": "Self",
+					},
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "ToShaderState1",
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_CreateRebornPart1",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_CreateRebornPart2",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 2,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_CreateRebornPart3",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 3,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+			},
+			"UNIQUE_Reborn":
+			{
+				"isUnique": true,
+				"duration": 9.5,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_CoreReborn",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_CoreReborn_BS",
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_HealHp",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+				],
+			},
+			"UNIQUE_DyingInvincible":
+			{
+				"isUnique": true,
+				"state": "Invincible",
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_CreateRebornPart1",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint1",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1.0,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_CreateRebornPart2",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint1",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint2",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_CreateRebornPart3",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint1",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint2",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004010,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "RebornPartAttachPoint3",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1,
+						"z": 0.0,
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_HealHp",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.15,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_RebornPart_Count",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.35,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_RebornPart_Count",
+						"value": 2,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.5,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_RebornPart_Count",
+						"value": 3,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName" : "Invincible",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004010,
+					"sortType": "Default",
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"target": "Self",
+							"key": "_RebornPart_Count",
+							"value": 0,
+							"compareType": "MoreThan",
+						},
+					],
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "KillGadget",
+				"target": "Self",
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "RebornState",
+				"value": true,
+			},
+		],
+		"modifiers":
+		{
+			"KillGadget":
+			{
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Die",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004010,
+							"sortType": "Default",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"target": "Self",
+									"key": "_RebornPart_Count",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+						},
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Electric_SetRebornPose",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_RebornPart_Count",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004010,
+							"sortType": "Default",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_RebornPart_Count",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+						},
+					},
+				],
+			},
+			"Invincible":
+			{
+				"duration": 1.2,
+				"state": "Invincible",
+				"onAdded":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["HitBox"],
+						"setEnable": false,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_Die",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName" : "UNIQUE_Effigy_Limbo",
+				"target": "Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_RebornPart_Count",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RebornPart_ElementShield",
+		"onAdded": 
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_RebornPart_ElementShield",
+				"target": "Self",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Energy",
+				"target": "Self",
+			},
+			{
+				"$type" : "DamageByAttackValue",
+				"target" : "Self",
+				"attackInfo":
+				{
+					"attackProperty":
+					{
+						"damagePercentage": 0.0,
+						"strikeType": "Default",
+						"enBreak": 1000.0,
+					},
+					"hitPattern" :
+					{
+						"onHitEffectName": "",
+						"hitLevel": "Shake",	//hitlevel = 1
+		          		"hitImpulseX": 0,	//hitlevel = 1
+		          		"hitImpulseY": 0,	//hitlevel = 1
+						"reboundRatio": 0,
+						"hitHaltTime": 0.0,
+						"hitHaltTimeScale": 0.0,
+						"muteHitText": false,
+					},
+				},
+			},
+		],
+		"modifiers":
+		{
+			"Energy":
+			{
+				"duration": 14,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ChargePart",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_Charge",
+					},
+				],
+			},
+			"RemoveEnergy":
+			{
+				"duration": 1.5,
+				"onAdded":
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Die",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "RemoveModifier",
+						"modifierName":"Energy",
+					},
+				],
+			},
+			"UNIQUE_RebornPart_ElementShield":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"elementType": "Electric",
+				"elementDurability": 75,
+				"properties":
+				{
+					"Actor_EndureDelta": 0.0,
+				},
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Electric",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0,
+						"onShieldBroken":
+						[
+							{
+								"$type": "RemoveModifier",
+								"modifierName": "UNIQUE_RebornPart_ElementShield",
+
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "_RebornPart_Count",
+						"value" : -1,
+						"useLimitRange" : true,
+						"maxValue" : 3,
+						"minValue" : 0,
+						"target":"Owner",
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2004,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 2.0,
+								"z": 0.0,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type":"TriggerAbility",
+						"target":"Owner",
+						"abilityName":"Monster_Effigy_Electric_Die",
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ChargePartDie",
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName":"RemoveEnergy",
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_CreateRebornPart_Loop",
+		"onAdded" :
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern":"Eff_Monster_Effigy_Electric_CreateChargePart",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  SetPose
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_SetCoreOutPose",
+		"onAdded": 
+		[
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_SetCoreInPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : true,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_SetDyingPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "DyingState",
+				"value": true,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_SetRebornPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": false,
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type": "ResetAISkillInitialCD",
+				"skillIDs": [601,701,801],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  ThunderRush
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_ThunderRush",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["ElectricRush_Loop"],
+				"modifierName": "Damage",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["ElectricRush_BS","ElectricRush_Loop"],
+				"modifierName": "Effect",
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_RushAtk",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_RushAtkAS",
+					},
+				],
+			},
+			"Damage":
+			{
+				"thinkInterval":0.25,
+				"onThinkInterval":
+				[	
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" :
+								{
+									"x" : 3,
+									"y" : 3,
+									"z" : 4,
+								},
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0, // + means up, - means down
+										"y": 0.0, // + means left, - means right
+										"z": 1.0, // + means forward, - means backward
+									}
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.25,
+									"strikeType": "Default",
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",	//hitlevel = 6
+					          		"hitImpulseX": 1200,	//hitlevel = 6
+					          		"hitImpulseY": 800,	//hitlevel = 6
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+								"forceCameraShake": true,
+							},
+						},
+					},	
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  RangeAtk
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave1",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInL1",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_02"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave2",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInL3",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_03"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave3",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInR4",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_08"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave4",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInR3",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_04"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave5",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInR2",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_05"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave6",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInL2",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_06"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave7",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInL4",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_07"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkWave8",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004002,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "AttachPointInR1",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+					}
+				},
+				"useRotation":true,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Cube_In_01"],
+				"setEnable"  : false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RangeAtkSetRender",
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"RangeAtkSetRender",
+			},
+		],
+		"modifiers":
+		{
+			"RangeAtkSetRender":
+			{
+				"duration":1,
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : true,
+					},
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBullet_Hit",
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 1.25,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.25,
+							"strikeType": "Blunt",
+							"enBreak": 50.0,
+							"elementDurability":50,
+							"elementType": "Electric",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "none",
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.06,
+							"shakeTime": 0.09,
+							"shakeDistance": 20,
+						},	
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_FireShieldAS",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0.0, // + means up, - means down
+						"y": 0.0, // + means left, - means right
+						"z": 0.0, // + means forward, - means backward
+					}
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_FireShieldHit",
+				"born":
+				{
+					"$type": "ConfigBornByCollisionPoint",
+					"offset" : 
+					{
+						"x": 0.0, // + means up, - means down
+						"y": 0.0, // + means left, - means right
+						"z": 0.0, // + means forward, - means backward
+					}
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+/*				"hitEntity": "Eff_Monster_Effigy_Electric_FireShieldHit",*/
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Effigy_Electric_FireShieldHit",
+				},
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_FireShield",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_FireShieldBS",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  ElectricBarrage
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_CreateEmitter",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ElectricBarrage_Loop1"],
+				"modifierName": "CreateEmitter",
+			},
+		],
+		"modifiers":
+		{
+			"CreateEmitter":
+			{
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004003,
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"offset":
+							{
+								"x":0,
+								"y":2,
+								"z":0,
+							},
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004003,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2004,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+							"bornRandom" :
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 4.0,
+								"maxRandomRange": 6.0,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [601],
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"radius": 4.5,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.25,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 25,
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+					          		"hitLevel": "Air",	//hitlevel = 6
+					          		"hitImpulseX": 650,	//hitlevel = 6
+					          		"hitImpulseY": 600,	//hitlevel = 6
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],	
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_SetRender",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ElectricBarrage_AS1"],
+				"modifierName": "SetRender",
+			},
+		],
+		"modifiers":
+		{
+			"SetRender":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Eggify_Electric_ElectricBarrage",
+		"onAdded": 
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"BarrageWave1",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"BarrageWave2Timer",
+			},
+		],
+		"onKill": 
+		[
+			{
+				"$type" : "RemoveModifier",
+				"modifierName":"BarrageWave1",
+			},
+			{
+				"$type" : "RemoveModifier",
+				"modifierName":"BarrageWave2",
+			},
+		],
+		"modifiers":
+		{
+			"BarrageWave2Timer":
+			{
+				"duration": 0.25,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName":"BarrageWave2",
+					},
+				],
+			},
+			"BarrageWave1":
+			{
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint1",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint1",
+								"attachPointTargetType":"Self",
+							}, 
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint2",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint2",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint3",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint3",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint4",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint4",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+				],
+			},
+			"BarrageWave2":
+			{
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint5",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint5",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint6",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint6",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint7",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint7",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BarrageAttachPoint8",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.75,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttachPoint",
+								"attachPointName":"BarrageAttachPoint8",
+								"attachPointTargetType":"Self",
+							},
+							"onGround":true,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_Effect",
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_ElectricBall",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_BulletTrigger",
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "BulletTrigger",
+			},
+		],
+		"modifiers":
+		{
+			"BulletTrigger":
+			{
+				"duration":0.25,
+				"onAdded":
+				[
+					{
+						"$type": "EnableBulletCollisionPluginTrigger",
+						"setEnable": false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableBulletCollisionPluginTrigger",
+						"setEnable": true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_Hit",
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 1.25,
+						"ignoreMassive": true,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.25,
+							"strikeType": "Blunt",
+							"enBreak": 1.0,
+							"elementDurability":25,
+							"elementType": "Electric",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "default",
+							"hitLevel": "Light",	//hitlevel = 3
+			          		"hitImpulseX": 200,	//hitlevel = 3
+			          		"hitImpulseY": 0,	//hitlevel = 3
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.06,
+							"shakeTime": 0.09,
+							"shakeDistance": 20,
+						},	
+					},
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+				"hitEntity": "Eff_Monster_Effigy_Electric_ElectricBallAS",
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Effigy_Electric_ElectricBallAS",
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricBarrage_AS",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_ElectricBall_Die",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  AreaAtk
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_AreaAtk",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["AreaAtk_Loop1"],
+				"modifierName": "CreateLaser",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["AreaAtk"],
+				"modifierName": "SetRender1",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["AreaAtk_Loop1"],
+				"modifierName": "SetRender2",
+			},
+		],
+		"modifiers":
+		{
+			"SetRender1":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : false,
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy_BS",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"SetRender2":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_03","Cube_Out_05","Cube_Out_06"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_03","Cube_Out_05","Cube_Out_06"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"LaserEffect":
+			{
+				"duration":12,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy1",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy2",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy3",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy_Shell",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy_Shell1",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy_Shell2",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricEnergy_Shell3",
+					},
+				],
+			},
+			"RemoveLaserEffect":
+			{
+				"duration":0.5,
+				"onAdded":
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Die",
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Deactivate",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "LaserEffect",
+					},
+				],
+			},
+			"CreateLaser":
+			{
+				"duration":11.5,
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "LaserEffect",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "RemoveLaserEffect",
+					},
+				],
+				"thinkInterval":0.25,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox",
+								"muteHitBehindScene": true,
+								"checkHitLayerType" : "Both",
+								"triggerType" : "TriggerNoRepeat",
+								"ignoreMassive": true,
+								"size" :
+								{
+									"x" : 1.2,
+									"y" : 1.2,
+									"z" : 30.0,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "LaserAttachPoint1",
+/*									"offset":
+									{
+										"x": -0.25,
+										"y": 0.0,
+										"z": 4.75,
+									},*/
+									"direction":
+									{
+										"$type": "ConfigDirectionByAttachPoint",
+										"attachPointName" : "LaserAttachPoint1",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.4,
+									"strikeType": "Blunt",
+									"attackType": "Melee",
+									"enBreak": 100.0,
+									"elementDurability":50,
+									"elementType": "Electric",
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",	//hitlevel = 5
+					          		"hitImpulseX": 480,	//hitlevel = 5
+					          		"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio": 0,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText":false,
+								},
+								"forceCameraShake": true,
+							},
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox",
+								"muteHitBehindScene": true,
+								"checkHitLayerType" : "Both",
+								"triggerType" : "TriggerNoRepeat",
+								"size" :
+								{
+									"x" : 1.2,
+									"y" : 1.2,
+									"z" : 30.0,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "LaserAttachPoint2",
+/*									"offset":
+									{
+										"x": 0.5,
+										"y": 0.0,
+										"z": -4.75,
+									},*/
+									"direction":
+									{
+										"$type": "ConfigDirectionByAttachPoint",
+										"attachPointName" : "LaserAttachPoint2",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.4,
+									"strikeType": "Blunt",
+									"attackType": "Melee",
+									"enBreak": 100.0,
+									"elementDurability":50,
+									"elementType": "Electric",
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",	//hitlevel = 5
+					          		"hitImpulseX": 480,	//hitlevel = 5
+					          		"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio": 0,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText":false,
+								},
+								"forceCameraShake": true,
+							},
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox", 
+								"muteHitBehindScene": true,
+								"checkHitLayerType" : "Both",
+								"triggerType" : "TriggerNoRepeat",
+								"size" :
+								{
+									"x" : 1.2,
+									"y" : 1.2,
+									"z" : 30.0,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "LaserAttachPoint3",
+/*									"offset":
+									{
+										"x": 4.75,
+										"y": 0.0,
+										"z": 0.35,
+									},*/
+									"direction":
+									{
+										"$type": "ConfigDirectionByAttachPoint",
+										"attachPointName" : "LaserAttachPoint3",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.4,
+									"strikeType": "Blunt",
+									"attackType": "Melee",
+									"enBreak": 100.0,
+									"elementDurability":50,
+									"elementType": "Electric",
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",	//hitlevel = 5
+					          		"hitImpulseX": 480,	//hitlevel = 5
+					          		"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio": 0,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText":false,
+								},
+								"forceCameraShake": true,
+							},
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox",
+								"muteHitBehindScene": true,
+								"checkHitLayerType" : "Both",
+								"triggerType" : "TriggerNoRepeat",
+								"size" :
+								{
+									"x" : 1.2,
+									"y" : 1.2,
+									"z" : 30.0,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "LaserAttachPoint4",
+/*									"offset":
+									{
+										"x": -4.75,
+										"y": 0.0,
+										"z": -1.0,
+									},*/
+									"direction":
+									{
+										"$type": "ConfigDirectionByAttachPoint",
+										"attachPointName" : "LaserAttachPoint4",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.4,
+									"strikeType": "Blunt",
+									"attackType": "Melee",
+									"enBreak": 100.0,
+									"elementDurability":50,
+									"elementType": "Electric",
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",	//hitlevel = 5
+					          		"hitImpulseX": 480,	//hitlevel = 5
+					          		"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio": 0,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText":false,
+								},
+								"forceCameraShake": true,
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  ElectricDefence
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_ElectricDefence_CreateDefencePartCentre",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ElectricDefence_Loop","ElectricDefence_AS1"],
+				"modifierName": "CreateDefencePartCentre",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "KillGadget",
+				"gadgetInfo" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004005,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"CreateDefencePartCentre":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+					{
+						"$type":"CreateGadget",
+						"target": "SelfAttackTarget",
+						"campID": 4001,
+						"gadgetID":42004004,
+						"born":
+						{
+							"$type":"ConfigBornByTarget",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByEntity",
+								"randomAngleHor": 75,
+							},
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004004,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [601, 701],
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Eggify_Electric_CreateElectricDefencePart",
+		"onAdded": 
+		[
+			{
+				"$type":"ApplyModifier",
+				"modifierName":"CreateElectricDefencePart1",
+				"target":"Self"
+			},
+			{
+				"$type":"ApplyModifier",
+				"modifierName":"ThunderDropWave1",
+				"target":"Self"
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type":"ApplyModifier",
+				"modifierName":"CreateElectricDefenceDie",
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004005,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"SetGlobalValue":
+			{
+				"duration":0.2,
+				"onAdded":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_DefencePart_Number",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "AddGlobalValue",
+								"key" : "_DefencePart_NumberReversed",
+								"value" : 8,
+								"useLimitRange" : true,
+								"maxValue" : 8,
+								"target": "Target",
+							},
+						],
+					},				
+				],
+			},
+			"CreateElectricDefenceDie":
+			{
+				"duration":0.5 ,
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricSealDie02",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "KillSelf",
+					},
+				],
+			},
+			"CreateElectricDefencePart1":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint1",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart2",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart2":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint5",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart3",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart3":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint2",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart4",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart4":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint6",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart5",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart5":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint3",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[				
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart6",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart6":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint7",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart7",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart7":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint4",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateElectricDefencePart8",
+						"target":"Self"
+					},
+				],
+			},
+			"CreateElectricDefencePart8":
+			{
+				"duration":0.35,
+				"onAdded":
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004005,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "AttachPoint8",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_Number",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},					
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_DefencePart_NumberReversed",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefencePart_ElementShield",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"SetGlobalValue",
+					},
+				],
+			},
+			"ThunderDropWave1":
+			{
+				"duration":5,
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateThunderDrop1",
+					},
+				],
+			},
+			"CreateThunderDrop1":
+			{
+				"duration":1.5,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Repeated",
+						"repeatTimes": 1,
+						"actions": 
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004008,
+								"campID": 4001,
+								"campTargetType": "Enemy",
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 3,
+										"maxRandomRange": 7,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"ThunderDropWave2",
+					},
+				],
+			},
+			"ThunderDropWave2":
+			{
+				"duration":1.5,
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateThunderDrop2",
+					},
+				],
+			},
+			"CreateThunderDrop2":
+			{
+				"duration":1,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Repeated",
+						"repeatTimes": 2,
+						"actions": 
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004008,
+								"campID": 4001,
+								"campTargetType": "Enemy",
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 3,
+										"maxRandomRange": 7,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"ThunderDropWave3",
+					},
+				],
+			},
+			"ThunderDropWave3":
+			{
+				"duration":1.5,
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateThunderDrop3",
+					},
+				],
+			},
+			"CreateThunderDrop3":
+			{
+				"duration":1.5,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Repeated",
+						"repeatTimes": 2,
+						"actions": 
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004008,
+								"campID": 4001,
+								"campTargetType": "Enemy",
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 3,
+										"maxRandomRange": 7,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"ThunderDropWave4",
+					},
+				],
+			},
+			"ThunderDropWave4":
+			{
+				"duration":1.5,
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateThunderDrop4",
+					},
+				],
+			},
+			"CreateThunderDrop4":
+			{
+				"duration":1.5,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Repeated",
+						"repeatTimes": 2,
+						"actions": 
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004008,
+								"campID": 4001,
+								"campTargetType": "Enemy",
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 3,
+										"maxRandomRange": 7,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"ThunderDropWave5",
+					},
+				],
+			},
+			"ThunderDropWave5":
+			{
+				"duration":1.5,
+				"onRemoved":
+				[
+					{
+						"$type":"ApplyModifier",
+						"modifierName":"CreateThunderDrop5",
+					},
+				],
+			},
+			"CreateThunderDrop5":
+			{
+				"duration":1,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Repeated",
+						"repeatTimes": 4,
+						"actions": 
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004008,
+								"campID": 4001,
+								"campTargetType": "Enemy",
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 3,
+										"maxRandomRange": 7,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "ElectricDefencePart_CreateCurrent",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "KillDefencePartCurrent",
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004007,
+					"sortType": "Default",
+				},
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "SetCollider",
+				"target": "Self",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "CreateDefencePartCurrent",
+				"target": "Self",
+			},
+		],
+		"onKill": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "KillDefencePartCurrent",
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004007,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"KillDefencePartCurrent": 
+			{
+				"duration": 2,
+				"onAdded": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Die",
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["Collider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type":"KillSelf",
+					},
+				],
+			},
+			"CreateDefencePartCurrent": 
+			{
+				"duration":0.25,
+				"onAdded": 
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["Collider2"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["Collider2"],
+						"setEnable" : true,
+					},
+				],
+			},
+			"SetCollider": 
+			{
+				"duration":0.25,
+				"onRemoved": 
+				[
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004007,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "ElectricDefencePart_ElementShield",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetGlobalValueToOverrideMap",
+				"target": "Self",
+				"isFromOwner": false,
+				"globalValueKey": "_DefencePart_Number",
+				"overrideMapKey": "DefencePartNumber",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Eggify_Electric_DefencePartElementShield",
+				"target": "Self",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_ElectricSeal",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Eggify_Electric_DefencePartElementShield":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"elementType": "Electric",
+				"elementDurability": 110,
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Electric",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0,
+/*						"onShieldBroken" :
+						[
+							{
+								"$type" : "FireEffect",
+								"effectPattern": "Eff_Monster_Effigy_Electric_ElectricSealDie01",
+							},
+							{
+								"$type" : "AddGlobalValue",
+								"target": "Owner",
+								"key" : "_DefencePart_Number",
+								"value" : "%DefencePartNumber",
+								"useLimitRange" : true,
+								"maxValue" : 8,
+								"minValue" : 0,
+							},
+							{
+								"$type": "TriggerAbility",
+								"abilityName": "ElectricDefenceCentre_KillDefencePart",
+								"target": "Owner",
+							},
+						],*/
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ShieldBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ElectricSealDie01",
+					},
+					{
+						"$type" : "AddGlobalValue",
+						"target": "Owner",
+						"key" : "_DefencePart_Number",
+						"value" : "%DefencePartNumber",
+						"useLimitRange" : true,
+						"maxValue" : 8,
+						"minValue" : 0,
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2004,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "ElectricDefenceCentre_KillDefencePart",
+						"target": "Owner",
+					},
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"DefencePartNumber" : 0.0,
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "ElectricDefencePart_SetGlobalValue",
+		"onAdded": 
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_DefencePart_NumberReversed",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 8,
+				"minValue" : -1,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_KillDefencePart",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "KillGadget",
+				"gadgetInfo" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004004,
+					"sortType": "Default",
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "ElectricDefenceCentre_KillDefencePart",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetGlobalValueToOverrideMap",
+				"globalValueKey": "_DefencePart_Number",
+				"overrideMapKey": "DefencePartNumber",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "KillDefencePart",
+				"target": "Self",
+			},
+		],
+		"modifiers":
+		{
+			"KillDefencePart":
+			{
+				"duration": 0.2,
+				"onAdded":
+				[
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_DefencePart_Number",
+								"value": "%DefencePartNumber",
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "KillSelf",
+								"target": "Target",
+							},
+						],
+					},
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004005,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_DefencePart_NumberReversed",
+								"value": "%DefencePartNumber",
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "TriggerAbility",
+								"abilityName": "ElectricDefencePart_CreateCurrent",
+								"target": "Target",
+							},
+						],
+					},
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"DefencePartNumber" : 0,
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Eggify_Electric_DefencePartAttack",
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_ElectricSealCurrent",
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "EffectAttachPoint",
+				},
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "TriggerAttackEvent",
+				"targetType": "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern": 
+					{
+						"$type" : "ConfigAttackBox",
+						"triggerType" : "TriggerNoRepeat",
+						"checkHitLayerType" : "Both",
+						"born" :
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+						"size" : 
+						{
+							"x" : 0.3,
+							"y" : 0.3,
+							"z" : 0.3,
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.25,
+							"elementType": "Electric",
+							"elementDurability": 50,
+							"enBreak": 100,
+						},
+						"hitPattern":
+						{
+							"onHitEffectName": "default",
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"retreatType": "ByTangent",
+							"reboundRatio": 0,
+							"hitHaltTime": 0,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText": false,
+						},
+					},
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_SetSelfAttackTarget",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "ResetAIAttackTarget",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ThunderDrop
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ThunderDrop_Damage",
+		"onAdded":
+		[
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Electric_ThunderDropAlert",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"onGround": true,
+					"alongGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect_Timer",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage_Timer",
+			},
+		],
+		"modifiers":
+		{
+			"Damage_Timer" :
+			{
+				"duration": 1.75,
+				"onRemoved":
+				[	
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "SingleDamage",
+						"target": "Self",
+					},
+				],
+			},
+			"Effect_Timer" :
+			{
+				"duration": 1.5,
+				"onRemoved":
+				[	
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_ThunderDrop",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"onGround": true,
+							"alongGround": true,
+						},
+					},	
+				],
+			},
+			"SingleDamage" :
+			{
+				"duration": 0.5,
+				"onAdded":
+				[		
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height": 2,
+								"radius": 3.5,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+									"onGround": true,
+									"alongGround": true,
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 50,
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},	
+				],				
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  RushToCenter
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RushToCenter",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["RushMove","ElectricDefenceRush","AreaRush","ElectricBarrageRush","ElectricEscape"],
+				"modifierName": "EnablePushCollider",
+			},
+		],
+		"onAdded":
+		[
+			{
+				"$type":"CreateGadget",
+				"lifeByOwnerIsAlive": true,
+				"gadgetID":42004006,
+				"byServer": true,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "SetGlobalPos",
+				"key": "InitialPos",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+				},
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "SetSelfAttackTarget",
+				"turnToTargetImmediately" : true,
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 15,
+						"logic": "GreaterOrEqual",
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RushToCenterCancleTrigger",
+					},
+				],
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 15,
+						"logic": "GreaterOrEqual",
+					},
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 25,
+						"logic": "Lesser",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "RushMove",
+						"timeRange": 1,
+						"minRange": 5.0,
+						"maxRange": 15.0,
+						"toPos":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "InitialPos",
+							"onGround": true,
+						},		
+					},
+				],
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 25,
+						"logic": "GreaterOrEqual",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "RushMove",
+						"timeRange": 2,
+						"minRange": 15.0,
+						"maxRange": 40.0,
+						"toPos":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "InitialPos",
+							"onGround": true,
+						},		
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"EnablePushCollider" :
+			{
+				"onAdded":
+				[	
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved":
+				[	
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Random Move
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RandomMove",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 20,
+						"logic": "GreaterOrEqual",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RushAwayTrigger",
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type":"Randomed",
+						"chance":0.65,
+						"successActions":
+						[
+							{
+								"$type": "SetAnimatorTrigger",
+								"triggerID": "RushAwayTrigger",
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004012,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",
+					"positionKey": "InitialPos",
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 10,
+						"maxRandomRange": 15
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_RandomMoveStart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["RushAway"],
+				"modifierName": "Effect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["RushAway_AS"],
+				"modifierName": "ResetAIAttackTarget",
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type" : "SetSelfAttackTarget",
+				"turnToTargetImmediately" : true,
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004012,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"Effect" :
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider","CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Electric_RushMove",
+					},
+				],
+				"onRemoved":
+				[	
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider","CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004012,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type": "ResetAIAttackTarget",
+					},
+				],
+			},
+			"ResetAIAttackTarget" :
+			{
+				"onAdded":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004012,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type": "ResetAIAttackTarget",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  GenerateElemBall
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Eggify_Electric_GenerateElemball",
+		"onAbilityStart":
+		[
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2004,
+				"baseEnergy": 9,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 1.0,
+						"z": 0.0,
+					},
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 4.0,
+						"maxRandomRange": 6.0,
+					},
+					"onGround": true,
+				},
+			},
+		],
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["RushMove","ElectricDefenceRush","ElectricEscape_AS"],
+				"modifierName": "GenerateElemball",
+			},
+		],
+		"modifiers":
+		{
+			"GenerateElemball" :
+			{
+				"onAdded":
+				[	
+					{
+						"$type":"Randomed",
+						"chance":0.5,
+						"successActions":
+						[
+							{
+								"$type": "GenerateElemBall",
+								"configID": 2004,
+								"baseEnergy": 9,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset":
+									{
+										"x": 0.0,
+										"y": 1.0,
+										"z": 0.0,
+									},
+									"bornRandom" :
+									{
+										"$type": "BornRandomFromCenter",
+										"minRandomRange": 4.0,
+										"maxRandomRange": 6.0,
+									},
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Blink
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_BlinkStart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ReturnToBorn_Blink","Dying_Blink"],
+				"modifierName": "Blink_State",
+			},
+		],
+		"onAbilityStart":
+		[					
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Effigy_Electric_Blink_Actions",
+			},
+		],
+		"modifiers":
+		{
+			"Blink_State":
+			{
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveUniqueModifier",
+						"modifierName": "UNIQUE_Effigy_Electric_Blink_Actions",
+					},
+				],
+			},
+			"UNIQUE_Effigy_Electric_Blink_Actions":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_Invincible",
+						"target": "Self",
+					},
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_DenyLockOn",
+						"target": "Self",
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": false,
+						"target": "Self",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+						"target": "Self",
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider","CorePushCollider"],
+						"setEnable": false,
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider","CorePushCollider"],
+						"setEnable": true,
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": true,
+						"target": "Self",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+						"target": "Self",
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Electric_EnergyCore",
+					},
+				],
+			},
+			"Blink_Invincible" :
+			{
+				"state": "Invincible",
+			},
+			"Blink_DenyLockOn" :
+			{
+				"state": "DenyLockOn",
+			},
+		},
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_FindBlinkPoint",
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004006,
+					"sortType": "Default",
+				},
+				"successActions":
+				[
+					{
+						"$type": "TryFindBlinkPoint",
+						"target": "Target",
+						"forwardAngle": 360,
+						"minRange": 3,
+						"maxRange": 5,
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_Blink",
+		"onAbilityStart":
+		[
+			{
+				"$type": "DoBlink",
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_BlinkAS",
+		"onAbilityStart":
+		[
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_Effigy_Electric_Blink_Actions",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MultiAtk
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Electric_MultiAtk_LastAtk",
+		"onAbilityStart":
+		[
+			{
+				"$type" : "DamageByAttackValue",
+				"otherTargets": 
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR10H3",
+					"centerBasedOn": "Self",
+					"campTargetType": "Enemy",
+					"campBasedOn": "Self",
+				},
+				"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x" : 0.0,
+							"y" : 0.0,
+							"z" : -1.5,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset": 
+							{
+								"x": 0.0,
+								"y": 15.0,
+								"z": 0.0,
+							},
+						},
+					},
+				"attackInfo":
+				{
+					"attackProperty":
+					{
+						"damagePercentage": 1.0,
+						"strikeType": "Blunt",
+						"attackType": "Melee",
+						"enBreak": 200.0,
+						"elementDurability":50,
+						"elementType": "Electric",
+					},
+					"hitPattern":
+					{
+						"hitLevel": "Air",
+		          		"hitImpulseX": 1000,
+		          		"hitImpulseY": 600,
+						"reboundRatio": 0,
+						"hitHaltTime": 0.0,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText":false,
+					},
+					"forceCameraShake": true,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 2.00,
+						"shakeTime": 0.5,
+						"shakeDistance": 100.0,
+					},
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Steer
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Eggify_Electric_Steer",
+		"abilityMixins":
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk"],
+				"startNormalizedTime": 0.17,
+				"endNormalizedTime": 0.22,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk"],
+				"startNormalizedTime": 0.33,
+				"endNormalizedTime": 0.38,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["RangeAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 150,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["FistAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.1,
+				"angularSpeed": 150,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["SingleAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.1,
+				"angularSpeed": 150,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["SingleAtk_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "SingleAtk_RushStop",
+				"attackDistance" : 4,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["FistAtk_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "FistAtk_RushStop",
+				"attackDistance" : 7.5,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "MultiAtk_RushStop",
+				"attackDistance" : 9,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["ElectricRush_BS"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 1,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "AttackHittingSceneMixin",
+				"animEventIDs": ["ElectricRush_Loop"],
+				"onHittingScene":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RushHitSceneTrigger",
+					},
+					{
+						"$type": "ActCameraShake",
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.16,
+							"shakeTime": 0.09,
+							"shakeDistance": 25,
+						},
+					},	
+				],
+			},
+		],
+	},
+},
+]

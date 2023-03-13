@@ -1,0 +1,335 @@
+{
+///使用方法注释：
+///		1、调整能力
+///		{
+///			"$type" : "ModifyAbility",
+///			"abilityName" : "Avatar_Qin_Captain",
+///			"paramSpecial" : "CriticalHurt_Up",需要修改的参数名字，只能填1个。所以多个的话需要多个ModifierAbiltiy
+///			"paramDelta" : 0.01,加上指定数值
+///			"paramRatio" : 0,提升指定比例
+///		}
+///		ConfigAbilityCommon.cs中有AbilityProperty，可以调整角色全局的攻击，攻速，攻击，血量，防御，抵抗等等。
+///		2、添加能力
+///		{
+///			"$type" : "AddAbility",
+///			"abilityName": "Avatar_Qin_Captain",仅有一个参数，abiltiyName
+///		}
+///		3、替换攻击
+///		{
+///			"$type": "ReplaceEventPatternMixin",
+///		"oldPatterns": ["Monster_Slime_Fire_02_NormalAttack"],
+///			"newPatterns": ["Monster_Slime_Fire_02_NormalAttack_Fire"],如果需要替换攻击盒，可以用ModifyDamageMixin改变盒子伤害。
+///		}
+///		4、解锁参数
+///		{
+///			"$type" : "UnlockTalentParam",
+///			"abilityName" : "Avatar_Qin_IceShield_ImpactTriggerBack_L",
+///			"talentParam" : "Qin_TriggerBack",
+///		}
+///		需要配套功能： 即需要unlock这个predicates才能走过去。
+///			"predicates" :
+///				[
+///					{
+///						"$type" : "ByUnlockTalentParam",
+///						"talentParam" : "Keaya_TriggerBack",
+///					},
+///				],
+///
+///		5、解锁controller内容
+///		{
+///			"$type" : "UnlockControllerConditions",
+///			"conditionName" : "XXXX",
+///		}
+///		6、调整技能cd
+///		public partial class ModifySkillCD : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public float cdDelta; // cdDelta
+///		public float cdRatio; // cdRatio
+///
+///		7、调整技能消耗
+///		public partial class ModifySkillCost : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public float costDelta; // costDelta
+///		public float costRatio; // costRatio
+///
+///		8、调整技能充能次数
+///			public partial class ModifySkillPoint : ConfigTalentMixin
+///	{
+///		public uint skillID; // skillID
+///		public int pointDelta; // pointDelta
+///		9、替换Abiltiy
+///		{
+///			"UnlockByTalentID":xxx,
+///			"$type":"ReplaceAbiltiy",
+///			"KeyAbilityName":"xx",
+///			"NewAbiltiyName":"xx",
+///			"ParamSpecial1":"xx",
+///			"ParamMedthod1":"xx",
+///		}
+///
+///		注意！！！！
+///
+///		需要修改MetaConfig，将对应的talent加入这个表。
+///
+////////////////////////////////////////////////////////////////
+//
+//  1x303系列蒙德武器
+//
+//  每次获得元素能量球时，恢复自身【x】点生命值；
+//
+////////////////////////////////////////////////////////////////
+	"Weapon_Common_OnGainEnergyHealHP_0":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_OnGainEnergyHealHP",
+		},
+	],
+	"Weapon_Common_OnGainEnergyHealHP_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_OnGainEnergyHealHP",
+			"paramSpecial" : "HealHP",
+			"paramDelta" : 10,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_OnGainEnergyHealHP_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_OnGainEnergyHealHP",
+			"paramSpecial" : "HealHP",
+			"paramDelta" : 10,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_OnGainEnergyHealHP_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_OnGainEnergyHealHP",
+			"paramSpecial" : "HealHP",
+			"paramDelta" : 10,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_OnGainEnergyHealHP_4":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_OnGainEnergyHealHP",
+			"paramSpecial" : "HealHP",
+			"paramDelta" : 10,
+			"paramRatio" : 0,
+		}
+	],
+/////////////////////////////////////////////////////////////////
+//
+//   1x303系列，武器词缀_击杀目标恢复角色固定生命值；
+//
+////////////////////////////////////////////////////////////////
+	"Weapon_Common_HealAmountHPonEnemyKilled_0":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+		},
+	],
+	"Weapon_Common_HealAmountHPonEnemyKilled_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+			"paramSpecial" : "HealAmount",
+			"paramDelta" : 30,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_HealAmountHPonEnemyKilled_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+			"paramSpecial" : "HealAmount",
+			"paramDelta" : 30,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_HealAmountHPonEnemyKilled_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+			"paramSpecial" : "HealAmount",
+			"paramDelta" : 30,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_HealAmountHPonEnemyKilled_4":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+			"paramSpecial" : "HealAmount",
+			"paramDelta" : 30,
+			"paramRatio" : 0,
+		}
+	],
+/////////////////////////////////////////////////////////////////
+//
+//   1x401西风系列，武器词缀_暴击有概率掉落额外元素微粒；
+//
+////////////////////////////////////////////////////////////////
+	"Weapon_Common_GenerateBallWhenCritic_0":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GenerateBallWhenCritic",
+		},
+	],
+	"Weapon_Common_GenerateBallWhenCritic_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_GenerateBallWhenCritic",
+			"paramSpecial" : "Rate",
+			"paramDelta" : 0.05,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_GenerateBallWhenCritic_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_GenerateBallWhenCritic",
+			"paramSpecial" : "Rate",
+			"paramDelta" : 0.05,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_GenerateBallWhenCritic_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_GenerateBallWhenCritic",
+			"paramSpecial" : "Rate",
+			"paramDelta" : 0.05,
+			"paramRatio" : 0,
+		}
+	],
+	"Weapon_Common_GenerateBallWhenCritic_4":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Weapon_Common_GenerateBallWhenCritic",
+			"paramSpecial" : "Rate",
+			"paramDelta" : 0.05,
+			"paramRatio" : 0,
+		}
+	],
+/////////////////////////////////////////////////////////////////
+//
+//  金武器系列，添加环绕特效，替换消散特效
+//
+////////////////////////////////////////////////////////////////
+	"Weapon_Common_GoldEffect":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect1":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect2":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect3":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect4":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect5":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_GoldEffect6":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_ElementUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_ElementUp",
+		},
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_CoolDown":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_CoolDown",
+		},
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_ElementResist":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_ElementResist",
+		},
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+		},
+	],
+	"Weapon_Common_SpeedUp":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_SpeedUp",
+		},
+	],
+	"Weapon_Common_SpeedDown":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Weapon_Common_SpeedDown",
+		},
+	],
+}

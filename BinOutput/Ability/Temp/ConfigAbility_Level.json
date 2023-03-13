@@ -1,0 +1,1177 @@
+[
+  /////////////////////////////////////////////////////////
+  //
+  // Tile Attack Manager
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelAbility_TileAttackManager",
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //怪物脱战回血
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "AI_LeaveCombat_Reset",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "AI_Reset_HP",
+          "target": "Target",
+        },
+      ],
+      "modifiers": {
+        "AI_Reset_HP": {
+          "duration": 1.0,
+          "onAdded": [
+            {
+              "$type": "HealHP",
+              "target": "Target",
+              "amountByTargetMaxHPRatio": 1.0,
+              "muteHealEffect": true,
+            },
+          ],
+        },
+      },
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //派蒙苹果
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Gadget_Level_Paimon_Apple",
+      "onAbilityStart": [
+        {
+          "$type": "SetPaimonLookAtAvatar",
+          "from": "Task",
+          "lookat": true,
+          "minTime": 2.2,
+          "maxTime": 2.2,
+        },
+        {
+          "$type": "PaimonAction",
+          "from": "Task",
+          "actionName": "Hope",
+        },
+        {
+          "$type": "SetPaimonTempOffset",
+          "from": "Task",
+          "time": 3,
+          "offSetPos": {
+            "x": 0.25,
+            "y": 1.15,
+            "z": 3.05,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Gadget_Level_Paimon_Stamina",
+      "onAbilityStart": [
+        {
+          "$type": "SetPaimonLookAtCamera",
+          "from": "Task",
+          "lookat": true,
+          "minTime": 2.5,
+          "maxTime": 2.5,
+        },
+        {
+          "$type": "PaimonAction",
+          "from": "Task",
+          "actionName": "Guide",
+        },
+      ],
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //潜行技能
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Apply_Switch_SneakBtn",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier",
+          "target": "Team",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_WatchingCurAvatarModifier": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "UNIQUE_SwtichBtnModifier",
+            },
+          ],
+        },
+        "UNIQUE_SwtichBtnModifier": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AddAvatarSkillInfo",
+              "skillID": 10035,
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "SwithBtnModifier",
+              "target": "Self",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "SwithBtnModifier",
+              "target": "Self",
+            },
+            {
+              "$type": "RemoveAvatarSkillInfo",
+              "skillID": 10035,
+            },
+          ],
+
+        },
+        "SwithBtnModifier": {
+          "modifierMixins": [
+            {
+              "$type": "AvatarLevelSkillMixin",
+              "skillID": 10035,
+              "skillIndex": 1,
+            },
+          ],
+        },
+      },
+    },
+  },
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Remove_Switch_SneakBtn",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier",
+        },
+      ],
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //状态机测试技能
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Player_RunBomber",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_Avatar_Start_RunBomber",
+          "target": "CurTeamAvatars",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_Avatar_Start_RunBomber": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [ "Run" ],
+              "modifierName": "Avatar_Start_RunBomber",
+              "target": "Self",
+            },
+          ],
+        },
+        "Avatar_Start_RunBomber": {
+          "onAdded": [
+            {
+              "$type": "TriggerBullet",
+              "bulletID": 40000174,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.5,
+                  "z": 0.1,
+                },
+              },
+            },
+          ],
+
+        },
+      },
+
+    },
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //飞行白盒中替换技能
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Test_FlyingBomber",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier_Flying",
+          "target": "Team",
+        },
+      ],
+      "modifiers": {
+        // "UNIQUE_Avatar_CameraCtrl" :
+        // {
+        // 	"isUnique" : true,
+        // 	"modifierMixins":
+        // 	[
+        // 		{
+        // 			"$type": "AttachToStateIDMixin",
+        // 			"stateIDs": ["Fly"],
+        // 			"modifierName" : "Avatar_Flying_CameraCtrl",
+        // 		},
+        // 	],
+        // },
+        // "Avatar_Flying_CameraCtrl":
+        // {
+        // 	"onAdded":
+        // 	[
+        // 		{
+        // 			"$type": "AvatarEnterCameraShot",
+        // 			"cameraMoveCfgPath": "Camera_Avatar_FlyingBomber",
+        // 		},
+        // 		{
+        // 			"$type":"AttachEffect",
+        // 			"effectPattern":"Eff_AmborBomb_Alert",
+        // 		},
+        // 	],
+        // 	"onRemoved":
+        // 	[
+        // 		{
+        // 			"doOffStage": true,
+        // 			"$type": "AvatarExitCameraShot",
+        // 		},
+        // 	],
+        // },
+        "Avatar_Player_CamCtrl_Modifier": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "abilityName": "Avatar_Player_CamCtrl",
+            },
+          ]
+        },
+        "UNIQUE_WatchingCurAvatarModifier_Flying": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "UNIQUE_SwtichBtnModifier_Flying",
+            },
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "Avatar_Player_CamCtrl_Modifier",
+            },
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "Avatar_Player_SetFlyState_Modifier",
+            },
+          ],
+        },
+        "UNIQUE_SwtichBtnModifier_Flying": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AddAvatarSkillInfo",
+              "skillID": 10037,
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "SwithBtnModifier_Flying",
+              "target": "Self",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "SwithBtnModifier_Flying",
+              "target": "Self",
+            },
+            {
+              "$type": "RemoveAvatarSkillInfo",
+              "skillID": 10037,
+            },
+          ],
+
+        },
+        "SwithBtnModifier_Flying": {
+          "modifierMixins": [
+            //						{
+            //							"$type": "AvatarLevelSkillMixin",
+            //							"skillID": 10037,
+            //							"skillIndex": 1,
+            //						},
+            {
+              "$type": "AvatarChangeSkillMixin",
+              "index": 1,
+              "flySkillID": 10037,
+              "jumpSkillID": 10037,
+            },
+          ],
+        },
+
+        "Avatar_Player_SetFlyState_Modifier": {
+          "properties": {
+            "Actor_FlyBackSpeedMaxRatio": 1,
+            "Actor_FlyHorizontalSpeedMaxRatio": 3,
+            "Actor_FlyRotationAngularVelocityRatio": 1.25,
+            "Actor_FlyDownSpeedRatio": -0.61,
+            "Actor_FlyForwardSpeedMaxRatio": 0.33,
+
+          },
+        }
+        // "Avatar_Start_FlyingBomber" :
+        // {
+        // 	"onAdded" :
+        // 	[
+        // 		{
+        // 			"$type": "ApplyModifier",
+        // 			"modifierName": "UNIQUE_Avatar_Start_FlyingBomber",
+        // 			"target": "Self",
+        // 		},
+        // 	],
+        // },
+
+        // "UNIQUE_Avatar_Start_FlyingBomber" :
+        // {
+        // 	"isUnique" : true,
+        // 	"modifierMixins":
+        // 	[
+        // 		{
+        // 			"$type": "ButtonHoldChargeMixin",
+        // 			"skillID": 10037,
+        // 			"chargeTime": 0.1,
+        // 			"OnBeginUncharged":
+        // 			[
+        // 				{
+        // 					"$type": "TriggerBullet",
+        // 					"bulletID": 40000174,
+        // 					"born":
+        // 					{
+        // 						"$type": "ConfigBornByTarget",
+        // 						"offset" :
+        // 						{
+        // 							"x": 0.0,
+        // 							"y": 0.5,
+        // 							"z": 0.1,
+        // 						},
+        // 					},
+        // 				},
+        // 			],
+        // 		}
+        // 	],
+        // },
+
+      },
+    },
+  },
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Remove_Avatar_Test_FlyingBomber",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier_Flying",
+        },
+      ],
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //找猫技能
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Apply_Switch_FindCatBtn",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier_FindCat",
+          "target": "Team",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_WatchingCurAvatarModifier_FindCat": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "UNIQUE_SwtichBtnModifier_FindCat",
+            },
+          ],
+        },
+        "UNIQUE_SwtichBtnModifier_FindCat": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AddAvatarSkillInfo",
+              "skillID": 10384,
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "SwithBtnModifier",
+              "target": "Self",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "modifierName": "SwithBtnModifier",
+              "target": "Self",
+            },
+            {
+              "$type": "RemoveAvatarSkillInfo",
+              "skillID": 10384,
+            },
+          ],
+
+        },
+        "SwithBtnModifier": {
+          "modifierMixins": [
+            {
+              "$type": "AvatarLevelSkillMixin",
+              "skillID": 10384,
+              "skillIndex": 1,
+            },
+          ],
+        },
+      },
+    },
+  },
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Remove_Switch_FindCatBtn",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_WatchingCurAvatarModifier_FindCat",
+        },
+      ],
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //仙人buff
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelBuff_ReviveElemEnergy&MinusCD",
+      "abilityMixins": [
+      ],
+      "onAdded": [
+      ],
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_LevelBuff_ReviveElemEnergy_Check",
+          "target": "Team",
+        }, //暂时写在onAbilityStart中，不确定实现机制，如果是希望加上ability立即生效移到onAdd下面就好
+      ],
+      "modifiers": {
+        "UNIQUE_LevelBuff_ReviveElemEnergy_Check": {
+          "duration": 120, //buff持续x秒
+          "isUnique": true,
+          "stacking": "Unique",
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "UNIQUE_LevelBuff_ReviveElemEnergy",
+            },
+          ],
+        },
+        "UNIQUE_LevelBuff_ReviveElemEnergy": {
+          "duration": 120, //buff持续x秒
+          "isUnique": true,
+          "stacking": "Unique",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "effectPattern": "Eff_MQ1002_XueyueBuff",
+            },
+          ],
+          "onRemoved": [
+
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ReviveElemEnergyMixin",
+              "type": "Both",
+              "period": 1, //每x秒回复一次能量
+              "baseEnergy": 10, //每次回y点能量
+            },
+          ],
+          "properties": {
+            "Actor_SkillCDMinusRatio": 0.4, //减CD 0-1区间，0.8表示80%冷却缩减（10秒技能变2秒）
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelBuff_Remove_ReviveElemEnergy&MinusCD",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_LevelBuff_ReviveElemEnergy_Check",
+        },
+      ],
+    },
+  }, //LevelBuff_ReviveElemEnergy&MinusCD(蔡文皓需求 减CD外加角色回能量)
+  //
+  /////////////////////////////////////////////////////////
+  //坠落伤害减免
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_FallingDamageImmune",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_Avatar_FallingDamage",
+          "target": "CurTeamAvatars",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_Avatar_FallingDamage": {
+          "isUnique": true,
+          "properties": {
+            "Actor_FallingDamageRatio": -1,
+          },
+        },
+      },
+
+    },
+  },
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Remove_FallingDamageImmune",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "CurTeamAvatars",
+          "modifierName": "UNIQUE_Avatar_FallingDamage",
+        },
+      ],
+    },
+  },
+  /////////////////////////////////////////////////////////
+  //
+  //体力消耗减少ability
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Avatar_Player_StaminaReduced",
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_Avatar_StaminaReduced",
+          "target": "CurTeamAvatars",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_Avatar_StaminaReduced": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [ "Fly" ],
+              "modifierName": "Avatar_Flying_StaminaReduced",
+              "target": "Self",
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [ "Run" ],
+              "modifierName": "Avatar_Flying_StaminaReduced",
+              "target": "Self",
+            },
+          ],
+        },
+        "Avatar_Flying_StaminaReduced": {
+          "properties": {
+            "Actor_MaxStaminaDelta": 100,
+            "Actor_CostStaminaRatio": -999,
+            "Actor_EndureDelta": 0,
+          },
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceListID": 11002,
+            },
+            {
+              "$type": "SetAvatarHitBuckets",
+              "overrideAvatarHitBucketSetting": {
+                "rangedBucketCount": 4,
+              },
+            },
+          ],
+
+        },
+      },
+
+    },
+  },
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Remove_Avatar_Player_StaminaReduced",
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "target": "Team",
+          "modifierName": "UNIQUE_Avatar_StaminaReduced",
+        },
+      ],
+    },
+  },
+
+
+
+  /////////////////////////////////////////////////////////
+  //
+  //感电效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Electric_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Electric_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Electric_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_ELECTRIC_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_ELECTRIC_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //火扩散效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Swirl_Fire_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Swirl_Fire_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Swirl_Fire_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_FIRE_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_FIRE_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //雷扩散效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Swirl_Electric_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Swirl_Electric",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Swirl_Electric": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_ELECTRIC_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_ELECTRIC_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //水扩散效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Swirl_Water_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Swirl_Water",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Swirl_Water": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_WATER_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_WATER_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //冰扩散效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Swirl_Ice_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Swirl_Ice",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Swirl_Ice": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_ICE_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SWRIL_ICE_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //超载效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Explode_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Explode_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Explode_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_EXPLODE_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_EXPLODE_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //超导效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Superconductor_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Superconductor_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Superconductor_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SUPERCONDUCTOR_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_SUPERCONDUCTOR_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //燃烧效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Burning_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Burning_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Burning_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_BURNING_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_BURNING_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  //冰冻效果魔改白盒
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Freeze_Alter",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "Freeze_Alter",
+          "target": "Self",
+        }
+      ],
+      "modifiers": {
+        "Freeze_Alter": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_FREEZE_ALTER",
+              "value": 1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_IS_FREEZE_ALTER",
+              "value": -1,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": 0,
+              "minValue": 0,
+            },
+          ],
+        }
+      }
+    }
+  },
+
+  /////////////////////////////////////////////////////////
+  //
+  // 元素反应掉球
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "SceneAbility_Monster_GenerateElemBall",
+      "abilityMixins": [
+        {
+          "$type": "MonsterReadyMixin",
+          "onMonsterReady": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "UNIQUE_Monster_GenerateElemBall",
+              "target": "Target",
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_Monster_GenerateElemBall": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "onBeingHit": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "UNIQUE_Monster_GenerateElemBall_Timer",
+              "target": "Self",
+              "predicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "attackTags": [ "ExplodeDamage" ],
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "attackTags": [ "SuperconductorDamage" ],
+                    },
+                  ]
+                }
+              ],
+            },
+          ],
+        },
+        "UNIQUE_Monster_GenerateElemBall_Timer": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "GenerateElemBall",
+              "dropType": "ForceDrop",
+              "configID": 2024,
+              "baseEnergy": 2,
+              "ratio": 4,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                },
+              },
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "GenerateElemBall",
+                  "dropType": "ForceDrop",
+                  "configID": 2024,
+                  "baseEnergy": 2,
+                  "ratio": 2,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      }
+    }
+  },
+]

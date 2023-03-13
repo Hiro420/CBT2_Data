@@ -1,0 +1,85 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  RushAttack_Defender
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" : 
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Hili_None_WhirlRush",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["WhirlRush_Rush"],
+					"modifierName": "Rush",
+				},
+				{
+					"$type": "AttackHittingSceneMixin",
+					"animEventIDs": ["WhirlRush_HitScene"],
+					"onHittingScene":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "CrashTrigger",
+						},
+						{
+							"$type": "ActCameraShake",
+							"cameraShake":
+							{
+								"shakeRange": 0.36,
+								"shakeTime": 0.24,
+							},
+						},	
+					],
+				},
+			],
+			"modifiers" : 
+			{
+				"Rush" : 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Hili_None_WhirlRush_Loop",
+						},
+					],
+					"onAttackLanded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "NextSkillTrigger",
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+									"useEventSource" : true,
+								},
+							],
+						},
+						{
+							"$type": "ActCameraShake",
+							"cameraShake":
+							{
+								"shakeRange": 0.36,
+								"shakeTime": 0.18,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+									"useEventSource" : true,
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+]

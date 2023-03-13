@@ -1,0 +1,938 @@
+[
+    {
+        "提示台词ID": 1001002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1001003,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1002001,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1009001,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1009002,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1009003,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010001,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010003,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010004,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010005,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010006,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010007,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010008,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1010009,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1031001,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1031002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1031003,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1031004,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1032001,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1032002,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1021001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1021002,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1022001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1023001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1023002,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1024001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1025001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1026001,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1027001,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1028001,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1028002,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1029001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1029002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1030001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1036001,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1036002,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1037001,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1037002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1039005,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1039006,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1039007,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1039008,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041001,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041002,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041003,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041004,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041011,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041021,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041022,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041023,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041024,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041025,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041026,
+        "停留显示时长": 7,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041027,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041028,
+        "停留显示时长": 8,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041029,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041031,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041041,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041042,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041072,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041093,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041094,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041112,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1041113,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1042021,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 1042091,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10060501,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10060701,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10050401,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10050501,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10050601,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10050801,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10050901,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051001,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051101,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051201,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051301,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051401,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051501,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10051601,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010004,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010005,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010006,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010007,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010008,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010011,
+        "停留显示时长": 7,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010012,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010013,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010014,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010015,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010016,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010017,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010021,
+        "停留显示时长": 6,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010022,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010023,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010024,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010025,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010026,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010027,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010028,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010029,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010030,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010031,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010032,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010033,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010034,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010101,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010102,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010201,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010301,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010401,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010402,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010501,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010502,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010601,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010602,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010603,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010701,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010702,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010703,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20010302,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10010101,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10010102,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10010103,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10010201,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 10010202,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020101,
+        "停留显示时长": 7,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020102,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020103,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020201,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020202,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020203,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020204,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020205,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 20020301,
+        "停留显示时长": 10,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 500090101,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200230101,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200230201,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200230202,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200230203,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220101,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220201,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220202,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220301,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220401,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200220501,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050101,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": 0
+    },
+    {
+        "提示台词ID": 200050102,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": 0
+    },
+    {
+        "提示台词ID": 200050201,
+        "停留显示时长": 4,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050202,
+        "停留显示时长": 3,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050301,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050401,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050402,
+        "停留显示时长": 2,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050501,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "提示台词ID": 200050502,
+        "停留显示时长": 5,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    }
+]

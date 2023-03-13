@@ -1,0 +1,197 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  AIStateInitial
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_AIStateInitial",
+		"abilityMixins":
+		[
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [1],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [103, 202],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [2],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [101, 102, 201],
+					},
+				],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Random
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_Random",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Run", "Disappear"],
+				"modifierName": "Random_MoveSpeedRatio",
+			},
+		],
+		"onAdded":
+		[
+			{
+				"$type": "SetRandomOverrideMapValue",
+				"overrideMapKey": "RandomSpeed",
+				"valueRangeMin": 0.0,
+				"valueRangeMax": 0.25,
+			},
+		],
+		"modifiers":
+		{
+			"Random_MoveSpeedRatio" :
+			{
+				"properties":
+				{
+					"Animator_MoveSpeedRatio" : "%RandomSpeed",
+				},
+			},
+		},
+		"abilitySpecials" :
+		{
+			"RandomSpeed" : 0.0,
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Wander
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_GetUp",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "WanderState",
+				"value": true,
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_GetDown",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "WanderState",
+				"value": false,
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Disappear
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_Disappear",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Disappear"],
+				"modifierName": "DisappearTimer",
+			},
+		],
+		"modifiers":
+		{
+			"DisappearTimer" :
+			{
+				"onAdded":
+				[
+					{
+						"$type": "StartDither",
+						"duration": 3.0,
+					},
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "Disappear",
+						"value": true,
+					},
+					{
+						"$type": "KillSelf",
+						"banDrop": true,
+						"banExp": true,
+						"killSelfType": "Disappear",
+						"duration": 2.5,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  AwareTigger
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Fox_AwareTigger",
+		"abilityMixins":
+		[
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [101],
+				"enterActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "AwareTrigger",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetPositionToSelfPosition",
+								"compareType": "XZ",
+								"value": 5,
+								"logic": "GreaterOrEqual",
+							},
+						],
+					},
+				],
+			},
+		],
+	},
+},
+]

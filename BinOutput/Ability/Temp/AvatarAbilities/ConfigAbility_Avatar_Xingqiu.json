@@ -1,0 +1,7494 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  ExtraAttack
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_ExtraAttack",
+			"abilityMixins": 
+			[
+				{
+					"$type": "ButtonHoldChargeMixin",
+					"skillID": 10381,
+					"chargeTime": 0.12,
+					"secondChargeTime": 0.4,
+					"OnBeginUncharged": 
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 99,
+							"predicates": 
+							[
+								{
+									"$type": "ByAny",
+									"predicates": 
+									[
+										{
+											"$type": "ByAnimatorInt",
+											"value": 0,
+											"parameter": "ComboCount",
+											"logic": "Equal",
+										},
+										{
+											"$type": "ByAnimatorInt",
+											"value": 5,
+											"parameter": "ComboCount",
+											"logic": "Equal",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+					],
+					"OnReleaseUncharged": 
+					[
+/*						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+					],
+					"OnBeginCharged": 
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": true,
+						},
+					],
+					"OnReleaseCharged": 
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+/*						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 1,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"OnBeginSecondCharged": 
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "DoSkill",
+							"predicates": 
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Sword_Stamina_Cost+%Flexible_Stamina",
+									"logic": "GreaterOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "SkillID",
+							"value": 6,
+							"predicates": 
+							[
+								{
+									"$type": "ByLocalAvatarStamina",
+									"stamina": "%ExtraAttack_Sword_Stamina_Cost+%Flexible_Stamina",
+									"logic": "GreaterOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "IsCharging",
+							"value": false,
+						},
+/*						{
+							"$type": "ResetAnimatorTrigger",
+							"triggerID": "DoSkill",
+						},*/
+					],
+					"OnReleaseSecondCharged": 
+					[
+
+					],
+					"chargeStateIDs": [ "Attack01","Attack02","Attack03","Attack04","Run"],
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["ExtraAttack"],
+					"modifierName": "ExtraAttack_StaminaCost",
+				},
+			],
+			"modifiers": 
+			{
+				"ExtraAttack_StaminaCost": 
+				{
+					// "duration": 0.2,
+					"onAdded": 
+					[
+						{
+							"$type": "AvatarSkillStart",
+							"skillID": 10001,
+							"costStaminaRatio":"%ExtraAttack_Sword_Stamina_Cost",
+						},
+					],
+				},
+			},
+			"abilitySpecials": 
+			{
+//故意少判了一点点体力，为了顾及一部分网络延迟
+				"ExtraAttack_Sword_Stamina_Cost": 0,
+				"Flexible_Stamina":-2,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_Spoondrift	//小技能
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_Spoondrift",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",	//攻击事件
+					"stateID": "Spoondrift",
+					"modifierName": "Spoondrift_Attack",
+					"target": "Self",
+					"normalizeStart": 0.155,
+				},
+				{
+					"$type": "AttachToNormalizedTimeMixin",	//攻击事件
+					"stateID": "Spoondrift",
+					"modifierName": "Backwash_Attack",
+					"target": "Self",
+					"normalizeStart": 0.38,
+				},
+			],
+			"modifiers": 
+			{
+				"Spoondrift_Attack": 
+				{
+					// "duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AvatarSkillStart",
+							"skillID": 10382,
+						},
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "AttackWithShield",	//天赋：护盾层数影响技能伤害
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "CopyGlobalValue",
+									"srcTarget": "Team",
+									"srcKey": "_ABILITY_Xingqiu_PhantomShield_Level",	//获得护盾层数
+									"dstKey": "_ABILITY_Xingqiu_PhantomShield_Level",
+								},
+								{
+									"$type":"SetGlobalValueToOverrideMap",
+									"globalValueKey":"_ABILITY_Xingqiu_PhantomShield_Level",	//写入待计算
+									"overrideMapKey":"ShieldLevel",
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",
+									"value": -2,
+									"useLimitRange": true,
+									"maxValue": 2,
+									"minValue": 0,
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",	//根据层数算累计加成
+									"value": "%ShieldLevel*%ShieldDamageBaseRatio+1",
+									"useLimitRange": true,
+									"maxValue": 2,
+									"minValue": 0,
+								},
+								{
+									"$type":"SetGlobalValueToOverrideMap",
+									"globalValueKey":"_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",	//写入待计算
+									"overrideMapKey":"ShieldDamageSumRatio",
+								},
+								{
+									"$type": "TriggerAttackEvent",
+									"targetType": "Enemy",
+									"attackEvent": 
+									{
+										"attackPattern": 
+										{
+											"$type": "ConfigAttackCircle",
+											"height": 1.5,
+											"triggerType": "TriggerNoRepeat",
+											"fanAngle": 360.0,
+											"radius": 3.0,
+											"radiusRatio": 0.0,
+											"born": 
+											{
+												"$type": "ConfigBornBySelf",
+												"offset": 
+												{
+													"x": 0.0,
+													"y": -0.1,
+													"z": 0.8,
+												},
+											},
+										},
+										"attackInfo": 
+										{
+											"attackTag": "Elemental_Art",
+											"attackProperty": 
+											{
+												"damagePercentage": "%Spoondrift_Damage*%ShieldDamageSumRatio",	//带加成
+												"strikeType": "Slash",
+												"elementType": "Water",
+										  		"elementDurability": 25,
+								          		"attackType": "Melee",
+								          		"enBreak": 120,
+											},
+											"hitPattern": 
+											{
+												"onHitEffectName": "default",
+								          		"hitLevel": "Light",	//hitlevel = 2
+								          		"hitImpulseX": 200,	//hitlevel = 2
+								          		"hitImpulseY": 0,	//hitlevel = 2
+								          		"reboundRatio": 0,
+												"canBeDefenceHalt": true,
+								          		"hitHaltTime": 0.02,
+								          		"hitHaltTimeScale": 0.01,
+								          		"muteHitText": false
+								        	},
+								        	"forceCameraShake": false,
+								        	"cameraShake": 
+								        	{
+								        		"shakeType": "CustomVector",
+												"shakeRange": 0.12,
+												"shakeTime": 0.12,
+												"shakeDistance": 30,
+												"shakeDir": 
+												{
+													"x": -1, 
+													"y": 0,
+													"z": 0,
+												},
+								        	},
+										}
+									},
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "TriggerAttackEvent",
+									"targetType": "Enemy",
+									"attackEvent": 
+									{
+										"attackPattern": 
+										{
+											"$type": "ConfigAttackCircle",
+											"height": 1.5,
+											"triggerType": "TriggerNoRepeat",
+											"fanAngle": 360.0,
+											"radius": 3.0,
+											"radiusRatio": 0.0,
+											"born": 
+											{
+												"$type": "ConfigBornBySelf",
+												"offset": 
+												{
+													"x": 0.0,
+													"y": -0.1,
+													"z": 0.8,
+												},
+											},
+										},
+										"attackInfo": 
+										{
+											"attackTag": "Elemental_Art",
+											"attackProperty": 
+											{
+												"damagePercentage": "%Spoondrift_Damage",	//不带加成
+												"strikeType": "Slash",
+												"elementType": "Water",
+										  		"elementDurability": 25,
+								          		"attackType": "Melee",
+								          		"enBreak": 120,
+											},
+											"hitPattern": 
+											{
+												"onHitEffectName": "default",
+								          		"hitLevel": "Heavy",	//hitlevel = 3
+								          		"hitImpulseX": 200,	//hitlevel = 3
+								          		"hitImpulseY": 0,	//hitlevel = 3
+								          		"reboundRatio": 0,
+												"canBeDefenceHalt": true,
+								          		"hitHaltTime": 0.02,
+								          		"hitHaltTimeScale": 0.01,
+								          		"muteHitText": false
+								        	},
+								        	"forceCameraShake": false,
+								        	"cameraShake": 
+								        	{
+								        		"shakeType": "CustomVector",
+												"shakeRange": 0.12,
+												"shakeTime": 0.12,
+												"shakeDistance": 30,
+												"shakeDir": 
+												{
+													"x": -1, 
+													"y": 0,
+													"z": 0,
+												},
+								        	},
+										}
+									},
+								},
+							],
+						},
+					],
+				},
+				"Backwash_Attack": 
+				{
+					// "duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "AttackWithShield",	//天赋：护盾层数影响技能伤害
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "CopyGlobalValue",
+									"srcTarget": "Team",
+									"srcKey": "_ABILITY_Xingqiu_PhantomShield_Level",	//获得护盾层数
+									"dstKey": "_ABILITY_Xingqiu_PhantomShield_Level",
+								},
+								{
+									"$type":"SetGlobalValueToOverrideMap",
+									"globalValueKey":"_ABILITY_Xingqiu_PhantomShield_Level",	//写入待计算
+									"overrideMapKey":"ShieldLevel",
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",
+									"value": -2,
+									"useLimitRange": true,
+									"maxValue": 2,
+									"minValue": 0,
+								},
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",	//根据层数算累计加成
+									"value": "%ShieldLevel*%ShieldDamageBaseRatio+1",
+									"useLimitRange": true,
+									"maxValue": 2,
+									"minValue": 0,
+								},
+								{
+									"$type":"SetGlobalValueToOverrideMap",
+									"globalValueKey":"_ABILITY_Xingqiu_PhantomShield_ShieldDamageSumRatio",	//写入待计算
+									"overrideMapKey":"ShieldDamageSumRatio",
+								},
+								{
+									"$type": "TriggerAttackEvent",
+									"targetType": "Enemy",
+									"attackEvent": 
+									{
+										"attackPattern": 
+										{
+											"$type": "ConfigAttackBox",
+											"triggerType": "TriggerNoRepeat",
+											"size": 
+											{
+												"x": 3.5,
+												"y": 5.0,
+												"z": 4.5
+											},
+											"born": 
+											{
+												"$type": "ConfigBornBySelf",
+												"offset": 
+												{
+													"x": 0.0,
+													"y": 1.35,
+													"z": -1.5
+												}
+											}
+							        	},
+										"attackInfo": 
+										{
+											"attackTag": "Elemental_Art",
+											"attackProperty": 
+											{
+												"damagePercentage": "%Backwash_Damage*%ShieldDamageSumRatio",	//带加成
+												"strikeType": "Slash",
+												"elementType": "Water",
+										  		"elementDurability": 25,
+								          		"attackType": "Melee",
+								          		"enBreak": 120,
+											},
+											"hitPattern": 
+											{
+												"onHitEffectName": "default",
+								          		"hitLevel": "Heavy",	//hitlevel = 3
+								          		"hitImpulseX": 200,	//hitlevel = 3
+								          		"hitImpulseY": 0,	//hitlevel = 3
+								          		"reboundRatio": 0,
+												"canBeDefenceHalt": true,
+								          		"hitHaltTime": 0.02,
+								          		"hitHaltTimeScale": 0.01,
+								          		"muteHitText": false
+								        	},
+								        	"forceCameraShake": false,
+								        	"cameraShake": 
+								        	{
+								        		"shakeType": "CustomVector",
+												"shakeRange": 0.12,
+												"shakeTime": 0.12,
+												"shakeDistance": 30,
+												"shakeDir": 
+												{
+													"x": -1, 
+													"y": 0,
+													"z": 0,
+												},
+								        	},
+										}
+									},
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "TriggerAttackEvent",
+									"targetType": "Enemy",
+									"attackEvent": 
+									{
+										"attackPattern": 
+										{
+											"$type": "ConfigAttackBox",
+											"triggerType": "TriggerNoRepeat",
+											"size": 
+											{
+												"x": 3.5,
+												"y": 5.0,
+												"z": 4.5
+											},
+											"born": 
+											{
+												"$type": "ConfigBornBySelf",
+												"offset": 
+												{
+													"x": 0.0,
+													"y": 1.35,
+													"z": -1.5
+												}
+											}
+							        	},
+										"attackInfo": 
+										{
+											"attackTag": "Elemental_Art",
+											"attackProperty": 
+											{
+												"damagePercentage": "%Backwash_Damage",	//不带加成
+												"strikeType": "Slash",
+												"elementType": "Water",
+										  		"elementDurability": 25,
+								          		"attackType": "Melee",
+								          		"enBreak": 120,
+											},
+											"hitPattern": 
+											{
+												"onHitEffectName": "default",
+								          		"hitLevel": "Heavy",	//hitlevel = 3
+								          		"hitImpulseX": 200,	//hitlevel = 3
+								          		"hitImpulseY": 0,	//hitlevel = 3
+								          		"reboundRatio": 0,
+												"canBeDefenceHalt": true,
+								          		"hitHaltTime": 0.02,
+								          		"hitHaltTimeScale": 0.01,
+								          		"muteHitText": false
+								        	},
+								        	"forceCameraShake": false,
+								        	"cameraShake": 
+								        	{
+								        		"shakeType": "CustomVector",
+												"shakeRange": 0.12,
+												"shakeTime": 0.12,
+												"shakeDistance": 30,
+												"shakeDir": 
+												{
+													"x": -1, 
+													"y": 0,
+													"z": 0,
+												},
+								        	},
+										}
+									},
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_StartMark",	//开启/刷新护盾
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Team",
+									"key": "_ABILITY_Xingqiu_PhantomShield_AddFourfoldMark",	//增加护盾特效*4
+									"value": 1,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Team",
+									"key": "_ABILITY_Xingqiu_PhantomShield_AddTrebleMark",	//增加护盾特效*3
+									"value": 1,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials": 
+			{
+				"Spoondrift_Damage": 0,
+				"Backwash_Damage": 0,
+				"ShieldLevel": 0,
+				"ShieldDamageBaseRatio": 0,
+				"ShieldDamageSumRatio": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_PhantomShield	//幻影盾（噩梦配置）
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_PhantomShield",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "UNIQUE_Xingqiu_PhantomShield_TeamHandler",
+					"target": "Team",
+					"doOffStage": true,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_OnKillHandler",
+					"target": "Self",
+					"doOffStage": true,
+				},
+			],
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Spoondrift","Spoondrift_AS","Backwash","Backwash_AS"],	//小技能打中怪加护盾层数
+					"modifierName": "Shield_On_Handler",
+				},
+			],
+			"modifiers": 
+			{
+				"UNIQUE_Xingqiu_PhantomShield_TeamHandler":
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",	//生成护盾特效需要的gadget，这玩意儿如果按需创建和销毁，创建的时候很多逻辑挂不上去，无奈，就一直跑吧，没事，功能都随护盾层数开启的，不碍事
+							"gadgetID": 41025011,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+								}
+							},
+							// "byServer": true,
+						},
+					],
+					"thinkInterval": 1.0,
+					"onThinkInterval":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_GadgetHeartbeat",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+							"target": "Team",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Heartbeat_Msg",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Heartbeat_Checker",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "KillGadget",		//行秋不再队伍里，干掉辅助工具
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "DoActionByTeamStatusMixin",	//行秋出队伍时移除大招和护盾
+							"actions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "Team",
+									"targetPredicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_Minazuki_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"successActions": 
+									[
+										{
+											"$type": "AddElementDurability",
+											"target": "Team",
+											"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade",
+											"value": 0.1,
+											"useLimitRange": true,
+											"maxValue": 0.1,
+											"minValue": 0,
+											"predicates":
+											[
+												{
+													"$type": "ByCurTeamHasFeatureTag",
+													"featureTagID": 1098,
+													"number": 0,
+													"logic": "Equal",
+												},
+											],
+										},
+									],
+								},
+								{
+									"$type": "Predicated",
+									"target": "Team",
+									"targetPredicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+											"value": 1,
+											"compareType": "MoreThanAndEqual",
+										},
+									],
+									"successActions": 
+									[
+										{
+											"$type": "RemoveUniqueModifier",
+											"modifierName": "UNIQUE_Xingqiu_PhantomShield",
+											"target": "Team",
+											"predicates":
+											[
+												{
+													"$type": "ByCurTeamHasFeatureTag",
+													"featureTagID": 1098,
+													"number": 0,
+													"logic": "Equal",
+												},
+											],
+										},
+									],
+								},
+								{
+									"$type": "RemoveUniqueModifier",
+									"modifierName": "UNIQUE_Xingqiu_PhantomShield_TeamHandler",
+									"target": "Team",
+									"predicates":
+									[
+										{
+											"$type": "ByCurTeamHasFeatureTag",
+											"featureTagID": 1098,
+											"number": 0,
+											"logic": "Equal",
+										},
+									],
+								},
+							]
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_StartMark",	//护盾创生/刷新管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToStart",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_AddMark",	//护盾增加特效管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_AddTrebleMark",	//护盾增加*3特效管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_AddFourfoldMark",	//护盾增加*4特效管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToAdd",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//大招下护盾受击管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToSpark",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_PassAwayMark",	//护盾进大招状态管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToPassAway",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_FullBackMark",	//护盾出大招状态管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToFullBack",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_DieMark",	//护盾死亡状态管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToDie",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_PassAwayDieMark",	//护盾死亡状态管理
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_PreludeToPassAwayDie",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_Level",	//根据护盾等级，打开对应位置的bulletTrigger，用来撞怪上潮湿
+							"valueSteps": [-0.5, 0.5, 1.5, 2.5, 3.5, 4.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank", "Blank", "Blank", "Blank"],
+							"actionQueues":
+							[
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_Trigger0",
+										"otherTargets": 
+										{
+											"$type": "SelectTargetsByChildren",
+											"configID": 41025011,
+											"sortType": "Default",
+										},
+									},
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_Trigger1",
+										"otherTargets": 
+										{
+											"$type": "SelectTargetsByChildren",
+											"configID": 41025011,
+											"sortType": "Default",
+										},
+									},
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_Trigger2",
+										"otherTargets": 
+										{
+											"$type": "SelectTargetsByChildren",
+											"configID": 41025011,
+											"sortType": "Default",
+										},
+									},
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_Trigger3",
+										"otherTargets": 
+										{
+											"$type": "SelectTargetsByChildren",
+											"configID": 41025011,
+											"sortType": "Default",
+										},
+									},
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Xingqiu_PhantomShield_Trigger4",
+										"otherTargets": 
+										{
+											"$type": "SelectTargetsByChildren",
+											"configID": 41025011,
+											"sortType": "Default",
+										},
+									},
+								],
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Heartbeat_Msg":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Heartbeat_Feedback",
+							"target": "Team",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Heartbeat_Feedback":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_GadgetHeartbeat",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "Team",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Heartbeat_Checker":
+				{
+					"duration": 0.3,
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_GadgetHeartbeat",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "Predicated",
+									"target": "Team",
+									"targetPredicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+											"value": 1,
+											"compareType": "MoreThanAndEqual",
+										},
+									],
+									"successActions": 
+									[
+										{
+											"$type": "RemoveUniqueModifier",
+											"modifierName": "UNIQUE_Xingqiu_PhantomShield",
+											"target": "Team",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "Predicated",
+									"target": "Team",
+									"targetPredicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_Minazuki_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"successActions": 
+									[
+										{
+											"$type": "AddElementDurability",
+											"target": "Team",
+											"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade",
+											"value": 0.1,
+											"useLimitRange": true,
+											"maxValue": 0.1,
+											"minValue": 0,
+										},
+									],
+								},
+								{
+									"$type": "CreateGadget",
+									"gadgetID": 41025011,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornBySelf",
+										"offset": 
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction": 
+										{
+											"$type": "ConfigDirectionByEntity",
+										}
+									},
+									// "byServer": true,
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_OnKillHandler":
+				{
+					"onKill":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Minazuki_Mark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "AddElementDurability",
+									"target": "Team",
+									"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade",
+									"value": 0.1,
+									"useLimitRange": true,
+									"maxValue": 0.1,
+									"minValue": 0,
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 1,
+									"compareType": "MoreThanAndEqual",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "RemoveUniqueModifier",
+									"modifierName": "UNIQUE_Xingqiu_PhantomShield",
+									"target": "Team",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Trigger0":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Trigger0",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Trigger1":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Trigger1",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Trigger2":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Trigger2",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Trigger3":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Trigger3",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Trigger4":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Trigger4",
+						},
+					],
+				},
+				"Shield_On_Handler": 
+				{
+					"onAttackLanded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByAttackTags",
+									"attackTags": ["Elemental_Art"],	//小技能打中怪
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Monster"],
+								},
+								{
+				                 	"$type": "ByTargetGlobalValue",
+				                 	"key": "_ANIMAL_ENTITY_TYPE",
+				                 	"value": 0,
+				                 	"compareType": "NoneOrEqual",
+				                },
+								{
+				                 	"$type": "ByTargetGlobalValue",
+				                 	"key": "_ABILITY_Xingqiu_ElementBall_Mark",
+				                 	"value": 0,
+				                 	"compareType": "NoneOrEqual",
+				                },
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall",	//击中掉球
+									"target": "Self",
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall_Extra",	//击中掉球
+									"target": "Self",
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "ElementBall_Mark",	//一个怪只掉一次球
+									"target": "Target",
+								},
+							],
+						},
+					],
+				},
+				"ElementBall":
+				{
+					"duration": 2.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2018,
+							"baseEnergy": 9,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 0.5,
+									"maxRandomRange": 1.5,
+								},
+							},
+							"doOffStage": true,
+						},
+					],
+				},
+				"ElementBall_Extra":
+				{
+					"duration": 2.0,
+					"stacking": "MultipleRefreshNoRemove",
+					"stackingOption":
+					{
+						"maxModifierNumForMultipleType": 3,
+					},
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2018,
+							"baseEnergy": 3,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 0.5,
+									"maxRandomRange": 1.5,
+								},
+							},
+						},
+					],
+				},
+				"ElementBall_Mark":
+				{
+					"duration": 2.0,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_ElementBall_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_ElementBall_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToStart":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_ProtectMark",	//以防万一，清一下
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "PhantomShield_ProtectTime",	//放技能1.5秒保护护盾
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_LimitedExtraSubHurt",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_LimitedExtraSubHurt",
+							"value": "%FIGHT_PROP_WATER_ADD_HURT*%WaterAddHurt2SubHurtRatio",	//水伤会转化为额外护盾减伤
+							"useLimitRange": true,
+							"maxValue": "%MaxExtraSubHurt",	//最大转化加成不超过24%
+							"minValue": 0,
+						},
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_LimitedExtraSubHurt",
+							"overrideMapKey": "LimitedExtraSubHurt",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield",
+							"target": "Team",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_WaterBuff",
+							"target": "CurTeamAvatars",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_StartMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_WaterBuff":
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"duration": 0.5,
+					"elementType": "Water",
+					"elementDurability": 25,
+				},
+				"PhantomShield_ProtectTime":
+				{
+					"duration": 1.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_ProtectMark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 1,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_ProtectMark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToSpark":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_SparkMark",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield": 
+				{
+					"duration": "%duration",
+					"isUnique": true,
+					"stacking": "Refresh",	//有则刷新，无则新增
+					"modifierMixins": 
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"UNIQUE_Xingqiu_PhantomShield_Handler",
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "PhantomShield_WaterReact",	//护盾可以灭火
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+					],
+					"onRemoved": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_DieMark",	//走死亡流程
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"PhantomShield_WaterReact":	//持续打周围，根据护盾层数，打中草就在对应位置打个伤害来灭火
+				{
+					"stacking": "Unique",
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 0.5,
+										"y": 1.0,
+										"z": 0.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L1",	//检测火草反应攻击盒
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact_L1",	//作为触发假元素反应的依据
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 0,
+										"enBreak": 0,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 0,
+									"compareType": "MoreThan",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 0.5,
+										"y": 1.0,
+										"z": 0.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L2",	//检测火草反应攻击盒
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact_L2",	//作为触发假元素反应的依据
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 0,
+										"enBreak": 0,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 1,
+									"compareType": "MoreThan",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 0.5,
+										"y": 1.0,
+										"z": 0.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L3",	//检测火草反应攻击盒
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact_L3",	//作为触发假元素反应的依据
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 0,
+										"enBreak": 0,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 2,
+									"compareType": "MoreThan",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 0.5,
+										"y": 1.0,
+										"z": 0.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L4",	//检测火草反应攻击盒
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact_L4",	//作为触发假元素反应的依据
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 0,
+										"enBreak": 0,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 3,
+									"compareType": "MoreThan",
+									"target": "Team",
+								},
+							],
+						},
+					],
+					"onAttackLanded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Other",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByAttackTags",
+									"attackTags": ["PhantomShield_WaterReact_L1"],
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Grass"],
+								},
+								{
+									"$type" : "ByHasAbilityState",
+									"abilityState" : "ElementBurning",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "PhantomShield_WaterReact_L1",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Other",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByAttackTags",
+									"attackTags": ["PhantomShield_WaterReact_L2"],
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Grass"],
+								},
+								{
+									"$type" : "ByHasAbilityState",
+									"abilityState" : "ElementBurning",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "PhantomShield_WaterReact_L2",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Other",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByAttackTags",
+									"attackTags": ["PhantomShield_WaterReact_L3"],
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Grass"],
+								},
+								{
+									"$type" : "ByHasAbilityState",
+									"abilityState" : "ElementBurning",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "PhantomShield_WaterReact_L3",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Other",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByAttackTags",
+									"attackTags": ["PhantomShield_WaterReact_L4"],
+								},
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Grass"],
+								},
+								{
+									"$type" : "ByHasAbilityState",
+									"abilityState" : "ElementBurning",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "PhantomShield_WaterReact_L4",
+								},
+							],
+						},
+					],
+				},
+				"PhantomShield_WaterReact_L1":
+				{
+					"duration": 0.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",	//灭火攻击盒
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.5,
+										"z": 1.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L1",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact",
+									"attenuationTag": "Xingqiu_PhantomShield",
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 25,
+										"enBreak": 0,
+										"strikeType": "Default",
+										"attackType": "Melee",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Xingqiu_PhantomShield_Collision",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L1",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+								// "alongGround": true,
+							},
+						},
+						// {
+						// 	"$type": "AddGlobalValue",
+						// 	"target": "Team",
+						// 	"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+						// 	"value": 1,
+						// 	"useLimitRange": true,
+						// 	"maxValue": 1,
+						// 	"minValue": 0,
+						// },
+					],
+				},
+				"PhantomShield_WaterReact_L2":
+				{
+					"duration": 0.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",	//灭火攻击盒
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.5,
+										"z": 1.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L2",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact",
+									"attenuationTag": "Xingqiu_PhantomShield",
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 25,
+										"enBreak": 0,
+										"strikeType": "Default",
+										"attackType": "Melee",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Xingqiu_PhantomShield_Collision",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L2",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+								// "alongGround": true,
+							},
+						},
+						// {
+						// 	"$type": "AddGlobalValue",
+						// 	"target": "Team",
+						// 	"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+						// 	"value": 1,
+						// 	"useLimitRange": true,
+						// 	"maxValue": 1,
+						// 	"minValue": 0,
+						// },
+					],
+				},
+				"PhantomShield_WaterReact_L3":
+				{
+					"duration": 0.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",	//灭火攻击盒
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.5,
+										"z": 1.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L3",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact",
+									"attenuationTag": "Xingqiu_PhantomShield",
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 25,
+										"enBreak": 0,
+										"strikeType": "Default",
+										"attackType": "Melee",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Xingqiu_PhantomShield_Collision",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L3",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+								// "alongGround": true,
+							},
+						},
+						// {
+						// 	"$type": "AddGlobalValue",
+						// 	"target": "Team",
+						// 	"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+						// 	"value": 1,
+						// 	"useLimitRange": true,
+						// 	"maxValue": 1,
+						// 	"minValue": 0,
+						// },
+					],
+				},
+				"PhantomShield_WaterReact_L4":
+				{
+					"duration": 0.5,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "TriggerAttackEvent",	//灭火攻击盒
+							"targetType": "Enemy",
+							"attackEvent":
+							{
+								"attackPattern":
+								{
+									"$type": "ConfigAttackBox",
+									"triggerType": "TriggerNoRepeat",
+									"size":
+									{
+										"x": 1.0,
+										"y": 1.5,
+										"z": 1.0,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "L4",
+										"offset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+					        	},
+								"attackInfo":
+								{
+									"attackTag": "PhantomShield_WaterReact",
+									"attenuationTag": "Xingqiu_PhantomShield",
+									"canBeModifiedBy": "None",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 25,
+										"enBreak": 0,
+										"strikeType": "Default",
+										"attackType": "Melee",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Xingqiu_PhantomShield_Collision",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L4",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+								// "alongGround": true,
+							},
+						},
+						// {
+						// 	"$type": "AddGlobalValue",
+						// 	"target": "Team",
+						// 	"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+						// 	"value": 1,
+						// 	"useLimitRange": true,
+						// 	"maxValue": 1,
+						// 	"minValue": 0,
+						// },
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToAdd":	//根据当前等级，通知gadget创建特效，同一个位置的特效有两种创生方式，却公用一个标记，所以由gadget自行管理
+				{
+					"duration": 0.1,
+					"stacking": "Multiple",
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_AddL1Mark",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_AddL2Mark",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 2,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_AddL3Mark",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 3,
+									"compareType": "Equal",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_AddL4Mark",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",	//更新护盾层数标记
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": "%MaxShield",
+							"minValue": 0,
+							"target": "Team",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_AddMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_AddTrebleMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_AddFourfoldMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddL1Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L1",	//弄死旧特效
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L1Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddL2Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L2",	//弄死旧特效
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L2Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddL3Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L3",	//弄死旧特效
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L3Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddL4Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L4",	//弄死旧特效
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L4Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_Handler":	//跑在当前角色上的逻辑
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"isLimitedProperties": true,
+					"properties": 
+					{
+						"Actor_SubHurtDelta": "%BaseSubHurtDelta+%LimitedExtraSubHurt",	//基础减伤+水伤额外减伤
+						"Actor_EndureDelta": 0.3,	//期间提高霸体
+					},
+					"onBeingHit": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates":	//去掉一些不想扣盾的受击
+							[
+								{
+									"$type": "ByHitEnBreak",
+									"enBreak": 0,
+									"logic": "Greater",
+								},
+								{
+									"$type" : "ByNot",
+									"predicates" :
+									[
+										{
+											"$type": "ByAttackTags",	//屏蔽部分元素反应，不消耗护盾层数
+											"attackTags": ["BurningDamage","ShockDamage","Swirl_FireDamage","Swirl_ElectricDamage","Swirl_WaterDamage","Swirl_IceDamage","CrashDamage"],
+										},
+									],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "Team",
+									"targetPredicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomShield_ProtectMark",	//放技能前1.5秒保护
+											"value": 0,
+											"compareType": "NoneOrEqual",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type": "AddGlobalValue",
+											"target": "Team",
+											"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+											"value": 1,
+											"useLimitRange": true,
+											"maxValue": 1,
+											"minValue": 0,
+										},
+										{
+											"$type": "ApplyModifier",
+											"modifierName": "Xingqiu_PhantomShield_PreludeToBreak",	//非大招，盾碎
+											"target": "Team",
+											"predicates":
+											[
+												{
+													"$type": "ByTargetGlobalValue",
+													"key": "_ABILITY_Xingqiu_Minazuki_Mark",	//根据是否在大招中，护盾受击表现不同
+													"value": 0,
+													"compareType": "NoneOrEqual",
+													"target": "Team",
+												},
+											],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToBreak": 
+				{
+					"duration": 2.5,	//护盾消耗间隔
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_BreakL1Mark",	//通知gadget销毁特效
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+								{
+									"$type": "HealHP",
+									"target": "CurLocalAvatar",
+									"amountByCasterMaxHPRatio": "%HealOnShieldBreak",	//天赋：盾碎回血
+									"predicates": 
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "HealOnShieldBreak",
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 2,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_BreakL2Mark",	//通知gadget销毁特效
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+								{
+									"$type": "HealHP",
+									"target": "CurLocalAvatar",
+									"amountByCasterMaxHPRatio": "%HealOnShieldBreak",	//天赋：盾碎回血
+									"predicates": 
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "HealOnShieldBreak",
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 3,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_BreakL3Mark",	//通知gadget销毁特效
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+								{
+									"$type": "HealHP",
+									"target": "CurLocalAvatar",
+									"amountByCasterMaxHPRatio": "%HealOnShieldBreak",	//天赋：盾碎回血
+									"predicates": 
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "HealOnShieldBreak",
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+									"value": 4,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Xingqiu_PhantomShield_BreakL4Mark",	//通知gadget销毁特效
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByChildren",
+										"configID": 41025011,
+										"sortType": "Default",
+									},
+								},
+								{
+									"$type": "HealHP",
+									"target": "CurLocalAvatar",
+									"amountByCasterMaxHPRatio": "%HealOnShieldBreak",	//天赋：盾碎回血
+									"predicates": 
+									[
+										{
+											"$type": "ByUnlockTalentParam",
+											"talentParam": "HealOnShieldBreak",
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",	//更新护盾层数标记
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": "%MaxShield",
+							"minValue": 0,
+							"target": "Team",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_BreakL1Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L1Mark",	//移除特效
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_BeHit",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L1",
+								"attachPointTargetType": "Self",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_EndWithoutHeal",	//避免护盾受击结束时二次回血
+							"target": "Team",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_EndWithoutHeal":
+				{
+					"duration": 0.3,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_EndMark",	//避免护盾受击结束时二次回血
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName" : "UNIQUE_Xingqiu_PhantomShield",	//护盾层数为0，结束护盾
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_EndMark",	//清除标记
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_BreakL2Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L2Mark",	//移除特效
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_BeHit",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L2",
+								"attachPointTargetType": "Self",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_BreakL3Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L3Mark",	//移除特效
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_BeHit",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L3",
+								"attachPointTargetType": "Self",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_BreakL4Mark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L4Mark",	//移除特效
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_BeHit",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "L4",
+								"attachPointTargetType": "Self",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_SparkMark":	//通知所有特效走受击闪烁状态机，kira!
+				{
+					"duration": 1.0,
+					"stacking": "Multiple",
+					"onAdded": 
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+							"parameter": "Behit",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+							"parameter": "Behit",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+							"parameter": "Behit",
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+									"parameter": "Behit",
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToDie": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_Level",
+							"overrideMapKey": "ShieldLevel",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",	//清除护盾层数标记
+							"value": -5,
+							"useLimitRange": true,
+							"maxValue": "%MaxShield",
+							"minValue": 0,
+							"target": "Team",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_AddDieMark",	//通知特效走死亡状态机
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+						{
+							"$type": "HealHP",
+							"target": "CurLocalAvatar",
+							"amountByCasterMaxHPRatio": "%HealOnShieldBreak*%ShieldLevel",	//天赋：盾碎回血（护盾结束时亦然）
+							"predicates": 
+							[
+								{
+									"$type": "ByUnlockTalentParam",
+									"talentParam": "HealOnShieldBreak",
+									"target": "Caster",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_EndMark",		//避免护盾受击结束时二次回血
+									"value": 0,
+									"compareType": "NoneOrEqual",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_Level",
+							"overrideMapKey": "ShieldLevel",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_DieMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToPassAwayDie": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",	//清除护盾层数标记
+							"value": -5,
+							"useLimitRange": true,
+							"maxValue": "%MaxShield",
+							"minValue": 0,
+							"target": "Team",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_AddDieMark",	//通知特效走死亡状态机
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+						{
+							"$type": "SetGlobalValueToOverrideMap",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_Level",
+							"overrideMapKey": "ShieldLevel",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_PassAwayDieMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddDieMark": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+							"parameter": "Die",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+							"parameter": "Die",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+							"parameter": "Die",
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+									"parameter": "Die",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L1",	//延迟一会儿，播完死亡状态机再死
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L2",	//延迟一会儿，播完死亡状态机再死
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L3",	//延迟一会儿，播完死亡状态机再死
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L4",	//延迟一会儿，播完死亡状态机再死
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_DieMark_L1":
+				{
+					"duration": 1.2,
+					"isUnique": true,
+					"stacking": "Unique",
+					"onRemoved":	//如果消散期间又增加了护盾，会马上移除这个modifier然后GlobalValue+1
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L1Mark",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_DieMark_L2":
+				{
+					"duration": 1.2,
+					"isUnique": true,
+					"stacking": "Unique",
+					"onRemoved":	//如果消散期间又增加了护盾，会马上移除这个modifier然后GlobalValue+1
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L2Mark",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_DieMark_L3":
+				{
+					"duration": 1.2,
+					"isUnique": true,
+					"stacking": "Unique",
+					"onRemoved":	//如果消散期间又增加了护盾，会马上移除这个modifier然后GlobalValue+1
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L3Mark",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_PhantomShield_DieMark_L4":
+				{
+					"duration": 1.2,
+					"isUnique": true,
+					"stacking": "Unique",
+					"onRemoved":	//如果消散期间又增加了护盾，会马上移除这个modifier然后GlobalValue+1
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L4Mark",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToPassAway":	//护盾进大招状态（这也把我坑惨了），通知gadget让所有特效转状态或以大招状态生成
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_AddPassAwayMark",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",	//进大招，层数填满
+							"value": "%MaxShield",
+							"useLimitRange": true,
+							"maxValue": "%MaxShield",
+							"minValue": 0,
+							"target": "Team",
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_PassAwayMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddPassAwayMark":	//新旧交替
+				{
+					"duration": 0.4,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_PassAwayDieMark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"thinkInterval": 0.3,
+					"onThinkInterval":
+					[
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L1",	//弄死旧特效
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L2",
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L3",
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_PhantomShield_DieMark_L4",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L1Mark",	//新特效来了
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": -1,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L2Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": -1,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_L3Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": -1,
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "AddGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomShield_L4Mark",
+									"value": -1,
+									"useLimitRange": true,
+									"maxValue": 0,
+									"minValue": -1,
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_PreludeToFullBack":	//大招结束，通知gadget让所有特效转状态
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_AddFullBackMark",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+					],
+					"onRemoved": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_FullBackMark",	//重置开关
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AddFullBackMark": 
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+									"parameter": "FullBack2",
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+									"parameter": "FullBack2",
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+									"parameter": "FullBack2",
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+									"parameter": "FullBack2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+									"parameter": "FullBack1",
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+									"parameter": "FullBack1",
+								},
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+									"parameter": "FullBack1",
+								},
+							],
+						},
+					],
+				},
+				"Blank": {},
+			},
+			"abilitySpecials": 
+			{
+				"MaxShield": 3,
+				"duration": 20,
+				"HealOnShieldBreak": 0,
+				"ShieldLevel": 0,
+				"BaseSubHurtDelta": 0,
+				"WaterAddHurt2SubHurtRatio": 0.2,
+				"LimitedExtraSubHurt": 0,
+				"MaxExtraSubHurt": 0.24,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Minazuki	//水无月
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_Minazuki",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_Avatar_Xingqiu_Mark",	//标记行秋，用于从curTeamAvatars中找到行秋，后面用
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToNormalizedTimeMixin",
+					"stateID": "Minazuki_AS",
+					"modifierName": "Minazuki_CameraShot_Lock",
+					"normalizeStart": 0.8,
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Minazuki", "Minazuki_AS"],
+					"modifierName": "Minazuki_CameraShot_Unlock",	//相机控制
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Minazuki", "Minazuki_AS"],
+					"modifierName": "Minazuki_State",	//保证表演完整性
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Minazuki_AS"],
+					"modifierName": "Minazuki_CameraShot_Blur",	//相机控制
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Minazuki"],
+					"modifierName": "Minazuki_Explode",	//开场爆炸
+				},
+			],
+			"onAbilityStart": 
+			[
+				{
+					"$type": "AvatarSkillStart",
+					"skillID": 10385,
+				},
+				{
+					"$type": "RemoveUniqueModifier",
+					"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade",	//保险起见先清除已有效果
+					"target": "Team",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade",
+					"target": "Team",
+				},
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom",
+				},
+			],
+			"modifiers": 
+			{
+				"Minazuki_State":
+				{
+					"state": "Invincible",
+					"onAdded":
+					[
+						{
+							"$type": "AttachAbilityStateResistance",
+							"resistanceListID": 11002,
+						},
+						{
+							"$type" : "ControlEmotion",
+							"toggleBlink" : false,
+							"toggleEmoSync" : false,
+							"toggleEyeKey" : false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "ControlEmotion",
+							"doOffStage": true,
+							"toggleBlink" : true,
+							"toggleEmoSync" : true,
+							"toggleEyeKey" : true,
+						},
+					],
+				},
+				"Minazuki_CameraShot_Unlock": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "EnableHeadControl",
+							"enable": false,
+						},
+					],
+					"onRemoved": 
+					[
+						{
+							"$type": "AvatarExitCameraShot",
+						},
+						{
+							"$type": "EnableHeadControl",
+							"enable": true,
+						},
+					],
+					"onAvatarOut": 
+					[
+						{
+							"$type": "AvatarCameraParam",
+							"cameraParam": 
+							{
+								"forceRadius": 3.45,
+								"forceRadiusDuration": 0,
+								"shouldKeepForceRadius": true,
+							},
+							"doOffStage": true,
+						},
+						{
+							"$type": "AvatarExitCameraShot",
+							"doOffStage": true,
+						},
+						{
+							"$type": "EnableHeadControl",
+							"enable": true,
+							"doOffStage": true,
+						},
+					],
+				},
+				"Minazuki_CameraShot_Lock":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AvatarCameraParam",
+							"cameraParam": 
+							{
+								"forceRadius": 3.45,
+								"forceRadiusDuration": 0,
+								"shouldKeepForceRadius": true,
+							},
+						},
+					],
+				},
+				"Minazuki_CameraShot_Blur":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ActCameraRadialBlur",
+							"cameraRadialBlur":
+							{
+								"power": 1,
+								"blurTime": 0.15,
+								"fadeTime": 0.6,
+							},
+						},
+					],
+				},
+				"Minazuki_Explode":
+				{
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type": "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"height": 4.0,
+									"fanAngle": 360.0,
+									"radius": 3.0,
+									"born": 
+									{
+										"$type": "ConfigBornBySelf",
+										"offset": 
+										{
+											"x": 0.0,
+											"y": -2.0,
+											"z": 0.0,
+										},
+										"direction": 
+										{
+											"$type": "ConfigDirectionByDefault",
+											"angleOffset": 
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+										// "alongGround": true,
+									},
+								},
+								"attackInfo": 
+								{
+									"attackProperty": 
+									{
+										"damagePercentage": 0,
+										"elementType": "Water",
+										"elementDurability": 25,
+										"enBreak": 200,
+										"strikeType": "Default",
+									},
+									"hitPattern": 
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Heavy",	//hitlevel = 4
+						          		"hitImpulseX": 800,	//hitlevel = 4
+						          		"hitImpulseY": 0,	//hitlevel = 4
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale": 0.02,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_Minazuki_AutoBlade": 
+				{
+					"duration": "%duration",
+					"isUnique": true,
+					"stacking": "Unique",
+					"elementType": "None",
+					"elementDurability": "%duration",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Minazuki_AutoBlade_GadgetHandler",	//通知gadget着手大招相关事宜
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_Minazuki_Mark",	//标记大招状态，给护盾用来做不同的受击表现
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_StartMark",	//启动/刷新护盾
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_PassAwayMark",	//通知特效进大招状态
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_GoldenChance",	//初始化幸运幻影剑概率
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": "%GoldenRing_Chance_Default",
+						},
+					],
+					"thinkInterval": "%duration+%DieDelay",	//提前一段时间给大招特效走结束状态机
+					"onThinkInterval":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_ABILITY_Xingqiu_PhantomShield_FullBackMark",	//通知gadget让所有特效结束大招状态，避免被onremoved触发
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"modifierMixins": 
+					[
+						{
+							"$type":"CurLocalAvatarMixin",
+							"modifierName":"Xingqiu_Minazuki_AttackDetect",
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_PhantomSword_AttackMark",	//计算现在该打第几击
+							"valueSteps": [-0.5, 0.5, 1.5, 2.5, 3.5, 4.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank", "Blank", "Blank", "Blank"],
+							"actionQueues": 
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Minazuki_AutoBlade_Attack01",
+										"target": "CurLocalAvatar",
+									},
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "Minazuki_AutoBlade_Attack02",
+										"target": "CurLocalAvatar",
+									},
+								],
+								[
+									{
+										"$type": "Predicated",
+										"target": "Caster",
+										"targetPredicates": 
+										[
+											{
+												"$type": "ByTargetGlobalValue",
+												"key": "_ABILITY_Xingqiu_Talent_GoldenRing_Mark",	//天赋：KING·幻影剑
+												"value": 1,
+												"compareType": "Equal",
+												"target": "Team",
+											},
+										],
+										"successActions": 
+										[
+											{
+												"$type":"SetGlobalValueToOverrideMap",
+												"globalValueKey":"_ABILITY_Xingqiu_PhantomShield_GoldenChance",	//真随机体验太差，使用Pseudo Random Distribution计算
+												"overrideMapKey":"GoldenRing_Chance",
+											},
+											{
+												"$type" : "Randomed",
+												"chance" : "%GoldenRing_Chance",
+												"successActions" :
+												[
+													{
+														"$type": "ApplyModifier",
+														"modifierName": "Minazuki_AutoBlade_Attack03",
+														"target": "CurLocalAvatar",
+													},
+													{
+														"$type": "AddGlobalValue",
+														"target": "Team",
+														"key": "_ABILITY_Xingqiu_PhantomShield_GoldenChance",	//成功，概率重置
+														"value": -1,
+														"useLimitRange": true,
+														"maxValue": 1,
+														"minValue": "%GoldenRing_Chance_Default",
+													},
+												],
+												"failActions":
+												[
+													{
+														"$type": "AddGlobalValue",
+														"target": "Team",
+														"key": "_ABILITY_Xingqiu_PhantomShield_GoldenChance",	//失败，概率翻倍
+														"value": "%GoldenRing_Chance_Default",
+														"useLimitRange": true,
+														"maxValue": 1,
+														"minValue": "%GoldenRing_Chance_Default",
+													},
+													{
+														"$type": "AddGlobalValue",
+														"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",	//循环到头了，从新开始
+														"value": -2,
+														"useLimitRange": true,
+														"maxValue": 3,
+														"minValue": 1,
+														"target": "Team",
+													},
+												],
+											},
+										],
+										"failActions":
+										[
+											{
+												"$type": "AddGlobalValue",
+												"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",	//循环到头了，从新开始
+												"value": -2,
+												"useLimitRange": true,
+												"maxValue": 3,
+												"minValue": 1,
+												"target": "Team",
+											},
+										],
+									},
+								],
+								[
+									{
+										"$type": "AddGlobalValue",
+										"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",	//循环到头了，从新开始
+										"value": -3,
+										"useLimitRange": true,
+										"maxValue": 4,
+										"minValue": 1,
+										"target": "Team",
+									},
+								],
+							],
+						},
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Xingqiu_Minazuki_TeamAvatar_AttackMark",	//前台角色普攻触发幻影剑
+							"valueSteps": [-0.5, 0.5, 1.5],
+							"removeAppliedModifier": true,
+							"modifierNameSteps": ["Blank", "Blank"],
+							"actionQueues": 
+							[
+								[
+								],
+								[
+									{
+										"$type": "ApplyModifier",
+										"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade_Handler",
+										"target": "Team",
+									},
+								],
+							],
+						},
+					],
+					"onRemoved": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",	//技能结束，移除幻影剑攻击计数
+							"value": -4,
+							"useLimitRange": true,
+							"maxValue": 4,
+							"minValue": 0,
+							"target": "Team",
+							"doOffStage": true,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_Minazuki_Mark",	//移除大招标记
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"doOffStage": true,
+						},
+						{
+							"$type": "RemoveUniqueModifier",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade_Handler",	//不移除的话下次大招攻击计数会额外+1
+							"target": "Team",
+						},
+					],
+				},
+				"Minazuki_AutoBlade_Attack01":	//由当前角色执行，普攻时标记当前目标，并进行幻影剑准备
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+                				"sortType": "Nearest",
+							},
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Minazuki_AttackTarget_Mark",
+							"target": "SelfAttackTarget", 
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025012,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 1.0,
+									"y": 2.4,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+				                	"$type": "BornRandomFromCenter",
+				                	"minRandomRange": 0.0,
+				                	"maxRandomRange": 1.5,
+				                },
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 12,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025013,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": -1.0,
+									"y": 2.4,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+				                	"$type": "BornRandomFromCenter",
+				                	"minRandomRange": 0.0,
+				                	"maxRandomRange": 1.5,
+				                },
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 12,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Minazuki_AutoBlade_Attack02":	//由当前角色执行，普攻时标记当前目标，并进行幻影剑准备
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+                				"sortType": "Nearest",
+							},
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Minazuki_AttackTarget_Mark",
+							"target": "SelfAttackTarget", 
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025012,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 1.5,
+									"y": 2.4,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+				                	"$type": "BornRandomFromCenter",
+				                	"minRandomRange": 0.0,
+				                	"maxRandomRange": 1.5,
+				                },
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 15,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025013,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 2.4,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+				                	"$type": "BornRandomFromCenter",
+				                	"minRandomRange": 0.0,
+				                	"maxRandomRange": 1.5,
+				                },
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 15,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025014,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": -1.5,
+									"y": 2.4,
+									"z": 0.0,
+								},
+								"bornRandom":
+								{
+				                	"$type": "BornRandomFromCenter",
+				                	"minRandomRange": 0.0,
+				                	"maxRandomRange": 1.5,
+				                },
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 15,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Minazuki_AutoBlade_Attack03":	//由当前角色执行，普攻时标记当前目标，并进行幻影剑准备
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20H10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+                				"sortType": "Nearest",
+							},
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Minazuki_AttackTarget_Mark",
+							"target": "SelfAttackTarget", 
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025017,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 3.0,
+									"y": 2.5,
+									"z": 1.5,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 30,
+										"y": -30,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025018,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 1.5,
+									"y": 2.5,
+									"z": 0.75,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 25,
+										"y": -17,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025019,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 2.5,
+									"z": 0.0,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 20,
+										"y": 0,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025020,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": -1.5,
+									"y": 2.5,
+									"z": 0.75,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 25,
+										"y": 17,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 41025021,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset": 
+								{
+									"x": -3.0,
+									"y": 2.5,
+									"z": 1.5,
+								},
+								"direction": 
+								{
+									"$type": "ConfigDirectionByEntity",
+									"angleOffset": 
+									{
+										"x": 30,
+										"y": 30,
+										"z": 0,
+									},
+								},
+							},
+							"trackTarget": "SelfAttackTarget",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Minazuki_AttackTarget_Mark":	//标记当前攻击目标
+				{
+					"duration": 3,
+					"stacking": "MultipleAllRefresh",
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "Self",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "Self",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_Minazuki_AttackDetect":	//标记自己正在普攻期间
+				{
+					"modifierMixins": 
+					[
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.03,	//留一点时间等turnDirection完成
+							"normalizeEnd": 0.35,	//AS阶段不要触发
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Lisa_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Venti_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ambor_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Fischl_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Ningguang_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Barbara_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Gandalfr_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Tartaglia_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack01",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack02",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack03",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack04",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack05",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+						{
+							"$type": "AttachToNormalizedTimeMixin",
+							"stateID": "Klee_Attack06",
+							"modifierName": "UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"normalizeStart": 0.05,
+							"normalizeEnd": 0.35,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_Minazuki_TeamAvatar_AttackMark":
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "Team",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+							"target": "Team",
+							"doOffStage": true,
+						},
+					],
+				},
+				"UNIQUE_Xingqiu_Minazuki_AutoBlade_Handler":	//幻影剑检测当前角色是否正在普攻
+				{
+					"isUnique": true,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 4,
+							"minValue": 0,
+							"target": "Team",
+						},
+					],
+					"thinkInterval": 1.0,	//一段时间后看一眼角色还在普攻，就来一发幻影剑
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Minazuki_TeamAvatar_AttackMark",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "Predicated",
+									"target": "CurLocalAvatar",
+									"targetPredicates": 
+									[
+										{
+											"$type" : "ByNot",
+											"predicates":
+											[
+												{
+													"$type" : "ByHasAbilityState",
+													"abilityState" : "ElementFreeze",
+												},
+											],
+										},
+									],
+									"successActions": 
+									[
+										{
+											"$type": "AddGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackMark",
+											"value": 1,
+											"useLimitRange": true,
+											"maxValue": 4,
+											"minValue": 0,
+											"target": "Team",
+										},
+									],
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "RemoveUniqueModifier",
+									"modifierName": "UNIQUE_Xingqiu_Minazuki_AutoBlade_Handler",
+									"target": "Team",
+								},
+							],
+						},
+					],
+				},
+				"Minazuki_AutoBlade_GadgetHandler":
+				{
+					"onAdded": 
+					[
+						{
+							"$type": "SetAnimatorTrigger",	//通知gadget停止并重新加速
+							"triggerID": "Reload",
+						},
+					],
+				},
+				"Blank": {},
+			},
+			"abilitySpecials": 
+			{
+				"duration": 15,
+				"DieDelay": -0.5,
+				"GoldenRing_Chance": 0,
+				"GoldenRing_Chance_Default": 1,
+				// 体感概率	填表概率
+				// 5%	0.003801658303553139101756466
+				// 10%	0.014745844781072675877050816
+				// 15%	0.032220914373087674975117359
+				// 20%	0.055704042949781851858398652
+				// 25%	0.084744091852316990275274806
+				// 30%	0.118949192725403987583755553
+				// 35%	0.157983098125747077557540462
+				// 40%	0.201547413607754017070679639
+				// 45%	0.249306998440163189714677100
+				// 50%	0.302103025348741965169160432
+				// 55%	0.360397850933168697104686803
+				// 60%	0.422649730810374235490851220
+				// 65%	0.481125478337229174401911323
+				// 70%	0.571428571428571428571428572
+				// 75%	0.666666666666666666666666667
+				// 80%	0.750000000000000000000000000
+				// 85%	0.823529411764705882352941177
+				// 90%	0.888888888888888888888888889
+				// 95%	0.947368421052631578947368421
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Xingqiu_PhantomBurst
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurst1",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_Ready",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurst1_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurst1_DelayBullet":
+				{
+					"duration": 0.3,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst1_AttackPos",	//以当前位置通知行秋创建子弹（伤害归属行秋）
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst1_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurst1_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurst1_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//只有行秋才能真正创建子弹，即使在后台也要拿到创生位置和攻击目标，辛苦行秋了~
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025022,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurst1_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurst1_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurst2",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_Ready",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurst2_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurst2_DelayBullet":
+				{
+					"duration": 0.3,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst2_AttackPos",	//以当前位置通知行秋创建子弹（伤害归属行秋）
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst2_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurst2_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurst2_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//只有行秋才能真正创建子弹，即使在后台也要拿到创生位置和攻击目标，辛苦行秋了~
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025024,	//有受击的幻影剑子弹
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurst2_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurst2_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurst3",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_Ready",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurst3_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurst3_DelayBullet":
+				{
+					"duration": 0.3,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst3_AttackPos",	//以当前位置通知行秋创建子弹（伤害归属行秋）
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurst3_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurst3_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurst3_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//只有行秋才能真正创建子弹，即使在后台也要拿到创生位置和攻击目标，辛苦行秋了~
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025022,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurst3_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurst3_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Xingqiu_PhantomBurstS
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurstS1",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialReady",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurstS1_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurstS1_DelayBullet":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS1_AttackPos",	//浠ュ綋鍓嶄綅缃€氱煡琛岀鍒涘缓瀛愬脊锛堜激瀹冲綊灞炶绉嬶級
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS1_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurstS1_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurstS1_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//鍙湁琛岀鎵嶈兘鐪熸鍒涘缓瀛愬脊锛屽嵆浣垮湪鍚庡彴涔熻鎷垮埌鍒涚敓浣嶇疆鍜屾敾鍑荤洰鏍囷紝杈涜嫤琛岀浜唦
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025023,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurstS1_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurstS1_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurstS2",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialReady",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurstS2_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurstS2_DelayBullet":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS2_AttackPos",	//浠ュ綋鍓嶄綅缃€氱煡琛岀鍒涘缓瀛愬脊锛堜激瀹冲綊灞炶绉嬶級
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS2_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurstS2_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurstS2_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//鍙湁琛岀鎵嶈兘鐪熸鍒涘缓瀛愬脊锛屽嵆浣垮湪鍚庡彴涔熻鎷垮埌鍒涚敓浣嶇疆鍜屾敾鍑荤洰鏍囷紝杈涜嫤琛岀浜唦
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025023,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurstS2_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurstS2_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurstS3",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialReady",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurstS3_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurstS3_DelayBullet":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS3_AttackPos",	//浠ュ綋鍓嶄綅缃€氱煡琛岀鍒涘缓瀛愬脊锛堜激瀹冲綊灞炶绉嬶級
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS3_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurstS3_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurstS3_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//鍙湁琛岀鎵嶈兘鐪熸鍒涘缓瀛愬脊锛屽嵆浣垮湪鍚庡彴涔熻鎷垮埌鍒涚敓浣嶇疆鍜屾敾鍑荤洰鏍囷紝杈涜嫤琛岀浜唦
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025025,	//有受击的幻影剑子弹
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurstS3_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurstS3_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurstS4",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialReady",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurstS4_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurstS4_DelayBullet":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS4_AttackPos",	//浠ュ綋鍓嶄綅缃€氱煡琛岀鍒涘缓瀛愬脊锛堜激瀹冲綊灞炶绉嬶級
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS4_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurstS4_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurstS4_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//鍙湁琛岀鎵嶈兘鐪熸鍒涘缓瀛愬脊锛屽嵆浣垮湪鍚庡彴涔熻鎷垮埌鍒涚敓浣嶇疆鍜屾敾鍑荤洰鏍囷紝杈涜嫤琛岀浜唦
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025023,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurstS4_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurstS4_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomBurstS5",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialReady",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomBurstS5_DelayBullet",
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomBurstS5_DelayBullet":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetGlobalPos",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS5_AttackPos",	//浠ュ綋鍓嶄綅缃€氱煡琛岀鍒涘缓瀛愬脊锛堜激瀹冲綊灞炶绉嬶級
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "SetGlobalDir",
+							"target": "CurTeamAvatars",
+							"key": "_ABILITY_Xingqiu_PhantomBurstS5_AttackDir",
+							"born": 
+							{
+								"$type": "ConfigBornBySelf",
+							},
+							"setTarget": true,
+							"doOffStage": true,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomBurstS5_BulletHandler",
+							"target": "CurTeamAvatars",
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomBurstS5_BulletHandler": 
+				{
+					"duration": 0.1,
+					"onAdded": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Avatar_Xingqiu_Mark",	//鍙湁琛岀鎵嶈兘鐪熸鍒涘缓瀛愬脊锛屽嵆浣垮湪鍚庡彴涔熻鎷垮埌鍒涚敓浣嶇疆鍜屾敾鍑荤洰鏍囷紝杈涜嫤琛岀浜唦
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SetSelfAttackTarget",
+									"otherTargets": 
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR50",
+										"centerBasedOn": "CurLocalAvatar",
+										"campTargetType": "Enemy",
+										"campBasedOn": "CurLocalAvatar",
+		      							"sortType": "Nearest",
+		      							"topLimit": 1,
+									},
+									"predicates": 
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Xingqiu_PhantomSword_AttackTarget_Mark",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"doOffStage": true,
+								},
+								{
+									"$type": "TriggerBullet",
+									"bulletID": 41025023,
+									"campID": 1001,
+									"campTargetType": "Enemy",
+									"born": 
+									{
+										"$type": "ConfigBornByGlobalValue",
+										"positionKey": "_ABILITY_Xingqiu_PhantomBurstS5_AttackPos",
+										"directionKey": "_ABILITY_Xingqiu_PhantomBurstS5_AttackDir",
+									},
+									"trackTarget": "SelfAttackTarget",
+									"doOffStage": true,
+								},
+							],
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Bullet_Xingqiu_PhantomBurst1
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Bullet_Xingqiu_PhantomBurst1",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet_Tail",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit",
+					"born":
+					{
+						"$type": "ConfigBornByCollisionPoint",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							}
+						}
+					},
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Extra",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+					},
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"triggerType": "TriggerNoRepeat",
+							"radius": 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": "%ElementalBurst_Bullet_Damage",
+								"elementType": "Water",
+								"attackType": "Range",
+								"strikeType": "Pierce",
+								"elementDurability": 25,
+								"elementRank":1.5,
+								"enBreak": 25,
+							},
+							"hitPattern":
+							{
+								"onHitEffectName": "none",
+								"hitLevel": "Mute",	//hitlevel = 0
+				          		"hitImpulseX": 0,	//hitlevel = 0
+				          		"hitImpulseY": 0,	//hitlevel = 0
+								"retreatType": "ByHitDirection",
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+						}
+					},
+				},
+				{
+					"$type": "Predicated",
+					"target": "Target",
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByEntityTypes",
+							"entityTypes": ["Monster"],
+						},
+						{
+		                 	"$type": "ByTargetGlobalValue",
+		                 	"key": "_ANIMAL_ENTITY_TYPE",
+		                 	"value": 0,
+		                 	"compareType": "NoneOrEqual",
+		                },
+					],
+					"successActions": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Target",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",	//天赋：给敌人减防
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "KillSelf"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff":
+				{
+					"duration": 4,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"state": "DefenseDown",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta" : "%WaterSubHurtDelta",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"ElementalBurst_Bullet_Damage": 0,
+				"WaterSubHurtDelta": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Bullet_Xingqiu_PhantomBurst1_Shake	//有受击的幻影剑子弹
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Bullet_Xingqiu_PhantomBurst1_Shake",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_Bullet_Tail",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Big",
+					"born":
+					{
+						"$type": "ConfigBornByCollisionPoint",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							}
+						}
+					},
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Extra",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+					},
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"triggerType": "TriggerNoRepeat",
+							"radius": 2,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": "%ElementalBurst_Bullet_Damage",
+								"elementType": "Water",
+								"attackType": "Range",
+								"strikeType": "Pierce",
+								"elementDurability": 25,
+								"elementRank":1.5,
+								"enBreak": 25,
+							},
+							"hitPattern":
+							{
+								"onHitEffectName": "none",
+								"hitLevel": "Shake",	//hitlevel = 1
+				          		"hitImpulseX": 0,	//hitlevel = 1
+				          		"hitImpulseY": 0,	//hitlevel = 1
+								"retreatType": "ByHitDirection",
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+							"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.12,
+								"shakeTime": 0.12,
+								"shakeDistance": 30,
+								"shakeDir":
+								{
+									"x": -1,
+									"y": 0,
+									"z": 1,
+								},
+				        	},
+						}
+					},
+				},
+				{
+					"$type": "Predicated",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR2H4",
+						"centerBasedOn": "Self",
+						"campTargetType": "Enemy",
+						"campBasedOn": "Self",
+					},
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByEntityTypes",
+							"entityTypes": ["Monster"],
+						},
+						{
+		                 	"$type": "ByTargetGlobalValue",
+		                 	"key": "_ANIMAL_ENTITY_TYPE",
+		                 	"value": 0,
+		                 	"compareType": "NoneOrEqual",
+		                },
+					],
+					"successActions": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Target",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",	//天赋：给敌人减防
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "KillSelf"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff":
+				{
+					"duration": 4,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"state": "DefenseDown",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta" : "%WaterSubHurtDelta",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"ElementalBurst_Bullet_Damage": 0,
+				"WaterSubHurtDelta": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Bullet_Xingqiu_PhantomBurstS1
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Bullet_Xingqiu_PhantomBurstS1",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialBullet",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialBullet_Tail",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit",
+					"born":
+					{
+						"$type": "ConfigBornByCollisionPoint",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Extra",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+					},
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"triggerType": "TriggerNoRepeat",
+							"radius": 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": "%ElementalBurst_Bullet_Damage",
+								"elementType": "Water",
+								"attackType": "Range",
+								"strikeType": "Pierce",
+								"elementDurability": 25,
+								"elementRank":1.5,
+								"enBreak": 25,
+							},
+							"hitPattern":
+							{
+								"onHitEffectName": "none",
+								"hitLevel": "Mute",	//hitlevel = 0
+				          		"hitImpulseX": 0,	//hitlevel = 0
+				          		"hitImpulseY": 0,	//hitlevel = 0
+								"retreatType": "ByHitDirection",
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+						}
+					},
+				},
+				{
+					"$type": "Predicated",
+					"target": "Target",
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByEntityTypes",
+							"entityTypes": ["Monster"],
+						},
+						{
+		                 	"$type": "ByTargetGlobalValue",
+		                 	"key": "_ANIMAL_ENTITY_TYPE",
+		                 	"value": 0,
+		                 	"compareType": "NoneOrEqual",
+		                },
+					],
+					"successActions": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Target",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",	//天赋：给敌人减防
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "OriginOwner",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_GainEnergy",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_GoldenRing_Mark",	//天赋：KING·幻影剑
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "KillSelf"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff":
+				{
+					"duration": 4,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"state": "DefenseDown",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta" : "%WaterSubHurtDelta",
+					},
+				},
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_GainEnergy":
+				{
+					"duration": 0.5,
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "ReviveElemEnergyMixin",
+			            	"type": "Both",
+				            "period": 0.4,
+				            "baseEnergy": 3,
+				            "ratio": 1,
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"ElementalBurst_Bullet_Damage": 0,
+				"WaterSubHurtDelta": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Bullet_Xingqiu_PhantomBurstS1_Shake	//有受击的幻影剑子弹
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Bullet_Xingqiu_PhantomBurstS1_Shake",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialBullet",
+				},
+				{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Attack_SpecialBullet_Tail",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Big",
+					"born":
+					{
+						"$type": "ConfigBornByCollisionPoint",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"direction":
+						{
+							"$type": "ConfigDirectionByEntity",
+							"angleOffset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Xingqiu_ElementalBurst_Phantom_Bullet_Behit_Extra",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0,
+						},
+					},
+				},
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "Enemy",
+					"attackEvent":
+					{
+						"attackPattern":
+						{
+							"$type": "ConfigAttackSphere",
+							"triggerType": "TriggerNoRepeat",
+							"radius": 3,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy" : "OriginOwner",
+							"attackTag" : "Elemental_Burst",
+							"attenuationTag": "Elemental_Burst",
+							"attackProperty":
+							{
+								"damagePercentage": "%ElementalBurst_Bullet_Damage",
+								"elementType": "Water",
+								"attackType": "Range",
+								"strikeType": "Pierce",
+								"elementDurability": 25,
+								"elementRank":1.5,
+								"enBreak": 25,
+							},
+							"hitPattern":
+							{
+								"onHitEffectName": "none",
+								"hitLevel": "Shake",	//hitlevel = 1
+				          		"hitImpulseX": 0,	//hitlevel = 1
+				          		"hitImpulseY": 0,	//hitlevel = 1
+								"retreatType": "ByHitDirection",
+								"canBeDefenceHalt" : false,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.0,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+							"cameraShake":
+				        	{
+				        		"shakeType": "CustomVector",
+								"shakeRange": 0.12,
+								"shakeTime": 0.12,
+								"shakeDistance": 30,
+								"shakeDir":
+								{
+									"x": -1,
+									"y": 0,
+									"z": 1,
+								},
+				        	},
+						}
+					},
+				},
+				{
+					"$type": "Predicated",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR3H6",
+						"centerBasedOn": "Self",
+						"campTargetType": "Enemy",
+						"campBasedOn": "Self",
+					},
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByEntityTypes",
+							"entityTypes": ["Monster"],
+						},
+						{
+		                 	"$type": "ByTargetGlobalValue",
+		                 	"key": "_ANIMAL_ENTITY_TYPE",
+		                 	"value": 0,
+		                 	"compareType": "NoneOrEqual",
+		                },
+					],
+					"successActions": 
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Target",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",	//天赋：给敌人减防
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "OriginOwner",
+							"modifierName": "UNIQUE_Xingqiu_PhantomBurst_Bullet_GainEnergy",
+							"predicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_GoldenRing_Mark",	//天赋：KING·幻影剑
+									"value": 1,
+									"compareType": "Equal",
+									"target": "Team",
+								},
+							],
+						},
+					],
+				},
+				{
+					"$type": "KillSelf"
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_Debuff":
+				{
+					"duration": 4,
+					"isUnique": true,
+					"stacking": "Refresh",
+					"state": "DefenseDown",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta" : "%WaterSubHurtDelta",
+					},
+				},
+				"UNIQUE_Xingqiu_PhantomBurst_Bullet_GainEnergy":
+				{
+					"duration": 0.1,
+					"isUnique": true,
+					"stacking": "Unique",
+					"modifierMixins":
+					[
+						{
+							"$type": "ReviveElemEnergyMixin",
+			            	"type": "Both",
+				            "period": 0.07,
+				            "baseEnergy": 3,
+				            "ratio": 1,
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"ElementalBurst_Bullet_Damage": 0,
+				"WaterSubHurtDelta": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  SkillObj_Xingqiu_PhantomShield
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SkillObj_Xingqiu_PhantomShield",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_L1Mark",	//每个位置一个标记，两种创生，还要随时销毁，只能捣鼓globalValue了，哭哭
+					"valueSteps": [-1.5, -0.5, 0.5, 1.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps": ["Xingqiu_PhantomShield_Eff_L1_Full", "Blank", "Xingqiu_PhantomShield_Eff_L1_Born"],
+				},
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_L2Mark",
+					"valueSteps": [-1.5, -0.5, 0.5, 1.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps": ["Xingqiu_PhantomShield_Eff_L2_Full", "Blank", "Xingqiu_PhantomShield_Eff_L2_Born"],
+				},
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_L3Mark",
+					"valueSteps": [-1.5, -0.5, 0.5, 1.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps": ["Xingqiu_PhantomShield_Eff_L3_Full", "Blank", "Xingqiu_PhantomShield_Eff_L3_Born"],
+				},
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Xingqiu_PhantomShield_L4Mark",
+					"valueSteps": [-1.5, -0.5, 0.5, 1.5],
+					"removeAppliedModifier": true,
+					"modifierNameSteps": ["Xingqiu_PhantomShield_Eff_L4_Full", "Blank", "Xingqiu_PhantomShield_Eff_L4_Born"],
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type": "Predicated",
+					"target": "Team",
+					"targetPredicates": 
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "_ABILITY_Xingqiu_PhantomShield_Level",
+							"value": 1,
+							"compareType": "MoreThanAndEqual",
+						},
+					],
+					"successActions": 
+					[
+						{
+							"$type": "TriggerAttackEvent",	//护盾潮湿敌人攻击盒
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackCircle",
+									"triggerType": "TriggerNoRepeat",
+									"height": 0.5,
+									"fanAngle": 360.0,
+									"radius": 1.0,
+									"born":
+									{
+										"$type": "ConfigBornByCollisionPoint",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+								"attackInfo":
+								{
+									"canBeModifiedBy" : "None",
+									"attenuationTag": "Xingqiu_PhantomShield",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"strikeType": "Default",
+										"elementType" : "Water",
+										"elementDurability" : 25,
+										"elementRank" : 1.5,
+										"enBreak": 0,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName":"none",
+										"hitLevel": "Mute",	//hitlevel = 0
+										"hitImpulseX": 0,	//hitlevel = 0
+										"hitImpulseY": 0,	//hitlevel = 0
+										"retreatType": "ByHitDirection",
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0,
+										"hitHaltTimeScale" : 0,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": false,
+								},
+							},
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern":"Eff_Xingqiu_PhantomShield_Collision",
+							"target" : "Target",
+							"predicates" :
+							[
+								{
+									"$type" : "ByNot",
+									"predicates" :
+									[
+										{
+											"$type" : "ByEntityTypes",
+											"entityTypes" : ["Avatar","Equip","Field"],
+										},
+									],
+								},
+							],
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+							},
+						},
+						// {
+						// 	"$type": "AddGlobalValue",
+						// 	"target": "Team",
+						// 	"key": "_ABILITY_Xingqiu_PhantomShield_SparkMark",	//进受击
+						// 	"value": 1,
+						// 	"useLimitRange": true,
+						// 	"maxValue": 1,
+						// 	"minValue": 0,
+						// },
+					],
+				},
+			],
+			"modifiers": 
+			{
+				"Blank": {},
+				"Xingqiu_PhantomShield_Eff_L1_Born":	//创生逻辑
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+							"parameter": "Born",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L2_Born": 	//创生逻辑
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+							"parameter": "Born",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L3_Born": 	//创生逻辑
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+							"parameter": "Born",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L4_Born": 	//创生逻辑
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+							"parameter": "Born",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L1_Full": 	//大招创生逻辑，状态机由大招来统一指挥
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+						},
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+									"parameter": "FullBorn2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L1",
+									"parameter": "FullBorn1",
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L2_Full": 	//大招创生逻辑，状态机由大招来统一指挥
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Eff_L2_FullDelay",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L3_Full": 	//大招创生逻辑，状态机由大招来统一指挥
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Eff_L3_FullDelay",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L4_Full": 	//大招创生逻辑，状态机由大招来统一指挥
+				{
+					"stacking": "Unique",
+					"onAdded": 
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_Eff_L4_FullDelay",
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L2_FullDelay":
+				{
+					"duration": 0.1,
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+									"parameter": "FullBorn2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L2",
+									"parameter": "FullBorn1",
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L3_FullDelay":
+				{
+					"duration": 0.2,
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+									"parameter": "FullBorn2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L3",
+									"parameter": "FullBorn1",
+								},
+							],
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_Eff_L4_FullDelay":
+				{
+					"duration": 0.3,
+					"onRemoved":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates": 
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",		//天赋：第4层护盾（这玩儿把我坑惨了）
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions": 
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+									"parameter": "FullBorn2",
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "SendEffectTrigger",
+									"effectPattern": "Eff_Xingqiu_ElementalArt_PhantomShield_L4",
+									"parameter": "FullBorn1",
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_DamageHandler
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_DamageHandler",
+			"abilityMixins":
+			[
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK01"],
+					"damagePercentage": "%NormalAttack_01_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK02"],
+					"damagePercentage": "%NormalAttack_02_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK03_01"],
+					"damagePercentage": "%NormalAttack_03_01_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK03_02"],
+					"damagePercentage": "%NormalAttack_03_02_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK04"],
+					"damagePercentage": "%NormalAttack_04_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK05_01"],
+					"damagePercentage": "%NormalAttack_05_01_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ATK05_02"],
+					"damagePercentage": "%NormalAttack_05_02_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ExtraAttack_1"],
+					"damagePercentage": "%ExtraAttack_01_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"animEventNames": ["ExtraAttack_2"],
+					"damagePercentage": "%ExtraAttack_02_DamagePercentage",
+				},
+				{
+					"$type": "ModifyDamageMixin",
+					"attackTags": ["Elemental_Burst"],
+					"damagePercentage": "%Elemental_Burst_DamagePercentage",
+				},
+			],
+			"abilitySpecials":
+			{
+				"NormalAttack_01_DamagePercentage": 0,
+				"NormalAttack_02_DamagePercentage": 0,
+				"NormalAttack_03_01_DamagePercentage": 0,
+				"NormalAttack_03_02_DamagePercentage": 0,
+				"NormalAttack_04_DamagePercentage": 0,
+				"NormalAttack_05_01_DamagePercentage": 0,
+				"NormalAttack_05_02_DamagePercentage": 0,
+				"ExtraAttack_01_DamagePercentage": 0,
+				"ExtraAttack_02_DamagePercentage": 0,
+				"Elemental_Burst_DamagePercentage": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_Talent_LetItDown
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_Talent_LetItDown",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_ABILITY_Xingqiu_Talent_LetItDown_Mark",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+					"target": "Team",
+					"doOffStage": true,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_Talent_GoldenRing
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_Talent_GoldenRing",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_ABILITY_Xingqiu_Talent_GoldenRing_Mark",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+					"target": "Team",
+					"doOffStage": true,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Avatar_Xingqiu_Talent_OneMoreChance
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Avatar_Xingqiu_Talent_OneMoreChance",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_ABILITY_Xingqiu_Talent_OneMoreChance_Mark",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+					"target": "Team",
+					"doOffStage": true,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Xingqiu_PhantomShield_AngleHandler",
+					"target": "Team",
+					"doOffStage": true,
+				},
+			],
+			"modifiers":
+			{
+				"Xingqiu_PhantomShield_AngleHandler":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Xingqiu_PhantomShield_AngleChange",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 41025011,
+								"sortType": "Default",
+							},
+							"doOffStage": true,
+						},
+					],
+				},
+				"Xingqiu_PhantomShield_AngleChange":
+				{
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",	//通知gadget更改挂点排列，挤一挤放4层盾
+							"triggerID": "Angle90",
+							"doOffStage": true,
+						},
+					],
+				},
+			},
+		},
+	},
+]

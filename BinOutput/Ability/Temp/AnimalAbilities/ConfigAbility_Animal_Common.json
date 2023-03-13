@@ -1,0 +1,33 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  Initial
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Common_Initial",
+		"onAdded":
+		[
+			{
+				"$type": "HideUIBillBoard",
+				"hide": true,
+			},
+			{
+				"$type": "EnableAIStealthy",
+				"enable": true,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_ANIMAL_ENTITY_TYPE",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+		],
+	},
+},
+]

@@ -1,0 +1,1004 @@
+{
+////////////////////////////////////////////////////////////////
+//
+//	搬运援素之力-底座
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Base":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "CircleR5",		//形状，不填为collider
+			"checkInterval" : 1,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"State_0": [],
+							"State_202": [],
+							"State_201": [],
+							"State_203": [],
+							"State_204": [],
+							"State_901": [],
+							"State_902": [],
+							"State_903": [],
+							"State_103": [],
+						},
+					},
+				},
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Base",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	搬运援素之力-底座
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Base_Rock":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "CircleR5",		//形状，不填为collider
+			"checkInterval" : 1,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Base_Rock",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	搬运援素之力-水之力
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Water":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 1,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Water",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	搬运援素之力-火之力
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Fire":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 1,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Fire",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	搬运援素之力-火之力 挨打的
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Fire_Hit":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Fire_Hit",
+			},
+		],
+	},
+///////////////////////////////////////////////////
+//
+// 	岩元素吸收子弹
+//
+///////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Rock_AbsorbBullet":
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty": false,
+				"HP": 99999,
+				"attack" : 50,
+				"defense": 99999,
+				"weight": 1,
+				"denyLockOn": true,
+				"canTriggerBullet" : false,
+			},
+			"beHit":
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadget":
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "All",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene": true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "SceneObj_Gear_ElemForce_Rock_AbsorbBullet",
+				},
+			],
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 8,			//存在时间
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigItanoCircusBulletMove",
+			"speed" : 5.0,
+			"acceleration": 2,
+			"maxSpeed" : 10,
+			"minSpeed" : 5,
+			"guidanceSpeedChange": true,
+			"itanoCircusStartAngler": 150,
+			"guidanceDelay": 0.7,
+			"anglerVelocity": 720.0,
+			"guidanceDuration": 100.0,
+			"guidanceMinAnglerVelocity": 5.0,
+			"canBornInWater": true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+
+				"abilityName" : "SceneObj_Gear_ElemForce_Rock_AbsorbBullet",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	这回真的是 岩元素之力 了
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Rock":
+	{
+		"$type": "ConfigGadget",
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2,
+				"z": 0,
+			},
+			"radiusOffset": 1,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Grand",
+			"shieldBarOnly" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_ElemForce_Rock",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  岩元素子弹
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_RockForce_Bullet" :
+	{
+		"$type" : "ConfigGadget",
+		"common":
+		{
+			"enableCrashDamage": false,
+		},
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+			"affectedByWorld": false,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty": true,
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTimedieEndTime": 1.0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 0.5,
+				"ignoreScene" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_RockForce_Bullet",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  元素之力bullet
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElemForce_Bullet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"maxAutoKillDist": 180,
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 3,
+				"ignoreScene" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_ElemForce_Bullet",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	风种子
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_GrassWind":
+	{
+		"$type": "ConfigGadget",
+		"common":
+		{
+			"enableCrashDamage": false,
+		},
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 10,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime": 0.5,
+				"dieForceDisappearTime": 0.5,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Buffer": ["HideCollider"],
+							"ShowCollider": ["ShowCollider"],
+							"Die": ["HideCollider"],
+						},
+					},
+				},
+			},
+		},
+		"misc" :
+		{
+			"windSeed" : 
+			{
+				"lifeTime" : 50.0,
+			},
+		},
+		// "move" :
+		// {
+		// 	"$type" : "ConfigRigidbodyMove",
+		// 	"startCloseToGround":false,
+		// 	"velocityForce":
+		// 	{
+		// 		"includeForces": ["WindZoneType"],
+		// 	},
+		// },
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_GrassWind",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//	莫得灵魂的风种子
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_GrassWind_Fake":
+	{
+		"$type": "ConfigGadget",
+		"common":
+		{
+			"enableCrashDamage": false,
+		},
+		"combat":
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 10,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime": 0.5,
+				"dieForceDisappearTime": 0.5,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "AllAvatars",
+			"shape" : "",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType": "All",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Buffer": ["HideCollider"],
+							"ShowCollider": ["ShowCollider"],
+							"Die": ["HideCollider"],
+						},
+					},
+				},
+			},
+		},
+		// "move" :
+		// {
+		// 	"$type" : "ConfigRigidbodyMove",
+		// 	"startCloseToGround":false,
+		// 	"velocityForce":
+		// 	{
+		// 		"includeForces": ["WindZoneType"],
+		// 	},
+		// },
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",	
+				"abilityName" : "SceneObj_Gear_GrassWind_Fake",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  草生风子弹
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_GrassWind_Bullet" :
+	{
+		"$type" : "ConfigGadget",
+		"common":
+		{
+			"enableCrashDamage": false,
+		},
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+			"affectedByWorld": false,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty": true,
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTime": 1.0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 0.5,
+				"ignoreScene" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_GrassWind_Bullet",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  草生风子弹02
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_GrassWind_Bullet02" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTime": 1.0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 0.5,
+				"ignoreScene" : true,
+			},
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_GrassWind_Bullet02",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  草生风子弹03
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_GrassWind_Bullet03" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTime": 1.0,
+				"dieForceDisappearTime": 1.0,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 0.5,
+				"ignoreScene" : true,
+			},
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_GrassWind_Bullet03",
+			},
+		],
+	},
+},

@@ -1,0 +1,1750 @@
+[
+  {
+    "id": 11101,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011101,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 1,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 600,
+    "weaponPromoteId": 11101
+  },
+  {
+    "id": 11201,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011201,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 2,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1200,
+    "weaponPromoteId": 11201
+  },
+  {
+    "id": 11301,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011301,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111301,
+    "weaponPromoteId": 11301,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11302,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011302,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111302,
+    "weaponPromoteId": 11302,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11303,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011303,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11303,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11304,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011304,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111304,
+    "weaponPromoteId": 11304,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11305,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011305,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111305,
+    "weaponPromoteId": 11305,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11306,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011306,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 111306,
+    "weaponPromoteId": 11306,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 11401,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011401,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111401,
+    "weaponPromoteId": 11401,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11402,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011402,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111402,
+    "weaponPromoteId": 11402,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11403,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011403,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111403,
+    "weaponPromoteId": 11403,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11404,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011404,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111404,
+    "weaponPromoteId": 11404,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11405,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011405,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111405,
+    "weaponPromoteId": 11405,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11406,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011406,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111406,
+    "weaponPromoteId": 11406,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11407,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011407,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111407,
+    "weaponPromoteId": 11407,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11408,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011408,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 111408,
+    "weaponPromoteId": 11408,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 11501,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011501,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111501,
+    "weaponPromoteId": 11501,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11502,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011502,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111502,
+    "weaponPromoteId": 11502,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11503,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011503,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11503,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11504,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011504,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11504,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11505,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011505,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11505,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11506,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011506,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11506,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 11507,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50011507,
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 11507,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12101,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012101,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 1,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 600,
+    "weaponPromoteId": 12101
+  },
+  {
+    "id": 12201,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012201,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 2,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1200,
+    "weaponPromoteId": 12201
+  },
+  {
+    "id": 12301,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012301,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112301,
+    "weaponPromoteId": 12301,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12302,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012302,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112302,
+    "weaponPromoteId": 12302,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12303,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012303,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112303,
+    "weaponPromoteId": 12303,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12304,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012304,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112304,
+    "weaponPromoteId": 12304,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12305,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012305,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112305,
+    "weaponPromoteId": 12305,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12306,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012306,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 112306,
+    "weaponPromoteId": 12306,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 12401,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012401,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112401,
+    "weaponPromoteId": 12401,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12402,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012402,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112402,
+    "weaponPromoteId": 12402,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12403,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012403,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112403,
+    "weaponPromoteId": 12403,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12404,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012404,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112404,
+    "weaponPromoteId": 12404,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12405,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012405,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112405,
+    "weaponPromoteId": 12405,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12406,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012406,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112406,
+    "weaponPromoteId": 12406,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12407,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012407,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112407,
+    "weaponPromoteId": 12407,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12408,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012408,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 112408,
+    "weaponPromoteId": 12408,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 12501,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012501,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 112501,
+    "weaponPromoteId": 12501,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12502,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012502,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 112502,
+    "weaponPromoteId": 12502,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12503,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012503,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 12503,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12504,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012504,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 12504,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12505,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012505,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 12505,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 12506,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50012506,
+    "weaponType": "WEAPON_CLAYMORE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 12506,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 13101,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013101,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 1,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 600,
+    "weaponPromoteId": 13101
+  },
+  {
+    "id": 13201,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013201,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 2,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1200,
+    "weaponPromoteId": 13201
+  },
+  {
+    "id": 13301,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013301,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 113301,
+    "weaponPromoteId": 13301,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 13302,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013302,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 113302,
+    "weaponPromoteId": 13302,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 13303,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013303,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 113303,
+    "weaponPromoteId": 13303,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 13401,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013401,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 113401,
+    "weaponPromoteId": 13401,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 13402,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013402,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 113402,
+    "weaponPromoteId": 13402,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 13403,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013403,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 113403,
+    "weaponPromoteId": 13403,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 13404,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013404,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 113404,
+    "weaponPromoteId": 13404,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 13504,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013504,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 113504,
+    "weaponPromoteId": 13504,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 13505,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013505,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 113505,
+    "weaponPromoteId": 13505,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 13506,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50013506,
+    "weaponType": "WEAPON_POLE",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 13506,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14101,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014101,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 1,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 600,
+    "weaponPromoteId": 14101
+  },
+  {
+    "id": 14201,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014201,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 2,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1200,
+    "weaponPromoteId": 14201
+  },
+  {
+    "id": 14301,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014301,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114301,
+    "weaponPromoteId": 14301,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14302,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014302,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114302,
+    "weaponPromoteId": 14302,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14303,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014303,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114303,
+    "weaponPromoteId": 14303,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14304,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014304,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114304,
+    "weaponPromoteId": 14304,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14305,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014305,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114305,
+    "weaponPromoteId": 14305,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14306,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014306,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 114306,
+    "weaponPromoteId": 14306,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 14401,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014401,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114401,
+    "weaponPromoteId": 14401,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14402,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014402,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114402,
+    "weaponPromoteId": 14402,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14403,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014403,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114403,
+    "weaponPromoteId": 14403,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14404,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014404,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114404,
+    "weaponPromoteId": 14404,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14405,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014405,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114405,
+    "weaponPromoteId": 14405,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14406,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014406,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114406,
+    "weaponPromoteId": 14406,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14407,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014407,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114407,
+    "weaponPromoteId": 14407,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14408,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014408,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 114408,
+    "weaponPromoteId": 14408,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 14501,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014501,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 114501,
+    "weaponPromoteId": 14501,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14502,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014502,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 114502,
+    "weaponPromoteId": 14502,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14503,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014503,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 14503,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14504,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014504,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 14504,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14505,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014505,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 14505,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 14506,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50014506,
+    "weaponType": "WEAPON_CATALYST",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 14506,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15101,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015101,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 1,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 600,
+    "weaponPromoteId": 15101
+  },
+  {
+    "id": 15201,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015201,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 2,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1200,
+    "weaponPromoteId": 15201
+  },
+  {
+    "id": 15301,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015301,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115301,
+    "weaponPromoteId": 15301,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15302,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015302,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115302,
+    "weaponPromoteId": 15302,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15303,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015303,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115303,
+    "weaponPromoteId": 15303,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15304,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015304,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115304,
+    "weaponPromoteId": 15304,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15305,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015305,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115305,
+    "weaponPromoteId": 15305,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15306,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015306,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 3,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 1800,
+    "skillAffix": 115306,
+    "weaponPromoteId": 15306,
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ]
+  },
+  {
+    "id": 15401,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015401,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115401,
+    "weaponPromoteId": 15401,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15402,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015402,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115402,
+    "weaponPromoteId": 15402,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15403,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015403,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115403,
+    "weaponPromoteId": 15403,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15404,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015404,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115404,
+    "weaponPromoteId": 15404,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15405,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015405,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115405,
+    "weaponPromoteId": 15405,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15406,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015406,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115406,
+    "weaponPromoteId": 15406,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15407,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015407,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115407,
+    "weaponPromoteId": 15407,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15408,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015408,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 4,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 100000,
+    "skillAffix": 115408,
+    "weaponPromoteId": 15408,
+    "awakenCosts": [
+      1000,
+      2000,
+      4000,
+      8000
+    ]
+  },
+  {
+    "id": 15501,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015501,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 115501,
+    "weaponPromoteId": 15501,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15502,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015502,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 115502,
+    "weaponPromoteId": 15502,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15503,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015503,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 15503,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15504,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015504,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 15504,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15505,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015505,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 15505,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  },
+  {
+    "id": 15506,
+    "weight": 1,
+    "rank": 10,
+    "gadgetId": 50015506,
+    "weaponType": "WEAPON_BOW",
+    "rankLevel": 5,
+    "itemType": "ITEM_WEAPON",
+    "weaponBaseExp": 500000,
+    "skillAffix": 111303,
+    "weaponPromoteId": 15506,
+    "awakenCosts": [
+      2000,
+      4000,
+      8000,
+      16000
+    ]
+  }
+]

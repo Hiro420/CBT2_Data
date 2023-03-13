@@ -1,0 +1,442 @@
+{
+  ///使用方法注释：
+  ///		1、调整能力
+  ///		{
+  ///			"$type" : "ModifyAbility",
+  ///			"abilityName" : "Avatar_Qin_Captain",
+  ///			"paramSpecial" : "CriticalHurt_Up",需要修改的参数名字，只能填1个。所以多个的话需要多个ModifierAbiltiy
+  ///			"paramDelta" : 0.01,加上指定数值
+  ///			"paramRatio" : 0,提升指定比例
+  ///		}
+  ///		ConfigAbilityCommon.cs中有AbilityProperty，可以调整角色全局的攻击，攻速，攻击，血量，防御，抵抗等等。
+  ///		2、添加能力
+  ///		{
+  ///			"$type" : "AddAbility",
+  ///			"abilityName": "Avatar_Qin_Captain",仅有一个参数，abiltiyName
+  ///		}
+  ///		3、替换攻击
+  ///		{
+  ///			"$type": "ReplaceEventPatternMixin",
+  ///		"oldPatterns": ["Monster_Slime_Fire_02_NormalAttack"],
+  ///			"newPatterns": ["Monster_Slime_Fire_02_NormalAttack_Fire"],如果需要替换攻击盒，可以用ModifyDamageMixin改变盒子伤害。
+  ///		}
+  ///		4、解锁参数
+  ///		{
+  ///			"$type" : "UnlockTalentParam",
+  ///			"abilityName" : "Avatar_Qin_IceShield_ImpactTriggerBack_L",
+  ///			"talentParam" : "Qin_TriggerBack",
+  ///		}
+  ///		需要配套功能： 即需要unlock这个predicates才能走过去。
+  ///			"predicates" :
+  ///				[
+  ///					{
+  ///						"$type" : "ByUnlockTalentParam",
+  ///						"talentParam" : "Keaya_TriggerBack",
+  ///					},
+  ///				],
+  ///
+  ///		5、解锁controller内容
+  ///		{
+  ///			"$type" : "UnlockControllerConditions",
+  ///			"conditionName" : "XXXX",
+  ///		}
+  ///		6、调整技能cd
+  ///		public partial class ModifySkillCD : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float cdDelta; // cdDelta
+  ///		public float cdRatio; // cdRatio
+  ///
+  ///		7、调整技能消耗
+  ///		public partial class ModifySkillCost : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float costDelta; // costDelta
+  ///		public float costRatio; // costRatio
+  ///
+  ///		8、调整技能充能次数
+  ///			public partial class ModifySkillPoint : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public int pointDelta; // pointDelta
+  ///		9、替换Abiltiy
+  ///		{
+  ///			"UnlockByTalentID":xxx,
+  ///			"$type":"ReplaceAbiltiy",
+  ///			"KeyAbilityName":"xx",
+  ///			"NewAbiltiyName":"xx",
+  ///			"ParamSpecial1":"xx",
+  ///			"ParamMedthod1":"xx",
+  ///		}
+  ///
+  ///		注意！！！！
+  ///
+  ///		需要修改MetaConfig，将对应的talent加入这个表。
+  ///
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //（备用）西风长枪武器词缀
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_Zephyrus_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_Zephyrus",
+    },
+  ],
+  "Weapon_Pole_Zephyrus_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_Zephyrus_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_Zephyrus_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_Zephyrus_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  // (备用）普攻伤害提升10%，如果被攻击，则进入5秒cd。
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_NormalAttackUpUnlessBeinghit_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit",
+    },
+  ],
+  "Weapon_Pole_NormalAttackUpUnlessBeinghit_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_NormalAttackUpUnlessBeinghit_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_NormalAttackUpUnlessBeinghit_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Pole_NormalAttackUpUnlessBeinghit_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUpUnlessBeinghit",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  13301
+  //
+  //  普攻伤害提升13~25%
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_NormalAttackUp": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUp",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackUp",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13302
+  //
+  //cd10秒，冷却完成后对第一个命中目标造成60%~100%攻击力伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_ExtraDamageWhenCDReady": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_ExtraDamageWhenCDReady",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_ExtraDamageWhenCDReady",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_ExtraDamageWhenCDReady",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13303
+  //
+  //对史莱姆增加26%~40%伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_SlimeKiller": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_SlimeKiller",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_SlimeKiller",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13401
+  //
+  //长枪武器词缀，对携带水、火元素单位暴击增加15%-35%，
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_DamageUpToWaterEnemy": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_DamageUpToWaterEnemy",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToWaterEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13402
+  //
+  //长枪武器词缀，拾取微粒后3次普攻附带10~30伤害
+  //
+  ////////////////////////////////////////////////////////////////
+
+  "Weapon_Pole_NormalAttackExtraDamageWhenGetEnergyBall": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_NormalAttackExtraDamageWhenGetEnergyBall",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackExtraDamageWhenGetEnergyBall",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13403 使用技能后增加普攻重攻击伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_NormalAttackAndExtraAttackUpAfterSkill": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_NormalAttackAndExtraAttackUpAfterSkill",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_NormalAttackAndExtraAttackUpAfterSkill",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13404 入场后攻击力提升10秒
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_AttackUpWhenEnter": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_AttackUpWhenEnter",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_AttackUpWhenEnter",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_AttackUpWhenEnter",
+      "paramSpecial": "Time",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13504，对所有附着增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_DamageUpToAllElement": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_DamageUpToAllElement",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToAllElement",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToAllElement",
+      "paramSpecial": "D_Rate",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //13505， 命中提升攻击力%，，满层数技能伤害提升25%。
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_AttackUpAndSkillDamageUp": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_AttackUpAndSkillDamageUp",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_AttackUpAndSkillDamageUp",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_AttackUpAndSkillDamageUp",
+      "paramSpecial": "Rate2",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  //  13601 冰反应增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_AttacktUpAfterReaction": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_AttacktUpAfterReaction",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+
+
+  //////////////////////////////////////////////////////////////////
+  //
+  //  13602 水、冰附着增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Pole_DamageUpToEnemy_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Pole_DamageUpToEnemy",
+    },
+  ],
+  "Weapon_Pole_DamageUpToEnemy_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Pole_DamageUpToEnemy_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Pole_DamageUpToEnemy_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Pole_DamageUpToEnemy_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Pole_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.03,
+      "paramRatio": 0,
+    },
+  ],
+
+}

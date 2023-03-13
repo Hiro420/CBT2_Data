@@ -1,0 +1,249 @@
+{
+//////////////////////////////////////////////
+//
+//  火元素场阶段切换器
+//
+//////////////////////////////////////////////
+	"SceneObj_Gear_ElementField_FireController" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1000,
+				"attack" : 30,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_ElementField_FireController",
+			},
+		],
+	},
+//////////////////////////////////////////////
+//
+//  冰元素场阶段切换器
+//
+//////////////////////////////////////////////
+	"SceneObj_Gear_ElementField_IceController" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1000,
+				"attack" : 30,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_ElementField_IceController",
+			},
+		],
+	},
+//////////////////////////////////////////////
+//
+//  雷元素场阶段切换器
+//
+//////////////////////////////////////////////
+	"SceneObj_Gear_ElementField_ElectricController" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1000,
+				"attack" : 30,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_ElementField_ElectricController",
+			},
+		],
+	},
+//////////////////////////////////////////////
+//
+//  水元素场阶段切换器
+//
+//////////////////////////////////////////////
+	"SceneObj_Gear_ElementField_WaterController" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 1000,
+				"attack" : 30,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_ElementField_WaterController",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  元素场范围判定子弹
+//
+////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_ElementField_Bullet" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"viewSize": 10,
+			"disableTickDistance": 200,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1.0,
+			},
+			"mass": 50,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 500,
+				"attack" : 10.0,
+				"defense" : 500,
+				"weight" : 50,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 0,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target" : "LocalAvatar",
+			"attachPoint" : "RootNode",
+			"followRotation" : true,
+		},
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"maxAutoKillDist": 160,
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"triggerCD" : 0.5,
+				"ignoreScene" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName" : "SceneObj_Gear_ElementField_Bullet",
+			},
+		],
+	},
+}，

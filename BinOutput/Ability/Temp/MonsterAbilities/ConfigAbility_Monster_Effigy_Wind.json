@@ -1,0 +1,8313 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  State
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_ShaderState1ToState2",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState2",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_ShaderState2ToState1",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState1",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_CoreOutAS",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Vortex_CoreOutAS","SingleAtk_CoreOutAS","MultiAtk_CoreOutAS","Tornado_CoreOutAS"],
+				"modifierName": "SetRender",
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "SetRender",
+			},
+		],
+		"modifiers":
+		{
+			"SetRender":
+			{
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Shield
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Shield",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1,2, 101,1101],
+				"modifierName": "ShieldModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1,2],
+				"modifierName": "ShaderNoneToState1",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Vortex_CoreOutLoop","SingleAtk_CoreOutLoop","MultiAtk_CoreOutLoop","Tornado_CoreOutLoop"],
+				"modifierName": "SetRenders",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+				"setEnable": true,
+			},
+		],
+		"modifiers":
+		{
+			"ShieldModifier":
+			{
+				"state": "LockHP",
+				"properties":
+				{
+					"Actor_SubHurtDelta" : "%SubHurtDelta",
+				},
+				"onAdded": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+ 					},
+ 					{
+						"$type": "AttachAbilityStateResistance",
+						"resistanceListID": 12002,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+ 					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ShieldBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+							"alongGround": true,
+						},
+					},
+				],
+			},
+			"ShaderNoneToState1":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": true,
+					},
+				],
+			},
+			"SetRenders":
+			{
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"SubHurtDelta" : 0.99,
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Core
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Core",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201,1201],
+				"modifierName": "UNIQUE_CoreConfig",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201,1201],
+				"modifierName": "BeingHitEffect",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1,2,101,201,1101,1201],
+				"modifierName": "EnergyCore",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1,2],
+				"modifierName": "CoreStandbyFreeEffect",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [101,201,1101,1201],
+				"modifierName": "UNIQUE_EnergyCoreState",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS","Struggle","Warning","Standby_AS","Dying_AS","RushAway_AS"],
+				"modifierName": "CoreStandbyEffect",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["CoreHitBox"],
+				"setEnable": false,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Core"],
+				"setEnable"  : false,
+			},
+			{
+				"$type": "HideUIBillBoard",
+				"hide": false,
+			},
+			{
+				"$type": "AttachAbilityStateResistance",
+				"resistanceListID": 12001,
+			},
+		],
+		"modifiers":
+		{
+			"BeingHitEffect":
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "Shake",
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_CoreBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+						},
+					},
+				],
+			},
+			"UNIQUE_CoreConfig":
+			{
+				"isUnique": true,
+				"elementType": "Wind",
+				"elementDurability": 25,
+				"isElementDurabilityMutable": false,
+				"onAdded": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+				],
+			},
+			"EnergyCore":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCore",
+					},
+				],
+			},
+			"CoreStandbyFreeEffect":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004104,
+							"sortType": "Default",
+						},
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_CoreStandbyFree",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+				],
+			},
+			"CoreStandbyEffect":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_CoreStandby",
+					},
+				],
+			},
+			"UNIQUE_EnergyCoreState":
+			{
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCore",
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCore",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Reborn
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_RebornState",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "RebornModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "DenyLockOn",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "GhostToEmeny",
+			},
+		],
+		"modifiers":
+		{
+			"DenyLockOn":
+			{
+				"state": "DenyLockOn",
+			},
+			"GhostToEmeny":
+			{
+				"state": "IsGhostToEnemy",
+			},
+			"RebornModifier":
+			{
+				"state": "Invincible",
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004121,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_HpDetect",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"UNIQUE_Effigy_Limbo",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"UNIQUE_Effigy_HpDetect",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_HpDetect":
+			{
+				"isUnique": true,
+				"modifierMixins" :
+				[
+					{
+						"$type": "AttachModifierToHPPercentMixin",
+						"valueSteps": [0.05],
+						"modifierNameSteps": ["Effigy_Empty","UNIQUE_Effigy_TriggerReborn"],
+					},
+				],
+			},
+			"UNIQUE_Effigy_Limbo":
+			{
+				"isUnique": true,
+				"state" : "Limbo",
+				"properties" :
+				{
+					"Actor_HpThresholdRatio": 0.0,
+				},
+			},
+			"UNIQUE_Effigy_TriggerReborn":
+			{
+				"isUnique": true,
+				"onAdded" :
+				[
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Wind_SetDyingPose",
+					},
+				],
+			},
+			"Effigy_Empty":
+			{
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_RebornStart",
+		"abilityMixins" :
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Dying_Blink"],
+				"modifierName": "CoreEffect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Dying","Dying_AS"],
+				"modifierName": "UNIQUE_DyingInvincible",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_Reborn_GenerateElemBall_Count",
+				"value" : 4,
+				"useLimitRange" : true,
+				"maxValue" : 4,
+				"minValue" : 0,
+			},
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_ForceRebornCount",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_ReBornTarget",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_Reborn_GetElemBall_Count",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 999,
+				"minValue" : 0,
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_Reborn_GetElemBall_Count",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 999,
+				"minValue" : 0,
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName" : "RebornEffect",
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004104,
+					"sortType": "Default",
+				}
+			},
+		],
+		"modifiers":
+		{
+			"RebornEffect":
+			{
+				"duration" : 1.5,
+				"onRemoved" :
+				[
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Wind_RebornElemBall",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName" : "RebornTimer",
+					},
+				],
+			},
+			"CoreEffect":
+			{
+				"onAdded" :
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCoreReborn",
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_RebornBS",
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Wind_RebornStart",
+					},
+				],
+			},
+			"RebornTimer":
+			{
+				"duration": 15,
+				"onAdded" :
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_Reborn",
+					},
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004120,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 10,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004120,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": -10,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004120,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0,
+								"y": 0.0,
+								"z": 10.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type":"CreateGadget",
+						"gadgetID":42004120,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0,
+								"y": 0.0,
+								"z": -10.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName" : "GetElemBall_Reborn",
+					},
+				],
+			},
+			"GetElemBall_Reborn":
+			{
+				"duration": 2,
+				"onAdded" :
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_Reborn",
+					},
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004121,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_Reborn_GenerateElemBall_HasGenerated",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"TriggerAbility",
+								"abilityName":"Effigy_StaticElementBall_Wind_Reborn_GenerateRebornElemBall",
+								"target": "Target",
+							},
+						],
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "_ForceRebornCount",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_Reborn_GetElemBall_Count",
+								"value": 0,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Wind_HealHp",
+					},
+				],
+			},
+			"UNIQUE_DyingInvincible":
+			{
+				"isUnique": true,
+				"state": "Invincible",
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_RebornElemBall",
+		"onAbilityStart" :
+		[
+			{
+				"$type":"SetGlobalValueToOverrideMap",
+				"globalValueKey":"_Reborn_GenerateElemBall_Count",
+				"overrideMapKey":"RebornElemCount",
+			},
+			{
+				"$type":"Repeated",
+				"repeatTimes": "%RebornElemCount",
+				"actions":
+				[
+					{
+						"$type": "SetRandomOverrideMapValue",
+						"overrideMapKey": "RandomHeight",
+						"valueRangeMin": 3.75,
+						"valueRangeMax": 7.25,
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004121,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": "%RandomHeight",
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 3,
+								"maxRandomRange": 7.5,
+							},
+							"onGround": true,
+						},
+					},
+				],
+			},
+		],
+		"abilitySpecials" :
+		{
+			"RebornElemCount" : 0,
+			"RandomHeight" : 0,
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_HealHp",
+		"onAbilityStart" :
+		[
+			{
+				"$type":"SetGlobalValueToOverrideMap",
+				"globalValueKey":"_Reborn_GetElemBall_Count",
+				"overrideMapKey":"GetRebornElemCount",
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": "0.125*%GetRebornElemCount",
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_Reborn_GetElemBall_Count",
+						"value": 1,
+						"compareType": "MoreThanAndEqual",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ForceRebornCount",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.05,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ForceRebornCount",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_Effigy_Limbo",
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ForceRebornCount",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_Effigy_HpDetect",
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ForceRebornCount",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "RebornState",
+				"value": true,
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_RebornAS",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type":"TriggerAbility",
+				"abilityName":"Monster_Effigy_Wind_SetRebornPose",
+			},
+		],
+		"abilitySpecials" :
+		{
+			"GetRebornElemCount" : 0,
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_Wind_Reborn_GenerateRebornElemBall",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Owner",
+				"campID": 4001,
+				"bulletID": 42004119,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "KillSelf",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_Reborn_GenerateWindElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWindBS",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "_Reborn_GenerateElemBall_HasGenerated",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 1,
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"target":"Owner",
+				"key": "_Reborn_GenerateElemBall_Count",
+				"value": -1,
+				"useLimitRange": true,
+				"maxValue": 4,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "_Reborn_GenerateElemBall_HasGenerated",
+				"value": 0,
+				"useLimitRange": true,
+				"maxValue": 0,
+				"minValue": 0,
+			},
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2021,
+				"baseEnergy": 9,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_Wind_Reborn_Count",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ReBornTarget",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "_Reborn_GetElemBall_Count",
+						"target": "Target",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 999,
+						"minValue" : 0,
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+						"target": "Target",
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "KillSelf",
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_AirFlow_Reborn",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "AirFlow",
+			},
+		],
+		"modifiers":
+		{
+			"AirFlow":
+			{
+				"duration": 16.5,			
+				"modifierMixins":
+				[
+					{
+						"$type": "AirFlowMixin",
+						"gadgetID": 42004103,
+						"campTargetType": "All",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirFlow",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  SetPose
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_SetCoreOutPose",
+		"abilityMixins" :
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS"],
+				"modifierName": "ForceSetPose",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : false,
+			},
+		],
+		"modifiers":
+		{
+			"ForceSetPose":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "CoreOut",
+						"value": false,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_SetCoreInPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : true,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_SetDyingPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": true,
+			},
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "DyingState",
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "RebornState",
+				"value": false,
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_CoreConfig",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_SetRebornPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": false,
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type": "ResetAISkillInitialCD",
+				"skillIDs": [801,701],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  AirGun
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_AirGun",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["AirGun_Loop"],
+				"modifierName": "Effect",
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{
+				"onAdded" :
+				[
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004115,
+						"campID": 4001,
+						"campTargetType": "Self",
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "EffectAirGunWave1",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "EffectAirGunWave2",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "EffectAirGunWave3",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "AirGunWave1",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "AirGunWave2",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "AirGunWave3",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunCore",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunCircle",
+					},
+				],	
+				"onRemoved" :
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunCircleAS",
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunCore_AS",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "EffectAirGunWave1",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "EffectAirGunWave2",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "EffectAirGunWave3",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "AirGunWave1",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "AirGunWave2",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "AirGunWave3",
+					},
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004115,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : true,
+					},
+				],					
+			},
+			"AirGunWave1":
+			{
+				"duration": 1.75,
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004117,
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttackTarget",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					},
+				],					
+			},
+			"AirGunWave2":
+			{
+				"duration": 3.5,
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004117,
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttackTarget",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					},
+				],					
+			},
+			"AirGunWave3":
+			{
+				"duration": 5.25,
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004117,
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttackTarget",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+					},
+				],					
+			},
+			"EffectAirGunWave1":
+			{
+				"duration": 1,
+				"onRemoved" :
+				[
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004115,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"target": "Target",
+								"key": "_IsAirGunCentre",
+								"value": 1,
+								"compareType": "NoneOrEqual",
+			                },
+						],
+						"successActions":
+						[
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInL1",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInL3",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type" : "TriggerSetRenderersEnable",
+								"renderNames"  : ["Cube_In_02","Cube_In_03"],
+								"setEnable"  : false,
+							},
+						],
+					},
+				],					
+			},
+			"EffectAirGunWave2":
+			{
+				"duration": 2.75,
+				"onRemoved" :
+				[
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004115,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"target": "Target",
+								"key": "_IsAirGunCentre",
+								"value": 1,
+								"compareType": "NoneOrEqual",
+			                },
+						],
+						"successActions":
+						[
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInR1",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInR2",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInR3",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type" : "TriggerSetRenderersEnable",
+								"renderNames"  : ["Cube_In_01","Cube_In_04","Cube_In_05"],
+								"setEnable"  : false,
+							},
+						],
+					},
+				],					
+			},
+			"EffectAirGunWave3":
+			{
+				"duration": 4.5,
+				"onRemoved" :
+				[
+					{
+						"$type" : "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004115,
+							"sortType": "Default",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"target": "Target",
+								"key": "_IsAirGunCentre",
+								"value": 1,
+								"compareType": "NoneOrEqual",
+			                },
+						],
+						"successActions":
+						[
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInR4",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInL2",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type": "TriggerBullet",
+								"trackTarget": "Target",
+								"bulletID": 42004116,
+								"born":
+								{
+									"$type":"ConfigBornByAttachPoint",
+									"attachPointName":"AttachPointInL4",
+									"attachPointTargetType":"Self",
+									"offset":
+									{
+										"x":0,
+										"y":0,
+										"z":0,
+									},
+									"direction":
+									{
+										"$type": "ConfigDirectionByEntity",
+										"angleOffset":
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"randomAngleHor": 15,
+										"randomAngleVer": 15,
+									},
+								},
+							},
+							{
+								"$type" : "TriggerSetRenderersEnable",
+								"renderNames"  : ["Cube_In_06","Cube_In_07","Cube_In_08"],
+								"setEnable"  : false,
+							},
+						],
+					},
+				],					
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_AirGunCentre_Config",
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_IsAirGunCentre",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_EffectAirGun_Hit",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{
+				"duration": 0.75,			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunShield",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirGunShieldHit",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_AirGun_Hit",
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 1.25,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.75,
+							"strikeType": "Blunt",
+							"enBreak": 100.0,
+							"elementDurability":50,
+							"elementType": "Wind",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "none",
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.06,
+							"shakeTime": 0.09,
+							"shakeDistance": 20,
+						},	
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_AirGunHit",
+				"born":
+				{
+					"$type": "ConfigBornByCollisionPoint",
+					"offset" : 
+					{
+						"x": 0.0, // + means up, - means down
+						"y": 0.0, // + means left, - means right
+						"z": 0.0, // + means forward, - means backward
+					}
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+/*				"hitEntity": "Eff_Monster_Effigy_Electric_FireShieldHit",*/
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Effigy_Wind_AirGunHit",
+				},
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_AirGunLoop",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Vortex
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_VortexWindZone",
+		"onAbilityStart":
+		[
+
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "VortexWindZone",
+			},
+		],
+		"modifiers":
+		{
+			"VortexWindZone":
+			{
+				"duration": 2.7,
+				"thinkInterval" : 0.5,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height": 3,
+								"radius": 9,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attenuationTag":"Group1",
+								"attackProperty":
+								{
+									"damagePercentage": 0.25,
+									"strikeType": "Default",
+									"elementType": "Wind",
+									"elementDurability": 25,
+									"enBreak": 1.0,
+								},
+								"hitPattern" :
+								{
+					          		"onHitEffectName": "default",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 200,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},	
+				],
+				"modifierMixins":
+				[
+					{
+						"$type": "WindZoneMixin",
+						"shapeName": "CircleR10",
+						"strength" : 10,
+						"attenuation" : 1,
+						"innerRadius" : 2,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+							"onGround": true,
+						},
+						"targetType": "All",
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetWeight",
+								"logic" : "LesserOrEqual",	
+								"weight" : 90.0,
+							},
+						],
+					},
+				],					
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_VortexExplode",
+		"onAbilityStart":
+		[
+			{
+				"$type" : "DamageByAttackValue",
+				"otherTargets": 
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR10H3",
+					"centerBasedOn": "Self",
+					"campTargetType": "Enemy",
+					"campBasedOn": "Self",
+				},
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset": 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"attackInfo":
+				{
+					"attackProperty":
+					{
+						"damagePercentage": 1,
+						"strikeType": "Default",
+						"elementType": "Wind",
+						"elementDurability": 50,
+						"enBreak": 200.0,
+					},
+					"hitPattern" :
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Air",	//hitlevel = 6
+						"hitImpulseX": 655,	//hitlevel = 6
+						"hitImpulseY": 800,	//hitlevel = 6
+						"reboundRatio" : 0,
+						"hitHaltTime" : 0.0,
+						"hitHaltTimeScale" : 0.05,
+						"muteHitText" : false,
+					},
+				},
+				"forceCameraShake": true,
+				"cameraShake":
+				{
+					"shakeType": "Center",
+					"shakeRange": 2,
+					"shakeTime": 0.4,
+					"shakeDistance": 30.0,
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  WindFall
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_WindFall",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["WindFall_Loop","WindFall_AS1"],
+				"modifierName": "SetRenders",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["WindFall_Loop","WindFall_AS1"],
+				"modifierName": "CreateWindFall",
+			},
+		],
+		"modifiers":
+		{
+			"SetRenders":
+			{				
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"CreateWindFall":
+			{
+				"duration":2.1,
+				"thinkInterval" : 1,
+				"onThinkInterval" :
+				[
+					{
+						"$type": "CreateGadget",
+						"target": "SelfAttackTarget",
+						"gadgetID": 42004102,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 4.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 2.5,
+							},
+							"onGround": true,
+						},
+					},
+				],
+				"onAdded" :
+				[
+					{
+						"$type": "CreateGadget",
+						"target": "SelfAttackTarget",
+						"gadgetID": 42004102,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 4.0,
+							},
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1.5,
+							},
+							"onGround": true,
+						},
+					},
+				],					
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_WindFallPosition_CreateWindFall",
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_WindFallAlert",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"BulletTimer",
+			},
+		],
+		"modifiers":
+		{
+			"BulletTimer":
+			{
+				"duration": 1.5,
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004101,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByLookAtEntity"
+							}
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_WindFall_Hit",
+		"onAdded": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_WindFallLoop",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type":"FireEffect",
+				"target": "Owner",
+				"effectPattern": "Eff_Monster_Effigy_Wind_WindFallHit",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+				},
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 1.5,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1,
+							"strikeType": "Blunt",
+							"enBreak": 100.0,
+							"elementDurability":50,
+							"elementType": "Wind",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "default",
+							"hitLevel": "Heavy",	//hitlevel = 4
+							"hitImpulseX": 800,	//hitlevel = 4
+							"hitImpulseY": 0,	//hitlevel = 4
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 2,
+							"shakeTime": 0.3,
+							"shakeDistance": 30.0,
+						},
+					},
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Effigy_Wind_WindFallHit",
+				},
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"WindFall_AirFlowTimer",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"WindFall_AirFlowTimer":
+			{
+				"duration": 1.5,
+				"onAdded" :
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirFlow_BS",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName":"WindFall_AirFlow",
+					},
+				],
+			},
+			"WindFall_AirFlow":
+			{
+				"duration": 13.5,
+				"modifierMixins":
+				[
+					{
+						"$type": "AirFlowMixin",
+						"gadgetID": 42004103,
+						"campTargetType": "All",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"onGround": true,
+						},
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_AirFlow",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Storm
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Storm",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Storm"],
+				"modifierName": "SetRenders",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Storm_Loop1"],
+				"modifierName": "AirBlade",
+			},
+		],
+		"modifiers":
+		{
+			"SetRenders":
+			{				
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"AirBlade":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height": 2.25,
+								"radius": 6,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.1,
+									"strikeType": "Default",
+									"elementType": "Wind",
+									"elementDurability": 25,
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+					          		"onHitEffectName": "default",
+									"hitLevel": "Heavy",	//hitlevel = 4
+					          		"hitImpulseX": 800,	//hitlevel = 4
+					          		"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},	
+				],
+				"thinkInterval" : 0.25,
+				"onThinkInterval" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"campID": 4001,
+						"bulletID": 42004124,
+						"born": 
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "LaserAttachPoint1",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.25,
+							},
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"campID": 4001,
+						"bulletID": 42004124,
+						"born": 
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "LaserAttachPoint2",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.25,
+							},
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"campID": 4001,
+						"bulletID": 42004124,
+						"born": 
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "LaserAttachPoint3",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.25,
+							},
+						},
+					},
+					{
+						"$type": "TriggerBullet",
+						"campID": 4001,
+						"bulletID": 42004124,
+						"born": 
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "LaserAttachPoint4",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.25,
+							},
+						},
+					},
+				],				
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_AirBlade_Hit",
+		"onAdded": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_AirBlade",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Blink
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_FindBlinkPos",
+		"onAdded":
+		[
+			{
+				"$type":"CreateGadget",
+				"gadgetID":42004006,
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "SetGlobalPos",
+				"key": "InitialPos",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+				},
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "TryFindBlinkPoint",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004006,
+					"sortType": "Default",
+				},
+				"forwardAngle": 360,
+				"minRange": 1.5,
+				"maxRange": 3.5,
+			},	
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_FindBlinkPos_EnergyAbsorbStart",
+		"onAdded":
+		[
+			{
+				"$type":"CreateGadget",
+				"gadgetID":42004125,
+				"lifeByOwnerIsAlive": true,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_AVATARDETECTED",
+				"value" : 0,
+				"useLimitRange" : true,
+				"maxValue" : 0,
+				"minValue" : 0,
+			},
+			{
+				"$type":"TriggerAbility",
+				"abilityName":"Effigy_EnergyAbsorbPos_AvatarDetected",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004125,
+					"sortType": "Default",
+				},
+			}
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_FindBlinkPos_EnergyAbsorb",
+		"onAbilityStart":
+		[
+			{
+				"$type": "TryFindBlinkPoint",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004125,
+					"sortType": "Default",
+				},
+				"forwardAngle": 360,
+				"minRange": 7.5,
+				"maxRange": 10,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Self",
+						"key": "_AVATARDETECTED",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				]
+			},
+			{
+				"$type": "TryFindBlinkPoint",
+				"target": "CurLocalAvatar",
+				"forwardAngle": 90,
+				"minRange": 2.5,
+				"maxRange": 5,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Self",
+						"key": "_AVATARDETECTED",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				]
+			},		
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Reborn_FindBlinkPos",
+		"onAdded":
+		[
+			{
+				"$type":"CreateGadget",
+				"gadgetID":42004006,
+				"lifeByOwnerIsAlive": true,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "SetGlobalPos",
+				"key": "InitialPos",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+				},
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "TryFindBlinkPoint",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004006,
+					"sortType": "Default",
+				},
+				"forwardAngle": 180,
+				"minRange": 0,
+				"maxRange": 5,
+			},	
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_BlinkStart",
+		"onAbilityStart":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Blink_Actions",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Blink_Actions":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_Invincible",
+						"target": "Self",
+					},
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_DenyLockOn",
+						"target": "Self",
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": false,
+						"target": "Self",
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider","CorePushCollider"],
+						"setEnable": false,
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCore",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider","CorePushCollider"],
+						"setEnable": true,
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": true,
+						"target": "Self",
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Wind_EnergyCore",
+					},
+				],
+			},
+			"Blink_Invincible" :
+			{
+				"state": "Invincible",
+			},
+			"Blink_DenyLockOn" :
+			{
+				"state": "DenyLockOn",
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Blink",
+		"onAbilityStart":
+		[
+			{
+				"$type": "DoBlink",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_BlinkAS",
+		"onAbilityStart":
+		[
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_Blink_Actions",
+				"target": "Self",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_EnergyAbsorbPos_AvatarDetected",
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"target": "CurLocalAvatar",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 25,
+						"logic": "LesserOrEqual",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"target": "Owner",
+						"key" : "_AVATARDETECTED",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 1,
+					},
+				],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Tornado
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_CreateTornadoEmitter",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Tornado_Loop"],
+				"modifierName": "CreateTornadoEmitter",
+			},
+		],
+		"modifiers":
+		{
+			"CreateTornadoEmitter":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_TornadoBS_OnGround",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Loop",
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : 6.0,
+								"y" : 0.0,
+								"z" : 6.0,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : -6.0,
+								"y" : 0.0,
+								"z" : 6.0,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : -8.0,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : -10.0,
+								"y" : 0.0,
+								"z" : -10.0,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : 12.5,
+								"y" : 0.0,
+								"z" : -12.5,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 17.5,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : 17.5,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+							"onGround":true,
+						},
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004104,
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"campID": 4001,
+						"campTargetType": "Enemy",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"bornRandom":
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 3,
+							},
+							"offset":
+							{
+								"x" : -17.5,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+							"onGround":true,
+						},
+					},
+				],
+				"thinkInterval" : 0.5,
+				"onThinkInterval":
+				[	
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height": 3,
+								"radius": 3.5,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+									"onGround": true,
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.25,
+									"strikeType": "Default",
+									"elementType": "Wind",
+									"elementDurability": 25,
+									"enBreak": 1.0,
+								},
+								"hitPattern" :
+								{
+					          		"onHitEffectName": "default",
+					          		"hitLevel": "Light",	//hitlevel = 2
+					          		"hitImpulseX": 200,	//hitlevel = 2
+					          		"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_TornadoEmitter_CreateTornado",
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"target":"Owner",
+				"key": "_IsOwnerEffigyWind",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "_ABILITY_Tornado_IsMixed",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "_ElementBallCount",
+				"value": -10,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"target":"Owner",
+				"key": "_ElementBallCount",
+				"value": -10,
+				"useLimitRange": true,
+				"maxValue": 999,
+				"minValue": 0,
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42004118,
+				"campID": 4001, 
+				"trackTarget":"Self",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{		
+						"x": 0.0,
+						"y": 0.0,
+						"z": 1.5,
+					},
+					"bornRandom":
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 2,
+						"maxRandomRange": 3.5,
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_Tornado_State",
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_Reborn_GenerateElemBall_HasGenerated",
+				"value": -10,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"Tornado_Timer",
+			},
+			{
+				"$type" : "AttachEffect",
+				"effectPattern":"Eff_Monster_Effigy_Wind_TornadoWind_BS",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"Tornado_Timer",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Tornado_MixHandlerTimer",
+				"target": "Self",
+			},
+		],
+		"modifiers":
+		{
+			"Tornado_Timer":
+			{
+				"duration": 10,
+				"onBeingHit":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "HitByFire",
+						"target": "Self",
+						"predicates":
+						[
+							{
+								"$type" : "ByHitElement",
+								"element" : "Fire",
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "HitByWater",
+						"target": "Self",
+						"predicates":
+						[
+							{
+								"$type" : "ByHitElement",
+								"element" : "Water",
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "HitByElectric",
+						"target": "Self",
+						"predicates":
+						[
+							{
+								"$type" : "ByHitElement",
+								"element" : "Electric",
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "HitByIce",
+						"target": "Self",
+						"predicates":
+						[
+							{
+								"$type" : "ByHitElement",
+								"element" : "Ice",
+							},
+						],
+					},
+				],
+				"onAdded" :
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ElementBallCount",
+						"value": -10,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerAbility",
+						"target": "Owner",
+						"abilityName": "Effigy_TornadoEmitter_CreateStaticElemBallBullet",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Handler",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_MixDetect",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_DetectAttackEvt",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_ElementDetect",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Wind",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Water",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Fire",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Electric",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Tornado_Mix_Ice",
+						"target": "Self",
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"target": "Owner",
+						"hitBoxNames": ["HitBox"],
+						"setEnable": false,
+					},
+				],
+			},
+			"Tornado_MixHandlerTimer":
+			{
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Tornado_Mix_Handler",
+						"target": "Self",
+					},
+				],
+			},
+			"HitByFire":
+			{
+				"duration": 10,
+				"stacking": "Unique",
+				"elementType": "Fire",
+				"elementDurability": 25,
+				"isElementDurabilityMutable": false,
+			},
+			"HitByWater":
+			{
+				"duration": 10,
+				"stacking": "Unique",
+				"elementType": "Water",
+				"elementDurability": 25,
+				"isElementDurabilityMutable": false,
+			},
+			"HitByElectric":
+			{
+				"duration": 10,
+				"stacking": "Unique",
+				"elementType": "Electric",
+				"elementDurability": 25,
+				"isElementDurabilityMutable": false,
+			},
+			"HitByIce":
+			{
+				"duration": 10,
+				"stacking": "Unique",
+				"elementType": "Ice",
+				"elementDurability": 25,
+				"isElementDurabilityMutable": false,
+			},
+			"Tornado_Mix_Handler":
+			{
+				"duration": 10,
+				"modifierMixins":
+				[
+					{
+						"$type": "AttachModifierToSelfGlobalValueMixin",
+						"globalValueKey": "_ABILITY_Tornado_IsMixed",
+						"valueSteps": [ -1, 0.5, 1.5 ],
+						"removeAppliedModifier": true,
+						"modifierNameSteps": [ "Blank", "Tornado_Mix_Wind" ],
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Tornado_ElementDetect",
+						"target": "Self",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Tornado_MixDetect",
+						"target": "Self",
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_TornadoWind",
+					},
+				],
+			},
+			"Tornado_MixDetect":
+			{
+				"duration":10,
+				"modifierMixins":
+				[
+					{
+						"$type": "AttachModifierToSelfGlobalValueMixin",
+						"globalValueKey": "_ABILITY_Tornado_IsMixed",
+						"valueSteps": [ -1, 0.5, 1.5 ],
+						"removeAppliedModifier": true,
+						"modifierNameSteps": [ "Blank", "Tornado_DetectAttackEvt" ],
+					},
+				],
+			},
+			"Tornado_DetectAttackEvt":
+			{
+				"duration":10,
+				"thinkInterval": 0.3,
+				"onThinkInterval":
+				[
+					{
+						"$type": "TriggerAttackEvent",
+						"targetType": "All",
+						"attackEvent":
+						{
+							"attackPattern":
+							{
+								"$type": "ConfigAttackBox",
+								"triggerType": "TriggerNoRepeat",
+								"size":
+								{
+									"x": 1.7,
+									"y": 6.0,
+									"z": 1.7,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName": "RootNode",
+									"offset":
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag": "Tornado_DetectAttackEvt",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType": "AntiFire",
+									"elementDurability": 0,
+									"elementRank": 1.0,
+									"enBreak": 0,
+								},
+							},
+						},
+					},
+				],
+			},
+			"Tornado_ElementDetect":
+			{
+				"duration":10,
+				"onHittingOther":
+				[
+					{
+						"$type": "Predicated",
+						"target": "Target",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHasElement",
+										"element": "Ice",
+									},
+									{
+										"$type": "ByHasElement",
+										"element": "Frozen",
+									},
+								],
+							},
+							{
+								"$type": "ByAttackTags",
+								"attackTags": ["Tornado_DetectAttackEvt"],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"forceByCaster": true,
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "Tornado_Mix_Ice",
+								"target": "Self",
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"target": "Owner",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+						],
+					},
+					{
+						"$type": "Predicated",
+						"target": "Target",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHasElement",
+										"element": "Fire",
+									},
+									{
+										"$type": "ByHasAbilityState",
+										"abilityState": "ElementBurning",
+									},
+								],
+							},
+							{
+								"$type": "ByAttackTags",
+								"attackTags": ["Tornado_DetectAttackEvt"],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"forceByCaster": true,
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "Tornado_Mix_Fire",
+								"target": "Self",
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"target": "Owner",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+						],
+					},
+					{
+						"$type": "Predicated",
+						"target": "Target",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByHasElement",
+								"element": "Water",
+							},
+							{
+								"$type": "ByAttackTags",
+								"attackTags": ["Tornado_DetectAttackEvt"],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"forceByCaster": true,
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "Tornado_Mix_Water",
+								"target": "Self",
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"target": "Owner",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+						],
+					},
+					{
+						"$type": "Predicated",
+						"target": "Target",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByHasElement",
+								"element": "Electric",
+							},
+							{
+								"$type": "ByAttackTags",
+								"attackTags": ["Tornado_DetectAttackEvt"],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"forceByCaster": true,
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "Tornado_Mix_Electric",
+								"target": "Self",
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+							{
+								"$type": "AddGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"target": "Owner",
+								"value": -1,
+								"useLimitRange": true,
+								"maxValue": 1,
+								"minValue": 0,
+							},
+						],
+					},
+				],
+			},
+			"Blank":
+			{
+			},
+			"Tornado_Mix_Wind":
+			{
+				"duration": 10,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Attach_Wind",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"canHitHead" : false,
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 2.25,
+									"y" : 5,
+									"z" : 2.25,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": -0.75,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"elementType" : "Wind",
+									"elementDurability" : 25,
+									"strikeType": "Default",
+									"enBreak": 50.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},	
+							},
+						},
+					},	
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_TornadoWind_Dissipate",
+					},
+				],
+			},
+			"Tornado_Mix_Fire":
+			{
+				"duration": 10,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Attach_Fire",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_TornadoFire_Dissipate",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter": "Get_Fire",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsFire",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsFire",
+						"target": "Owner",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"canHitHead" : false,
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 2.25,
+									"y" : 5,
+									"z" : 2.25,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": -0.75,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"elementType" : "Fire",
+									"elementDurability" : 25,
+									"strikeType": "Default",
+									"enBreak": 50.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},	
+							},
+						},
+					},	
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_TornadoFire_Dissipate",
+					},
+				],
+			},
+			"Tornado_Mix_Electric":
+			{
+				"duration": 10,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Attach_Electric",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter": "Get_Electric",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsElectric",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsElectric",
+						"target": "Owner",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"canHitHead" : false,
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 2.25,
+									"y" : 5,
+									"z" : 2.25,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": -0.75,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"elementType" : "Electric",
+									"elementDurability" : 25,
+									"strikeType": "Default",
+									"enBreak": 50.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},	
+							},
+						},
+					},	
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_TornadoElectric_Dissipate",
+					},
+				],
+			},
+			"Tornado_Mix_Water":
+			{
+				"duration": 10,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Attach_Water",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter": "Get_Water",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWater",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key": "_ABILITY_Tornado_IsWater",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"canHitHead" : false,
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 2.25,
+									"y" : 5,
+									"z" : 2.25,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": -0.75,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"elementType" : "Water",
+									"elementDurability" : 25,
+									"strikeType": "Default",
+									"enBreak": 50.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},	
+							},
+						},
+					},	
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_TornadoWater_Dissipate",
+					},
+				],
+			},
+			"Tornado_Mix_Ice":
+			{
+				"duration": 10,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_Tornado_Attach_Ice",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter": "Get_Ice",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsIce",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsIce",
+						"target": "Owner",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"target": "Owner",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"canHitHead" : false,
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 2.25,
+									"y" : 5,
+									"z" : 2.25,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 2.5,
+										"z": -0.75,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.5,
+									"elementType" : "Water",
+									"elementDurability" : 25,
+									"strikeType": "Default",
+									"enBreak": 50.0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Heavy",	//hitlevel = 4
+									"hitImpulseX": 800,	//hitlevel = 4
+									"hitImpulseY": 0,	//hitlevel = 4
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},	
+							},
+						},
+					},	
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Wind_TornadoIce_Dissipate",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_TornadoEmitter_CreateStaticElemBallBullet",
+		"onKill":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_ElementBallCount",
+				"value": -1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"target":"Owner",
+				"key": "_ElementBallCount",
+				"value": -1,
+				"useLimitRange": true,
+				"maxValue": 999,
+				"minValue": 0,
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_ElementBallCount",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"target":"Owner",
+				"key": "_ElementBallCount",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 999,
+				"minValue": 0,
+			},
+			{
+				"$type":"Randomed",
+				"chance":0.5,
+				"successActions":
+				[
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004105,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 4.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsWind",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004106,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 4.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsFire",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004107,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 4.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsElectric",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004108,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 4.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsWater",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004109,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 4.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsIce",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004105,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsWind",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004106,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsFire",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004107,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsElectric",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004108,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsWater",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004109,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 6.0,
+								"z": 0.0,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsIce",
+								"value": 1,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_Tornado_IsMixed",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_GenerateWindElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWindBS",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"target": "Owner",
+				"key": "_Reborn_GenerateElemBall_HasGenerated",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2021,
+				"baseEnergy": 18,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_GenerateFireElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallFireBS",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2017,
+				"baseEnergy": 18,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallFire_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallFire",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_GenerateElectricElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallElectricBS",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2020,
+				"baseEnergy": 18,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallElectric_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallElectric",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_GenerateWaterElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWaterBS",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2018,
+				"baseEnergy": 18,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWater_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWater",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StaticElementBall_GenerateIceElemBall",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "EffectTimer",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallIceBS",
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "GenerateElemBall",
+				"configID": 2022,
+				"baseEnergy": 18,
+				"ratio": 1,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" :
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallIce_AS",
+			},
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"Effect",
+			},
+			{
+				"$type": "KillSelf",
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Owner",
+			},
+		],
+		"modifiers":
+		{
+			"EffectTimer":
+			{
+				"duration" : 1.2,			
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effect",
+					},
+				],
+			},
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallIce",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  EnergyAbsorb
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_EnergyAbsorb",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["EnergyAbsorb_Loop1"],
+				"modifierName": "Damage",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["EnergyAbsorb_AS1"],
+				"modifierName": "SetRenders",
+			},
+			{
+				"$type": "AttachModifierToSelfGlobalValueMixin",
+				"globalValueKey": "_ElementBallCount",	//检测场上能量球数量
+				"valueSteps": [-0.5, 2.5, 999],
+				"removeAppliedModifier": true,
+				"modifierNameSteps": ["NoElemBall","HasElemBall"],
+			},
+			{
+				"$type": "AttachModifierToSelfGlobalValueMixin",
+				"globalValueKey": "_EnergyAbsorbCount",	//检测已经吸取能量球数量
+				"valueSteps": [0, 2.5, 3.5],
+				"removeAppliedModifier": true,
+				"modifierNameSteps": ["Empty","EnergyAbsorbStop"],
+			},
+		],
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_EnergyAbsorbCount",
+				"value": -10,
+				"useLimitRange": true,
+				"maxValue": 3,
+				"minValue": 0,
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "_TempCount",
+				"value": -10,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004104,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_ElementBallCount",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Effigy_TornadoEmitter_CreateElemBallBullet",
+						"target": "Target",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_TempCount",
+								"value": 0,
+								"forceByCaster":true,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_TempCount",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"GetElemBallTimer":
+			{
+				"duration": 1,
+				"onRemoved": 
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "GetElemBall_EnergyAbsorb",
+					},
+				],
+			},
+			"GetElemBall_EnergyAbsorb":
+			{
+				"thinkInterval" : 2.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_EnergyAbsorb",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_EnergyAbsorb",
+					},
+				],
+			},
+			"Empty":
+			{
+			},
+			"EnergyAbsorbStop":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "GetElemBall_EnergyAbsorb",
+					},
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "EnergyAbsorbStop",
+						"value": true,
+					},
+				],
+			},
+			"Damage" :
+			{
+				"thinkInterval" : 0.5,
+				"onThinkInterval":
+				[	
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"fanAngle": 360.0,
+								"height": 3,
+								"radius": 4,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0, // + means up, - means down
+										"y": 0, // + means left, - means right
+										"z": 0, // + means forward, - means backward
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0.1,
+									"strikeType": "Default",
+									"elementType": "Wind",
+									"elementDurability": 50,
+									"enBreak": 100.0,
+								},
+								"hitPattern" :
+								{
+					          		"onHitEffectName": "default",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 480,	//hitlevel = 5
+									"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"value": -10,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "EnergyAbsorbStop",
+						"value": false,
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorb_CircleAS",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "GetElemBall_EnergyAbsorb",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbLoop",
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "GetElemBallTimer",
+					},
+				],
+			},
+			"SetRenders":
+			{
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"NoElemBall":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "HasElemBall",
+						"value": false,
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [801],
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "HasElemBall",
+						"value": true,
+					},
+				],
+			},
+			"HasElemBall":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "HasElemBall",
+						"value": true,
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [701,902],
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "HasElemBall",
+						"value": false,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_TornadoEmitter_CreateElemBallBullet",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004105,
+					"sortType": "Default",
+				},
+				"trackTarget": "OriginOwner",
+				"bulletID": 42004110,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsWind",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004106,
+					"sortType": "Default",
+				},
+				"trackTarget": "OriginOwner",
+				"bulletID": 42004111,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsFire",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004107,
+					"sortType": "Default",
+				},
+				"trackTarget": "OriginOwner",
+				"bulletID": 42004112,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsElectric",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004108,
+					"sortType": "Default",
+				},
+				"trackTarget": "OriginOwner",
+				"bulletID": 42004113,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsWater",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004109,
+					"sortType": "Default",
+				},
+				"trackTarget": "OriginOwner",
+				"bulletID": 42004114,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsIce",
+						"value": 1,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ABILITY_Tornado_IsMixed",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004105,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004106,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004107,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004108,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004109,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type": "KillSelf",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_TriggerWindExplode",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_IsOwnerEffigyWind",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_WindExplode",
+						"target": "Target",
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"target": "Target",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type": "KillSelf",
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Owner"
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWind",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_TriggerFireExplode",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_IsOwnerEffigyWind",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_FireExplode",
+						"target": "Target",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"target": "Target",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "KillSelf",
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Owner"
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallFire",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_TriggerElectricExplode",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_IsOwnerEffigyWind",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_ElectricExplode",
+						"target": "Target",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"target": "Target",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "KillSelf",
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Owner"
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallElectric",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_TriggerWaterExplode",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_IsOwnerEffigyWind",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_WaterExplode",
+						"target": "Target",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"target": "Target",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "KillSelf",
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Owner"
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallWater",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ElementBall_TriggerIceExplode",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "_IsOwnerEffigyWind",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type" : "ByTargetIsSelf",
+						"isSelf" : false,
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TriggerAbility",
+						"abilityName": "Monster_Effigy_Wind_IceExplode",
+						"target": "Target",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "_EnergyAbsorbCount",
+						"target": "Target",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 3,
+						"minValue": 0,
+					},
+					{
+						"$type":"RemoveModifier",
+						"modifierName":"Effect",
+					},
+					{
+						"$type": "KillSelf",
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Owner"
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_ElemBallIce",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_WindExplode",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbWind",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0, // + means up, - means down
+						"y": 0, // + means left, - means right
+						"z": 0, // + means forward, - means backward
+					},
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage1",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage2",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage3",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage4",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_TempValue",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 20,
+				"minValue" : 0,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "EnergyAbsorbStop",
+				"value": true,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ElementBallCount",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Damage1":
+			{
+			    "duration":0.1,		
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R8H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R13H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage2":
+			{
+				"duration": 0.22,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R18H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage3":
+			{
+				"duration": 0.37,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R23H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage4":
+			{
+				"duration": 0.55,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R28H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"UNIQUE_Explode":
+			{
+				"isUnique": true,
+				"stacking": "Unique",
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type":"DamageByAttackValue",
+						"attacker":"Caster",
+						"target": "Self",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType" : "Wind",
+								"elementDurability" : 50,
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+				          		"hitLevel": "Air",
+				          		"hitImpulseX": 100,
+				          		"hitImpulseY": 600,
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.00,
+								"hitHaltTimeScale":0.01,
+								"muteHitText": false,
+								"retreatType":"ByAttacker",
+							},
+							"canHitHead": false,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_FireExplode",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbFire",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0, // + means up, - means down
+						"y": 0, // + means left, - means right
+						"z": 0, // + means forward, - means backward
+					},
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage1",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage2",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage3",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage4",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_TempValue",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 20,
+				"minValue" : 0,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "EnergyAbsorbStop",
+				"value": true,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ElementBallCount",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Damage1":
+			{
+			    "duration":0.1,		
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R8H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R13H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage2":
+			{
+				"duration": 0.22,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R18H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage3":
+			{
+				"duration": 0.37,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R23H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage4":
+			{
+				"duration": 0.55,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R28H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"UNIQUE_Explode":
+			{
+				"isUnique": true,
+				"stacking": "Unique",
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type":"DamageByAttackValue",
+						"attacker":"Caster",
+						"target": "Self",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+				          		"hitLevel": "Air",
+				          		"hitImpulseX": 100,
+				          		"hitImpulseY": 600,
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.00,
+								"hitHaltTimeScale":0.01,
+								"muteHitText": false,
+								"retreatType":"ByAttacker",
+							},
+							"canHitHead": false,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_ElectricExplode",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbElectric",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0, // + means up, - means down
+						"y": 0, // + means left, - means right
+						"z": 0, // + means forward, - means backward
+					},
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage1",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage2",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage3",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage4",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_TempValue",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 20,
+				"minValue" : 0,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "EnergyAbsorbStop",
+				"value": true,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ElementBallCount",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Damage1":
+			{
+			    "duration":0.1,		
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R8H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R13H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage2":
+			{
+				"duration": 0.22,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R18H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage3":
+			{
+				"duration": 0.37,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R23H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage4":
+			{
+				"duration": 0.55,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R28H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"UNIQUE_Explode":
+			{
+				"isUnique": true,
+				"stacking": "Unique",
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type":"DamageByAttackValue",
+						"attacker":"Caster",
+						"target": "Self",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType" : "Electric",
+								"elementDurability" : 50,
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+				          		"hitLevel": "Air",
+				          		"hitImpulseX": 100,
+				          		"hitImpulseY": 600,
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.00,
+								"hitHaltTimeScale":0.01,
+								"muteHitText": false,
+								"retreatType":"ByAttacker",
+							},
+							"canHitHead": false,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_WaterExplode",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbWater",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0, // + means up, - means down
+						"y": 0, // + means left, - means right
+						"z": 0, // + means forward, - means backward
+					},
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage1",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage2",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage3",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage4",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_TempValue",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 20,
+				"minValue" : 0,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "EnergyAbsorbStop",
+				"value": true,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ElementBallCount",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"Damage1":
+			{
+			    "duration":0.1,		
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R8H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R13H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage2":
+			{
+				"duration": 0.22,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R18H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage3":
+			{
+				"duration": 0.37,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R23H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage4":
+			{
+				"duration": 0.55,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R28H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"UNIQUE_Explode":
+			{
+				"isUnique": true,
+				"stacking": "Unique",
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type":"DamageByAttackValue",
+						"attacker":"Caster",
+						"target": "Self",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType" : "Water",
+								"elementDurability" : 50,
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+				          		"hitLevel": "Air",
+				          		"hitImpulseX": 100,
+				          		"hitImpulseY": 600,
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.00,
+								"hitHaltTimeScale":0.01,
+								"muteHitText": false,
+								"retreatType":"ByAttacker",
+							},
+							"canHitHead": false,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_IceExplode",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbAS",
+			},
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_EnergyAbsorbIce",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0, // + means up, - means down
+						"y": 0, // + means left, - means right
+						"z": 0, // + means forward, - means backward
+					},
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage1",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage2",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage3",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Damage4",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_TempValue",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 20,
+				"minValue" : 0,
+			},
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "EnergyAbsorbStop",
+				"value": true,
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_ElementBallCount",
+						"value": 0,
+						"forceByCaster":true,
+						"compareType": "Equal",
+					},
+				],
+			},	
+		],
+		"modifiers":
+		{
+			"Damage1":
+			{
+			    "duration":0.1,		
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R8H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R13H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage2":
+			{
+				"duration": 0.22,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R18H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage3":
+			{
+				"duration": 0.37,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R23H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"Damage4":
+			{
+				"duration": 0.55,
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "Circle_Effigy_R28H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"target": "Target",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Explode",
+								"target": "Target",
+							},				
+						],
+					},
+				],
+			},
+			"UNIQUE_Explode":
+			{
+				"isUnique": true,
+				"stacking": "Unique",
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type":"DamageByAttackValue",
+						"attacker":"Caster",
+						"target": "Self",
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType" : "Ice",
+								"elementDurability" : 50,
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+				          		"hitLevel": "Air",
+				          		"hitImpulseX": 100,
+				          		"hitImpulseY": 600,
+								"reboundRatio": 0,
+								"canBeDefenceHalt": false,
+								"hitHaltTime": 0.00,
+								"hitHaltTimeScale":0.01,
+								"muteHitText": false,
+								"retreatType":"ByAttacker",
+							},
+							"canHitHead": false,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  MultiAtk WindBlade
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_MultiAtk_Start",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "CreateGadget",
+				"campID": 4001,
+				"target": "SelfAttackTarget",
+				"gadgetID": 42004123,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"onGround": true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_MultiAtk_Attack",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["MultiAtk"],
+				"modifierName": "EnablePushCollider_MultiAtk",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type":"TriggerAbility",
+				"abilityName":"Effigy_WindBladePos_Damage",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004123,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"EnablePushCollider_MultiAtk" :
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+				],
+				"onRemoved":
+				[	
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_WindBladePos_Damage",
+		"onAdded":
+		[
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_MultiAtk_Alert",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset": 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type":"ApplyModifier",
+				"modifierName":"WindBladeDetect",
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_MultiAtk1",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset": 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+			{
+				"$type" : "DamageByAttackValue",
+				"otherTargets": 
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR5",
+					"centerBasedOn": "Self",
+					"campTargetType": "Enemy",
+					"campBasedOn": "Self",
+				},
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset": 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+				"attackInfo":
+				{
+					"attackTag" : "Effigy_Wind_MultiAtk1",
+					"attackProperty":
+					{
+						"damagePercentage": 0.75,
+						"elementType": "Wind",
+						"elementDurability": 50,
+						"enBreak": 200,
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Air",
+						"hitImpulseX": 0,
+						"hitImpulseY": 1350,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": false,
+						"hitHaltTime": 0.0,
+						"hitHaltTimeScale": 0.00,
+						"muteHitText": false,
+						"retreatType" : "ByHitDirection",
+					},
+					"forceCameraShake": false,
+				},
+			},
+		],
+		"modifiers":
+		{
+			"WindBladeDetect":
+			{	
+				"onAttackLanded":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"target" : "Target",
+						"modifierName" : "WindBladeStart",
+						"predicates" :
+						[
+							{
+								"$type" : "ByAttackTags",
+								"attackTags" : ["Effigy_Wind_MultiAtk1"],
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+					},
+				],
+			},
+			"WindBladeStart":
+			{	
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"target" : "Self",
+						"modifierName" : "UNIQUE_WindBlade",
+					}
+				],
+			},
+			"UNIQUE_WindBlade":
+			{
+				"isUnique":true,	
+				"duration": 1,
+				"isLimitedProperties": true,
+				"properties":
+				{
+					"Actor_AddGravityScale": -1.98,
+				},
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Avatar_Boy_Bow_Venti_Rise_Monster",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_WindBlade",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"ApplyModifier",
+				"modifierName": "Damage",
+			},
+			{
+				"$type": "TriggerBullet",
+				"campID": 4001,
+				"bulletID": 42004122,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WindBladeAttach",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": -1.0,
+					},
+					"direction":
+					{
+						"$type" : "ConfigDirectionByAttachPoint",
+						"attachPointName" : "WindBladeAttach",
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						}
+					},
+				},
+			},
+		],
+		"modifiers":
+		{
+			"Damage":
+			{	
+				"duration": 0.13,
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent": 
+						{
+							"attackPattern":
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"size" : 
+								{
+									"x" : 8,
+									"y" : 5,
+									"z" : 30,
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "WindBladeAttach",
+									"offset" : 
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": -8.0,
+									},
+									"direction":
+									{
+										"$type" : "ConfigDirectionByAttachPoint",
+										"attachPointName" : "WindBladeAttach",
+										"angleOffset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										}
+									},
+								},
+				        	},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 1,
+									"strikeType": "Blunt",
+									"elementType" : "Wind",
+									"elementDurability" : 50,
+									"enBreak": 200,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName": "default",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 480,	//hitlevel = 5
+									"hitImpulseY": 600,	//hitlevel = 5
+									"reboundRatio": 0,
+									"canBeDefenceHalt": false,
+									"hitHaltTime": 0.00,
+									"hitHaltTimeScale":0.01,
+									"muteHitText": false,
+									"retreatType":"ByAttacker",
+								},
+								"canHitHead": false,
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_WindBlade_Hit",
+		"onAdded": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Wind_MultiAtk2",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type":"RemoveUniqueModifier",
+				"modifierName": "UNIQUE_WindBlade",
+				"target": "Target",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Random Move
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_RandomMove",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 20,
+						"logic": "GreaterOrEqual",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RushAwayTrigger",
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type":"Randomed",
+						"chance":0.65,
+						"successActions":
+						[
+							{
+								"$type": "SetAnimatorTrigger",
+								"triggerID": "RushAwayTrigger",
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 42004012,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",
+					"positionKey": "InitialPos",
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 10,
+						"maxRandomRange": 15
+					},
+					"onGround":true,
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_RandomMoveStart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["RushAway"],
+				"modifierName": "Effect",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["RushAway_AS"],
+				"modifierName": "ResetAIAttackTarget",
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type" : "SetSelfAttackTarget",
+				"turnToTargetImmediately" : true,
+				"otherTargets":
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004012,
+					"sortType": "Default",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"Effect" :
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider","CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type":"AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Wind_RushLoop",
+					},
+				],
+				"onRemoved":
+				[	
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider","CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004012,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type": "ResetAIAttackTarget",
+					},
+				],
+			},
+			"ResetAIAttackTarget" :
+			{
+				"onAdded":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004012,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type": "ResetAIAttackTarget",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Steer
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Wind_Steer",
+		"abilityMixins":
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["SingleAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.1,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.1,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk"],
+				"startNormalizedTime": 0.3,
+				"endNormalizedTime": 0.35,
+				"angularSpeed": 150,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["SingleAtk_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "SingleAtk_RushStop",
+				"attackDistance" : 5,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["Vortex_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "Vortex_RushStop",
+				"attackDistance" : 5,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["MultiAtk_Rush"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "MultiAtk_RushStop",
+				"attackDistance" : 9,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["AirGun"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 3,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+		],
+	},
+},
+]

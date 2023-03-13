@@ -1,0 +1,289 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  Attack_Enhance
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MonsterEliteAffix_Attack_Enhance",
+			"onAdded":
+			[
+				{
+					"$type": "UseSkillEliteSet",
+					"skillEliteSetID": 2,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_TAG",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Defend_Enhance
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MonsterEliteAffix_Defence_Enhance",
+			"onAdded":
+			[
+				{
+					"$type": "UseSkillEliteSet",
+					"skillEliteSetID": 3,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_TAG",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_DEFENCE_ENHANCE",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Agility_Enhance
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MonsterEliteAffix_Agility_Enhance",
+			"onAdded":
+			[
+				{
+					"$type": "UseSkillEliteSet",
+					"skillEliteSetID": 4,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_TAG",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_AGILITY_ENHANCE",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Support_Enhance
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MonsterEliteAffix_Support_Enhance",
+			"onAdded":
+			[
+				{
+					"$type": "UseSkillEliteSet",
+					"skillEliteSetID": 5,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 1,
+					"key"  : "_ELITEAFFIX_TAG",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"value"  : 5,
+					"key"  : "_ELITEAFFIX_SUPPORT_ENHANCE",
+					"useLimitRange"  : true,
+					"maxValue"  : 1,
+					"minValue"  : 0,
+				},
+			],
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  AgilityEnhance_Abyss_Plugin
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "MonsterEliteAffix_AgilityEnhance_Abyss_Plugin",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Blink"],
+					"modifierName": "Abyss_BlinkResetOthers",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["NormalAtk", "SpecialAtk"],
+					"modifierName": "Abyss_OthersResetBlink",
+				},
+			],
+			"modifiers":
+			{
+				"Abyss_BlinkResetOthers":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"value"  : -9,
+							"key"  : "_ABYSS_RESETRANDOM",
+							"useLimitRange"  : true,
+							"maxValue"  : 3,
+							"minValue"  : 0,
+						},
+						{
+							"$type" : "AddGlobalValue",
+							"key"  : "_ABYSS_RESETRANDOM",
+							"useLimitRange"  : true,
+							"randomInRange"  : true,
+							"maxValue"  : 3,
+							"minValue"  : 0,
+						},
+						{
+							"$type" : "SetPoseBool",
+							"boolID"  : "CDReset",
+							"value"  : false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName"  : "Abyss_BlinkResetOthers_Latency",
+						},
+					],
+				},
+				"Abyss_BlinkResetOthers_Latency":
+				{
+					"duration": 0.1,
+					"onRemoved":
+					[
+						{
+							"$type" : "SetPoseBool",
+							"boolID"  : "CDReset",
+							"value"  : true,
+						},
+						{
+							"$type" : "ResetAISkillInitialCD",
+							"skillIDs"  : [502, 303, 304],
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_ABYSS_RESETRANDOM",
+									"value"  : 2,
+									"compareType"  : "LessAndEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_ABYSS_RESETRANDOM",
+									"value"  : 0,
+									"compareType"  : "MoreThanAndEqual",
+								},
+							],
+						},
+						{
+							"$type" : "ResetAISkillInitialCD",
+							"skillIDs"  : [403, 303, 304],
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_ABYSS_RESETRANDOM",
+									"value"  : 3,
+									"compareType"  : "LessAndEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key"  : "_ABYSS_RESETRANDOM",
+									"value"  : 2,
+									"compareType"  : "MoreThan",
+								},
+							],
+						},
+					],
+				},
+				"Abyss_OthersResetBlink":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "SetPoseBool",
+							"boolID"  : "CDReset",
+							"value"  : false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName"  : "Abyss_OthersResetBlink_Latency",
+						},
+					],
+				},
+				"Abyss_OthersResetBlink_Latency":
+				{
+					"duration": 0.1,
+					"onRemoved":
+					[
+						{
+							"$type" : "SetPoseBool",
+							"boolID"  : "CDReset",
+							"value"  : true,
+						},
+						{
+							"$type" : "ResetAISkillInitialCD",
+							"skillIDs"  : [403, 502],
+						},
+					],
+				},
+			},
+		},
+	},
+]

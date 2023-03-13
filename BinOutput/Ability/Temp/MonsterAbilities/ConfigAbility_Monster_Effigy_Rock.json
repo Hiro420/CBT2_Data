@@ -1,0 +1,4863 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  State
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_ShaderState1ToState2",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState2",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_ShaderState2ToState1",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "ToShaderState1",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_CoreOutAS",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ChargeAtk_CoreOutAS","SingleAtk_CoreOutAS","StoneArray_CoreOutAS","Spike_CoreOutAS","StonePillar_CoreOutAS"],
+				"modifierName": "UNIQUE_SetRender",
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "UNIQUE_SetRender",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_SetRender":
+			{
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_KillPillar",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Shield
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Shield",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1, 101, 102, 1101,1102],
+				"modifierName": "ShieldModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1],
+				"modifierName": "ShaderNoneToState1",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["ChargeAtk_CoreOutLoop","SingleAtk_CoreOutLoop","StonePillar_CoreOutLoop","Spike_CoreOutLoop","StoneArray_CoreOutLoop"],
+				"modifierName": "SetRenders",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+				"setEnable": true,
+			},
+		],
+		"modifiers":
+		{
+			"ShieldModifier":
+			{
+				"state": "LockHP",
+				"properties":
+				{
+					"Actor_SubHurtDelta" : "%SubHurtDelta",
+				},
+				"onAdded": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+ 					},
+ 					{
+						"$type": "AttachAbilityStateResistance",
+						"resistanceListID": 12002,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+ 						"$type": "EnableHitBoxByName",
+ 						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+ 					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_ShieldAttacked",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+							"alongGround": true,
+						},
+					},
+				],
+			},
+			"ShaderNoneToState1":
+			{
+				"onAdded": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": false,
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004201,
+							"sortType": "Default",
+						},
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "NoneToShaderState1",
+						"value": true,
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004201,
+							"sortType": "Default",
+						},
+					},
+				],
+			},
+			"SetRenders":
+			{
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"SubHurtDelta" : 0.99,
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Core
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Core",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201,202,1201],
+				"modifierName": "UNIQUE_CoreConfig",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [201,202,1201],
+				"modifierName": "BeingHitEffect",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1,101, 102, 201, 202, 1101, 1201, 1102],
+				"modifierName": "EnergyCore",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1],
+				"modifierName": "CoreStandbyFreeEffect",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [101, 102, 201, 202, 1101, 1201, 1102],
+				"modifierName": "UNIQUE_EnergyCoreState",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS","Struggle","Warning","Standby_AS"],
+				"modifierName": "CoreStandbyEffect",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "EnableHitBoxByName",
+				"hitBoxNames": ["CoreHitBox"],
+				"setEnable": false,
+			},
+			{
+				"$type" : "TriggerSetRenderersEnable",
+				"renderNames"  : ["Core"],
+				"setEnable"  : false,
+			},
+			{
+				"$type": "HideUIBillBoard",
+				"hide": false,
+			},
+			{
+				"$type": "AttachAbilityStateResistance",
+				"resistanceListID": 12001,
+			},
+		],
+		"modifiers":
+		{
+			"BeingHitEffect":
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "Shake",
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_CoreBeHit",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+						},
+					},
+				],
+			},
+			"UNIQUE_CoreConfig":
+			{
+				"isUnique": true,
+				"elementType": "Rock",
+				"elementDurability": 100,
+				"isElementDurabilityMutable": false,
+				"onAdded": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+				],
+			},
+			"EnergyCore":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCore",
+					},
+				],
+			},
+			"CoreStandbyFreeEffect":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_CoreStandbyFree",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+				],
+			},
+			"CoreStandbyEffect":
+			{
+				"onAdded": 
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_CoreStandby",
+					},
+				],
+			},
+			"UNIQUE_EnergyCoreState":
+			{
+				"isUnique": true,
+				"onAdded": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCore",
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCore",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  SetPose
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetOnGroundPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "OnPillar",
+				"value": false,
+			},
+			{
+				"$type": "ResetAISkillInitialCD",
+				"skillIDs": [401],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetOnPillarPose",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachModifierToSelfGlobalValueMixin",
+				"globalValueKey": "_STONEPILLARCOUNT_",	//检测场上柱子
+				"valueSteps": [-0.5, 0.5, 1.5, 100],
+				"removeAppliedModifier": true,
+				"modifierNameSteps": ["NoPillar","OnePillar","MorePillar"],
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_NEARESTPILLAR_",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004201,
+					"topLimit":1,
+					"sortType": "Nearest",
+				},
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "OnPillar",
+				"value": true,
+			},
+		],
+		"modifiers":
+		{
+			"NoPillar":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "SetPoseInt",
+						"intID": "PillarCount",
+						"value": 0,
+					},
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [802],
+					},
+				],
+			},
+			"OnePillar":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "SetPoseInt",
+						"intID": "PillarCount",
+						"value": 1,
+					},
+				],
+			},
+			"MorePillar":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "SetPoseInt",
+						"intID": "PillarCount",
+						"value": 2,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetCoreOutPose",
+		"abilityMixins" :
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Standby_BS"],
+				"modifierName": "ForceSetPose",
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : true,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : false,
+			},
+		],
+		"modifiers":
+		{
+			"ForceSetPose":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "SetPoseBool",
+						"boolID": "CoreOut",
+						"value": false,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetCoreInPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["CorePushCollider"],
+				"setEnable" : false,
+			},
+			{
+				"$type" : "EnablePushColliderName",
+				"pushColliderNames" : ["PushCollider"],
+				"setEnable" : true,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetDyingPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "DyingState",
+				"value": true,
+			},
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_CoreConfig",
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_SetRebornPose",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": false,
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "CoreOut",
+				"value": false,
+			},
+			{
+				"$type": "ResetAISkillInitialCD",
+				"skillIDs": [802,901,1001],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Reborn
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RebornState",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "RebornModifier",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "DenyLockOn",
+			},
+			{
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [301,1301],
+				"modifierName": "GhostToEmeny",
+			},
+		],
+		"modifiers":
+		{
+			"DenyLockOn":
+			{
+				"state": "DenyLockOn",
+			},
+			"GhostToEmeny":
+			{
+				"state": "IsGhostToEnemy",
+			},
+			"RebornModifier":
+			{
+				"state": "Invincible",
+				"onAdded": 
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["CoreHitBox"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_HpDetect",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"UNIQUE_Effigy_Limbo",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"UNIQUE_Effigy_HpDetect",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_HpDetect":
+			{
+				"isUnique": true,
+				"modifierMixins" :
+				[
+					{
+						"$type": "AttachModifierToHPPercentMixin",
+						"valueSteps": [0.05],
+						"modifierNameSteps": ["Effigy_Empty","UNIQUE_Effigy_TriggerReborn"],
+					},
+				],
+			},
+			"UNIQUE_Effigy_Limbo":
+			{
+				"isUnique": true,
+				"state" : "Limbo",
+				"properties" :
+				{
+					"Actor_HpThresholdRatio": 0.0,
+				},
+				"onRemoved" :
+				[
+					{
+						"$type":"FireEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCoreDie",
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName": "RootNode",
+							"attachPointTargetType": "Self",
+						},
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004212,
+							"sortType": "Default",
+						}
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type":"KillSelf",
+					},
+				],
+			},
+			"UNIQUE_Effigy_TriggerReborn":
+			{
+				"isUnique": true,
+				"onAdded" :
+				[
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Rock_SetDyingPose",
+					},
+				],
+			},
+			"Effigy_Empty":
+			{
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RebornStart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Dying"],
+				"modifierName": "UNIQUE_DyingInvincible",
+			},
+		],
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName":"Reborn_Timer",
+			},
+			{
+				"$type": "SetPoseBool",
+				"boolID": "DyingState",
+				"value": true,
+			},
+		],
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_REBORNPILLARCOUNT_",
+				"value" : 3,
+				"useLimitRange" : true,
+				"maxValue" : 3,
+				"minValue" : 3,
+			},
+		],
+		"modifiers":
+		{
+			"Reborn_Timer":
+			{
+				"duration": 1.5,
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_RebornBS",
+					},
+					{
+						"$type": "SetGlobalPos", 
+						"key": "RebornPillarPos1",
+						"setTarget": false,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 6.0,
+								"y": 0.0,
+								"z": -3.75,
+							},
+							"bornRandom" :
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SetGlobalPos", 
+						"key": "RebornPillarPos2",
+						"setTarget": false,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": -6.0,
+								"y": 0.0,
+								"z": -3.75,
+							},
+							"bornRandom" :
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "SetGlobalPos", 
+						"key": "RebornPillarPos3",
+						"setTarget": false,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 7.5,
+							},
+							"bornRandom" :
+							{
+								"$type": "BornRandomFromCenter",
+								"minRandomRange": 0,
+								"maxRandomRange": 1,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "FireEffect", 
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos1",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "FireEffect", 
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos2",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 1,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "FireEffect", 
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos3",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 2,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName":"Reborn",
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004212,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos1",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004212,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos2",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 1,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+					{
+						"$type": "CreateGadget",
+						"lifeByOwnerIsAlive": true,
+						"byServer": true,
+						"gadgetID": 42004212,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RebornPillarPos3",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_REBORNPILLARCOUNT_",
+								"value": 2,
+								"compareType": "MoreThan",
+							},
+						],
+					},
+				],
+			},
+			"Reborn":
+			{
+				"duration": 15,
+				"onAdded" :
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Monster_Effigy_Rock_RebornLoop",
+					},
+				],
+				"modifierMixins":
+				[
+					{
+						"$type": "AttachModifierToSelfGlobalValueMixin",
+						"globalValueKey": "_REBORNPILLARCOUNT_",	//检测重生时剩余柱子
+						"valueSteps": [-0.5, 0.5, 3.5],
+						"removeAppliedModifier": true,
+						"modifierNameSteps": ["EffigyDie","Empty"],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Rock_SetRebornPose",
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Monster_Effigy_Rock_HealHp",
+					},
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "RebornState",
+						"value": true,
+					},
+					{
+						"$type": "KillSelf",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004212,
+							"sortType": "Default",
+						}
+					},
+				],
+			},
+			"EffigyDie":
+			{
+				"onAdded" :
+				[
+					{
+						"$type": "RemoveUniqueModifier",
+						"modifierName" : "UNIQUE_Effigy_Limbo",
+						"target": "Self",
+					},
+				],
+			},
+			"Empty":
+			{
+			},
+			"UNIQUE_DyingInvincible":
+			{
+				"isUnique": true,
+				"state": "Invincible",
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_HealHp",
+		"onAbilityStart" :
+		[
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.15,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_REBORNPILLARCOUNT_",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.3,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_REBORNPILLARCOUNT_",
+						"value": 2,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "HealHP",
+				"amountByTargetMaxHPRatio": 0.45,
+				"target":"Self",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_REBORNPILLARCOUNT_",
+						"value": 3,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RebornPillar_ElementShield",
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Effigy_RebornPillar_ElementShield",
+				"target": "Self",
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent":
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackCircle",
+						"triggerType": "TriggerNoRepeat",
+						"height": 3,
+						"fanAngle": 360.0,
+						"radius": 2.5,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0,
+							"strikeType": "Blunt",
+							"elementType" : "Rock",
+							"enBreak": 1000,
+						},
+						"hitPattern" :
+						{
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"retreatType": "ByAttacker",
+							"reboundRatio" : 0,
+							"canBeDefenceHalt" : true,
+							"hitHaltTime" : 0.05,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText" : true,
+						},
+					},
+				},
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type" : "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarDie",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_RebornPillar_ElementShield":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"elementType": "Rock",
+				"elementDurability": 200,
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Rock",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0,
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBeHit",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+						},
+					},
+					{
+						"$type" : "AddElementDurability",
+						"modifierName" : "UNIQUE_Effigy_RebornPillar_ElementShield",
+						"useLimitRange" : true,
+						"maxValue" : 200,
+						"minValue" : 0,
+						"value" : -6,
+						"predicates":
+						[
+							{
+								"$type" : "ByAny",
+								"predicates":
+								[
+									{
+					                	"$type" : "ByHitStrikeType",
+					                	"strikeType" : "Pierce",
+					                },
+					                {
+					                	"$type" : "ByHitStrikeType",
+					                	"strikeType" : "Spear",
+					                },
+								],
+							},
+						],
+					},
+					{
+						"$type" : "AddElementDurability",
+						"modifierName" : "UNIQUE_Effigy_RebornPillar_ElementShield",
+						"useLimitRange" : true,
+						"maxValue" : 200,
+						"minValue" : 0,
+						"value" : -8,
+						"predicates":
+						[
+							{
+			                	"$type" : "ByHitStrikeType",
+			                	"strikeType" : "Slash",
+			                },
+						],
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarLoop",
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RebornPillarLoop",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "AddGlobalValue",
+						"target": "Owner",
+						"key" : "_REBORNPILLARCOUNT_",
+						"value" : -1,
+						"useLimitRange" : true,
+						"maxValue" : 3,
+						"minValue" : 0,
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2007,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 2.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+			                	"$type": "BornRandomFromCenter",
+			                	"minRandomRange": 3.5,
+			                	"maxRandomRange": 5,
+			                },
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  StonePillar
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StonePillarBlinkDetect",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetPositionToSelfPosition",
+						"compareType": "XZ",
+						"value": 10,
+						"logic": "GreaterOrEqual",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "StonePillarBlink",
+						"value": true,
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "StonePillarBlink",
+						"value": false,
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StonePillarEffect",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_STONEPILLARCOUNT_",
+				"value" : 4,
+				"useLimitRange" : true,
+				"maxValue" : 4,
+				"minValue" : 4,
+			},
+			{
+				"$type": "SetGlobalPos", 
+				"key": "StonePillarPos1",
+				"setTarget": false,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"onGround": true,
+					"onGroundRaycastUpDist": 5,
+				},
+			},
+			{
+				"$type": "SetGlobalPos", 
+				"key": "StonePillarPos2",
+				"setTarget": false,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 22.5,
+					},
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 0,
+						"maxRandomRange": 3,
+					},
+					"onGround": true,
+					"onGroundRaycastUpDist": 5,
+				},
+			},
+			{
+				"$type": "SetGlobalPos", 
+				"key": "StonePillarPos3",
+				"setTarget": false,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset":
+					{
+						"x": -18.0,
+						"y": 0.0,
+						"z": -12,
+					},
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 0,
+						"maxRandomRange": 3,
+					},
+					"onGround": true,
+					"onGroundRaycastUpDist": 5,
+				},
+			},
+			{
+				"$type": "SetGlobalPos", 
+				"key": "StonePillarPos4",
+				"setTarget": false,
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset":
+					{
+						"x": 18.0,
+						"y": 0.0,
+						"z": -12,
+					},
+					"bornRandom" :
+					{
+						"$type": "BornRandomFromCenter",
+						"minRandomRange": 0,
+						"maxRandomRange": 3,
+					},
+					"onGround": true,
+					"onGroundRaycastUpDist": 5,
+				},
+			},
+			{
+				"$type": "FireEffect", 
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos1",
+				},
+			},
+			{
+				"$type": "FireEffect", 
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos2",
+				},
+			},
+			{
+				"$type": "FireEffect", 
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos3",
+				},
+			},
+			{
+				"$type": "FireEffect", 
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarBS",
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos4",
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StonePillar",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "CreateGadget",
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"gadgetID": 42004201,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos1",
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"gadgetID": 42004201,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos2",
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"gadgetID": 42004201,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos3",
+				},
+			},
+			{
+				"$type": "CreateGadget",
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"gadgetID": 42004201,
+				"campID": 4001,
+				"born":
+				{
+					"$type": "ConfigBornByGlobalValue",	
+					"positionKey": "StonePillarPos4",
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Gadget Config
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StonePillar_ElementShield",
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_STONEPILLAR_",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_NEARESTPILLAR_",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Effigy_StonePillar_ElementShield",
+				"target": "Self",
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent":
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackCircle",
+						"triggerType": "TriggerNoRepeat",
+						"height": 3,
+						"fanAngle": 360.0,
+						"radius": 2.5,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.25,
+							"strikeType": "Blunt",
+							"elementType" : "Rock",
+							"enBreak": 200,
+						},
+						"hitPattern" :
+						{
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"retreatType": "ByAttacker",
+							"reboundRatio" : 0,
+							"canBeDefenceHalt" : true,
+							"hitHaltTime" : 0.05,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText" : true,
+						},
+					},
+				},
+			},
+		],
+		"onKill":
+		[
+			{
+				"$type" : "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_PillarDie",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"target": "Owner",
+				"key" : "_STONEPILLARCOUNT_",
+				"value" : -1,
+				"useLimitRange" : true,
+				"maxValue" : 4,
+				"minValue" : 0,
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_StonePillar_ElementShield":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"elementType": "Rock",
+				"elementDurability": 500,
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Rock",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0,
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBeHit",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+						},
+					},
+					{
+						"$type" : "AddElementDurability",
+						"modifierName" : "UNIQUE_Effigy_RebornPillar_ElementShield",
+						"useLimitRange" : true,
+						"maxValue" : 500,
+						"minValue" : 0,
+						"value" : -5,
+						"predicates":
+						[
+							{
+								"$type" : "ByAny",
+								"predicates":
+								[
+									{
+					                	"$type" : "ByHitStrikeType",
+					                	"strikeType" : "Pierce",
+					                },
+					                {
+					                	"$type" : "ByHitStrikeType",
+					                	"strikeType" : "Spear",
+					                },
+								],
+							},
+						],
+					},
+					{
+						"$type" : "AddElementDurability",
+						"modifierName" : "UNIQUE_Effigy_RebornPillar_ElementShield",
+						"useLimitRange" : true,
+						"maxValue" : 500,
+						"minValue" : 0,
+						"value" : -7,
+						"predicates":
+						[
+							{
+			                	"$type" : "ByHitStrikeType",
+			                	"strikeType" : "Slash",
+			                },
+						],
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarLoop",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type":"TriggerAbility",
+						"target": "Owner",
+						"abilityName":"Monster_Effigy_Rock_Weak",
+						"predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"target": "Self",
+								"key": "_NEARESTPILLAR_",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2007,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 2.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+			                	"$type": "BornRandomFromCenter",
+			                	"minRandomRange": 3.5,
+			                	"maxRandomRange": 5,
+			                },
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2007,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 2.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+			                	"$type": "BornRandomFromCenter",
+			                	"minRandomRange": 3.5,
+			                	"maxRandomRange": 5,
+			                },
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RockHeart_ElementShield",
+		"onAdded": 
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_ROCKHEART_",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Effigy_RockHeart_ElementShield",
+				"target": "Self",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "LifeTimer",
+				"target": "Self",
+			},
+		],
+		"modifiers":
+		{
+			"UNIQUE_Effigy_RockHeart_ElementShield":
+			{
+				"stacking": "Unique",
+				"isUnique": true,
+				"elementType": "Rock",
+				"elementDurability": 75,
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Rock",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0.0,
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockHeartBeHit",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockHeart",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004205,
+						"campID": 1001,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",	
+						},
+					},
+					{
+						"$type": "GenerateElemBall",
+						"configID": 2007,
+						"baseEnergy": 9,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset":
+							{
+								"x": 0.0,
+								"y": 2.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+			                	"$type": "BornRandomFromCenter",
+			                	"minRandomRange": 3.5,
+			                	"maxRandomRange": 5,
+			                },
+							"onGround": true,
+						},
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockHeartDie",
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+			"LifeTimer":
+			{
+				"duration": 15,
+				"onRemoved":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockHeartDie",
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RockShield_SafeZone",
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "SafeZoneTick",
+				"target": "Self",
+			},
+			{
+				"$type" : "AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_ShieldLoop",
+			},
+		],
+		"modifiers":
+		{
+			"SafeZoneTick":
+			{
+				"duration": 13.5,
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR3.5H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "AllExceptSelf",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Effigy_RockShield_Invincible",
+								"target":"Target",
+							},
+						],
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR3.5H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "AllExceptSelf",
+							"campBasedOn": "Self",
+						},
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type":"ApplyModifier",
+								"modifierName":"UNIQUE_Effigy_RockShield_Invincible",
+								"target":"Target",
+							},
+						],
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type" : "SendEffectTrigger",
+						"parameter": "BeHit",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_ShieldDie",
+					},
+					{
+						"$type" : "KillSelf",
+					},
+				],
+			},
+			"UNIQUE_Effigy_RockShield_Invincible":
+			{
+				"stacking": "Refresh",
+				"isUnique": true,
+				"duration": 0.6,
+				"state": "Invincible",
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Spike
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Spike",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Spike_Loop"],
+				"modifierName": "Spike",
+			},
+		],
+		"modifiers":
+		{
+			"Spike":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_SpikeAtkLoop",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effigy_Spike_Timer",
+						"target": "SelfAttackTarget",
+					},
+				],
+			},
+			"Effigy_Spike_Timer":
+			{
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Effigy_Spike_TrackEffect",
+						"target": "Self",
+					},
+				],
+			},
+			"Effigy_Spike_TrackEffect":
+			{
+				"duration": 2.1,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_SpikeLoop",
+						"target": "Self",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004207,
+						"campID": 4001,
+						"target": "Self",
+						"born": 
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround": true,
+							"alongGround": true,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_SpikeDamage",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effigy_Spike_Timer",
+			},
+		],
+		"modifiers":
+		{
+			"Effigy_Spike_Timer":
+			{
+				"duration": 0.5,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_SpikeAlert",
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "AlertStart",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_Spike",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType": "TriggerNoRepeat",
+								"muteHitBehindScene": true,
+								"checkHitLayerType" : "Both",
+								"height": 1.5,
+								"fanAngle": 360.0,
+								"radius": 3,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 1,
+									"strikeType": "Blunt",
+									"elementType" : "Rock",
+									"elementDurability" : 50,
+									"enBreak": 200,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Air",
+									"hitImpulseX": 480,
+									"hitImpulseY": 800,
+									"retreatType": "ByHitDirection",
+									"reboundRatio" : 0,
+									"canBeDefenceHalt" : true,
+									"hitHaltTime" : 0.05,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+								"forceCameraShake": true,
+								"cameraShake":
+								{
+									"shakeRange": 2,
+									"shakeTime": 0.3,
+									"shakeDistance": 50,
+								},
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  RockWave
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RockWave",
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_NEARESTPILLAR_",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName" : "PillarRockWave",
+						"target": "Target",
+					},					
+				],
+			},
+		],
+		"modifiers":
+		{
+			"PillarRockWave":
+			{
+				"duration": 0.8,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockWave",
+						"target": "Self",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets": 
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR15H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"strikeType": "Blunt",
+								"elementType": "Rock",
+								"elementDurability": 50,
+								"enBreak": 200.0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Air",	//hitlevel = 5
+								"hitImpulseX": 480,	//hitlevel = 5
+								"hitImpulseY": 600,	//hitlevel = 5
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"forceCameraShake": true,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 1,
+							"shakeTime": 0.4,
+							"shakeDistance": 50.0,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RockWave_PillarMorphStart",
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_NEARESTPILLAR_",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Morph",
+						"target": "Target",
+					},					
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RockWave_PillarMorphEnd",
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_NEARESTPILLAR_",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "MorphEnd",
+						"target": "Target",
+					},					
+				],
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RockWave_DetectAvatar",
+		"onAbilityStart":
+		[
+			{
+				"$type": "TriggerAbility",
+				"abilityName": "Effigy_StonePillar_DetectAvatar",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StonePillar_DetectAvatar",
+		"onAbilityStart":
+		[
+			{
+				"$type":"AddGlobalValue",
+				"target": "Self",
+				"key":"_AVATARDETECTED_",
+				"value":0,
+				"useLimitRange":true,
+				"maxValue":0,
+				"minValue":0,
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR12.5H6",
+					"centerBasedOn": "Self",
+					"campTargetType": "Enemy",
+					"campBasedOn": "Self",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes" : ["Avatar"],
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Self",
+						"key": "_NEARESTPILLAR_",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type":"AddGlobalValue",
+						"target": "Self",
+						"key":"_AVATARDETECTED_",
+						"value":1,
+						"useLimitRange":true,
+						"maxValue":1,
+						"minValue":1,
+					},					
+				],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  ChargeAtk
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_ChargeAtk",
+		"abilityMixins": 
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["ChargeAtk"],
+				"modifierName": "EnableHitBox",
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent":
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackCircle",
+						"triggerType": "TriggerNoRepeat",
+						"muteHitBehindScene": true,
+						"checkHitLayerType" : "Both",
+						"height": 3,
+						"fanAngle": 360.0,
+						"radius": 7.5,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 8,
+							},
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1,
+							"strikeType": "Blunt",
+							"elementType" : "Rock",
+							"elementDurability" : 50,
+							"enBreak": 200,
+						},
+						"hitPattern" :
+						{
+							"hitLevel": "Air",	//hitlevel = 6
+			          		"hitImpulseX": 655,	//hitlevel = 6
+			          		"hitImpulseY": 800,	//hitlevel = 6
+							"retreatType": "ByAttacker",
+							"reboundRatio" : 0,
+							"canBeDefenceHalt" : true,
+							"hitHaltTime" : 0.05,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText" : false,
+						},
+						"forceCameraShake": true,
+						"cameraShake":
+						{
+							"shakeRange": 4,
+							"shakeTime": 0.5,
+							"shakeDistance": 100,
+						},
+					},
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "ChargeAtkWaveTimer",
+			},
+		],
+		"modifiers":
+		{
+			"EnableHitBox":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+			"ChargeAtkWaveTimer":
+			{
+				"duration": 0.5,
+				"onRemoved":
+				[
+					{
+				        "$type": "TriggerBullet",
+				        "bulletID": 42004208,
+				        "campID": 4001,
+				        "target": "Self",
+				        "born": 
+			          	{
+				            "$type": "ConfigBornBySelf",
+				            "offset": 
+				            {
+				              "x": 0.0,
+				              "y": 0.25,
+				              "z": 12.5,
+				            },
+				            "direction":
+							{
+								"$type" : "ConfigDirectionByEntity",
+								"angleOffset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								}
+							},
+							"onGround": true,
+							"alongGround": true,	            
+						},
+					},
+					{
+				        "$type": "TriggerBullet",
+				        "bulletID": 42004208,
+				        "campID": 4001,
+				        "target": "Self",
+				        "born": 
+			          	{
+				            "$type": "ConfigBornBySelf",
+				            "offset": 
+				            {
+				              "x": -3.5,
+				              "y": 0.25,
+				              "z": 10.5,
+				            },
+				            "direction":
+							{
+								"$type" : "ConfigDirectionByEntity",
+								"angleOffset" :
+								{
+									"x": 0.0,
+									"y": -30.0,
+									"z": 0.0,
+								}
+							},
+							"onGround": true,
+							"alongGround": true,	            
+						},
+					},
+					{
+				        "$type": "TriggerBullet",
+				        "bulletID": 42004208,
+				        "campID": 4001,
+				        "target": "Self",
+				        "born": 
+			          	{
+				            "$type": "ConfigBornBySelf",
+				            "offset": 
+				            {
+				              "x": 3.5,
+				              "y": 0.25,
+				              "z": 10.5,
+				            },
+				            "direction":
+							{
+								"$type" : "ConfigDirectionByEntity",
+								"angleOffset" :
+								{
+									"x": 0.0,
+									"y": 30.0,
+									"z": 0.0,
+								}
+							},
+							"onGround": true,
+							"alongGround": true,	            
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_ChargeAtkWave_Hit",
+		"onAdded":
+		[
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_ChargeAtkWave",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 1,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.5,
+							"strikeType": "Blunt",
+							"enBreak": 100.0,
+							"elementDurability":25,
+							"elementType": "Rock",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName": "default",
+							"hitLevel": "Heavy",	//hitlevel = 4
+			          		"hitImpulseX": 800,	//hitlevel = 4
+			          		"hitImpulseY": 0,	//hitlevel = 4
+							"retreatType": "ByHitDirection",
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+					},
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  StoneBall
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StoneBall_Start",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["StoneBall_Loop1","StoneBall_Loop2"],
+				"modifierName": "Effect",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["StoneBall_Loop1","StoneBall_Loop2","StoneBall_AS"],
+				"modifierName": "EnableHitBox",
+			},
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["StoneBall"],
+				"modifierName": "SetRenderHandler",
+			},
+		],
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_ISEFFIGYROCK_",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 1,
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInL1",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInL2",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInL3",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInL4",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInR1",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInR2",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInR3",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "TriggerBullet",
+				"trackTarget": "Self",
+				"bulletID": 42004209,
+				"born":
+				{
+					"$type":"ConfigBornByAttachPoint",
+					"attachPointName":"AttachPointInR4",
+					"attachPointTargetType":"Self",
+					"offset":
+					{
+						"x":0,
+						"y":0,
+						"z":0,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByEntity",
+						"angleOffset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+						"randomAngleHor": 2,
+						"randomAngleVer": 2,
+					},
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "SetRenders_StoneBall",
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallCircle",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallCircle_AS",
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+				],
+			},
+			"SetRenders_StoneBall":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"EnableHitBox":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": true,
+					},
+				],
+			},
+			"SetRenderHandler":
+			{
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "SetRenders_StoneBall",
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StoneBall_FireBullet",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["StoneBall_Loop2"],
+				"modifierName": "FireBullet",
+			},
+		],
+		"modifiers":
+		{
+			"FireBullet":
+			{
+				"thinkInterval": 0.2,
+				"onThinkInterval":
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 42004203,
+						"campID": 4001,
+						"born":
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Self",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByAttackTarget",
+								"angleOffset":
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"randomAngleHor": 1.5,
+								"randomAngleVer": 1.5,
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_StoneBall_Hit",
+		"onAdded":
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallLoop",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "Predicated",
+				"target": "Target",
+				"targetPredicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key" : "_ISEFFIGYROCK_",
+						"value": 1,
+						"compareType":"Equal",
+					},
+				],
+				"failActions":
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "AllExceptSelf",
+						"attackEvent": 
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"checkHitLayerType" : "Both",
+								"triggerType" : "TriggerNoRepeat",
+								"radius": 0.75,
+								"born":
+								{
+									"$type": "ConfigBornByCollisionPoint",
+								},
+							},
+							"attackInfo":
+							{
+								"attenuationTag":"Group1",
+								"attackProperty":
+								{
+									"damagePercentage": 0.25,
+									"strikeType": "Blunt",
+									"enBreak": 10.0,
+									"elementDurability":25,
+									"elementType": "Rock",
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Light",	//hitlevel = 2
+					          		"hitImpulseX": 200,	//hitlevel = 2
+					          		"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio": 0,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText": false,
+								},
+							},
+						},
+					},
+					{
+						"$type":"FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallHit",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+						},
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_EffectStoneBall_Effect",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Effect",
+			},
+		],
+		"modifiers":
+		{
+			"Effect":
+			{
+				"duration": 0.75,			
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallShield",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneBallCore",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  RockFall
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RockFall",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["RockFall_Loop","RockFall_AS1"],
+				"modifierName": "SetRenders",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["RockFall_Loop","RockFall_AS1"],
+				"modifierName": "CreateRockFall",
+			},
+		],
+		"onAdded":
+		[
+			{
+				"$type":"CreateGadget",
+				"gadgetID":42004006,
+				"lifeByOwnerIsAlive": true,
+				"byServer": true,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset":
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+				},
+			},
+		],
+		"modifiers":
+		{
+			"SetRenders":
+			{				
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved" :
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"CreateRockFall":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004006,
+							"sortType": "Default",
+						},
+						"successActions":
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": 0,
+										"y": 0.0,
+										"z": 10.0,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": 10,
+										"y": 0.0,
+										"z": -6.5,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": -10,
+										"y": 0.0,
+										"z": -6.5,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": 12.5,
+										"y": 0.0,
+										"z": 7.5,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": -12.5,
+										"y": 0.0,
+										"z": 7.5,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": -7.5,
+										"y": 0.0,
+										"z": -15,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": 7.5,
+										"y": 0.0,
+										"z": -15,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 42004211,
+								"campID": 4001,
+								"lifeByOwnerIsAlive": true,
+								"byServer": true,
+								"campTargetType": "Enemy",
+								"target": "Target",
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									"offset" : 
+									{
+										"x": 0,
+										"y": 0.0,
+										"z": -10,
+									},
+									"bornRandom":
+									{
+					                	"$type": "BornRandomFromCenter",
+					                	"minRandomRange": 0,
+					                	"maxRandomRange": 2,
+					                },
+									"onGround": true,
+								},
+							},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RockFallZone_Damage",
+		"onAdded": 
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "RockFallZone_DamageTimer",
+				"target": "Self",
+			},
+			{
+				"$type": "SetRandomOverrideMapValue",
+				"overrideMapKey": "RandomTimer",
+				"valueRangeMin": 2.5,
+				"valueRangeMax": 5,
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "RockFallZone_RockFall",
+				"target": "Self",
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "LifeTimer",
+				"target": "Self",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetRandomOverrideMapValue",
+				"overrideMapKey": "RandomTimer",
+				"valueRangeMin": 2.5,
+				"valueRangeMax": 5,
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "RockFallZone_RockFall",
+				"target": "Self",
+			},
+		],
+		"modifiers":
+		{
+			"RockFallZone_DamageTimer":
+			{
+				"duration": 3,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockFallAlert",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "UNIQUE_RockFallZone_Damage",
+						"target": "Self",
+					},
+				],
+			},
+			"UNIQUE_RockFallZone_Damage":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockFall",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "RockFallZone_EffectOnGround",
+						"target": "Self",
+					},
+				],
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets": 
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR4",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset": 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.25,
+								"strikeType": "Blunt",
+								"elementType": "Rock",
+								"elementDurability": 25,
+								"enBreak": 1.0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"RockFallZone_EffectOnGround":
+			{
+				"thinkInterval": 0.35,
+				"onThinkInterval":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockFall_Bullet01_Hit",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 0.0,
+								"z": 0.0,
+							},
+							"bornRandom":
+							{
+			                	"$type": "BornRandomFromCenter",
+			                	"minRandomRange": 0,
+			                	"maxRandomRange": 3.75,
+			                },
+							"onGround": true,
+						},
+					},
+				],
+			},
+			"RockFallZone_RockFall":
+			{
+				"duration": "%RandomTimer",
+				"onRemoved":
+				[
+					{
+						"$type": "TriggerBullet",
+						"lifeByOwnerIsAlive": true,
+						"bulletID": 42004204,
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"offset" : 
+							{
+								"x": 0.0,
+								"y": 8.0,
+								"z": 0.0,
+							},
+							"direction":
+							{
+								"$type": "ConfigDirectionByLookAtEntity"
+							}
+						},
+					},
+					{
+						"$type":"TriggerAbility",
+						"abilityName":"Effigy_RockFallZone_Damage",
+					}	
+				],
+			},
+			"LifeTimer":
+			{
+				"duration": 30,
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "RockFallZone_RockFall",
+						"target": "Self",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "UNIQUE_RockFallZone_Damage",
+						"target": "Self",
+					},
+					{
+						"$type":"KillSelf",
+					}	
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			"RandomTimer" : 5,
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Effigy_RockFall_Hit",
+		"onAdded": 
+		[
+			{
+				"$type":"AttachEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_RockFall_Bullet02",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type":"FireEffect",
+				"effectPattern": "Eff_Monster_Effigy_Rock_RockFall_Bullet02_Hit",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+				},
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"checkHitLayerType" : "Both",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 2,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1,
+							"strikeType": "Blunt",
+							"enBreak": 100.0,
+							"elementDurability":25,
+							"elementType": "Rock",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName" : "default",
+							"hitLevel": "Heavy",	//hitlevel = 4
+							"hitImpulseX": 800,	//hitlevel = 4
+							"hitImpulseY": 0,	//hitlevel = 4
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 1,
+							"shakeTime": 0.3,
+							"shakeDistance": 30.0,
+						},
+					},
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Effigy_Rock_RockFall_Bullet02_Hit",
+				},
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Blink
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_BlinkStart",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToStateIDMixin",
+				"stateIDs": ["Blink_BS","Blink_AS"],
+				"modifierName": "Blink_State",
+			},
+		],
+		"onAbilityStart":
+		[					
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "UNIQUE_Effigy_Rock_Blink_Actions",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_NEARESTPILLAR_",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 0,
+				"minValue" : 0,
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004201,
+					"topLimit":1,
+					"sortType": "Nearest",
+				},
+			},
+		],
+		"modifiers":
+		{
+			"Blink_State":
+			{
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveUniqueModifier",
+						"modifierName": "UNIQUE_Effigy_Rock_Blink_Actions",
+					},
+				],
+			},
+			"UNIQUE_Effigy_Rock_Blink_Actions":
+			{
+				"isUnique": true,
+				"onAdded":
+				[
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_Invincible",
+						"target": "Self",
+					},
+					{
+						"$type": "AttachModifier",
+						"modifierName": "Blink_DenyLockOn",
+						"target": "Self",
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": false,
+						"target": "Self",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": true,
+						"target": "Self",
+					},
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider"],
+						"setEnable": false,
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "StandbyFree",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCore",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "EnableHitBoxByName",
+						"hitBoxNames": ["ShieldHitBox1","ShieldHitBox2","ShieldHitBox3","ShieldHitBox4","ShieldHitBox5","ShieldHitBox6","ShieldHitBox7","ShieldHitBox8"],
+						"setEnable": false,
+					},
+					{
+						"$type": "EnablePushColliderName",
+						"pushColliderNames": ["PushCollider"],
+						"setEnable": true,
+					},
+					{
+						"$type": "TriggerSetVisible",
+						"visible": true,
+						"target": "Self",
+					},
+					{
+						"$type": "HideUIBillBoard",
+						"hide": false,
+						"target": "Self",
+					},
+					{
+						"$type": "SendEffectTrigger",
+						"parameter" : "Standby",
+						"effectPattern":"Eff_Monster_Effigy_Rock_EnergyCore",
+					},
+				],
+			},
+			"Blink_Invincible" :
+			{
+				"state": "Invincible",
+			},
+			"Blink_DenyLockOn" :
+			{
+				"state": "DenyLockOn",
+			},
+		},
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_FindBlinkPoint_OnPillar",
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_FindBlinkPoint",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_FindBlinkPoint",
+				"value" : -10,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Random",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Target",
+						"key" : "_NEARESTPILLAR_",
+						"value": 0,
+						"compareType":"Equal",
+					},
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Self",
+						"key" : "_FindBlinkPoint",
+						"value": 0,
+						"compareType":"Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TryFindBlinkPointByBorn",
+						"hitSceneTest": false,
+						"target": "Target",
+						"born":
+						{
+							"$type":"ConfigBornByTarget",
+							"offset":
+							{
+								"x":0,
+								"y":3,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key" : "_FindBlinkPoint",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 1,
+					},
+				],
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004006,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Self",
+						"key" : "_FindBlinkPoint",
+						"value": 0,
+						"compareType":"Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TryFindBlinkPoint",
+						"otherTargets" :
+						{
+							"$type":"SelectTargetsByChildren",
+							"configID" :42004006,
+							"sortType": "Default",
+						},
+						"forwardAngle": 360,
+						"minRange": 4,
+						"maxRange": 6,
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_FindBlinkPoint_OnGround",
+		"onAbilityStart":
+		[
+			{
+				"$type": "TryFindBlinkPoint",
+				"target": "SelfAttackTarget",
+				"forwardAngle": 90,
+				"minRange": 3,
+				"maxRange": 5,
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_FindBlinkPoint_Reborn",
+		"onAbilityStart":
+		[
+			{
+				"$type": "TryFindBlinkPoint",
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004006,
+					"sortType": "Default",
+				},
+				"forwardAngle": 360,
+				"minRange": 0,
+				"maxRange": 5,
+			},
+			{
+				"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+			},
+			{
+				"$type":"KillSelf",
+				"otherTargets" :
+				{
+					"$type":"SelectTargetsByChildren",
+					"configID" :42004211,
+					"sortType": "Default",
+				},
+			}	
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_FindBlinkPoint_RockWave",
+		"onAbilityStart":
+		[
+			{
+				"$type" : "AddGlobalValue",
+				"key" : "_BLINKPOINT_ROCKWAVE_",
+				"value" : 0,
+				"useLimitRange" : true,
+				"maxValue" : 0,
+				"minValue" : 0,
+			},
+			{
+				"$type": "Predicated",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"configID": 42004201,
+					"sortType": "Default",
+				},
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_AVATARDETECTED_",
+						"value": 1,
+						"compareType": "Equal",
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Self",
+						"key": "_BLINKPOINT_ROCKWAVE_",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				],
+				"successActions":
+				[
+					{
+						"$type": "TryFindBlinkPointByBorn",
+						"hitSceneTest": false,
+						"target": "Target",
+						"born":
+						{
+							"$type":"ConfigBornByTarget",
+							"offset":
+							{
+								"x":0,
+								"y":3,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type" : "AddGlobalValue",
+						"target": "Self",
+						"key" : "_BLINKPOINT_ROCKWAVE_",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 1,
+					},
+					{
+						"$type" : "SetAnimatorTrigger",
+						"triggerID": "RockWaveBlink",
+					},				
+				],
+			},
+			{
+				"$type": "TriggerAbility",
+				"abilityName": "Monster_Effigy_Rock_FindBlinkPoint_OnPillar",
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Self",
+						"key": "_BLINKPOINT_ROCKWAVE_",
+						"value": 0,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Blink",
+		"onAbilityStart":
+		[
+			{
+				"$type": "DoBlink",
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_BlinkAS",
+		"onAbilityStart":
+		[
+			{
+				"$type": "RemoveUniqueModifier",
+				"modifierName": "UNIQUE_Effigy_Rock_Blink_Actions",
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  StoneArray
+//
+////////////////////////////////////////////////////////////////
+
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_StoneArray",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["StoneArray_Loop"],
+				"modifierName": "StoneArray",
+			},
+		],
+		"modifiers":
+		{
+			"StoneArray":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneArrayLoop",
+					},
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004201,
+							"sortType": "Default",
+						},
+						"successActions":
+						[
+							{
+								"$type": "ApplyModifier",
+								"modifierName": "Pillar_StoneArray_Timer",
+								"target": "Target",
+							},
+						],
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "Predicated",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByChildren",
+							"configID": 42004201,
+							"sortType": "Default",
+						},
+						"successActions":
+						[
+							{
+								"$type": "RemoveModifier",
+								"modifierName": "Pillar_StoneArray_Damage",
+								"target": "Target",
+							},
+							{
+								"$type": "RemoveModifier",
+								"modifierName": "Pillar_StoneArray_PillarEffect",
+								"target": "Target",
+							},
+						],
+					},				
+				],
+			},
+			"Pillar_StoneArray_Timer":
+			{
+				"duration": 1.25,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Pillar_StoneArray_PillarEffect",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Pillar_StoneArray_DamageTimer",
+					},
+				],
+			},
+			"Pillar_StoneArray_PillarEffect":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_PillarBurst",
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+				],
+			},
+			"Pillar_StoneArray_DamageTimer":
+			{
+				"duration": 1,
+				"onRemoved":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Pillar_StoneArray_Damage",
+					},
+				],
+			},
+			"Pillar_StoneArray_Damage":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_StoneArrayDamage",
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+							"onGround": true,
+						},
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Pillar_StoneArray_NormalDamage",
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Pillar_StoneArray_StrongDamage",
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Pillar_StoneArray_NormalDamage",
+					},
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "Pillar_StoneArray_StrongDamage",
+					},
+				],
+			},
+			"Pillar_StoneArray_NormalDamage":
+			{
+				"thinkInterval" : 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets": 
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR15H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.1,
+								"strikeType": "Blunt",
+								"elementType": "Rock",
+								"elementDurability": 10,
+								"enBreak": 0.0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Mute",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"Pillar_StoneArray_StrongDamage":
+			{
+				"thinkInterval" : 1,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets": 
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR15H2",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Self",
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.5,
+								"strikeType": "Blunt",
+								"elementType": "Rock",
+								"elementDurability": 50,
+								"enBreak": 1.0,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "default",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"forceCameraShake": true,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 1.5,
+							"shakeTime": 0.4,
+							"shakeDistance": 50.0,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_CreateRockHeart",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetGlobalPos", 
+				"key": "RockHeartPos",
+				"setTarget": false,
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"offset" : 
+					{
+						"x": 0.0,
+						"y": 0.0,
+						"z": 0.0,
+					},
+					"bornRandom":
+					{
+	                	"$type": "BornRandomFromCenter",
+	                	"minRandomRange": 3,
+	                	"maxRandomRange": 4.5,
+	                },
+					"onGround": true,
+				},
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "CreateRockHeart",
+			},
+		],
+		"modifiers":
+		{
+			"CreateRockHeart":
+			{
+				"duration": 2.5,			
+				"onAdded":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Effigy_Rock_RockHeartBS",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RockHeartPos",
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 42004202,
+						"campID": 4001,
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",	
+							"positionKey": "RockHeartPos",
+						},
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Weak
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Weak",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Weak_BS","Weak_Loop"],
+				"modifierName": "SetRenders_Weak",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Weak_BS,Weak_Loop"],
+				"modifierName": "EnablePushColliderName",
+			},
+		],
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetAnimatorTrigger",
+				"triggerID": "WeakState",
+			},
+		],
+		"modifiers":
+		{
+			"SetRenders_Weak":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "TriggerSetRenderersEnable",
+						"renderNames"  : ["Cube_In_01","Cube_In_02","Cube_In_03","Cube_In_04","Cube_In_05","Cube_In_06","Cube_In_07","Cube_In_08","Cube_Out_01","Cube_Out_02","Cube_Out_03","Cube_Out_04","Cube_Out_05","Cube_Out_06","Cube_Out_07","Cube_Out_08"],
+						"setEnable"  : true,
+					},
+				],
+			},
+			"EnablePushColliderName":
+			{
+				"onAdded":
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : true,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : false,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["CorePushCollider"],
+						"setEnable" : false,
+					},
+					{
+						"$type" : "EnablePushColliderName",
+						"pushColliderNames" : ["PushCollider"],
+						"setEnable" : true,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Random Blink
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_ForceBlink",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"Randomed",
+				"chance": 1,
+				"successActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RandomBlinkrigger",
+					},
+				],
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_RandomBlink",
+		"onAbilityStart": 
+		[
+			{
+				"$type":"Randomed",
+				"chance": 0,
+				"successActions":
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"triggerID": "RandomBlinkrigger",
+					},
+				],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Steer
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Effigy_Rock_Steer",
+		"abilityMixins":
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["SingleAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.1,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["ChargeAtk"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.2,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 12,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["StoneBall"],
+				"startNormalizedTime": 0,
+				"endNormalizedTime": 4,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 5,
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["Spike"],
+				"startNormalizedTime": 0,
+				"endNormalizedTime": 4,
+				"angularSpeed": 180,
+				"attackTrigger" : "",
+				"attackDistance" : 5,
+			},
+		],
+	},
+},
+]

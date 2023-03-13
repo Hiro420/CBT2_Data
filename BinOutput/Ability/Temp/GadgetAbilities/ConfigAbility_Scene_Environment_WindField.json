@@ -1,0 +1,3239 @@
+[
+////////////////////////////////////////////////
+//
+// Wind Seed
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_SeedWind",
+		"onAdded" :
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Kill_Bullet",
+				//"$type": "KillSelf",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByShape",
+					"shapeName": "CircleR2",
+					"centerBasedOn": "Self",
+					"campTargetType": "All",
+					"campBasedOn": "Self",
+				},
+				"predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_IS_SEED_WIND",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "_IS_SEED_WIND",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 1,
+				"minValue" : 0,
+			},
+		],
+		"modifiers" :
+		{
+			"Kill_Bullet":
+			{
+				"onAdded":
+				[
+					{
+						"$type":"KillSelf",
+					},
+				],
+			},
+ 		},
+	},
+},
+	/////////////////////////////////////////////////////////
+//
+// 风场控制器1 无初始Delay
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_AirflowAgent",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay1",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_HAS_ONE",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"Delay1":
+				{	
+					"duration": 0.1,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+				"Circle":
+				{	
+					"duration": 8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70690005,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_HAS_ONE",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							]
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70690005,
+								"sortType": "Nearest",
+							}
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+// 风场控制器2  初始Delay 2秒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_AirflowAgent2",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay2",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_HAS_ONE",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"Delay2":
+				{	
+					"duration": 2,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+				"Circle":
+				{	
+					"duration": 8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70690005,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_HAS_ONE",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							]
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70690005,
+								"sortType": "Nearest",
+							}
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+// 风场控制器3 初始Delay 4秒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_AirflowAgent3",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay4",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_HAS_ONE",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"Delay4":
+				{	
+					"duration": 4,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+				"Circle":
+				{	
+					"duration": 8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70690005,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_HAS_ONE",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							]
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70690005,
+								"sortType": "Nearest",
+							}
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+// 风场控制器4  初始Delay 6秒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_AirflowAgent4",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay6",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_HAS_ONE",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"Delay6":
+				{	
+					"duration": 6,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+				"Circle":
+				{	
+					"duration": 8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70690005,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_HAS_ONE",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							]
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70690005,
+								"sortType": "Nearest",
+							}
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+// 风场控制器5  初始Delay 8秒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_AirflowAgent5",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Delay8",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "_HAS_ONE",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers":
+			{
+				"Delay8":
+				{	
+					"duration": 8,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+				"Circle":
+				{	
+					"duration": 8,
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70690005,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_HAS_ONE",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							]
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70690005,
+								"sortType": "Nearest",
+							}
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key" : "_HAS_ONE",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Circle",
+						},
+					],
+				},
+			},
+		},
+	},
+	///////////////////////////////////////////////////////////////
+//
+// 斥力风场01-[R9-r3-H20]
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_PushForce_01",
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": 1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": -1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PushForceModifier",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_WindTube_01",
+				},
+			],
+			"modifiers":
+			{
+				"Duration":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "AvatarCount",
+						},
+					],
+				},
+				"AvatarCount":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 10,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Caster",
+									"key": "EnterCount",
+									"value": 1,
+									"useLimitRange" : true,
+									"maxValue" : 999,
+									"minValue" : 0,
+								},
+							],
+						},
+					],
+				},
+				"PushForceModifier": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Duration",
+						},
+					],
+					"thinkInterval": 0.5, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "EnterCount",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type" : "TriggerAttackEvent",
+									"targetType" : "AllExceptSelf",
+									"attackEvent": 
+									{
+										"attackPattern" : 
+										{
+											"$type" : "ConfigAttackCircle",
+											"triggerType" : "TriggerNoRepeat",
+											"height": 30.0, //高度
+											"fanAngle" : 360.0,
+											"radius" : 5.0, //外径
+											"innerRadius" : 2.2, //内径
+											"born":
+											{
+												"$type": "ConfigBornBySelf",
+												"offset":
+												{
+													"x" : 0.0,
+													"y" : -10.0,
+													"z" : 0.0,
+												},
+											},
+										},
+										"attackInfo":
+										{
+											"attackProperty":
+											{
+												"damagePercentage": 0,
+												"strikeType": "Pierce",
+												"elementType": "Wind",
+												"enBreak": 200,
+												"elementDurability": 20,
+												"ignoreLevelDiff": true,
+											},
+											"hitPattern" :
+											{
+												"hitLevel" : "Heavy",
+												"hitImpulseX" : 1000, //击退冲力
+												"hitImpulseY" : 0,
+												"retreatType": "ByHitDirection",
+												"hitHaltTime" : 0.0,
+												"hitHaltTimeScale" : 0.05,
+												"muteHitText" : false,
+											},
+											"forceCameraShake": false,
+										},
+									},
+								},
+							],
+						},					
+					],
+				},	
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 斥力风场02-[R9-r3-H4]
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_PushForce_02",
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": 1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": -1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PushForceModifier",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_WindTube_02",
+				},
+			],
+			"modifiers":
+			{
+				"Duration":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "AvatarCount",
+						},
+					],
+				},
+				"AvatarCount":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 10,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Caster",
+									"key": "EnterCount",
+									"value": 1,
+									"useLimitRange" : true,
+									"maxValue" : 999,
+									"minValue" : 0,
+								},
+							],
+						},
+					],
+				},
+				"PushForceModifier": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Duration",
+						},
+					],
+					"thinkInterval": 0.5, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "EnterCount",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type" : "TriggerAttackEvent",
+									"targetType" : "AllExceptSelf",
+									"attackEvent": 
+									{
+										"attackPattern" : 
+										{
+											"$type" : "ConfigAttackCircle",
+											"triggerType" : "TriggerNoRepeat",
+											"height": 6.0, //高度
+											"fanAngle" : 360.0,
+											"radius" : 5.0, //外径
+											"innerRadius" : 2.2, //内径
+											"born":
+											{
+												"$type": "ConfigBornBySelf",
+												"offset":
+												{
+													"x" : 0.0,
+													"y" : -2.0,
+													"z" : 0.0,
+												},
+											},
+										},
+										"attackInfo":
+										{
+											"attackProperty":
+											{
+												"damagePercentage": 0,
+												"strikeType": "Pierce",
+												"elementType": "Wind",
+												"elementDurability": 20,
+												"enBreak": 200,
+												"ignoreLevelDiff": true,
+											},
+											"hitPattern" :
+											{
+												"hitLevel" : "Heavy",
+												"hitImpulseX" : 1000, //击退冲力
+												"hitImpulseY" : 0,
+												"retreatType": "ByHitDirection",
+												"hitHaltTime" : 0.0,
+												"hitHaltTimeScale" : 0.05,
+												"muteHitText" : false,
+											},
+											"forceCameraShake": false,
+										},
+									},
+								},
+							],
+						},					
+					],
+				},	
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 斥力风场03-[R15-r3-H4]
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_PushForce_03",
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": 1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "EnterCount",
+					"value": -1,
+					"useLimitRange" : true,
+					"maxValue" : 999,
+					"minValue" : 0,
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "PushForceModifier",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_WindTube_03",
+				},
+			],
+			"modifiers":
+			{
+				"Duration":
+				{
+					"duration": 0.5,
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "AvatarCount",
+						},
+					],
+				},
+				"AvatarCount":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 10,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Caster",
+									"key": "EnterCount",
+									"value": 1,
+									"useLimitRange" : true,
+									"maxValue" : 999,
+									"minValue" : 0,
+								},
+							],
+						},
+					],
+				},
+				"PushForceModifier": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Duration",
+						},
+					],
+					"thinkInterval": 0.9, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "EnterCount",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type" : "TriggerAttackEvent",
+									"targetType" : "AllExceptSelf",
+									"attackEvent": 
+									{
+										"attackPattern" : 
+										{
+											"$type" : "ConfigAttackCircle",
+											"triggerType" : "TriggerNoRepeat",
+											"height": 3.5, //高度
+											"fanAngle" : 360.0,
+											"radius" : 5.0, //外径
+											"innerRadius" : 2.2, //内径
+											"born":
+											{
+												"$type": "ConfigBornBySelf",
+												"offset":
+												{
+													"x" : 0.0,
+													"y" : -2.0,
+													"z" : 0.0,
+												},
+											},
+										},
+										"attackInfo":
+										{
+											"attackProperty":
+											{
+												"damagePercentage": 0,
+												"strikeType": "Pierce",
+												"elementType": "Wind",
+												"elementDurability": 20,
+												"enBreak": 200,
+												"ignoreLevelDiff": true,
+											},
+											"hitPattern" :
+											{
+												"hitLevel" : "Heavy",
+												"hitImpulseX" : 1000, //击退冲力
+												"hitImpulseY" : 0,
+												"retreatType": "ByHitDirection",
+												"hitHaltTime" : 0.0,
+												"hitHaltTimeScale" : 0.05,
+												"muteHitText" : false,
+											},
+											"forceCameraShake": false,
+										},
+									},
+								},
+							],
+						},					
+					],
+				},	
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 风龙巢穴阻挡
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_DragonNest_Barrier_Attack",
+			"onAbilityStart":
+			[
+				{
+					"$type": "TriggerAttackEvent",
+					"targetType": "AllExceptSelf",
+					"doOffStage" : true,
+					"attackEvent": 
+					{
+						"attackPattern": 
+						{
+							"$type" : "ConfigAttackSphere",
+							"triggerType" : "TriggerNoRepeat",
+							"radius": 0.5,
+							"born":
+							{
+								"$type": "ConfigBornByCollisionPoint",
+								"offset":
+								{
+									"x": 0.0,
+									"y": 0.75,
+									"z": 0.0,
+								},
+							},
+						},
+						"attackInfo": 
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1,
+								"elementType": "Wind",
+								"elementDurability": 10,
+								"strikeType": "Pierce",
+								"enBreak": 9999999,
+								"ignoreLevelDiff": true,
+							},
+							"hitPattern":
+							{
+								//"onHitEffectName": "",
+								"hitLevel": "Air",
+								"hitImpulseX": 795,
+								"hitImpulseY": 900,
+								"retreatType": "ByHitDirection",
+								"reboundRatio": 0,
+								"hitHaltTime": 0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText": false,
+							},
+						},
+					},
+				},
+			],
+		},
+	},
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_DragonNest_Element",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Wind",
+				},
+			],
+			"modifiers":
+			{
+				"Wind":
+				{
+					"elementType": "Wind",
+					"elementDurability": 1,
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+// 风龙巢穴龙卷风发射器
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "DragonNest_Tornado_WindField_DragonNest_Tornado_Controller",
+			"onAdded": 
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Random_Time",
+				},
+			],
+			"modifiers":
+			{
+				"Random_Time": 
+				{	
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetRandomOverrideMapValue",
+							"valueRangeMin": 0,
+							"valueRangeMax":60,		
+							"overrideMapKey": "RandomTime"
+						}
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Bullet_Delay",
+						}, 
+					],
+				},
+				//##每个风场一个随机延迟
+				"Bullet_Delay":
+				{
+					"duration": "%RandomTime",
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Create_Tornado",
+						},
+					],
+				},
+				"Create_Tornado":
+				{	
+					"onAdded":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70630001,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"randomAngleHor": 0,	
+								},
+								//"alongGround": true,
+							},
+						},
+					],
+					//##LD_风龙巢穴大型龙卷风出生间隔60秒
+					"thinkInterval": 60,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70630001,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"direction":
+								{
+									"$type": "ConfigDirectionByEntity",
+									"randomAngleHor": 0,	
+								},
+								//"alongGround": true,
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"RandomTime":0,
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 风龙巢穴龙卷风-bullet
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_DragonNest_Tornado_Bullet",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Tornado_Monitor",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "WindZone",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "WindZone_OutSide",
+				},
+			],
+			"modifiers":
+			{
+				"Tornado_Monitor":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "CurLocalAvatar",
+							"key": "_Target_Tornado_Tiny_Position",
+							"value": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Is_In_Struggle",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"thinkInterval": 0.25,
+					"onThinkInterval":
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								//##LD_风龙巢穴大型龙卷风推挤有效高度（高于10有效）
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "Y",
+									"value": 15,
+									"logic": "Greater",
+								},
+								//##LD_风龙巢穴大型龙卷风推挤有效半径（小于5有效）
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 5,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								//##LD_风龙巢穴大型龙卷风struggle判定范围（小于5有效）
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 5,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": 10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": -10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByTargetGlobalValue",
+									"key": "_Target_Is_In_Struggle",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Tornado_Struggle",
+									"target": "CurLocalAvatar",
+									"predicates":
+									[	
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_Target_Tornado_Tiny_Struggle",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Struggle_Count",
+							"target": "CurLocalAvatar",
+							"predicates":
+							[	
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+					"duration": 28.5,
+					"onRemoved":
+					[
+						{
+							"$type": "SetAnimatorBool",
+							"boolID": "Tornado_Die",
+							"value": true,
+						},
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"WindZone",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Delay",
+						},
+					],
+				},
+				"Tornado_Struggle":
+				{
+					
+					//"isUnique": true,
+					"stacking": "Unique",
+					"duration": 1.5,
+					"state": "Struggle",
+					"onAdded":
+					[
+						{
+							"$type": "SetAvatarCanShakeOff",
+							"canShakeOff": false,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "SetAvatarCanShakeOff",
+							"canShakeOff": true,
+						},
+						{
+							"$type" : "DamageByAttackValue",
+							"target": "CurLocalAvatar",
+							"attackInfo":
+							{
+								"attackProperty":   
+								{
+									"damagePercentage": 0.0,
+									"strikeType": "Default",
+									"elementType": "None",
+									"elementDurability": 40,
+									"damageExtra": 100,
+								},
+								"hitPattern": 
+								{
+									"onHitEffectName": "default",
+									"hitLevel": "Mute",
+									"hitImpulseX": 0,
+									"hitImpulseY": 420,
+									"reboundRatio": 0,
+									"canBeDefenceHalt": false,
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.01,
+									"muteHitText": false,
+								},	
+							},
+						},
+					],
+				},
+				"Struggle_Count":
+				{
+					//##LD_风龙巢穴大型龙卷风推挤后免疫时间
+					"duration": 7,
+					//"isUnique": true,
+					"stacking": "Unique",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AddGravityScale": -1.3,
+					},
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_DragonNest_Tornado_Bullet_SlowDown",
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Is_In_Struggle",
+							"value": 10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Tornado_Tiny_Struggle",
+							"value": -10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Tornado_Tiny_Position",
+							"value": -10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Is_In_Struggle",
+							"value": -10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"Delay":
+				{	
+					"duration": 1.5,
+					"onRemoved":
+					[ 
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "WindZone_OutSide",
+						},
+					],
+				},
+				"WindZone_OutSide": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风牵扯范围
+							"shapeName": "CircleR40H40",
+							//##LD_风龙巢穴大型龙卷风牵扯强度
+							"strength" : 2,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 0,
+									"compareType": "LessAndEqual",
+								},
+							],
+						},
+					],
+				},
+				"WindZone": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风牵扯范围
+							"shapeName": "CircleR6H40",
+							//##LD_风龙巢穴大型龙卷风牵扯强度
+							"strength" : 5,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 0,
+									"compareType": "LessAndEqual",
+								},
+							],
+						},
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风struggle上升高度
+							"shapeName": "RectW10L10H30",
+							//##LD_风龙巢穴大型龙卷风struggle上升强度
+							"strength" : 10,  
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								/*{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Position",
+									"value": 0,
+									"compareType": "Equal",
+								},*/
+							],
+						},
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风推挤范围
+							"shapeName": "CircleR20H60",
+							//##LD_风龙巢穴大型龙卷风推挤强度
+							"strength" : -10,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],		
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 风龙巢穴龙卷风-小
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_DragonNest_Tornado_Tiny",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Tornado_Monitor",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "WindZone",
+				},
+			],
+			"modifiers":
+			{
+				"Tornado_Monitor":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "CurLocalAvatar",
+							"key": "_Target_Tornado_Tiny_Position",
+							"value": 0,
+						},
+					],
+					"thinkInterval": 0.25,
+					"onThinkInterval":
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								//##LD_风龙小龙卷推挤有效高度
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "Y",
+									"value": 5,
+									"logic": "Greater",
+								},
+								//##LD_风龙小龙卷推挤有效半径
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 2,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								//##LD_风龙小龙卷struggle判定范围
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 2,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": 10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+							"failActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"target": "Target",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": -10,
+									"useLimitRange": true,
+									"maxValue": 1,
+									"minValue": 0,
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Tornado_Struggle",
+							"target": "CurLocalAvatar",
+							"predicates":
+							[	
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Struggle_Count",
+							"target": "CurLocalAvatar",
+							"predicates":
+							[	
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Struggle",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"Tornado_Struggle":
+				{
+					"stacking": "Refresh",
+					"duration": 0.3,
+					"state": "Struggle",
+				},
+				"Struggle_Count":
+				{
+					//##LD_风龙小龙卷推挤后免疫时间
+					"duration": 4,
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Tornado_Tiny_Struggle",
+							"value": -10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "_Target_Tornado_Tiny_Position",
+							"value": -10,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+				"WindZone": 
+				{
+					"modifierMixins":
+					[
+						{
+							//##LD_风龙小龙卷牵扯
+							"$type": "WindZoneMixin",
+							"shapeName": "CircleR35H40",
+							"strength" : 2,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 0,
+									"compareType": "LessAndEqual",
+								},
+							],
+						},
+						{
+							//##LD_风龙小龙卷struggle
+							"$type": "WindZoneMixin",
+							"shapeName": "RectW5L5",
+							"strength" : 3,  
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								/*{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Position",
+									"value": 0,
+									"compareType": "Equal",
+								},*/
+							],
+						},
+						{
+							//##LD_风龙小龙卷推挤
+							"$type": "WindZoneMixin",
+							"shapeName": "CircleR20H20",
+							"strength" : -10,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_Target_Tornado_Tiny_Position",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],		
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+// 风龙巢穴-强风区域
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_WindField_StrongWindAbility",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Stage0",
+				},
+			],
+			"abilitySpecials":
+			{
+				"Stage1Time":0,
+			},
+			"modifiers":
+			{
+				"Stage0": //计算冷却期的随机时长，只有这个才随机
+				{	
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type": "SetRandomOverrideMapValue",
+							"valueRangeMin": 20,
+							"valueRangeMax":25,		
+							"overrideMapKey": "Stage1Time"
+						}
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stage1",
+						},
+					],
+				},
+				"Stage1":
+				{	
+					"duration": "%Stage1Time",
+					"onAdded":
+					[
+						{
+							"$type": "DebugLog",
+							"content": "=========StrongWind CoolDown========",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stage2",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin", //用来对环境产生影响
+							"shapeName": "CircleR10",
+							"strength" : -2,
+							"maxNum": 0 //不对角色本身产生位置影响
+						},
+					],
+				},
+				"Stage2":
+				{	
+					"duration": 5,
+					"onAdded":
+					[
+						{
+							"$type": "DebugLog",
+							"content": "=========StrongWind Ready========",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "PlayEffect",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ClearGlobalValue",
+							"key": "EffectCount",
+						},
+						{
+							"$type" : "ShowScreenEffect",
+							"effectType" : "WindEffect", //全屏效果
+							"show" : false,
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stage3",
+						}
+					],
+					"onKill":
+					[
+						{
+							"$type" : "ShowScreenEffect",
+							"effectType" : "WindEffect", //全屏效果
+							"show" : false,
+						}
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin", //用来对环境产生影响
+							"shapeName": "CircleR10",
+							"strength" : -4,
+							"maxNum": 0 //不对角色本身产生位置影响
+						},
+					],
+					"thinkInterval": 0.5, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "CurLocalAvatar",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IGNORE_STRONG_WIND", //忽略强风的标志
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "XZ",
+									"value": 400,
+									"logic": "LesserOrEqual",
+								},
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"compareType": "Y",
+									"value": 60,
+									"logic": "LesserOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "Caster",
+									"targetPredicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "EffectCount",
+											"value": 0,
+											"compareType": "NoneOrEqual",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type" : "ShowScreenEffect",
+											"effectType" : "WindEffect", //全屏效果
+											"show" : true,
+										},
+										{
+											"$type": "AddGlobalValue",
+											"key": "EffectCount",
+											"value": 1,
+										},
+									]
+								}
+							],
+							"failActions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "Caster",
+									"targetPredicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "EffectCount",
+											"value": 1,
+											"compareType": "Equal",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type" : "ShowScreenEffect",
+											"effectType" : "WindEffect", //全屏效果
+											"show" : false,
+										},
+										{
+											"$type": "AddGlobalValue",
+											"key": "EffectCount",
+											"value": -1,
+										},
+									]
+								}
+							]
+						}				
+					],
+				},
+				"Stage3":
+				{	
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "DebugLog",
+							"content": "=========StrongWind Trigger========",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Stage_StrongWindShot",
+							"target": "CurLocalAvatar",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ClearGlobalValue",
+							"key": "AttackCount",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stage0",
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "PlayEffect",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin", //用来对环境产生影响
+							"shapeName": "CircleR10",
+							"strength" : -8,
+							"maxNum": 0 //不对角色本身产生位置影响
+						},
+					],
+					"thinkInterval": 0.5, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue", //只有一次有效攻击
+									"key": "AttackCount",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "Predicated",
+									"target": "CurLocalAvatar",
+									"targetPredicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IGNORE_STRONG_WIND", //忽略强风的标志
+											"value": 0,
+											"compareType": "NoneOrEqual",
+										},
+										{
+											"$type": "ByTargetPositionToSelfPosition",
+											"compareType": "XZ",
+											"value": 400,
+											"logic": "LesserOrEqual",
+										},
+										{
+											"$type": "ByTargetPositionToSelfPosition",
+											"compareType": "Y",
+											"value": 60,
+											"logic": "LesserOrEqual",
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type": "SetGlobalPos",  //获取玩家当前位置
+											"target": "CurLocalAvatar",
+											"key": "PlayerPos",
+											"setTarget": false,
+											"born":
+											{
+												"$type": "ConfigBornByTarget",
+											},
+										},
+										{
+											"$type" : "TriggerAttackEvent",
+											"target": "Caster",
+											"targetType" : "Enemy",
+											"attackEvent": 
+											{
+												"attackPattern" : 
+												{
+													"$type" : "ConfigAttackSphere", //优化，在玩家位置生成攻击盒
+													"triggerType" : "TriggerNoRepeat",
+													"filterByFrame" : true,
+													"radius" : 1.0,
+													"born":
+													{
+														"$type": "ConfigBornByGlobalValue",
+														"positionKey": "PlayerPos",
+													},
+												},
+												"attackInfo":
+												{
+													"attackProperty":
+													{
+														"damagePercentage": 0.5,
+														"strikeType": "Pierce",
+														"elementType": "Wind",
+														"ignoreLevelDiff": true
+													},
+													"hitPattern" :
+													{
+														"hitLevel" : "Heavy",
+														"hitImpulseX" : 2000, //击退冲力
+														"hitImpulseY" : 300,
+														"retreatType": "ByAttacker",
+														"hitHaltTime" : 0.0,
+														"hitHaltTimeScale" : 0.05,
+														"muteHitText" : false,
+													},
+													"forceCameraShake": false,
+												},
+											},
+										},
+										{
+											"$type": "AddGlobalValue", //有效攻击次数加1
+											"key": "AttackCount",
+											"value": 1,
+										},
+									],
+								},	
+							]
+						}				
+					],
+				},
+				"PlayEffect":
+				{	
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Stage_StrongWindPrepare",
+							"target": "CurLocalAvatar",
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	///////////////////////////////////////////////////////////////
+//
+// 强风无效区域
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "StrongWindSafeRegion",
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Target",
+					"key": "_IGNORE_STRONG_WIND",
+					"value": 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"target": "Target",
+					"modifierName": "HealModifier",
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Target",
+					"key": "_IGNORE_STRONG_WIND",
+					"value": -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+				{
+					"$type": "RemoveModifier",
+					"target": "Target",
+					"modifierName": "HealModifier",
+				},
+			],
+			"modifiers":
+			{
+				"HealModifier": 
+				{
+					"thinkInterval": 5, //检查间隔
+					"onThinkInterval": 
+					[
+						{
+							"$type" : "HealHP",
+							"amount": 50,
+							"target" : "Self",
+						},
+					],
+				},	
+			},
+		},
+	},
+////////////////////////////////////////////////
+//
+// Wind Seed
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_WindSeed",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "WindSeed",
+			},
+		],
+		"modifiers" :
+		{
+			"WindSeed" :
+			{
+				"duration": 12,
+				"onRemoved":
+				[
+					{
+						"$type": "KillSelf",
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "Predicated",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByHitElement",
+								"element": "Wind",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "CreateGadget",
+								"gadgetID": 70900321,
+								"campTargetType": "All",
+								"born":
+								{
+									"$type": "ConfigBornByHitPoint",
+								},
+							},
+							{
+								"$type": "KillSelf",
+							},
+						],
+						"failActions":
+						[
+							{
+								"$type" : "ApplyModifier",
+								"modifierName" : "Hint",
+							},
+						],
+					},
+				],
+			},
+			"Hint" :
+			{
+				"stacking": "Unique",
+				"duration": 6,
+				"onAdded" :
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Element_SeedWind_Hint",
+					},
+				],
+			},
+ 		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Absorptive Wind
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_AbsorptiveWind_Seed",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachModifierToSelfGlobalValueMixin", 
+				"globalValueKey": "ABSORPTIVE_WIND_SEED_STATE",
+				"valueSteps" : [0, 1, 100],
+				"defaultGlobalValueOnCreate": 0,
+				"removeAppliedModifier": true,
+				"modifierNameSteps" : ["ABSORPTIVE_WIND_SEED_STATE_Enable", "ABSORPTIVE_WIND_SEED_STATE_Disable"],
+			},
+		],
+		"onAdded" :
+		[
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "Predicated",
+				"target" : "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByEntityTypes",
+						"entityTypes": ["Avatar"],
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "ABSORPTIVE_WIND_SEED_STATE",
+						"value": 0,
+						"compareType": "Equal",
+						"target" : "Self",
+					},
+				],
+				"successActions":
+				[
+					{
+						// FIREABYSS_STATE:
+						// 0 : Enable,
+						// 1 : Disable,
+						"$type": "AddGlobalValue",
+						"key": "ABSORPTIVE_WIND_SEED_STATE",
+						"value": 1,
+						"useLimitRange": true,
+						"minValue": 1,
+						"maxValue": 1,
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Element_WindFragment_Absorb",
+						"target" : "Target",
+					},
+					// Dummy
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900328,
+						"campTargetType": "All",
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"ABSORPTIVE_WIND_SEED_STATE_Enable":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Element_WindFragment",
+					},
+				],
+			},
+			"ABSORPTIVE_WIND_SEED_STATE_Disable":
+			{
+				"onAdded":
+				[
+				],
+			},
+ 		},
+	},
+},
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_AbsorptiveWind_Seed_Follow",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "Bar",
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				// FIREABYSS_STATE:
+				// 0 : Enable,
+				// 1 : Disable,
+				"$type": "AddGlobalValue",
+				"key": "ABSORPTIVE_WIND_SEED_STATE",
+				"value": 0,
+				"useLimitRange": true,
+				"minValue": 0,
+				"maxValue": 0,
+				"target": "Owner",
+			},
+			{
+				"$type": "CreateGadget",
+				"gadgetID": 70900321,
+				"campTargetType": "All",
+				"target" : "Target",
+				"born":
+				{
+					"$type": "ConfigBornBySelf",
+					"direction":
+					{
+						"$type": "ConfigDirectionByWorld",
+						"eularAngles":
+						{
+							"x" : -90,
+							"y" : 0,
+							"z" : 0,
+						},
+					},
+				},
+			},
+			{
+				"$type": "KillSelf",
+				"target": "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"Bar":
+			{
+				"duration": 8,
+				"elementDurability": 100,
+				"modifierMixins":
+				[
+					{
+						"$type": "ElementShieldMixin",
+						"elementType": "Wind",
+						"shieldHPRatio": 1.0,
+						"damageRatio": 0,
+					},
+				],
+				"onAdded":
+				[
+				],
+				"onRemoved":
+				[
+					{
+						// FIREABYSS_STATE:
+						// 0 : Enable,
+						// 1 : Disable,
+						"$type": "AddGlobalValue",
+						"key": "ABSORPTIVE_WIND_SEED_STATE",
+						"value": 0,
+						"useLimitRange": true,
+						"minValue": 0,
+						"maxValue": 0,
+						"target": "Owner",
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+ 		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Wind Fragment
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_WindFragment",
+		"onAdded" :
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key" : "WIND_FRAGMENT_LEVEL",
+				"value" : 1,
+				"useLimitRange" : true,
+				"maxValue" : 99,
+				"minValue" : 0,
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "WindFragment",
+			},
+		],
+		"onkill" :
+		[
+
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetGlobalValueToOverrideMap",
+				"globalValueKey": "WIND_FRAGMENT_LEVEL",
+				"overrideMapKey": "level",
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key" : "WIND_FRAGMENT_LEVEL",
+				"value" : "%level",
+				"useLimitRange" : true,
+				"maxValue" : 99,
+				"minValue" : 0,
+				"target" : "Target",
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Element_WindFragment_Absorb",
+			},
+			{
+				"$type": "Predicated",
+				"target" : "Target",
+				"targetPredicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "WIND_FRAGMENT_LEVEL",
+						"value": 2,
+						"compareType": "MoreThanAndEqual",
+					},
+				],
+				"successActions":
+				[
+					
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Monster_Dvalin_S01_WindSlime_Explode",
+					},
+
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900321,
+						"campTargetType": "All",
+						"target" : "Target",
+						"born":
+						{
+							"$type": "ConfigBornBySelf",
+							"direction":
+							{
+								"$type": "ConfigDirectionByWorld",
+								"eularAngles":
+								{
+									"x" : -90,
+									"y" : 0,
+									"z" : 0,
+								},
+							},
+						},
+					},
+					{
+						"$type": "KillSelf",
+						"target" : "Target",
+					},
+				],
+			},
+
+		],
+		"modifiers" :
+		{
+			"WindFragment" :
+			{
+				"onAdded" :
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Item_WindSeed",
+					},
+				],
+				"onKill":
+				[ 
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Item_WindSeed_Distroy",
+					},
+					/*
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "WindFragment_Timmer",
+						"target" : "Owner",
+					},
+					*/
+				],
+			},
+			"WindFragment_Timmer" :
+			{
+				"duration": 10,
+				"onRemoved" :
+				[
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 70900325,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "bornPoint",
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+						},
+					},
+				],
+			},
+ 		},
+	 	"abilitySpecials" :
+		{
+			"level" : 0,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// 风种子发生器
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_WindFragment_Controller",
+		"onAdded" :
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 70900325,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "bornPoint",
+					"offset":
+					{
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0,
+					},
+				},
+			},
+		],
+		"modifiers" :
+		{
+			
+ 		},
+	},
+
+},
+////////////////////////////////////////////////
+//
+// 风种子生成器
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_WindSeed_Controller",
+		"onAdded":
+		[
+
+		],
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 0,
+				"modifierName": "Default",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "GearStart",
+			},
+		],
+		"modifiers" :
+		{
+			"Default":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900336,
+						"campTargetType": "All",
+						"lifeByOwnerIsAlive": true,
+						"byServer" : true,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "bornPoint",
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.5,
+								"z" : 0.0,
+							},
+						},
+					},
+					// {
+					// 	"$type": "DebugLog",
+					// 	"doOffStage":true,
+					// 	"content": "WIND SEED DEFAULT++++++++++++++++++++++",
+					// },
+				],
+			},
+			"GearStart":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Duration",
+					},
+				],
+			},
+			"Duration":
+			{
+				"duration": 60,
+				"onAdded":
+				[
+					// {
+					// 	"$type": "DebugLog",
+					// 	"doOffStage":true,
+					// 	"content": "WIND SEED GearStart ----------------------",
+					// },
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "ExecuteGadgetLua",
+						"param1": 0,
+					},
+				],
+			},
+ 		},
+	},
+
+},
+////////////////////////////////////////////////
+//
+// 风精华
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Element_WindCream",
+		"onAdded" :
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "IS_ACTIVATING",
+				"value": 0,
+				"useLimitRange": true,
+				"maxValue": 0,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "CHECK_ACTIVATING",
+				"value": 0,
+				"useLimitRange": true,
+				"maxValue": 99,
+				"minValue": 0,
+				"target": "Applier",
+			},
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "Normal",
+			},
+		],
+		"onkill" :
+		[
+
+		],
+		"modifiers" :
+		{
+			"Normal" :
+			{
+				"onAdded" :
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Item_WindSeed",
+					},
+				],
+				"onBeingHit":
+				[ 
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "Activating",
+						"predicates":
+						[
+							{
+  								"$type" : "ByHitElement",
+ 								"element" : "Wind",
+   							},
+						],
+					},
+					{
+						"$type" : "RemoveModifier",
+						"modifierName" : "Normal",
+						"predicates":
+						[
+							{
+  								"$type" : "ByHitElement",
+ 								"element" : "Wind",
+   							},
+						],
+					},
+				],
+			},
+			"Activating" :
+			{
+				"duration": 10,
+				"stacking": "Unique",
+				"onAdded" :
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Item_WindSeed_Activating",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "CHECK_ACTIVATING",
+						"value": 0,
+						"useLimitRange": true,
+						"maxValue": 0,
+						"minValue": 0,
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "IS_ACTIVATING",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+				"onRemoved":
+				[ 
+					{
+			            "$type": "ApplyModifier",
+			            "modifierName": "CheckActivating",
+			            "otherTargets": 
+			            {
+			               "$type": "SelectTargetsByShape",
+			               "shapeName": "CircleR20",
+			               "centerBasedOn": "Self",
+			               "campTargetType": "AllExceptSelf",
+			               "campBasedOn": "Self",
+			            },
+		                "predicates":
+		                [
+			                {
+								"$type": "ByTargetGlobalValue",
+								"key": "IS_ACTIVATING",
+								"value": 1,
+								"compareType": "Equal",
+							},
+		                ],
+		            },
+		            {
+						"$type": "Predicated",
+						"target": "Self",
+						"targetPredicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "CHECK_ACTIVATING",
+								"value": 0,
+								"compareType": "MoreThan",
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type" : "ApplyModifier",
+								"modifierName" : "Activated",
+							},
+						],
+						"failActions":
+						[
+							{
+								"$type" : "ApplyModifier",
+								"modifierName" : "Normal",
+							},
+						],
+					},
+					{
+						"$type": "AddGlobalValue",
+						"key": "IS_ACTIVATING",
+						"value": -1,
+						"useLimitRange": true,
+						"maxValue": 1,
+						"minValue": 0,
+					},
+				],
+			},
+			"Activated" :
+			{
+				"duration": 0.1,
+				"onAdded" :
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Item_WindSeed_Activated",
+					},
+					{
+						"$type": "PushPos",
+						"posType":
+						{
+							"$type": "ConfigBornByTarget",
+						},
+					},
+					{
+						"$type": "GetPos",
+						"key": "CENTER_POS",
+						"posType": "Center",
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900321,
+						"campTargetType": "All",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "CENTER_POS",
+							"direction":
+							{
+								"$type": "ConfigDirectionByWorld",
+								"eularAngles":
+								{
+									"x" : -90,
+									"y" : -15,
+									"z" : 0,
+								},
+							},
+						},
+						"predicates":
+		                [
+			                {
+								"$type": "ByTargetGlobalValue",
+								"key": "CHECK_ACTIVATING",
+								"value": 1,
+								"compareType": "Equal",
+							},
+		                ],
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900321,
+						"campTargetType": "All",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "CENTER_POS",
+							"direction":
+							{
+								"$type": "ConfigDirectionByWorld",
+								"eularAngles":
+								{
+									"x" : -90,
+									"y" : -8,
+									"z" : 0,
+								},
+							},
+						},
+						"predicates":
+		                [
+			                {
+								"$type": "ByTargetGlobalValue",
+								"key": "CHECK_ACTIVATING",
+								"value": 2,
+								"compareType": "Equal",
+							},
+		                ],
+					},
+					{
+						"$type": "CreateGadget",
+						"gadgetID": 70900321,
+						"campTargetType": "All",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "CENTER_POS",
+							"direction":
+							{
+								"$type": "ConfigDirectionByWorld",
+								"eularAngles":
+								{
+									"x" : -90,
+									"y" : 0,
+									"z" : 0,
+								},
+							},
+						},
+						"predicates":
+		                [
+			                {
+								"$type": "ByTargetGlobalValue",
+								"key": "CHECK_ACTIVATING",
+								"value": 2,
+								"compareType": "MoreThan",
+							},
+		                ],
+					},
+					{
+						"$type":"ClearPos",
+					},
+					{
+						"$type": "KillSelf",
+					},
+				],
+			},
+			"CheckActivating" :
+			{
+				"duration": 0.1,
+				"onAdded" :
+				[
+					{
+						"$type": "AddGlobalValue",
+						"key": "CHECK_ACTIVATING",
+						"value": 1,
+						"useLimitRange": true,
+						"maxValue": 99,
+						"minValue": 0,
+						"target": "Applier",
+					},
+					{
+						"$type": "PushPos",
+						"posType":
+						{
+							"$type": "ConfigBornByTarget",
+						},
+					},
+					{
+						"$type": "KillSelf",
+						"target": "Self",
+					},
+				],
+			},
+ 		},
+	},
+	"abilitySpecials" :
+	{
+		"level" : 0,
+	},
+},
+]

@@ -1,0 +1,715 @@
+{
+  ///使用方法注释：
+  ///		1、调整能力
+  ///		{
+  ///			"$type" : "ModifyAbility",
+  ///			"abilityName" : "Avatar_Qin_Captain",
+  ///			"paramSpecial" : "CriticalHurt_Up",      需要修改的参数名字，只能填1个。所以多个的话需要多个ModifierAbiltiy
+  ///			"paramDelta" : 0.01,                     加上指定数值
+  ///			"paramRatio" : 0,                        提升指定比例
+  ///		}
+  ///		ConfigAbilityCommon.cs中有AbilityProperty，可以调整角色全局的攻击，攻速，攻击，血量，防御，抵抗等等。
+  ///		2、添加能力
+  ///		{
+  ///			"$type" : "AddAbility",
+  ///			"abilityName": "Avatar_Qin_Captain", 仅有一个参数，abiltiyName
+  ///		}
+  ///		3、替换攻击
+  ///		{
+  ///			"$type": "ReplaceEventPatternMixin",
+  ///  		"oldPatterns": ["Monster_Slime_Fire_02_NormalAttack"],
+  ///			"newPatterns": ["Monster_Slime_Fire_02_NormalAttack_Fire"],  如果需要替换攻击盒，可以用ModifyDamageMixin改变盒子伤害。
+  ///		}
+  ///		4、解锁参数
+  ///		{
+  ///			"$type" : "UnlockTalentParam",
+  ///			"abilityName" : "Avatar_Qin_IceShield_ImpactTriggerBack_L",
+  ///			"talentParam" : "Qin_TriggerBack",
+  ///		}
+  ///		需要配套功能： 即需要unlock这个predicates才能走过去。
+  ///			"predicates" :
+  ///				[
+  ///					{
+  ///						"$type" : "ByUnlockTalentParam",
+  ///						"talentParam" : "Keaya_TriggerBack",
+  ///					},
+  ///				],
+  ///
+  ///		5、解锁controller内容
+  ///		{
+  ///			"$type" : "UnlockControllerConditions",
+  ///			"conditionName" : "XXXX",
+  ///		}
+  ///		6、调整技能cd
+  ///		public partial class ModifySkillCD : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float cdDelta; // cdDelta
+  ///		public float cdRatio; // cdRatio
+  ///
+  ///		7、调整技能消耗
+  ///		public partial class ModifySkillCost : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float costDelta; // costDelta
+  ///		public float costRatio; // costRatio
+  ///
+  ///		8、调整技能充能次数
+  ///			public partial class ModifySkillPoint : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public int pointDelta; // pointDelta
+  ///		9、替换Abiltiy
+  ///		{
+  ///			"UnlockByTalentID":xxx,
+  ///			"$type":"ReplaceAbiltiy",
+  ///			"KeyAbilityName":"xx",
+  ///			"NewAbiltiyName":"xx",
+  ///			"ParamSpecial1":"xx",
+  ///			"ParamMedthod1":"xx",
+  ///		}
+  ///
+  ///		注意！！！！
+  ///
+  ///		需要修改MetaConfig，将对应的talent加入这个表。
+  ///
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  备用
+  //  西风猎弓武器词缀
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_Zephyrus_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_Zephyrus",
+    },
+  ],
+  "Weapon_Bow_Zephyrus_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_Zephyrus",
+      "paramSpecial": "SubHurtDelta",
+      "paramDelta": -0.06,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_Zephyrus_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_Zephyrus",
+      "paramSpecial": "SubHurtDelta",
+      "paramDelta": -0.06,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_Zephyrus_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_Zephyrus",
+      "paramSpecial": "SubHurtDelta",
+      "paramDelta": -0.06,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_Zephyrus_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_Zephyrus",
+      "paramSpecial": "SubHurtDelta",
+      "paramDelta": -0.06,
+      "paramRatio": 0,
+    }
+  ],
+
+  //////////////////////////////////////////////////////////////////
+  //
+  //  15301 水、火附着增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_DamageUpToEnemy": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_DamageUpToEnemy",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  //////////////////////////////////////////////////////////////////
+  //
+  //  15302 爆头的伤害提高 excel表实现
+  //
+  /////////////////////////////////////////////////////////////////
+  ///
+ "Weapon_Bow_DamageUpHitHeadBox": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_DamageUpHitHeadBox",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_DamageUpHitHeadBox",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //  15303
+  //  Equip_Bow_Crowfeather武器词缀_击杀目标恢复角色固定生命值；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_HealAmountHPonEnemyKilled": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_HealAmountHPonEnemyKilled",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_HealAmountHPonEnemyKilled",
+      "paramSpecial": "HealAmount",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15304
+  //  Equip_Bow_弹弓 武器词缀 普通攻击和重击时的弓箭飞行前0.2秒内，伤害提升，之后伤害大幅下降；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseDMGWithinTime": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithinTime",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithinTime",
+      "paramSpecial": "Time",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithinTime",
+      "paramSpecial": "AttackUpRatio",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithinTime",
+      "paramSpecial": "AttackDownRatio",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15305
+  //  Equip_Bow_信使 武器词缀 提升要害攻击伤害；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_HeavyCritical": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_HeavyCritical",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_HeavyCritical",
+      "paramSpecial": "bonusCriticalDamage",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15306
+  //  Equip_Bow_黑檀 武器词缀 对遗迹装置类敌人造成的伤害增加；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_MachineKiller": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_MachineKiller",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_MachineKiller",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  15401
+  //  西风猎弓    暴击生元素微粒
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_GenerateBallWhenCritic": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_GenerateBallWhenCritic",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_GenerateBallWhenCritic",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_GenerateBallWhenCritic",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15402
+  //  Equip_Bow_无弦 武器词缀 元素战技和元素爆发伤害提升；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseElementalSkillDMG": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseElementalSkillDMG",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseElementalSkillDMG",
+      "paramSpecial": "RiseElementalSkill",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  13403
+  //  祭礼弓词缀
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_ResetCDWhenSkillHit": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_ResetCDWhenSkillHit",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ResetCDWhenSkillHit",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ResetCDWhenSkillHit",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15404
+  //
+  //  Equip_Bow_Theocrat武器词缀_提升下一次分支攻击伤害，每15秒触发一次；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseDMGonBranchAttack": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseDMGonBranchAttack",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGonBranchAttack",
+      "paramSpecial": "UpDmgRate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGonBranchAttack",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //   15405
+  //   Equip_Bow_弓藏 武器词缀 普通攻击伤害提升，蓄力攻击伤害下降；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseNormalFallExtra": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseNormalFallExtra",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseNormalFallExtra",
+      "paramSpecial": "RiseNormalAttack",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseNormalFallExtra",
+      "paramSpecial": "FallExtraAttack",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15406
+  //  Equip_Bow_试作离簇 武器词缀 命中敌人要害时自身提升移动速度和基础攻击力；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_AttackGainSPDAKTBuff": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_AttackGainSPDAKTBuff",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainSPDAKTBuff",
+      "paramSpecial": "MoveSpeedRatio",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainSPDAKTBuff",
+      "paramSpecial": "AttackRatio",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainSPDAKTBuff",
+      "paramSpecial": "Time",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15407
+  //  Equip_Bow_钢轮 武器词缀 普通攻击和重攻击命中时提升自身基础攻击和普通攻击速度；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_AttackGainAKTSPDBuff": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_AttackGainAKTSPDBuff",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainAKTSPDBuff",
+      "paramSpecial": "AttackRatio",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainAKTSPDBuff",
+      "paramSpecial": "OverallSpeedRatio",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttackGainAKTSPDBuff",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15408
+  //  Equip_Bow_黑岩 武器词缀 蓄力攻击伤害提升,普通攻击伤害下降；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_FallNormalRiseExtra": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_FallNormalRiseExtra",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_FallNormalRiseExtra",
+      "paramSpecial": "RiseExtraAttack",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_FallNormalRiseExtra",
+      "paramSpecial": "FallNormalAttack",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15501
+  //  Equip_Bow_天空之翼 武器词缀 命中时有概率造成范围伤害,CD为5秒；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RangeAttackOnAttackLanded": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RangeAttackOnAttackLanded",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RangeAttackOnAttackLanded",
+      "paramSpecial": "RangeAttackChance",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RangeAttackOnAttackLanded",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  15502
+  //  Equip_Bow_阿莫斯 武器词缀 距离越远伤害增幅越高；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseDMGWithTime": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithTime",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithTime",
+      "paramSpecial": "RiseAttackBase",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseDMGWithTime",
+      "paramSpecial": "RiseAttackPerStage",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  备用
+  //  Equip_Bow_Zephyrus武器词缀_元素能量充满时，百分比提升自身造成的元素伤害，持续12秒；每45秒触发一次；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseElementDMGWhenEnergyMax_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+    },
+  ],
+  "Weapon_Bow_RiseElementDMGWhenEnergyMax_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+      "paramSpecial": "EleDmgUpRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseElementDMGWhenEnergyMax_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+      "paramSpecial": "EleDmgUpRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseElementDMGWhenEnergyMax_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+      "paramSpecial": "EleDmgUpRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseElementDMGWhenEnergyMax_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+      "paramSpecial": "EleDmgUpRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  备用
+  //  Equip_Bow_Troupe武器词缀_角色入场并释放充能技时，百分比提升角色接下来5秒内的伤害；每30秒触发一次；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+    },
+  ],
+  "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+      "paramSpecial": "UpDmgRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+      "paramSpecial": "UpDmgRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+      "paramSpecial": "UpDmgRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+      "paramSpecial": "UpDmgRate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    }
+  ],
+  /////////////////////////////////////////////////////////////////
+  //
+  //  备用
+  //  Equip_Bow_Fossil武器词缀_分支攻击命中目标时，百分比降低目标的伤害减免，持续10秒；每45秒触发一次；
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+    },
+  ],
+  "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+      "paramSpecial": "SubHurtDownRate",
+      "paramDelta": -0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+      "paramSpecial": "SubHurtDownRate",
+      "paramDelta": -0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+      "paramSpecial": "SubHurtDownRate",
+      "paramDelta": -0.05,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+      "paramSpecial": "SubHurtDownRate",
+      "paramDelta": -0.05,
+      "paramRatio": 0,
+    }
+  ],
+
+  ///////////////////////////////////////////////////////////////
+  //
+  //  15601 备用
+  //  冰反应增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Bow_AttacktUpAfterReaction_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+    },
+  ],
+  "Weapon_Bow_AttacktUpAfterReaction_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Bow_AttacktUpAfterReaction_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Bow_AttacktUpAfterReaction_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    },
+  ],
+  "Weapon_Bow_AttacktUpAfterReaction_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": 0.05,
+      "paramRatio": 0,
+    },
+  ],
+
+}

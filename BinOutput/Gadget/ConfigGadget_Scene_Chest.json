@@ -1,0 +1,3130 @@
+{
+/////////////////////////////////////////////////////////////////
+//
+//	大世界 花宝箱
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Flora" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 6.8,
+				"dieForceDisappearTime" : 6.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 4,
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_SceneObj_FloraChest_Active",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Born": ["ShowCollider"],
+						},
+					},
+				},
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Flora",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-常规-Lv1
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Default_Lv1" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.15,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Default_Lv1",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-常规-Lv2
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Default_Lv2" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV2",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Default_Lv2",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-常规-Lv3
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Default_Lv3" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV3",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.45,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Default_Lv3",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-常规-Lv4
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Default_Lv4" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV4",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.7,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Default_Lv4",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-常规-Lv5
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Default_Lv5" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV5",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.55,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Default_Lv5",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-机关锁-Lv1
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Locked_Lv1" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"Unlock_State": ["Chest_Unlock"],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Special_State": ["Chest_Lock"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.15,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//Default设置animiator中gadgetstate为0
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 1,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//ChestLocked设置animiator中gadgetstate为101
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 0,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-机关锁-Lv2
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Locked_Lv2" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"Unlock_State": ["Chest_Unlock"],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Special_State": ["Chest_Lock"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV2",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//Default设置animiator中gadgetstate为0
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 1,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//ChestLocked设置animiator中gadgetstate为101
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 0,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-机关锁-Lv3
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Locked_Lv3" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"Unlock_State": ["Chest_Unlock"],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Special_State": ["Chest_Lock"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV3",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.45,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//Default设置animiator中gadgetstate为0
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 1,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//ChestLocked设置animiator中gadgetstate为101
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 0,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-机关锁-Lv4
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Locked_Lv4" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"Unlock_State": ["Chest_Unlock"],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Special_State": ["Chest_Lock"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV4",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.7,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//Default设置animiator中gadgetstate为0
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 1,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//ChestLocked设置animiator中gadgetstate为101
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 0,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-机关锁-Lv5
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Locked_Lv5" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"Unlock_State": ["Chest_Unlock"],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Special_State": ["Chest_Lock"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV5",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.55,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//Default设置animiator中gadgetstate为0
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 1,
+					"gadgetState": "Default",
+				},
+				//ChestLocked时不能交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//ChestLocked设置animiator中gadgetstate为101
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "ChestState",
+					"value": 0,
+					"gadgetState": "ChestLocked",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-荆棘-Lv1
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Bramble_Lv1" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.15,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Bramble_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-荆棘-Lv2
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Bramble_Lv2" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV2",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Bramble_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-荆棘-Lv3
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Bramble_Lv3" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV3",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.45,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Bramble_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-荆棘-Lv4
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Bramble_Lv4" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV4",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.7,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Bramble_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-荆棘-Lv5
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Bramble_Lv5" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV5",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.55,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Bramble_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-岩封-Lv1
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Rock_Lv1" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": false,
+			"showDistance": 0,
+			"showHPBar": true,
+			"size": "Normal",
+			"shieldBarOnly" : true,
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Middle": ["HideCollider"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.15,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Rock_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-冰冻-Lv1
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Frozen_Lv1" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.15,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Frozen_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-冰冻-Lv2
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Frozen_Lv2" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV2",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Frozen_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-冰冻-Lv3
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Frozen_Lv3" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV3",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.45,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Frozen_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-冰冻-Lv4
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Frozen_Lv4" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV4",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.7,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Frozen_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	宝箱优化-冰冻-Lv5
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Frozen_Lv5" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["EffectInvisible"],
+							"Special_State": [],
+							"ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous_LV5",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.55,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Frozen_Interact",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//宝箱
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_NormalChest" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2.5,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+			"mass": 500,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 7.8,
+				"dieForceDisappearTime" : 7.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 6,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"000_Default": ["Chest_State_Clear"],
+							"101_LockState": [],
+							"102_ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"103_TrapState": [],
+							"104_BrambleState": ["Chest_State_Bramble"],
+							"105_FrozenState": ["Chest_State_Frozen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+		},
+		"abilities" :
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Interact"
+			},
+		],
+	},
+///////////////////////////////////////////////////////////
+//
+//	FM-宝箱
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Chest_Test_FM02" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 3,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+			"mass": 500,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 7.8,
+				"dieForceDisappearTime" : 7.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 6,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"000_Default": ["Chest_State_Clear"],
+							"101_LockState": ["Chest_State_Clear"],
+							"103_TrapState": ["Chest_State_Clear"],
+							"104_BrambleState": ["Chest_State_Bramble"],
+							"105_FrozenState": ["Chest_State_Frozen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target": "GroupGadgetEntity",
+			"attachPoint" : "FollowMove02",
+			"followRotation": true,
+		},
+		"abilities" :
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Interact"
+			},
+		],
+	},
+	/////////////////////////////////////////////////////////////////
+//
+//掉落宝箱
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Drop_Chest" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2.5,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+			"mass": 500,
+		},
+		"field" :
+		{
+			"shape" : "CircleR5",		//形状，不填为collider
+			"startCheckTime" : 0.0,		//触发开始延时
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"triggerCount" : 0,			//触发次数,结束后销毁
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 7.8,
+				"dieForceDisappearTime" : 7.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 6,
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+			"bornState": "GearStart",
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+		},
+		"abilities" :
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Drop",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	英雄王宝藏
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Hero_Treasure" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+				//0时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//201时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "GearStart",
+				},
+				//101时不可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestLocked",
+				},
+				//204时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "GearAction2",
+				},
+				//Action01时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "Action01",
+				},
+				//Action01时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "ChestOpened",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Success": ["Hero_Treasure_Middle"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+			"targetIndicatorYOffset": 1.35,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Hero_Treasure",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	空模型宝箱
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Empty" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+			"bornState": "GearStart",
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Empty",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	可动宝箱白盒
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_RigidMove_WhiteBox" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 4.8,
+				"dieForceDisappearTime" : 4.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 3,
+			},
+		},
+		"model":
+		{
+			"bornEffect": "Eff_Item_SpecialTreasureBox_Born",
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+			"bornState": "GearStart",
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigRigidbodyMove",
+			"startCloseToGround": true,
+			"velocityForce":
+			{
+				"includeForces": ["RetreatType","RetreatAirType","WindZoneType"],
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Empty",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//宝箱
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_FollowMove_Chest" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2.5,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+			"mass": 500,
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target": "GroupGadgetEntity",
+			"attachPoint" : "RootNode",
+			"followRotation": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 7.8,
+				"dieForceDisappearTime" : 7.8,
+				"dieShaderData": "GadgetDie",
+				"dieModelFadeDelay": 6,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"000_Default": ["Chest_State_Clear"],
+							"101_LockState": [],
+							"102_ChestOpen": ["Audio_SceneObj_Item_Treasurebox01_102_ChestOpen"],
+							"103_TrapState": [],
+							"104_BrambleState": ["Chest_State_Bramble"],
+							"105_FrozenState": ["Chest_State_Frozen"],
+						},
+					},
+				},
+			},
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				"openEffect": "Eff_Chest_Open_Continuous",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+				//"dropPointMinSpeed": 4,
+				//"dropPointMaxSpeed": 5,
+			},
+		},
+		"abilities" :
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Chest_Interact"
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	石中剑-飞天大御剑
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Calibur_Mitsurugi" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"model":
+		{
+			"attachEffect": "Eff_DropWeapon_Lv3",
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				//"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	石中剑-黑缨枪
+//
+//////////////////////////////////////////////////////////////////
+	"SceneObj_Chest_Carlibur_Noire" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"model":
+		{
+			"attachEffect": "Eff_DragonNest_Tornado_Bullet_SlowDown",
+		},
+		"uiInteract":
+		{
+		},
+		"misc":
+		{
+			"chest":
+			{
+				//"openEffect": "Eff_Chest_Open_Continuous_LV1",
+			},
+			"pickup":
+			{
+				"$type": "ConfigPickup",
+			},
+		},
+	},
+},

@@ -1,0 +1,754 @@
+{
+  ////////////////////////////////////////////////////////////////
+  //
+  //  默认武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_Weapon":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "lockYmove" : true,
+        "suspendHeight" : 0.3,
+        "rotateSpeed" : -45,
+        "rotateVec" : 
+        {
+          "x" : 3,
+          "y" : 3,
+          "z" : 10,
+        },
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  白色武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv1_Weapon":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv1",
+        "bornEffect": "Eff_DropItem_Trail",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  绿色武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv2_Weapon":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv2",
+        "bornEffect": "Eff_DropItem_Trail",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  蓝色武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv3_Weapon":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv3",
+        "bornEffect": "Eff_DropItem_Trail",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  紫色武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv4_Weapon":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv4",
+        "bornEffect": "Eff_DropItem_Trail",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  橙色武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv5_Weapon":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv5",
+        "bornEffect": "Eff_DropItem_Trail",
+      },
+    },
+  },
+   ////////////////////////////////////////////////////////////////
+  //
+  //  白色法器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv1_Catalyst":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Catalyst_Lv1",
+        "bornEffect": "Eff_DropItem_Trail",
+        /*"dropOffset":
+        {
+          "x": 0,
+          "y": 0.1,
+          "z": 0,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  绿色法器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv2_Catalyst":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Catalyst_Lv2",
+        "bornEffect": "Eff_DropItem_Trail",
+        /*"dropOffset":
+        {
+          "x": 0,
+          "y": 0.1,
+          "z": 0,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  蓝色法器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv3_Catalyst":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Catalyst_Lv3",
+        "bornEffect": "Eff_DropItem_Trail",
+        /*"dropOffset":
+        {
+          "x": 0,
+          "y": 0.1,
+          "z": 0,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  紫色法器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv4_Catalyst":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Catalyst_Lv4",
+        "bornEffect": "Eff_DropItem_Trail",
+        /*"dropOffset":
+        {
+          "x": 0,
+          "y": 0.1,
+          "z": 0,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  橙色法器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv5_Catalyst":
+  {
+    "$type": "ConfigGadget",
+    /*"hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Catalyst_Lv5",
+        "bornEffect": "Eff_DropItem_Trail",
+        /*"dropOffset":
+        {
+          "x": 0,
+          "y": 0.1,
+          "z": 0,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  默认道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_Item":
+  {
+    "$type": "ConfigGadget",
+    //"hasModel": true,
+    /*"model":
+    {
+      "bornEffect": "Eff_DropItem_Trail",
+    },*/
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "dropEffect": "Eff_Item_Hint_Small",
+        /*"rotateVec" : 
+        {
+          "x" : 3,
+          "y" : 3,
+          "z" : 10,
+        },*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  白色道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv1_Item":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "attachEffect": "Eff_DropItem_Trail",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv1",
+      },
+    },
+  },
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  绿色道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv2_Item":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "attachEffect": "Eff_DropItem_Trail",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv2",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  蓝色道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv3_Item":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "attachEffect": "Eff_DropItem_Trail",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+        "dropEffect": "Eff_DropWeapon_Lv3",
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  紫色道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv4_Item":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "attachEffect": "Eff_DropItem_Trail",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "dropEffect": "Eff_DropWeapon_Lv4",
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  橙色道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Lv5_Item":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "attachEffect": "Eff_DropItem_Trail",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "dropEffect": "Eff_DropWeapon_Lv5",
+        "rotateVec" : 
+        {
+          "x" : 5,
+          "y" : 5,
+          "z" : -3,
+        },
+        "dropPointMaxYaw": 30,
+        "dropPointMinSpeed": 2,
+        "dropPointMaxSpeed": 3,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  不动道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_NoDrop_Item":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : true,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  任务道具掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_Task_Item":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Attract",
+        "isStatic" : false,
+        "dirVec" : {
+          "x" : 2,
+          "y" : 6,
+          "z" : 0,
+        },
+      },
+    },
+  },
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  默认怪物武器掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_MonsterWeapon":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Monster",
+        "isStatic" : false,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  原石
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_UncarvedGem":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Attract",
+        "isStatic" : false,
+        "dropEffect": "SceneObj_Test_IceBall",
+        "dirVec" : {
+          "x" : 2,
+          "y" : 6,
+          "z" : 0,
+        },
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  摩拉
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_Mora":
+  {
+    "$type": "ConfigGadget",
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "GroupAuto",
+        "isStatic" : false,
+        "rotateVec" : {
+          "x" : 3,
+          "y" : 3,
+          "z" : 10,
+        },
+        "attractDelayTime" : 1.5,
+        "multi" : {
+          "minNum" : 4,
+          "maxNum" : 8,
+          "minSpeed": 1.2,
+          "maxSpeed": 1.5,
+          "dirMinVec" : {
+            "x" : 0.8,
+            "y" : 5,
+            "z" : 0,
+          },
+          "dirMaxVec" : {
+            "x" : 1,
+            "y" : 6,
+            "z" : 0,
+          },
+        },
+        "suspendHeight" : 0.07,
+        //"suspendSpeed" : 180.0,
+        /*"lockYmove" : true,
+        "suspendHeight" : 0.7,
+        "rotateSpeed" : -45,*/
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  默认道具有任务提示掉落
+  //
+  ////////////////////////////////////////////////////////////////
+  "Default_Item_WithQuest":
+  {
+    "$type": "ConfigGadget",
+    "hasModel": true,
+    "model":
+    {
+      "bornEffect": "Eff_Quest_SiteInteract",
+    },
+    "misc" :
+    {
+      "pickup" :
+      {
+        "$type": "ConfigPickup",
+        "pickType" : "Select",
+        "isStatic" : false,
+        "dropEffect": "Eff_Item_Hint_Small",
+        /*"rotateVec" : 
+        {
+          "x" : 3,
+          "y" : 3,
+          "z" : 10,
+        },*/
+      },
+    },
+  },
+}

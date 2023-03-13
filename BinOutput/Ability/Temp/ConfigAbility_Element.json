@@ -1,0 +1,5317 @@
+/*
+ */
+
+[
+////////////////////////////////////////////////
+//
+// Burning
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Burning",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "BurningModifier",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass"],
+							},
+						],
+					},
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+						"value": 0,
+						"compareType": "NoneOrEqual",
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_BURNING_ALTER",
+						"value":0,
+						"compareType":"NoneOrEqual",
+					}
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "BurningModifier_Grass",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes" : ["Grass"],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Burning_Alter_Modifier",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+						"value": 0,
+						"compareType": "NoneOrEqual",
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_BURNING_ALTER",
+						"value":1,
+						"compareType":"Equal",
+					}
+				],
+			},			
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "BurningModifier_Custom_Sphere",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "BurningModifier_Custom_Box",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+						"value": 2,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "BurningModifier_Custom_Circle",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+						"value": 3,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"BurningModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"modifierMixins":
+				[
+					{
+						"$type":"OverrideStickElemUIMixin",
+						"effName":"Burning",
+					}
+				],
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning",
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Monster", "Grass", "Bush"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Shrub",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Bush"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Grass",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Monster",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachModifier",
+						"modifierName" : "UNIQUE_Burning_Immune_Modifier",
+						"target" : "Target",
+						"predicates" :
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_BURNING_IGNITE_ONLY",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"thinkInterval" : 0.25,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"radius" : 1.0,
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "BurningDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType" : "Fire",
+									"elementDurability" : 50,
+									"strikeType": "None",
+									"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Damage_Factor",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Mute",	//hitlevel = 0
+									"hitImpulseX": 0,	//hitlevel = 0
+									"hitImpulseY": 0,	//hitlevel = 0
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true,
+								},
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Equip", "MonsterEquip"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"strikeType": "None",
+								"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*0.1",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Equip", "MonsterEquip"],
+							},
+						],
+					},
+				],
+			},
+			"BurningModifier_Grass" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"modifierMixins":
+				[
+					{
+						"$type": "TileAttackMixin",
+						"attackID": "TileAttack_Grass",
+					},
+				],
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Grass",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass"],
+							},
+						],
+					},
+				],
+			},
+			"Burning_Alter_Modifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"modifierMixins":
+				[
+					{
+						"$type":"OverrideStickElemUIMixin",
+						"effName":"Burning",
+					}
+				],
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning",
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Monster", "Grass", "Bush"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Shrub",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Bush"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Grass",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Burning_Monster",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+						],
+					},
+					{
+						"$type" : "AttachModifier",
+						"modifierName" : "UNIQUE_Burning_Immune_Modifier",
+						"target" : "Target",
+						"predicates" :
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_BURNING_IGNITE_ONLY",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"thinkInterval" : 0.25,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"radius" : 1.0,
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "BurningDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType" : "Fire",
+									"elementDurability" : 50,
+									"strikeType": "None",
+									"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Alter_Damage_Factor",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Mute",	//hitlevel = 0
+									"hitImpulseX": 0,	//hitlevel = 0
+									"hitImpulseY": 0,	//hitlevel = 0
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true,
+								},
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Equip", "MonsterEquip"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"strikeType": "None",
+								"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*0.1",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Equip", "MonsterEquip"],
+							},
+						],
+					},
+				],
+			},
+			"BurningModifier_Custom_Sphere" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName" : "UNIQUE_Burning_Immune_Modifier",
+						"target" : "Target",
+						"predicates" :
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_BURNING_IGNITE_ONLY",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"thinkInterval" : 0.25,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"radius" : "%customAttackSphere_Radius",
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "BurningDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType" : "Fire",
+									"elementDurability" : 50,
+									"strikeType": "None",
+									"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Damage_Factor",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Mute",	//hitlevel = 0
+									"hitImpulseX": 0,	//hitlevel = 0
+									"hitImpulseY": 0,	//hitlevel = 0
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true,
+								},
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Equip", "MonsterEquip"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"strikeType": "None",
+								"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*0.1",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Equip", "MonsterEquip"],
+							},
+						],
+					},
+				],
+			},
+			"BurningModifier_Custom_Box" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName" : "UNIQUE_Burning_Immune_Modifier",
+						"target" : "Target",
+						"predicates" :
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_BURNING_IGNITE_ONLY",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"thinkInterval" : 0.25,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackBox",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"size" :
+								{
+									"x" : "%customAttackBox_Size_X",
+									"y" : "%customAttackBox_Size_Y",
+									"z" : "%customAttackBox_Size_Z",
+								},
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"useRotation" : true,
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "BurningDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType" : "Fire",
+									"elementDurability" : 50,
+									"strikeType": "None",
+									"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Damage_Factor",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Mute",	//hitlevel = 0
+									"hitImpulseX": 0,	//hitlevel = 0
+									"hitImpulseY": 0,	//hitlevel = 0
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true,
+								},
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Equip", "MonsterEquip"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"strikeType": "None",
+								"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*0.1",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Equip", "MonsterEquip"],
+							},
+						],
+					},
+				],
+			},
+			"BurningModifier_Custom_Circle" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementBurning",
+				"elementType" : "Fire",
+				"elementDurability" : 50,
+				"overrideWeaponElement" : true,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachModifier",
+						"modifierName" : "UNIQUE_Burning_Immune_Modifier",
+						"target" : "Target",
+						"predicates" :
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_BURNING_IGNITE_ONLY",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+				"thinkInterval" : 0.25,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "All",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackCircle",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"fanAngle": 360.0,
+								"radius": "%customAttackCircle_Radius",
+								"innerRadius": "%customAttackCircle_InnerRadius",
+								"checkHitScene": false,
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"useRotation" : true,
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "BurningDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType" : "Fire",
+									"elementDurability" : 50,
+									"strikeType": "None",
+									"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Damage_Factor",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Mute",	//hitlevel = 0
+									"hitImpulseX": 0,	//hitlevel = 0
+									"hitImpulseY": 0,	//hitlevel = 0
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true,
+								},
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Equip", "MonsterEquip"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born":
+						{
+							"$type": "ConfigBornByTarget",
+							"offset" :
+							{
+								"x": 0.0,
+								"y": 1.0,
+								"z": 0.0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0,
+								"elementType" : "Fire",
+								"elementDurability" : 50,
+								"strikeType": "None",
+								"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*0.1",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Mute",	//hitlevel = 0
+								"hitImpulseX": 0,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Equip", "MonsterEquip"],
+							},
+						],
+					},
+				],
+			},
+			"UNIQUE_Burning_Immune_Modifier":
+			{
+				"isUnique": true,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "BurningDamage",
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Burning_BaseReactionDamage" : 0,
+			"Burning_Damage_Factor" : 0.25,
+			"Burning_Alter_Damage_Factor":1.0,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Burning Tile Attack Manager
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_BurningTileAttackManager",
+		"abilityMixins":
+		[
+			{
+				"$type": "TileAttackManagerMixin",				
+				"attackID": "TileAttack_Grass",
+				"interval": 0.25,
+				"attackInfo":
+				{
+					"attenuationTag" : "BurningDamage",
+					"attackTag" : "BurningDamage",
+					"attackProperty":
+					{
+						"damagePercentage": 0,
+						"elementType" : "Fire",
+						"elementDurability" : 50,
+						"strikeType": "None",
+						"damageExtra": "%ElementAbility_Burning_BaseReactionDamage*%Burning_Damage_Factor",
+						"ignoreAttackerProperty": true,
+					},
+					"hitPattern" :
+					{
+						"onHitEffectName" : "",
+						"hitLevel": "Mute",
+						"hitImpulseX": 0,
+						"hitImpulseY": 0,
+						"hitHaltTime" : 0.0,
+						"hitHaltTimeScale" : 0.05,
+						"muteHitText" : false,
+						"recurring": true,
+					},
+				},
+			},
+			//
+			// Overload Tile Action
+			//
+			{
+				"$type": "DoTileActionManagerMixin",
+				"duration": 0.01,
+				"actionID": "GrassExplode",
+				"actionPosKey": "ElementAbility_Explode_Pos",
+				"actionRadiusKey": "ElementAbility_Explode_Radius",
+				"actions":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Overload_Explode",
+						"born":
+						{
+			                "$type": "ConfigBornByGlobalValue",
+			                "positionKey": "ElementAbility_Explode_Pos",
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Target", // DoTileAction会把applier作为otehr传进来
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : "%ElementAbility_Explode_Radius+5",
+								"born":
+								{
+					                "$type": "ConfigBornByGlobalValue",
+					                "positionKey": "ElementAbility_Explode_Pos",
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag":"ExplodeDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Fire",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Explode_BaseReactionDamage*%Explode_Damage_Factor",
+									"strikeType": "Blunt",
+									"ignoreAttackerProperty": true,
+									"enBreak":130,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 480,	//hitlevel = 5
+									"hitImpulseY": 600,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+								"forceCameraShake": true,
+								"cameraShake":
+								{
+									"shakeRange": 0.48,
+									"shakeTime": 0.24,
+								},
+							},
+						},
+					},
+				],
+			},
+			//
+			// Superconduct Tile Action
+			//
+			{
+				"$type": "DoTileActionManagerMixin",
+				"duration": 0.01,
+				"actionID": "SuperconductExplode",
+				"actionPosKey": "ElementAbility_Superconduct_Pos",
+				"actionRadiusKey": "ElementAbility_Superconduct_Radius",
+				"actions":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Superconductor",
+						"born":
+						{
+			                "$type": "ConfigBornByGlobalValue",
+			                "positionKey": "ElementAbility_Superconduct_Pos",
+						},
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Target", // DoTileAction会把applier作为otehr传进来
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : "%ElementAbility_Superconduct_Radius+5",
+								"born":
+								{
+					                "$type": "ConfigBornByGlobalValue",
+					                "positionKey": "ElementAbility_Superconduct_Pos",
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag":"SuperconductorDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Ice",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Superconductor_BaseReactionDamage*%Superconductor_Damage_Factor",
+									"strikeType": "Default",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Heavy",	//hitlevel = 5
+									"hitImpulseX": 240,	//hitlevel = 5
+									"hitImpulseY": 300,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],
+			},
+		],
+		"abilitySpecials":
+		{
+			// 这里的BaseReactionDamage，如果不注释掉就会直接用0，很有问题，需要查一下
+			//"ElementAbility_Burning_BaseReactionDamage" : 0,
+			"Burning_Damage_Factor" : 0.25,
+			"Burning_Alter_Damage_Factor":1.0,
+			//
+			//"ElementAbility_Explode_BaseReactionDamage": 0,
+			"Explode_Damage_Factor" : 1.5,
+			"ElementAbility_Explode_Pos_0": 0,
+			"ElementAbility_Explode_Pos_1": 0,
+			"ElementAbility_Explode_Pos_2": 0,
+			"ElementAbility_Explode_Radius": 1,
+			//
+			//"ElementAbility_Superconductor_BaseReactionDamage": 0,
+			"Superconductor_Damage_Factor" : 0.5,
+			"ElementAbility_Superconduct_Pos_0": 0,
+			"ElementAbility_Superconduct_Pos_1": 0,
+			"ElementAbility_Superconduct_Pos_2": 0,
+			"ElementAbility_Superconduct_Radius": 1,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Electric
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Electric",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Electric_Modifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{ 
+						"$type" : "ByNot",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Water", "Field","Grass"],
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Shock_Modifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type" : "ByNot",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Water", "Field","Grass"],
+							},
+						],
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_ELECTRIC_ALTER",
+						"value":0,
+						"compareType":"NoneOrEqual",
+					}
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Shock_Alter_Modifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type" : "ByNot",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Water", "Field","Grass"],
+							},
+						],
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_ELECTRIC_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					}
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Electrified_Water",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type" : "ByEntityTypes",
+						"entityTypes" : ["Water"],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"Electric_Modifier" :
+			{
+				/*"isUnique" : true,*/
+				"stacking" : "Overlap",
+				"elementType": "Electric",
+				"duration": "%Ability_Electric_Duration",
+				"elementDurability": "%Ability_Electric_Durability",
+				"overrideWeaponElement" : false,
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Shock_Loop",
+					},
+				],
+			},
+			"Shock_Modifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementShock",
+				"elementType" : "None",
+				"overrideWeaponElement" : false,
+				"onAdded" :
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+				"thinkInterval" : 1.0,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetIsSelf",
+								"isSelf" : true,
+							},
+							{
+								"$type" : "ByHasElement",
+								"element" : "Water",
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar", "Monster", "Gear"],
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "ConductShock",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR10H3",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetIsSelf",
+								"isSelf" : false,
+							},
+							{
+								"$type" : "ByHasElement",
+								"element" : "Water",
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar", "Monster", "Gear"],
+							},
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key" : "Element_Electric_Shock_Rencently_Shocked",
+								"value" : 0,
+								"maxvalue" : 1,
+								"compareType" : "NoneOrEqual",
+							},
+						],
+					},
+				],
+				"onAttackLanded" :
+				[
+					{
+						"$type" : "ApplyModifier",
+						"target" : "Self",
+						"modifierName" : "Shock_Modifier_Wane",
+						"predicates":
+						[
+							{
+								"$type" : "ByAttackTags",
+								"attackTags" : ["ShockDamage"],
+							},
+						],
+					},
+				],
+			},
+			"Shock_Alter_Modifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementShock",
+				"elementType" : "None",
+				"overrideWeaponElement" : false,
+				"onAdded" :
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Alter_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+				"thinkInterval" : 0.5,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Alter_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetIsSelf",
+								"isSelf" : true,
+							},
+							{
+								"$type" : "ByHasElement",
+								"element" : "Water",
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar", "Monster", "Gear"],
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "ConductShock_Alter",
+						"otherTargets":
+						{
+					"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR20H10",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByTargetIsSelf",
+								"isSelf" : false,
+							},
+							{
+								"$type" : "ByHasElement",
+								"element" : "Water",
+							},
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar", "Monster", "Gear"],
+							},
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key" : "Element_Electric_Shock_Rencently_Shocked",
+								"value" : 0,
+								"maxvalue" : 1,
+								"compareType" : "NoneOrEqual",
+							},
+						],
+					},
+				],
+				"onAttackLanded" :
+				[
+					{
+						"$type" : "ApplyModifier",
+						"target" : "Self",
+						"modifierName" : "Shock_Modifier_Wane",
+						"predicates":
+						[
+							{
+								"$type" : "ByAttackTags",
+								"attackTags" : ["ShockDamage"],
+							},
+						],
+					},
+				],
+			},
+			"Shock_Modifier_Wane" :
+			{
+				/*"isUnique" : true,*/
+				"duration" : 0.1,
+				"onAdded" :
+				[
+					{
+						"$type" : "AddElementDurability",
+						"value" : -10,
+						"elementType" : "Water",
+						"sortModifier": "All",
+						"useLimitRange": true,
+						"minValue": 0.0,
+					},
+					{
+						"$type" : "AddElementDurability",
+						"value" : -10,
+						"elementType" : "Electric",
+						"sortModifier": "All",
+						"useLimitRange": true,
+						"minValue": 0.0,
+					},
+				],
+			},
+			"ConductShock" :
+			{
+				/*"isUnique" : true,*/
+				"duration": 0.1,
+				"onAdded":
+				[
+					// {
+					// 	"$type" : "UpdateReactionDamage",
+					// 	"levelTarget":"Applier",
+					// 	"reactionDamageName" : "ElementAbility_Electric_BaseReactionDamage"
+					// },
+					{
+						"$type":"DoWatcherSystemAction",
+						"watcherId":1011,
+					},
+					{
+						"$type":"CopyGlobalValue",
+						"srcTarget":"Applier",
+						"srcKey":"ElementAbility_Electric_BaseReactionDamage",
+						"dstKey":"ElementAbility_Electric_BaseReactionDamage",
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Conduct_Lightning",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Applier",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "UNIQUE_Electric_Shock_Recently_Shocked",
+					},
+				],
+			},
+			"ConductShock_Alter" :
+			{
+				/*"isUnique" : true,*/
+				"duration": 0.1,
+				"onAdded":
+				[
+					{
+						"$type" : "UpdateReactionDamage",
+						"levelTarget":"Applier",
+						"reactionDamageName" : "ElementAbility_Electric_BaseReactionDamage"
+					},
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Conduct_Lightning",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"attachPointTargetType":"Applier",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "ShockDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Alter_Damage_Factor",
+								"elementType" : "Electric",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "Eff_Element_Shock_Damage",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "UNIQUE_Electric_Shock_Recently_Shocked",
+					},
+				],
+			},
+			"UNIQUE_Electric_Shock_Recently_Shocked":
+			{
+				"duration" : 1.0,
+				"isUnique" : true,
+				"stacking" : "Unique",
+				"onAdded":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "Element_Electric_Shock_Rencently_Shocked",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "Element_Electric_Shock_Rencently_Shocked",
+						"value" : -1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+			},
+			"Electrified_Water":
+			{
+				/*"isUnique" : true,*/
+				"isDurabilityGlobal" : true,
+				"duration": "%Ability_Electric_Duration",
+				"elementDurability": "%Ability_Electric_Durability",
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Conductive_Water",
+					},
+				],
+				"thinkInterval" : 2.0,
+				"trimThinkInterval": true,
+				"onThinkInterval" :
+				[
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"filterByFrame" : true,
+								"radius" : 3.0,
+								"born":
+								{
+									"$type" : "ConfigBornByAttachPoint",
+									"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x" : 0.0,
+										"y" : -1.5,
+										"z" : 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag" : "ShockDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"damageExtra": "%ElementAbility_Electric_BaseReactionDamage*%Electric_Shock_Damage_Factor",
+									"elementType" : "Electric",
+									"elementDurability" : 0,
+									"strikeType": "Default",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 200,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+									"recurring": true
+								},
+							},
+						},
+					},
+				],
+				"onAttackLanded" :
+				[
+					{
+						"$type":"ApplyModifier",
+						"target":"Other",
+						// "otherTargets":
+						// {
+						// 	"$type": "SelectTargetsByShape",
+						// 	"shapeName": "CircleR3",
+						// 	"centerBasedOn": "Self",
+						// 	"campTargetType": "All",
+						// 	"campBasedOn": "Self",
+						// },
+						"modifierName":"Unique_Reject_Shock_Modifier",
+						"predicates":
+						[
+							{
+								"$type":"ByEntityTypes",
+								"target":"Target",
+								"entityTypes":["Avatar"],
+							},
+						],
+					},
+					{
+						"$type": "DebugLog",
+						"doOffStage":true,
+						"content": "?????????????????????????????????????????????????????????????????????????????????????????????????",
+					},
+					{
+						"$type" : "AddElementDurability",
+						"modifierName" : "Electrified_Water",
+						"value" : -20,
+						"useLimitRange": true,
+						"minValue": 0.0,
+						"predicates":
+						[
+							{
+								"$type" : "ByAttackTags",
+								"attackTags" : ["ShockDamage"],
+							},
+						],
+					},
+				],
+			},
+			"Unique_Reject_Shock_Modifier":
+			{
+				"duration":1.5,
+				"stacking":"Unique",
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "ShockDamage",
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Electric_BaseReactionDamage" : 0,
+			"Electric_Shock_Damage_Factor" : 1,
+			"Electric_Shock_Alter_Damage_Factor":2.5,
+			"Ability_Electric_Duration" : 0.2,
+			"Ability_Electric_Durability" : 1,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Wet
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Wet",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "WetModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"WetModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementWet",
+				"overrideWeaponElement" : false,
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Wet",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar"],
+							},
+						],
+					},
+					//效果测试
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Wet_Monster",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+							{
+								"$type" : "ByTargetGlobalValue",
+								"key" : "_ANIMAL_ENTITY_TYPE",
+								"value" : 0,
+								"compareType" : "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Wet_Added",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+						],
+					},
+				],
+			}
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Ice
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Ice",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "IceModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"IceModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementIce",
+				"stacking" : "Overlap",
+				"duration": "%Ability_Ice_Duration+7",
+				"elementType" : "Ice",
+				"elementDurability": "%Ability_Ice_Durability",
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Ice",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar", "Monster","Gear"],
+							},
+						],
+					},
+				],
+				"properties" :
+				{
+					"Animator_OverallSpeedRatioMultiplied" : 0.85,
+				},
+			}
+		},
+		"abilitySpecials":
+		{
+			"Ability_Ice_Duration" : 0.1,
+			"Ability_Ice_Durability" : 0.8,
+		},
+	},
+},
+
+////////////////////////////////////////////////
+//
+// Growing
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Growing",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "GrassGrowingModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"GrassGrowingModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementGrassGrowing",
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Steam
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Steam",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "SteamModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"SteamModifier" :
+			{
+				/*"isUnique" : true,*/
+				"duration" : 2.0,
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Steam",
+					},
+					//怪物身上的蒸发效果不够明显
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Steam_Added",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+						],
+					},
+				],
+			}
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Explode
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Explode",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "ExplodeModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Grass"],
+						"reject":true,
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_EXPLODE_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Grass_ExplodeModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Grass"],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Explode_Alter_Modifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_EXPLODE_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Grass"],
+						"reject":true,
+					},
+				],
+			},
+		],
+		"modifiers":
+		{
+			"ExplodeModifier":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Overload_Explode",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 5.0,
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									//"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"ExplodeDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Fire",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Explode_BaseReactionDamage*%Explode_Damage_Factor",
+									"strikeType": "Blunt",
+									"ignoreAttackerProperty": true,
+									"enBreak":130,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 480,	//hitlevel = 5
+									"hitImpulseY": 600,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],
+			},
+			"Grass_ExplodeModifier":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					// 转到TILE里去做
+					{
+						"$type" : "DoTileAction",
+						"actionID": "GrassExplode",
+					}
+					/*
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Overload_Explode",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 2.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									//"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								"filterByFrame":true,//一片草只能炸一下
+							},
+							"attackInfo":
+							{
+								"attackTag":"ExplodeDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Fire",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Explode_BaseReactionDamage*%Explode_Damage_Factor",
+									"strikeType": "Blunt",
+									"ignoreAttackerProperty": true,
+									"enBreak":130,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 480,	//hitlevel = 5
+									"hitImpulseY": 600,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					*/
+				],
+			},
+			"Explode_Alter_Modifier":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Overload_Explode",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 5.0,
+								"born":
+								{
+									"$type": "ConfigBornByTarget",
+									//"attachPointName" : "RootNode",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"ExplodeDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Fire",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Explode_BaseReactionDamage*%Explode_Alter_Damage_Factor",
+									"strikeType": "Blunt",
+									"ignoreAttackerProperty": true,
+									"enBreak":162.5,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Air",	//hitlevel = 5
+									"hitImpulseX": 600,	//hitlevel = 5
+									"hitImpulseY": 750,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Explode_BaseReactionDamage" : 0,
+			"Explode_Damage_Factor" : 1.5,
+			"Explode_Alter_Damage_Factor" : 4.5,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Frozen / Freeze
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Frozen",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "FrozenModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"FrozenModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementFrozen",
+				"modifierMixins":
+				[
+					{
+						"$type": "AttackCostElementMixin",
+						"strikeType": "Blunt",
+						"strikeCostRatio": 0.15,
+						"costElementType": "Frozen",
+						"costType":"Max",
+					},
+					{
+						"$type":"OverrideStickElemUIMixin",
+						"effName":"Frozen",
+					}
+				],
+			}
+		},
+	},
+},
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Freeze",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "FreezeModifier",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_FREEZE_ALTER",
+						"value":0,
+						"compareType":"NoneOrEqual",
+					}
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Freeze_Alter_Modifier",
+				"target" : "Target",
+				"predicates" :
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_FREEZE_ALTER",
+						"value":1,
+						"compareType":"Equal",
+					}
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"FreezeModifier" :
+			{
+				/*"isUnique" : true,*/
+				"stacking" : "Overlap",
+				"state" : "ElementFreeze",
+				"duration": "%Ability_Freeze_Duration",
+				"elementType": "Frozen",
+				"elementDurability": "%Ability_Freeze_Durability",
+				"overrideWeaponElement" : true,
+				"purgeIncrement" : 0.25,
+				"modifierMixins":
+				[
+					{
+						"$type":"OverrideStickElemUIMixin",
+						"effName":"Frozen",
+					}
+				],
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Frozen",
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Water"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_freeze" }
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": 0.0,
+								"elementType" : "None",
+								"elementDurability" : 0,
+								"strikeType": "None",
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_freeze_break" }
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Water"],
+								},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_frozenWater" }
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Water"],
+							},
+						],
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Element_FreezeBroken",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+							"alongGround": true,
+						},
+						"predicates":
+						[
+							{
+								"$type":"ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHitStrikeType",
+										"strikeType": "Blunt",
+									},
+									{
+										"$type":"ByHitElement",
+										"element":"Rock",
+									},
+								],
+							},
+							{
+								"$type":"ByNot",
+								"predicates":
+								[
+									{
+										"$type":"ByEntityTypes",
+										"target":"Self",
+										"entityTypes":["Water"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "FrozenBrokenDamage",
+						"target" : "Self",
+						"predicates":
+						[
+							{
+								"$type":"ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHitStrikeType",
+										"strikeType": "Blunt",
+									},
+									{
+										"$type":"ByHitElement",
+										"element":"Rock",
+									},
+								],
+							},
+						],
+					},
+				],
+				"onKill": 
+				[
+		            {
+		              "$type": "RemoveModifier",
+		              "modifierName": "FreezeModifier",
+		              "predicates": [
+		                {
+		                  "$type": "ByEntityTypes",
+		                  "entityTypes": [ "Avatar" ],
+		                },
+		              ],
+		            },
+         		],
+				"properties" :
+				{
+					"Actor_EndureDelta" : 0,
+					"Actor_CostStaminaRatio" : -999,
+				},
+			},
+			"Freeze_Alter_Modifier" :
+			{
+				/*"isUnique" : true,*/
+				"stacking" : "Overlap",
+				"state" : "ElementFreeze",
+				"duration": "%Ability_Freeze_Duration",
+				"elementType": "Frozen",
+				"elementDurability": "%Ability_Freeze_Alter_Durability",
+				"overrideWeaponElement" : true,
+				"purgeIncrement" : 0.25,
+				"modifierMixins":
+				[
+					{
+						"$type":"OverrideStickElemUIMixin",
+						"effName":"Frozen",
+					}
+				],
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Frozen",
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Water"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_freeze" }
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": 0.0,
+								"elementType" : "None",
+								"elementDurability" : 0,
+								"strikeType": "None",
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",
+								"hitLevel": "Light",	//hitlevel = 2
+								"hitImpulseX": 200,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_freeze_break" }
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByNot",
+								"predicates" :
+								[
+									{
+										"$type" : "ByEntityTypes",
+										"entityTypes" : ["Water"],
+								},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "TriggerAudio",
+						"responder" : "Receiver",
+						"operation":
+						{
+							"$type": "ConfigAudioEventOp",
+							"operation": { "text" : "Play_sfx_elem_frozenWater" }
+						},
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Water"],
+							},
+						],
+					},
+				],
+				"onBeingHit":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Element_FreezeBroken",
+						"born":
+						{
+							"$type": "ConfigBornByHitPoint",
+							"direction":
+							{
+								"$type": "ConfigDirectionByBackToHitBoxCenter",
+							},
+							"alongGround": true,
+						},
+						"predicates":
+						[
+							{
+								"$type":"ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHitStrikeType",
+										"strikeType": "Blunt",
+									},
+									{
+										"$type":"ByHitElement",
+										"element":"Rock",
+									},
+								],
+							},
+							{
+								"$type":"ByNot",
+								"predicates":
+								[
+									{
+										"$type":"ByEntityTypes",
+										"target":"Self",
+										"entityTypes":["Water"],
+									},
+								],
+							},
+						],
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "FrozenBrokenDamage",
+						"target" : "Self",
+						"predicates":
+						[
+							{
+								"$type":"ByAny",
+								"predicates":
+								[
+									{
+										"$type": "ByHitStrikeType",
+										"strikeType": "Blunt",
+									},
+									{
+										"$type":"ByHitElement",
+										"element":"Rock",
+									},
+								],
+							},
+						],
+					},
+				],
+				"onKill": 
+				[
+		            {
+		              "$type": "RemoveModifier",
+		              "modifierName": "FreezeModifier",
+		              "predicates": [
+		                {
+		                  "$type": "ByEntityTypes",
+		                  "entityTypes": [ "Avatar" ],
+		                },
+		              ],
+		            },
+         		],
+				"properties" :
+				{
+					"Actor_EndureDelta" : 0,
+					"Actor_CostStaminaRatio" : -999,
+				},
+			},
+			"FrozenBrokenDamage":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					{
+						"$type": "ActCameraShake",
+			        	"cameraShake": 
+			        	{
+			        		"shakeType": "Center",
+							"shakeRange": 1.1,
+							"shakeTime": 0.15,
+							"shakeDistance": 30,
+							"extension":
+							{
+								"baseOnCamera": true,
+							},
+			        	},
+			        },
+					// {
+					// 	"$type":"CopyGlobalValue",
+					// 	"srcTarget":"Applier",
+					// 	"srcKey":"ElementAbility_Freeze_BaseReactionDamage",
+					// 	"dstKey":"ElementAbility_Freeze_BaseReactionDamage",
+					// },
+					// {
+					// 	"$type" : "UpdateReactionDamage",
+					// 	"reactionDamageName" : "ElementAbility_Frozen_BaseReactionDamage"
+					// },
+					{
+						"$type" : "DamageByAttackValue",
+						"target" : "Self",
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "FrozenBrokenDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"damageExtra": "%ElementAbility_Freeze_BaseReactionDamage*%FrozenBroken_Damage_Factor",
+								"elementType" : "None",
+								"elementDurability" : 0,
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "",//Eff_WhiteBox_FrozeBroken
+								"hitLevel": "Heavy",	//hitlevel = 3
+								"hitImpulseX": 200,	//hitlevel = 3
+								"hitImpulseY": 0,	//hitlevel = 3
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+					{
+						"$type" : "AddElementDurability",
+						"value" : -200,
+						"elementType" : "Frozen",
+						"sortModifier": "DurabilityDes",
+						"useLimitRange": true,
+						"minValue": 0.0,
+					},
+				]
+			}
+ 		},
+		"abilitySpecials":
+		{
+			"Ability_Freeze_Duration" : 0.2,
+			"Ability_Freeze_Durability" : 2,
+			"Ability_Freeze_Alter_Durability": 8,
+			"ElementAbility_Freeze_BaseReactionDamage" : 0,
+			"FrozenBroken_Damage_Factor" : 1.2,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Melt
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Melt",
+		"onAbilityStart" :
+		[
+		//	{
+		//		"$type" : "ApplyLevelModifier",
+		//		"modifierName" : "MeltModifier",
+		//		"target" : "Self",
+		//	},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "MeltSteamModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"MeltModifier" :
+			{
+				/*"isUnique" : true,*/
+				"elementType": "Water",
+				"elementDurability": 10,
+				"duration" : 5.0,
+			},
+			"MeltSteamModifier" :
+			{
+				/*"isUnique" : true,*/
+				"duration" : 2.0,
+				"fireEventWhenApply": true,
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Steam",
+					},
+					//怪物身上的蒸发效果不够明显
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Steam_Added",
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster"],
+							},
+						],
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Melt_BaseReactionDamage" : 0,
+			"Melt_Damage_Factor" : 1.5,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// StickRock
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_StickRock",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "StickRockModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Monster","Avatar",],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"StickRockModifier" :
+			{
+				"state" : "ElementFire",
+				"stacking" : "Overlap",
+				"duration": "%Ability_StickRock_Duration+7",
+				"elementType" : "Rock",
+				"elementDurability": "%Ability_StickRock_Durability",
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Element_StickRock",
+					},
+				],
+				"properties" :
+				{
+					"Entity_WeightRatio" : 0.5,
+					"Actor_ElemAttackByRockRatio":0.25,
+					// "Actor_ElemDefenseByRockRatio":0.25,
+				},
+			},
+		},
+		"abilitySpecials":
+		{
+			"Ability_StickRock_Duration" : 0.1,
+			"Ability_StickRock_Durability" : 0.8,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Rock
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Rock",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "RockModifier",
+				"target" : "Target",
+			},
+		],
+		"modifiers" :
+		{
+			"RockModifier" :
+			{
+				/*"isUnique" : true,*/
+				"state" : "ElementRock",
+				"modifierMixins":
+				[
+					{
+						"$type": "AttackCostElementMixin",
+						"strikeType": "Blunt",
+						"strikeCostRatio": 0.35,
+						"attackType": "Melee",
+						"attackCostRatio":0.05,
+						"costType":"Max",
+						"costElementType": "Rock",
+					},
+				],
+				// "properties" :
+				// {
+				// 	"Entity_WeightRatio" : 0.5,
+				// 	"Actor_ElemAttackByRockRatio":0.25,
+				// 	// "Actor_ElemDefenseByRockRatio":0.25,
+				// },
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Crash
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "Unique_AbilityCrash",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "UNIQUE_CrashModifier",
+				"target" : "Self",
+			},
+		],
+		"modifiers" :
+		{
+			"UNIQUE_CrashModifier" :
+			{
+				"isUnique" : true,
+				"onCrash" :
+				[
+					{
+						"$type": "SetCrashDamage",
+						"maxVelocity": 40,
+						"minDamage": 10,
+						"maxDamage": 100,
+						"key": "CrashDamageParam",
+						"predicates":
+						[
+							{
+								"$type": "ByNot",
+								"predicates":
+								[
+									{
+										"$type": "ByHasAbilityState",
+										"abilityState": "Struggle",
+									},
+								],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_CRASH_RECENTLY_CRASHED",
+								"value": 0,
+								"compareType": "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Hit_None_Blunt_Small",
+						"born":
+						{
+							"$type": "ConfigBornByGlobalValue",
+							"positionKey": "CrashDamageParam",
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByNot",
+								"predicates":
+								[
+									{
+										"$type": "ByHasAbilityState",
+										"abilityState": "Struggle",
+									},
+								],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_CRASH_RECENTLY_CRASHED",
+								"value": 0,
+								"compareType": "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type": "TriggerAttackEvent",
+						"targetType": "Self",
+						"attackEvent":
+						{
+							"attackPattern":
+							{
+								"$type": "ConfigAttackSphere",
+								"duration": 0.0,
+								"triggerType": "TriggerNoRepeat",
+								"radius": 1,
+								"born":
+								{
+									"$type": "ConfigBornByAttachPoint",
+									"attachPointName": "RootNode",
+									"offset":
+									{
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0,
+									},
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag":"CrashDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementDurability": 20,
+									"damageExtra": "%CrashDamageParam"
+								},
+								"hitPattern":
+								{
+									"hitLevel": "Shake",	//hitlevel = 1
+									"hitImpulseX": 0,	//hitlevel = 1
+									"hitImpulseY": 0,	//hitlevel = 1
+									"hitHaltTime": 0.0,
+									"hitHaltTimeScale": 0.05,
+									"muteHitText": false,
+								},
+								"forceCameraShake": true,
+								"cameraShake":
+								{
+									"shakeRange": 0.24,
+									"shakeTime": 0.12,
+								},
+							},
+						},
+						"predicates":
+						[
+							{
+								"$type": "ByNot",
+								"predicates":
+								[
+									{
+										"$type": "ByHasAbilityState",
+										"abilityState": "Struggle",
+									},
+								],
+							},
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_ABILITY_CRASH_RECENTLY_CRASHED",
+								"value": 0,
+								"compareType": "NoneOrEqual",
+							},
+						],
+					},
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "UNIQUE_Crash_Recently_Crashed",
+						"target": "Self",
+						"predicates":
+						[
+							{
+								"$type": "ByNot",
+								"predicates":
+								[
+									{
+										"$type": "ByHasAbilityState",
+										"abilityState": "Struggle",
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+			"UNIQUE_Crash_Recently_Crashed":
+			{
+				"duration": 1.5,
+				"isUnique": true,
+				"stacking": "Unique",
+				"onAdded":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "_ABILITY_CRASH_RECENTLY_CRASHED",
+						"value" : 1,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "AddGlobalValue",
+						"key" : "_ABILITY_CRASH_RECENTLY_CRASHED",
+						"value" : -10,
+						"useLimitRange" : true,
+						"maxValue" : 1,
+						"minValue" : 0,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Overload
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Overload",
+		"onAbilityStart" :
+		[
+			// {
+			// 	"$type" : "ApplyLevelModifier",
+			// 	"modifierName" : "OverloadModifier",
+			// 	"target" : "Target",
+			// },
+		],
+		"modifiers" :
+		{
+			"OverloadModifier" :
+			{
+				/*"isUnique" : true,*/
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern" : "Eff_Element_Overload_Charging",
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Resist Debuff
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "AbilityResistCommonDebuff",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "ResistCommonDebuff",
+				"target" : "Self",
+			},
+		],
+		"modifiers" :
+		{
+			"ResistCommonDebuff" :
+			{
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachAbilityStateResistance",
+						"resistanceListID": 13002,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Resist Frozen
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "AbilityResistFrozen",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "ResistFrozen",
+				"target" : "Self",
+			},
+		],
+		"modifiers" :
+		{
+			"ResistFrozen" :
+			{
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachAbilityStateResistance",
+						"resistanceListID": 14002,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Resist Struggle
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "AbilityResistStruggle",
+		"onAdded" :
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "ResistStruggle",
+				"target" : "Self",
+			},
+		],
+		"modifiers" :
+		{
+			"ResistStruggle" :
+			{
+				"onAdded" :
+				[
+					{
+						"$type" : "AttachAbilityStateResistance",
+						"resistanceListID": 14001,
+					},
+				],
+			},
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Wind
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Wind",
+		"onAbilityStart" :
+		[
+			// {
+			// 	"$type" : "ApplyLevelModifier",
+			// 	"modifierName" : "WindModifier",
+			// 	"target" : "Target",
+			// 	"predicates":
+			// 	[
+			// 		{
+			// 			"$type":"ByEntityTypes",
+			// 			"entityTypes":["Monster","Avatar",],
+			// 		},
+			// 	],
+			// },
+		],
+		"modifiers" :
+		{
+			"WindModifier" :
+			{
+				"state" : "ElementWind",
+				"stacking" : "Overlap",
+				"duration": "%Ability_Wind_Duration+7",
+				"elementType" : "Wind",
+				"elementDurability": "%Ability_Wind_Durability",
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Element_StickWind",
+						// "predicates":
+						// [
+						// 	{
+						// 		"$type":"ByEntityTypes",
+						// 		"entityTypes":["Monster",],
+						// 	},
+						// ],
+					},
+				],
+			}
+		},
+		"abilitySpecials":
+		{
+			"Ability_Wind_Duration" : 0.1,
+			"Ability_Wind_Durability" : 0.8,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Stick Electric
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_StickElectric",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "StickElectricModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Monster","Avatar",],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"StickElectricModifier" :
+			{
+				"state" : "ElementElectric",
+				"stacking" : "Overlap",
+				"duration": "%Ability_StickElectric_Duration+7",
+				"elementType" : "Electric",
+				"elementDurability": "%Ability_StickElectric_Durability",
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Element_StickElectric",
+						// "predicates":
+						// [
+						// 	{
+						// 		"$type":"ByEntityTypes",
+						// 		"entityTypes":["Monster",],
+						// 	},
+						// ],
+					},
+				],
+			}
+		},
+		"abilitySpecials":
+		{
+			"Ability_StickElectric_Duration" : 0.1,
+			"Ability_StickElectric_Durability" : 0.8,
+		},
+	},
+},
+
+////////////////////////////////////////////////
+//
+// Stick Water
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_StickWater",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "StickWaterModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Monster","Avatar",],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"StickWaterModifier" :
+			{
+				"state" : "ElementWet",
+				"stacking" : "Overlap",
+				"duration": "%Ability_StickWater_Duration+7",
+				"elementType" : "Water",
+				"elementDurability": "%Ability_StickWater_Durability",
+			}
+		},
+		"abilitySpecials":
+		{
+			"Ability_StickWater_Duration" : 0.1,
+			"Ability_StickWater_Durability" : 0.8,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Fire
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Fire",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "FireModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Monster","Avatar",],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"FireModifier" :
+			{
+				"state" : "ElementFire",
+				"stacking" : "Overlap",
+				"duration": "%Ability_Fire_Duration+7",
+				"elementType" : "Fire",
+				"elementDurability": "%Ability_Fire_Durability",
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Element_StickFire",
+						// "predicates":
+						// [
+						// 	{
+						// 		"$type":"ByEntityTypes",
+						// 		"entityTypes":["Monster",],
+						// 	},
+						// ],
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"Ability_Fire_Duration" : 0.1,
+			"Ability_Fire_Durability" : 0.8,
+		},
+	},
+},
+
+////////////////////////////////////////////////
+//
+// Superconductor
+//
+////////////////////////////////////////////////
+
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Superconductor",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "SuperconductorModifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Grass", "Water"],
+						"reject":true,
+					},
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SUPERCONDUCTOR_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					}
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "SuperconductorModifier_Water",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Water"],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Superconductor_Alter_Modifier",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SUPERCONDUCTOR_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type":"ByEntityTypes",
+						"entityTypes":["Grass"],
+						"reject":true,
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"SuperconductorModifier":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Superconductor",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 5.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"SuperconductorDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Ice",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Superconductor_BaseReactionDamage*%Superconductor_Damage_Factor",
+									"strikeType": "Default",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Heavy",	//hitlevel = 5
+									"hitImpulseX": 240,	//hitlevel = 5
+									"hitImpulseY": 300,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "SuperconductorDefenceDown",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster","Avatar"],
+							},
+						],
+					},
+				],
+			},
+			"SuperconductorModifier_Water":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					// 转到TILE里去做
+					{
+						"$type" : "DoTileAction",
+						"actionID": "SuperconductExplode",
+					}
+					/*
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Superconductor",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 5.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"SuperconductorDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Ice",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Superconductor_BaseReactionDamage*%Superconductor_Damage_Factor",
+									"strikeType": "Default",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Heavy",	//hitlevel = 5
+									"hitImpulseX": 240,	//hitlevel = 5
+									"hitImpulseY": 300,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					*/
+				],
+			},
+			"Superconductor_Alter_Modifier":
+			{
+				"duration":0.01,
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Superconductor",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 10.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"SuperconductorDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"elementType":"Ice",
+									"elementDurability":0,
+									"damageExtra": "%ElementAbility_Superconductor_BaseReactionDamage*%Superconductor_Alter_Damage_Factor",
+									"strikeType": "Default",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "",
+									"hitLevel": "Heavy",	//hitlevel = 5
+									"hitImpulseX": 240,	//hitlevel = 5
+									"hitImpulseY": 300,	//hitlevel = 5
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "ApplyModifier",
+						"modifierName" : "SuperconductorDefenceDown_Alter",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+						},
+						"predicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Monster","Avatar"],
+							},
+						],
+					},
+				],
+			},
+			"SuperconductorDefenceDown":
+			{
+				"stacking":"Refresh",
+				"duration":7,
+				"properties" :
+				{
+					"Actor_DefenceRatio" : -0.3,
+				},
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Avatar_Properties_Defense_Down",						
+					},
+				],
+			},
+			"SuperconductorDefenceDown_Alter":
+			{
+				"stacking":"Refresh",
+				"duration":7,
+				"properties" :
+				{
+					"Actor_DefenceRatio" : "%Superconductor_Alter_DefenceDown",
+				},
+				"onAdded":
+				[
+					{
+						"$type":"AttachEffect",
+						"effectPattern":"Eff_Avatar_Properties_Defense_Down",						
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Superconductor_BaseReactionDamage":0,
+			"Superconductor_Damage_Factor":0.5,
+			"Superconductor_Alter_Damage_Factor":2,
+			"Superconductor_Alter_DefenceDown":-0.4,
+			// "Superconductor_Durability":0,
+		},
+	},
+},
+
+////////////////////////////////////////////////
+//
+// Swirl_Fire
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Swirl_Fire",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Fire",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_FIRE_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Fire_Alter",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_FIRE_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"Swirl_Fire":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_FireDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Fire",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 6.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+								"ignoreMassive":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_FireDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Fire",
+									"damageExtra": "%ElementAbility_Swirl_Fire_BaseReactionDamage*%Swirl_Fire_Damage_Factor",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							"attackTag": "Swirl_FireDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Fire",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Fire_BaseReactionDamage*%Swirl_Fire_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"Swirl_Fire_Alter":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_FireDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Fire_Alter",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 12.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+								"ignoreMassive":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_FireDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Fire",
+									"damageExtra": "%ElementAbility_Swirl_Fire_BaseReactionDamage*%Swirl_Fire_Alter_Damage_Factor",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_FireDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Fire",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Fire_BaseReactionDamage*%Swirl_Fire_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Swirl_Fire_BaseReactionDamage":0,
+			"Swirl_Fire_Damage_Factor":0.4,
+			"Swirl_Fire_Alter_Damage_Factor":1.6,
+			"Swirl_Durability":1,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Swirl_Electric
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Swirl_Electric",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Electric",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_ELECTRIC_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Electric_Alter",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_ELECTRIC_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"Swirl_Electric":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_ElectricDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Electric",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 6.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								"ignoreMassive":true,
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_ElectricDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"damageExtra": "%ElementAbility_Swirl_Electric_BaseReactionDamage*%Swirl_Electric_Damage_Factor",
+									"elementType":"Electric",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_ElectricDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Electric",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Electric_BaseReactionDamage*%Swirl_Electric_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"Swirl_Electric_Alter":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_ElectricDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Electric_Alter",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 12.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								"ignoreMassive":true,
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_ElectricDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"damageExtra": "%ElementAbility_Swirl_Electric_BaseReactionDamage*%Swirl_Electric_Alter_Damage_Factor",
+									"elementType":"Electric",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_ElectricDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Electric",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Electric_BaseReactionDamage*%Swirl_Electric_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Swirl_Electric_BaseReactionDamage":0,
+			"Swirl_Electric_Damage_Factor":0.4,
+			"Swirl_Electric_Alter_Damage_Factor":1.6,
+			"Swirl_Durability":1,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Swirl_Water
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Swirl_Water",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Water",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_WATER_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Water_Alter",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_WATER_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"Swirl_Water":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_WaterDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Water",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 6.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_WaterDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Water",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"attacker" : "Self",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_WaterDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Water",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Water_BaseReactionDamage*%Swirl_Water_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"Swirl_Water_Alter":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_WaterDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Water_Alter",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 12.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_WaterDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Water",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_WaterDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Water",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Water_BaseReactionDamage*%Swirl_Water_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Swirl_Water_BaseReactionDamage":0,
+			"Swirl_Water_Damage_Factor":0.4,
+			"Swirl_Water_Alter_Damage_Factor":1.6,
+			"Swirl_Durability":1,
+		},
+	},
+},
+////////////////////////////////////////////////
+//
+// Swirl_Ice
+//
+////////////////////////////////////////////////
+{
+	"Default" :
+	{
+		"$type" : "ConfigAbility",
+		"abilityName" : "ElementAbility_Swirl_Ice",
+		"onAbilityStart" :
+		[
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Ice",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_ICE_ALTER",
+						"value":0,						// "forceByCaster":true,
+						"compareType":"NoneOrEqual",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+			{
+				"$type" : "ApplyLevelModifier",
+				"modifierName" : "Swirl_Ice_Alter",
+				"target" : "Target",
+				"predicates":
+				[
+					{
+						"$type":"ByTargetGlobalValue",
+						"target":"Team",
+						"key":"_IS_SWRIL_ICE_ALTER",
+						"value":1,						// "forceByCaster":true,
+						"compareType":"Equal",
+					},
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Grass", "Water"],
+							},
+						],
+					},
+				],
+			},
+		],
+		"modifiers" :
+		{
+			"Swirl_Ice":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_IceDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Ice",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 6.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_IceDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Ice",
+									"damageExtra": "%ElementAbility_Swirl_Ice_BaseReactionDamage*%Swirl_Ice_Damage_Factor",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_IceDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Ice",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Ice_BaseReactionDamage*%Swirl_Ice_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+			"Swirl_Ice_Alter":
+			{
+				"duration":0.01,
+				"modifierMixins":
+				[
+					{
+						"$type": "RejectAttackMixin",
+						"attackTag": "Swirl_IceDamage",
+					},
+				],
+				"onAdded":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern" : "Eff_Element_Swirl_Ice_Alter",
+						"target" : "Self",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"target" : "Applier",
+						"targetType" : "Enemy",
+						"attackEvent":
+						{
+							"attackPattern" :
+							{
+								"$type" : "ConfigAttackSphere",
+								"duration" : 0.0,
+								"triggerType" : "TriggerNoRepeat",
+								"radius" : 12.0,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" :
+									{
+										"x": 0.0,
+										"y" : 0.0,
+										"z" : 0.0,
+									},
+								},
+								// "filterByFrame":true,
+							},
+							"attackInfo":
+							{
+								"attackTag":"Swirl_IceDamage",
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType":"Ice",
+									"damageExtra": "%ElementAbility_Swirl_Ice_BaseReactionDamage*%Swirl_Ice_Alter_Damage_Factor",
+									"elementDurability":"%Swirl_Durability*1.25+25",
+									"ignoreAttackerProperty": true,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "default",
+									"hitLevel": "Shake",	//hitlevel = 5
+									"hitImpulseX": 0,	//hitlevel = 5
+									"hitImpulseY": 0,	//hitlevel = 5 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+					},
+					{
+						"$type" : "DamageByAttackValue",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsByShape",
+							"shapeName": "CircleR0_5",
+							"centerBasedOn": "Self",
+							"campTargetType": "Enemy",
+							"campBasedOn": "Applier",
+							"topLimit" : 1,
+						},
+						"born" :
+						{
+							"$type":"ConfigBornByAttachPoint",
+							"attachPointName":"RootNode",
+							"offset":
+							{
+								"x":0,
+								"y":0,
+								"z":0,
+							},
+						},
+						"attackInfo":
+						{
+							// "attackTag": "Swirl_IceDamage",
+							"attackProperty":
+							{
+								"damagePercentage": 0.0,
+								"elementType":"Ice",
+								"elementDurability":0,
+								"damageExtra": "%ElementAbility_Swirl_Ice_BaseReactionDamage*%Swirl_Ice_Damage_Factor",
+								"strikeType": "Default",
+								"ignoreAttackerProperty": true,
+								"enBreak":130,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName" : "default",
+								"hitLevel": "Shake",	//hitlevel = 2
+								"hitImpulseX": 0,	//hitlevel = 2
+								"hitImpulseY": 0,	//hitlevel = 2
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						},
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"ElementAbility_Swirl_Ice_BaseReactionDamage":0,
+			"Swirl_Ice_Damage_Factor":0.4,
+			"Swirl_Ice_Alter_Damage_Factor":1.6,
+			"Swirl_Durability":1,
+		},
+	},
+},
+]

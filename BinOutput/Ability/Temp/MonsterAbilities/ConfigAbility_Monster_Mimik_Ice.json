@@ -1,0 +1,204 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  FruitManagement
+//
+////////////////////////////////////////////////////////////////
+//TODO:初始化果实数量
+//TODO:吸收果实开始，扣减果实数量
+//TODO:按顺序隐藏果实，定义1，2，3
+//TODO:果实数量为0，开始逃跑
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Mimik_FruitManager",
+		"abilityMixins":
+		[
+			{
+				//第1颗果实存在的状态
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [1, 2, 3, 1101, 1201, 1301],
+				"modifierName": "UNIQUE_Fruit01",
+			},
+			{
+				//第2颗果实存在的状态
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [2, 3, 1201, 1301],
+				"modifierName": "UNIQUE_Fruit02",
+			},
+			{
+				//第3颗果实存在的状态
+				"$type": "AttachToPoseIDMixin",
+				"poseIDs": [3, 1301],
+				"modifierName": "UNIQUE_Fruit03",
+			},
+		],
+		"onAdded":
+		[
+			{
+				//初始化果实数量GlobalValue
+				"$type": "AddGlobalValue",
+				"key": "_MONSTER_MIMIK_FRUITCOUNT",
+				"value": 3,
+				"useLimitRange": true,
+				"maxValue": 3,
+				"minValue": 3,
+			},
+			{
+				//初始化果实数量AbilitySpecial
+				"$type":"SetGlobalValueToOverrideMap",
+				"globalValueKey":"_MONSTER_MIMIK_FRUITCOUNT",
+				"overrideMapKey":"FruitCount",
+			},
+			{
+				//将果实数量赋给Pose状态机
+				"$type": "SetPoseFloat",
+				"floatID": "FruitCount",
+				"value": "%FruitCount",
+			},
+		],
+		"modifiers": 
+		{
+			"UNIQUE_Fruit01":
+			{
+				//第1颗果实显示与隐藏
+				"isUnique": true,
+				"onAdded":
+				[
+					//TODO:
+					//显示果实，播放果实特效
+				],
+				"onRemoved":
+				[
+					//TODO:
+					//隐藏果实，播放果实消失特效
+				],
+			},
+			"UNIQUE_Fruit02":
+			{
+				//第2颗果实显示与隐藏
+				"isUnique": true,
+				"onAdded":
+				[
+					//TODO:
+					//显示果实，播放果实特效
+				],
+				"onRemoved":
+				[
+					//TODO:
+					//隐藏果实，播放果实消失特效
+				],
+			},
+			"UNIQUE_Fruit03":
+			{
+				//第3颗果实显示与隐藏
+				"isUnique": true,
+				"onAdded":
+				[
+					//TODO:
+					//显示果实，播放果实特效
+				],
+				"onRemoved":
+				[
+					//TODO:
+					//隐藏果实，播放果实消失特效
+				],
+			},
+		},
+		"abilitySpecials" :
+		{
+			//用于记录果实数量
+			"FruitCount" : 0,
+		},
+	},
+},
+{
+	"Default":
+	{
+		//
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Mimik_ReduceFruit",
+		"onAbilityStart":
+		[
+			{
+				//果实数量GlobalValue-1
+				"$type": "AddGlobalValue",
+				"key": "_MONSTER_MIMIK_FRUITCOUNT",
+				"value": -1,
+				"useLimitRange": true,
+				"maxValue": 3,
+				"minValue": 0,
+			},
+			{
+				//果实数量GlobalValue-->AbilitySpecial
+				"$type":"SetGlobalValueToOverrideMap",
+				"globalValueKey":"_MONSTER_MIMIK_FRUITCOUNT",
+				"overrideMapKey":"FruitCount",
+			},
+			{
+				//将果实数量赋给Pose状态机
+				"$type": "SetPoseFloat",
+				"floatID": "FruitCount",
+				"value": "%FruitCount",
+			},
+		],
+		"abilitySpecials" :
+		{
+			//用于记录果实数量
+			"FruitCount" : 0,
+		},
+	},
+},
+{
+	"Default":
+	{
+		//
+		"$type": "ConfigAbility",
+		"abilityName": "Monster_Mimik_AddFruit",
+		"onAbilityStart":
+		[
+			{
+				//果实数量GlobalValue+1
+				"$type": "AddGlobalValue",
+				"key": "_MONSTER_MIMIK_FRUITCOUNT",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 3,
+				"minValue": 0,
+			},
+			{
+				//果实数量GlobalValue-->AbilitySpecial
+				"$type":"SetGlobalValueToOverrideMap",
+				"globalValueKey":"_MONSTER_MIMIK_FRUITCOUNT",
+				"overrideMapKey":"FruitCount",
+			},
+			{
+				//将果实数量赋给Pose状态机
+				"$type": "SetPoseFloat",
+				"floatID": "FruitCount",
+				"value": "%FruitCount",
+			},
+		],
+		"abilitySpecials" :
+		{
+			//用于记录果实数量
+			"FruitCount" : 0,
+		},
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  DigIn & GetBlinkPoint
+//
+////////////////////////////////////////////////////////////////
+//TODO:钻入地下，进入无敌，获取闪现目的地
+
+////////////////////////////////////////////////////////////////
+//
+//  DoBlink & DigOut
+//
+////////////////////////////////////////////////////////////////
+//TODO:闪现到闪现点，然后钻出地面，结束无敌
+
+]

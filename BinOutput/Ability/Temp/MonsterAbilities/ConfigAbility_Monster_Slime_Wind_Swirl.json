@@ -1,0 +1,114 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  Self_Swirl
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Slime_Wind_Swirl",
+		"onAdded":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName"  : "Slime_Wind_Swirl_Trigger",
+				"target"  : "Self",
+			}
+		],
+		"modifiers":
+		{
+			"Slime_Wind_Swirl_Trigger":
+			{
+				"thinkInterval": 3,
+				"onThinkInterval":
+				[
+					{
+						"$type" : "ApplyModifier",
+						"modifierName"  : "Slime_Wind_Swirl_Latency",
+						"target"  : "Self",
+					},
+				],
+			},
+			"Slime_Wind_Swirl_Latency":
+			{
+				"duration": 0.5,
+				"onAdded":
+				[
+					{
+						"$type" : "AttachEffect",
+						"effectPattern"  : "Eff_Monster_Elemental_Wind_Shock_BS",
+						"scale"  : 0.2,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type" : "FireEffect",
+						"effectPattern"  : "Eff_Monster_Slime_Wind_Die",
+					},
+					{
+						"$type" : "TriggerAttackEvent",
+						"targetType" : "Self",
+						"attackEvent": 
+						{
+							"attackPattern" : 
+							{
+								"$type" : "ConfigAttackSphere",
+								"triggerType" : "TriggerNoRepeat",
+								"radius": 0.75,
+								"born":
+								{
+									"$type": "ConfigBornBySelf",
+									"offset" : 
+									{
+										"x": 0.0, 
+										"y": 0.0, 
+										"z": 0.0, 
+									}
+								},
+							},
+							"attackInfo":
+							{
+								"attackProperty":
+								{
+									"damagePercentage": 0,
+									"strikeType": "Default",
+									"elementType": "Wind",
+									"elementDurability": 50,
+									"enBreak": 0,
+								},
+								"hitPattern" :
+								{
+									"hitLevel": "Mute", //hitlevel = 0
+									"hitImpulseX": 0, //hitlevel = 0
+									"hitImpulseY": 0, //hitlevel = 0
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+								"forceCameraShake": false,
+								"cameraShake":
+								{
+					        		"shakeType": "HitVector",
+									"shakeRange": 0.06,
+									"shakeTime": 0.12,
+									"shakeDistance": 20,
+									"shakeDir":
+									{
+										"x":0, 
+										"y":0,
+										"z":1,
+									},
+								},
+							},
+						},
+					},
+				],
+			},
+		},
+	},
+},
+]

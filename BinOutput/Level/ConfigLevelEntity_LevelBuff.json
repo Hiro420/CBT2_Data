@@ -1,0 +1,958 @@
+{
+  "Level_Explode_Grow": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+      {
+        "abilityID": "Scene_Explode_Alter",
+        "abilityName": "SceneAbility_Explode_Alter",
+      },
+      {
+        "abilityID": "Scene_Superconductor_Alter",
+        "abilityName": "SceneAbility_Superconductor_Alter",
+      },
+      // {
+      // 	"abilityID": "Scene_Monster_GenerateElemBall",
+      // 	"abilityName":"SceneAbility_Monster_GenerateElemBall",
+      // },
+    ],
+  }, //超载超导强化
+
+  "Level_Electric_Grow": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+      // {
+      // 	"abilityID": "Scene_Electric_Alter",
+      // 	"abilityName":"SceneAbility_Electric_Alter",
+      // },
+    ],
+    "teamAbilities": [
+      {
+        "abilityID": "Scene_Electric_Alter",
+        "abilityName": "SceneAbility_Electric_Alter",
+      },
+    ],
+  }, //感电反应强化
+
+
+
+
+
+  "Level_Avatar_DefenseDown": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "Level_Avatar_DefenseDown",
+        "abilityName": "Level_Avatar_DefenseDown",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //Level_Avatar_DefenseDown所有角色防御力下降
+
+  "LevelEntity_ElementAddHurt_Electric": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Electric",
+        "abilityName": "LevelEntity_ElementAddHurt_Electric",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Electric（雷元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Fire": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Fire",
+        "abilityName": "LevelEntity_ElementAddHurt_Fire",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Fire（火元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Wind": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Wind",
+        "abilityName": "LevelEntity_ElementAddHurt_Wind",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Wind（风元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Ice": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Ice",
+        "abilityName": "LevelEntity_ElementAddHurt_Ice",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Ice（冰元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Water": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Water",
+        "abilityName": "LevelEntity_ElementAddHurt_Water",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Water（水元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Grass": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Grass",
+        "abilityName": "LevelEntity_ElementAddHurt_Grass",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Grass（草元素增伤）（全部）
+
+  "LevelEntity_ElementAddHurt_Rock": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementAddHurt_Rock",
+        "abilityName": "LevelEntity_ElementAddHurt_Rock",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_ElementAddHurt_Rock（岩元素增伤）（全部）
+
+  "LevelEntity_PhysicalAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_PhysicalAddHurt",
+        "abilityName": "LevelEntity_PhysicalAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_PhysicalAddHurt（物理增伤）（全部）
+
+
+  /*--------------------------------------------------------------------------------*/
+
+  "LevelEntity_ElementBeHurtDamageDown_Electric": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Electric",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Electric",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Electric------雷元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Fire": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Fire",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Fire",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Fire------火元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Wind": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Wind",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Wind",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Wind------风元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Ice": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Ice",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Ice",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Ice------冰元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Water": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Water",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Water",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Water------水元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Grass": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Grass",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Grass",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Grass------草元素伤害免疫（仅怪物）
+
+  "LevelEntity_ElementBeHurtDamageDown_Rock": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_Rock",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_Rock",
+      },
+    ]
+  }, //LevelEntity_ElementBeHurtDamageDown_Rock------岩元素伤害免疫（仅怪物）
+
+  /*--------------------------------------------------------------------------------*/
+
+  "LevelEntity_ElementBeHurtDamageUp_Electric": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Electric",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Electric",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Electric------雷元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Fire": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Fire",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Fire",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Fire-----火元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Wind": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Wind",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Wind",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Wind------风元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Ice": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Ice",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Ice",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Ice------冰元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Water": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Water",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Water",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Water------水元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Grass": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Grass",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Grass",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Grass------草元素抗性下降（仅玩家）
+
+  "LevelEntity_ElementBeHurtDamageUp_Rock": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageUp_Rock",
+        "abilityName": "LevelEntity_ElementBeHurtDamageUp_Rock",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+
+    ]
+  }, //LevelEntity_ElementBeHurtDamageUp_Rock------岩元素抗性下降（仅玩家）
+
+
+  "LevelEntity_Heal_Down": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_Heal_Down",
+        "abilityName": "LevelEntity_Heal_Down",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //LevelEntity_Heal_Down------技能的治疗效果下降（仅玩家）
+
+
+  /*--------------------------------------------------------------------------------*/
+
+
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  近战怪物伤害up
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_MeleeAttackDamageUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_MeleeAttackDamageUp",
+        "abilityName": "LevelEntity_MeleeAttackDamageUp",
+      },
+    ]
+  },
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  远程怪物伤害up
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_RangeAttackDamageUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_RangeAttackDamageUp",
+        "abilityName": "LevelEntity_RangeAttackDamageUp",
+      },
+    ]
+  },
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  角色能量获取效率下降
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarEnergyGainLess": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarEnergyGainLess",
+        "abilityName": "LevelEntity_AvatarEnergyGainLess",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  男性角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_MaleAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_MaleAddHurt",
+        "abilityName": "LevelEntity_MaleAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  女性角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_FemaleAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_FemaleAddHurt",
+        "abilityName": "LevelEntity_FemaleAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  单手剑角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_SwordAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_SwordAddHurt",
+        "abilityName": "LevelEntity_SwordAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_SwordAddHurt",
+        "abilityName": "LevelEntity_SwordAddHurt",
+      },
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  双手剑角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_ClaymoreAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ClaymoreAddHurt",
+        "abilityName": "LevelEntity_ClaymoreAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ClaymoreAddHurt",
+        "abilityName": "LevelEntity_ClaymoreAddHurt",
+      },
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  长柄武器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_PoleAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_PoleAddHurt",
+        "abilityName": "LevelEntity_PoleAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_PoleAddHurt",
+        "abilityName": "LevelEntity_PoleAddHurt",
+      },
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  法器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_CatalystAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_CatalystAddHurt",
+        "abilityName": "LevelEntity_CatalystAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_CatalystAddHurt",
+        "abilityName": "LevelEntity_CatalystAddHurt",
+      },
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  弓武器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_BowAddHurt": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_BowAddHurt",
+        "abilityName": "LevelEntity_BowAddHurt",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_BowAddHurt",
+        "abilityName": "LevelEntity_BowAddHurt",
+      },
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（火伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Fire": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Fire",
+        "abilityName": "LevelEntity_AvatarDot_Fire",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（电伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Electric": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Electric",
+        "abilityName": "LevelEntity_AvatarDot_Electric",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（水伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Water": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Water",
+        "abilityName": "LevelEntity_AvatarDot_Water",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（冰伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Ice": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Ice",
+        "abilityName": "LevelEntity_AvatarDot_Ice",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（风伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Wind": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Wind",
+        "abilityName": "LevelEntity_AvatarDot_Wind",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（岩伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Rock": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Rock",
+        "abilityName": "LevelEntity_AvatarDot_Rock",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（草伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_AvatarDot_Grass": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_AvatarDot_Grass",
+        "abilityName": "LevelEntity_AvatarDot_Grass",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  随机落雷
+  //
+  ////////////////////////////////////////////////////////////////
+  "LevelEntity_RandomThunder": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_RandomThunder",
+        "abilityName": "LevelEntity_RandomThunder",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  },
+
+
+  /*【ID1077042】【Main分支需求】新增挑战因子*/
+  //======================================================================
+  "LevelEntity_Avatar_CriticalUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_CriticalUp",
+        "abilityName": "LevelEntity_CriticalUp",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //角色暴击率提升
+
+  "LevelEntity_Avatar_CriticalHurtUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_CriticalHurtUp",
+        "abilityName": "LevelEntity_CriticalHurtUp",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+    ]
+  }, //角色暴击伤害提升
+
+  "LevelEntity_Monster_HpUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_HpUp_Lv1",
+        "abilityName": "LevelEntity_HpUp_Lv1",
+      },
+    ]
+  }, //怪物血量提升
+
+  "LevelEntity_Monster_AttackUp": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_AttackUp_Lv1",
+        "abilityName": "LevelEntity_AttackUp_Lv1",
+      },
+    ]
+  }, //怪物攻击提升
+
+  "LevelEntity_GenerateElemBall": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+      {
+        "abilityID": "Scene_Monster_GenerateElemBall",
+        "abilityName": "SceneAbility_Monster_GenerateElemBall",
+        //位于 HK4E\Assets\MoleRes\Rel\SRes\Data\_JsonOutput\Ability\Temp\ConfigAbility_Level.json
+      },
+    ],
+    "dropElemControlType": "None",
+    "teamAbilities": [
+    ],
+  }, //只有元素反应才能产生能量球
+
+  "LevelEntity_Avatar_ChargeEfficiencyDown": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+      {
+        "abilityID": "LevelEntity_ChargeEfficiencyDown",
+        "abilityName": "LevelEntity_ChargeEfficiencyDown",
+      },
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+  }, //充能效率降低
+
+  "LevelEntity_Monster_ElementBeHurtDamageDown_All": {
+    "$type": "ConfigLevelEntity",
+    "avatarAbilities": [
+
+    ],
+    "abilities": [
+    ],
+    "teamAbilities": [
+    ],
+    "monsterAbilities": [
+      {
+        "abilityID": "LevelEntity_ElementBeHurtDamageDown_All",
+        "abilityName": "LevelEntity_ElementBeHurtDamageDown_All",
+      },
+    ]
+  }, //怪物的全元素抗性提升
+
+
+}

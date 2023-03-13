@@ -1,0 +1,2217 @@
+{
+	"$type": "ConfigAvatar",
+	"common":
+	{
+		"effectAttachShape":
+		{
+			"$type": "ConfigEffectAttachSkinnedMesh",
+			"emissionRateRatio": 1.0,
+			"mesh": "EffectMesh",
+			"normalOffset": 0.02
+		},
+		"height": 1.8678,
+		"modelHeight": 1.86,
+		"mass": 10.0,
+		"affectedByWorld": true,
+		"checkInSurface": true
+	},
+	"headControl":
+	{
+		"$type": "ConfigHeadControl",
+		"useHeadControl": true,
+		"animStates":
+		[
+			"NormalStandby",
+			"NormalMove/WalkToRun",
+			"NormalMove/Walk",
+			"NormalMove/RunToWalk",
+			"NormalMove/Run",
+			"NormalMove/RunToIdle",
+			"NormalMove/WalkToIdle",
+			"NormalMove/RunningTurn",
+			"NormalMove/SprintToRun",
+			"NormalMove/SprintToIdle",
+			"Sprint",
+			"Climb/ClimbIdle",
+			"Ladder/LadderIdle",
+			"Swim/SwimIdle",
+			"NormalStandbyWeapon",
+			"NormalMoveWeapon/WalkToRunWeapon",
+			"NormalMoveWeapon/WalkWeapon",
+			"NormalMoveWeapon/RunToWalkWeapon",
+			"NormalMoveWeapon/RunWeapon",
+			"NormalMoveWeapon/RunToIdleWeapon",
+			"NormalMoveWeapon/WalkToIdleWeapon",
+			"NormalMoveWeapon/RunningTurnWeapon"
+		]
+	},
+	"equipController":
+	{
+		"attachPoints":
+		{
+			"equip01": "WeaponR",
+			"equip02": "WeaponL"
+		},
+		"sheathPoint": "WeaponBackPut",
+		"dissolveSheathFadeDelay": 0.075,
+		"dissolveSheathFadeTime": 2.1,
+		"patternSheathFadeDelay": 0.075,
+		"patternSheathFadeTime": 2.1
+	},
+	"specialPoint":
+	{
+		"elementAbsorb": "PRIVATE_Pendant",
+		"elementPendant": "PRIVATE_Pendant"
+	},
+	"combat":
+	{
+		"property":
+		{
+			"endure": 0,
+			"weight": 75,
+			"lockWeightYaxisThreshold": 2,
+			"lockWeightYaxisParam": 0.2,
+			"lockShape": "CircleLockEnemy",
+			"endureType": "Avatar_Sword",
+			"endureShake": 0
+		},
+		"beHit":
+		{
+			"hitBloodEffect": "",
+			"muteAllHit": false,
+			"muteAllHitEffect": false,
+			"muteAllHitText": false
+		},
+		"die":
+		{
+			"hasAnimatorDie": true,
+			"muteAllShaderDieEff": false,
+			"dieShaderData": "AvatarDie",
+			"dieDisappearEffect": "Eff_Death_Avatar_Common",
+			"dieEndTime": 3.0,
+			"dieForceDisappearTime": 5.0,
+			"useRagDoll": true,
+			"ragDollDieEndTimeDelay": 0.4
+		},
+		"animEvents":
+		{
+		}
+	},
+	"stateLayers":
+	{
+		"defaultLayer":
+		{
+			"$type": "ConfigNormalStateLayer",
+			"stateIDs":
+			{
+				"NormalStandby":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Standby": []
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"NormalMove":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"WalkToRun":
+						[
+							"Audio_Male_WalkToRun"
+						],
+						"Walk":
+						[
+							"Ani_WalkSprint01",
+							"Audio_Male_Walk",
+							"WalkStepOnWater"
+						],
+						"RunToWalk":
+						[
+							"Audio_Male_RunToWalk"
+						],
+						"Run":
+						[
+							"Ani_Run01",
+							"Audio_Male_Run"
+						],
+						"RunToIdle":
+						[
+							"Audio_Male_RunToIdle"
+						],
+						"WalkToIdle":
+						[
+							"Audio_Male_WalkToIdle"
+						],
+						"RunningTurn": [],
+						"SprintToRun":
+						[
+							"Audio_Male_SprintToRun"
+						],
+						"SprintToIdle":
+						[
+							"Audio_Male_SprintToIdle"
+						],
+						"FallOnGround":
+						[
+							"Audio_Male_FallOnGround"
+						],
+						"FallOnGroundLit":
+						[
+							"Audio_Male_FallOnGroundLit"
+						],
+						"FallToGroundRun":
+						[
+							"Audio_Male_FallToGroundRun"
+						],
+						"FallToGroundRunHard":
+						[
+							"Audio_Male_FallToGroundRunHard"
+						],
+						"FallToGroundSprint":
+						[
+							"Audio_Male_FallToGroundSprint"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 1.0,
+					"sheatheOnStart": true
+				},
+				"SprintBS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SprintBS":
+						[
+							"Audio_Male_RunToSprint",
+							"SprintBS_Invincible"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"canDoSkill": true,
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.3,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Sprint":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Sprint":
+						[
+							"Ani_WalkSprint01",
+							"Audio_Male_Sprint"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 1.0,
+					"sheatheOnStart": true
+				},
+				"Climb":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ClimbMove0":
+						[
+							"ClimbStep",
+							"Audio_Male_Climb"
+						],
+						"ClimbMove1":
+						[
+							"ClimbStep",
+							"Audio_Male_Climb"
+						],
+						"ClimbIdle": [],
+						"ClimbJump":
+						[
+							"Audio_Male_ClimbDash"
+						],
+						"JumpUpWallForStandby":
+						[
+							"Audio_Male_JumpUpWallStandby"
+						],
+						"Standby2ClimbB":
+						[
+							"Audio_Male_Standby2ClimbB"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Climb",
+					"sheatheOnStart": true
+				},
+				"ClimbTransient":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpWallReady": [],
+						"Standby2ClimbA":
+						[
+							"Audio_Male_Standby2ClimbA"
+						],
+						"Upstairs":
+						[
+							"Audio_Male_Upstairs"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Ladder":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"LadderMove0": [],
+						"LadderMove1": [],
+						"LadderIdle": [],
+						"LadderSlip": [],
+						"LadderSlipStop": [],
+						"Standby2Ladder": []
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Ladder",
+					"sheatheOnStart": true
+				},
+				"Slip":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SlipLit":
+						[
+							"Audio_Male_SlipLit"
+						],
+						"SlipFaceWall": [],
+						"SlipBackWall": []
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Swim":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SwimIdle":
+						[
+							"Audio_Male_SwimIdle"
+						],
+						"SwimMove":
+						[
+							"SwimStep",
+							"Audio_Male_SwimMove"
+						],
+						"SwimDash":
+						[
+							"Audio_Male_SwimDash",
+							"Avatar_Male_SwimDash_Hand_Effect"
+						],
+						"SwimJumpToWater":
+						[
+							"Audio_Male_SwimJumpToWater"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Swim",
+					"sheatheOnStart": true
+				},
+				"Fly":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Fly": [],
+						"FlyStart":
+						[
+							"Audio_Male_FlyStart",
+							"FlyStart_Weapon"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Fly",
+					"sheatheOnStart": true
+				},
+				"Jump":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Jump":
+						[
+							"Audio_Male_Jump"
+						],
+						"JumpForRun":
+						[
+							"Audio_Male_Jump"
+						],
+						"JumpForWalk":
+						[
+							"Audio_Male_Jump"
+						],
+						"JumpForSprint":
+						[
+							"Audio_Male_Jump"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Jump",
+					"sheatheOnStart": true
+				},
+				"Fall":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpOffWall":
+						[
+							"Audio_Male_Jump"
+						],
+						"SwimJump":
+						[
+							"Audio_Male_SwimJump"
+						],
+						"SwimJumpDrop": [],
+						"DropDown":
+						[
+							"Audio_Male_DropDown"
+						],
+						"DropDownLit": [],
+						"WalkDropDownLit": []
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"NormalStandbyWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyWeapon": []
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"WalkToRunWeapon":
+						[
+							"Male_Sword_Putaway_RunBS",
+							"Audio_Male_WalkToRun"
+						],
+						"WalkWeapon":
+						[
+							"Audio_Male_Walk"
+						],
+						"RunToWalkWeapon":
+						[
+							"Audio_Male_RunToWalk"
+						],
+						"RunWeapon":
+						[
+							"Audio_Male_Run"
+						],
+						"RunToIdleWeapon": [],
+						"WalkToIdleWeapon": [],
+						"RunningTurnWeapon": [],
+						"FallOnGroundWeapon":
+						[
+							"Audio_Male_FallOnGround"
+						],
+						"FallOnGroundLitWeapon":
+						[
+							"Audio_Male_FallOnGroundLit"
+						],
+						"FallOnGroundMiddleWeapon":
+						[
+							"Audio_Male_FallOnGroundMiddle"
+						],
+						"FallToGroundRunWeapon":
+						[
+							"Audio_Male_FallToGroundRun"
+						],
+						"FallToGroundRunHardWeapon":
+						[
+							"Audio_Male_FallToGroundRunHard"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeaponPutaway":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyPutaway":
+						[
+							"Male_Pole_Putaway_Standby",
+							"Audio_Male_Pole_StandbyPutAway"
+						],
+						"WalkPutaway":
+						[
+							"Male_Sword_Putaway_Walk",
+							"Audio_Male_Sword_WalkPutAway"
+						],
+						"RunPutaway":
+						[
+							"Male_Sword_Putaway_Run",
+							"Audio_Male_Sword_RunPutAway"
+						],
+						"RunToSprintWeapon":
+						[
+							"Male_Sword_Putaway_Sprint",
+							"Audio_Male_Sword_RunToSprintWeapon"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeaponOver":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyPutawayOver": [],
+						"WalkPutawayOver":
+						[
+							"Audio_Male_Sword_WalkPutAwayOver"
+						],
+						"RunPutawayOver":
+						[
+							"Audio_Male_Sword_RunPutAwayOver"
+						],
+						"RunToSprintWeaponOver":
+						[
+							"Audio_Male_Sword_RunToSprintWeaponOver"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"sheatheOnStart": true
+				},
+				"JumpWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpWeapon":
+						[
+							"Audio_Male_Jump"
+						],
+						"JumpForRunWeapon":
+						[
+							"Audio_Male_Jump"
+						],
+						"JumpForWalkWeapon":
+						[
+							"Audio_Male_Jump"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Jump",
+					"battouOnStart": true
+				},
+				"FallWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"DropDownWeapon":
+						[
+							"Audio_Male_DropDown"
+						],
+						"DropDownLitWeapon": [],
+						"WalkDropDownLitWeapon": []
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"battouOnStart": true
+				},
+				"BeHit":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_L":
+						[
+							"Audio_Male_Hit_L"
+						],
+						"Hit_H":
+						[
+							"Audio_Male_Hit_H"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatBeHit",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit",
+						"HitAir2HitDrop"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true
+				},
+				"HitThrow":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_Throw_Ground":
+						[
+							"BeHitAir_Weapon",
+							"Audio_Male_HitThrowGround"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatBeHit",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit",
+						"HitAir2HitDrop"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"sheatheOnStart": true
+				},
+				"BeHitAir":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_Throw":
+						[
+							"Audio_Male_Hit_Throw",
+							"BeHitAir_Weapon"
+						],
+						"Hit_ThrowAir":
+						[
+							"Audio_Male_DropDown",
+							"BeHitAir_Weapon"
+						],
+						"Struggle":
+						[
+							"BeHitAir_Weapon"
+						]
+					},
+					"moveType": "combatAir",
+					"cameraType": "combatBeHit",
+					"actionPanelState": "CombatAir",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"sheatheOnStart": true
+				},
+				"Die":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FallDie":
+						[
+							"Audio_Male_Death"
+						],
+						"NormalDie":
+						[
+							"Die",
+							"Audio_Male_Death"
+						],
+						"SwimDie":
+						[
+							"Swim_Die",
+							"Audio_Male_SwimDie"
+						],
+						"HitGroundDie":
+						[
+							"Die",
+							"Audio_Male_Death"
+						]
+					}
+				},
+				"Die_RagDoll":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"NormalDie_AS": [],
+						"FallDie_AS": []
+					},
+					"enableRagDoll": true
+				},
+				"Attack01":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack01":
+						[
+							"ZhongliAttack01",
+							"SetComboCount1",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack01",
+							"Emo_Avatar_ZhongLi_Fight_Attack_01"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 0.5
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack02":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack02":
+						[
+							"ZhongliAttack02",
+							"SetComboCount2",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack02",
+							"Emo_Avatar_ZhongLi_Fight_Attack_02"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 0.6
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack03":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack03":
+						[
+							"ZhongliAttack03",
+							"SetComboCount3",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack03",
+							"Emo_Avatar_ZhongLi_Fight_Attack_03"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 0.7
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack04":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack04":
+						[
+							"ZhongliAttack04",
+							"SetComboCount4",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack04",
+							"Emo_Avatar_ZhongLi_Fight_Attack_04"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 0.6
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack05":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack05":
+						[
+							"ZhongliAttack05",
+							"SetComboCount5",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack05",
+							"Emo_Avatar_ZhongLi_Fight_Attack_05"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack06":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack06":
+						[
+							"ZhongliAttack06",
+							"SetComboCount6",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_Attack06",
+							"Emo_Avatar_ZhongLi_Fight_Attack_06"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseExtra",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"ExtraAttack":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack":
+						[
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_exAttack",
+							"Emo_Avatar_ZhongLi_Fight_ExtraAttack"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true,
+					"enableCCD": true
+				},
+				"ExtraAttack_AS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack_AS":
+						[
+							"Emo_Avatar_ZhongLi_Fight_ExtraAttack_AS"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true,
+					"enableCCD": true
+				},
+				"PillarOrShield_BS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"PillarOrShield_BS":
+						[
+							"Audio_Male_Zhongli_RockShield",
+							"Emo_Avatar_ZhongLi_Skill_PillarOrShield_BS"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean": [],
+					"sheatheOnStart": true
+				},
+				"PillarOrShield_Charge":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"PillarOrShield_Charge":
+						[
+							"Emo_Avatar_ZhongLi_Skill_PillarOrShield_Charge"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"sheatheOnStart": true
+				},
+				"PrimoPillar":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"PrimoPillar":
+						[
+							"PrimoPillar",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_PrimoPillar",
+							"Emo_Avatar_ZhongLi_Skill_PrimoPillar"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"sheatheOnStart": true
+				},
+				"PrimoPillar_AS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"PrimoPillar_AS":
+						[
+							"Audio_Male_Zhongli_PrimoPillar_AS",
+							"Emo_Avatar_ZhongLi_Skill_PrimoPillar_AS"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"sheatheOnStart": true
+				},
+				"RockShield":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"RockShield":
+						[
+							"RockShield",
+							"Interaction_Bad",
+							"Emo_Avatar_ZhongLi_Skill_RockShield",
+							"Audio_Male_Zhongli_RockShield_VO"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"sheatheOnStart": true
+				},
+				"RockShield_AS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"RockShield_AS":
+						[
+							"Audio_Male_Zhongli_PrimoPillar_AS",
+							"Emo_Avatar_ZhongLi_Skill_RockShield_AS"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"sheatheOnStart": true
+				},
+				"GeoOrder":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"GeoOrder":
+						[
+							"GeoOrder",
+							"Interaction_Bad",
+							"Audio_Male_Zhongli_GeoOrder"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": false,
+					"addEndure": 0,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean": [],
+					"jumpCancelEnd": 0,
+					"sprintCancelEnd": 0,
+					"battouOnStart": true
+				},
+				"GeoOrder_AS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"GeoOrder_AS": []
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"sheatheOnEnd": true
+				},
+				"Sit":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SitDown":
+						[
+							"Audio_Girl_SitDown"
+						],
+						"SitLoop": [],
+						"SitUp":
+						[
+							"Audio_Girl_SitDown"
+						]
+					},
+					"moveType": "performMove",
+					"canDoSkill": false,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Perform",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"SitB":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SitBDown":
+						[
+							"Audio_Girl_SitDown"
+						],
+						"SitBLoop": [],
+						"SitBUp":
+						[
+							"Audio_Girl_SitDown"
+						]
+					},
+					"moveType": "performMove",
+					"canDoSkill": false,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Perform",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"StandbyShow":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyVoice": 
+						[
+							"Audio_Male_StandbyVoice"
+						],
+						"StandbyShow_01":
+						[
+							"Manekin_Zhongli_Show01"
+						],
+						"StandbyShow_02":
+						[
+							"Audio_Male_Zhongli_StandbyShow01_SFX",
+							"Emo_Avatar_ZhongLi_Show_01"
+						]
+					},
+					"moveType": "performMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				}
+			}
+		}
+	},
+	"abilities":
+	[
+		{
+			"abilityID": "Avatar_Zhongli_ExtraAttack",
+			"abilityName": "Avatar_Zhongli_ExtraAttack"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_HideWeaponControl",
+			"abilityName": "Avatar_Zhongli_HideWeaponControl"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_SetHairEmissionScaler",
+			"abilityName": "Avatar_Zhongli_SetHairEmissionScaler"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_NormalAttack",
+			"abilityName": "Avatar_Zhongli_NormalAttack"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_PillarOrShield_HoldCharge",
+			"abilityName": "Avatar_Zhongli_PillarOrShield_HoldCharge"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_PrimoPillar",
+			"abilityName": "Avatar_Zhongli_PrimoPillar"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_RockShield",
+			"abilityName": "Avatar_Zhongli_RockShield"
+		},
+		{
+			"abilityID": "Avatar_Zhongli_GeoOrder",
+			"abilityName": "Avatar_Zhongli_GeoOrder"
+		},
+		{
+			"abilityID": "ShakeGauge",
+			"abilityName": "Avatar_BeHit_Gauge"
+		},
+		{
+			"abilityID": "SprintBS_Invincible",
+			"abilityName": "Avatar_SprintBS_Invincible"
+		},
+		{
+			"abilityID": "Freeze_Duration_Reducer",
+			"abilityName": "Avatar_Freeze_Duration_Reducer"
+		}
+	],
+	"audio":
+	{
+		"$type": "ConfigAvatarAudio",
+		"animAudio":
+		{
+			"onTransitionOut":
+			[
+				{
+					"currentStateName": "Attack01",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack01_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Attack02",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack02_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Attack03",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack03_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Attack04",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack04_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Attack05",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack05_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Attack06",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_attack06_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "ExtraAttack_AS",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_pole_exAttack_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "StandbyPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_xiao_pole_putAway"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "PillarOrShield_BS",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_rockShield"
+					},
+					"otherStateNames":
+					[
+						"PillarOrShield_Charge",
+						"RockShield"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "PillarOrShield_Charge",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_rockShield"
+					},
+					"otherStateNames":
+					[
+						"RockShield"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "PrimoPillar_AS",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_primoPillar_AS_action"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "RockShield_AS",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_zhongli_primoPillar_AS_action"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "StandbyPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "WalkPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "RunPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimJumpDrop",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_drop"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimJump",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_drop"
+					},
+					"otherStateNames":
+					[
+						"SwimJumpDrop"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "FlyStart",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownLit",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDown",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "WalkDropDownLit",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "Jump",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForWalk",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForRun",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForSprint",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForWalkWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForRunWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownLitWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "SwimMove",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			],
+			"onTransitionIn":
+			[
+				{
+					"currentStateName": "NormalDie",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land"
+					},
+					"otherStateNames":
+					[
+						"FallOnGround"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "SwimJumpToWater",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_dive"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimDash",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_swim_dash"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Standby",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			],
+			"recurrentSpeeches":
+			{
+				"Standby":
+				{
+					"start":
+					{
+						"upper": 28.0,
+						"lower": 23.0
+					},
+					"interval":
+					{
+						"upper": 40.0,
+						"lower": 34.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Walk":
+				{
+					"start":
+					{
+						"upper": 16.0,
+						"lower": 13.0
+					},
+					"interval":
+					{
+						"upper": 14.0,
+						"lower": 10.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Run":
+				{
+					"start":
+					{
+						"upper": 13.0,
+						"lower": 9.0
+					},
+					"interval":
+					{
+						"upper": 11.0,
+						"lower": 8.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Sprint":
+				{
+					"start":
+					{
+						"upper": 12.0,
+						"lower": 7.0
+					},
+					"interval":
+					{
+						"upper": 9.0,
+						"lower": 6.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				}
+			}
+		},
+		"moveStateAudio":
+		{
+			"onStateBegin":
+			[
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			],
+			"onStateEnd":
+			[
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames":
+					[
+						"Air"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "Air",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames":
+					[
+						"Fly"
+					],
+					"usage": "Except"
+				}
+			]
+		},
+		"voiceSwitch":
+		{
+			"text": "Switch_Zhongli"
+		},
+		"bodyTypeSwitch":
+		{
+			"text": "Switch_Male"
+		},
+		"listenerLiftup": 1.5,
+		"surfaceProberLiftup": 1.5
+	},
+	"moveStateEffect":
+	{
+		"footprint":
+		{
+			"surfaces":
+			[
+				"Snow",
+				"Dirt",
+				"Sand"
+			],
+			"effectPatternName": "Eff_Chacter_Footprint"
+		}
+	},
+	"perform":
+	{
+		"standby":
+		{
+			"minTime": 10,
+			"maxTime": 20,
+			"performIDs":
+			[
+				202,
+				200
+			]
+		}
+	}
+}

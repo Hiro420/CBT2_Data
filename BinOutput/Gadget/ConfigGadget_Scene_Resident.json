@@ -1,0 +1,900 @@
+{
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 空中传送门
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_WormHoleGate02" :
+	{
+		"$type" : "ConfigTransPointEntity",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_WormHoleGate02",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 蒙德神像
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_Goddess" :
+	{
+		"$type" : "ConfigTransPointEntity",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_Goddess_Level",
+		},
+		/* "updateMaterialList": 
+		[
+			{
+			  "level": 2,
+			   "matPath": "ART/Stages/Prototype/WhiteBox/Materias/WhiteBox_Test_Mat",
+			   "transforms": ["GoddessBase"]
+			},
+			{
+			  "level": 3,
+			   "matPath": "ART/Stages/Prototype/WhiteBox/Materias/WhiteBox_River",
+			   "transforms": ["GoddessBase"]
+			},
+		],*/
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Red" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_0_Idle": ["Audio_SceneObj_Gear_Goddess_Locked_Idle"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+					"White" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_1_Active": ["Audio_SceneObj_Gear_Goddess_Level_1_Active"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+					"Blue" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_1_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_2": ["Audio_SceneObj_Gear_Goddess_Levelup_To_2","Eff_Goddess_Lv1up"],
+							"Goddess_Level_2_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_3": ["Audio_SceneObj_Gear_Goddess_Levelup_To_3","Eff_Goddess_Lv2up"],
+							"Goddess_Level_3_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_4": ["Audio_SceneObj_Gear_Goddess_Levelup_To_4"],
+							"Goddess_Level_4_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Level_1_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_2_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_3_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_4_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Normal_Levelup_In_2": ["Audio_SceneObj_Gear_Goddess_Levelup_Common"],
+							"Normal_Levelup_In_3": ["Audio_SceneObj_Gear_Goddess_Levelup_Common"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_Goddess",
+			},
+		],
+		"audio":
+		{
+			"$type": "ConfigGadgetAudio",
+			"animAudio":
+			{
+				"onTransitionOut":
+				[
+					//{
+					//	"currentStateName": "Goddess_Level_0_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Stop_amb_sceneObj_gear_goddess_locked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_1_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Stop_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_2_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Stop_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_3_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Stop_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_4_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Stop_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+				],
+				"onTransitionIn":
+				[
+					//{
+					//	"currentStateName": "Goddess_Level_0_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Play_amb_sceneObj_gear_goddess_locked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_1_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Play_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_2_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Play_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_3_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Play_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+					//{
+					//	"currentStateName": "Goddess_Level_4_Idle",
+					//	"audioEvent":
+					//	{
+					//		"text": "Play_amb_sceneObj_gear_goddess_unlocked_lp"
+					//	},
+					//	"otherStateNames": [],
+					//	"usage": "Any"
+					//},
+				],
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 璃月神像
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_Goddess_LY" :
+	{
+		"$type" : "ConfigTransPointEntity",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_Goddess_Level_LY",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Red" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_0_Idle": ["Audio_SceneObj_Gear_Goddess_Locked_Idle"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+					"White" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_1_Active": ["Audio_SceneObj_Gear_Goddess_Level_1_Active"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+					"Blue" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Goddess_Level_1_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_2": ["Audio_SceneObj_Gear_Goddess_Levelup_To_2","Eff_Goddess_Lv1up"],
+							"Goddess_Level_2_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_3": ["Audio_SceneObj_Gear_Goddess_Levelup_To_3","Eff_Goddess_Lv2up"],
+							"Goddess_Level_3_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Levelup_To_4": ["Audio_SceneObj_Gear_Goddess_Levelup_To_4"],
+							"Goddess_Level_4_Idle": ["Audio_SceneObj_Gear_Goddess_Unlocked_Idle"],
+							"Goddess_Level_1_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_2_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_3_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Goddess_Level_4_Heal": ["Eff_Goddess_Auto_Heal"],
+							"Normal_Levelup_In_2": ["Audio_SceneObj_Gear_Goddess_Levelup_Common"],
+							"Normal_Levelup_In_3": ["Audio_SceneObj_Gear_Goddess_Levelup_Common"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_Goddess_LY",
+			},
+		],
+	},
+//////////////////////////////////////////////////////
+//
+//	临时地城入口
+//
+//////////////////////////////////////////////////////
+	"SceneObj_Resident_DungeonEntry_Temp" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Inactive": [],
+						},
+						"resetAnimatorTriggerOnExit": ["InactiveTrigger"],
+					},
+					"Appear" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Active_Buffer": [],
+							"Active": [],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_DungeonEntry_Temp",
+			},
+		],
+	},
+//////////////////////////////////////////////////////
+//
+//	临时地城入口_3d
+//
+//////////////////////////////////////////////////////
+	"SceneObj_Resident_DungeonEntry_Temp_3d" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Inactive": [],
+						},
+						"resetAnimatorTriggerOnExit": ["InactiveTrigger"],
+					},
+					"Appear" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Active_Buffer": [],
+							"Active": [],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_DungeonEntry_Temp_3d",
+			},
+		],
+	},
+//////////////////////////////////////////////////////
+//
+//	蒙德常规地城入口
+//
+//////////////////////////////////////////////////////
+	"SceneObj_Resident_DungeonEntry_MengDe01" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_DungeonEntry_MengDe_Hint01",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_DungeonEntry_MengDe01",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"UnderLevel" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_UnderLevel": [],
+						},
+					},
+					"ReachLevel" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_ReachLevel": [],
+						},
+					},
+					"Inactive" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Inactive": [],
+						},
+					},
+					"Active" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Active": [],
+						},
+					},
+					"Lock" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Lock": [],
+						},
+					},
+					"Open" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Open": ["Audio_SceneObj_DungeonEntry_MengDe01_Open"],
+							"Gate_Unlock": [],
+							"Gate_Close": ["Audio_SceneObj_DungeonEntry_MengDe01_Close"],
+						},
+					},
+				},
+			},
+		},
+	},
+	//////////////////////////////////////////////////////
+//
+//	蒙德隐藏地城入口
+//
+//////////////////////////////////////////////////////
+	"SceneObj_Resident_DungeonEntry_MengDe02" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "SceneObj_Resident_DungeonEntry_MengDe02",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Gate_Close" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Buried": [],
+							"Gate_Smash": ["Audio_SceneObj_DungeonEntry_MengDe02_Smash","DungeonEntry_MengDe_Broken","DungeonEntry_MengDe_CutScene"],
+						},
+					},
+					"Rise":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Rise": ["Audio_SceneObj_DungeonEntry_MengDe02_Rise"],
+						},
+					},
+					"OnGround":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_OnGround": [],
+						},
+					},
+					"UnderLevel":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_UnderLevel": [],
+						},
+					},
+					"ReachLevel":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_ReachLevel": [],
+						},
+					},
+					"Lock":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Lock": [],
+						},
+					},
+					"Other" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Audio_SceneObj_DungeonEntry_MengDe01_Close"],
+							"Gate_Open": ["Audio_SceneObj_DungeonEntry_MengDe01_Open"],
+							"Gate_Unlock": [],
+						},
+					},
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 地城复活点
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_CheckPoint" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"CheckPoint_Inactive":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"CheckPoint_Inactive": [],
+						},
+					},
+					"CheckPoint_Active":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"CheckPoint_ReOnline": ["Gear_CheckPoint_Active"],
+							"CheckPoint_Activiting": ["Gear_CheckPoint_Active"],
+							"CheckPoint_Active": [],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////
+//
+//	传送石碑
+//
+///////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_Teleport" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_SceneObj_Gear_Teleport",
+		},
+		"common":
+		{
+			"viewSize": 10,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Default":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Eff_Ani_Teleport_Idle": ["Audio_SceneObj_Gear_Teleport_Lock"],
+							"Eff_Ani_Teleport_Open": ["Eff_Teleport_Active","Audio_SceneObj_Gear_Teleport_Active"],
+							"Eff_Ani_Teleport_Active": ["Eff_Teleport_Unlock","Audio_SceneObj_Gear_Teleport_Unlock"],
+						},
+						"cullingModelAlwaysAnimate": true,
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////
+//
+//	普通元素视野
+//
+///////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_ElementView" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+	},
+///////////////////////////////////////////////////////////////////
+//
+//	蒙德喷泉
+//
+///////////////////////////////////////////////////////////////////
+	"SceneObj_Resident_Fountain" :
+	{
+		"$type" : "ConfigGadget",
+		//"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Default":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Base_State": ["Seal_Collider_Stop"],
+							"Frozen_State": ["Seal_Collider_Start"],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ability_01",
+				"abilityName": "Fountain_Frozen",	
+			},
+		],
+	},
+},

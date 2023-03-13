@@ -1,0 +1,762 @@
+[
+    {
+        "挑战组合ID": 1,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 2,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 3,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 4,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "挑战组合ID": 5,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 6,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "挑战组合ID": 7,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Grass"
+    },
+    {
+        "挑战组合ID": 8,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "挑战组合ID": 9,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Electric"
+    },
+    {
+        "挑战组合ID": 10,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Fire"
+    },
+    {
+        "挑战组合ID": 11,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Wind"
+    },
+    {
+        "挑战组合ID": 12,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Ice"
+    },
+    {
+        "挑战组合ID": 13,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Water"
+    },
+    {
+        "挑战组合ID": 14,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Grass"
+    },
+    {
+        "挑战组合ID": 15,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Rock"
+    },
+    {
+        "挑战组合ID": 16,
+        "LevelEntityConfig": "LevelEntity_Heal_Down"
+    },
+    {
+        "挑战组合ID": 17,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "挑战组合ID": 18,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "挑战组合ID": 19,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Wind"
+    },
+    {
+        "挑战组合ID": 20,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "挑战组合ID": 21,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Water"
+    },
+    {
+        "挑战组合ID": 22,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Grass"
+    },
+    {
+        "挑战组合ID": 23,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Rock"
+    },
+    {
+        "挑战组合ID": 24,
+        "LevelEntityConfig": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 25,
+        "LevelEntityConfig": "LevelEntity_RangeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 26,
+        "LevelEntityConfig": "LevelEntity_MaleAddHurt"
+    },
+    {
+        "挑战组合ID": 27,
+        "LevelEntityConfig": "LevelEntity_FemaleAddHurt"
+    },
+    {
+        "挑战组合ID": 28,
+        "LevelEntityConfig": "LevelEntity_SwordAddHurt"
+    },
+    {
+        "挑战组合ID": 29,
+        "LevelEntityConfig": "LevelEntity_ClaymoreAddHurt"
+    },
+    {
+        "挑战组合ID": 30,
+        "LevelEntityConfig": "LevelEntity_PoleAddHurt"
+    },
+    {
+        "挑战组合ID": 31,
+        "LevelEntityConfig": "LevelEntity_CatalystAddHurt"
+    },
+    {
+        "挑战组合ID": 32,
+        "LevelEntityConfig": "LevelEntity_BowAddHurt"
+    },
+    {
+        "挑战组合ID": 33,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Fire"
+    },
+    {
+        "挑战组合ID": 34,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Electric"
+    },
+    {
+        "挑战组合ID": 35,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Water"
+    },
+    {
+        "挑战组合ID": 36,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Ice"
+    },
+    {
+        "挑战组合ID": 37,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Wind"
+    },
+    {
+        "挑战组合ID": 38,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Rock"
+    },
+    {
+        "挑战组合ID": 39,
+        "LevelEntityConfig": "LevelEntity_AvatarDot_Grass"
+    },
+    {
+        "挑战组合ID": 40,
+        "LevelEntityConfig": "LevelEntity_RandomThunder"
+    },
+    {
+        "挑战组合ID": 41,
+        "LevelEntityConfig": "Level_Electric_Test"
+    },
+    {
+        "挑战组合ID": 42,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 43,
+        "LevelEntityConfig": "Level_Superconductor_Test"
+    },
+    {
+        "挑战组合ID": 44,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 45,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 46,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 47,
+        "LevelEntityConfig": "Level_Burning_Test"
+    },
+    {
+        "挑战组合ID": 48,
+        "LevelEntityConfig": "Level_Swril_Test"
+    },
+    {
+        "挑战组合ID": 49,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "挑战组合ID": 50,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalHurtUp"
+    },
+    {
+        "挑战组合ID": 51,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 52,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 53,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 54,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 55,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 56,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 57,
+        "LevelEntityConfig": "LevelEntity_Avatar_ChargeEfficiencyDown"
+    },
+    {
+        "挑战组合ID": 58,
+        "LevelEntityConfig": "LevelEntity_GenerateElemBall"
+    },
+    {
+        "挑战组合ID": 59,
+        "LevelEntityConfig": "LevelEntity_Monster_ElementBeHurtDamageDown_All"
+    },
+    {
+        "挑战组合ID": 60,
+        "LevelEntityConfig": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "挑战组合ID": 1000,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1000,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "挑战组合ID": 1000,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1001,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1001,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "挑战组合ID": 1001,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1002,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1002,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "挑战组合ID": 1002,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "挑战组合ID": 1003,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1003,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "挑战组合ID": 1003,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1004,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1004,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "挑战组合ID": 1004,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "挑战组合ID": 1005,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1005,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "挑战组合ID": 1005,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Grass"
+    },
+    {
+        "挑战组合ID": 1006,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1006,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "挑战组合ID": 1006,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "挑战组合ID": 1007,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Electric"
+    },
+    {
+        "挑战组合ID": 1007,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1007,
+        "LevelEntityConfig": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 1008,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Fire"
+    },
+    {
+        "挑战组合ID": 1008,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1008,
+        "LevelEntityConfig": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 1009,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageDown_Ice"
+    },
+    {
+        "挑战组合ID": 1009,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1009,
+        "LevelEntityConfig": "LevelEntity_RangeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 1010,
+        "LevelEntityConfig": "LevelEntity_Heal_Down"
+    },
+    {
+        "挑战组合ID": 1010,
+        "LevelEntityConfig": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "挑战组合ID": 1010,
+        "LevelEntityConfig": "LevelEntity_BowAddHurt"
+    },
+    {
+        "挑战组合ID": 1100,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1101,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1102,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1102,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 1103,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1103,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "挑战组合ID": 1104,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1104,
+        "LevelEntityConfig": "Level_Burning_Test"
+    },
+    {
+        "挑战组合ID": 1105,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1105,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 1106,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1106,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1107,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1108,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1108,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1109,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1109,
+        "LevelEntityConfig": "Level_Swril_Test"
+    },
+    {
+        "挑战组合ID": 1110,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1110,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1111,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1111,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1112,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1112,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1113,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1113,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1114,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "挑战组合ID": 1114,
+        "LevelEntityConfig": "Level_Superconductor_Test"
+    },
+    {
+        "挑战组合ID": 1115,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1115,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1116,
+        "LevelEntityConfig": "Level_Superconductor_Test"
+    },
+    {
+        "挑战组合ID": 1116,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1117,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1117,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1118,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1118,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1119,
+        "LevelEntityConfig": "Level_Electric_Test"
+    },
+    {
+        "挑战组合ID": 1119,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1120,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1121,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 1121,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1122,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 1122,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1122,
+        "LevelEntityConfig": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "挑战组合ID": 1123,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1123,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1124,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1124,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "挑战组合ID": 1125,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1126,
+        "LevelEntityConfig": "Level_Avatar_DefenseDown"
+    },
+    {
+        "挑战组合ID": 1126,
+        "LevelEntityConfig": "Level_Swril_Test"
+    },
+    {
+        "挑战组合ID": 1127,
+        "LevelEntityConfig": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "挑战组合ID": 1127,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "挑战组合ID": 1128,
+        "LevelEntityConfig": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "挑战组合ID": 1128,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "挑战组合ID": 1129,
+        "LevelEntityConfig": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "挑战组合ID": 1129,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "挑战组合ID": 1130,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1131,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1131,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1132,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1133,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1134,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1135,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1135,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1136,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1137,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1137,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1138,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1139,
+        "LevelEntityConfig": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "挑战组合ID": 1139,
+        "LevelEntityConfig": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "挑战组合ID": 1140,
+        "LevelEntityConfig": "Level_Swril_Test"
+    },
+    {
+        "挑战组合ID": 1140,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "挑战组合ID": 1141,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1141,
+        "LevelEntityConfig": "Level_Electric_Test"
+    },
+    {
+        "挑战组合ID": 1142,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "挑战组合ID": 1142,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1142,
+        "LevelEntityConfig": "LevelEntity_ClaymoreAddHurt"
+    },
+    {
+        "挑战组合ID": 1143,
+        "LevelEntityConfig": "Level_Stream_Test"
+    },
+    {
+        "挑战组合ID": 1143,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "挑战组合ID": 1143,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1144,
+        "LevelEntityConfig": "Level_Superconductor_Test"
+    },
+    {
+        "挑战组合ID": 1144,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1144,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1150,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1150,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1151,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1151,
+        "LevelEntityConfig": "Level_Freeze_Test"
+    },
+    {
+        "挑战组合ID": 1152,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1152,
+        "LevelEntityConfig": "Level_Electric_Test"
+    },
+    {
+        "挑战组合ID": 1153,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1153,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "挑战组合ID": 1153,
+        "LevelEntityConfig": "Level_Melt_Test"
+    },
+    {
+        "挑战组合ID": 1154,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "挑战组合ID": 1154,
+        "LevelEntityConfig": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "挑战组合ID": 1154,
+        "LevelEntityConfig": "Level_Explode_Test"
+    },
+    {
+        "挑战组合ID": 1155,
+        "LevelEntityConfig": "LevelEntity_Avatar_CriticalHurtUp"
+    },
+    {
+        "挑战组合ID": 1156,
+        "LevelEntityConfig": "LevelEntity_PhysicalAddHurt"
+    }
+]

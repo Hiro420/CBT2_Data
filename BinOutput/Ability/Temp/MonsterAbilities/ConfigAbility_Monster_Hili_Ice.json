@@ -1,0 +1,633 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  FireArrow
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Hili_Ice_ShootArrow_WithRandom",
+		"abilityMixins": 
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["Aim_BS", "Aim"],
+				"startNormalizedTime" : 0.0,
+				"endNormalizedTime" : 1.0,
+				"angularSpeed" : 120,
+				"attackTrigger" : "",
+				"attackDistance" : 3.75,
+			},
+			{
+				"$type": "AttachToStateIDMixin", 
+				"stateIDs": ["Aim"], 
+				"modifierName": "ShowAimingEffect", 
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"randomAngleHor": 0.3,
+						"randomAngleVer": 0.5,
+						"maxAngle": 60.0,
+					}
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 0,
+						"compareType"  : "NoneOrEqual",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"speedForPredictive" : 30,
+						"maxAngle": 60.0,
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"speedForPredictive" : 30,
+						"maxAngle": 60.0,
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": 5.0,
+							"z": 0.0,
+						},
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"speedForPredictive" : 30,
+						"maxAngle": 60.0,
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": 10.0,
+							"z": 0.0,
+						},
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"speedForPredictive" : 30,
+						"maxAngle": 60.0,
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": -5.0,
+							"z": 0.0,
+						},
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+			{
+				"$type": "TriggerBullet",
+				"bulletID": 42101010,
+				"born":
+				{
+					"$type": "ConfigBornByAttachPoint",
+					"attachPointName" : "WeaponR",
+					"offset" : 
+					{
+						"x": 0.2,
+						"y": 0.0,
+						"z": 0.1,
+					},
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"speedForPredictive" : 30,
+						"maxAngle": 60.0,
+						"angleOffset" :
+						{
+							"x": 0.0,
+							"y": -10.0,
+							"z": 0.0,
+						},
+					},
+				},
+				"predicates":
+				[
+					{
+						"$type" : "ByTargetGlobalValue",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Hili_Ice_CrossBow_Arrow_AS",
+			},
+		],
+		"modifiers": 
+		{
+			"ShowAimingEffect": 
+			{
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Hili_Ice_CrossBow_Aim_01",
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "WeaponR",
+						},
+					},
+				],
+			},
+		},
+
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Hili_Ice_Arrow_Damage",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "FireEffectModifier",
+				"target": "Self",
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"predicates" :
+				[
+					{
+						"$type" : "ByHasElement",
+						"element" : "Ice",
+					},
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Owner",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 0,
+						"compareType"  : "NoneOrEqual",
+					},
+				],
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 0.75,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+						"checkHitLayerType": "Both",
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1.0,
+							"strikeType": "Pierce",
+							"elementType": "Ice",
+							"elementDurability": 50,
+							"enBreak": 50.0,
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName": "none",
+							"hitLevel": "Light",	//hitlevel = 2
+							"hitImpulseX": 200,	//hitlevel = 2
+							"hitImpulseY": 0,	//hitlevel = 2
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.06,
+							"shakeTime": 0.09,
+							"shakeDistance": 20,
+						},	
+					},
+				},
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"predicates" :
+				[
+					{
+						"$type" : "ByHasElement",
+						"element" : "Ice",
+					},
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Owner",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackSphere",
+						"triggerType" : "TriggerNoRepeat",
+						"radius": 0.75,
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+						},
+						"checkHitLayerType": "Both",
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.7,
+							"strikeType": "Pierce",
+							"elementType": "Ice",
+							"elementDurability": 50,
+							"enBreak": 50.0,
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName": "none",
+							"hitLevel": "Light",	//hitlevel = 2
+							"hitImpulseX": 200,	//hitlevel = 2
+							"hitImpulseY": 0,	//hitlevel = 2
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+						"forceCameraShake": false,
+						"cameraShake":
+						{
+							"shakeType": "Center",
+							"shakeRange": 0.06,
+							"shakeTime": 0.09,
+							"shakeDistance": 20,
+						},	
+					},
+				},
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"predicates" :
+				[
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByHasElement",
+								"element" : "Ice",
+							},
+						],
+					},
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Owner",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 0,
+						"compareType"  : "NoneOrEqual",
+					},
+				],
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackBox",
+						"triggerType" : "TriggerNoRepeat",
+						"size" : 
+						{
+							"x": 0.1,
+							"y" : 0.1,
+							"z" : 1.0,
+						},
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+							"offset" : 
+							{
+								"x": 0.0, // + means up, - means down
+								"y": 0.0, // + means left, - means right
+								"z": -0.5, // + means forward, - means backward
+							}
+						},
+						"checkHitLayerType": "Both",
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1.0,
+							"strikeType": "Pierce",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName": "default",
+							"hitLevel": "Shake",	//hitlevel = 1
+							"hitImpulseX": 0,	//hitlevel = 1
+							"hitImpulseY": 0,	//hitlevel = 1
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+					},
+				},
+			},
+			{
+				"$type" : "TriggerAttackEvent",
+				"targetType" : "Enemy",
+				"predicates" :
+				[
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByHasElement",
+								"element" : "Ice",
+							},
+						],
+					},
+					{
+						"$type" : "ByTargetGlobalValue",
+						"target": "Owner",
+						"key"  : "_ELITEAFFIX_ATTACK_ENHANCE",
+						"value"  : 1,
+						"compareType"  : "Equal",
+					},
+				],
+				"attackEvent": 
+				{
+					"attackPattern" :
+					{
+						"$type" : "ConfigAttackBox",
+						"triggerType" : "TriggerNoRepeat",
+						"size" : 
+						{
+							"x": 0.1,
+							"y" : 0.1,
+							"z" : 1.0,
+						},
+						"born":
+						{
+							"$type": "ConfigBornByCollisionPoint",
+							"offset" : 
+							{
+								"x": 0.0, // + means up, - means down
+								"y": 0.0, // + means left, - means right
+								"z": -0.5, // + means forward, - means backward
+							}
+						},
+						"checkHitLayerType": "Both",
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 0.7,
+							"strikeType": "Pierce",
+						},
+						"hitPattern" :
+						{
+							"onHitEffectName": "default",
+							"hitLevel": "Shake",	//hitlevel = 1
+							"hitImpulseX": 0,	//hitlevel = 1
+							"hitImpulseY": 0,	//hitlevel = 1
+							"reboundRatio": 0,
+							"hitHaltTime": 0.0,
+							"hitHaltTimeScale": 0.01,
+							"muteHitText": false,
+						},
+					},
+				},
+			},
+			{
+				"$type": "FireEffect",
+				"effectPattern": "Eff_Monster_Hili_Ice_CrossBow_ArrowHit",
+				"born":
+				{
+					"$type": "ConfigBornByCollisionPoint",
+					"offset" : 
+					{
+						"x": 0.0, // + means up, - means down
+						"y": 0.0, // + means left, - means right
+						"z": 0.35, // + means forward, - means backward
+					}
+				},
+				"predicates" :
+				[
+					{
+						"$type" : "ByHasElement",
+						"element" : "Ice",
+					},
+				],
+			},
+			{
+				"$type": "FireHitEffect",
+				"predicates" :
+				[
+					{
+						"$type" : "ByHasElement",
+						"element" : "Ice",
+					},
+				],
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Monster_Hili_Ice_CrossBow_ArrowHit",
+					"surfaceEffect" :
+					{
+						"Water" : "Eff_Arrow_Hit_Water"
+					}
+				},
+			},
+			{
+				"$type": "FireHitEffect",
+				"predicates" :
+				[
+					{
+						"$type" : "ByNot",
+						"predicates" :
+						[
+							{
+								"$type" : "ByHasElement",
+								"element" : "Ice",
+							},
+						],
+					},
+				],
+				"hitEntity": "Eff_Arrow_Hit_Monster",
+				"hitScene":
+				{
+					"defaultEffect" : "Eff_Arrow_Hit_Earth",
+					"surfaceEffect" :
+					{
+						"Water" : "Eff_Arrow_Hit_Water"
+					}
+				},
+			},
+			{
+				"$type": "RemoveModifier",
+				"modifierName": "FireEffectModifier",
+			},
+		],
+		"modifiers":
+		{
+			"FireEffectModifier":
+			{
+				"elementType": "Ice",
+				"elementDurability": 50,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Hili_Ice_CrossBow_Arrow_Particle",
+					},
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_Monster_Hili_Ice_CrossBow_Arrow_Trail",
+					},
+				]
+			},
+		},
+	},
+},
+]

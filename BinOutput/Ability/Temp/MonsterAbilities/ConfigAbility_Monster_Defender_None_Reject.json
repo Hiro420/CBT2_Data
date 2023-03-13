@@ -1,0 +1,141 @@
+[
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Monster_Defender_None_IntervalReject",
+			"abilityMixins":
+			[
+				{
+					"$type": "ElementAdjustMixin",
+					"changeInterval": 15,
+					"elementModifies":
+					{
+						"Fire": "Defender_Fire_Resist",
+						"Water": "Defender_Water_Resist",
+						"Grass": "Defender_Grass_Resist",
+						"Electric": "Defender_Electric_Resist",
+						"Ice": "Defender_Ice_Resist",
+						"Rock": "Defender_Rock_Resist",
+						"Wind": "Defender_Wind_Resist",
+					},
+				},
+			],
+			"modifiers":
+			{
+				"Defender_Fire_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_FireSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Fire_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Water_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_WaterSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Water_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Grass_Resist":
+				{
+					"dutaion": 15,
+					"properties":
+					{
+						"Actor_GrassSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Grass_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Electric_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_ElecSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Electric_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Ice_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_IceSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Ice_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Rock_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_RockSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Rock_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+				"Defender_Wind_Resist":
+				{
+					"duration": 15,
+					"properties":
+					{
+						"Actor_WindSubHurtDelta":1,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Monster_Wind_ElementShield_BS",
+							"scale"  : 2,
+						},
+					],
+				},
+			},
+		},
+	},
+]

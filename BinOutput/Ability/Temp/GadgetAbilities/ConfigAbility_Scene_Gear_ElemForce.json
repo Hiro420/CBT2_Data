@@ -1,0 +1,2364 @@
+/*搬运元素之力*/
+[
+///////////////////////////////////////////////////
+//
+//	搬运元素之力-底座
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Base",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "ElemForce_Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "ElemForce_Lock",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "ElemForce_Fire",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "ElemForce_Water",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "ElemForce_Ice",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 901,
+					"modifierName": "ElemForce_Electric",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 902,
+					"modifierName": "ElemForce_Wind",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 903,
+					"modifierName": "ElemForce_Rock",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 103,
+					"modifierName": "ElemForce_Grass",
+				},
+			],
+			"modifiers":
+			{
+				"ElemForce_Default":
+				{
+					"thinkInterval": 3,
+					"onThinkInterval": 
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_GunpowderBarrel_Explode",
+						},
+						{
+							"$type": "ApplyModifier",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"modifierName": "Get_ElemForce",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"target": "Target",
+									"key": "_IS_LIGHTLOCK_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"target": "Team",
+									"key": "_HAS_ELEMFORCE_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+								{
+									"$type": "ByTargetPositionToSelfPosition",
+									"target": "CurLocalAvatar",
+									"compareType": "XYZ",
+									"value": 5,
+									"logic": "LesserOrEqual",
+								},
+							],
+						},
+					],
+				},
+				"Get_ElemForce":
+				{
+					"onAdded":
+					[
+						// 1 -> Fire
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 1,	
+								},
+							],
+						},
+						// 2 -> Water
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 2,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 2,	
+								},
+							],
+						},
+						// 3 -> Ice
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 3,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 3,	
+								},
+							],
+						},
+						// 4 -> Electric
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 4,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 4,	
+								},
+							],
+						},
+						// 5 -> Wind
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 5,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 5,	
+								},
+							],
+						},
+						// 6 -> Rock
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 6,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 6,	
+								},
+							],
+						},
+						// 7 -> Grass
+						{
+							"$type": "Predicated",
+							"target": "Self",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Type",
+									"value": 7,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"target": "Caster",
+									"param1": 7,	
+								},
+							],
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+				"ElemForce_Fire":
+				{
+
+				},
+				"ElemForce_Water":
+				{
+
+				},
+				"ElemForce_Ice":
+				{
+
+				},
+				"ElemForce_Electric":
+				{
+
+				},
+				"ElemForce_Wind":
+				{
+
+				},
+				"ElemForce_Rock":
+				{
+
+				},
+				"ElemForce_Grass":
+				{
+
+				},
+				"ElemForce_Lock":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "EffectAttach",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "EffectAttach",
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////
+//
+//	岩元素之力子弹
+//
+////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_RockForce_Bullet",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_IS_ELEMFORCE_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMFORCE_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key": "ELEMENT_COUNT",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 3,
+					"minValue": 0,
+				},
+				{
+				 	"$type": "AttachModifier",
+				 	"modifierName": "Rock_Material",
+				},
+			],
+			"onKill":
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Item_Ore_StackingRock_Break_01",
+				},
+				{
+					"$type": "KillSelf",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMFORCE_BULLET",
+					"value": -1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+			],
+			"modifiers":
+			{
+				"Rock_Material":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_01",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "BulletPos1",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+					],
+				},
+				"RockShield_Value":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "GlobalSubShieldMixin",
+						},
+					],
+				},
+
+				"RockShield":
+				{
+					"stacking": "Refresh",
+					"duration": 50,
+					"thinkInterval": 0.5,
+					"modifierMixins":
+					[
+						{
+			              "$type": "GlobalMainShieldMixin",
+			              "shieldType": "Avatar_Rock",
+			              "shieldHP": 200,
+			              "shieldEffectGlobalValueKey": "UNIQUE_Noel_Skill_E_Shield",
+			              "shieldEffectValueSteps": [ -0.5, 0.5 ],
+			              "shieldEffectNameSteps": [ "Eff_Avatar_Girl_Claymore_Noel_Skill_S_Loop" ],
+			              "showDamageText": "INFO_ELITE_DEFENCE",
+			              "childShieldModifierName": "RockShield_Value", 
+			              "onShieldBroken": [
+			                {
+			                  "$type": "RemoveModifier",
+			                  "modifierName": "RockShield",
+			                  "target": "Team",
+			                },
+			              ],
+			            },
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+							"target": "Applier",
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////
+//
+//  岩元素吸收子弹
+//
+////////////////////////////////////
+{
+	"Default": 
+	{ 
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Gear_ElemForce_Rock_AbsorbBullet",
+		"onAdded": 
+		[
+			{
+				"$type": "AttachEffect",
+				"effectPattern": "Eff_Item_Element_WindForce_01",
+			},
+		],
+		"modifiers": 
+		{
+
+		},
+		"onAbilityStart": 
+		[
+			{
+				"$type": "ExecuteGadgetLua",
+				"target": "Target",
+	 			"param1": 201,
+		        "predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "IS_ROCKFORCE_BASE",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+			{
+				"$type": "KillSelf",
+		        "predicates":
+				[
+					{
+						"$type": "ByTargetGlobalValue",
+						"target": "Target",
+						"key": "IS_ROCKFORCE_BASE",
+						"value": 1,
+						"compareType": "Equal",
+					},
+				],
+			},
+		],
+	},
+},
+///////////////////////////////////////////////////
+//
+//	岩元素之力
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Rock",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Rocky",
+				},
+			],
+			"modifiers":
+			{
+				"Rocky":
+				{
+					"elementDurability": 50,
+					"elementType": "Rock",
+					"modifierMixins":
+					[
+						{
+							"$type": "ShieldBarMixin",
+						},
+					],
+					"onRemoved":
+					[
+						//给周围没有子弹的人上子弹
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockForce_AoE",
+							"otherTargets": 
+							{
+					            "$type": "SelectTargetsByShape",
+					            "shapeName": "CircleR5",
+					            "centerBasedOn": "Self",
+					            "campTargetType": "All",
+					            "campBasedOn": "Self",
+					        },
+					       "predicates":
+							[
+								{
+				                  "$type": "ByEntityTypes",
+				                  "entityTypes": ["Avatar"],
+				                },
+							],
+						},
+						//第三层岩元素子弹BUFF
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_RockForce_Bullet_Eff3",
+							"otherTargets": 
+							{
+					            "$type": "SelectTargetsByShape",
+					            "shapeName": "CircleR5",
+					            "centerBasedOn": "Self",
+					            "campTargetType": "All",
+					            "campBasedOn": "Self",
+					        },
+					       "predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "ELEMENT_COUNT",
+									"value": 2,
+									"compareType": "Equal",
+								},
+							],
+						},
+						//第二层岩元素子弹BUFF
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "UNIQUE_RockForce_Bullet_Eff2",
+							"otherTargets": 
+							{
+					            "$type": "SelectTargetsByShape",
+					            "shapeName": "CircleR5",
+					            "centerBasedOn": "Self",
+					            "campTargetType": "All",
+					            "campBasedOn": "Self",
+					        },
+					       "predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "ELEMENT_COUNT",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_Ore_StackingRock_Break_01",
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+
+				"UNIQUE_RockForce_Bullet_Eff2":
+				{
+					"isUnique" : true,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_02",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "BulletPos2",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "ELEMENT_COUNT",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "ELEMENT_COUNT",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+						},
+					],
+				},
+
+				"UNIQUE_RockForce_Bullet_Eff3":
+				{
+					"isUnique" : true,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_03",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "BulletPos3",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "AddGlobalValue",
+							"key": "ELEMENT_COUNT",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "ELEMENT_COUNT",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+						},
+					],
+				},
+
+				"RockForce_AoE":
+				{
+					"duration": 0.5,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "RockForce",
+						},
+					],
+				},
+
+				"RockForce":
+				{
+					"duration": 0.5,
+					"onAdded":
+					[
+						//上子弹
+						{
+							"$type": "CreateGadget",
+							"target": "CurLocalAvatar",
+							"gadgetID": 70330018,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"ownerIsTarget": true,
+							//"byServer": true,
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"target": "Team",
+									"key": "_HAS_ELEMFORCE_BULLET",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////
+//
+//  元素之力基座 岩
+//
+///////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Gear_ElemForce_Base_Rock",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 0,
+				"modifierName": "AbsorbRock_Continue",
+			},
+			// {
+			// 	"$type": "AttachToGadgetStateMixin",
+			// 	"gadgetState": 201,
+			// 	"modifierName": "AbsorbRock",
+			// },
+		],
+		"onAdded":
+		[
+			{
+				"$type": "AddGlobalValue",
+				"key": "IS_ROCKFORCE_BASE",
+				"value": 1,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+			{
+				"$type": "AddGlobalValue",
+				"key": "HAS_ROCK_FORCE",
+				"value": 0,
+				"useLimitRange": true,
+				"maxValue": 1,
+				"minValue": 0,
+			},
+		],
+		"modifiers":
+		{
+			"AbsorbRock_Continue":
+			{
+				"thinkInterval": 0.5,
+				"onThinkInterval":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "AbsorbRock_Add_2_Bullet",
+						"otherTargets": 
+						{
+				            "$type": "SelectTargetsByShape",
+				            "shapeName": "CircleR5",
+				            "centerBasedOn": "Self",
+				            "campTargetType": "All",
+				            "campBasedOn": "Self",
+				        },
+				        "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "_IS_ELEMFORCE_BULLET",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+				],
+			},
+			"AbsorbRock_Add_2_Bullet":
+			{	
+				"stacking": "Refresh",
+				"duration": 0.6,
+				"thinkInterval": 2,
+				"onAdded":
+				[
+					{
+						"$type": "AttachEffect",
+						"effectPattern": "Eff_SceneObj_Hole_Path",
+					},
+				],
+				"onThinkInterval":
+				[
+					{
+						"$type":"SetSelfAttackTarget",
+						"target": "Applier",
+					},
+					//玩家只剩一层
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 70330020,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BulletPos1",
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+						},
+						 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+					 	"$type": "KillSelf",
+					 	 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 1,
+								"compareType": "Equal",
+							},
+						],
+					},
+					//玩家有两层
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 70330020,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BulletPos2",
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+						},
+						 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 2,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type":"RemoveUniqueModifier",
+						"modifierName":"UNIQUE_RockForce_Bullet_Eff2",
+						 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 2,
+								"compareType": "Equal",
+							},
+						],
+					},
+					//玩家有三层
+					{
+						"$type": "TriggerBullet",
+						"bulletID": 70330020,
+						"born":
+						{
+							"$type": "ConfigBornByAttachPoint",
+							"attachPointName" : "BulletPos3",
+							"offset":
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0,
+							},
+						},
+						 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 3,
+								"compareType": "Equal",
+							},
+						],
+					},
+					{
+						"$type":"RemoveUniqueModifier",
+						"modifierName":"UNIQUE_RockForce_Bullet_Eff3",
+						 "predicates":
+						[
+							{
+								"$type": "ByTargetGlobalValue",
+								"key": "ELEMENT_COUNT",
+								"value": 3,
+								"compareType": "Equal",
+							},
+						],
+					},
+
+					{
+						"$type": "RemoveModifier",
+						"modifierName": "AbsorbRock_Add_2_Bullet"
+					},
+				],
+			},
+		},
+	},
+},
+///////////////////////////////////////////////////
+//
+//	搬运元素之力-水之力
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Water",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "ElemForce_Inactive",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "ElemForce_Active",
+				},
+			],
+			"onFieldEnter":
+			[	
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "Change_ElemForce_State",
+				},
+			],
+			"modifiers":
+			{
+				//每次玩家进出时刷新身上的元素之力
+				"Change_ElemForce_State":
+				{
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ElemForce_Active_Key",
+									"value": 0,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "Add_Team_ElemForce_Water",
+						},
+					], 
+				},
+				//清除元素之力标识，移除Team的元素之力buff
+				"ElemForce_Inactive":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ElemForce_Active_Key",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "Team",
+							"modifierName": "Add_Team_ElemForce_Water"
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "Team",
+							"modifierName": "Team_ElemForce_Water"
+						},
+					],
+				},
+				//判断玩家进入时需要给玩家元素之力子弹
+				"ElemForce_Active":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_ElemForce_Active_Key",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0
+						},
+					],
+				},
+				//先给玩家上子弹，1秒后开始施加特效，确保时序正确
+				"Add_Team_ElemForce_Water":
+				{
+					"duration": 0.5,
+					/*"elementType": "None",
+					"elementDurability": 500,*/
+					"stacking": "Refresh",
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"target": "CurLocalAvatar",
+							"gadgetID": 70330010,
+							"campID": 1001,
+							"campTargetType": "Enemy",
+							"byServer": true,
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"target": "Team",
+									"key": "_HAS_ELEMFORCE_BULLET",
+									"value": 0,
+									"compareType": "NoneOrEqual",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "Team_ElemForce_Water",
+						},
+					],
+				},
+				//用于挂载对应元素的主modifer
+				"Team_ElemForce_Water":
+				{
+					"elementType": "Water",
+					"elementDurability": 900,
+					"duration": 180,
+					"stacking": "Refresh",
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachModifierToElementDurabilityMixin",
+							"valueSteps": [0.5, 300.5, 600.5, 900.5],
+							"modifierNameSteps": ["elemForce_1", "elemForce_2", "elemForce_3"],
+						},	
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurLocalAvatar",
+							"modifierName": "Kill_Bullet",
+						},
+					],
+				},
+				"Kill_Bullet":
+				{
+					"duration": 0.5,
+					"onAdded":
+					[
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 70330010,
+								"sortType": "Nearest",
+							},
+						},
+					],
+				},
+				"elemForce_3":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"target": "CurTeamAvatars",
+							"modifierName":"CurAvatar_ElemForce_3",
+						},
+					],
+				},
+				"CurAvatar_ElemForce_3":
+				{
+					"duration": 60,
+					"elementType": "Water",
+					"elementDurability": 300,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMFORCE_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"modifierName": "elemForce_3_effect",
+						},
+					],
+				},
+				"elemForce_3_effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_2_effect",
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_1_effect",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_ElemForce_Water_3",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_GunpowderBarrel_Explode",
+						},
+						{
+							"$type": "AddElementDurability",
+							"target": "Team",
+							"value": -300,
+							"modifierName": "Team_ElemForce_Water",
+							"elementType": "Water",
+							"useLimitRange": true,
+							"maxValue": 600,
+							"minValue": 600,
+							"doOffStage":true,
+						},
+					],
+				},
+				"elemForce_2":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName":"CurAvatar_ElemForce_2",
+						},
+					],
+				},
+				"CurAvatar_ElemForce_2":
+				{
+					"duration": 60,
+					"elementType": "Water",
+					"elementDurability": 300,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMFORCE_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"modifierName": "elemForce_2_effect",
+						},
+					],
+				},
+				"elemForce_2_effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_3_effect",
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_1_effect",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_ElemForce_Water_2",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_GunpowderBarrel_Explode",
+						},
+						{
+							"$type": "AddElementDurability",
+							"target": "Team",
+							"value": -300,
+							"modifierName": "Team_ElemForce_Water",
+							"elementType": "Water",
+							"useLimitRange": true,
+							"maxValue": 300,
+							"minValue": 300,
+							"doOffStage":true,
+						},
+					],
+				},
+				"elemForce_1":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName":"CurAvatar_ElemForce_1",
+						},
+					],
+				},
+				"CurAvatar_ElemForce_1":
+				{
+					"duration": 60,
+					"elementType": "Water",
+					"elementDurability": 300,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMFORCE_BULLET",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"modifierName": "elemForce_1_effect",
+						},
+					],
+				},
+				"elemForce_1_effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_3_effect",
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "elemForce_2_effect",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_ElemForce_Water_1",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_GunpowderBarrel_Explode",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "Team",
+							"modifierName": "Team_ElemForce_Water",
+							"doOffStage":true,
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////
+//
+//	搬运元素之力-火之力
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Fire",
+			"onFieldEnter":
+			[
+				
+				{
+					"$type": "ApplyModifier",
+					"target": "Team",
+					"modifierName": "ElemForce_Fire_A",
+				},
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_GunpowderBarrel_Explode",
+				},
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 1,
+				},
+			],
+			"modifiers":
+			{
+				"ElemForce_Fire_A":
+				{
+					"stacking": "Refresh",
+					"thinkInterval": 0.5,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_In_Base",
+									"value": 1,
+									"compareType": "Equal",
+								}
+							],
+							"successActions":
+							[
+								{
+									"$type": "RemoveModifier",
+									"target": "Team",
+									"modifierName": "ElemForce_Fire_A",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurLocalAvatar",
+							"modifierName": "Select_By_Avatar",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+				},
+				"Unique_Fake_Shield_30":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 100,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice01",
+						},
+					],
+				},
+				"Unique_Fake_Shield_60":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 200,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice02",
+						},
+					],
+				},
+				"Unique_Fake_Shield_100":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 300,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice03",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Caster",
+							"modifierName": "Recover_State",
+						},
+					],
+				},
+				"Select_By_Avatar":
+				{
+					"duration": 5,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Change_State",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMFORCE_BASE",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"Recover_State":
+				{
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 0,
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+				},
+				"Change_State":
+				{
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////
+//
+//	搬运元素之力-火之力 挨打
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Fire_Hit",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Hit",
+				},
+			],
+			"modifiers":
+			{
+				"Hit":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "ElemForce_Fire_A",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_GunpowderBarrel_Explode",
+						},
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+				"ElemForce_Fire_A":
+				{
+					"stacking": "Refresh",
+					"thinkInterval": 0.5,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "ApplyModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Team",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_In_Base",
+									"value": 1,
+									"compareType": "Equal",
+								}
+							],
+							"successActions":
+							[
+								{
+									"$type": "RemoveModifier",
+									"target": "Team",
+									"modifierName": "ElemForce_Fire_A",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "CurLocalAvatar",
+							"modifierName": "Select_By_Avatar",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+				},
+				"Unique_Fake_Shield_30":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 100,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice01",
+						},
+					],
+				},
+				"Unique_Fake_Shield_60":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 200,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice02",
+						},
+					],
+				},
+				"Unique_Fake_Shield_100":
+				{
+					"stacking": "Refresh",
+					"elementType": "Fire",
+					"elementDurability": 300,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Test_ElemForce_Ice03",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"target": "Caster",
+							"modifierName": "Recover_State",
+						},
+					],
+				},
+				"Select_By_Avatar":
+				{
+					"duration": 5,
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Change_State",
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR10",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",								
+							},
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_IS_ELEMFORCE_BASE",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"Recover_State":
+				{
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 0,
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_30",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_60",
+						},
+						{
+							"$type": "RemoveModifier",
+							"target": "CurTeamAvatars",
+							"modifierName": "Unique_Fake_Shield_100",
+						},
+					],
+				},
+				"Change_State":
+				{
+					"duration": 1,
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////
+//
+//	元素之力子弹
+//
+////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_ElemForce_Bullet",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_IS_ELEMFORCE_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMFORCE_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+			],
+			"onKill":
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_GunpowderBarrel_Explode",
+				},
+				{
+					"$type": "KillSelf",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMFORCE_BULLET",
+					"value": -1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+			],
+		},
+	},
+
+///////////////////////////////////////////////////
+//
+//	莫得灵魂的风元素之力
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_GrassWind_Fake",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "WindSeed_Material",
+				},
+			],
+			"onFieldEnter":
+			[	
+				{
+					"$type": "ApplyModifier",
+					"target": "Target",
+					"modifierName": "WindForce_Handle",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Avartar_Count",
+					//"$type": "KillSelf",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR10",
+						"centerBasedOn": "Self",
+						"campTargetType": "All",
+						"campBasedOn": "Self",
+					},
+					"predicates":
+					[
+						{
+		                  "$type": "ByEntityTypes",
+		                  "entityTypes": ["Avatar"],
+		                },
+					],
+				},
+				//播放AOE特效
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Item_WindSeed_AoE",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"alongGround": true,
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "HAS_AVATAR_NEAR",
+							"value": 1,
+							"compareType": "MoreThan",
+						},
+
+					],
+				},
+				// {
+				// 	"$type": "AddGlobalValue",
+				// 	"target": "Self",
+				// 	"key": "HAS_AVATAR_NEAR",
+				// 	"value": 0,
+				// 	"useLimitRange": true,
+				// 	"maxValue": 0,
+				// 	"minValue": 0,
+				// },
+			],
+			"modifiers":
+			{
+				"Avartar_Count":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Applier",
+							"key": "HAS_AVATAR_NEAR",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 4,
+							"minValue": 0,
+						},
+					],
+				},
+				"WindForce_Handle":
+				{
+					"duration": 0.5,
+					"stacking": "Multiple",
+					"fireEventWhenApply": true,
+					"stackingOption": {
+		            "maxModifierNumForMultipleType": 3,
+		          },
+					"onAdded":
+					[
+						//空modifer打标记
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "WindForce",
+						},
+					],
+				},
+				"WindSeed_Material":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_WindSeed",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"parameter" : "Disappear",
+ 						},
+ 						{
+							"$type": "ExecuteGadgetLua",
+							"target":"Owner",
+							"param1": 201,
+						},
+					]
+				},
+				"WindForce":
+				{
+					"duration": 0.5,
+					"stacking": "Multiple",
+					"stackingOption": {
+		            "maxModifierNumForMultipleType": 3,
+		          },
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////
+//
+//	风元素之力
+//
+///////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_GrassWind",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "WindSeed_Material",
+				},
+			],
+			"onFieldEnter":
+			[	
+				{
+					"$type": "ApplyModifier",
+					"target": "Target",
+					"modifierName": "WindForce_Handle",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Avartar_Count",
+					//"$type": "KillSelf",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR10",
+						"centerBasedOn": "Self",
+						"campTargetType": "All",
+						"campBasedOn": "Self",
+					},
+					"predicates":
+					[
+						{
+		                  "$type": "ByEntityTypes",
+		                  "entityTypes": ["Avatar"],
+		                },
+					],
+				},
+				//播放AOE特效
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_Item_WindSeed_AoE",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"alongGround": true,
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "HAS_AVATAR_NEAR",
+							"value": 1,
+							"compareType": "MoreThan",
+						},
+
+					],
+				},
+				// {
+				// 	"$type": "AddGlobalValue",
+				// 	"target": "Self",
+				// 	"key": "HAS_AVATAR_NEAR",
+				// 	"value": 0,
+				// 	"useLimitRange": true,
+				// 	"maxValue": 0,
+				// 	"minValue": 0,
+				// },
+			],
+			"modifiers":
+			{
+				"Avartar_Count":
+				{
+					"duration": 0.2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Applier",
+							"key": "HAS_AVATAR_NEAR",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 4,
+							"minValue": 0,
+						},
+					],
+				},
+				"WindForce_Handle":
+				{
+					"duration": 0.5,
+					"stacking": "Multiple",
+					"fireEventWhenApply": true,
+					"stackingOption": {
+		            "maxModifierNumForMultipleType": 3,
+		          },
+					"onAdded":
+					[
+						//空modifer打标记
+						{
+							"$type": "ApplyModifier",
+							"target": "Team",
+							"modifierName": "WindForce",
+						},
+					],
+				},
+				"WindSeed_Material":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_WindSeed",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"parameter" : "Disappear",
+ 						},
+					]
+				},
+				"WindForce":
+				{
+					"duration": 0.5,
+					"stacking": "Multiple",
+					"stackingOption": {
+		            "maxModifierNumForMultipleType": 3,
+		          },
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////
+//
+//	草生风子弹
+//
+////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+
+			"abilityName": "SceneObj_Gear_GrassWind_Bullet",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_IS_ELEMENT_WIND_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMENT_WIND_BULLET1",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "LightLock_Bullet",
+				},
+			],
+			"modifiers":
+			{
+				"LightLock_Bullet" :
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_01",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMENT_WIND_BULLET1",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_Dissipate_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////
+//
+//	草生风子弹02
+//
+////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_GrassWind_Bullet02",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMENT_WIND_BULLET2",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_IS_ELEMENT_WIND_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "LightLock_Bullet2",
+				},
+			],
+			"modifiers":
+			{
+				"LightLock_Bullet2" :
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_WhiteBox02",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 99,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMENT_WIND_BULLET2",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////
+//
+//	草生风子弹03
+//
+////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_GrassWind_Bullet03",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Team",
+					"key": "_HAS_ELEMENT_WIND_BULLET3",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_IS_ELEMENT_WIND_BULLET",
+					"value": 1,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"target": "Self",
+					"modifierName": "LightLock_Bullet3",
+				},
+			],
+			"modifiers":
+			{
+				"LightLock_Bullet3" :
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Element_WindForce_WhiteBox03",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMFORCE_WIND",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 99,
+							"minValue": 0,
+						},
+						{
+							"$type": "AddGlobalValue",
+							"target": "Team",
+							"key": "_HAS_ELEMENT_WIND_BULLET3",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+]

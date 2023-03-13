@@ -1,0 +1,108 @@
+[
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Monster_Hili_None_PhysicResist",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "ApplyModifier",
+					"modifierName"  : "Hili_None_PhysicResist",
+					"target"  : "Self",
+				},
+			],
+			"modifiers":
+			{
+				"Hili_None_PhysicResist":
+				{
+					"duration": 10,
+					"properties": 
+					{
+						"Actor_PhysicalSubHurtDelta":0.6,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Lisa_StaticElec_Number1",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Fx_ChestNode",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByLookAtEntity",
+								},
+							},
+							"scale"  : 1,
+							"target"  : "Self",
+						},
+					],
+				},
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Monster_Hili_None_ElementResist",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "ApplyModifier",
+					"modifierName"  : "Hili_None_ElementResist",
+					"target"  : "Self",
+				},
+			],
+			"modifiers":
+			{
+				"Hili_None_ElementResist":
+				{
+					"duration": 10,
+					"properties": 
+					{
+						"Actor_ElecSubHurtDelta":0.6,
+						"Actor_WaterSubHurtDelta":0.6,
+						"Actor_GrassSubHurtDelta":0.6,
+						"Actor_WindSubHurtDelta":0.6,
+						"Actor_IceSubHurtDelta":0.6,
+						"Actor_FireSubHurtDelta":0.6,
+						"Actor_RockSubHurtDelta":0.6,
+					},
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern"  : "Eff_Lisa_StaticElec_Number2",
+							"born": 
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "Fx_ChestNode",
+								"offset": 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type": "ConfigDirectionByLookAtEntity",
+								},
+							},
+							"scale"  : 1,
+							"target"  : "Self",
+						},
+					],
+				},
+			},
+		},
+	},
+]

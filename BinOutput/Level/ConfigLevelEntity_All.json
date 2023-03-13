@@ -1,0 +1,41 @@
+{
+	"Level_BigWorld" :
+	{
+		"$type" : "ConfigLevelEntity",
+		"abilities":
+		[
+			{
+				"abilityID": "Paimon_Apple",
+				"abilityName":"Gadget_Level_Paimon_Apple"
+			},
+			{
+				"abilityID": "Paimon_Stamina",
+				"abilityName":"Gadget_Level_Paimon_Stamina"
+			},
+			{
+				"abilityID": "Level_Apply_Switch_FindCatBtn",
+				"abilityName":"Level_Apply_Switch_FindCatBtn"
+			},
+			{
+				"abilityID": "Level_Remove_Switch_FindCatBtn",
+				"abilityName":"Level_Remove_Switch_FindCatBtn"
+			},
+			{
+				"abilityID": "LevelBuff_ReviveElemEnergy&MinusCD",
+				"abilityName":"LevelBuff_ReviveElemEnergy&MinusCD"
+			},
+			{
+				"abilityID": "LevelBuff_Remove_ReviveElemEnergy&MinusCD",
+				"abilityName":"LevelBuff_Remove_ReviveElemEnergy&MinusCD"
+			},
+			{
+				"abilityID": "Level_Apply_Switch_SneakBtn",
+				"abilityName":"Level_Apply_Switch_SneakBtn"
+			},
+			{
+				"abilityID": "Level_Remove_Switch_SneakBtn",
+				"abilityName":"Level_Remove_Switch_SneakBtn"
+			},
+		],
+	},
+}

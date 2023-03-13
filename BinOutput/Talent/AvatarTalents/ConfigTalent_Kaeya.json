@@ -1,0 +1,159 @@
+{
+	// "Keaya_StrongBody1":
+	// [
+	// 	{
+	// 		"$type" : "AddAbility",
+	// 		"abilityName" : "Avatar_Keaya_StrongBody",
+	// 	},
+	// 	{
+	// 		"$type" : "ModifyAbility",
+	// 		"abilityName" : "Avatar_Keaya_StrongBody",
+	// 		"paramSpecial" : "StaminaReduce",
+	// 		"paramDelta" : "-%1",
+	// 		"paramRatio" : 0,
+	// 	},
+	// ],
+	"Kaeya_Constellation_1":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName" : "Kaeya_FrozenCritic",
+		},
+	],
+	"Kaeya_Constellation_2":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Keaya_FrozenTrap",
+			"talentParam" : "HoldOnPlease",
+		},
+	],
+	"Kaeya_Constellation_3":
+	[
+		{
+			"$type": "AddTalentExtraLevel",
+			"talentType": "AvatarSkill",
+			"talentIndex": 2,
+			"extraLevel": 3,
+		},
+	],
+	"Kaeya_Constellation_4":
+	[
+		{
+			"$type" : "AddAbility",
+			"abilityName": "Avatar_Keaya_IceHeartTrigger",
+		},
+	],
+	"Kaeya_Constellation_5":
+	[
+		{
+			"$type": "AddTalentExtraLevel",
+			"talentType": "AvatarSkill",
+			"talentIndex": 9,
+			"extraLevel": 3,
+		},
+	],
+	"Kaeya_Constellation_6":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Keaya_FrozenTrap_BS",
+			"talentParam" : "ATField",
+		},
+	],
+	"Kaeya_PermanentSkill_1":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Keaya_IceShield_Impact",
+			"talentParam" : "TasteOfCold",
+		},
+	],
+	"Kaeya_PermanentSkill_2":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName" : "Avatar_Keaya_IceShield_Impact",
+			"talentParam" : "FrozenStar",
+		},
+	],
+	"Kaeya_SkillUpgrade_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage1",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage2",
+			"paramDelta" : "%2",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage3",
+			"paramDelta" : "%3",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage4",
+			"paramDelta" : "%4",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage5",
+			"paramDelta" : "%5",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage6",
+			"paramDelta" : "%6",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_GracefulAttack",
+			"paramSpecial" : "damage7",
+			"paramDelta" : "%7",
+			"paramRatio" : 0,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Kaeya_ExtraAttack",
+			"paramSpecial" : "ExtraAttack_Sword_Stamina_Cost",
+			"paramDelta" : "%8",
+			"paramRatio" : 0,
+		},
+	],
+	"Kaeya_SkillUpgrade_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Keaya_IceShield_Impact",
+			"paramSpecial" : "damage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+	],
+	"Kaeya_SkillUpgrade_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Kaeya_ElementalBurst_DamageHandler",
+			"paramSpecial" : "Elemental_Burst_Damage",
+			"paramDelta" : "%1",
+			"paramRatio" : 0,
+		},
+	],
+},

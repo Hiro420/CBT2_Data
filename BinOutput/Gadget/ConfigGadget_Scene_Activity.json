@@ -1,0 +1,352 @@
+{
+/////////////////////////////////
+//
+// 海灯节大燈效果
+//
+//////////////////////////////////////
+	"SceneObj_Activity_BigLamp" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_SceneObj_ActicityLamp_Base",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 10000,
+				"attack" : 0,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0,
+				"dieForceDisappearTime" : 0,
+				"dieModelFadeDelay": 0,
+			},
+		},
+	},
+/////////////////////////////////
+/////////////////////////////////
+//
+// 海灯节放灯
+//
+//////////////////////////////////////
+	"SceneObj_Activity_UseLamp" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 10000,
+				"attack" : 0,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0,
+				"dieForceDisappearTime" : 0,
+				"dieModelFadeDelay": 0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Activity_UseLamp",
+
+				"abilityName" : "SceneObj_Activity_UseLamp"
+			},
+		],
+	},
+///////////////////////////////////////////////////
+//
+// 	宵灯 子弹
+//
+///////////////////////////////////////////////////
+	"SceneObj_Activity_Lamp_Bullet":
+	{
+		"$type" : "ConfigGadget",
+		// "hasModel": true,
+		// "model":
+		// {
+		// 	"attachEffect": "Eff_Stages_Ly_Hdj_LightFly",
+		// },
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit":
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 1,
+				"dieForceDisappearTime" : 1,
+			},
+		},
+		"gadget":
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene": true,
+			},
+			// "triggerActions" :
+			// [
+			// 	// {
+			// 	// 	"$type" : "ConfigGadgetTriggerAbility",
+			// 	// 	"abilityName": "SceneObj_Gear_Combat_DropIce_Crash",
+			// 	// },
+			// ],
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",		//直线上升移动
+			"speed" : 0.7,
+			"acceleration" : 0.1,
+		},
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 200,			//存在时间
+		},
+		 "abilities":
+		 [
+		 	{
+		 		"abilityID": "Ability_01",
+
+		 		"abilityName" : "SceneObj_Activity_Lamp_Bullet",
+		 	},
+		 ],
+	},
+///////////////////////////////////////////////////
+//
+// 	宵灯 子弹 中速
+//
+///////////////////////////////////////////////////
+	"SceneObj_Activity_Lamp_Bullet_Middle":
+	{
+		"$type" : "ConfigGadget",
+		// "hasModel": true,
+		// "model":
+		// {
+		// 	"attachEffect": "Eff_Stages_Ly_Hdj_LightFly",
+		// },
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit":
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 1,
+				"dieForceDisappearTime" : 1,
+			},
+		},
+		"gadget":
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene": true,
+			},
+			// "triggerActions" :
+			// [
+			// 	// {
+			// 	// 	"$type" : "ConfigGadgetTriggerAbility",
+			// 	// 	"abilityName": "SceneObj_Gear_Combat_DropIce_Crash",
+			// 	// },
+			// ],
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",		//直线上升移动
+			"speed" : 0.4,
+			"acceleration" : 0.1,
+		},
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 350,			//存在时间
+		},
+		 "abilities":
+		 [
+		 	{
+		 		"abilityID": "Ability_01",
+
+		 		"abilityName" : "SceneObj_Activity_Lamp_Bullet",
+		 	},
+		 ],
+	},
+///////////////////////////////////////////////////
+//
+// 	宵灯 子弹 慢速
+//
+///////////////////////////////////////////////////
+	"SceneObj_Activity_Lamp_Bullet_Slow":
+	{
+		"$type" : "ConfigGadget",
+		// "hasModel": true,
+		// "model":
+		// {
+		// 	"attachEffect": "Eff_Stages_Ly_Hdj_LightFly",
+		// },
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit":
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+
+				"dieEndTime" : 1,
+				"dieForceDisappearTime" : 1,
+			},
+		},
+		"gadget":
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene": true,
+			},
+			// "triggerActions" :
+			// [
+			// 	// {
+			// 	// 	"$type" : "ConfigGadgetTriggerAbility",
+			// 	// 	"abilityName": "SceneObj_Gear_Combat_DropIce_Crash",
+			// 	// },
+			// ],
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",		//直线上升移动
+			"speed" : 0.2,
+			"acceleration" : 0.1,
+		},
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 700,			//存在时间
+		},
+		 "abilities":
+		 [
+		 	{
+		 		"abilityID": "Ability_01",
+
+		 		"abilityName" : "SceneObj_Activity_Lamp_Bullet",
+		 	},
+		 ],
+	},
+},

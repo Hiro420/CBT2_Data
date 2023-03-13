@@ -1,0 +1,2232 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  西风猎弓武器词缀_旧  旧就不做修改了。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_Zephyrus",
+			"abilitySpecials" :
+			{
+					"SubHurtDelta" : -0.06,
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+//
+// 15301
+//
+// 对水、火附着单位增加20%伤害
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_DamageUpToEnemy",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_DamageUpToEnemy_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_DamageUpToEnemy_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							// "bonusCritical":"%Rate",
+							"damagePercentageRatio":"%Rate",//暴击率太弟弟了,不用
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",//emmm,用Applier基本能解决想要的self需求。
+									"skillID":10101
+								},
+								{
+									"$type":"ByAny",
+									"predicates":
+									[
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Water",
+										},
+										{
+											"$type":"ByHasElement",//Predicate的目标默认是Target，就是传进来的参数.
+											// "target":"Target",
+											"element":"Fire",
+										},
+									],
+								}
+							],
+						},
+					],
+					"isUnique":true,
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15302
+//  爆头伤害提升，填表完成。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_DamageUpHitHeadBox",
+			"abilityMixins":
+			[
+				{
+					"$type":"ModifyDamageMixin",
+					"ignoreEventInfo":true,
+					"damagePercentageRatio":"%Rate",
+					"predicates":
+					[
+						{
+							"$type": "ByHitBoxName",
+							"hitBoxNames": ["HeadBox"],
+						},
+						{
+							"$type" : "ByEntityTypes",
+							"entityTypes" : ["Monster",],
+						},
+					],
+				},
+			],
+			"abilitySpecials":
+			{
+				"Rate":0,
+			},
+		},
+	},
+///
+///
+////////////////////////////////////////////////////////////////
+//
+//  15303
+//  Equip_Bow_Crowfeather 鸦羽弓武器词缀_击杀目标恢复角色固定生命值；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_HealAmountHPonEnemyKilled",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Bow_HealAmountHPonEnemyKilled_Handler"
+				},
+			],
+			"abilityMixins":
+			[
+
+			],
+			/*"onAbilityStart":
+			[
+				{
+					"$type":"HealHP",
+					"amount":10,
+					"target":"CurTeamAvatars",
+				},
+			],*/
+			"modifiers" :
+			{
+				"UNIQUE_Bow_HealAmountHPonEnemyKilled_Handler" :
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByKillingMixin",
+							//算的是此角色最后一击的tag。不一定是击杀那一击（可能是别人击杀的）
+							"detectWindow":1, //这段时间之后击杀都算，但是无论是modifiermixin还是abilitymixin都需要角色在场。
+							"onKill":
+							[
+								{
+									"$type":"Predicated", //务必要用这个写法，不然other无法传递给predicate
+									"target":"Other",
+									"targetPredicates":
+									[
+										{
+											"$type":"ByEntityTypes",
+											"target":"Target",
+											"entityTypes":["Monster",],
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type" : "HealHP",
+											"target":"Self",
+                                  			"amountByTargetMaxHPRatio": "%HealAmount",
+										},
+									],
+								},
+							]
+						},
+					],
+				},
+				/*"UNIQUE_Bow_HealAmountHPonEnemyKilled_Handler" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "AttachModifier",
+							"modifierName" : "Weapon_Bow_HealAmountHPonEnemyKilled_Mark",
+							"target" : "Target",
+							"predicates" :
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								// {
+								// 	"$type":"ByTargetHPRatio",
+								// 	"HPRatio":0,
+								// 	"logic":"Greater"
+								// },
+							],
+						},
+						{//这里还是需要加上，目前只对攻击者本身保证onAttackLanded和onKill的顺序，对攻击者的owner没法保证
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								{
+									"$type":"ByTargetGlobalValue",
+									"key":"_ABILITY_GlobalWeapon_Bow_HealAmountHPonEnemyKilled_Mark",
+									"value":0,
+									"compareType":"NoneOrEqual",
+								},
+								{
+									"$type":"ByTargetHPRatio",
+									"HPRatio":0,
+									"logic":"LesserOrEqual"
+								},//单机测试，有时会回两次血，提交后再测一下。
+							],
+							"successActions":
+							[
+								// {
+								// 	"$type" : "HealHP",//自己执行的heal可以
+								// 	"target" : "Self",
+								// 	"amount" : "%HealAmount",
+								// },
+								{
+									"$type" : "ApplyModifier",
+									"modifierName" : "Weapon_Bow_HealAmountHPonEnemyKilled_Heal",
+									"target" : "Self",
+								},
+							],
+						},
+					],
+				},*/
+				// "Weapon_Bow_HealAmountHPonEnemyKilled_Mark" :
+				// {
+				// 	"duration" : 10.0,
+				// 	"stacking" : "Refresh",
+				// 	"onAdded":
+				// 	[
+				// 		{
+				// 			"$type":"AddGlobalValue",
+				// 			"value":1,
+				// 			"key":"_ABILITY_GlobalWeapon_Bow_HealAmountHPonEnemyKilled_Mark",
+				// 			"maxValue":1,
+				// 		},
+				// 	],
+				// 	"onKill" :
+				// 	[
+				// 		// {
+				// 		// 	"$type" : "HealHP",//这个是不行的，执行者死了，服务器不会执行heal行为
+				// 		// 	"target": "Caster",
+				// 		// 	"amount" : "%HealAmount",
+				// 		// },
+				// 		{
+				// 			"$type" : "ApplyModifier",
+				// 			"modifierName" : "Weapon_Bow_HealAmountHPonEnemyKilled_Heal",
+				// 			"target" : "Caster",
+				// 		},
+				// 	],
+				// },
+				// "Weapon_Bow_HealAmountHPonEnemyKilled_Heal" :
+				// {
+				// 	"duration" : 0.5,
+				// 	"stacking" : "Multiple",//如果需要cd，将回血的堆叠写成unique
+				// 	"onAdded" :
+				// 	[
+				// 		{
+				// 			"$type" : "HealHP",
+				// 			"amount" : "%HealAmount",
+				// 		},
+				// 	],
+				// },
+			},
+			"abilitySpecials" :
+			{
+				"HealAmount" : 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15304 Equip_Bow_弹弓 武器词缀 普通攻击和重击时的弓箭飞行前0.3秒内，伤害提升，之后伤害大幅下降；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseDMGWithinTime",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "UNIQUE_Bow_RiseDMGWithinTime_Handler",
+				},
+			],
+      "modifiers": {
+        "UNIQUE_Bow_RiseDMGWithinTime_Handler": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByCreateGadgetMixin",
+              "actionQueue": [
+                {
+                  "$type": "ApplyModifier",
+                  "modifierName": "UNIQUE_Bow_RiseDMGWithinTime_Buff",
+                  "target": "Target",
+                },
+              ],
+            },
+          ],
+        },
+        "UNIQUE_Bow_RiseDMGWithinTime_Buff": {
+          "duration": "%Time",
+          "isUnique": true,
+          "stacking": "Unique",
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+              "damagePercentageRatio": "%AttackUpRatio",
+            },
+          ],
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "UNIQUE_Bow_RiseDMGWithinTime_DeBuff",
+            },
+          ],
+        },
+        "UNIQUE_Bow_RiseDMGWithinTime_DeBuff": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+              "damagePercentageRatio": "%AttackDownRatio*%Minus",
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+      	"Time":0,
+        "AttackUpRatio": 0,
+        "AttackDownRatio": 0,
+        "Minus": -1,
+      },
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15305
+//  Equip_Bow_信使 武器词缀 击中要害时造成额外暴击伤害，CD为10秒；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_HeavyCritical",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Bow_HeavyCritical_Gazer",
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_HeavyCritical",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onRemoved":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_HeavyCritical",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+					"doOffStage" : true,
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Bow_HeavyCritical_Gazer" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey" : "_ABILITY_Weapon_Bow_HeavyCritical",
+							"valueSteps" : [-0.5, 0.5, 1.5],
+							"removeAppliedModifier" : true,
+							"modifierNameSteps" : ["UNIQUE_Bow_HeavyCritical_Handler" , "UNIQUE_Bow_HeavyCritical_CD",],
+						},
+					],
+				},
+				"UNIQUE_Bow_HeavyCritical_CD" :
+				{
+					"duration" : 10.0,
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAdded" :
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10101,
+							"cdRatio" : 1,
+						},
+					],
+					"onRemoved" :
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weapon_Bow_HeavyCritical",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage" : true,
+						},
+					],
+				},
+				"UNIQUE_Bow_HeavyCritical_Handler" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"modifierMixins" :
+					[
+						{
+							"$type" : "DoActionByCreateGadgetMixin",
+							"actionQueue" :
+							[
+								{
+									"$type" : "ApplyModifier",
+									"modifierName" : "Weapon_Bow_HeavyCritical_Buff",
+									"target" : "Target",
+									"predicates":
+									[
+										{
+											"$type" : "BySkillReady",	//分裂箭其中一支击中不会试其他支失效
+											"skillID" : 10101,
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"Weapon_Bow_HeavyCritical_Buff" :
+				{
+					"stacking" : "Unique",
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Other",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ExtraAttack",],
+								},
+								{
+									"$type": "ByHitBoxName",
+									"hitBoxNames": ["HeadBox"],
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								// {
+								// 	"$type" : "BySkillReady",	//无法避免分裂箭贴脸一帧同时击中时来不及进CD全触发效果的情况
+								// 	"skillID" : 10101,
+								// 	"target": "Caster",
+								// },
+							],
+							"successActions":
+							[
+								{
+									"$type": "ApplyModifier",
+									"target": "Other",
+									"modifierName": "Bow_HeavyCritical_Mark",
+								},
+								{
+									"$type":"FireEffect",
+									"effectPattern":"Eff_Weapon_Blast_Small",
+									"born":
+									{
+										"$type": "ConfigBornByCollisionPoint",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+									},
+								},
+								{
+									"$type" : "DamageByAttackValue",
+									"otherTargets":
+									{
+										"$type": "SelectTargetsByShape",
+										"shapeName": "CircleR5",
+										"centerBasedOn": "Target",
+										"campTargetType": "Enemy",
+										"campBasedOn": "Self",
+									},
+									"attackInfo":
+									{
+										"attackProperty":
+										{
+											"damagePercentage": "%bonusCriticalDamage",
+											"strikeType": "Pierce",
+							 				"attackType": "Range",
+							 				"bonusCritical": 1,
+							 				"bonusCriticalHurt": 0,
+							 				"enBreak" : 20,
+										},
+										"hitPattern":
+										{
+							          		"onHitEffectName": "default",
+							          		"hitLevel": "Mute",	//hitlevel = 1
+							          		"hitImpulseX": 0,	//hitlevel = 1
+							          		"hitImpulseY": 0,	//hitlevel = 1
+											"retreatType": "ByHitDirection",
+							          		"reboundRatio": 0,
+											"canBeDefenceHalt": true,
+							          		"hitHaltTime": 0.06,
+							          		"hitHaltTimeScale": 0.01,
+							          		"muteHitText": false
+							        	},
+							        	"forceCameraShake": false,
+							        	"cameraShake":
+							        	{
+							        		"shakeType": "CustomVector",
+											"shakeRange": 0.12,
+											"shakeTime": 0.12,
+											"shakeDistance": 30,
+											"shakeDir":
+											{
+												"x":-1,
+												"y":0,
+												"z":0,
+											},
+							        	},
+									},
+									"predicates" :
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_ABILITY_Bow_HeavyCritical",
+											"value": 1,
+											"compareType": "Equal",
+										},
+										{
+											"$type" : "ByEntityTypes",
+											"entityTypes" : ["Monster"],
+										},
+									],
+								},
+								{
+									"$type" : "AddGlobalValue",
+									"key" : "_ABILITY_Weapon_Bow_HeavyCritical",
+									"value" : 1,
+									"useLimitRange" : true,
+									"maxValue" : 1,
+									"minValue" : 0,
+									"target" : "OriginOwner",
+								},
+							],
+						},
+					],
+				},
+				"Bow_HeavyCritical_Mark":
+				{
+					"duration": 0.3,
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Bow_HeavyCritical",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Bow_HeavyCritical",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"bonusCriticalDamage" : 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15306 对遗迹类怪物增伤26%~40%
+//  Equip_Bow_黑檀 武器词缀 对遗迹装置类敌人造成的伤害增加；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_MachineKiller",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_MachineKiller_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_MachineKiller_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ModifyDamageMixin",
+							"ignoreEventInfo":true,
+							"damagePercentageRatio":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									// "target":"Target",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"ByHasFeatureTag",
+									"featureTagIDs":[4005],
+								},
+								/*{
+									"$type":"BySkillReady",
+									"target":"Applier",//emmm,这个要是进入cd实在有些不人性化。
+									"skillID":10101
+								},*/
+							],
+						},
+					],
+					"isUnique":true,
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//  15401
+//
+//  西风弓：造成的伤害暴击时，有【X%】的概率制造一个通用原子能量球。 需内置cd。 ok
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_GenerateBallWhenCritic",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_GenerateBallWhenCritic_Handler"
+				}
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_GenerateBallWhenCritic_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type":"Randomed",
+							"target":"Target",
+							"chance":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByHitCritical",
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Bow_GenerateBallWhenCritic",
+									"target":"Self",
+								}
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_GenerateBallWhenCritic" :
+				{
+					"duration": "%CDTime",
+					"isUnique":true,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2008,
+							"baseEnergy": 6,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom" :
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange":1,
+									"maxRandomRange":3,
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate" : 0,
+        		"CDTime" : 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15402
+//  Equip_Bow_无弦 武器词缀 元素战技和元素爆发伤害提升；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseElementalSkillDMG",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "UNIQUE_Bow_RiseElementalSkillDMG_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_RiseElementalSkillDMG_Handler":
+				{
+					"isUnique": true,
+					"modifierMixins" :
+					[
+						{
+							"$type": "ModifyDamageMixin",
+							"attackTags": ["Elemental_Burst","Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra"],
+							"damagePercentageRatio": "%RiseElementalSkill",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"RiseElementalSkill": 0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15403
+//  祭礼弓：小技能造成伤害时，有【X%】的概率重置该技能的CD；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_ResetCDWhenSkillHit",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Weapon_Bow_ResetCDWhenSkillHit",
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_Bow_ResetCDWhenSkillHit_CD","UNIQUE_Bow_ResetCDWhenSkillHit_Handler",],
+				},
+			],
+			// "onAdded":
+			// [
+			// 	{
+			// 		"$type":"AttachModifier",
+			// 		"modifierName":"UNIQUE_Bow_ResetCDWhenSkillHit_Handler"
+			// 	}
+			// ],
+			"modifiers":
+			{
+				"UNIQUE_Bow_ResetCDWhenSkillHit_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type":"Predicated",
+							"target":"Target",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes":["Monster",],
+								},
+								{
+									"$type":"ByHitDamage",
+									"damage":0,
+									"logic":"Greater"
+								},
+								{
+									"$type":"ByAttackTags",
+									"attackTags":["Elemental_Art","Elemental_Art_Hold","Elemental_Art_Extra",],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",
+									"skillID":10101,
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"AttachModifier",
+									"target":"Self",
+									"modifierName":"UNIQUE_Bow_ResetCDWhenSkillHit_SanCheck",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_ResetCDWhenSkillHit_SanCheck":
+				{
+					"duration":1.9,
+					"stacking":"Multiple",
+					"stackingOption":
+					{
+						"maxModifierNumForMultipleType": 3,//2秒里只允许3次判断。
+					},
+					"isUnique":true,
+					"onAdded":
+					[
+						{
+							"$type":"Randomed",
+							"chance":"%Rate",
+							"successActions":
+							[
+								{
+									"$type":"AddGlobalValue",
+									"target":"Self",
+									"key":"_ABILITY_Weapon_Bow_ResetCDWhenSkillHit",
+									"value":-1,
+									"useLimitRange":true,
+									"maxValue":-1,
+									"minValue":-1,
+									// "doOffStage":true, //这个可选，后台的话触不触发都可接受。
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_ResetCDWhenSkillHit_CD" :
+				{
+					"duration":"%CDTime",
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAdded":
+					[
+						{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":"%CDTime*0.1",
+						},
+						{
+							"$type":"ModifyAvatarSkillCD",//改成resetCD相关内容。
+							"skillSlot":[2],
+							// "skillID":10061,
+							"cdRatio":-1,
+							// "cdDelta":-2,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_Bow_ResetCDWhenSkillHit",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+					"Rate" : 0, //概率太低先加高吧。
+        "CDTime":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15404
+//  Equip_Bow_Theocrat   宗室长弓 武器词缀_提升下一次分支攻击伤害，每15秒触发一次；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseDMGonBranchAttack",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Bow_RiseDMGonBranchAttack_Gazer",
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onRemoved" :
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Bow_RiseDMGonBranchAttack_Gazer" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey" : "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+							"valueSteps" : [-0.5, 0.5, 1.5],
+							"removeAppliedModifier" : true,
+							"modifierNameSteps" : ["UNIQUE_Bow_RiseDMGonBranchAttack_Handler" , "UNIQUE_Bow_RiseDMGonBranchAttack_CD",],
+						},
+					],
+				},
+				"UNIQUE_Bow_RiseDMGonBranchAttack_CD" :
+				{
+					"duration" : "%CDTime",
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAdded" :
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10101,
+							"cdRatio" : "%CDTime*0.1",
+						},
+					],
+					"onRemoved" :
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage" : true,
+						},
+					],
+				},
+				"UNIQUE_Bow_RiseDMGonBranchAttack_Handler" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"modifierMixins" :
+					[
+						{
+							"$type" : "DoActionByCreateGadgetMixin",
+							"actionQueue" :
+							[
+								{
+									"$type" : "ApplyModifier",
+									"modifierName" : "Weapon_Bow_RiseDMGonBranchAttack_Buff",
+									"target" : "Target",
+									"predicates":
+									[
+										{
+											"$type" : "BySkillReady",
+											"skillID" : 10101,
+											"target": "Caster",
+										},
+									],
+								},
+							],
+						},
+					],
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ExtraAttack",],
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								// {
+								// 	"$type" : "BySkillReady",
+								// 	"skillID" : 10101,
+								// 	"target": "Caster",
+								// },
+							],
+							"successActions":
+							[
+								{
+									"$type" : "AddGlobalValue",
+									"key" : "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+									"value" : 1,
+									"useLimitRange" : true,
+									"maxValue" : 1,
+									"minValue" : 0,
+									"target" : "Self",
+								},
+							],
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff" :
+				{
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["ExtraAttack"],
+							"damagePercentageRatio" : "%UpDmgRate",
+							"predicates" :
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ABILITY_Weapon_Bow_RiseDMGonBranchAttack",
+									"value": 0,
+									"compareType": "Equal",
+									"target" : "OriginOwner",
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"UpDmgRate" : 0,
+				"CDTime":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15405
+//  Equip_Bow_弓藏 武器词缀 普通攻击伤害提升，蓄力攻击伤害下降；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseNormalFallExtra",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "UNIQUE_Bow_RiseNormalFallExtra_Handler",
+				},
+			],
+      "modifiers": {
+        "UNIQUE_Bow_RiseNormalFallExtra_Handler": {
+          "isUnique": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [ "NormalAttack_01", "NormalAttack_02", "NormalAttack_03", "NormalAttack_04", "NormalAttack_05", "NormalAttack_06" ],
+              "damagePercentageRatio": "%RiseNormalAttack",
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [ "ExtraAttack" ],
+              "damagePercentageRatio": "%FallExtraAttack*%Minus",
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "RiseNormalAttack": 0,
+        "FallExtraAttack": 0,
+        "Minus": -1,
+      },
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15406
+//  Equip_Bow_试作离簇 武器词缀 命中敌人要害时自身提升移动速度和基础攻击力；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_AttackGainSPDAKTBuff",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_AttackGainSPDAKTBuff_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_AttackGainSPDAKTBuff_Handler":
+				{
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type":"Predicated",
+							"target":"Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ExtraAttack",],
+								},
+								{
+									"$type": "ByHitBoxName",
+									"hitBoxNames": ["HeadBox"],
+								},
+								{
+									"$type":"BySkillReady",
+									"target":"Self",
+									"skillID":10101,
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"ApplyModifier",
+									"target":"Self",
+									"modifierName":"UNIQUE_Bow_AttackGainSPDAKTBuff",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_AttackGainSPDAKTBuff":
+				{
+					"isUnique":true,
+					"duration": "%Time",
+					"stacking":"Refresh",
+					"state":"AttackUp",
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AttackRatio" : "%AttackRatio",
+						"Animator_MoveSpeedRatio": "%MoveSpeedRatio",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"MoveSpeedRatio":0,
+				"AttackRatio":0,
+				"Time":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15407
+//  Equip_Bow_钢轮 武器词缀 普通攻击和重攻击命中时提升自身基础攻击和攻击力；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_AttackGainAKTSPDBuff",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_AttackGainAKTSPDBuff_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_AttackGainAKTSPDBuff_Handler":
+				{
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type": "Predicated",
+							"target": "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+								{
+									"$type":"ByAttackTags",
+									"attackTags":["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+								},
+								{
+									"$type": "BySkillReady",
+									"target": "Self",
+									"skillID": 10101,
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"ApplyModifier",
+									"target":"Self",
+									"modifierName":"UNIQUE_Bow_AttackGainAKTSPDBuff_CD",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_AttackGainAKTSPDBuff_CD":
+				{
+					"isUnique":true,
+					"stacking": "Unique",
+					"duration": "%CDTime",
+					"onAdded":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"UNIQUE_Bow_AttackGainAKTSPDBuff",
+						},
+					],
+				},
+				"UNIQUE_Bow_AttackGainAKTSPDBuff":
+				{
+					"isUnique":true,
+					"duration": 6,
+					"stacking":"MultipleAllRefresh",
+					"state":"AttackUp",
+					"stackingOption":
+					{
+						"maxModifierNumForMultipleType":4,
+					},
+					"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AttackRatio" : "%AttackRatio",
+						"Animator_OverallSpeedRatio": "%OverallSpeedRatio",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"AttackRatio":0,
+				"OverallSpeedRatio":0,
+				"CDTime":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15408
+//  Equip_Bow_BlackRock 黑岩 武器词缀 普通攻击伤害下降，蓄力攻击伤害提升；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_FallNormalRiseExtra",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "UNIQUE_Bow_FallNormalRiseExtra_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_FallNormalRiseExtra_Handler":
+				{
+					"isUnique": true,
+					"modifierMixins" :
+					[
+						{
+							"$type": "ModifyDamageMixin",
+							"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"],
+							"damagePercentageRatio": "%FallNormalAttack*%Minus",
+						},
+						{
+							"$type": "ModifyDamageMixin",
+							"attackTags": ["ExtraAttack"],
+							"damagePercentageRatio": "%RiseExtraAttack",
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"FallNormalAttack": 0,
+				"RiseExtraAttack": 0,
+        		"Minus": -1,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15501
+//  Equip_Bow_Dvalin天空之翼 武器词缀 命中时有概率造成范围伤害,CD为5秒；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RangeAttackOnAttackLanded",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Bow_RangeAttackOnAttackLanded_Gazer",
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_RangeAttackOnAttackLanded",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onRemoved":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_RangeAttackOnAttackLanded",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Bow_RangeAttackOnAttackLanded_Gazer" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey" : "_ABILITY_Weapon_Bow_RangeAttackOnAttackLanded",
+							"valueSteps" : [-0.5, 0.5, 1.5],
+							"removeAppliedModifier" : true,
+							"modifierNameSteps" : ["UNIQUE_Bow_RangeAttackOnAttackLanded_Handler" , "UNIQUE_Bow_RangeAttackOnAttackLanded_CD",],
+						},
+					],
+				},
+				"UNIQUE_Bow_RangeAttackOnAttackLanded_CD" :
+				{
+					"duration" : "%CDTime",
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAdded" :
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10101,
+							"cdRatio" : "%CDTime*0.1",
+						},
+					],
+					"onRemoved" :
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weapon_Bow_RangeAttackOnAttackLanded",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage" : true,
+						},
+					],
+				},
+				"UNIQUE_Bow_RangeAttackOnAttackLanded_Handler" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								{
+									"$type" : "BySkillReady",
+									"skillID" : 10101,
+									"target": "Caster",
+								},
+								{
+									"$type":"ByHitDamage",
+									"damage":0,
+									"logic":"Greater"
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "SetGlobalPos",
+									"target" : "Target",
+									"key": "Bow_RangeAttackOnAttackLanded_Pos",
+									"born":
+									{
+										"$type": "ConfigBornByTarget",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type" : "ConfigDirectionByEntity",
+											"angleOffset" :
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+									},
+									"setTarget": false,
+								},
+								{
+									"$type": "SetGlobalDir",
+									"target" : "Target",
+									"key": "Bow_RangeAttackOnAttackLanded_Dir",
+									"born":
+									{
+										"$type": "ConfigBornByTarget",
+										"offset" :
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type" : "ConfigDirectionByEntity",
+											"angleOffset" :
+											{
+												"x": 0.0,
+												"y": 0.0,
+												"z": 0.0,
+											},
+										},
+									},
+									"setTarget": false,
+								},
+								{
+									"$type" : "Randomed",
+									"chance" : "%RangeAttackChance",
+									"successActions" :
+									[
+										{
+											"$type" : "TriggerAttackEvent",
+											"targetType" : "Enemy",
+											"attackEvent":
+											{
+												"attackPattern":
+												{
+													"$type" : "ConfigAttackSphere",
+													"triggerType" : "TriggerNoRepeat",
+													"radius" : 3.0,
+													"born":
+													{
+														"$type": "ConfigBornByGlobalValue",
+														"positionKey": "Bow_RangeAttackOnAttackLanded_Pos",
+														"directionKey": "Bow_RangeAttackOnAttackLanded_Dir",
+													},
+									        	},
+												"attackInfo":
+												{
+													"attackProperty":
+													{
+														"damagePercentage": 1,
+														"strikeType": "Pierce",
+										 				"attackType": "Range",
+										 				"bonusCritical": 0,
+										 				"bonusCriticalHurt": 0,
+										 				"enBreak" : 20,
+													},
+													"hitPattern":
+													{
+										          		"onHitEffectName": "default",
+										          		"hitLevel": "Light",	//hitlevel = 1
+										          		"hitImpulseX": 200,	//hitlevel = 1
+										          		"hitImpulseY": 0,	//hitlevel = 1
+														"retreatType": "ByHitDirection",
+										          		"reboundRatio": 0,
+														"canBeDefenceHalt": true,
+										          		"hitHaltTime": 0.06,
+										          		"hitHaltTimeScale": 0.01,
+										          		"muteHitText": false
+										        	},
+										        	"forceCameraShake": false,
+										        	"cameraShake":
+										        	{
+										        		"shakeType": "CustomVector",
+														"shakeRange": 0.12,
+														"shakeTime": 0.12,
+														"shakeDistance": 30,
+														"shakeDir":
+														{
+															"x":0,
+															"y":0,
+															"z":-1,
+														},
+										        	},
+												},
+											},
+										},
+										{
+											"$type": "FireEffect",
+											"effectPattern": "Eff_Weapon_Blast_R30",
+											"born":
+											{
+												"$type": "ConfigBornByGlobalValue",
+												"positionKey": "Bow_RangeAttackOnAttackLanded_Pos",
+												"directionKey": "Bow_RangeAttackOnAttackLanded_Dir",
+											},
+										},
+										{
+											"$type" : "AddGlobalValue",
+											"key" : "_ABILITY_Weapon_Bow_RangeAttackOnAttackLanded",
+											"value" : 1,
+											"useLimitRange" : true,
+											"maxValue" : 1,
+											"minValue" : 0,
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"RangeAttackChance" : 0,
+        		"CDTime":0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  15502
+//  Equip_Bow_Amos 阿莫斯 武器词缀 距离越远伤害增幅越高；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseDMGWithTime",
+			"onAdded":
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "Weapon_Bow_RiseDMGWithTime_Handler",
+				},
+			],
+			"modifiers" :
+			{
+				"Weapon_Bow_RiseDMGWithTime_Handler":
+				{
+					"modifierMixins" :
+					[
+						{
+							"$type" : "DoActionByCreateGadgetMixin",
+							"actionQueue" :
+							[
+								{
+									"$type" : "ApplyModifier",
+									"modifierName" : "Weapon_Bow_RiseDMGWithTime_Buff_Handler",
+									"target" : "Target",
+								},
+							],
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGWithTime_Buff_Handler" :
+				{
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey" : "_ABILITY_Weaoin_Bow_RiseDMGWithTime",
+							"valueSteps" : [-0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
+							"removeAppliedModifier" : true,
+							"modifierNameSteps" : ["Weapon_Bow_RiseDMGonBranchAttack_Buff1", "Weapon_Bow_RiseDMGonBranchAttack_Buff2", "Weapon_Bow_RiseDMGonBranchAttack_Buff3", "Weapon_Bow_RiseDMGonBranchAttack_Buff4", "Weapon_Bow_RiseDMGonBranchAttack_Buff5", "Weapon_Bow_RiseDMGonBranchAttack_Buff6"],
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weaoin_Bow_RiseDMGWithTime",
+							"value" : -5,
+							"useLimitRange" : true,
+							"maxValue" : 5,
+							"minValue" : 0,
+						},
+					],
+					"thinkInterval": "%RiseAttackPhaseInterval",
+					"onThinkInterval":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weaoin_Bow_RiseDMGWithTime",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 5,
+							"minValue" : 0,
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff1":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" : "%RiseAttackBase",
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff2":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" :  "%RiseAttackPerStage+%RiseAttackBase",
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff3":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" :  "%RiseAttackPerStage*2+%RiseAttackBase",
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff4":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" : "%RiseAttackPerStage*3+%RiseAttackBase",
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff5":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" : "%RiseAttackPerStage*4+%RiseAttackBase",
+						},
+					],
+				},
+				"Weapon_Bow_RiseDMGonBranchAttack_Buff6":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type" : "ModifyDamageMixin",
+							"attackTags" : ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"],
+							"damagePercentageRatio" : "%RiseAttackPerStage*5+%RiseAttackBase",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"RiseAttackBase": 0,
+				"RiseAttackPerStage":0,
+				"RiseAttackPhaseInterval": 0.1,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  （备用）
+//  Equip_Bow_Zephyrus武器词缀_元素能量充满时，百分比提升自身造成的元素伤害，持续12秒；每45秒触发一次；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseElementDMGWhenEnergyMax",
+			"abilityMixins" :
+			[
+				{
+					"$type" : "DoActionByEnergyChangeMixin",
+					"elementTypes" : [ "Fire" , "Water" , "Grass" , "Electric" , "Ice" , "Rock" , "Wind"],
+					"doWhenEnergyMax" : true,
+					"onGainEnergyMax" :
+					[
+						{
+							"$type" : "AttachModifier",
+							"modifierName" : "UNIQUE_Bow_RiseElementDMGWhenEnergyMax_RiseDMG",
+							"target" : "Self",
+							"predicates" :
+							[
+								{
+									"$type" : "BySkillReady",
+									"skillID" : 10101,
+									"target": "Caster",
+								},
+							],
+						},
+					],
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Bow_RiseElementDMGWhenEnergyMax_RiseDMG" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"duration" : 12.0,
+					"state" : "AttackUp",
+					"isLimitedProperties": true,
+					"properties" :
+					{
+						"Actor_FireAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_ElecAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_WaterAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_GrassAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_WindAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_IceAddHurtDelta" : "%EleDmgUpRate",
+						"Actor_RockAddHurtDelta" : "%EleDmgUpRate",
+					},
+					"onAdded" :
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10101,
+							"cdRatio" : 4.5,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"EleDmgUpRate" : 0.4,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  （备用）
+//  Equip_Bow_Troupe武器词缀_角色入场并释放充能技时，百分比提升角色接下来5秒内的伤害；每30秒触发一次；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+			// "onAdded" :
+			// [
+			// 	{
+			// 		"$type" : "AttachModifier",
+			// 		"modifierName" : "UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Gazer",
+			// 	},
+			// 	{
+			// 		"$type" : "AddGlobalValue",
+			// 		"key" : "_ABILITY_Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+			// 		"value" : 0,
+			// 		"useLimitRange" : true,
+			// 		"maxValue" : 0,
+			// 		"minValue" : 0,
+			// 	},
+			// ],
+			// "modifiers" :
+			// {
+			// 	"UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Gazer" :
+			// 	{
+			// 		"stacking" : "Unique",
+			// 		"isUnique" : true,
+			// 		"modifierMixins" :
+			// 		[
+			// 			{
+			// 				"$type" : "AttachModifierToSelfGlobalValueMixin",
+			// 				"globalValueKey" : "_ABILITY_Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+			// 				"valueSteps" : [-0.5, 0.5, 1.5],
+			// 				"removeAppliedModifier" : true,
+			// 				"modifierNameSteps" : ["UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Handler" , "UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_CD",],
+			// 			},
+			// 		],
+			// 	},
+			// 	"UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Handler" :
+			// 	{
+			// 		"stacking" : "Unique",
+			// 		"isUnique" : true,
+			// 		"onAvatarIn" :
+			// 		[
+			// 			{
+			// 				"$type" : "ApplyModifier",
+			// 				"modifierName" : "UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Handler2",
+			// 				"target" : "Self",
+			// 				"predicates" :
+			// 				[
+			// 					{
+			// 						"$type" : "BySkillReady",
+			// 						"skillID" : 10101,
+			// 						"target": "Caster",
+			// 					},
+			// 				],
+			// 			},
+			// 		],
+			// 	},
+			// 	"UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Handler2" :
+			// 	{
+			// 		"duration" : 5.0,
+			// 		"stacking" : "Unique",
+			// 		"isUnique" : true,
+			// 		"modifierMixins" :
+			// 		[
+			// 			{
+			// 				"$type" : "AttachToAnimatorStateIDMixin",
+			// 				"stateIDs" : ["ArrowRain" , "Hurricane_BS" , "Hurricane"], //每增加一个角色就需要添加一个stateID，维护成本太高，感觉不是较好的做法-----陈宏达
+			// 				"modifierName" : "UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Buff",
+			// 			},
+			// 		],
+			// 	},
+			// 	"UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_Buff" :
+			// 	{
+			// 		"stacking" : "Unique",
+			// 		"isUnique" : true,
+			// 		"state" : "AttackUp",
+			// 		"onRemoved" :
+			// 		[
+			// 			{
+			// 				"$type" : "AvatarSkillStart",
+			// 				"skillID" : 10101,
+			// 				"cdRatio" : 3.0,
+			// 			},
+			// 			{
+			// 				"$type" : "AddGlobalValue",
+			// 				"key" : "_ABILITY_Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+			// 				"value" : 1,
+			// 				"useLimitRange" : true,
+			// 				"maxValue" : 1,
+			// 				"minValue" : 0,
+			// 			},
+			// 		],
+			// 		"modifierMixins" :
+			// 		[
+			// 			{
+			// 				"$type" : "DoActionByCreateGadgetMixin",
+			// 				"actionQueue" :
+			// 				[
+			// 					{
+			// 						"$type" : "ApplyModifier",
+			// 						"modifierName" : "Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_Buff2",
+			// 						"target" : "Target",
+			// 					},
+			// 				],
+			// 			},
+			// 		],
+			// 	},
+			// 	"UNIQUE_Bow_RiseUltimateSkillDMGonAvatarIn_CD" :
+			// 	{
+			// 		"duration" : 30.0,
+			// 		"stacking" : "Unique",
+			// 		"isUnique" : true,
+			// 		"onRemoved" :
+			// 		[
+			// 			{
+			// 				"$type" : "AddGlobalValue",
+			// 				"key" : "_ABILITY_Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
+			// 				"value" : -1,
+			// 				"useLimitRange" : true,
+			// 				"maxValue" : 1,
+			// 				"minValue" : 0,
+			// 				"doOffStage" : true,
+			// 			},
+			// 		],
+			// 	},
+			// 	"Weapon_Bow_RiseUltimateSkillDMGonAvatarIn_Buff2" :
+			// 	{
+			// 		"stacking" : "Unique",
+			// 		"modifierMixins" :
+			// 		[
+			// 			{
+			// 				"$type" : "ModifyDamageMixin",
+			// 				"attackTags" : ["Elemental_Burst","Hurricane_WindZone","Hurricane_Mix_Detect"],
+			// 				"damagePercentageRatio" : "%UpDmgRate",
+			// 			},
+			// 		],
+			// 	},
+			// },
+			"abilitySpecials" :
+			{
+				"UpDmgRate" : 0.4,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  （备用）
+//  Equip_Bow_Fossil武器词缀_分支攻击命中目标时，百分比降低目标的伤害减免，持续10秒；每45秒触发一次；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_Gazer",
+				},
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onRemoved" :
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "_ABILITY_Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+					"value" : -1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_Gazer" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"modifierMixins" :
+					[
+						{
+							"$type" : "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey" : "_ABILITY_Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+							"valueSteps" : [-0.5, 0.5, 1.5],
+							"removeAppliedModifier" : true,
+							"modifierNameSteps" : ["UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_Handler" , "UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_ReduceSubHurt_CD",],
+						},
+					],
+				},
+				"UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_Handler" :
+				{
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "BySkillReady",
+									"target" : "Self",
+									"skillID" : 10101,
+								},
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ExtraAttack",],
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type" : "AddGlobalValue",
+									"key" : "_ABILITY_Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+									"value" : 1,
+									"useLimitRange" : true,
+									"maxValue" : 1,
+									"minValue" : 0,
+									"target" : "Self",
+								},
+								{
+									"$type" : "ApplyModifier",
+									"modifierName" : "Weapon_Bow_ReduceEnemySubHurtonBranchAttack_ReduceSubHurt",
+									"target" : "Target",
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Bow_ReduceEnemySubHurtonBranchAttack_ReduceSubHurt_CD" :
+				{
+					"duration" : 45.0,
+					"isUnique" : true,
+					"stacking" : "Unique",
+					"onAdded" :
+					[
+						{
+							"$type" : "AvatarSkillStart",
+							"skillID" : 10101,
+							"cdRatio" : 4.5,
+						},
+					],
+					"onRemoved" :
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "_ABILITY_Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+							"doOffStage" : true,
+						},
+					],
+				},
+				"Weapon_Bow_ReduceEnemySubHurtonBranchAttack_ReduceSubHurt" :
+				{
+					"duration" : 15.0,
+					"stacking" : "Unique",
+					"state" : "DefenseDown",
+					"properties" :
+					{
+						"Actor_SubHurtDelta" : "%SubHurtDownRate",
+					},
+				},
+			},
+			"abilitySpecials" :
+			{
+				"SubHurtDownRate" : -0.3,
+			},
+		},
+	},
+
+////////////////////////////////////////////////////////////////
+//
+//
+// 15601 未使用
+// 下面是即将换上来的武器技能，主要是元素附着和元素反应。,触发后增加“攻击”即可
+// 触发冰系相关反应，提升攻击20%~40%，持续12秒。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Bow_AttacktUpAfterReaction",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Bow_AttacktUpAfterReaction_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Bow_AttacktUpAfterReaction_Handler":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByElementReactionMixin",
+							"range":20,//这个就是默认值
+							"entityTypes":["Monster",],
+							"reactionTypes":["Melt","Freeze","Superconductor","SwirlIce"],//冰相关
+							"actions":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Bow_AttacktUpAfterReaction",
+								}
+							],
+						},	//一个检测发生了元素反应的mixin
+					],
+					"isUnique":true,
+				},
+				"UNIQUE_Bow_AttacktUpAfterReaction":
+				{
+					"duration":20,
+					"state":"AttackUp",
+					"isUnique":true,
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_AttackRatio":"%Rate",					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0.2,
+			},
+		},
+			//这个列表是所有元素反应["Explode","Stream","Burning","Melt","Freeze","Shock","Superconductor","SwirlFire","SwirlWater","SwirlElectric","SwirlIce",],
+	},
+
+
+
+]

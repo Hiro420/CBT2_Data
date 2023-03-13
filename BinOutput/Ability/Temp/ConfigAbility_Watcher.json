@@ -1,0 +1,911 @@
+[
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "LevelAbility_Combat_Watcher",
+			"modifiers":
+			{
+				"watcher_test_modifier":
+				{
+					"modifierMixins":
+					[
+						// {
+						// 	"$type":"WatcherSystemMixin",
+						// 	"mixinType":"ElementReaction",
+						// 	"watcherId":1001,
+						// 	"predicates":
+						// 	[
+						// 		{
+						// 			"$type":"ByHasAbilityState",
+						// 			"abilityState":"ElementFire",
+						// 			"target":"Target",
+						// 		},
+						// 		{
+						// 			"$type":"ByElementTriggerEntityType",
+						// 			"forcebyOriginOwner":true,
+      //             					"entityTypes": [ "Avatar" ],
+						// 		},
+						// 	],
+						// },
+					],
+				},
+				//角色自身 或 目标进入潮湿状态
+				"Watcher_EleReaction_Wet":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1002,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementWet",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1002,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementWet",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标进入减速（ice）状态
+				"Watcher_EleReaction_Ice":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1003,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementIce",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1003,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementIce",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身进入火附着状态
+				"Watcher_EleReaction_Fire":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1004,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementFire",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1004,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementFire",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标进入晶化状态
+				"Watcher_EleReaction_StickRock":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1005,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementRock",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1005,
+							"predicates":
+							[
+								{
+									"$type":"ByHasAbilityState",
+									"abilityState":"ElementRock",
+									"target":"Target",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标进入冻结状态
+				"Watcher_EleReaction_Frozen":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1006,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Freeze",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1006,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Freeze",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色冻结冰面
+				"Watcher_EleReaction_FreezeWater":
+				{
+					// "modifierMixins":
+					// [
+					// 	{
+					// 		"$type":"WatcherSystemMixin",
+					// 		"mixinType":"ElementReactionByWater",
+					// 		"watcherId":1007,
+					// 		"predicates":
+					// 		[
+					// 			{
+					// 				"$type":"ByElementTriggerEntityType",
+					// 				"forcebyOriginOwner":true,
+     //              					"entityTypes": [ "Avatar" ],
+					// 			},
+					// 			{
+					// 				"$type":"ByElementReactionType",
+					// 				"reactionType":"Freeze",
+					// 			},
+					// 			{
+					// 				"$type":"ByEntityTypes",
+     //              					"entityTypes": [ "Water" ],
+					// 			},
+					// 		],
+					// 	},
+					// ],
+				},
+				//角色自身蒸发（非攻击）
+				"Watcher_EleReaction_Stream_ByModifierAdd":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1008,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Stream",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"ModifierAdd",
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标被伤害蒸发
+				"Watcher_EleReaction_Stream_ByHit":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1009,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Stream",
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"BeingHit",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1009,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Stream",
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"BeingHit",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标 感电
+				"Watcher_EleReaction_Shock":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1010,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Shock",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1010,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Shock",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色使目标感电并传导
+				"Watcher_EleReaction_ConductShock":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ListenAbilityAction",
+							"watcherId":1011,
+						},
+					],
+				},
+				//角色使水体感电
+				"Watcher_EleReaction_Electrified_Water":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReactionByWater",
+							"watcherId":1012,
+							"predicates":
+							[
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Shock",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Water" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标 超载
+				"Watcher_EleReaction_Explode":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1013,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Explode",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1013,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Explode",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标 超导
+				"Watcher_EleReaction_Superconductor":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1014,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Superconductor",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1014,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Superconductor",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//目标 燃烧
+				"Watcher_EleReaction_Burning":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1015,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Burning",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster","MonsterEquip" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//目标 扩散
+				"Watcher_EleReaction_Swirl":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1016,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"SwirlFire",
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1016,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"SwirlWater",
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1016,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"SwirlElectric",
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1016,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"SwirlIce",
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色使用充能技
+				"Watcher_Avatar_Use_ElementalBurst":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"DoSkillSuccElementalBurst",
+							"watcherId":1018,
+						},
+					],
+				},
+				//角色敲矿(白铁矿或水晶矿)
+				"Watcher_Avatar_Hit_Ore":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"AttackLanded",
+							"listenEntityType":"LocalAvatar",
+							"watcherId":1020,
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"target":"Target",
+									"entityTypes":["GatherObject"],
+								},
+								{
+									"$type":"ByTargetConfigID",
+									"target":"Target",
+									"configIdArray":[70520002,70520003],
+								},
+							],
+						},
+					],
+				},
+				//角色获得护盾时的提示
+				"Watcher_Avatar_AddShield":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementShieldAdd",
+							"watcherId":1021,
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"GlobalSubShieldAdd",
+							"watcherId":1021,
+						},
+					],
+				},
+				//角色爆头
+				"Watcher_Avatar_HitHead":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"AttackLanded",
+							"listenEntityType":"LocalAvatar",
+							"watcherId":1022,
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"target":"Target",
+									"entityTypes":["Monster"],
+								},
+								{
+									"$type":"ByHitBoxName",
+									"hitBoxNames":["HeadBox"],
+								},
+								{
+									"$type":"ByAttackTags",
+									"attackTags":["ExtraAttack"],
+								},
+							],
+						},
+					],
+				},
+				//弱点击破（遗迹守卫或遗迹猎者）
+				"Watcher_Avatar_Weakness":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"AttackLanded",
+							"listenEntityType":"LocalAvatar",
+							"watcherId":1023,
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"target":"Target",
+									"entityTypes":["Monster"],
+								},
+								{
+									"$type":"ByTargetConfigID",
+									"target":"Target",
+									"configIdArray":[24010101,24010201],
+								},
+								{
+									"$type":"ByHitBoxName",
+									"hitBoxNames":["HeadBox","BackBox"],
+								},
+								{
+									"$type":"ByAttackTags",
+									"attackTags":["ExtraAttack"],
+								},
+							],
+						},
+					],
+				},
+				//角色使用小技能
+				"Watcher_Avatar_Use_ElementalArt":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"DoSkillSuccElementalArt",
+							"watcherId":1025,
+						},
+					],
+				},
+				//当前角色生命值低于30%
+				"Watcher_Avatar_HP_Change":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"LocalAvatarHPChange",
+							"watcherId":1027,
+							"predicates":
+							[
+								{
+									"$type": "ByTargetHPRatio",
+									"HPRatio": 0.3,
+									"logic": "Lesser"
+								},
+							],
+						},
+					],
+				},
+				//角色自身融化（非攻击）
+				"Watcher_EleReaction_Melt_ByModifierAdd":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1028,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Melt",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"ModifierAdd",
+								},
+							],
+						},
+					],
+				},
+				//角色自身 或 目标被伤害融化
+				"Watcher_EleReaction_Melt_ByHit":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1029,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Melt",
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"BeingHit",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"ElementReaction",
+							"watcherId":1029,
+							"predicates":
+							[
+								{
+									"$type":"ByElementReactionType",
+									"reactionType":"Melt",
+								},
+								{
+									"$type":"ByElementReactionSourceType",
+									"sourceType":"BeingHit",
+								},
+								{
+									"$type":"ByEntityTypes",
+                  					"entityTypes": [ "Monster" ],
+								},
+								{
+									"$type":"ByElementTriggerEntityType",
+									"forcebyOriginOwner":true,
+                  					"entityTypes": [ "Avatar" ],
+								},
+							],
+						},
+					],
+				},
+				//角色获得风种子：1
+				"Watcher_GetFirstWindBullet":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"GetFirstWindBullet",
+							"watcherId":1030,
+						},
+					],
+				},
+				//角色获得风种子：2
+				"Watcher_GetSecondWindBullet":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"SpawnWindFieldByWindBullet",
+							"watcherId":1031,
+						},
+					],
+				},
+				//角色获得风种子：2
+				"Watcher_SpawnWindFieldByWindBullet":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"WatcherSystemMixin",
+							"mixinType":"SpawnWindFieldByWindBullet",
+							"watcherId":1032,
+						},
+					],
+				},
+			},
+		},
+	},
+]

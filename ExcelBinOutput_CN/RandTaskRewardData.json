@@ -1,0 +1,62 @@
+[
+    {
+        "ID": 1,
+        "[EnvZone等级奖励]1DropID": 204000000,
+        "[EnvZone等级奖励]2DropID": 204000200,
+        "[EnvZone等级奖励]3DropID": 204000400,
+        "[EnvZone等级奖励]4DropID": 204000600,
+        "[EnvZone等级奖励]5DropID": 204000800,
+        "[EnvZone等级奖励]6DropID": 204000900,
+        "[EnvZone等级奖励]7DropID": 204001000,
+        "[EnvZone等级奖励]8DropID": 204001100,
+        "[EnvZone等级奖励]9DropID": 204001200,
+        "[EnvZone等级奖励]10DropID": 204001300,
+        "[EnvZone等级奖励]11DropID": 204001400,
+        "[EnvZone等级奖励]12DropID": 204001500
+    },
+    {
+        "ID": 2,
+        "[EnvZone等级奖励]1DropID": 204000000,
+        "[EnvZone等级奖励]2DropID": 204000200,
+        "[EnvZone等级奖励]3DropID": 204000400,
+        "[EnvZone等级奖励]4DropID": 204000600,
+        "[EnvZone等级奖励]5DropID": 204000800,
+        "[EnvZone等级奖励]6DropID": 204000900,
+        "[EnvZone等级奖励]7DropID": 204001000,
+        "[EnvZone等级奖励]8DropID": 204001100,
+        "[EnvZone等级奖励]9DropID": 204001200,
+        "[EnvZone等级奖励]10DropID": 204001300,
+        "[EnvZone等级奖励]11DropID": 204001400,
+        "[EnvZone等级奖励]12DropID": 204001500
+    },
+    {
+        "ID": 3,
+        "[EnvZone等级奖励]1DropID": 204000000,
+        "[EnvZone等级奖励]2DropID": 204000200,
+        "[EnvZone等级奖励]3DropID": 204000400,
+        "[EnvZone等级奖励]4DropID": 204000600,
+        "[EnvZone等级奖励]5DropID": 204000800,
+        "[EnvZone等级奖励]6DropID": 204000900,
+        "[EnvZone等级奖励]7DropID": 204001000,
+        "[EnvZone等级奖励]8DropID": 204001100,
+        "[EnvZone等级奖励]9DropID": 204001200,
+        "[EnvZone等级奖励]10DropID": 204001300,
+        "[EnvZone等级奖励]11DropID": 204001400,
+        "[EnvZone等级奖励]12DropID": 204001500
+    },
+    {
+        "ID": 1000,
+        "[EnvZone等级奖励]1DropID": 204000000,
+        "[EnvZone等级奖励]2DropID": 204000200,
+        "[EnvZone等级奖励]3DropID": 204000400,
+        "[EnvZone等级奖励]4DropID": 204000600,
+        "[EnvZone等级奖励]5DropID": 204000800,
+        "[EnvZone等级奖励]6DropID": 204000900,
+        "[EnvZone等级奖励]7DropID": 204001000,
+        "[EnvZone等级奖励]8DropID": 204001100,
+        "[EnvZone等级奖励]9DropID": 204001200,
+        "[EnvZone等级奖励]10DropID": 204001300,
+        "[EnvZone等级奖励]11DropID": 204001400,
+        "[EnvZone等级奖励]12DropID": 204001500
+    }
+]

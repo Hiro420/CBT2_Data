@@ -1,0 +1,287 @@
+[
+/////////////////////////////////////////////////////////
+//
+//	黄金琥珀
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Amber_GoldenAmber",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "GoldenAmber",
+				},
+			],
+			"modifiers":
+			{
+				"GoldenAmber": 
+				{
+					"elementType": "Rock",
+					"elementDurability": 50,
+					"modifierMixins":
+					[
+						{
+							"$type": "ShieldBarMixin",
+						},
+					],
+					"onRemoved":
+					[	
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Object_Amber_Destory",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+//	岩琥珀
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Amber_RockAmberBroken",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Broken",
+				},
+			],
+			"modifiers":
+			{
+				"RockAmberBuff":
+				{
+					"duration": 60,
+					"elementType": "Rock",
+					"elementDurability": 10,
+					"properties":
+					{
+						"Entity_WeightRatio":2,
+					},
+				},
+				"Broken":
+				{	
+					"onBeingHit":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Broken",
+							"predicates":
+							[
+								{
+									"$type": "ByHitDamage",
+									"damage": 1,
+								},
+							],	
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "RockAmberBuff",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Amber_Rock_Hit",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y" : 0.3,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//水琥珀
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Amber_WaterAmberBroken",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Broken",
+				},
+			],
+			"modifiers":
+			{
+				"Broken":
+				{	
+					"onBeingHit":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Broken",
+							"predicates":
+							[
+								{
+									"$type": "ByHitDamage",
+									"damage": 1,
+								},
+							],	
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70270002,
+							"campID": 1001,
+							"campTargetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Amber_Water_Hit",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y" : 0.3,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+//风琥珀
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Amber_WindAmberBroken",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Broken",
+				},
+			],
+			"modifiers":
+			{
+				"Broken":
+				{	
+					"onBeingHit":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Broken",
+							"predicates":
+							[
+								{
+									"$type": "ByHitDamage",
+									"damage": 1,
+								},
+							],	
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70270003,
+							"campID": 1001,
+							"campTargetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Amber_Wind_Hit",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y" : 0.3,
+									"z" : 0.0,
+								},
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+]

@@ -1,0 +1,569 @@
+{
+  ///使用方法注释：
+  ///		1、调整能力
+  ///		{
+  ///			"$type" : "ModifyAbility",
+  ///			"abilityName" : "Avatar_Qin_Captain",
+  ///			"paramSpecial" : "CriticalHurt_Up",      需要修改的参数名字，只能填1个。所以多个的话需要多个ModifierAbiltiy
+  ///			"paramDelta" : 0.01,                     加上指定数值
+  ///			"paramRatio" : 0,                        提升指定比例
+  ///		}
+  ///		ConfigAbilityCommon.cs中有AbilityProperty，可以调整角色全局的攻击，攻速，攻击，血量，防御，抵抗等等。
+  ///		2、添加能力
+  ///		{
+  ///			"$type" : "AddAbility",
+  ///			"abilityName": "Avatar_Qin_Captain", 仅有一个参数，abiltiyName
+  ///		}
+  ///		3、替换攻击
+  ///		{
+  ///			"$type": "ReplaceEventPatternMixin",
+  ///  		"oldPatterns": ["Monster_Slime_Fire_02_NormalAttack"],
+  ///			"newPatterns": ["Monster_Slime_Fire_02_NormalAttack_Fire"],  如果需要替换攻击盒，可以用ModifyDamageMixin改变盒子伤害。
+  ///		}
+  ///		4、解锁参数
+  ///		{
+  ///			"$type" : "UnlockTalentParam",
+  ///			"abilityName" : "Avatar_Qin_IceShield_ImpactTriggerBack_L",
+  ///			"talentParam" : "Qin_TriggerBack",
+  ///		}
+  ///		需要配套功能： 即需要unlock这个predicates才能走过去。
+  ///			"predicates" :
+  ///				[
+  ///					{
+  ///						"$type" : "ByUnlockTalentParam",
+  ///						"talentParam" : "Keaya_TriggerBack",
+  ///					},
+  ///				],
+  ///
+  ///		5、解锁controller内容
+  ///		{
+  ///			"$type" : "UnlockControllerConditions",
+  ///			"conditionName" : "XXXX",
+  ///		}
+  ///		6、调整技能cd
+  ///		public partial class ModifySkillCD : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float cdDelta; // cdDelta
+  ///		public float cdRatio; // cdRatio
+  ///
+  ///		7、调整技能消耗
+  ///		public partial class ModifySkillCost : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public float costDelta; // costDelta
+  ///		public float costRatio; // costRatio
+  ///
+  ///		8、调整技能充能次数
+  ///			public partial class ModifySkillPoint : ConfigTalentMixin
+  ///	{
+  ///		public uint skillID; // skillID
+  ///		public int pointDelta; // pointDelta
+  ///		9、替换Abiltiy
+  ///		{
+  ///			"UnlockByTalentID":xxx,
+  ///			"$type":"ReplaceAbiltiy",
+  ///			"KeyAbilityName":"xx",
+  ///			"NewAbiltiyName":"xx",
+  ///			"ParamSpecial1":"xx",
+  ///			"ParamMedthod1":"xx",
+  ///		}
+  ///
+  ///		注意！！！！
+  ///
+  ///		需要修改MetaConfig，将对应的talent加入这个表。
+  ///
+  ////////////////////////////////////////////////////////////////
+  //
+  //  北陆剑武器词缀
+  //
+  ////////////////////////////////////////////////////////////////
+  "Sword_Norse_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_Norse",
+    },
+  ],
+  "Sword_Norse_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Norse",
+      "paramSpecial": "HealHP",
+      "paramDelta": 100,
+      "paramRatio": 0,
+    }
+  ],
+  "Sword_Norse_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Norse",
+      "paramSpecial": "HealHP",
+      "paramDelta": 100,
+      "paramRatio": 0,
+    }
+  ],
+  "Sword_Norse_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Norse",
+      "paramSpecial": "HealHP",
+      "paramDelta": 100,
+      "paramRatio": 0,
+    }
+  ],
+  "Sword_Norse_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Norse",
+      "paramSpecial": "HealHP",
+      "paramDelta": 100,
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  西风剑武器词缀
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_Zephyrus_0": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_Zephyrus",
+    },
+  ],
+  "Weapon_Sword_Zephyrus_1": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.02,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Sword_Zephyrus_2": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.02,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Sword_Zephyrus_3": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.02,
+      "paramRatio": 0,
+    }
+  ],
+  "Weapon_Sword_Zephyrus_4": [
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Zephyrus",
+      "paramSpecial": "HealHP",
+      "paramDelta": 0.02,
+      "paramRatio": 0,
+    }
+  ],
+
+  //////////////////////////////////////////////////////////////////
+  //  11301
+  //  暴击率提升，表格实现
+
+  //////////////////////////////////////////////////////////////////
+  //
+  //  11301 水、冰附着增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_DamageUpToEnemy": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_DamageUpToEnemy",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_DamageUpToEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11302
+  //  满生命值暴击提升
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_FullHPCriticUp": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_FullHPCriticUp",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_FullHPCriticUp",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //  11303
+  //  获得元素微粒时，恢复生命，在Sword中实现
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_OnGainEnergyHealHP": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_OnGainEnergyHealHP",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_OnGainEnergyHealHP",
+      "paramSpecial": "HealHP",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_OnGainEnergyHealHP",
+      "paramSpecial": "TimeCD",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+
+  ///////////////////////////////////////////////////////////////
+  //
+  //  11304 冰反应增加伤害
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_AttacktUpAfterReaction": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_AttacktUpAfterReaction",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttacktUpAfterReaction",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttacktUpAfterReaction",
+      "paramSpecial": "BuffTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11305
+  //  攻击时10%概率对目标造成额外333%攻击力伤害，冷却时间18秒~10秒。
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_ExtraDamageWhenCDReady": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_ExtraDamageWhenCDReady",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_ExtraDamageWhenCDReady",
+      "paramSpecial": "C_Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_ExtraDamageWhenCDReady",
+      "paramSpecial": "D_Rate",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_ExtraDamageWhenCDReady",
+      "paramSpecial": "TimeCD",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11306
+  //  充能技释放后加速
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_MoveSpeedAfterULT": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_MoveSpeedAfterULT",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_MoveSpeedAfterULT",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_MoveSpeedAfterULT",
+      "paramSpecial": "BuffTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11401
+  //  暴击后制造元素球
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_GenerateBallWhenCritic": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_GenerateBallWhenCritic",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_GenerateBallWhenCritic",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_GenerateBallWhenCritic",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11402
+  //  叠加音乐标记后爆发
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_MusicBlast": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_MusicBlast",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_MusicBlast",
+      "paramSpecial": "Chance",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_MusicBlast",
+      "paramSpecial": "Rate",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11403
+  //  受击获得血量护盾
+  //
+  ////////////////////////////////////////////////////////////////
+
+  "Weapon_Sword_GetShieldBeingHit": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_GetShieldBeingHit",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_GetShieldBeingHit",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_GetShieldBeingHit",
+      "paramSpecial": "BuffTime",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_GetShieldBeingHit",
+      "paramSpecial": "CDTime",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11404 每次攻击暴击增加%Rate，发动暴击后解除。 OK
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_CritUpWhenHitNoCrit": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_CritUpWhenHitNoCrit",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_CritUpWhenHitNoCrit",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11405 对带有火、雷附着的单位暴击率提高30%
+  //
+  ////////////////////////////////////////////////////////////////
+
+  "Weapon_Sword_DamageUpToWindEnemy": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_DamageUpToWindEnemy",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_DamageUpToWindEnemy",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11406 命中提升攻防，叠加4层。
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_AttackGainAKTDEFBuff": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_AttackGainAKTDEFBuff",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttackGainAKTDEFBuff",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11407 元素伤害命中提升全伤，叠加4层。
+  //
+  ////////////////////////////////////////////////////////////////
+
+  "Weapon_Sword_AttackGainFullDamgeUpBuff": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_AttackGainFullDamgeUpBuff",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttackGainFullDamgeUpBuff",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttackGainFullDamgeUpBuff",
+      "paramSpecial": "Inter_CD",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_AttackGainFullDamgeUpBuff",
+      "paramSpecial": "Time",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    }
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11408 普攻和重攻击无视敌人xx%防御力
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_IgnoreDefense": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_IgnoreDefense",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_IgnoreDefense",
+      "paramSpecial": "Rate",
+      "paramDelta": "%1",
+      "paramRatio": 0,
+    }
+  ],
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11501 风鹰剑
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_Legend_Falcon": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_Legend_Falcon",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Legend_Falcon",
+      "paramSpecial": "D_Rate",
+      "paramDelta": "%2",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Legend_Falcon",
+      "paramSpecial": "H_Rate",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+  ],
+  ////////////////////////////////////////////////////////////////
+  //
+  //  11502 天空之剑
+  //
+  ////////////////////////////////////////////////////////////////
+  "Weapon_Sword_Legend_Dvalin": [
+    {
+      "$type": "AddAbility",
+      "abilityName": "Weapon_Sword_Legend_Dvalin",
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Legend_Dvalin",
+      "paramSpecial": "Chance",
+      "paramDelta": "%3",
+      "paramRatio": 0,
+    },
+    {
+      "$type": "ModifyAbility",
+      "abilityName": "Weapon_Sword_Legend_Dvalin",
+      "paramSpecial": "CD_Time",
+      "paramDelta": "%4",
+      "paramRatio": 0,
+    },
+
+  ],
+
+
+}

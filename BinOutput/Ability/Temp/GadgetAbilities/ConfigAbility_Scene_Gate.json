@@ -1,0 +1,108 @@
+[
+	///////////////////////////////////////////////////////////////
+//
+// 神庙
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Gate_Temple01",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Active",
+				},
+			],
+			"modifiers":
+			{
+				"Active":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern" : "Eff_SceneObj_TempleUnlock_01",
+						},
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 203,
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 神庙02 雷纹
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Gate_Temple02_Electric",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Electric",
+				},
+			],
+			"modifiers":
+			{
+
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 神庙02 岩纹
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Gate_Temple02_Rock",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Rock",
+				},
+			],
+			"modifiers":
+			{
+
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 神庙02 风纹
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Gate_Temple02_Wind",
+			"onAdded": 
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Wind",
+				},
+			],
+			"modifiers":
+			{
+
+			},
+		},
+	},
+]

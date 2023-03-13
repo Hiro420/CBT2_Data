@@ -1,0 +1,694 @@
+{
+	"$type" : "ConfigMonster",
+	"common":
+	{
+		"effectAttachShape":
+		{
+			"$type": "ConfigEffectAttachSkinnedMesh",
+			"mesh": "EffectMesh",
+		},
+		"mass" : 30.0,
+		"height": 2.0,
+		"affectedByWorld" : true,
+		"checkInSurface" : true,
+	},
+	"equipController":
+	{
+		"attachPoints":
+		{
+			"fruit01" : "fruit01",
+			"fruit02" : "fruit02",
+			"fruit03" : "fruit03",
+		},
+		"sheathPoint" : "",
+	},
+	"move":
+	{
+		"$type": "ConfigAnimatorMove",
+		"moveOnWater": true,
+		"moveOnWaterDepth": 0.0,
+	},
+	"billboard":
+	{
+		"$type" : "ConfigCombatBillboard",
+		"offsetType": "Character",
+		"offset":
+		{
+			"x": -0.02,
+			"y": 0,
+			"z": 0,
+		},
+		"showHPBar": true,
+		"radiusOffset": 0.2,
+		"size": "Normal"
+	},
+	"combat" :
+	{
+		"property":
+		{
+			"weight" : 75,	//weightLevel = 2
+ 			"normalPri": 1.0,	//lockLevel = 5
+			"combatPri": 1.0,	//lockLevel = 5
+			"rangeScale": 1.0,	//lockLevel = 5
+ 			"endureType": "Monster_Grunt_Humanoid",
+		},
+		"beHit" :
+		{
+			"hitBloodEffect":"",
+			"muteAllHit":false,
+			"muteAllHitEffect":false,
+			"muteAllHitText":false,
+		},
+		"die":
+		{
+			"hasAnimatorDie": true,
+			"dieDisappearEffect":"Eff_Death_Common",
+			"dieDisappearEffectDelay": 0.0,
+			"dieEndTime" : 2.0,
+			"dieForceDisappearTime" : 4,
+			"dieShaderData": "MonsterDie",
+		},
+		"animEvents":
+		{
+
+		},
+	},
+	"inputKeys":
+	[
+		{
+			"keyID": 1,
+			"inputKeyCode": 257,
+		},
+		{
+			"keyID": 201,
+			"inputKeyCode": 258,
+		},
+		{
+			"keyID": 301,
+			"inputKeyCode": 259,
+		},
+		{
+			"keyID": 401,
+			"inputKeyCode": 260,
+		},
+		{
+			"keyID": 501,
+			"inputKeyCode": 261,
+		},
+	],
+	"stateLayers":
+	{
+		"defaultLayer":
+		{
+			"$type" : "ConfigNormalStateLayer",
+			"stateIDs" :
+			{
+				//////////////////////////////////////////////////
+				//	Idle & Move states
+				//////////////////////////////////////////////////
+				"Born" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Born": [""],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSyncMove" : true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+				"NormalIdle" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Standby": [],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSyncMove" : true,
+					"canSteer": true,
+					"autoSteer": true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+				"DigIn" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"DigIn": [""],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSteer" : true,
+					"canSyncMove" : true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+				"DigOut" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"DigOut": [""],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSteer" : true,
+					"canSyncMove" : true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+				"Retreat" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Retreat": [""],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSteer" : true,
+					"canSyncMove" : true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+				//////////////////////////////////////////////////
+				//	Hit & Die states
+				//////////////////////////////////////////////////
+				"BeHit":
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_H": [""],
+					},
+					"combatMove": true,
+					"resetAnimatorTriggerOnEnter": [ "BeHit" ],
+					"resetAnimatorTriggerOnExit": [ "DoSkill" ],
+				},
+				"BeHitThrow":
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"HitThrow": [""],
+						"HitThrowDrop": [],
+						"HitThrowToGround": [""],
+					},
+					"combatMove": true,
+					"resetAnimatorTriggerOnEnter": [ "BeHit", "HitAir2HitDrop" ],
+					"resetAnimatorTriggerOnExit": [ "DoSkill" ],
+				},
+				"Die":
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Die": [""],
+						"FallingDie": [""],
+						"SwimDie": [],
+						"AirDie": ["",],
+					},
+				},
+				//////////////////////////////////////////////////
+				//	Alert states
+				//////////////////////////////////////////////////
+				"Alert" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Alert": [""],
+						"Warning": [""],
+					},
+					"combatMove" : true,
+					"addEndure": 0.0,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				//////////////////////////////////////////////////
+				//	Attack states
+				//////////////////////////////////////////////////
+				"Attack01" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Attack01": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				"Attack02" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Attack02": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				//////////////////////////////////////////////////
+				//	Fruit Attack states
+				//////////////////////////////////////////////////
+				"AbsorbFruit" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"AbsorbFruit_BS": [""],
+						"AbsorbFruit_Loop": [""],
+						"AbsorbFruit_AS": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				"ForwardShoot01" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"ForwardShoot01_BS": [""],
+						"ForwardShoot01_Shoot": [""],
+						"ForwardShoot01_AS": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				"ForwardShoot02" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"ForwardShoot02_BS": [""],
+						"ForwardShoot02_Shoot": [""],
+						"ForwardShoot02_AS": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				"UpperShoot01" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"UpperShoot01_BS": [""],
+						"UpperShoot01_Shoot": [""],
+						"UpperShoot01_AS": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				"UpperShoot02" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"UpperShoot02_BS": [""],
+						"UpperShoot02_Shoot": [""],
+						"UpperShoot02_AS": [""],
+					},
+					"combatMove" : true,
+					"resetAnimatorTriggerOnExit" : ["BeHit", "DoSkill" ],
+				},
+				//////////////////////////////////////////////////
+				//	Down states
+				//////////////////////////////////////////////////
+				"Down" :
+				{
+					"$type": "ConfigMonsterStateIDInfo",
+					"animatorStates":
+					{
+						"Down_BS": [],
+						"Down_Loop": [],
+						"Down_AS": [],
+					},
+					"combatMove": true,
+					"canDoSkill" : true,
+					"canSyncMove" : true,
+					"resetAnimatorTriggerOnExit" : ["DoSkill"],
+				},
+			},
+		},
+	},
+	"abilities":
+	[
+		//////////////////////////////////////////////////
+		//	Alert abilities
+		//////////////////////////////////////////////////
+		//////////////////////////////////////////////////
+		//	Unclassified abilities
+		//////////////////////////////////////////////////
+		//////////////////////////////////////////////////
+		//	SpecialState abilities
+		//////////////////////////////////////////////////
+		//////////////////////////////////////////////////
+		//	Sacrifice abilities
+		//////////////////////////////////////////////////
+	],
+	"initialPoses":
+	{
+		"Defalut":
+		{
+			"initialPoseID" : 0,
+		},
+		// "Sacrifice":
+		// {
+		// 	"initialPoseID" : 9013,
+		// 	"initialPoseParams":
+		// 	{
+		// 		"boolParams":
+		// 		{
+		// 			"Sacrifice": "true",
+		// 		},
+		// 	},
+		// },
+	},
+	"aibeta":
+	{
+		"enable": true,
+		"skillGCD": 0.5,
+		"skillSetting":
+		{
+			"skillEliteSet":
+			{
+				"4": [303, 304, 403, 502],
+			},
+		},
+		"neurons":
+		{
+			"DefaultSetting": ["HIT"],
+		},
+		"sensing":
+		{
+			"settings":
+			{
+				"DefaultSetting":
+				{
+					"viewRange": 45.0,
+					"feelRange": 25.0,
+				},
+				"Sacrifice":
+				{
+					"viewRange": 10.0,
+					"feelRange": 5.0,
+				},
+			},
+		},
+		"defendArea":
+		{
+			"defendRange": 50.0,
+		},
+		"threat":
+		{
+			"clearThreatTargetDistance": 50.0,
+			"clearThreatTimerByDistance": 1.75,
+			"clearThreatEdgeDistance": 7.5,
+			"viewThreatGrow": 35.0,
+			"feelThreatGrow": 100.0,
+			"threatDecreaseSpeed": 10.0,
+		},
+		"returnToBornTactic":
+		{
+			"enable": true,
+			"defaultSetting":
+			{
+				"speedLevel": 0,
+				"fadeoutBeginTime": 1.0,
+				"fadeoutEndTime": 1.5,
+			},
+			"specification":
+			{
+				"301":
+				{
+					"speedLevel": 1,
+					"fadeoutBeginTime": 3.0,
+					"fadeoutEndTime": 3.5,
+				},
+			},
+		},
+		"followScriptedPathTactic":
+		{
+			"enable": true,
+			"defaultSetting":
+			{
+				"turnSpeedOverrideWalk": 0.5,
+				"turnSpeedOverrideRun": 0.5,
+			},
+		},
+		"wanderTactic":
+		{
+			"enable": true,
+			"condition":
+			{
+				"pose": [100, 300],
+			},
+			"defaultSetting":
+			{
+				"speedLevel": 1,
+				"turnSpeedOverride": 0.2,
+				"cdMin": 0.0,
+				"cdMax": 0.0,
+				"distanceFromBorn": 25.0,
+				"distanceFromCurrentMin": 7.5,
+				"distanceFromCurrentMax": 10.0,
+			},
+		},
+		"skillGroupCDConfigs":
+		[
+			{
+				//Melee
+				"skillGroupCDID": 1,
+				"skillGroupCDTime": 7.0,
+			},
+			{
+				//Ranged
+				"skillGroupCDID": 2,
+				"skillGroupCDTime": 7.0,
+			},
+		],
+		"skills":
+		{
+			//////////////////////////////////////////////////
+			//	Alert Skills
+			//////////////////////////////////////////////////
+			"101":
+			{
+				//入战攻击
+				"name": "OnAlert",
+				"stateIDs": ["Life_Warning"],
+				"skillType": "OnAlert",
+				"skillQueryingTime": 3,
+				"triggerGCD": false,
+				"ignoreGCD": true,
+				"faceTarget": true,
+			},
+			//////////////////////////////////////////////////
+			//	Attack Skills 201 ~ 399
+			//////////////////////////////////////////////////
+			"201":
+			{
+				//前方攻击
+				"cd": 5.0,
+				"cdUpperRange": 3.0,
+				"initialCD": 3.0,
+				"skillGroupCDID": 1,//Melee Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack01",
+				"stateIDs": ["Attack01"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 4.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 4.0,
+					"maxTargetAngleY": 60,
+				},
+			},
+			"202":
+			{
+				//旋转攻击
+				"cd": 5,
+				"cdUpperRange": 3.0,
+				"initialCD": 10.0,
+				"skillGroupCDID": 1,//Melee Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack02",
+				"stateIDs": ["Attack02"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 4.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 4.0,
+				},
+			},
+			"311":
+			{
+				//前方连射
+				"cd": 5.0,
+				"cdUpperRange": 3.0,
+				"initialCD": 3.0,
+				"skillGroupCDID": 2,//Ranged Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack01",
+				"stateIDs": ["Attack01"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 20.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 20.0,
+				},
+			},
+			"312":
+			{
+				//前方点射
+				"cd": 5.0,
+				"cdUpperRange": 3.0,
+				"initialCD": 3.0,
+				"skillGroupCDID": 2,//Ranged Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack01",
+				"stateIDs": ["Attack01"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 20.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 20.0,
+				},
+			},
+			"321":
+			{
+				//上方连射
+				"cd": 5.0,
+				"cdUpperRange": 3.0,
+				"initialCD": 3.0,
+				"skillGroupCDID": 2,//Ranged Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack01",
+				"stateIDs": ["Attack01"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 20.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 20.0,
+				},
+			},
+			"322":
+			{
+				//上方点射
+				"cd": 5.0,
+				"cdUpperRange": 3.0,
+				"initialCD": 3.0,
+				"skillGroupCDID": 2,//Ranged Attack GroupCD
+				"combatSkillType": "Unclassified",
+				"name": "Attack01",
+				"stateIDs": ["Attack01"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 20.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 20.0,
+				},
+			},
+			//////////////////////////////////////////////////
+			//	AbsorbFruit Skills 401 ~ 499
+			//////////////////////////////////////////////////
+			"401":
+			{
+				//吸收果实
+				"cd": 30.0,
+				"initialCD": 30.0,
+				"combatSkillType": "Unclassified",
+				"name": "AbsorbFruit",
+				"stateIDs": ["AbsorbFruit"],
+				"castCondition":
+				{
+					"pickRangeMin": 0.0,
+					"pickRangeMax": 50.0,
+					"castRangeMin": 0.0,
+					"castRangeMax": 50.0,
+				},
+			},
+			//////////////////////////////////////////////////
+			//	Dig Skills 501 ~ 599
+			//////////////////////////////////////////////////
+			"501":
+			{
+				//钻地
+				"cd": 30.0,
+				"initialCD": 30.0,
+				"combatSkillType": "Unclassified",
+				"name": "DigIn",
+				"stateIDs": ["DigIn"],
+				"castCondition":
+				{
+					"pickRangeMin": 10.0,
+					"pickRangeMax": 50.0,
+					"castRangeMin": 10.0,
+					"castRangeMax": 50.0,
+				},
+			},
+			"502":
+			{
+				//钻出
+				"cd": 30.0,
+				"initialCD": 30.0,
+				"combatSkillType": "Unclassified",
+				"name": "DigOut",
+				"stateIDs": ["DigOut"],
+				"castCondition":
+				{
+					"pickRangeMin": 10.0,
+					"pickRangeMax": 50.0,
+					"castRangeMin": 10.0,
+					"castRangeMax": 50.0,
+				},
+			},
+			//////////////////////////////////////////////////
+			//	Dig Skills 601 ~ 699
+			//////////////////////////////////////////////////
+			"601":
+			{
+				//钻地
+				"cd": 30.0,
+				"initialCD": 30.0,
+				"combatSkillType": "Unclassified",
+				"name": "Retreat",
+				"stateIDs": ["Retreat"],
+				"castCondition":
+				{
+					"pickRangeMin": 10.0,
+					"pickRangeMax": 50.0,
+					"castRangeMin": 10.0,
+					"castRangeMax": 50.0,
+				},
+			},
+		},
+	},
+	"audio" :
+	{
+	    "$type": "ConfigMonsterAudio",
+		"animAudio" :
+		{
+			"onTransitionOut" :
+			[
+			],
+			"onTransitionIn" :
+			[
+
+			],
+		},
+		"disableEvent":
+        {
+            "text": ""
+        }, 
+        "destroyEvent":
+        {
+            "text": ""
+        }
+	},
+}

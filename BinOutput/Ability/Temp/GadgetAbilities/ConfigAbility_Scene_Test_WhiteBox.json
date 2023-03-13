@@ -1,0 +1,1968 @@
+/*物件白盒专用*/
+[
+///////////////////////////////////////
+//
+// 位运算机关测试
+//
+////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Gear_Test_Bitwise",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "AND_Select",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 202,
+				"modifierName": "OR_Select",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 203,
+				"modifierName": "NOT_Select",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 204,
+				"modifierName": "XOR_Select",
+			},
+		],
+		"modifiers": 
+		{
+			"Play_Eff":
+			{
+				"duration": 1,
+				"onAdded":
+				[
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_GunpowderBarrel_Explode",
+					},
+				],
+			},
+			"AND_Select":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Play_Eff",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsBySelfGroup",
+							"operation": "AND",
+							"value": 1,
+							"compareType": "Greater",
+						},
+					},
+				],
+			},	
+			"OR_Select":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Play_Eff",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsBySelfGroup",
+							"operation": "OR",
+							"value": 4,
+							"compareType": "Lesser",
+						},
+					},
+				],
+			},
+			"NOT_Select":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Play_Eff",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsBySelfGroup",
+							"operation": "OR",
+							"value": 3,
+							"compareType": "Equal",
+						},
+					},
+				],
+			},
+			"XOR_Select":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ApplyModifier",
+						"modifierName": "Play_Eff",
+						"otherTargets":
+						{
+							"$type": "SelectTargetsBySelfGroup",
+							"operation": "XOR",
+							"value": 4,
+							"compareType": "LesserOrEqual",
+						},
+					},
+				],
+			},
+		},
+	},
+},
+///////////////////////////////////////
+//
+// 树根
+//
+////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Gear_Other_Test_TreeRoot",
+		"onAdded":
+		[
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "Revive",
+			},
+		],
+		"modifiers": 
+		{
+			"Revive":
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "ExecuteGadgetLua",
+						"param1": 201,
+						"predicates":
+						[
+							{
+								"$type": "ByHitElement",
+								"element": "Water",
+							},
+						],
+					},
+					{
+						"$type": "FireEffect",
+						"effectPattern": "Eff_Chest_Open_Action",
+						"predicates":
+						[
+							{
+		  						"$type" : "ByHitElement",
+		 						"element" : "Water",
+		   					},
+						],
+					},
+				],
+			},
+		},
+	},
+},
+///////////////////////////////////////
+//
+// 地城雾特效
+//
+////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Gear_Test_DungeonFog",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "Fire_Effect",
+			},
+		],
+		"modifiers": 
+		{
+			"Fire_Effect":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "DungeonFogEffects",
+						"enable": true,
+						"cameraFogEffectName": "Eff_Camera_Fog",
+						"playerFogEffectName": "Eff_Area_Smoke_01",
+						"localOffset" :
+						{
+							"x" : 0,
+							"y" : 0,
+							"z" : 20.5,
+						},
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "DungeonFogEffects",
+						"enable": false,
+						"cameraFogEffectName": "Eff_Camera_Fog",
+						"playerFogEffectName": "Eff_Area_Smoke_01",
+						"localOffset" :
+						{
+							"x" : 0,
+							"y" : 0,
+							"z" : 20.5,
+						},
+					},
+				],
+			},
+		},
+	},
+},
+///////////////////////////////////////////////////////////////
+//
+// 一笔画石板测试
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Other_Test_OneStrokeBoard",
+			"onFieldEnter":
+			[
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 1,
+				},
+				{
+					"$type": "DebugLog",
+					"doOffStage":true,
+					"content": "OnStrokeEnterField",
+  				},
+				/*{
+					"$type": "SetAnimatorInt",
+					"triggerID": "isActive",
+					"value": 1,
+				},*/
+			],
+			/*"onFieldExit":
+			[
+				{
+					"$type": "ExecuteGadgetLua",
+					"param1": 0,
+				},
+				{
+					"$type": "DebugLog",
+					"doOffStage":true,
+					"content": "OnStrokeExit5Field",
+  				},
+				{
+					"$type": "SetAnimatorInt",
+					"triggerID": "isActive",
+					"value": 0,
+				},
+			],*/
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 重力板鸭 小
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Other_Test_Gravity_Board_Small",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "RemoveNormal",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_GEARSTART",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_WAITING",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv1",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Center",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Normal",
+				},
+			],
+
+			"modifiers": 
+			{
+				"RemoveNormal":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Normal",
+						},
+					],
+				},
+				"Normal":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToGadgetStateMixin",
+							"gadgetState": 201,
+							"modifierName": "Fire_Effect",
+						},
+					],
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						//每次计算前先清零
+						{
+							"$type": "AddGlobalValue",
+							"key": "TOTAL_WEIGHT",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type":"SumTargetWeightToSelfGlobalValue",
+							"key":"TOTAL_WEIGHT",
+							"otherTargets": 
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR0_8",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							/*
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+								},
+							],
+							*/
+						},
+
+						//根据重力设置状态
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 0,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 901,
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Delay_To_State201",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"Delay_To_State201":
+				{
+					"stacking": "Unique",
+					"duration": 2.5,
+					"thinkInterval": 2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+						},
+					],
+				},
+				"Fire_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Gear_Gravity_Success",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 重力板鸭 中
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Other_Test_Gravity_Board_Middle",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "RemoveNormal",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_GEARSTART",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_WAITING",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv1",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv2",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Center",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Normal",
+				},
+			],
+			"modifiers": 
+			{
+				"RemoveNormal":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Normal",
+						},
+					],
+				},
+				"Normal":
+				{
+					"thinkInterval":0.5,
+					"onThinkInterval":
+					[
+						//每次计算前先清零
+						{
+							"$type": "AddGlobalValue",
+							"key": "TOTAL_WEIGHT",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type":"SumTargetWeightToSelfGlobalValue",
+							"key":"TOTAL_WEIGHT",
+							"otherTargets": 
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR1_2",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							/*
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+								},
+							],
+							*/
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 0,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "MoreThan",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 69,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 901,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 69,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 902,
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Delay_To_State201",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+							],
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToGadgetStateMixin",
+							"gadgetState": 201,
+							"modifierName": "Fire_Effect",
+						},
+					],
+				},
+				"Delay_To_State201":
+				{
+					"stacking": "Unique",
+					"duration": 2.1,
+					"thinkInterval": 2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+						},
+					],
+				},
+				"Fire_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Gear_Gravity_Success",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 重力板鸭 大
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Other_Test_Gravity_Board_Great",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_GEARSTART",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key": "_IS_IN_WAITING",
+					"value": 0,
+					"useLimitRange": true,
+					"maxValue": 1,
+					"minValue": 0,
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv1",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv2",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Lv3",
+				},
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Gear_Gravity_Center",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Normal",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "RemoveNormal",
+				},
+			],
+			"modifiers": 
+			{
+				"RemoveNormal":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Normal",
+						},
+					],
+				},
+				"Normal":
+				{
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						//每次计算前先清零
+						{
+							"$type": "AddGlobalValue",
+							"key": "TOTAL_WEIGHT",
+							"value": 0,
+							"useLimitRange": true,
+							"maxValue": 0,
+							"minValue": 0,
+						},
+						{
+							"$type":"SumTargetWeightToSelfGlobalValue",
+							"key":"TOTAL_WEIGHT",
+							"otherTargets": 
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR1_6",
+								"centerBasedOn": "Self",
+								"campTargetType": "AllExceptSelf",
+								"campBasedOn": "Self",
+							},
+							/*
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+								},
+							],
+							*/
+						},
+
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 0,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 19,
+									"compareType": "MoreThan",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 69,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 901,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 69,
+									"compareType": "MoreThan",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 104,
+									"compareType": "LessAndEqual",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 902,
+								},
+								{
+									"$type": "RemoveModifier",
+									"modifierName": "Delay_To_State201",
+								},
+							],
+						},
+						{
+							"$type": "Predicated",
+							"target": "Caster",
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "TOTAL_WEIGHT",
+									"value": 104,
+									"compareType": "MoreThan",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "ExecuteGadgetLua",
+									"param1": 903,
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+								{
+									"$type": "ApplyModifier",
+									"modifierName": "Delay_To_State201",
+									"predicates":
+									[
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_GEARSTART",
+											"value": 0,
+											"compareType": "Equal",
+										},
+										{
+											"$type": "ByTargetGlobalValue",
+											"key": "_IS_IN_WAITING",
+											"value": 0,
+											"compareType": "Equal",
+										},
+									],
+								},
+							],
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToGadgetStateMixin",
+							"gadgetState": 201,
+							"modifierName": "Fire_Effect",
+						},
+					],
+				},
+				"Delay_To_State201":
+				{
+					"stacking": "Unique",
+					"duration": 2.1,
+					"thinkInterval": 2,
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_WAITING",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+					"onThinkInterval":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+						},
+					],
+				},
+				"Fire_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Gear_Gravity_Success",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "_IS_IN_GEARSTART",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 1,
+							"minValue": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	风车机关
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Windmill01",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "State_0",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "State_201",
+				},
+			],
+			"modifiers":
+			{
+				"State_0":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Wind",
+								},
+							],
+						},
+					],
+				},
+				"State_201":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Rotating",
+						}
+					],
+					"onBeingHit":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Rotating",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Wind",
+								},
+							],
+						},
+					],
+				},
+				"Rotating":
+				{
+					"duration": 10,
+					"stacking": "Refresh",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Rotate",
+						},
+					],
+					"onBeingHit":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Rotate",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Wind",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Unique_Delay_2",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Ice",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 0,
+						},
+					]
+				},
+				"Unique_Delay_2":
+				{
+					"duration": 2,
+					"stacking": "Unique",
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Rotating",
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	风车机关02
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Windmill02",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "State_0",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "State_201",
+				},
+			],
+			"modifiers":
+			{
+				"State_0":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stop",
+						},
+					],
+					"onBeingHit":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Stop",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Wind",
+								},
+							],
+						},
+					],
+				},
+				"State_201":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Unique_Delay_2",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Ice",
+								},
+							],
+						},
+					],
+				},
+				"Unique_Delay_2":
+				{
+					"duration": 2,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Slow",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 0,
+						},
+					],
+				},
+				"Stop":
+				{
+					"duration": 5,
+					"stacking": "Refresh",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Stop",
+						},
+					],
+					"onBeingHit":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Stop",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Ice",
+								},
+							],
+						},
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Stop",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Ice",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 201,
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	钉耙陷阱
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Trap_Rake_Attack",
+			"onFieldEnter":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Unique_Rake_Trigger",
+				},
+			],
+			"modifiers":
+			{
+				"Unique_Rake_Trigger":
+				{
+					"stacking": "Unique",
+					"duration": 1.3,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Attack",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Rake_Attack",
+						},
+					],
+				},
+				"Rake_Attack":
+				{
+					"duration": 0.15,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "All",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "AttackPoint",
+										"offset":
+										{
+											"z": -0.1,
+										},
+									},
+									"size" : 
+									{
+										"x" : 0.6,
+										"y" : 1.8,
+										"z" : 0.5,
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":   
+									{
+										"damagePercentage": 1,
+										"elementType" : "None",
+										"elementDurability" : 10,
+										"strikeType": "Default",
+										"ignoreLevelDiff": true,
+										"enBreak": 100,
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Heavy",
+										"retreatType": "ByHitDirection",
+										"hitImpulseX": 800,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	宝箱曲线测试
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Chest_DropTest_WhiteBox",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 102,
+					"modifierName": "CurveTest",
+				},
+			],
+			"modifiers":
+			{
+				"CurveTest":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	尖刺墙壁攻击
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Test_WhiteBox_ThornWall_Attack",
+			"onFieldEnter":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_ThornWall_Attack",
+					"value": 5,
+					"useLimitRange": true,
+					"maxValue": 5,
+					"minValue": 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"target": "Self",
+					"key": "_ThornWall_Attack",
+					"value": -5,
+					"useLimitRange": true,
+					"maxValue": 5,
+					"minValue": 0,
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "AvatarCheck",
+				},
+			],
+			"modifiers":
+			{
+				"AvatarCheck":
+				{
+					"thinkInterval": 0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Thorn_Attack",
+							"target": "Self",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_ThornWall_Attack",
+									"value": 0,
+									"compareType": "MoreThan",
+								},
+							],
+						},
+					],
+				},
+				"Thorn_Attack":
+				{
+					"thinkInterval": 0.3,
+					"onThinkInterval":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "AllExceptSelf",
+							"attackEvent": 
+							{
+								"attackPattern" : 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"filterByFrame" : true,
+									"size" :
+									{
+										"x" : 5,
+										"y" : 5,
+										"z" : 1.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName" : "RootNode",
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"strikeType": "Pierce",
+										"elementType": "None",
+										"ignoreLevelDiff": true
+									},
+									"hitPattern" :
+									{
+										"hitLevel" : "Heavy",
+										"hitImpulseX" : 200, //击退冲力
+										"hitImpulseY" : 0,
+										"retreatType": "ByAttacker",
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": false,
+								},
+							},
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "AllExceptSelf",
+							"attackEvent": 
+							{
+								"attackPattern" : 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"filterByFrame" : true,
+									"size" :
+									{
+										"x" : 5,
+										"y" : 5,
+										"z" : 1.5,
+									},
+									"born":
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName" : "RootNode",
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"strikeType": "Pierce",
+										"elementType": "None",
+										"ignoreLevelDiff": true
+									},
+									"hitPattern" :
+									{
+										"hitLevel" : "Heavy",
+										"hitImpulseX" : 500, //击退冲力
+										"hitImpulseY" : 0,
+										"retreatType": "ByAttacker",
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+									"forceCameraShake": false,
+								},
+							},
+						},
+					],
+					"onAttackLanded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"target": "Self",
+							"key": "_ThornWall_Attack",
+							"value": -1,
+							"useLimitRange": true,
+							"maxValue": 5,
+							"minValue": 0,
+						},
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Thorn_Attack",
+						},
+					],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	电水白盒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Test_WhiteBox_ElectricWater_Interact",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "ApplyElec",
+				},
+			],
+			"modifiers":
+			{
+				"ApplyElec":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Conductive_Water",
+						},
+					],
+					"thinkInterval": 0.1,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "Both",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "attackPoint",
+									},
+									"size" : 
+									{
+										"x" : 2,
+										"y" : 2,
+										"z" : 0.5,
+									},
+								},
+								"attackInfo":
+								{
+									"attackTag": "ElectricWaterCheck",
+									"attackProperty":
+									{
+										"damagePercentage": 0,
+										"elementType": "Electric",
+										"elementDurability": 0,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "none",
+										"hitLevel": "Mute",
+										"muteHitText": false,
+									},
+								}
+							},
+						},
+					],
+					"onAttackLanded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Electric",
+							"target": "Target",
+							"predicates":
+							[
+								{
+									"$type": "ByEntityTypes",
+									"entityTypes": ["Avatar","Monster"],
+								},
+							],
+						},
+					],
+				},
+				"Electric":
+				{
+					"elementType": "Electric",
+					"elementDurability": 80,
+					"duration": 10,
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	草生风白盒
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Test_WhiteBox_Airflow_Grass_Interact",
+			"onAdded":
+			[
+				{
+					//自定义反应时的动态攻击盒类型
+					//1表示shpere
+					//2表示box
+					//3表示circle
+					"$type": "AddGlobalValue",
+					"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 2,
+					"minValue": 2,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Burning_Grass",
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "GrassMaterial",
+				},
+			],
+			"modifiers":
+			{
+				"Burning_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_Element_Burning",
+						},
+					],
+				},
+				"GrassMaterial":
+				{
+					"elementType": "Grass",
+					"elementDurability": 100,
+					"isElementDurabilityMutable": false,
+				},
+				"Burning_Grass":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "RejectAttackMixin",
+							"attackTag": "BurningDamage",
+						},
+						{
+							"$type": "DoActionByEventMixin",
+							"type": "Current",
+							"onAbilityStateAdded": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type": "CreateGadget",
+											"gadgetID": 70900047,
+											"born":
+											{
+												"$type": "ConfigBornByTarget",
+											},
+										},
+										{
+											"$type": "ApplyModifier",
+											"modifierName": "Burning_Effect",
+										},
+									],
+								}
+							],
+							"onAbilityStateRemoved": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type": "KillGadget",
+											"gadgetInfo":
+											{
+												"$type": "SelectTargetsByChildren",
+												"configID": 70900047,
+												"sortType": "Nearest",
+											}
+										},
+										{
+											"$type": "RemoveModifier",
+											"modifierName": "Burning_Effect",
+										},
+									],
+								}
+							],	
+						},
+					],
+				},
+			},
+		},
+	},
+//////////////////////////////////////////////////////////////////
+//
+//	天降正义
+//
+//////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Test_Chest_ShootingStar",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Initial_Lock",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Summon_ShootingStar",
+				},
+			],
+			"modifiers":
+			{
+				"Summon_ShootingStar":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70950002,
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "ShootPoint",
+								"offset":
+								{
+									"x": 0,
+									"y": 0,
+									"z": -100,
+								},
+							},
+						},
+					],
+				},
+				"Initial_Lock":
+				{
+					"$type": "EnableGadgetIntee",
+					"enable": false,
+				},
+			},
+		},
+	},
+]

@@ -1,0 +1,278 @@
+{
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 大世界树叶堆
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_GrassMaterial_LeaveStacks" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 0.4,
+			},
+			"viewSize": 1.5,
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieEndTime": 0.3,
+				"dieForceDisappearTime": 0.35,
+				//"dieShaderdata": "GadgetQuickDie",
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_GrassMaterial_LeaveStacks_Interact",
+
+				"abilityName" : "SceneObj_Environment_GrassMaterial_LeaveStacks_Interact"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 地城草垫
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_GrassMaterial_LeafBlanket" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2.5,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 50,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.3,
+				"dieForceDisappearTime": 0.35,
+			},
+		},
+		"customAttackShape":
+		{
+			"box":
+			{
+				"customAttackBox_Size_X": 2,
+				"customAttackBox_Size_Y": 2,
+				"customAttackBox_Size_Z": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_GrassMaterial_LeafBlanket_Interact",
+
+				"abilityName" : "SceneObj_Environment_GrassMaterial_LeafBlanket_Interact"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 大世界草垛
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_GrassMaterial_GrassStacks" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"viewSize": 2.5,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 20,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : false,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"dieEndTime": 0.3,
+				"dieForceDisappearTime": 0.35,
+				//"dieShaderdata": "GadgetQuickDie",
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_GrassMaterial_GrassStacks_Interact",
+
+				"abilityName" : "SceneObj_Environment_GrassMaterial_GrassStacks_Interact"
+			},
+		],
+	},
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// 地城草垫6*6
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_GrassMaterial_LeafBlanket02" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"offset" :
+					{
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.1,
+					},
+				},
+				"emitFrom" : "Volume",
+				"scaleX" : 6.0,
+				"scaleY" : 6.0,
+				"scaleZ" : 0.2,
+			},
+			"viewSize": 2.5,
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 500,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.3,
+				"dieForceDisappearTime": 0.35,
+			},
+		},
+		"customAttackShape":
+		{
+			"box":
+			{
+				"customAttackBox_Size_X": 6,
+				"customAttackBox_Size_Y": 6,
+				"customAttackBox_Size_Z": 0.2,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_GrassMaterial_LeafBlanket_Interact",
+
+				"abilityName" : "SceneObj_Environment_GrassMaterial_LeafBlanket02_Interact"
+			},
+		],
+	},
+},

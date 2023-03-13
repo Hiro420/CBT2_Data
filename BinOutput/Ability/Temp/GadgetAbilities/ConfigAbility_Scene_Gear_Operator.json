@@ -1,0 +1,2546 @@
+[
+///////////////////////////////////////////////////////////////
+//
+// 大世界Boss触发器（北风狼）
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_Monster_LupiBoreas",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "OperatorEffect",
+				},
+			],
+			"onKill":
+			[
+				{
+					"$type": "SendEffectTrigger",
+					"parameter" : "Disappear",
+					"effectPattern":"Eff_Monster_Wolf_LupiBoreas_Scene_Operator",
+				},
+			],
+			"modifiers":
+			{
+				"OperatorEffect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Wolf_LupiBoreas_Scene_Operator",
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 古石台机关
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DragonNest_Seal",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "Active",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Gear_Stop",
+				},
+			],
+			"modifiers":
+			{
+				"Active":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Seal01_Active_01_Top",
+						},
+					],
+				},
+				"Gear_Stop":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "EffectAttach",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "EffectAttach",
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 元素地城操作台
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_ElementDungeon_Operator",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Active",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"Active":
+				{
+					"onAdded":
+					[
+
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+//操作台
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_Active",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Active",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Lock",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"Active":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Operator_Close",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "EffectAttach",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Operator_Open",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "RootNode",
+							},
+						},
+					],
+				},
+				"Lock":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 202,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+						//给锁定特效留一个坑位
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////
+//
+// 守护玩法
+//
+///////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_Mamolu",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Active",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Die",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "DieAuto",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "Finish",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"Die":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Die",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "FireDieEff",
+						},
+					],
+				},
+				"DieAuto":
+				{
+					"duration": 2,
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Die",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "FireDieEff",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 0,
+						},
+					],
+				},
+				"FireDieEff":
+				{
+					"duration": 1.06,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_MonsterTarget_Destory",
+						},
+					],
+				},
+				"Finish":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_MonsterTarget_Finish",
+						},
+					],
+				},
+				"Active":
+				{
+					"onAdded":
+					[
+
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Operator_Close",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "EffectAttach",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Operator_Open",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "RootNode",
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 守护机关实体
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_Mamolu_Entity",
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Default",
+				},
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"thinkInterval": 2,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerTaunt",
+							"careValue": 30,
+							"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR25",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+							],
+						},				
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 火系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_FireController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+	////////////////////////////////////////////////////////////
+//
+// 电系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_ElecController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 冰系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_IceController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 风系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_WindController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 水系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_WaterController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 草系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_GrassController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 岩系控制器
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_RockController_Ability",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 201,
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "GadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 401,
+					"modifierName": "GearStart",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "EnableGadgetIntee",
+							"enable": false,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "EnableGadgetIntee",
+							"enable": true,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_Seal01_Enabled_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Thunder",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 401,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "GearStop",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"GearStop":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "DelayEffect",
+						},
+						
+					],
+				},
+				"DelayEffect":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_WorldTree_Thunder_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Fire",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 401,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "GearStop",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"GearStop":
+				{
+					"onAdded":
+					[
+
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "DelayEffect",
+						},
+						
+					],
+				},
+				"DelayEffect":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_WorldTree_Fire_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Ice",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 401,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "GearStop",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"GearStop":
+				{
+					"onAdded":
+					[
+
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "DelayEffect",
+						},
+						
+					],
+				},
+				"DelayEffect":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_WorldTree_Ice_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Water",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 401,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "GearStop",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						
+					],
+				},
+				"GearStop":
+				{
+					"onAdded":
+					[
+
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "DelayEffect",
+						},
+						
+					],
+				},
+				"DelayEffect":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_WorldTree_Water_01",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 拼图操作台
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_Jigsaw_Operator",
+			"onAdded":
+			[
+				{
+					"$type": "AddGlobalValue",
+					"key": "JigsawCount",
+					"value": -3,
+					"useLimitRange": true,
+					"maxValue": 3,
+					"minValue": 0,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AddGlobalValue",
+							"key": "JigsawCount",
+							"value": -3,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "Predicated",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR20",
+								"centerBasedOn": "Self",
+								"campTargetType": "Alliance",
+								"campBasedOn": "Self",
+							},
+							"targetPredicates":
+							[
+								{
+									"$type": "ByTargetForwardAndSelfPosition",
+									"value": 30.0,
+									"logic": "Lesser",
+								},
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "Is_Jigsaw",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type": "AddGlobalValue",
+									"key": "JigsawCount",
+									"value": 1,
+									"useLimitRange": true,
+									"maxValue": 3,
+									"minValue": 0,
+								},
+							],
+							"failActions":
+							[
+
+							],
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Avatar_Boy_Bow_Venti_WIndBlade",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "JigsawCount",
+									"value": 3,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type": "ExecuteGroupTrigger",
+							"sourceName": "Jigsaw_Reward",
+							"param1": 0,
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "JigsawCount",
+									"value": 3,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 水元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_WaterTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Water",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Water",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Water",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Water",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Water_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Water",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 火元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_FireTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+	            {
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Fire",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Fire",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Fire",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Fire",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Fire_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Fire",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 冰元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_IceTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Ice",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Ice",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Ice",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Ice",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Ice_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Ice",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 雷元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_ElectricTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Electric",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Electric",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Electric",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Electric",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Electric_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Electric",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 草元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_GrassTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Grass",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Grass",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Grass",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Grass",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Grass_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Grass",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 土元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_RockTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Rock",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Rock",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Rock",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Rock",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Rock_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Rock",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 风元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_WindTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+        		{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_SceneObj_Elem_Wind",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "NoneElement",
+				},
+			],
+			"modifiers":
+			{
+				"NoneElement":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 203,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 203,
+							"effectPattern": "Eff_SceneObj_Elem_Wind",
+						},
+					],
+				},
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 0,
+							"effectPattern": "Eff_SceneObj_Elem_Wind",
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 201,
+							"effectPattern": "Eff_SceneObj_Elem_Wind",
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Wind_Active",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter": "gadgetState",
+							"type": "Int",
+							"value": 202,
+							"effectPattern": "Eff_SceneObj_Elem_Wind",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////
+//
+// 空元素方碑
+//
+////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Operator_BlankTablet",
+			"onAdded":
+			[
+				{
+	              "$type": "AttachAbilityStateResistance",
+	              "resistanceListID": 11002,
+	            },
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Default",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "Interact_Forbid",
+				},
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_SceneObj_Elem_Blank",
+						},
+					],
+				},
+				"Interact_Forbid":
+				{
+					"state": "DenyLockOn",
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_LockIdle",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Item_SpecialTreasureBox_Unlock",
+						},
+					],
+				},
+			},
+		},
+	},
+]

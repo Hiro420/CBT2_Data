@@ -1,0 +1,2794 @@
+{
+///////////////////////////////////////////////////////////
+//
+// 大世界Boss触发器（北风狼）
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Monster_LupiBoreas" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":true,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die":
+			{
+				"dieEndTime": 5.0,
+				"dieForceDisappearTime": 5.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "OperatorActive",
+				"abilityName":"SceneObj_Gear_Operator_Monster_LupiBoreas"
+			},
+		],
+	},
+///////////////////////////////////////////////////////////
+//
+// 元素地城操作台
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_ElementDungeon_Operator" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"model":
+		{
+			"attachEffect": "Eff_Gear_ElementDungeon_Operator",
+		},
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+				
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_Gear_ElementDungeon_Operator",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_Gear_ElementDungeon_Operator",
+					"gadgetState": "GearStop",
+				},
+				
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "OperatorActive",
+
+				"abilityName":"SceneObj_Gear_Operator_ElementDungeon_Operator"
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Start": ["Audio_Gear_ElementDungeon_Operator_Start"],
+							"Loop": [],
+							"End": ["Audio_Gear_ElementDungeon_Operator_End"],
+						},
+					},
+				},
+			},
+		},
+		"audio": 
+		{
+		   "$type": "ConfigGadgetAudio",
+		   "animAudio": 
+		   {
+		     "onTransitionOut": 
+		     [
+		        {
+		        	"currentStateName": "Loop",
+		        	"audioEvent": { "text": "Stop_amb_dungeon_gear_elemDungeon_operator_loop" },
+		        	"otherStateNames": [],
+		        	"usage": "Any"
+		        }
+		     ],
+		     "onTransitionIn": 
+		     [
+		        {
+		        	"currentStateName": "Loop",
+		        	"audioEvent": { "text": "Play_amb_dungeon_gear_elemDungeon_operator_loop" },
+		        	"otherStateNames": [],
+		        	"usage": "Any"
+		        }
+		     ],
+		 	},
+			"disableEvent":
+			{
+				"text": "Stop_amb_dungeon_gear_elemDungeon_operator"
+			},
+			"destroyEvent":
+			{
+				"text": "Stop_amb_dungeon_gear_elemDungeon_operator"
+			}
+			},		     
+		},
+/////////////////////////////////////////////////////////////////////////////
+//
+// 地城入口隐形操作台
+//
+/////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Invisible_Operator" :
+	{
+		"$type" : "ConfigGadget",
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": true,
+				"isLockHP": true,
+				"endure":99,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+	},
+	///////////////////////////////////////////////////////////
+//
+// 操作台
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Normal_Operator" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "OperatorActive",
+
+				"abilityName":"SceneObj_Gear_Operator_Active"
+			},
+		],
+	},
+	///////////////////////////////////////////////////////////
+//
+// 守护玩法
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Mamolu" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 5000,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		/*
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Idle": ["HideCollider"],
+							"Success": ["HideCollider"],
+							"Finish": ["HideCollider"],
+							"Active": ["ShowCollider"],
+						},
+					},
+				},
+			},
+		},
+		*/
+		"abilities":
+		[
+			{
+				"abilityID": "OperatorActive",
+
+				"abilityName":"SceneObj_Gear_Operator_Mamolu"
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+	///////////////////////////////////////////////////////////
+//
+// 守护玩法实体
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Mamolu_Entity" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"attachPoint" : "RootNode",
+			"offset":
+			{
+				"x": 0,
+				"y": 2.5,
+				"z": 0,
+			},
+			"radiusOffset": 3.0,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"size": "Grand",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 5000,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":false,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Operator_Mamolu_Entity",
+
+				"abilityName":"SceneObj_Gear_Operator_Mamolu_Entity"
+			},
+		],
+	},
+	///////////////////////////////////////////////////////////
+//
+// followmove操作台
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Normal_FollowMove_Operator" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"move" :
+		{
+			"$type" : "ConfigFollowMove",
+			"target": "GroupGadgetEntity",
+			"attachPoint" : "RootNode",
+			"followRotation": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "OperatorActive",
+
+				"abilityName":"SceneObj_Gear_Operator_Active"
+			},
+		],
+	},
+	///////////////////////////////////////////////////////////
+//
+// 古石台机关
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DragonNest_Seal" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"misc":
+		{
+			"seal":
+			{
+				"boardEffect": "Eff_Stage_SealBorder02",
+				"boardEffectStartPosition": -6,
+				"boardEffectEndPosition": 1.5,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": [],
+							"Close": ["Audio_SceneObj_Gear_Seal01_Close"],
+							"Open": ["Audio_SceneObj_Gear_Seal01_Open"],
+							"Active": ["Audio_SceneObj_Gear_Seal01_Active"],
+							"Lock": ["Audio_SceneObj_Gear_Seal01_Lock"],
+							"Success": ["Audio_SceneObj_Gear_Seal01_Active"],
+							"GearAction1": ["Audio_SceneObj_Gear_Seal01_Open"]
+						},
+					},
+				},
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 202,
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 203,
+					"gadgetState": "GearAction1",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 204,
+					"gadgetState": "GearAction2",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Operator_DragonNest_Seal",
+
+				"abilityName":"SceneObj_Gear_Operator_DragonNest_Seal"
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 火系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_FireController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"specialPoint":
+		{
+			"bulletAim":"hitPoint",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_FireController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 电系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_ElecController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_ElecController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 冰系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_IceController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_IceController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 风系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_WindController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_WindController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 水系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_WaterController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_WaterController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 草系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_GrassController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_GrassController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 岩系控制器
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_RockController" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Totem_Inactive": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Totem_Start": ["Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Totem_Active": ["Audio_SceneObj_Gear_ElemTotem_Common_Active"],
+							"Totem_Stop": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+						},
+					},
+				},
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_RockController_Ability",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////
+//
+//	隐形岩图腾
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Invisible_Controller" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+	},
+	///////////////////////////////////////////////////////////
+//
+// 透明封印
+//
+///////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Seal02" :
+	{
+		"$type" : "ConfigGadget",
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR14",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 1.0,
+			},
+		},
+		"misc":
+		{
+			"seal":
+			{
+				"boardEffect": "Eff_Stage_SealBorder",
+				"boardEffectStartPosition": -6,
+				"boardEffectEndPosition": 1.5,
+			},
+			"bornState": "GearStart",
+			"gear":
+			{
+				"gearType": "None",
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Default": ["Audio_SceneObj_Gear_Seal01_Default"],
+							"Close": ["Audio_SceneObj_Gear_Seal01_Close"],
+							"Open": ["Audio_SceneObj_Gear_Seal01_Open"],
+							"Active": ["Audio_SceneObj_Gear_Seal01_Active"],
+							"Lock": ["Audio_SceneObj_Gear_Seal01_Lock"],
+							"Success": ["Audio_SceneObj_Gear_Seal01_Active"],
+						},
+					},
+				},
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 202,
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 203,
+					"gadgetState": "GearAction1",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 204,
+					"gadgetState": "GearAction2",
+				},
+			],
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DungeonRewardPoint" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_DUNGEONREWARD_QTE_TITLE"
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DungeonRewardPoint_Thunder" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_DUNGEONREWARD_QTE_TITLE"
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "Default",
+				},
+				//StatueActive时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "StatueActive",
+				},
+			],
+		},
+		"intee":
+		{
+			"$type" : "ConfigIntee",
+			"triggerRadius": 9,
+			"triggerHeight": 6,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Thunder",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DungeonRewardPoint_Fire" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_DUNGEONREWARD_QTE_TITLE"
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "Default",
+				},
+				//StatueActive时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "StatueActive",
+				},
+			],
+		},
+		"intee":
+		{
+			"$type" : "ConfigIntee",
+			"triggerRadius": 9,
+			"triggerHeight": 6,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Fire",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DungeonRewardPoint_Ice" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_DUNGEONREWARD_QTE_TITLE"
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "Default",
+				},
+				//StatueActive时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "StatueActive",
+				},
+			],
+		},
+		"intee":
+		{
+			"$type" : "ConfigIntee",
+			"triggerRadius": 9,
+			"triggerHeight": 6,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Ice",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 地城摇钱树
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_DungeonRewardPoint_Water" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_DUNGEONREWARD_QTE_TITLE"
+		},
+		"intee":
+		{
+			"$type" : "ConfigIntee",
+			"triggerRadius": 9,
+			"triggerHeight": 6,
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "Default",
+				},
+				//StatueActive时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "StatueActive",
+				},
+			],
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_DungeonRewardPoint_Water",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 拼图操作台
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_Jigsaw_Operator" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"field" :
+		{
+			"concernType" : "LocalAvatar",
+			"shape" : "CircleR2",		//形状，不填为collider
+			"checkInterval" : 0.5,		//触发间隔
+			"triggerInfinite" : true,	//是否永远触发
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"overwriteCampType" : true,
+			"campType" : "SelfCamp",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_Jigsaw_Operator",
+			},
+		],
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 水元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_WaterTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Water",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Water",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Water",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Water",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_WaterTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Water_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 火元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_FireTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Fire",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Fire",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Fire",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Fire",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_FireTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Fire_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 冰元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_IceTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Ice",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Ice",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Ice",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Ice",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_IceTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Ice_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 雷元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_ElectricTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Electric",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Electric",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Electric",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Electric",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_ElectricTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Electric_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 草元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_GrassTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Grass",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Grass",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Grass",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Grass",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_GrassTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Grass_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 岩元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_RockTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Rock",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Rock",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Rock",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Rock",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_RockTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Rock_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 风元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_WindTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[			
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Elem_Wind",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Elem_Wind",
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 202,
+					"effectPattern": "Eff_SceneObj_Elem_Wind",
+					"gadgetState": "GearStop",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 203,
+					"effectPattern": "Eff_SceneObj_Elem_Wind",
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_WindTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Stages_ElemTablet_Enabled": ["Audio_SceneObj_Gear_ElemTotem_Wind_Start","Audio_SceneObj_Gear_ElemTotem_Common_Start"],
+							"Enabled_To_Disable": ["Audio_SceneObj_Gear_ElemTotem_Common_Stop"],
+							"Ani_Stages_ElemTablet_Disabled": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+							"Ani_Stages_ElemTablet_Empty": ["Audio_SceneObj_Gear_ElemTotem_Common_Inactive"],
+						},
+					},
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////////////////////////
+//
+// 空元素方碑
+//
+///////////////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Operator_BlankTablet" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+				"scaleX": 1.0,
+				"scaleY": 1.0,
+				"scaleZ": 1.0,
+			},
+			"affectedByWorld": true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieForceDisappearTime" : 3.0,
+			},
+		},
+		"specialPoint":
+		{
+			"bulletAim": "bulletAim",
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+				"abilityName": "SceneObj_Gear_Operator_BlankTablet",
+			},
+			{
+				"abilityID": "Ability_02",
+				"abilityName": "Scene_RockGadget_Summon_Detect",
+			},
+		],
+	},
+},

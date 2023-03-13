@@ -1,0 +1,2047 @@
+
+///触发字典：
+///	  能量堆满
+///	  能量获得
+///	  血量比例
+///	  元素
+///   攻击命中
+///   受击
+///   攻击次数/技能次数   堆叠
+///   某行为之后
+///   内置cd
+///   上下场
+///   缓慢获得
+///   队友有火/水/xx属性
+///   使用者是xx属性
+///   使用者是蒙德/璃月
+///   队友来自蒙德/璃月
+///   角色触发了元素反应
+///   队伍触发元素反应
+///   触发了指定元素反应
+///   敌人有xx元素
+///   受到xx属性伤害
+///   受到xx元素反应。例如受到冰冻时恢复xx血量。可以成为某些地城的对策。
+///   x秒内命中多个怪物。
+///   身边存在x个怪物。
+///   周围存在燃烧/xx/xx反应时，
+///
+
+
+///效果字典：
+///   回血/缓慢持续回血
+///   全队回血
+///   最大生命提升
+///   为血量最低队友回血
+///   体力恢复速度变化
+///   暴击伤害变化
+///   体力恢复
+///   体力上限
+///   攻击/防御/速度提升
+///   全队攻击/防御/速度提升
+///   受治疗提升
+///   治疗效果提升
+///   伤害减轻，xx元素伤害减轻。
+///   能量获得率提升
+///   获得能量，释放消耗能量减轻
+///   获得护盾/元素盾
+///   攻击提升（堆叠
+///   全伤提升
+///   属性伤害提升（类似丹朱圣痕
+///   体力恢复加快
+///   技能冷却减少（-20%这种，不是每次-1s这种）
+///   攻击附带伤害
+///   给敌人debuff
+///	  爬山速度提高？
+///	  重攻击消耗体力减少（大剑）
+///
+///	  如果类似fgo，dnf的数值维度。至少应该有
+///	  攻击力，暴击，爆伤，
+///	  伤害增加（黄字）
+///	  宝具威力增加（技能攻击力）
+///	  某属性伤害增加（属强，红魔放）
+///
+///	  招个特效卖卖萌，实际还是上buff。
+///	  招个怪卖卖萌，实际还是法术场。
+///
+///	  一些负面效果，例如减少攻速/移速/血量
+///	  例如血量永远在50%，高于则燃烧，低于则回血低加成。
+///
+///
+
+///设计手段：
+///	  积累一个效果，当xxx时消耗并触发效果
+
+
+///圣遗物效果：
+/// 触发以受击、血量触发为主
+/// 探索中发动。战斗类：探索/辅助/防御=2:8，
+/// buff为主，数值变化。不太会有打击向。
+/// 有套路的效果。   普攻+100%，技能伤害-50%。
+/// Build：
+/// 自身回血时，对周围敌人造成伤害。
+/// 特效套，攻击附带特效技能。
+/// 强化某种单属性伤害。
+///
+///负面效果：
+///	  速度下降
+///	  cd变长
+///	  受伤增加等
+
+
+///橙装字典：
+///	  将敌人弹开
+///	  持续伤害敌人
+///	  能量/血量缓慢恢复
+///	  增加箭的伤害（大概可行
+///
+
+//PS：武器的ability是加在角色身上的。可以考虑从天赋里拿创意到武器
+
+
+//代码规范：
+//1、attachmodifier。自己加的modifier需要在换武器的时候回收。
+//2、不得在remove时添加modifier，会导致武器卸下后重新上modifier。（不得modifier之间循环调用；A添加B，B添加A需要避免）
+//3、武器技能cd可以用10101技能cd控制，这样就不必添用uniquemodifier的durating控制触发频率了。触发行为应当加检测技能cd的predicates，使得冷却期间不进入具体行为，减少程序消耗。
+//4、实在难以移除的modifier可以在ability的onRemoved中移除。
+
+
+//用于记录武器间通用技能的json，需要注意如果群体作用的，需要在描述注明同效果只生效1个。
+
+
+[
+//这里开始为正式技能
+
+////////////////////////////////////////////////////////////////
+//
+//  1x303系列蒙德武器
+//
+//  每次获得元素能量球时，恢复自身【x】点生命值；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_OnGainEnergyHealHP",
+			"abilityMixins":
+			[
+
+			],
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_OnGainEnergyHealHP_Handler"
+				}
+			],
+			"modifiers":
+			{
+				"UNIQUE_OnGainEnergyHealHP_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByEnergyChangeMixin",
+							"elementTypes":["Electric","Fire","Water","Grass","Ice","Wind","Rock"],
+							"doWhenEnergyMax":true,
+							"onGainEnergyByBall":
+							[
+								{
+									"$type": "HealHP",
+									"amount" : "%HealHP",
+									"target":"Self",
+								},
+							],
+						},
+					]
+				},
+			},
+			"abilitySpecials" :
+			{
+				"HealHP" : 10,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  1x303系列，武器词缀_击杀目标恢复角色固定生命值；
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_HealAmountHPonEnemyKilled",
+			"onAdded" :
+			[
+				{
+					"$type" : "AttachModifier",
+					"modifierName" : "UNIQUE_Common_HealAmountHPonEnemyKilled_Handler"
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Common_HealAmountHPonEnemyKilled_Handler" :
+				{
+					"stacking" : "Unique",
+					"isUnique" : true,
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "AttachModifier",
+							"modifierName" : "Weapon_Common_HealAmountHPonEnemyKilled_Mark",
+							"target" : "Target",
+							"predicates" :
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								// {
+								// 	"$type":"ByTargetHPRatio",
+								// 	"HPRatio":0,
+								// 	"logic":"Greater"
+								// },
+							],
+						},
+						{//这里还是需要加上，目前只对攻击者本身保证onAttackLanded和onKill的顺序，对攻击者的owner没法保证
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								{
+									"$type":"ByTargetGlobalValue",
+									"key":"_ABILITY_GlobalWeapon_Common_HealAmountHPonEnemyKilled_Mark",
+									"value":0,
+									"compareType":"NoneOrEqual",
+								},
+								{
+									"$type":"ByTargetHPRatio",
+									"HPRatio":0,
+									"logic":"LesserOrEqual"
+								},//单机测试，有时会回两次血，提交后再测一下。
+							],
+							"successActions":
+							[
+								{
+									"$type" : "AttachModifier",
+									"modifierName" : "Weapon_Common_HealAmountHPonEnemyKilled_Heal",
+									"target" : "Self",
+								},
+							],
+						},
+					],
+				},
+				"Weapon_Common_HealAmountHPonEnemyKilled_Mark" :
+				{
+					"duration" : 30.0,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"value":1,
+							"key":"_ABILITY_GlobalWeapon_Common_HealAmountHPonEnemyKilled_Mark",
+							"maxValue":1,
+						},
+					],
+					"onKill" :
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "Weapon_Common_HealAmountHPonEnemyKilled_Heal",
+							"target" : "Caster",
+						},
+					],
+				},
+				"Weapon_Common_HealAmountHPonEnemyKilled_Heal" :
+				{
+					"duration" : 1.0,
+					"stacking" : "Multiple",
+					"onAdded" :
+					[
+						{
+							"$type" : "HealHP",
+							"amount" : "%HealAmount",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"HealAmount" : 30.0,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//
+//  1X401
+//
+//  造成的伤害暴击时，有【X%】的概率制造一个通用原子能量球。 需内置cd。 ok
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_GenerateBallWhenCritic",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Common_GenerateBallWhenCritic_Handler"
+				}
+			],
+			"modifiers":
+			{
+				"UNIQUE_Common_GenerateBallWhenCritic_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type":"Randomed",
+							"target":"Target",
+							"chance":"%Rate",
+							"predicates":
+							[
+								{
+									"$type":"ByHitCritical",
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster"],
+								},
+							],
+							"successActions":
+							[
+								{
+									"$type":"AttachModifier",
+									"modifierName":"UNIQUE_Common_GenerateBallWhenCritic",
+									"target":"Self",
+								}
+							],
+						},
+					],
+				},
+				"UNIQUE_Common_GenerateBallWhenCritic" :
+				{
+					"duration": 3,
+					"isUnique":true,
+					"stacking": "Unique",
+					"onAdded":
+					[
+						{
+							"$type": "GenerateElemBall",
+							"configID": 2008,
+							"baseEnergy": 6,
+							"ratio": 1,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"offset" :
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"bornRandom" :
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange":1,
+									"maxRandomRange":3,
+								},
+							},
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate" : 0.4,
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////
+//   后面会是一些脑洞技能测试技能。放到每个武器里实在太难找了，放这里。
+//   后续这里也可能成为金武器的库
+////////////////////////////////////////////////////////////////
+//
+//   普攻重击命中时，概率生成连续弹射的光球。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_BouncingBall",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"test_modify",
+				},
+				{
+					"$type":"AddGlobalValue",
+					"key":"_ABILITY_Weapon_BouncingBall_Times",
+					"value":"%Times",
+					"useLimitRange":true,
+					"maxValue":"%Times",
+					"minValue":"%Times",
+				},
+			],
+			"modifiers":
+			{
+				"test_modify":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachModifierToSelfGlobalValueMixin",
+							"globalValueKey": "_ABILITY_Weapon_Common_BouncingBall",
+							"defaultGlobalValueOnCreate":0,
+							"valueSteps" : [-1.5, -0.5, 0.5],
+							"removeAppliedModifier":true,
+							"modifierNameSteps" : ["UNIQUE_Common_BouncingBall_CD","UNIQUE_Common_BouncingBall_Handler",],
+						},
+					],
+				},
+				"UNIQUE_Common_BouncingBall_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					// "onAdded":
+					// [
+					// ],
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06"]
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								/*{
+									"$type":"BySkillReady",
+									"target":"Self",//用这个可以找到action的self值
+									"skillID":10101,
+								},*/
+							],
+							"successActions":
+							[
+								{
+									"$type":"Randomed",
+									"chance":"%Chance",
+									"successActions":
+									[
+										{
+											"$type":"TriggerBullet",
+											"bulletID":40010005,
+											// "campID":1001,
+											"born":
+											{
+												"$type": "ConfigBornByAttachPoint",
+												"attachPointTargetType":"Self",
+												"attachPointName" : "WeaponR",
+												// "$type":"ConfigBornBySelf",
+												"offset":
+												{
+													"x": 0.0,
+													"y": 0.0,
+													"z": 0.0,
+												},
+												/*"direction":
+												{
+													"$type": "ConfigDirectionByDefault",
+													"angleOffset":
+													{
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0,
+													},
+												},*/
+											},
+											"trackTarget":"SelfAttackTarget",
+											/*"predicates":
+											[
+												{
+													"$type":"ByHasAttackTarget",
+												},
+											],*/
+										},
+										{
+											"$type":"AddGlobalValue",
+											"target":"Self",
+											"key":"_ABILITY_Weapon_Common_BouncingBall",
+											"value":-1,
+											"useLimitRange":true,
+											"maxValue":-1,
+											"minValue":-1,
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Common_BouncingBall_CD":
+				{
+					"duration":"%CDTime",
+					"isUnique":true,
+					"onAdded":
+					[
+						/*{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":"%CDTime*0.1",
+						},*/
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_Common_BouncingBall",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_BouncingBall_Times",
+							"value":"%Times",
+							"useLimitRange":true,
+							"maxValue":"%Times",
+							"minValue":"%Times",
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+
+				},
+			},
+			"abilitySpecials":
+			{
+				"CDTime":10,
+				"Chance":1,
+				"Times":4,
+			},
+		},
+	},
+
+	//下面是子弹的ability
+	//每个子弹都是独一无二的，因为穿不穿透，带什么ability，触发效果是什么都是子弹写死的，这边无法做到引用造型但写独立效果。敢用新效果就必须新建一个id号。
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_BouncingBall_Bullet",
+			"onAdded":
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_Weapon_Arcane_Bullet",
+				},
+				/*{
+					"$type":"AttachEffect",
+					"effectPattern":"Eff_Avatar_VortexSmash_Trail01",
+				},*/
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"OpenCollider",
+				},
+			],
+			"onAbilityStart":
+			[
+				/*{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Weapon_Blast_R30"
+				},*/
+				{
+					"$type":"AddGlobalValue",
+					"target":"Target",
+					"key":"_ABILITY_Weapon_BouncingBall_Rencently_Hit",
+					"value":1,
+				},
+				{
+					"$type":"ApplyModifier",
+					"target":"Target",
+					"modifierName":"Weapon_Mark",//Mark估计是不行的，不然4个玩家用这个弓的话，只能一个人打出链吗？
+				},
+				{
+					"$type" : "TriggerAttackEvent", //连续弹射的可能需要避免aoe，反正找不到目标。
+					"targetType":"Enemy",
+					// "target":"Target",
+					"attackEvent":
+					{
+			        	"attackPattern":
+						{
+			          		"$type": "ConfigAttackSphere",
+			          		"triggerType": "TriggerNoRepeat",
+			          		"radius": 0.4,
+			          		"born":
+							{
+								"$type": "ConfigBornBySelf",
+								"offset":
+								{
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0,
+								},
+							},
+							"born":
+							{
+								"$type":"ConfigBornByCollisionPoint",
+							},
+						},
+						"attackInfo":
+						{
+							"canBeModifiedBy": "OriginOwner",
+							"attackTag":"Weapon_Attack",
+							"attackProperty":
+							{
+								"damagePercentage": "%Rate",
+					  			"strikeType": "Default",
+								"elementType" : "None",
+								"enBreak" : 36,
+							},
+							"hitPattern" :
+							{
+								"onHitEffectName": "Eff_Hit_None_Default_Small",
+								"hitLevel": "Light",	//hitlevel = 0
+								"hitImpulseX": 200,	//hitlevel = 0
+								"hitImpulseY": 0,	//hitlevel = 0
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0,
+								"hitHaltTimeScale" : 0.01,
+								"muteHitText" : false,
+							},
+							"forceCameraShake": false,
+						},
+					},
+				},
+				{
+					"$type":"SetSelfAttackTarget",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR8",
+						"centerBasedOn": "Self",
+						"campTargetType": "Enemy",
+						"campBasedOn": "Self",
+                		"sortType": "Nearest", //从近开始选
+						"topLimit":1
+					},
+					"predicates":
+					[
+						{
+							"$type":"ByEntityTypes",
+							"entityTypes":["Monster",],
+						},
+						{
+							"$type" : "ByTargetGlobalValue",
+							"key" : "_ABILITY_Weapon_BouncingBall_Rencently_Hit",
+							"value" : 0,
+							"compareType" : "NoneOrEqual",
+						},
+					],
+				},
+				{
+					"$type":"TriggerBullet",
+					"bulletID":40010005,
+					"campID":1001,
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset" :
+						{
+							"x": 0,
+							"y": 0,
+							"z": 0,
+						},
+						// "onGround":true,
+						"direction":
+						{
+							"$type":"ConfigDirectionByAttackTarget",
+							"maxAngle":360,
+						},
+					},
+					"trackTarget":"SelfAttackTarget",
+					"predicates":
+					[
+						{
+							"$type":"ByHasAttackTarget",
+						},
+						{
+							"$type":"ByTargetGlobalValue",
+							"target":"Caster",
+							"key":"_ABILITY_Weapon_BouncingBall_Times",
+							"value":1,
+							"compareType":"MoreThanAndEqual"
+						},
+					],
+				},
+				{
+					"$type":"AddGlobalValue",
+					"target":"Caster",
+					"key":"_ABILITY_Weapon_BouncingBall_Times",
+					"value":-1,
+				},
+				/*{
+					"$type":"KillSelf",
+					"target":"Self",
+				},*/
+			],
+			"modifiers":
+			{
+				"OpenCollider":
+				{
+					"duration":0.3,
+					"onRemoved":
+					[
+						/*{
+							"$type":"EnablePushColliderName",
+							"pushColliderNames":["Collider"],
+							"setEnable": true,
+						},*/
+						{
+							"$type":"EnableBulletCollisionPluginTrigger",
+							"setEnable":true,
+						},
+					],
+				},
+				"Weapon_Mark":
+				{
+					"duration":0.6,
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_BouncingBall_Rencently_Hit",
+							"value":-10,
+							"useLimitRange":true,
+							"minValue":0,
+							"maxValue":0,
+						},
+					],
+				},
+			},
+			"abilitySpecials":
+			{
+				"Rate":0.6,//
+			},
+		},
+	},
+
+
+
+////////////////////////////////////////////////////////////////
+//
+//   测试用，传递回血值。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_Test",
+			"onAdded" :
+			[
+				{
+					"$type" : "ApplyModifier",
+					"modifierName" : "UNIQUE_Common_HealAmountHPonEnemyKilled_Handler"
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"AddGlobalValue",
+					"key":"_ABILITY_Heal",
+					"value":1,
+					"useLimitRange":true,
+					"maxValue":0,
+				},
+				{
+					"$type" : "ApplyModifier",
+					"modifierName" : "UNIQUE_Common_HealAmountHPonEnemyKilled_Handler"
+				},
+			],
+			"modifiers" :
+			{
+				"UNIQUE_Common_HealAmountHPonEnemyKilled_Handler" :
+				{
+					"duration":10,
+					"isUnique" : true,
+					"thinkInterval":0.5,
+					"onThinkInterval":
+					[
+						{
+							"$type":"TriggerAbility",
+							"abilityName":"Weapon_Common_Heal",
+							"abilitySpecials":
+							{
+								"Rate":"%Rate",
+								"Dura":10,
+							},
+						},
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Heal",
+							"value":1,
+						},
+						{
+							"$type":"SetGlobalValueToOverrideMap",
+							"globalValueKey":"_ABILITY_Heal",
+							"overrideMapKey":"Rate",
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate":0,
+			},
+		},
+	},
+	{
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_Heal",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "HealHP",
+					"amount" : "%Rate",
+				},
+				{
+					"$type":"FireEffect",
+					"effectPattern":"Eff_Weapon_Blast_R30",
+				},
+			],
+			"abilitySpecials" :
+			{
+				"Rate" :10.0,
+				"aure": 100,
+				"Dura": 5,
+			},
+		},
+	},
+
+//策划自建函数库：
+//
+//   判断函数
+//
+//   %Rate概率命中后触发，需要触发后回到本ability然后选择执行什么（因为要执行什么是无法传递的）
+//
+//   例如  TriggerOnAttack( IsNormalAttack:1, TriggerRate:0.5，CDratio:0.5)
+//
+//   然后执行函数，
+//
+//   HealHp（HPrate：0.1，Amount：100）
+//
+//   这两句就组成了普攻类命中时50%概率触发回血10%+100点，冷却时间5秒这样的逻辑。
+//
+//   但是这两句没法写到一起。ability也不会返回参数，导致无论判断成功与否，执行成功与否都不会反馈，自然就没法选择下一个操作。
+//
+//   另外执行语句的复用性很低，反而不需要要函数。
+
+	{//测试用，金武器附带特效和消散特效。
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_GoldEffect",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"Weapon_GoldEffect",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type":"AttachEffect",
+					"otherTargets":
+					{
+						"$type":"SelectTargetsByEquipParts",
+						"equipPartNames": ["equip01","equip02","sheathPoint"], //这个功能，如果剑在背后就不会生效,需要增加sheathpoint
+					},
+					"effectPattern":"Eff_Weapon_MengdeTag4",
+					"doOffStage":true,
+				},
+			],
+			"modifiers":
+			{
+				"Weapon_GoldEffect":
+				{
+					"modifierMixins":
+					[
+						{
+							"$type":"ReplaceEventPatternMixin",
+							/*"oldPatterns":[
+								"Lady_Sword_Putaway_Standby","Lady_Claymore_Putaway_Standby","Lady_Bow_Putaway_Standby","Lady_Catalyst_Putaway_Standby","Lady_Pole_Putaway_Standby",
+								"Girl_Sword_Putaway_Standby","Girl_Claymore_Putaway_Standby","Girl_Bow_Putaway_Standby","Girl_Catalyst_Putaway_Standby","Girl_Pole_Putaway_Standby",
+								"Male_Sword_Putaway_Standby","Male_Claymore_Putaway_Standby","Male_Bow_Putaway_Standby","Male_Catalyst_Putaway_Standby","Male_Pole_Putaway_Standby",
+								"Boy_Sword_Putaway_Standby","Boy_Claymore_Putaway_Standby","Boy_Bow_Putaway_Standby","Boy_Catalyst_Putaway_Standby","Boy_Pole_Putaway_Standby",
+								"Loli_Sword_Putaway_Standby","Loli_Claymore_Putaway_Standby","Loli_Bow_Putaway_Standby","Loli_Catalyst_Putaway_Standby","Loli_Pole_Putaway_Standby",
+							],
+							"newPatterns":[//这部分pattern暂时放在pattern_manekin文件里
+								"Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby",
+								"Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby",
+								"Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby",
+								"Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby",
+								"Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby","Weapon_Common_Putaway_Standby",
+							],*/
+							"oldPatterns":[
+								"Boy_Sword_Putaway_Standby"
+							],
+							"newPatterns":[//这部分pattern暂时放在pattern_manekin文件里
+								"Weapon_Common_Putaway_Standby"
+							],
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames": ["equip01","equip02","sheathPoint"], //这个功能，如果剑在背后就不会生效,需要增加sheathpoint
+							},
+							"effectPattern":"Eff_Weapon_MengdeTag4",
+							"doOffStage":true,
+						},
+					],
+				},
+			},
+			"abilitySpecials" :
+			{
+			},
+		},
+	},
+	{//测试用，金武器加全元素伤
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_ElementUp",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"Weapon_ElementUp",
+				},
+			],
+			"modifiers":
+			{
+				"Weapon_ElementUp":
+				{
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_FireAddHurtDelta":"%Rate",
+						"Actor_ElecAddHurtDelta":"%Rate",
+						"Actor_WaterAddHurtDelta":"%Rate",
+						"Actor_GrassAddHurtDelta":"%Rate",
+						"Actor_WindAddHurtDelta":"%Rate",
+						"Actor_IceAddHurtDelta":"%Rate",
+						"Actor_RockAddHurtDelta":"%Rate",
+					},
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate":0.08,
+			},
+		},
+	},
+	{//测试用，金武器减冷却
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_CoolDown",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"Weapon_Common_CoolDown",
+				},
+			],
+			"modifiers":
+			{
+				"Weapon_Common_CoolDown":
+				{//冷却时间功能没有，需要程序制作。
+          			"isLimitedProperties": true,
+          			"properties":
+          			{
+          				"Actor_SkillCDMinusRatio":"%Rate",
+          			},
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate":0.5,
+			},
+		},
+	},
+
+	{//测试用，金武器减冷却
+		"Default" :
+		{
+			"$type" : "ConfigAbility",
+			"abilityName" : "Weapon_Common_ElementResist",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"Weapon_Common_ElementResist",
+				},
+			],
+			"modifiers":
+			{
+				"Weapon_Common_ElementResist":
+				{//冷却时间功能没有，需要程序制作。
+          			"isLimitedProperties": true,
+          			"properties":
+          			{
+          				"Actor_FireSubHurtDelta":"%Rate",
+          				"Actor_ElecSubHurtDelta":"%Rate",
+          				"Actor_WaterSubHurtDelta":"%Rate",
+          				"Actor_GrassSubHurtDelta":"%Rate",
+          				"Actor_WindSubHurtDelta":"%Rate",
+          				"Actor_IceSubHurtDelta":"%Rate",
+          				"Actor_RockSubHurtDelta":"%Rate",
+          			},
+				},
+			},
+			"abilitySpecials" :
+			{
+				"Rate":0.05,
+			},
+		},
+	},
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+//
+//   攻速提升20% 测试版
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_SpeedUp",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Common_AttackSpeedUp_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Common_AttackSpeedUp_Handler":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToStateIDMixin",
+							"stateIDs": ["Attack01_BS","Attack01","Attack02","Attack03","Attack04","Attack05","Attack06","ShootBS","Shoot","Aim","FastAim","ExtraAttack","ExtraAttack1","ExtraAttack2","ExtraAttack3","ExtraAttack_BS","ExtraAttack_AS"],
+							"modifierName": "UNIQUE_Common_AttackSpeedUp",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"UNIQUE_Common_AttackSpeedUp",
+							"doOffStage":true,
+						}
+					],
+				},
+				"UNIQUE_Common_AttackSpeedUp":
+				{
+					"isUnique":true,
+					"isLimitedProperties":true,
+					"state":"SpeedUp",
+					"properties":
+					{
+						"Animator_OverallSpeedRatio" : "%Rate",
+					},
+				},
+			},
+		    "abilitySpecials":
+		    {
+		      "Rate": 0.2,
+		    },
+	},
+},
+
+
+////////////////////////////////////////////////////////////////
+//
+//   攻速下降
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_SpeedDown",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Common_AttackSpeedDown_Handler",
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Common_AttackSpeedDown_Handler":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type": "AttachToStateIDMixin",
+							"stateIDs": ["Attack01","Attack02","Attack03","Attack04","Attack05","Attack06","ShootBS","Shoot","Aim","Lisa_Attack01","Lisa_Attack02","Lisa_Attack03","Lisa_Attack04","Ningguang_Attack01","Ningguang_Attack02","Ningguang_Attack03","Ningguang_Attack04","Barbara_Attack01","Barbara_Attack02","Barbara_Attack03","Barbara_Attack04"],
+							"modifierName": "UNIQUE_Common_AttackSpeedDown",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"UNIQUE_Common_AttackSpeedDown",
+							"doOffStage":true,
+						}
+					],
+				},
+				"UNIQUE_Common_AttackSpeedDown":
+				{
+					"isUnique":true,
+					"isLimitedProperties":true,
+					"state":"SpeedDown",
+					"properties":
+					{
+						"Animator_OverallSpeedRatio" : "%Rate",
+					},
+				},
+			},
+      "abilitySpecials": {
+        "Rate": -0.2,
+      },
+	},
+},
+
+
+////////////////////////////////////////////////////////////////
+//
+//   普攻、重击命中时，概率生成一个不断吸人的法阵，持续造成伤害    已测试 2019.11.28  后续想做成必须击杀敌人才能重获充能。
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_AttractField",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Weapon_Common_AttractField",
+					"defaultGlobalValueOnCreate":0,
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_Common_AttractField_CD","UNIQUE_Common_AttractField_Handler",],
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Common_AttractField_Handler":
+				{
+					"stacking":"Unique",
+					"isUnique":true,
+					"onAttackLanded":
+					[
+						{
+							"$type" : "Predicated",
+							"target" : "Target",
+							"targetPredicates":
+							[
+								{
+									"$type":"ByAttackTags",
+									"attackTags": ["NormalAttack_01","NormalAttack_02","NormalAttack_03","NormalAttack_04","NormalAttack_05","NormalAttack_06","ExtraAttack"]
+								},
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Monster",],
+								},
+								/*{
+									"$type":"BySkillReady",
+									"target":"Self",//用这个可以找到action的self值
+									"skillID":10101,
+								},*/
+							],
+							"successActions":
+							[
+								{
+									"$type":"FireEffect",
+									"effectPattern":"Eff_Weapon_Blast_R30",
+								},
+								{
+									"$type":"Randomed",
+									"target":"Target",
+									"chance":"%Chance",
+									"successActions":
+									[
+										{
+											"$type":"CreateGadget",
+											"gadgetID":40020002,
+											"campID":1001,
+											"target":"Target",
+											"born":
+											{
+												"$type": "ConfigBornByTarget",
+												"offset":
+												{
+													"x": 0.0,
+													"y": 0.0,
+													"z": 0.0,
+												},
+												"onGround":true,
+												"alongGround":true,
+											},
+										},
+										{
+											"$type":"FireEffect",
+											"effectPattern":"Eff_Weapon_MusicBlast",
+										},
+										{
+											"$type":"AddGlobalValue",
+											"target":"Self",
+											"key":"_ABILITY_Weapon_Common_AttractField",
+											"value":-1,
+											"useLimitRange":true,
+											"maxValue":-1,
+											"minValue":-1,
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Common_AttractField_CD":
+				{
+					"duration":"%CDTime",
+					"isUnique":true,
+					"onAdded":
+					[
+						{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":"%CDTime*0.1",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Weapon_Common_AttractField",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+
+				},
+			},
+			"abilitySpecials":
+			{
+				"CDTime":20,
+				"Chance":1,
+			},
+		},
+	},
+//	下面是gadget的ability
+
+ 	{
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_AttractField",
+            "onAdded":
+            [
+            	{
+            		"$type":"AttachEffect",
+            		"effectPattern":"Eff_Avatar_VortexSmash_Charge_01",
+            		"born":
+            		{
+            			"$type":"ConfigBornBySelf",
+            			"Offset":
+            			{
+            				"x":0,
+            				"y":0,
+            				"z":-1,
+            			},
+            		},
+            	},
+            	{
+            		"$type":"AttachModifier",
+            		"modifierName":"Attract_And_Harm",
+            	},
+            ],
+            "modifiers":
+            {
+            	"Attract_And_Harm":
+            	{
+            		"duration":4,//双保险而已
+            		"modifierMixins":
+            		[
+            			{
+            				"$type":"WindZoneMixin",
+            				"strength":4.5,
+            				"innerRadius":1,
+            				"shapeName":"CircleR5",
+            				"targetType":"Enemy"
+            			},
+            		],
+            		"thinkInterval":0.6,
+            		"onThinkInterval":
+            		[
+            			{
+            				"$type": "TriggerAttackEvent",
+                            "born":
+                            {
+                                "$type": "ConfigBornBySelf",
+                            },
+                            "targetType": "Enemy",
+                            "attackEvent":
+                            {
+                                "attackPattern":
+                                {
+                                    "$type": "ConfigAttackCircle",
+                                    "triggerType": "TriggerNoRepeat",
+                                    "fanAngle": 360.0,
+                                    "radius": 3,
+                                    "born":
+                                    {
+                                        "$type": "ConfigBornByTarget",
+                                        "offset":
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                        },
+                                    },
+                                },
+                                "attackInfo":
+                                {
+                                    "attackTag": "WeaponSkill",
+                                    "attackProperty":
+                                    {
+                                        "damagePercentage": "%Damage",
+                                        "elementType": "None",
+                                        "strikeType": "Default",
+                                        "enBreak": 0,
+                                    },
+                                    "hitPattern":
+                                    {
+                                        "onHitEffectName": "default",
+                                        "hitLevel": "Light", //hitlevel = 3
+                                        "hitImpulseX": 200, //hitlevel = 3
+                                        "hitImpulseY": 0, //hitlevel = 3
+                                        "reboundRatio": 0,
+                                        "canBeDefenceHalt": true,
+                                        "hitHaltTime": 0.00,
+                                        "hitHaltTimeScale": 0.01,
+                                        "muteHitText": false
+                                    },
+                                    "forceCameraShake": false,
+                                },
+                            },
+                        },
+            		],
+            	},
+            },
+            "abilitySpecials":
+            {
+            	"Damage":0.2,
+            },
+        },
+    },
+
+
+////////////////////////////////////////////////////////////////
+//
+//   击杀生成一个回血阵   已测试 2019.11.28
+//
+////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_HealFieldWhenKill",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Common_HealFieldWhenKill_Handler",
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Common_HealFieldWhenKill",
+					"defaultGlobalValueOnCreate":0,
+					"valueSteps" : [-1.5, -0.5, 0.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["UNIQUE_Common_HealFieldWhenKill_CD","UNIQUE_Common_HealFieldWhenKill_Handler",],
+				},
+			],
+			"modifiers":
+			{
+				"UNIQUE_Common_HealFieldWhenKill_Handler":
+				{
+					"isUnique":true,
+					"modifierMixins":
+					[
+						{
+							"$type":"DoActionByKillingMixin",
+							"detectWindow":0.3,
+							"onKill":
+							[
+								{
+									"$type":"Predicated", //务必要用这个写法，不然other无法传递给predicate
+									"target":"Other",
+									"targetPredicates":
+									[
+										{
+											"$type":"ByEntityTypes",
+											"target":"Target",
+											"entityTypes":["Monster",],
+										},
+										{
+											"$type":"BySkillReady",
+											"target":"Self",
+											"skillID":10101,
+										},
+									],
+									"successActions":
+									[
+										{
+											"$type":"Randomed",
+											"chance":"%Rate",
+											"successActions"://这里不适合modifier完成，换到modifier就没有target信息了。
+											[
+												{
+													"$type":"CreateGadget",
+													"target":"Target",
+													"gadgetID":40020001,
+													"campID":1001,
+													"born":
+													{
+														"$type":"ConfigBornByTarget",
+														"offset":
+														{
+															"x": 0.0,
+															"y": 0.0,
+															"z": 0.0,
+														},
+														"onGround":true,
+														"alongGround":true,
+													},
+												},
+												{
+													"$type":"AddGlobalValue",
+													"key":"_ABILITY_Common_HealFieldWhenKill",
+													"value":-1,
+													"useLimitRange":true,
+													"maxValue":-1,
+													"minValue":-1,
+												},
+											]
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Common_HealFieldWhenKill_CD":
+				{
+					"isUnique":true,
+					"duration":"%CDTime",
+					"onAdded":
+					[
+						{
+							"$type":"AvatarSkillStart",
+							"skillID":10101,
+							"cdRatio":"%CDTime*0.1",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Common_HealFieldWhenKill",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":0,
+							"minValue":0,
+							"doOffStage":true,//这个非常重要。。必须场下也能改回去。
+						},
+					],
+				},
+			},
+		    "abilitySpecials":
+		    {
+		      "Rate": 1,
+		      "CDTime":20,
+		    },
+		},
+	},
+///下面是gadget的ability
+
+ 	{
+        "Default":
+        {
+            "$type": "ConfigAbility",
+            "abilityName": "Weapon_HealField",
+            "onAdded":
+            [
+            	{
+            		"$type":"AttachEffect",
+            		"effectPattern":"Eff_Qin_DandelionWind",
+            	},
+            	{
+            		"$type":"AttachModifier",
+            		"modifierName":"UNIQUE_HealField",
+            	},
+            ],
+            "modifiers":
+            {
+            	"UNIQUE_HealField":
+            	{
+            		"isUnique":true,
+            		"duration":6.5,//双保险而已
+            		"thinkInterval":1.5,
+            		"onThinkInterval":
+            		[
+            			{
+            				"$type": "HealHP",
+            				"otherTargets":
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR6",
+								"centerBasedOn": "Self",
+								"campTargetType": "Alliance",
+								"campBasedOn": "Owner",
+							},
+							"predicates":
+							[
+								{
+									"$type":"ByEntityTypes",
+									"entityTypes" : ["Avatar"],
+								},
+							],
+            				"amount":"%HealHP",
+                        },
+            		],
+            	},
+            },
+            "abilitySpecials":
+            {
+            	"HealHP":100,
+            },
+        },
+    },
+
+////////////////////////////////////////////////////////////////
+//
+//   受击时获得10%最大生命护盾，持续6秒。持续时间到或护盾被击破时，爆炸造成200%g攻击力伤害。
+//
+////////////////////////////////////////////////////////////////
+   // {
+   //      "Default":
+   //      {
+   //          "$type": "ConfigAbility",
+   //          "abilityName": "Weapon_Common_GetShield&EXplode",
+   //          "abilityMixins":
+   //          [
+   //             /* {
+   //                  "$type": "AttachModifierToSelfGlobalValueMixin", // 类似于一个永续的转换器，每次全局值变动就会apply一个modifier.(并不是只在apply时生效一次)，初始globalvalue会被设成0.
+   //                  "globalValueKey": "_ABILITY_Weapon_Common_GetShield&EXplode", //不配置初始值的话默认为0
+   //                  "valueSteps": [ -1.5, -0.5, 0.5 ],
+   //                  "removeAppliedModifier": true,
+   //                  "modifierNameSteps":["UNIQUE_Common_GetShield&EXplode_CD", "UNIQUE_Common_GetShield&EXplode_Handler",],
+   //              },*/
+   //          ],
+   //          "onAdded":
+   //          [
+   //              {
+   //              	"$type":"AttachModifier",
+   //              	"modifierName":"test_modify",
+   //              }
+   //          ],
+   //          "modifiers":
+   //          {
+   //          	"test_modify":
+			// 	{
+			// 		"modifierMixins":
+			// 		[
+			// 			{
+		 //                    "$type": "AttachModifierToSelfGlobalValueMixin", // 类似于一个永续的转换器，每次全局值变动就会apply一个modifier.(并不是只在apply时生效一次)，初始globalvalue会被设成0.
+		 //                    "globalValueKey": "_ABILITY_Weapon_Common_GetShield&EXplode", //不配置初始值的话默认为0
+		 //                    "valueSteps": [ -1.5, -0.5, 0.5 ],
+		 //                    "removeAppliedModifier": true,
+		 //                    "modifierNameSteps":["UNIQUE_Common_GetShield&EXplode_CD", "UNIQUE_Common_GetShield&EXplode_Handler",],
+		 //                },
+			// 		],
+			// 	},
+   //              "UNIQUE_Common_GetShield&EXplode_Handler": //控制一下效果触发的周期
+   //              {
+   //                  "stacking": "Unique",
+   //                  "isUnique": true,
+   //                  "onBeingHit":
+   //                  [
+   //                      {
+   //                          "$type": "AddGlobalValue",
+   //                          "key": "_ABILITY_Weapon_Common_GetShield&EXplode",
+   //                          "value": -1,
+   //                          "useLimitRange": true,
+   //                          "maxValue": -1,
+   //                          "minValue": -1,
+   //                          "predicates":
+   //                          [
+   //                             /* {
+   //                                  "$type": "BySkillReady",
+   //                                  "skillID": 10101,
+   //                              },*/
+   //                              {
+   //                                  "$type":"ByHitDamage",
+   //                                  "damage":1,
+   //                                  "compareType":"GreaterOrEqual",
+   //                              },
+   //                          ],
+   //                      },
+   //                  ],
+   //              },
+   //              "UNIQUE_Common_GetShield&EXplode_CD":
+   //              {
+   //                  "duration": "%CDTime",
+   //                  "stacking": "Unique",
+   //                  "isUnique": true,
+   //                  "onAdded":
+   //                  [
+   //                      /*{
+   //                          "$type": "AvatarSkillStart",
+   //                          "skillID": 10101,
+   //                          "cdRatio": "%CDTime*0.1",
+   //                      },*/
+   //                      {
+   //                          "$type": "AttachModifier",
+   //                          "modifierName": "UNIQUE_Common_GetShield&EXplode_Shield",
+   //                          "target": "Self",
+   //                      },
+   //                  ],
+   //                  "onRemoved": //在ability移除的时候，还会把key重置为0.所以一定要注意remove时一定是恢复全局值到默认值（0）
+   //                  [
+   //                      {
+   //                          "$type": "AddGlobalValue",
+   //                          "key": "_ABILITY_Weapon_Common_GetShield&EXplode",
+   //                          "value": 1,
+   //                          "useLimitRange": true,
+   //                          "maxValue": 0,
+   //                          "minValue": 0,
+   //                          "doOffStage": true, //这个非常重要。。必须场下也能改回去。
+   //                      },
+   //                  ],
+   //              },
+   //              "UNIQUE_Common_GetShield&EXplode_Shield":
+   //              {
+   //                  "duration": 6.0,
+   //                  "stacking": "Unique",
+   //                  "isUnique": true,
+   //                  "onAdded":
+   //                  [
+   //                      {
+   //                          "$type": "AttachEffect",
+   //                          "effectPattern": "Eff_Avatar_Properties_Shield",
+   //                      },
+   //                  ],
+   //                  "modifierMixins":
+   //                  [
+   //                      {
+   //                          "$type": "EliteShieldMixin",
+   //                          "elementType": "None",
+   //                          "shieldHPRatio": "%Rate",
+   //                          // "costShieldRatioName" : "costShieldRatio",
+   //                          "showDamageText": "INFO_ELITE_DEFENCE",
+   //                          "onShieldBroken":
+   //                          [
+   //                              {
+   //                                  "$type": "FireEffect",
+   //                                  "effectPattern": "Eff_Avatar_Properties_Shield_AS",
+   //                              },
+   //                              {
+   //                              	"$Type":"FireEffect",
+   //                              	"effectPattern":"Eff_Weapon_Blast_R30",
+   //                              },
+   //                              {
+   //                                  "$type": "TriggerAttackEvent",
+   //                                  "born":
+   //                                  {
+   //                                      "$type": "ConfigBornBySelf",
+   //                                  },
+   //                                  "targetType": "Enemy",
+   //                                  "attackEvent":
+   //                                  {
+   //                                      "attackPattern":
+   //                                      {
+   //                                          "$type": "ConfigAttackCircle",
+   //                                          "triggerType": "TriggerNoRepeat",
+   //                                          "fanAngle": 360.0,
+   //                                          "radius": 3,
+   //                                          "born":
+   //                                          {
+   //                                              "$type": "ConfigBornByTarget",
+   //                                              "offset":
+   //                                              {
+   //                                                  "x": 0.0,
+   //                                                  "y": 0.0,
+   //                                                  "z": 0.0,
+   //                                              },
+   //                                          },
+   //                                      },
+   //                                      "attackInfo":
+   //                                      {
+   //                                          "attackTag": "WeaponSkill",
+   //                                          "attackProperty":
+   //                                          {
+   //                                              "damagePercentage": "%Damage",
+   //                                              "elementType": "None",
+   //                                              "strikeType": "Default",
+   //                                              "enBreak": 0,
+   //                                          },
+   //                                          "hitPattern":
+   //                                          {
+   //                                              "onHitEffectName": "default",
+   //                                              "hitLevel": "Light", //hitlevel = 3
+   //                                              "hitImpulseX": 200, //hitlevel = 3
+   //                                              "hitImpulseY": 0, //hitlevel = 3
+   //                                              "reboundRatio": 0,
+   //                                              "canBeDefenceHalt": true,
+   //                                              "hitHaltTime": 0.00,
+   //                                              "hitHaltTimeScale": 0.01,
+   //                                              "muteHitText": false
+   //                                          },
+   //                                          "forceCameraShake": false,
+   //                                      },
+   //                                  },
+   //                              },
+   //                          ],
+   //                      },
+   //                  ],
+   //                  "onKill":
+   //                  [
+   //                      {
+   //                          "$type": "RemoveUniqueModifier",
+   //                          "modifierName": "UNIQUE_Common_GetShield&EXplode_Shield",
+   //                      },
+   //                  ],
+   //                 /* "onRemoved":
+   //                  [
+   //                  	{
+
+   //                  	},
+   //                  ],*/
+   //              }
+   //          },
+   //          "abilitySpecials":
+   //          {
+   //              "Rate": 0.1,
+   //              "CDTime": 20,
+   //              "Damage":2,
+   //          },
+   //      },
+   //  },
+
+
+
+////////////////////////////////////////////////////////////////
+//
+//   未受到伤害时（血量降低）
+//
+///////////////////////////////////////////////////////////////
+
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Weapon_Common_DamageUp",
+			"onAdded":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Catalyst_Fourwinds_Handler"
+				},
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Catalyst_Fourwinds_MoveSpeed"
+				}
+			],
+			"onAvatarIn":
+			[
+				{
+					"$type":"AttachModifier",
+					"modifierName":"UNIQUE_Catalyst_Fourwinds_Handler",
+				},
+			],
+			"onAvatarOut":
+			[
+				{
+					"$type":"RemoveUniqueModifier",
+					"modifierName":"UNIQUE_Catalyst_Fourwinds_Handler",
+					"doOffStage":true,
+				},
+				{
+					"$type":"AddGlobalValue",
+					"key":"_ABILITY_Catalyst_Fourwinds_AttackBuffLevel",
+					"value" : -100,
+					"useLimitRange" : true,
+					"maxValue" : 4,
+					"minValue" : 0,
+					"doOffStage":true,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachModifierToSelfGlobalValueMixin",
+					"globalValueKey": "_ABILITY_Catalyst_Fourwinds_AttackBuffLevel",
+					"defaultGlobalValueOnCreate":0,
+					"valueSteps" : [-0.5,0.5,1.5,2.5,3.5,4.5],
+					"removeAppliedModifier":true,
+					"modifierNameSteps" : ["Blank","UNIQUE_Catalyst_FourwindsBuff1","UNIQUE_Catalyst_FourwindsBuff2","UNIQUE_Catalyst_FourwindsBuff3","UNIQUE_Catalyst_FourwindsBuff4"],
+				},
+			],
+			"onKill":
+			[
+			],
+			"modifiers":
+			{
+				"Blank":
+				{},
+				"UNIQUE_Catalyst_Fourwinds_Handler":
+				{
+					"isUnique":true,
+					"thinkInterval":4,//这个在后场应该不会生效。所以不用特意写in/out操作。
+					"onThinkInterval":
+					[
+						{
+							"$type":"AttachModifier",
+							"modifierName":"UNIQUE_Catalyst_FourwindsBuffTime",
+						},
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Catalyst_Fourwinds_AttackBuffLevel",
+							"value":1,
+							"useLimitRange":true,
+							"maxValue":4,
+						},
+					],
+				},
+				"UNIQUE_Catalyst_FourwindsBuffTime"://properties值并不会实时更新，只能删掉modifier重加的时候才会更新。所以加攻不能放在这里。
+				{
+					"isUnique":true,
+					"duration":6,
+					"stacking":"Refresh",
+					"onRemoved":
+					[
+						{
+							"$type":"AddGlobalValue",
+							"key":"_ABILITY_Catalyst_Fourwinds_AttackBuffLevel",
+							"value" : -100,
+							"useLimitRange" : true,
+							"maxValue" : 4,
+							"minValue" : 0,
+							"doOffStage":true,
+						},
+					],
+				},
+				"UNIQUE_Catalyst_FourwindsBuff1":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Weapon_MengdeTag1",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames" : ["equip01","equip02","sheathPoint"],
+							},
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+							},
+						},
+					],
+					"isUnique":true,
+					// "state":"AttackUp",//持续特效很烦，别用
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_FireAddHurtDelta":"%Rate",
+						"Actor_ElecAddHurtDelta":"%Rate",
+						"Actor_WaterAddHurtDelta":"%Rate",
+						"Actor_GrassAddHurtDelta":"%Rate",
+						"Actor_WindAddHurtDelta":"%Rate",
+						"Actor_IceAddHurtDelta":"%Rate",
+						"Actor_RockAddHurtDelta":"%Rate",
+					},
+				},
+				"UNIQUE_Catalyst_FourwindsBuff2":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Weapon_MengdeTag2",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames" : ["equip01","equip02","sheathPoint"],
+							},
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+							},
+						},
+					],
+					"isUnique":true,
+					// "state":"AttackUp",
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_FireAddHurtDelta":"%Rate*2",
+						"Actor_ElecAddHurtDelta":"%Rate*2",
+						"Actor_WaterAddHurtDelta":"%Rate*2",
+						"Actor_GrassAddHurtDelta":"%Rate*2",
+						"Actor_WindAddHurtDelta":"%Rate*2",
+						"Actor_IceAddHurtDelta":"%Rate*2",
+						"Actor_RockAddHurtDelta":"%Rate*2",
+					},
+				},
+				"UNIQUE_Catalyst_FourwindsBuff3":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Weapon_MengdeTag3",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames" : ["equip01","equip02","sheathPoint"],
+							},
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+							},
+						},
+					],
+					"isUnique":true,
+					// "state":"AttackUp",
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_FireAddHurtDelta":"%Rate*3",
+						"Actor_ElecAddHurtDelta":"%Rate*3",
+						"Actor_WaterAddHurtDelta":"%Rate*3",
+						"Actor_GrassAddHurtDelta":"%Rate*3",
+						"Actor_WindAddHurtDelta":"%Rate*3",
+						"Actor_IceAddHurtDelta":"%Rate*3",
+						"Actor_RockAddHurtDelta":"%Rate*3",
+					},
+				},
+				"UNIQUE_Catalyst_FourwindsBuff4":
+				{
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern":"Eff_Weapon_MengdeTag4",
+							"otherTargets":
+							{
+								"$type":"SelectTargetsByEquipParts",
+								"equipPartNames" : ["equip01","equip02","sheathPoint"],
+							},
+							"born":
+							{
+								"$type":"ConfigBornByTarget",
+							},
+						},
+					],
+					"isUnique":true,
+					// "state":"AttackUp",
+          			"isLimitedProperties": true,
+					"properties":
+					{
+						"Actor_FireAddHurtDelta":"%Rate*4",
+						"Actor_ElecAddHurtDelta":"%Rate*4",
+						"Actor_WaterAddHurtDelta":"%Rate*4",
+						"Actor_GrassAddHurtDelta":"%Rate*4",
+						"Actor_WindAddHurtDelta":"%Rate*4",
+						"Actor_IceAddHurtDelta":"%Rate*4",
+						"Actor_RockAddHurtDelta":"%Rate*4",
+					},
+				},
+				"UNIQUE_Catalyst_Fourwinds_MoveSpeed":
+				{
+					"isUnique":true,
+					"isLimitedProperties": true,
+					"properties":
+					{
+
+						"Animator_MoveSpeedRatio":"%Speed",
+					},
+				},
+			},
+			"abilitySpecials":
+			{
+				"Speed":0,
+				"Rate":0,
+			},
+		},
+	},
+
+
+]

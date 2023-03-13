@@ -1,0 +1,3203 @@
+{
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElectricBarrage
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElectricBarrage" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 9,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+/*			"stickToGround":
+			{
+				"$type" : "ConfigMoveStickToGround",
+				"heightToGround" : 0.5,
+				"flexibleRange" : 0.25,
+				"maxStepHeight" : 1,
+				"maxSlopeAngle" : 40,
+				"isStickToWater" : false,
+				"unstickWhenDownSlide": "Destroy",
+				"unstickWhenUpSlide" : "Destroy",
+			},*/
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene" : false,
+				"ignoreWater" : true,
+				"bornWithTriggerEnabled": false,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Monster_Effigy_ElectricBarrage_Hit",
+				},
+			],
+			"triggerLifeOverActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Monster_Effigy_ElectricBarrage_AS",
+				},
+			],
+			"killByOther" : false,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Monster_Effigy_ElectricBarrage_Effect",
+
+				"abilityName":"Monster_Effigy_ElectricBarrage_Effect",
+			},
+			{
+				"abilityID": "Monster_Effigy_ElectricBarrage_Hit",
+
+				"abilityName":"Monster_Effigy_ElectricBarrage_Hit",
+			},
+			{
+				"abilityID": "Monster_Effigy_ElectricBarrage_AS",
+
+				"abilityName":"Monster_Effigy_ElectricBarrage_AS",
+			},
+			{
+				"abilityID": "Monster_Effigy_ElectricBarrage_BulletTrigger",
+
+				"abilityName":"Monster_Effigy_ElectricBarrage_BulletTrigger",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElectricBullet
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElectricBullet" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"scale":1,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 25,
+			"acceleration" : 10,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"delay":0.5,
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene" : false,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Monster_Effigy_ElectricBullet_Hit",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Monster_Effigy_ElectricBullet_Hit",
+
+				"abilityName":"Monster_Effigy_ElectricBullet_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_ElectricBarrageEmitter
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_ElectricBarrageEmitter" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 15.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"Idle":
+					{
+						"$type": "ConfigMonsterStateIDInfo",
+						"animatorStates":
+						{
+							"Idle": [],
+						},
+						"combatMove": true,
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Monster_Eggify_Electric_ElectricBarrage",
+				
+				"abilityName" : "Monster_Eggify_Electric_ElectricBarrage"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_ElectricDefenceCentre
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_ElectricDefenceCentre" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 25.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Monster_Eggify_Electric_CreateElectricDefencePart",
+				
+				"abilityName" : "Monster_Eggify_Electric_CreateElectricDefencePart"
+			},
+			{
+				"abilityID": "ElectricDefenceCentre_KillDefencePart",
+				
+				"abilityName" : "ElectricDefenceCentre_KillDefencePart"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_ElectricDefencePart
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_ElectricDefencePart" :
+	{
+		"$type" : "ConfigGadget",
+		//"hasModel": true,
+		"common" :
+		{
+			"viewSize": 1,
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachMesh",
+				"mesh": "EffectMesh",
+			},
+			"affectedByWorld": false,
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2.5,
+				"z": 0,
+			},
+			"radiusOffset": 0.5,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"shieldBarOnly":true,
+			"size": "Normal",
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 5000,
+				"attack" : 10,
+				"defense" : 0,
+				"weight" : 9999,
+				"isLockHP": false,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 25,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "ElectricDefencePart_CreateCurrent",
+				
+				"abilityName" : "ElectricDefencePart_CreateCurrent"
+			},
+			{
+				"abilityID": "ElectricDefencePart_ElementShield",
+				
+				"abilityName" : "ElectricDefencePart_ElementShield"
+			},
+			{
+				"abilityID": "ElectricDefencePart_SetGlobalValue",
+				
+				"abilityName" : "ElectricDefencePart_SetGlobalValue"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_DefencePartCurrent
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_DefencePartCurrent" :
+	{
+		"$type" : "ConfigGadget",
+		//"hasModel": true,
+		"common" :
+		{
+			"viewSize": 1,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 5000,
+				"attack" : 10,
+				"defense" : 0,
+				"weight" : 150,
+				"isLockHP": true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": true,
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadget":
+		{
+			"$type": "ConfigGadgetCollidedPattern",
+			"collision":
+			{
+				"targetType": "All",
+				"triggerType": "TriggerAlways",
+				"triggerCD": 0.25,
+			},
+			"collisionActions":
+			[
+				{
+					"$type": "ConfigGadgetTriggerAbility",
+					"abilityName": "Monster_Eggify_Electric_DefencePartAttack",
+				},
+			],
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 25,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Monster_Eggify_Electric_DefencePartAttack",
+				
+				"abilityName" : "Monster_Eggify_Electric_DefencePartAttack"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_InitialPos
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_InitialPos" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 9999.0,			//存在时间	
+			"lifeInfinite" : true,			
+		},
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_RushPos
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_RushPos" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 20.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_ThunderDrop
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_ThunderDrop" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 5.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ThunderDrop_Damage",
+				
+				"abilityName" : "Effigy_ThunderDrop_Damage"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_AreaAtkLaser
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_AreaAtkLaser" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 5.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_RebornPart
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_RebornPart" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"weight" : 9999,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 13.5,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1,
+				"z": 0,
+			},
+			"radiusOffset": 0.5,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"shieldBarOnly":true,
+			"size": "Big",
+			"forceShowDistance": 48,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RebornPart_ElementShield",
+				
+				"abilityName" : "Effigy_RebornPart_ElementShield"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_CreateRebornPart
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_CreateRebornPart" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"scale":1,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerParabolaBulletMove",
+			"speed" : 5.0,
+			"straightRange" : 2.0,
+			"gravityOfAcceleration" : 15.0,
+			"airResistance" : 0.01,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 1,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_CreateRebornPart_Loop",
+
+				"abilityName":"Effigy_CreateRebornPart_Loop",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_WindFall
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_WindFall" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type": "ConfigParabolaBulletMove",
+			"speed": 120.0,
+			"angleOffHor": -90,
+			"gravityOfAcceleration": 100.0,
+			"canBornInWater": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "AllExceptSelf",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": false,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_WindFall_Hit",
+				},
+			],
+			"killByOther" : false,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_WindFall_Hit",
+
+				"abilityName":"Effigy_WindFall_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_WindFallPosition
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_WindFallPosition" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 20.0,			//存在时间	
+			"lifeInfinite" : true,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_WindFallPosition_CreateWindFall",
+
+				"abilityName":"Effigy_WindFallPosition_CreateWindFall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_AirFlow
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_AirFlow" :
+	{
+		"$type" : "ConfigGadget",
+		"misc" :
+		{
+			"forceField" :
+			{
+				"$type": "ConfigAirflowField",
+				"velocity" : 10,
+				"scale": 1.0
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 15.0,			//存在时间			
+		},
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_TornadoEmitter
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_TornadoEmitter" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 60,			//存在时间	
+			"lifeInfinite" : true,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_TornadoEmitter_CreateStaticElemBallBullet",
+				
+				"abilityName" : "Effigy_TornadoEmitter_CreateStaticElemBallBullet",
+			},
+			{
+				"abilityID": "Effigy_TornadoEmitter_CreateElemBallBullet",
+				
+				"abilityName" : "Effigy_TornadoEmitter_CreateElemBallBullet",
+			},
+			{
+				"abilityID": "Effigy_TornadoEmitter_CreateTornado",
+				
+				"abilityName" : "Effigy_TornadoEmitter_CreateTornado",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_Tornado
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_Tornado" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"move" :
+		{
+			"$type" : "ConfigPinballBulletMove",
+			"speed" : 4.5,
+			"radius" : 5,
+			"delay": 0.25,
+			"anglerVelocity": 3600.0,
+			"traceOnYAxis" : true,
+			"destroyWhenTargetDie": false,
+			"randomBackAngleAdded": 60.0,
+			"reboundInterval": 0.2,
+			"outOfRangeFixCD": 0.5,
+			"velocityForce":
+			{
+				//WindZone单位不吃风的力
+				"excludeForces": ["WindZoneType","AirflowType","RiseType","SpeedupType","AirflowAccType"],
+			},
+			"stickToGround":
+			{
+				"$type" : "ConfigMoveStickToGround",
+				"heightToGround" : 0.5,
+				"flexibleRange" : 0.25,
+				"maxStepHeight" : 1,
+				"maxSlopeAngle" : 60,
+				"isStickToWater" : true,
+				"unstickWhenDownSlide": "Keep",
+				"unstickWhenUpSlide": "Stay",
+			},
+			"canBornInWater": true,
+		},
+		"timer":
+		{
+			"lifeTime" : 15,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_Tornado_State",
+				
+				"abilityName" : "Effigy_Tornado_State",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Wind
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Wind" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 50.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": true
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_GenerateWindElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_GenerateWindElemBall",
+				"abilityName":"Effigy_StaticElementBall_GenerateWindElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Fire
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Fire" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 50.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": true
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_GenerateFireElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_GenerateFireElemBall",
+				"abilityName":"Effigy_StaticElementBall_GenerateFireElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Electric
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Electric" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 50.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": true
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_GenerateElectricElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_GenerateElectricElemBall",
+				"abilityName":"Effigy_StaticElementBall_GenerateElectricElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Water
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Water" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 50.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": true
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_GenerateWaterElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_GenerateWaterElemBall",
+				"abilityName":"Effigy_StaticElementBall_GenerateWaterElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Ice
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Ice" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 50.0,			//存在时间
+		},
+
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene": true
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_GenerateIceElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_GenerateIceElemBall",
+				"abilityName":"Effigy_StaticElementBall_GenerateIceElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Wind
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Wind" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_TriggerWindExplode",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_TriggerWindExplode",
+				"abilityName":"Effigy_ElementBall_TriggerWindExplode",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Fire
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Fire" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_TriggerFireExplode",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_TriggerFireExplode",
+				"abilityName":"Effigy_ElementBall_TriggerFireExplode",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Electric
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Electric" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_TriggerElectricExplode",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_TriggerElectricExplode",
+				"abilityName":"Effigy_ElementBall_TriggerElectricExplode",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Water
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Water" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_TriggerWaterExplode",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_TriggerWaterExplode",
+				"abilityName":"Effigy_ElementBall_TriggerWaterExplode",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Ice
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Ice" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_TriggerIceExplode",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_TriggerIceExplode",
+				"abilityName":"Effigy_ElementBall_TriggerIceExplode",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ElementBall_Wind_Reborn
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ElementBall_Wind_Reborn" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed": 15,
+			"acceleration":7.5,
+			"destroyWhenTargetDie": true,
+			"traceOnYAxis": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ElementBall_Wind_Reborn_Count",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ElementBall_Wind_Reborn_Count",
+				"abilityName":"Effigy_ElementBall_Wind_Reborn_Count",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StaticElementBall_Wind_Reborn
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StaticElementBall_Wind_Reborn" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 20.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StaticElementBall_Reborn_GenerateWindElemBall",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StaticElementBall_Reborn_GenerateWindElemBall",
+				"abilityName":"Effigy_StaticElementBall_Reborn_GenerateWindElemBall",
+			},
+			{
+				"abilityID": "Effigy_StaticElementBall_Wind_Reborn_GenerateRebornElemBall",
+				"abilityName":"Effigy_StaticElementBall_Wind_Reborn_GenerateRebornElemBall",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_AirFlow_Reborn
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_AirFlow_Reborn" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 20.0,			//存在时间	
+			"lifeInfinite" : true,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_AirFlow_Reborn",
+
+				"abilityName":"Effigy_AirFlow_Reborn",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_AirGunCentre
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_AirGunCentre" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : true,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 15.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_AirGunCentre_Config",
+				"abilityName":"Effigy_AirGunCentre_Config",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_EffectAirGun
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_EffectAirGun" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigItanoCircusBulletMove",
+			"speed" : 10.0,
+			"delay":0.2,			
+			"acceleration": 25,
+			"maxSpeed" : 20,
+			"minSpeed" : 10,
+			"guidanceSpeedChange": true,
+			"itanoCircusStartAngler": 180,
+			"guidanceDelay": 0.15,
+			"anglerVelocity": 1080.0,
+			"guidanceDuration": 100.0,
+			"guidanceMinAnglerVelocity": 720.0,
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 2.0,			//存在时间
+		},
+		// 子弹参数
+/*		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Alliance",
+				"triggerType" : "TriggerAlways",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_EffectAirGun_Hit",
+				},
+			],
+			"killByOther" : true,
+		},*/
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_EffectAirGun_Hit",
+				"abilityName":"Effigy_EffectAirGun_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_AirGun
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_AirGun" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 25,
+			"acceleration" : 20,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_AirGun_Hit",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_AirGun_Hit",
+				"abilityName":"Effigy_AirGun_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_EnergyAbsorbPos
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_EnergyAbsorbPos" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 9999.0,			//存在时间	
+			"lifeInfinite" : true,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_EnergyAbsorbPos_AvatarDetected",
+				"abilityName":"Effigy_EnergyAbsorbPos_AvatarDetected",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_WindBlade
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_WindBlade" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed": 35,
+			"acceleration":7.5,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 3.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_WindBlade_Hit",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_WindBlade_Hit",
+				"abilityName":"Effigy_WindBlade_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_WindBladePos
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_WindBladePos" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : false,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 5.0,			//存在时间	
+			"lifeInfinite" : false,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_WindBladePos_Damage",
+
+				"abilityName":"Effigy_WindBladePos_Damage",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_AirBlade
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_AirBlade" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed": 15,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+			"delay":0.0,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 3.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_AirBlade_Hit",
+				},
+			],
+			"killByOther" : true,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_AirBlade_Hit",
+				"abilityName":"Effigy_AirBlade_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////////////////////////
+//
+// Effigy_StonePillar
+//
+////////////////////////////////////////////////////////////////////////////////////	
+	"Effigy_StonePillar" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2.6,
+				"z": 0,
+			},
+			"radiusOffset": 2,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"shieldBarOnly":true,
+			"size": "Grand",
+		},
+		"timer":
+		{
+			"lifeInfinite" : true,			
+		},
+		"hasConnectTrigger": true,
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StonePillar_ElementShield",
+				
+				"abilityName" : "Effigy_StonePillar_ElementShield",
+			},
+			{
+				"abilityID": "Effigy_StonePillar_DetectAvatar",
+				
+				"abilityName" : "Effigy_StonePillar_DetectAvatar",
+			},
+		],
+	},
+	"Effigy_RockHeart" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2.5,
+				"z": 0,
+			},
+			"radiusOffset": 0.5,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"shieldBarOnly":true,
+			"size": "Big",
+			"forceShowDistance": 48,
+		},
+		"timer":
+		{
+			"lifeTime" : 16.5,
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RockHeart_ElementShield",
+				
+				"abilityName" : "Effigy_RockHeart_ElementShield",
+			},
+		],
+	},
+	"Effigy_RockShield" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"timer":
+		{
+			"lifeTime" : 17.5,			
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RockShield_SafeZone",
+				
+				"abilityName" : "Effigy_RockShield_SafeZone",
+			},
+		],
+	},
+	"Effigy_RebornPillar" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 100,
+				"attack" : 10,
+				"defense" : 0,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"isLockHP":true,
+				"weight" : 9999,
+				"normalPri": 1.0,	//lockLevel = 5
+				"combatPri": 1.0,	//lockLevel = 5
+				"rangeScale": 1.0,	//lockLevel = 5
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": false,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2.6,
+				"z": 0,
+			},
+			"radiusOffset": 2,
+			"enableSelfAdapt": false,
+			"showDistance": 48,
+			"showHPBar": true,
+			"shieldBarOnly":true,
+			"size": "Grand",
+		},
+		"timer":
+		{
+			"lifeInfinite" : true,		//如果未触发是否一致存在
+			"lifeTime" : 20.0,			//存在时间		
+		},
+		"hasConnectTrigger": true,
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RebornPillar_ElementShield",
+				
+				"abilityName" : "Effigy_RebornPillar_ElementShield",
+			},
+		],
+	},
+///////////////////////////////////////////////
+//
+//  Effigy_Spike
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_Spike" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+/*		"move" :
+		{
+			"$type" : "ConfigTrackBulletMove",
+			"speed" : 10.0,
+			"traceOnYAxis" : false,
+			"anglerVelocity": 90.0,
+			"stickToGround":
+			{
+				"$type" : "ConfigMoveStickToGround",
+				"heightToGround" : 0.25,
+				"flexibleRange" : 0.25,
+				"maxStepHeight" : 1,
+				"maxSlopeAngle" : 40,
+				"isStickToWater" : false,
+				"unstickWhenDownSlide": "Keep",
+				"unstickWhenUpSlide" : "Keep",
+			},
+		},*/
+/*		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerAlways",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+			],
+		},*/
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 10.0,			//存在时间
+		},
+	},
+	"Effigy_SpikeDamage" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_SpikeDamage",
+				"abilityName":"Effigy_SpikeDamage",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_ChargeAtkWave
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_ChargeAtkWave" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 15,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 0.8,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "AllExceptSelf",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_ChargeAtkWave_Hit",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_ChargeAtkWave_Hit",
+				"abilityName":"Effigy_ChargeAtkWave_Hit",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_StoneBall
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_StoneBall" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"scale":1,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 35,
+			"acceleration" : 20,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene" : false,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_StoneBall_Hit",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_StoneBall_Hit",
+
+				"abilityName":"Effigy_StoneBall_Hit",
+			},
+		],
+	},
+	"Effigy_EffectStoneBall" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹移动
+		"move" :
+		{
+			"$type" : "ConfigItanoCircusBulletMove",
+			"speed" : 10.0,
+			"delay":0.25,			
+			"acceleration": 25,
+			"maxSpeed" : 20,
+			"minSpeed" : 10,
+			"guidanceSpeedChange": true,
+			"itanoCircusStartAngler": 180,
+			"guidanceDelay": 0.15,
+			"anglerVelocity": 1080.0,
+			"guidanceDuration": 100.0,
+			"guidanceMinAnglerVelocity": 720.0,
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 2.0,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_EffectStoneBall_Effect",
+				"abilityName":"Effigy_EffectStoneBall_Effect",
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_RockLaser
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_RockLaser" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"scale":1,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 50,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+	},
+////////////////////////////////////////////////////////////////
+//
+//  Effigy_RockFallZone
+//
+////////////////////////////////////////////////////////////////
+	"Effigy_RockFallZone" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 32.5,			//存在时间
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RockFallZone_Damage",
+
+				"abilityName":"Effigy_RockFallZone_Damage",
+			},
+		],
+	},
+	"Effigy_RockFall" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 10.0,
+				"defense" : 999999,
+				"isInvincible": true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+				"denyLockOn" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"muteAllHit" : true,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : true,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type": "ConfigParabolaBulletMove",
+			"speed": 50.0,
+			"angleOffHor": -90,
+			"gravityOfAcceleration": 50.0,
+			"canBornInWater": true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"canBornInWater": true,
+		},
+		// 生命周期管理
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 5.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" :
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+				"ignoreScene" : false,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Effigy_RockFall_Hit",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Effigy_RockFall_Hit",
+
+				"abilityName":"Effigy_RockFall_Hit",
+			},
+		],
+	},
+/////////////////
+}

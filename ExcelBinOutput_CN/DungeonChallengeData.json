@@ -1,0 +1,975 @@
+[
+    {
+        "ID": 1,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 3,
+        "ChallengeType": 3,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 4,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 5,
+        "ChallengeType": 5,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 6,
+        "ChallengeType": 6,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 7,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 8,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 9,
+        "ChallengeType": 9,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 10,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 11,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 12,
+        "ChallengeType": 9,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 13,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 14,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 15,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 100,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 101,
+        "ChallengeType": 3,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 102,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 103,
+        "ChallengeType": 6,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 104,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 110,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 111,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 120,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 121,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 122,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 123,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 124,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 125,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 126,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 127,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 128,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 129,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 130,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 131,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 132,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 133,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 134,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 135,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 136,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 137,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 138,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 139,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 140,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 141,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 142,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 143,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 144,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 145,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 146,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 147,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 148,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 149,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 150,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 151,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 152,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 153,
+        "ChallengeType": 6,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 154,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 155,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 156,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 157,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 158,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 159,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 160,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 161,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 162,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 163,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 164,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 165,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 166,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 167,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 168,
+        "ChallengeType": 8,
+        "存储类型": 1,
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 169,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 170,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 171,
+        "ChallengeType": 3,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 172,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 173,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 174,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 175,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 176,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 177,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 178,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 179,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 180,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 181,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 182,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 183,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 184,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 185,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 186,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 187,
+        "ChallengeType": 9,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 188,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 189,
+        "ChallengeType": 11,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 190,
+        "ChallengeType": 9,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 191,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 192,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 193,
+        "ChallengeType": 5,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 194,
+        "ChallengeType": 5,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 195,
+        "ChallengeType": 4,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 196,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 197,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 198,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 199,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 200,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 201,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 202,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1000,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1001,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1002,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1003,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1004,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1010,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1011,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1012,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1013,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1014,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1020,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1021,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1022,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1023,
+        "ChallengeType": 10,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1024,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1030,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1031,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1032,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1033,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1034,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1040,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1041,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1042,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1043,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 1044,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2001,
+        "ChallengeType": 7,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2002,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2003,
+        "ChallengeType": 8,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 3001,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 3002,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2004,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2005,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 2006,
+        "ChallengeType": 2,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    },
+    {
+        "ID": 10000,
+        "ChallengeType": 1,
+        "存储类型": "",
+        "$#VersionBegin": "",
+        "$#VersionEnd": ""
+    }
+]

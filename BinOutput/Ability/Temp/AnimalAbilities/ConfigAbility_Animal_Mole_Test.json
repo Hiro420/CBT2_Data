@@ -1,0 +1,36 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  AwareTigger
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_Mole_DropMora",
+		"onAdded":
+		[
+			{
+				"$type" : "ApplyModifier",
+				"modifierName" : "Drop_Mora",
+
+			},
+		],
+		"modifiers":
+		{
+			"Drop_Mora" :
+			{
+				"thinkInterval" : 1.2,
+				"onThinkInterval" :
+				[
+					{
+						"$type": "DropSubfield",
+						"subfieldName": "MoraDrop",
+					},
+				],
+			},
+		},
+	},
+},
+]

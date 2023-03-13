@@ -1,0 +1,2930 @@
+[
+  /////////////////////////////////////////////////////////
+  //
+  //	挑战因子：所有角色防御力下降
+  //
+  /////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "Level_Avatar_DefenseDown",
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "modifierName": "UNIQUE_Avatar_DefenseDown",
+          "target": "CurTeamAvatars",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_Avatar_DefenseDown": {
+          "isUnique": true,
+          "stacking": "Unique",
+          "state": "DefenseDown",
+          "properties": {
+            "Actor_DefenceRatio": "%Actor_DefenceRatio",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "Actor_DefenceRatio": -0.5,
+      },
+    },
+  },
+
+
+  /*--------------------------------------------------------------------------------*/
+  //============================================================元素增伤
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Electric",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Electric",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Electric": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Electric",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Electric": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Electric（雷元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Fire",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Fire",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Fire": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_FireAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Fire",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Fire": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Fire（火元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Wind",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Wind",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Wind": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WindAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Wind",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Wind": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Wind（风元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Ice",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Ice",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Ice": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_IceAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Ice",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Ice": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Ice（冰元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Water",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Water",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Water": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WaterAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Water",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Water": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Water（水元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Grass",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Grass",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Grass": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_GrassAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Grass",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Grass": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Grass（草元素增伤）（全部）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementAddHurt_Rock",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementAddHurt_Rock",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementAddHurt_Rock": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_RockAddHurtDelta": "%LevelEntity_ElementAddHurt_P1_Rock",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementAddHurt_P1_Rock": 0.75,
+      },
+    },
+  }, //LevelEntity_ElementAddHurt_Rock（岩元素增伤）（全部）.
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_PhysicalAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_PhysicalAddHurt",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_PhysicalAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_PhysicalAddHurtDelta": "%LevelEntity_PhysicalAddHurt_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_PhysicalAddHurt_P1": 0.75,
+      },
+    },
+  }, //LevelEntity_PhysicalAddHurt（物理增伤）（全部）
+
+  /*--------------------------------------------------------------------------------*/
+  //============================================================元素伤害免疫
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Electric",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Electric",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Electric": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Electric",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Electric": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Electric------雷元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Fire",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Fire",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Fire": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_FireSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Fire",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Fire": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Fire------火元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Wind",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Wind",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Wind": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WindSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Wind",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Wind": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Wind------风元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Ice",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Ice",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Ice": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_IceSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Ice",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Ice": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Ice------冰元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Water",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Water",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Water": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WaterSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Water",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Water": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Water------水元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Grass",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Grass",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Grass": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_GrassSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Grass",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Grass": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Grass------草元素伤害免疫（仅怪物）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_Rock",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Rock",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_Rock": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_RockSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Rock",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Rock": 1,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_Rock------岩元素伤害免疫（仅怪物）
+
+  /*--------------------------------------------------------------------------------*/
+  //============================================================技能的治疗效果下降
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_Heal_Down",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_HealDown",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_HealDown": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_HealAddDelta": "%LevelEntity_HealDown_P1_HealDown_Ratio",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_HealDown_P1_HealDown_Ratio": -0.8,
+      },
+    },
+  }, //LevelEntity_Heal_Down------技能的治疗效果下降（仅玩家）
+
+  /*--------------------------------------------------------------------------------*/
+  //============================================================某种元素抗性下降
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Electric",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Electric",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Electric": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Electric",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Electric": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Electric------雷元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Fire",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Fire",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Fire": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_FireSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Fire",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Fire": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Fire------火元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Wind",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Wind",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Wind": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WindSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Wind",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Wind": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Wind------风元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Ice",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Ice",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Ice": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_IceSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Ice",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Ice": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Ice------冰元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Water",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Water",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Water": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_WaterSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Water",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Water": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Water------水元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Grass",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Grass",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Grass": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_GrassSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Grass",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Grass": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Grass------草元素抗性下降（仅玩家）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageUp_Rock",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Rock",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageUp_Rock": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_RockSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_Rock",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_Rock": -0.4,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageUp_Rock------岩元素抗性下降（仅玩家）
+
+  /*--------------------------------------------------------------------------------*/
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_MeleeAttackDamageUp",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_MeleeAttackDamageUp",
+          "target": "Self",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                4902
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_MeleeAttackDamageUp": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_MeleeAttackDamageUp_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_MeleeAttackDamageUp_P1_Damage": 0.5,
+        //注释：伤害百分比 0.2表示额外增加20%伤害
+      },
+    },
+  }, //LevelEntity_MeleeAttackDamageUp------近战伤害up（怪）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_RangeAttackDamageUp",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_RangeAttackDamageUp",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Monster"
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                4901
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_RangeAttackDamageUp": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_RangeAttackDamageUp_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_RangeAttackDamageUp_P1_Damage": 0.5,
+      },
+    },
+  }, //LevelEntity_RangeAttackDamageUp------远程伤害up（怪）
+  /**/
+  ////////////////////////////////////////////////////////////////
+  //
+  //  角色能量获取效率下降
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarEnergyGainLess",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarEnergyGainLess",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarEnergyGainLess": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_ChargeEfficiencyDelta": "%LevelEntity_AvatarEnergyGainLess_P1_Efficiency",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarEnergyGainLess_P1_Efficiency": -0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  男性角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_MaleAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_MaleAddHurt",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1041
+                  ],
+                },
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1043
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_MaleAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_MaleAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_MaleAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  女性角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_FemaleAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_FemaleAddHurt",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1042
+                  ],
+                },
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1044
+                  ],
+                },
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1045
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_FemaleAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_FemaleAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_FemaleAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  单手剑角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_SwordAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_SwordAddHurt",
+          "predicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Avatar"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                },
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                1051
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_SwordAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_SwordAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_SwordAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  双手剑角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ClaymoreAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ClaymoreAddHurt",
+          "predicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Avatar"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                },
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                1052
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ClaymoreAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_ClaymoreAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ClaymoreAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  长柄武器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_PoleAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_PoleAddHurt",
+          "predicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Avatar"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                },
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                1053
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_PoleAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_PoleAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_PoleAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  法器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_CatalystAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_CatalystAddHurt",
+          "predicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Avatar"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                },
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                1054
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_CatalystAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_CatalystAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_CatalystAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  弓武器角色伤害提高
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_BowAddHurt",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_BowAddHurt",
+          "predicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Avatar"
+                  ],
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "entityTypes": [
+                    "Monster"
+                  ],
+                },
+              ],
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                1055
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_BowAddHurt": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "%LevelEntity_BowAddHurt_P1_Damage",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_BowAddHurt_P1_Damage": 0.5,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（火伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Fire",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Fire",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Fire": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Fire_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "damagePercentage": 1,
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Fire_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Fire",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Fire_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Fire_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（电伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Electric",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Electric",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Electric": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Electric_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Electric_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Electric",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Electric_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Electric_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（水伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Water",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Water",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Water": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Water_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "damagePercentage": 0,
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Water_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Water",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Water_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Water_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（冰伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Ice",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Ice",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Ice": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Ice_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Ice_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Ice",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Ice_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Ice_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（风伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Wind",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Wind",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Wind": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Wind_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Wind_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Wind",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Wind_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Wind_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（岩伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Rock",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Rock",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Rock": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Rock_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "strikeType": "None",
+                  "elementType": "Rock",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Rock_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Rock_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Rock_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  全员持续掉血（草伤）
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AvatarDot_Grass",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AvatarDot_Grass",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AvatarDot_Grass": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "thinkInterval": "%LevelEntity_AvatarDot_Grass_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "DamageByAttackValue",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "offset": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                },
+              },
+              "attackInfo": {
+                "attackProperty": {
+                  "ignoreAttackerProperty": true,
+                  "damageExtra": "%LevelEntity_AvatarDot_Grass_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                  "strikeType": "None",
+                  "elementType": "Grass",
+                  "elementDurability": 25,
+                  "enBreak": 0,
+                },
+                "hitPattern": {
+                  "onHitEffectName": "",
+                  "hitLevel": "Mute",
+                  "hitImpulseX": 0,
+                  "hitImpulseY": 0,
+                  "retreatType": "ByHitDirection",
+                  "reboundRatio": 0,
+                  "hitHaltTime": 0.0,
+                  "hitHaltTimeScale": 0.05,
+                  "muteHitText": false,
+                },
+                "forceCameraShake": false,
+              },
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AvatarDot_Grass_P1_Interval": 6,
+        "LevelEntity_AvatarDot_Grass_P1_Damage": 0.7,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+  ////////////////////////////////////////////////////////////////
+  //
+  //  随机落雷
+  //
+  ////////////////////////////////////////////////////////////////
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_RandomThunder",
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "type": "ElementLevelCo",
+        },
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_RandomThunder",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "entityTypes": [
+                "Avatar"
+              ],
+            },
+          ],
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_RandomThunder": {
+          "stacking": "Unique",
+          "isUnique": true,
+          "onAdded": [
+
+            {
+              "$type": "Randomed",
+              "chance": 0.7,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 2,
+                      "maxRandomRange": 2,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+            {
+              "$type": "SetGlobalPos",
+              "target": "CurLocalAvatar",
+              "key": "ThunderPos2",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 8,
+                  "maxRandomRange": 18,
+                },
+              },
+            },
+            {
+              "$type": "SetGlobalPos",
+              "target": "CurLocalAvatar",
+              "key": "ThunderPos3",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 8,
+                  "maxRandomRange": 18,
+                },
+              },
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos4",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 8,
+                      "maxRandomRange": 18,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos5",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 8,
+                      "maxRandomRange": 18,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Thunder_Hit", //延时落雷
+              "target": "CurTeamAvatars",
+            },
+            {
+              "$type": "SetAvatarHitBuckets",
+              "overrideAvatarHitBucketSetting": {
+                "meleeBucketCount": 4,
+              },
+            },
+          ],
+          "thinkInterval": "%LevelEntity_RandomThunder_P1_Interval",
+          "onThinkInterval": [
+            {
+              "$type": "Randomed",
+              "chance": 0.7,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 2,
+                      "maxRandomRange": 2,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+            {
+              "$type": "SetGlobalPos",
+              "target": "CurLocalAvatar",
+              "key": "ThunderPos2",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 8,
+                  "maxRandomRange": 18,
+                },
+              },
+            },
+            {
+              "$type": "SetGlobalPos",
+              "target": "CurLocalAvatar",
+              "key": "ThunderPos3",
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 8,
+                  "maxRandomRange": 18,
+                },
+              },
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos4",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 8,
+                      "maxRandomRange": 18,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.5,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "target": "CurLocalAvatar",
+                  "key": "ThunderPos5",
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 8,
+                      "maxRandomRange": 18,
+                    },
+                  },
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "minValue": 0,
+                },
+              ],
+            },
+
+            {
+              "$type": "ApplyModifier",
+              "modifierName": "Thunder_Hit", //延时落雷
+              "target": "CurTeamAvatars",
+            },
+          ],
+        },
+        "Thunder_Hit": {
+          "duration": 2.5,
+          "onAdded": [
+            //预警特效
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Ambor_AlertCircle",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Ambor_AlertCircle",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos2",
+              },
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Ambor_AlertCircle",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos3",
+              },
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Ambor_AlertCircle",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos4",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_Ambor_AlertCircle",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos5",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+          ],
+          "onRemoved": [
+            //落雷特效
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ThunderFall_01",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "All",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos",
+                  },
+                },
+                "attackInfo": {
+                  "attackProperty": {
+                    "ignoreAttackerProperty": true,
+                    "damageExtra": "%LevelEntity_RandomThunder_P1_Damage",
+                    "strikeType": "Default",
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "enBreak": 500.0,
+                  },
+                  "hitPattern": {
+                    "hitLevel": "Heavy", //hitlevel = 2
+                    "hitImpulseX": 50, //hitlevel = 2
+                    "hitImpulseY": 800, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.65,
+              "successActions": [
+                {
+                  "$type": "CreateGadget", //创造闪电球
+                  "gadgetID": 70900269,
+                  "campID": 5001,
+                  "campTargetType": "All",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "First_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+
+
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ThunderFall_01",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos2",
+              },
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "All",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos2",
+                  },
+                },
+                "attackInfo": {
+                  "attackProperty": {
+                    "ignoreAttackerProperty": true,
+                    "damageExtra": "%LevelEntity_RandomThunder_P1_Damage",
+                    "strikeType": "Default",
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "enBreak": 500.0,
+                  },
+                  "hitPattern": {
+                    "hitLevel": "Heavy", //hitlevel = 2
+                    "hitImpulseX": 50, //hitlevel = 2
+                    "hitImpulseY": 800, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.65,
+              "successActions": [
+                {
+                  "$type": "CreateGadget", //创造闪电球
+                  "gadgetID": 70900269,
+                  "campID": 5001,
+                  "campTargetType": "All",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos2",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ThunderFall_01",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos3",
+              },
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "All",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos3",
+                  },
+                },
+                "attackInfo": {
+                  "attackProperty": {
+                    "ignoreAttackerProperty": true,
+                    "damageExtra": "%LevelEntity_RandomThunder_P1_Damage",
+                    "strikeType": "Default",
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "enBreak": 500.0,
+                  },
+                  "hitPattern": {
+                    "hitLevel": "Heavy", //hitlevel = 2
+                    "hitImpulseX": 50, //hitlevel = 2
+                    "hitImpulseY": 800, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.65,
+              "successActions": [
+                {
+                  "$type": "CreateGadget", //创造闪电球
+                  "gadgetID": 70900269,
+                  "campID": 5001,
+                  "campTargetType": "All",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos3",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+            },
+
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ThunderFall_01",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos4",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "All",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos4",
+                  },
+                },
+                "attackInfo": {
+                  "attackProperty": {
+                    "ignoreAttackerProperty": true,
+                    "damageExtra": "%LevelEntity_RandomThunder_P1_Damage",
+                    "strikeType": "Default",
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "enBreak": 500.0,
+                  },
+                  "hitPattern": {
+                    "hitLevel": "Heavy", //hitlevel = 2
+                    "hitImpulseX": 50, //hitlevel = 2
+                    "hitImpulseY": 800, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.65,
+              "successActions": [
+                {
+                  "$type": "CreateGadget", //创造闪电球
+                  "gadgetID": 70900269,
+                  "campID": 5001,
+                  "campTargetType": "All",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos4",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Second_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+
+            {
+              "$type": "FireEffect",
+              "effectPattern": "Eff_ThunderFall_01",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "positionKey": "ThunderPos5",
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "targetType": "All",
+              "attackEvent": {
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "triggerType": "TriggerNoRepeat",
+                  "radius": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos5",
+                  },
+                },
+                "attackInfo": {
+                  "attackProperty": {
+                    "damageExtra": "%LevelEntity_RandomThunder_P1_Damage*%LevelEntity_AvatarDot_SystemValue",
+                    "strikeType": "Default",
+                    "elementType": "Electric",
+                    "elementDurability": 50,
+                    "enBreak": 500.0,
+                  },
+                  "hitPattern": {
+                    "hitLevel": "Heavy", //hitlevel = 2
+                    "hitImpulseX": 50, //hitlevel = 2
+                    "hitImpulseY": 800, //hitlevel = 2
+                    "reboundRatio": 0,
+                    "hitHaltTime": 0.0,
+                    "hitHaltTimeScale": 0.05,
+                    "muteHitText": false,
+                  },
+                },
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+            {
+              "$type": "Randomed",
+              "chance": 0.65,
+              "successActions": [
+                {
+                  "$type": "CreateGadget", //创造闪电球
+                  "gadgetID": 70900269,
+                  "campID": 5001,
+                  "campTargetType": "All",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "positionKey": "ThunderPos5",
+                    "offset": {
+                      "x": 0.0,
+                      "y": 1.0,
+                      "z": 0.0,
+                    },
+                  },
+                },
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Third_Thunder",
+                  "value": 1,
+                  "compareType": "Equal",
+                },
+              ],
+            },
+
+            {
+              "$type": "AddGlobalValue",
+              "key": "First_Thunder",
+              "value": -1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "Second_Thunder",
+              "value": -1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "Third_Thunder",
+              "value": -1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "minValue": 0,
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_RandomThunder_P1_Interval": 10,
+        "LevelEntity_RandomThunder_P1_Damage": 2,
+        "LevelEntity_AvatarDot_SystemValue": 0,
+      },
+    },
+  },
+
+
+  /**/
+
+
+
+  /*【ID1077042】【Main分支需求】新增挑战因子*/
+  //======================================================================
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_CriticalUp",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_CriticalUp",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_CriticalUp": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalDelta": "%LevelEntity_CriticalDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_CriticalDelta_P1": 0.5,
+      },
+    },
+  }, //LevelEntity_CriticalUp------暴击率提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_CriticalHurtUp",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_CriticalHurtUp",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_CriticalHurtUp": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalHurtDelta": "%LevelEntity_CriticalHurtDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_CriticalHurtDelta_P1": 1.2,
+      },
+    },
+  }, //LevelEntity_CriticalHurtUp------暴击伤害提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_HpUp_Lv1",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_HpUp_Lv1",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_HpUp_Lv1": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPDelta": "%LevelEntity_HpDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_HpDelta_P1": 0.5,
+      },
+    },
+  }, //LevelEntity_HpUp_Lv1------血量提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_HpUp_Lv2",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_HpUp_Lv2",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_HpUp_Lv2": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPDelta": "%LevelEntity_HpDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_HpDelta_P1": 1,
+      },
+    },
+  }, //LevelEntity_HpUp_Lv2------血量提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_HpUp_Lv3",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_HpUp_Lv3",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_HpUp_Lv3": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPDelta": "%LevelEntity_HpDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_HpDelta_P1": 2,
+      },
+    },
+  }, //LevelEntity_HpUp_Lv3------血量提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AttackUp_Lv1",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AttackUp_Lv1",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AttackUp_Lv1": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackDelta": "%LevelEntity_AttackDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AttackDelta_P1": 0.25,
+      },
+    },
+  }, //LevelEntity_AttackUp_Lv1------攻击提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AttackUp_Lv2",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AttackUp_Lv2",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AttackUp_Lv2": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackDelta": "%LevelEntity_AttackDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AttackDelta_P1": 0.5,
+      },
+    },
+  }, //LevelEntity_AttackUp_Lv2------攻击提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_AttackUp_Lv3",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_AttackUp_Lv3",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_AttackUp_Lv3": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackDelta": "%LevelEntity_AttackDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AttackDelta_P1": 1,
+      },
+    },
+  }, //LevelEntity_AttackUp_Lv3------攻击提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ChargeEfficiencyDown",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ChargeEfficiencyDown",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChargeEfficiencyDown": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_ChargeEfficiencyDelta": "%LevelEntity_ChargeEfficiencyDelta_P1",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ChargeEfficiencyDelta_P1": -0.8,
+      },
+    },
+  }, //LevelEntity_ChargeEfficiencyDown------充能效率降低（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_BluntAttackUp",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_BluntAttackUp",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_BluntAttackUp": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackDelta": "%LevelEntity_AttackDelta_P1",
+          },
+          "predicates": [
+            {
+              "$type": "ByHitStrikeType",
+              "strikeType": "Blunt",
+            },
+            {
+              "$type": "ByHitElement",
+              "element": "Rock",
+            },
+          ],
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_AttackDelta_P1": 0.5,
+      },
+    },
+  }, //LevelEntity_AttackUp------攻击提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+  {
+    "Default": {
+      "$type": "ConfigAbility",
+      "abilityName": "LevelEntity_ElementBeHurtDamageDown_All",
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "modifierName": "UNIQUE_LevelEntity_ElementBeHurtDamageDown_All",
+          "target": "Self",
+        },
+      ],
+      "modifiers": {
+        "UNIQUE_LevelEntity_ElementBeHurtDamageDown_All": {
+          "isLimitedProperties": true,
+          "stacking": "Unique",
+          "isUnique": true,
+          "properties": {
+            "Actor_FireSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_ElecSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_WaterSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_GrassSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_WindSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_IceSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+            "Actor_RockSubHurtDelta": "%LevelEntity_ElementSubHurt_P1_All",
+          },
+        },
+      },
+      "abilitySpecials": {
+        "LevelEntity_ElementSubHurt_P1_All": 0.5,
+      },
+    },
+  }, //LevelEntity_ElementBeHurtDamageDown_All-----全元素抗性提升（具体给怪还是给玩家在ConfigLevelEntity_LevelBuff配）
+
+]

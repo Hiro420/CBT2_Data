@@ -1,0 +1,3903 @@
+[
+//////////////////////////////////////////////////////////////////	
+//
+// 旋转喷火
+//
+//////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Spray_Fire_Rotating",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Start"],
+					"modifierName": "FireSpray",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "SleepMode",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "SleepMode",
+				},
+			],
+			"modifiers":
+			{
+				"SleepMode":
+				{
+					"duration": 4,
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+				"FireSpray":
+				{
+					//"stacking": "Unique",
+					//"isUnique": true,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray2",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray3",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray4",
+						},
+					],
+					"thinkInterval": 0.2,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "WeaponR",
+									},
+									"size" : 
+									{
+										"x" : 1.4,
+										"y" : 1.4,
+										"z" : 8.0,
+									},
+									"muteHitBehindScene" : true,
+									},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "Fire",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "WeaponR2",
+									},
+									"size" : 
+									{
+										"x" : 1.4,
+										"y" : 1.4,
+										"z" : 8.0,
+									},
+									"muteHitBehindScene" : true,
+									},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "Fire",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "WeaponR3",
+									},
+									"size" : 
+									{
+										"x" : 1.4,
+										"y" : 1.4,
+										"z" : 8.0,
+									},
+									"muteHitBehindScene" : true,
+									},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "Fire",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "WeaponR4",
+									},
+									"size" : 
+									{
+										"x" : 1.4,
+										"y" : 1.4,
+										"z" : 8.0,
+									},
+									"muteHitBehindScene" : true,
+									},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "Fire",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	//////////////////////////////////////////////////////////////////	
+//
+//单面喷火
+//
+//////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Spray_Fire",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Start"],
+					"modifierName": "FireSpray",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "SleepMonitor",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "SleepMonitor",
+				},
+			],
+			"modifiers":
+			{
+				"SleepMonitor":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "SleepMode",
+						},
+					],
+				},
+				"SleepMode":
+				{
+					"duration": 4,
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 1,
+						},
+					],
+				},
+				"FireSpray":
+				{
+					//"stacking": "Unique",
+					//"isUnique": true,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray",
+							"born" :
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR",
+							},
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray2",
+							"born" :
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR",
+							},
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray3",
+							"born" :
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR",
+							},
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Gear_Fire_Spray4",
+							"born" :
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR",
+							},
+						},
+					],
+					"thinkInterval": 0.2,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "WeaponR",
+									},
+									"size" : 
+									{
+										"x" : 1.4,
+										"y" : 1.4,
+										"z" : 8.0,
+									},
+									"muteHitBehindScene" : true,
+									},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "Fire",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	
+///////////////////////////////
+//
+//射线机关
+//
+////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shoot_Elec_test",
+			"onAbilityStart": 
+			[
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 42304001,
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "ShootPoint",
+						"offset" : 
+						{
+							"x": -0.1,
+							"y": 0.0,
+							"z": 0.4,
+						},
+					},
+				},
+				{
+					"$type": "ActCameraShake",
+					"cameraShake":
+					{
+						"shakeRange": 0.05,
+						"shakeTime": 0.3,
+					},
+				},
+			],
+		},
+	},
+		//不能锁定的ability
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shoot_Denylockon",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToPoseIDMixin",
+					"poseIDs": [0],
+					"modifierName": "SleepDenyLockOn",
+				},
+			],
+			"modifiers":
+			{
+				"SleepDenyLockOn":
+				{
+					"state": "DenyLockOn",
+				},
+			},
+		},
+	},
+		//电球机关蓄力
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shoot_Charging",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Charge"],
+					"modifierName": "Gear_Shoot_Charge",
+				},
+			],
+			"modifiers":
+			{
+				"Gear_Shoot_Charge":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Charging",
+						},
+					],	
+				},
+			},
+		},
+	},
+	
+		//电球机关预警
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shoot_Warning",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Active","Charge","Shoot"],
+					"modifierName": "Gadget_Gear_Shoot_Warning",
+				},
+			],
+			"modifiers":
+			{
+				"Gadget_Gear_Shoot_Warning":
+				{
+					"onAdded":
+					[
+						{	
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Warning",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Area",
+						},
+					],
+				},
+			},
+		},
+	},
+		//电球机关瞄准线
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shoot_Aiming",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Active","Charge"],
+					"modifierName": "Gear_Shoot_Aim",
+				},
+			],
+			"modifiers":
+			{
+				"Gear_Shoot_Aim":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Aiming",
+						},
+					],
+				},
+			},
+		},
+	},
+	//////////////////////////////////////////////////////////////////	
+//
+// 旋转喷冰
+//
+//////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Spray_Ice_Rotating",
+			"abilityMixins": 
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Attack"],
+					"modifierName": "IceSpray",
+				},
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Reset"],
+					"modifierName": "WorkReset",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "GearStop",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+			],
+			"modifiers":
+			{
+				"WorkReset":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "WorkState",
+							"value": 202,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "WorkReset",
+						},
+					],
+				},
+				"GearStop":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "WorkState",
+							"value": 202,
+						},
+					],
+				},
+				"GearStart":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "Work_Delay",
+						},
+					],
+				},
+				"Work_Delay":
+				{
+					"duration": 2,
+					"onRemoved":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "WorkState",
+							"value": 201,
+						},
+					],
+				},
+				"IceSpray":
+				{
+					//"stacking": "Unique",
+					//"isUnique": true,
+					"onAdded":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Ice_Spray",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Ice_Spray",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR2",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Ice_Spray",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR3",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Gear_Ice_Spray",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "WeaponR4",
+							},
+						},
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"doOffStage" : true,
+							"attackEvent": 
+							{
+								
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"checkHitLayerType" : "OnlyHitBox",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "AttackPoint",
+									},
+									"size" : 
+									{
+										"x" : 8.0,
+										"y" : 8.0,
+										"z" : 2.0,
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 1,
+										"elementType": "Ice",
+										"elementDurability": 30,
+										"strikeType": "Default",
+									},
+									"hitPattern":
+									{
+										"onHitEffectName": "",
+										"hitLevel": "Mute",
+										"hitImpulseX": 0,
+										"hitImpulseY": 0,
+										"reboundRatio": 0,
+										"hitHaltTime": 0.0,
+										"hitHaltTimeScale" : 0.22,
+										"muteHitText": false,
+									},
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////
+//
+//尖刺陷阱
+//
+//////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Test_FieldExplode",
+			"onFieldEnter":
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "",
+				},
+				{
+					"$type": "DamageByAttackValue",
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset" :
+						{
+							"x": 0.0,
+							"y": 1.0,
+							"z": 0.0,
+						},
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1,
+							"elementType": "Fire",
+						},
+						"hitPattern":
+						{
+							"onHitEffectName": "",
+							"causeHit": true,
+							"hitImpulseX": 160,
+							"hitImpulseY": 0,
+							"reboundRatio": 0,
+							"hitHaltTime": 0.2,
+							"hitHaltTimeScale": 0.05,
+						},
+						"forceCameraShake": false,
+					},
+					"otherTargets":
+					{
+					"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR3",
+						"centerBasedOn": "Self",
+						"campTargetType": "Enemy",
+						"campBasedOn": "Self",
+					},
+				},
+				{
+					"$type": "ActTimeSlow",
+					"timeSlow":
+					{
+						"duration": 1.0,
+						"slowRatio": 0.5,
+					},
+				},
+			],
+		},
+	},
+	//////////////////////////////////////////////////////////////////////
+//
+//	机关核心-Reform
+//
+//////////////////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_ElemCore_Reform_Interact",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "GS_0",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GS_201",
+				},
+			],
+			"modifiers":
+			{
+				"GS_0":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "ElemNone",
+						},
+					],
+				},
+				"ElemNone":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "ElemNone",
+							"predicates":
+							[
+								{
+									"$type": "ByHitElement",
+									"element": "Fire",
+								},
+							],
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGroupTrigger",
+							"sourceName": "ElemCoreChange",
+							"param1": 201,
+						},
+					],
+				},
+				"GS_201":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachModifier",
+							"modifierName": "ElemFire",
+						},
+					],
+				},
+				"ElemFire":
+				{
+					"elementType": "Fire",
+					"elementDurability": 100,
+					"modifierMixins":
+					[
+						{
+							"$type": "ShieldBarMixin",
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Element_Burning",
+							"born":
+							{
+								"$type" : "ConfigBornByAttachPoint",
+								"attachPointName" : "EffectMesh",
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "ExecuteGroupTrigger",
+							"sourceName": "ElemCoreChange",
+							"param1": 0,
+						},
+					],
+				},
+			},
+		},
+	},
+		///////////////////////////////////////////////////////////
+//
+//	出风机关
+//
+///////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_WindCreate_Gear",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "WindZone_None",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "WindZone_In",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "WindZone_Out",
+				},
+			],
+			"modifiers":
+			{
+				"WindZone_None": 
+				{
+					
+				},
+				"WindZone_In": 
+				{
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风牵扯范围
+							"shapeName": "CircleR30H5",
+							//##LD_风龙巢穴大型龙卷风牵扯强度
+							"strength" : 3,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+							],
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Shaman_Wind_SupportAttack_Tornado",
+						},
+					],
+				},
+				"WindZone_Out": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Shaman_Wind_SupportAttack_Tornado",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "WindZoneMixin",
+							//##LD_风龙巢穴大型龙卷风牵扯范围
+							"shapeName": "CircleR30H5",
+							//##LD_风龙巢穴大型龙卷风牵扯强度
+							"strength" : -3,
+							"attenuation" : 0,
+							"targetType": "All",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar","Monster"],
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	},
+			///////////////////////////////////////////////////////////
+//
+//	地城风场控制机关
+//
+///////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Environment_DungeonWindField_Controller",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "WindField_Vertical",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 204,
+					"modifierName": "WindField_Landspace",
+				},
+			],
+			"modifiers":
+			{
+				"WindField_Vertical": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 40200001,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 40200001,
+								"sortType": "Nearest",
+							}
+						},
+					],
+				},
+				"WindField_Landspace": 
+				{
+					"onAdded":
+					[
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 40200002,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+							},
+						},
+					],
+					"onRemoved":
+					[ 
+						{
+							"$type": "KillGadget",
+							"gadgetInfo":
+							{
+								"$type": "SelectTargetsByChildren",
+								"configID": 40200002,
+								"sortType": "Nearest",
+							}
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////////////////////////////////
+//
+//	电源
+//
+///////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Power_Charge",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Shocking_Modifier",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 202,
+					"modifierName": "ChargeOff",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Immortal",
+				},
+			],
+			"modifiers":
+			{
+				"Immortal":
+				{
+					"state" : "Limbo",
+				},
+				"ChargeOff":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_SceneObj_Gear_Electric_Destory",
+						},
+					],
+				},
+				"Shocking_Modifier" :
+				{
+					"elementType" : "Electric",
+					"elementDurability": 100,
+					"overrideWeaponElement" : false,
+					"isElementDurabilityMutable": false,
+					"onBeingHit":
+					[
+						{
+							"$type": "ExecuteGadgetLua",
+							"param1": 202,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Light_Effect",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 1,
+								"sortType": "Nearest", //从近开始选
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+							],
+						},
+					],
+					
+					"thinkInterval" : 0.5,
+					"onThinkInterval" :
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 1,
+								"sortType": "Nearest", //从近开始选
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Light_Effect",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 1,
+								"sortType": "Nearest", //从近开始选
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+							],
+						},
+					],
+				},
+				"Light_Effect":
+				{
+					"duration" : 2,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_SceneObj_Gear_Electirc_Lightning",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"attachPointTargetType":"Applier",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"ConductShock" :
+				{
+					/*"isUnique" : true,*/
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type" : "DamageByAttackValue",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag": "ElectricPlieDamage",
+								"attackProperty":
+								{
+									"damagePercentage":1.0,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 25,
+									"elementRank": 1.5,
+									"enBreak": 30,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "Eff_Element_Shock_Damage",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 0,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "Electric_Plie_Shock_Recently_Shocked",
+						},
+					],
+				},
+				"Electric_Plie_Shock_Recently_Shocked":
+				{
+					"duration" : 0.4,
+					"stacking" : "Unique",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+		},
+	},
+	///////////////////////////////////////////////////////////
+//
+//	电桩——不带逻辑
+//
+///////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Electric_Pile02",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Normal",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "Is_Electric_Pile",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 1,
+				},
+			],
+			"modifiers":
+			{
+				//当受到闪电攻击时，开启闪电链modifier，并且为电桩增加电元素含量
+				"Normal":
+				{
+					"stacking" : "Unique",
+					"onBeingHit":
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "Shocking_Modifier",
+							"predicates":
+							[
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Acted",
+							"predicates":
+							[
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Acted_Eff",
+							"predicates":
+							[
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 1,
+								"sortType": "Nearest", //从近开始选
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Acted",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Light_Effect",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 1,
+								"sortType": "Nearest", //从近开始选
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked_Eff",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Acted_Eff",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+					],
+				},
+				
+				"Shocking_Modifier" :
+				{
+					"duration" : 0.6,
+					"stacking" : "Unique",
+					"elementType" : "Electric",
+					"elementDurability": 50,
+					"overrideWeaponElement" : false,				
+					"onAdded":
+					[
+
+					],
+					/*
+					"thinkInterval" : 0.5,
+					"onThinkInterval" :
+					[
+						//防止自己被回传
+						
+					],
+					*/
+				},
+				"Light_Effect":
+				{
+					"duration" : 2,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_SceneObj_Gear_Electirc_Lightning",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"attachPointTargetType":"Applier",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 201,
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked_Eff",
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "SetAnimatorInt",
+							"intID": "gadgetState",
+							"value": 0,
+						},
+					],
+				},
+				"ConductShock" :
+				{
+					/*"isUnique" : true,*/
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type" : "DamageByAttackValue",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag": "ElectricPlieDamage",
+								"attackProperty":
+								{
+									"damagePercentage":1.0,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 25,
+									"elementRank": 1.5,
+									"enBreak": 30,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "Eff_Element_Shock_Damage",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 0,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Acted_Eff":
+				{
+					"isUnique" : true,
+					"duration" : 0.45,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted_Eff",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted_Eff",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Shocked_Eff":
+				{
+					"isUnique" : true,
+					"duration" : 0.4,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked_Eff",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked_Eff",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Acted":
+				{
+					"isUnique" : true,
+					"duration" : 0.45,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Shocked":
+				{
+					"isUnique" : true,
+					"duration" : 0.4,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				}, 
+			},
+		},
+	},
+		///////////////////////////////////////////////////////////
+//
+//	电桩——不带逻辑
+//
+///////////////////////////////////////////////////////////
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Electric_Pile_Dungeon",
+			"onAdded":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "Normal",
+				},
+				{
+					"$type": "AddGlobalValue",
+					"key" : "Is_Electric_Pile",
+					"value" : 1,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 1,
+				},
+			],
+			"modifiers":
+			{
+				//当受到闪电攻击时，开启闪电链modifier，并且为电桩增加电元素含量
+				"Normal":
+				{
+					"stacking" : "Unique",
+					"onBeingHit":
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "Shocking_Modifier",
+							"predicates":
+							[
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+						{
+							"$type": "ExecuteGroupTrigger",
+							"sourceName": "ElectricPile",
+							"param1": 1,
+							"predicates":
+							[
+								{
+									"$type" : "ByHitElement",
+									"element" : "Electric",
+								},
+							],
+						},
+					],
+				},
+				
+				"Shocking_Modifier" :
+				{
+					"duration" : 0.9,
+					"stacking" : "Unique",
+					"elementType" : "Electric",
+					"elementDurability": 50,
+					"overrideWeaponElement" : false,				
+					"onAdded":
+					[
+						{
+							"$type" : "AttachEffect",
+							"effectPattern" : "Eff_Element_Shock_Loop",
+						},
+						/*
+						//防止自己被回传
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar", "Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+					*/
+					],
+					
+					"thinkInterval" : 0.8,
+					"onThinkInterval" :
+					[
+						//防止自己被回传
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Acted",
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByEntityTypes",
+									"entityTypes" : ["Avatar", "Monster"],
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Acted",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "ConductShock",
+							"otherTargets":
+							{
+					"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "All",
+								"campBasedOn": "Self",
+								"topLimit" : 5,
+							},
+							"predicates":
+							[
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Is_Electric_Pile",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								{
+									"$type" : "ByTargetIsSelf",
+									"isSelf" : false,
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Shocked",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "Electric_Plie_Shock_Rencently_Acted",
+									"value" : 0,
+									"maxvalue" : 1,
+									"compareType" : "NoneOrEqual",
+								},
+							],
+						},
+					],
+				},
+				"Shock_Modifier_Wane" :
+				{
+					/*"isUnique" : true,*/
+					"duration" : 0.1,
+					"onAdded" :
+					[
+						{
+							"$type" : "AddElementDurability",
+							"value" : -50,
+							"elementType" : "Electric",
+							"sortModifier": "DurabilityDes",
+							"useLimitRange": true,
+							"minValue": 0.0,
+						},
+					],
+				},
+				"ConductShock" :
+				{
+					/*"isUnique" : true,*/
+					"duration": 0.1,
+					"onAdded":
+					[
+						{
+							"$type" : "FireEffect",
+							"effectPattern" : "Eff_Element_Conduct_Lightning",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"attachPointTargetType":"Applier",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+						},
+						{
+							"$type" : "DamageByAttackValue",
+							"target" : "Self",
+							"born" :
+							{
+								"$type":"ConfigBornByAttachPoint",
+								"attachPointName":"RootNode",
+								"offset":
+								{
+									"x":0,
+									"y":0,
+									"z":0,
+								},
+							},
+							"attackInfo":
+							{
+								"attackTag": "ElectricPlieDamage",
+								"attackProperty":
+								{
+									"damagePercentage":1.0,
+									"strikeType": "Default",
+									"elementType": "Electric",
+									"elementDurability": 25,
+									"elementRank": 1.5,
+									"enBreak": 30,
+								},
+								"hitPattern" :
+								{
+									"onHitEffectName" : "Eff_Element_Shock_Damage",
+									"hitLevel": "Light",	//hitlevel = 2
+									"hitImpulseX": 0,	//hitlevel = 2
+									"hitImpulseY": 0,	//hitlevel = 2
+									"reboundRatio" : 0,
+									"hitHaltTime" : 0.0,
+									"hitHaltTimeScale" : 0.05,
+									"muteHitText" : false,
+								},
+							},
+						},
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "UNIQUE_Electric_Plie_Shock_Recently_Shocked",
+						},
+					],
+					"onAttackLanded" :
+					[
+						{
+							"$type" : "ApplyModifier",
+							"modifierName" : "Shock_Modifier_Wane",
+							"target" : "Caster",
+							"predicates":
+							[
+								{
+									"$type" : "ByAttackTags",
+									"attackTags" : ["ElectricPlieDamage"],
+								},
+							],
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Acted":
+				{
+					"isUnique" : true,
+					"duration" : 1.0,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Acted",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+				"UNIQUE_Electric_Plie_Shock_Recently_Shocked":
+				{
+					"isUnique" : true,
+					"duration" : 1.0,
+					"stacking" : "Refresh",
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : 1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Plie_Shock_Rencently_Shocked",
+							"value" : -1,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+				},
+			},
+		},
+	},
+	///////////////////////////////
+//
+//镭射机关
+//
+////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_State",
+			"onAdded":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+				{
+					"$type": "SetPartControlTarget",
+					"partRootNames": ["LaserControl"], 
+					"target": "CurLocalAvatar",
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : 5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Laser_Active_Electric",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "Laser_Active_Fire",
+				},	
+			],
+			"modifiers": 
+			{
+				"Laser_Active_Electric":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Bullet",
+							"value" : 5,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Electric_Bullet",
+							"value" : -5,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"thinkInterval": 3,
+					"onThinkInterval":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Fire",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "PLAYER_ENTER",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},
+				"Laser_Active_Fire":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Fire_Bullet",
+							"value" : 5,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type" : "AddGlobalValue",
+							"key" : "Fire_Bullet",
+							"value" : -5,
+							"useLimitRange" : true,
+							"maxValue" : 1,
+							"minValue" : 0,
+						},
+					],
+					"thinkInterval": 3,
+					"onThinkInterval":
+					[
+						{
+							"$type": "SetAnimatorTrigger",
+							"triggerID": "Fire",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "PLAYER_ENTER",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+				},				
+			},
+		},
+	},
+	
+		//电球机关蓄力
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_Charging",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Charge"],
+					"modifierName": "Gear_Shoot_Charge",
+				},
+			],
+			"modifiers":
+			{
+				"Gear_Shoot_Charge":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Charging",
+						},
+					],	
+				},
+			},
+		},
+	},
+	
+		//电球机关发射
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_Shooting",
+			
+			"onAbilityStart": 
+			[
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 70900214,
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "ShootPoint",
+						"offset" : 
+						{
+							"x": -0.1,
+							"y": 0.0,
+							"z": 0.4,
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "Electric_Bullet",
+							"value": 1,
+							"compareType": "Equal",
+						},
+					],
+				},
+				{
+					"$type": "TriggerBullet",
+					"bulletID": 70900215,
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "ShootPoint",
+						"offset" : 
+						{
+							"x": -0.1,
+							"y": 0.0,
+							"z": 0.4,
+						},
+					},
+					"predicates":
+					[
+						{
+							"$type": "ByTargetGlobalValue",
+							"key": "Fire_Bullet",
+							"value": 1,
+							"compareType": "Equal",
+						},
+					],
+				},
+			],
+		},
+	},
+		//电球机关瞄准线
+	{
+		"Default":
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_Aiming",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToStateIDMixin",
+					"stateIDs": ["Charge"],
+					"modifierName": "Gear_Shoot_Aim",
+				},
+			],
+			"modifiers":
+			{
+				"Gear_Shoot_Aim":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_KanriahMech_ElectricBall_Aiming",
+						},
+					],
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////
+//
+//	坠落冰柱
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_DropIce",
+			"onFieldEnter":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Trigger_Bullet",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Normal",
+				},
+			],
+			"modifiers": 
+			{
+				"Normal":
+				{
+					"onBeingHit":
+					[
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"Trigger_Bullet",
+						},
+					],
+				},
+				"Trigger_Bullet":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_WoodenObject_Broken",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "EffectPoint",
+							},
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70900218,
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "ShootPoint",
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////
+//
+//丘丘人电桩
+//
+/////////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "Hili_Electric_Throw_Explode_Test",
+			"onAbilityStart":
+			[
+				{
+					"$type": "AttachModifier",
+					"modifierName": "DropElectric_Crash",
+				},
+			],
+			"modifiers": 
+			{
+				"DropElectric_Crash":
+				{
+					"onAdded":
+					[
+						{
+							"$type" : "TriggerAttackEvent",
+							"targetType" : "All",
+							"attackEvent":
+							{
+								"attackPattern" :
+								{
+									"$type" : "ConfigAttackSphere",
+									"triggerType" : "TriggerNoRepeat",
+									"radius" : 2,
+									"born":
+									{
+										"$type": "ConfigBornBySelf",
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 1.0,
+										"elementType": "Electric",
+										"elementDurability": 20,
+										"strikeType": "Blunt",
+										"enBreak": 200,
+									},
+									"hitPattern" :
+									{
+										"hitLevel" : "Air",
+										"hitImpulseX" : 700,
+										"hitImpulseY" : 400,
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								}
+							},
+						},
+						{
+							"$type": "CreateGadget",
+							"gadgetID": 70900232,
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "RootNode",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Hili_Fire_BombThrow_Test",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "TriggerThrowEquipPart",
+				"equipPart": "equip03",
+				"born":
+				{
+					"$type": "ConfigBornByTarget",
+					"direction":
+					{
+						"$type": "ConfigDirectionByAttackTarget",
+						"maxAngle": 30.0,
+						"maxAngleType": "Horizontal",
+					}
+				},
+			},
+			{
+				"$type": "TriggerAbility",
+				"abilityName": "Hili_Electric_Throw_Bullet_TriggerOpen_Test",
+				"otherTargets":
+				{
+					"$type": "SelectTargetsByChildren",
+					"sortType": "Reversed",
+					"topLimit": 1,
+					"configID": 70900231,
+				},
+			},
+			{
+				"$type": "SetPoseInt",
+				"target": "Self",
+				"intID": "equip03",
+				"value": 0,
+			},
+			{
+				"$type": "SetPoseBool",
+				"target": "Self",
+				"boolID": "BombRun",
+				"value": false,
+			},
+		],
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Hili_Electric_Throw_Bullet_TriggerOpen_Test",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "EnableBulletCollisionPluginTrigger",
+				"setEnable": true,
+			},
+		],
+		"modifiers": 
+		{
+	
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Hili_Fire_BombCreate_Test",
+		"onAbilityStart": 
+		[
+			{
+				"$type": "SetPoseBool",
+				"target": "Self",
+				"boolID": "BombRun",
+				"value": false,
+			},		
+			{
+				"$type": "AddGlobalValue",
+				"target": "Self",
+				"key": "_ABILITY_RANDOM_HOLDTIME",
+				"useLimitRange": true,
+				"randomInRange": true,
+				"maxValue": 4,
+				"minValue": 3,
+			},
+			{
+				"$type": "SetGlobalValueToOverrideMap",
+				"target": "Self",
+				"globalValueKey": "_ABILITY_RANDOM_HOLDTIME",
+				"overrideMapKey": "RandomHoldTime",
+			},
+			{
+				"$type": "TriggerCreateGadgetToEquipPart",
+				"gadgetID": 70900231,
+				"equipPart": "equip03",
+			},
+			{
+				"$type": "SetPoseInt",
+				"target": "Self",
+				"intID": "equip03",
+				"value": 1,
+			},
+			{
+				"$type": "TriggerHideWeapon",
+				"visible": false,
+				"partNames":["equip01"],
+			},
+			{
+				"$type": "ApplyModifier",
+				"modifierName": "BombHoldTimer",
+				"target": "Self",
+			},	
+		],
+		"onKill" :
+		[
+			{
+				"$type":"RemoveModifier",
+				"modifierName":"BombHoldTimer",
+			},
+			{
+				"$type": "ResetAnimatorTrigger",
+				"triggerID": "BombThrowTrigger",
+			},
+		],
+		"modifiers" : 
+		{
+			"BombHoldTimer" : 
+			{
+				"duration": "%RandomHoldTime",
+				"onAdded": 
+				[
+					{
+						"$type": "SetPoseBool",
+						"target": "Self",
+						"boolID": "BombRun",
+						"value": true,
+					},
+				],
+				"onRemoved": 
+				[
+					{
+						"$type": "SetAnimatorTrigger",
+						"target": "Self",
+						"triggerID": "BombThrowTrigger",
+					},
+					{
+						"$type": "AddGlobalValue",
+						"target": "Self",
+						"key": "_ABILITY_RANDOM_HOLDTIME",
+						"value": -5.0,
+						"useLimitRange": true,
+						"maxValue": 3.0,
+						"minValue": 0.0,
+					},
+				],
+			},
+		},
+		"abilitySpecials":
+		{
+			"RandomHoldTime": 0.0,
+		},
+	},
+},
+////////////////////////////////////////////
+//
+//坠落冰柱bullet
+//
+/////////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_DropIce_Crash",
+			"onAdded":
+			[
+				{
+					"$type": "AttachEffect",
+					"effectPattern": "Eff_IcePiton",
+				},
+			],
+			"onAbilityStart":
+			[
+				{
+					"$type": "FireEffect",
+					"effectPattern": "Eff_IcePiton_Ground_Hit",
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "attachPoint",
+					},
+				},
+				{
+					"$type" : "DamageByAttackValue",
+					"otherTargets":
+					{
+						"$type": "SelectTargetsByShape",
+						"shapeName": "CircleR5",
+						"centerBasedOn": "Self",
+						"campTargetType": "Enemy",
+						"campBasedOn": "Self",
+					},
+					"attackInfo":
+					{
+						"attackProperty":
+						{
+							"damagePercentage": 1.0,
+							"elementType": "Ice",
+							"elementDurability": 20,
+							"strikeType": "Blunt",
+							"enBreak": 200,
+						},
+						"hitPattern" :
+						{
+							"hitLevel" : "Air",
+							"hitImpulseX" : 700,
+							"hitImpulseY" : 400,
+							"reboundRatio" : 0,
+							"hitHaltTime" : 0.0,
+							"hitHaltTimeScale" : 0.05,
+							"muteHitText" : false,
+						},
+					},
+				},
+				{
+					"$type": "KillSelf",
+					"predicates"  : 
+					[
+						{
+							"$type":"ByNot",
+							"predicates":
+							[
+								{
+									"$type":"ByAttackNotHitScene",
+									"attackPattern":
+									{
+										"$type" : "ConfigAttackSphere",
+										"triggerType": "TriggerNoRepeat",
+										"radius": 4,
+										"born":
+										{
+											"$type": "ConfigBornBySelf",
+										},
+									},
+									"checkWaterLayer":true,
+								},
+							],
+						},
+					],
+				},
+			],
+		},
+	},
+////////////////////////////////////////////
+//
+//坠落冰柱能量球临时
+//
+/////////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_EnergyTmp",
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Normal",
+				},
+			],
+			"modifiers": 
+			{
+				"Normal":
+				{
+					"duration":1,
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+		/////////////////////////////////////////////////////////
+//
+//	落地冰柱
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_DropedIce",
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Normal",
+				},
+			],
+			"modifiers": 
+			{
+				"Normal":
+				{
+					"elementType": "Ice",
+					"elementDurability": 50,
+					"onRemoved":
+					[
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+///////////////////////////////
+//
+//固定位置镭射机关 
+//
+////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_Stable_State",
+			"onAdded":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Laser_Aim",
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type": "ApplyModifier",
+					"modifierName": "Laser_Active",
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "RemoveModifier",
+					"modifierName": "Laser_Active",
+				},
+			],
+			"modifiers": 
+			{
+				"Laser_Aim":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_SceneObj_Laser_01",
+						},
+					],
+				},	
+				"Laser_Active":
+				{
+					"thinkInterval": 0.2,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70900222,
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "ShootPoint",
+								"offset" : 
+								{
+									"x": -0.1,
+									"y": 0.0,
+									"z": 0.4,
+								},
+							},
+						},
+					],
+				},				
+			},
+		},
+	},
+///////////////////////////////
+//
+//固定位置镭射机关 打人特供
+//
+////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Laser_Stable_HitPlayer",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Laser_Active",
+				},
+			],
+			"modifiers": 
+			{
+				"Laser_Active":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_SceneObj_Laser_01",
+						},
+					],
+					"thinkInterval": 0.15,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"muteHitBehindScene" : true,
+									"checkHitLayerType" : "Both",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "ShootPoint",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,		//角度偏移
+												"z": 0.0,
+											}
+										}
+									},
+									"size" : 
+									{
+										"x" : 0.8,
+										"y" : 0.5,
+										"z" : 50.0,
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "None",
+										"elementDurability": 30,
+										"strikeType": "None",
+										"enBreak": 10,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName" : "none" ,
+										"hitLevel": "Air",	//hitlevel = 2
+										"retreatType": "ByHitDirection",
+										"hitImpulseX": 600,	//hitlevel = 2
+										"hitImpulseY": 800,	//hitlevel = 2
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								},
+							},
+						},
+					],
+				},				
+			},
+		},
+	},
+///////////////////////////////
+//
+//移动镭射机关
+//
+////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shooter_Laser_Moveable",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Laser_PowerOff",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Laser_Continue",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "Laser_Interrupt",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : 5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers": 
+			{
+				"Laser_PowerOff":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Laser_Active",
+						},
+					],
+				},
+				"Laser_Interrupt":
+				{
+					"thinkInterval": 10,
+					"onThinkInterval":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Laser_Active",
+						},
+					],
+				},
+				"Laser_Active":
+				{
+					"duration":3,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_SceneObj_Laser_01",
+						},
+					],
+					"thinkInterval": 0.15,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"muteHitBehindScene" : true,
+									"checkHitLayerType" : "Both",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "ShootPoint",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,		//角度偏移
+												"z": 0.0,
+											}
+										}
+									},
+									"size" : 
+									{
+										"x" : 0.8,
+										"y" : 0.5,
+										"z" : 50.0,
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "None",
+										"elementDurability": 30,
+										"strikeType": "None",
+										"enBreak": 10,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName" : "none" ,
+										"hitLevel": "Air",	//hitlevel = 2
+										"retreatType": "ByHitDirection",
+										"hitImpulseX": 600,	//hitlevel = 2
+										"hitImpulseY": 800,	//hitlevel = 2
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								},
+							},
+						},
+					],
+				},
+				"Laser_Continue":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_SceneObj_Laser_01",
+						},
+					],
+					"thinkInterval": 0.15,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerAttackEvent",
+							"targetType": "Enemy",
+							"attackEvent": 
+							{
+								"attackPattern": 
+								{
+									"$type" : "ConfigAttackBox",
+									"triggerType" : "TriggerNoRepeat",
+									"muteHitBehindScene" : true,
+									"checkHitLayerType" : "Both",
+									"born" :
+									{
+										"$type": "ConfigBornByAttachPoint",
+										"attachPointName": "ShootPoint",
+										"offset" : 
+										{
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0,
+										},
+										"direction":
+										{
+											"$type": "ConfigDirectionByEntity",
+											"angleOffset":
+											{
+												"x": 0.0,
+												"y": 0.0,		//角度偏移
+												"z": 0.0,
+											}
+										}
+									},
+									"size" : 
+									{
+										"x" : 0.8,
+										"y" : 0.5,
+										"z" : 50.0,
+									},
+								},
+								"attackInfo":
+								{
+									"attackProperty":
+									{
+										"damagePercentage": 0.2,
+										"elementType": "None",
+										"elementDurability": 30,
+										"strikeType": "None",
+										"enBreak": 10,
+									},
+									"hitPattern" :
+									{
+										"onHitEffectName" : "none" ,
+										"hitLevel": "Air",	//hitlevel = 2
+										"retreatType": "ByHitDirection",
+										"hitImpulseX": 600,	//hitlevel = 2
+										"hitImpulseY": 800,	//hitlevel = 2
+										"reboundRatio" : 0,
+										"hitHaltTime" : 0.0,
+										"hitHaltTimeScale" : 0.05,
+										"muteHitText" : false,
+									},
+								},
+							},
+						},
+					],
+				},				
+			},
+		},
+	},
+///////////////////////////////
+//
+//移动镭射机关测试
+//
+////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Shooter_Laser_Moveable_Test",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 0,
+					"modifierName": "Laser_PowerOff",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "Laser_Continue",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "Laser_Interrupt",
+				},
+			],
+			"onAdded":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onFieldEnter":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : 5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type" : "AddGlobalValue",
+					"key" : "PLAYER_ENTER",
+					"value" : -5,
+					"useLimitRange" : true,
+					"maxValue" : 1,
+					"minValue" : 0,
+				},
+			],
+			"modifiers": 
+			{
+				"Laser_PowerOff":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "RemoveModifier",
+							"modifierName": "Laser_Active",
+						},
+					],
+				},
+				"Laser_Interrupt":
+				{
+					"thinkInterval": 10,
+					"onThinkInterval":
+					[
+						{
+							"$type": "ApplyModifier",
+							"modifierName": "Laser_Active",
+						},
+					],
+				},
+				"Laser_Active":
+				{
+					"duration":3,
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Defender_None_Laser_Aim",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Defender_None_Laser_Line",
+						},
+					],
+					"thinkInterval": 0.3,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70900214,
+							"predicates":
+							[
+							/*
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "PLAYER_ENTER",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								*/
+							],
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "ShootPoint",
+								"offset" : 
+								{
+									"x": -0.1,
+									"y": 0.0,
+									"z": 0.4,
+								},
+							},
+						},
+					],
+				},
+				"Laser_Continue":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Defender_None_Laser_Aim",
+						},
+						{
+							"$type": "AttachEffect",
+							"effectPattern": "Eff_Monster_Defender_None_Laser_Line",
+						},
+					],
+					"thinkInterval": 0.3,
+					"onThinkInterval":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70900214,
+							"predicates":
+							[
+								/*
+								{
+									"$type" : "ByTargetGlobalValue",
+									"key" : "PLAYER_ENTER",
+									"value" : 1,
+									"compareType" : "Equal",
+								},
+								*/
+							],
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName" : "ShootPoint",
+								"offset" : 
+								{
+									"x": -0.1,
+									"y": 0.0,
+									"z": 0.4,
+								},
+							},
+						},
+					],
+				},				
+			},
+		},
+	},
+/////////////////////////////////////////////////////////
+//
+//	食人鱼
+//
+/////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Piranha",
+			"onFieldEnter":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Warning",
+				},
+				{
+					"$type": "SetAnimatorInt",
+					"intID": "gadgetState",
+					"value": 1,
+				},
+			],
+			"onFieldExit":
+			[
+				{
+					"$type": "SetAnimatorInt",
+					"intID": "gadgetState",
+					"value": 0,
+				},
+			],
+			"modifiers": 
+			{
+				"Warning":
+				{
+					"onAdded":
+					[
+						//预警特效
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Ambor_AlertCircle",
+						},
+					],
+					"thinkInterval": 2.5,
+					"onThinkInterval":
+					[
+						{
+							"$type":"SetSelfAttackTarget",
+							"otherTargets": 
+							{
+								"$type": "SelectTargetsByShape",
+								"shapeName": "CircleR5",
+								"centerBasedOn": "Self",
+								"campTargetType": "Enemy",
+								"campBasedOn": "Self",
+								"topLimit":1
+							},
+						},
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70900259,
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								// "onGround":true,
+								"direction":
+								{
+									"$type":"ConfigDirectionByAttackTarget",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,		//角度偏移
+										"z": 0.0,
+									}
+								},
+							},
+						},
+						{
+							"$type": "KillSelf",
+						},
+					],
+				},
+			},
+		},
+	},
+////////////////////////////////////////////
+//
+//食人鱼bullet
+//
+/////////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Piranha_Crash",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "TriggerAttackEvent",
+					"targetType" : "All",
+					"attackEvent":
+					{
+						"attackPattern" :
+						{
+							"$type" : "ConfigAttackSphere",
+							"triggerType" : "TriggerNoRepeat",
+							"radius" : 2,
+							"born":
+							{
+								"$type": "ConfigBornBySelf",
+							},
+						},
+						"attackInfo":
+						{
+							"attackProperty":
+							{
+								"damagePercentage": 1.0,
+								"elementType": "Ice",
+								"elementDurability": 20,
+								"strikeType": "Blunt",
+								"enBreak": 200,
+							},
+							"hitPattern" :
+							{
+								"hitLevel" : "Air",
+								"hitImpulseX" : 700,
+								"hitImpulseY" : 400,
+								"reboundRatio" : 0,
+								"hitHaltTime" : 0.0,
+								"hitHaltTimeScale" : 0.05,
+								"muteHitText" : false,
+							},
+						}
+					},
+				},
+			],
+			"modifiers": 
+			{
+
+			},
+		},
+	},
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Piranha_End",
+			"onAbilityStart":
+			[
+				{
+					"$type": "CreateGadget",
+					"gadgetID": 70900258,
+					"born":
+					{
+						"$type": "ConfigBornByAttachPoint",
+						"attachPointName" : "RootNode",
+						"offset" : 
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0,
+						},
+					},
+				},
+			],
+			"modifiers": 
+			{
+			},
+		},
+	},
+////////////////////////////////////////////
+//
+// 香菱地城 坠落冰柱控制器
+//
+/////////////////////////////////////////
+{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Gear_Combat_Xiangling_IceGear_Controller",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "GearStart",
+				},
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 203,
+					"modifierName": "GearAction1",
+				},
+			],
+			"modifiers": 
+			{
+				"GearStart":
+				{
+					"thinkInterval": 3.5,
+					"onThinkInterval":
+					[
+						//随机位置
+						{
+							"$type": "SetGlobalPos",
+							"target":"Self",
+							"key": "IcePos",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"bornRandom" :
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 2,
+									"maxRandomRange": 5,
+								},
+							},
+						},
+						//预警特效
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_IcePiton_Warning_01",
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_IcePiton_Pre",
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 10.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type":"ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 90.0,
+										"y": 0.0,		//角度偏移
+										"z": 0.0,
+									}
+								},
+							},
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ShootIce",
+						},
+					],
+				},
+				"ShootIce":
+				{
+					"duration": 0.7,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70350021,
+							"byServer": true,
+							"campID": 4001,
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 10.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type":"ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 90.0,
+										"y": 0.0,		//角度偏移
+										"z": 0.0,
+									}
+								},
+							},
+						},
+					],
+				},
+				"GearAction1":
+				{
+					"thinkInterval": 5,
+					"onThinkInterval":
+					[
+						//随机位置
+						{
+							"$type": "SetGlobalPos",
+							"target":"Self",
+							"key": "IcePos",
+							"born":
+							{
+								"$type": "ConfigBornByTarget",
+								"bornRandom" :
+								{
+									"$type": "BornRandomFromCenter",
+									"minRandomRange": 2,
+									"maxRandomRange": 5,
+								},
+							},
+						},
+						//预警特效
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_IcePiton_Warning_01",
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_IcePiton_Pre",
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 10.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type":"ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 90.0,
+										"y": 0.0,		//角度偏移
+										"z": 0.0,
+									}
+								},
+							},
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"ShootIce2",
+						},
+					],
+				},
+				"ShootIce2":
+				{
+					"duration": 0.7,
+					"onRemoved":
+					[
+						{
+							"$type": "TriggerBullet",
+							"bulletID": 70350021,
+							"byServer": true,
+							"campID": 4001,
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"positionKey": "IcePos",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 10.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type":"ConfigDirectionByEntity",
+									"angleOffset":
+									{
+										"x": 90.0,
+										"y": 0.0,		//角度偏移
+										"z": 0.0,
+									}
+								},
+							},
+						},
+						{
+							"$type": "CreateGadget",
+							"campID": 5001,
+							"gadgetID": 70350027,
+							"byServer": true,
+							"born":
+							{
+								"$type": "ConfigBornByGlobalValue",
+								"attachPointName" : "IcePos",
+								"offset" : 
+								{
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0,
+								},
+								"direction":
+								{
+									"$type":"ConfigDirectionByAttachPoint",
+									"attachPointName":"RootNode",
+									"angleOffset":
+									{
+										"x": 0.0,
+										"y": 0.0,		//角度偏移
+										"z": 90.0,
+									}
+								},
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+]

@@ -1,0 +1,596 @@
+{
+////////////////////////////////////////////////////////////////
+//
+//  火斧暴徒-横波
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Axe_FireWave01" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied": true,
+				"isGhostToEnemy": true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": true,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 10.0,
+			"canBornInWater": true,
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 2.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"checkGrass": true,
+			"checkInterval": 0.1,
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Brute_Axe_FireWave01_Wave",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "FireWave01_Wave",
+				"abilityName" : "Brute_Axe_FireWave01_Wave"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  火斧暴徒-纵波
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Axe_FireWave02" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",
+				"scaleX" : 1.0,
+				"scaleY" : 1.0,
+				"scaleZ" : 1.0,
+			},
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true, // 是否继承创造者的数值
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"denyLockOn" : true,
+				"isInvincible": true,
+				"isGhostToAllied": true,
+				"isGhostToEnemy": true,
+				"canTriggerBullet" : false,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect": "",
+				"muteAllHit": true,
+				"muteAllHitEffect": true,
+				"muteAllHitText": true,
+			},
+		},
+
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigLinerBulletMove",
+			"speed" : 8.0,
+			"canBornInWater": true,
+		},
+		"timer" :
+		{
+			"lifeInfinite" : false,		//如果未触发是否一致存在
+			"lifeTime" : 1.0,			//存在时间
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerNoRepeat",
+				"ignoreScene" : true,
+			},
+			"triggerActions" :
+			[
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "FireWave01_Wave",
+				"abilityName" : "Brute_Axe_FireWave02_Wave"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  火斧暴徒-火史莱姆-着
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Axe_FireSlime_Fire" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",		//EmitFrom
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"affectedByWorld" : true,
+			"checkInSurface" : true,
+		},
+		"timer" :
+		{
+			"lifeTime": 10,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"weight" : 60,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"canTriggerBullet" : false,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigParabolaBulletMove",
+			"speed" : 10,
+			"angleOffHor" : 36,
+			"gravityOfAcceleration" : 40,
+			"syncToRemote" : true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"correction" : 
+			{
+				"$type":"ConfigParabolaBulletMoveCorrection",
+				"deviation": 1.5,
+				"fixAngleOfVer": 15.0,
+				"minSpeed": 4.0,
+				"maxSpeed": 24.0,
+			},
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Brute_Axe_FireSlime_Explode",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "FireSlime_Fire",
+				"abilityName" : "Brute_Axe_FireSlime_Fire"
+			},
+			{
+				"abilityID": "FireSlime_Explode",
+				"abilityName" : "Brute_Axe_FireSlime_Explode"
+			},
+		],
+		// "stateLayers":
+		// {
+		// 	"defaultLayer":
+		// 	{
+		// 		"$type": "ConfigNormalStateLayer",
+		// 		"stateIDs":
+		// 		{
+		// 			"NormalMove":
+		// 			{
+		// 				"$type": "ConfigNormalStateIDInfo",
+		// 				"animatorStates":
+		// 				{
+		// 					"Throw":
+		// 					[
+		// 						"Audio_Brute_Axe_Throw_Slime",
+		// 					],
+		// 				},
+		// 			},
+		// 		},
+		// 	},
+		// },
+		"audio" :
+		{
+		    "$type": "ConfigGadgetAudio",
+			"animAudio" :
+			{
+				"onTransitionOut" :
+				[
+					// {
+					// 	"currentStateName": "Throw",
+					// 	"audioEvent": { "text": "Stop_sfx_monster_brute_axe_throw_slime_lp" },
+					// 	"otherStateNames": [],
+					// 	"usage": "Any"
+					// }
+				],
+				"onTransitionIn" :
+				[
+					// {
+					// 	"currentStateName": "",
+					// 	"audioEvent": { "text": "" },
+					// 	"otherStateNames": [],
+					// 	"usage": "Any"
+					// }
+				],
+			}
+		}
+	},
+////////////////////////////////////////////////////////////////
+//
+//  火斧暴徒-火史莱姆-灭
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Axe_FireSlime_None" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",		//EmitFrom
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"affectedByWorld" : true,
+			"checkInSurface" : true,
+		},
+		"timer" :
+		{
+			"lifeTime": 10,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"weight" : 60,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"canTriggerBullet" : false,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigParabolaBulletMove",
+			"speed" : 10,
+			"angleOffHor" : 45,
+			"gravityOfAcceleration" : 30,
+			"syncToRemote" : true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"correction" : 
+			{
+				"$type":"ConfigParabolaBulletMoveCorrection",
+				"deviation": 1.5,
+				"fixAngleOfVer": 15.0,
+				"minSpeed": 4.0,
+				"maxSpeed": 24.0,
+			},
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Brute_Axe_FireSlime_Explode",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "FireSlime_Explode",
+				"abilityName" : "Brute_Axe_FireSlime_Explode"
+			},
+		],
+		// "stateLayers":
+		// {
+		// 	"defaultLayer":
+		// 	{
+		// 		"$type": "ConfigNormalStateLayer",
+		// 		"stateIDs":
+		// 		{
+		// 			"NormalMove":
+		// 			{
+		// 				"$type": "ConfigNormalStateIDInfo",
+		// 				"animatorStates":
+		// 				{
+		// 					"Throw":
+		// 					[
+		// 						"Audio_Brute_Axe_Throw_Slime",
+		// 					],
+		// 				},
+		// 			},
+		// 		},
+		// 	},
+		// },
+		"audio" :
+		{
+		    "$type": "ConfigGadgetAudio",
+			"animAudio" :
+			{
+				"onTransitionOut" :
+				[
+					 {
+					 	"currentStateName": "Throw",
+					 	"audioEvent": { "text": "Stop_sfx_monster_brute_axe_throw_slime_lp" },
+					 	"otherStateNames": [],
+					 	"usage": "Any"
+					 }
+				],
+				"onTransitionIn" :
+				[
+					// {
+					// 	"currentStateName": "",
+					// 	"audioEvent": { "text": "" },
+					// 	"otherStateNames": [],
+					// 	"usage": "Any"
+					// }
+				],
+			}
+		}
+	},
+////////////////////////////////////////////////////////////////
+//
+//  巨盾暴徒-草史莱姆
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Shield_GrassSlime" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",		//EmitFrom
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"affectedByWorld" : true,
+			"checkInSurface" : true,
+		},
+		"timer" :
+		{
+			"lifeTime": 10,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"weight" : 60,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"canTriggerBullet" : false,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigParabolaBulletMove",
+			"speed" : 10,
+			"angleOffHor" : 45,
+			"gravityOfAcceleration" : 20,
+			"syncToRemote" : true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"correction" : 
+			{
+				"$type":"ConfigParabolaBulletMoveCorrection",
+				"deviation": 1.5,
+				"fixAngleOfVer": 15.0,
+				"minSpeed": 4.0,
+				"maxSpeed": 24.0,
+			},
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Brute_Shield_GrassSlime_Explode",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "GrassSlime_Explode",
+				"abilityName" : "Brute_Shield_GrassSlime_Explode"
+			},
+		],
+	},
+////////////////////////////////////////////////////////////////
+//
+//  岩盾暴徒-岩史莱姆
+//
+////////////////////////////////////////////////////////////////
+	"Brute_Shield_RockSlime" :
+	{
+		"$type" : "ConfigGadget",
+		"common" :
+		{
+			"effectAttachShape" :
+			{
+				"$type" : "ConfigEffectAttachBox",
+				"emitFrom" : "Volume",		//EmitFrom
+				"scaleX" : 1,
+				"scaleY" : 1,
+				"scaleZ" : 1,
+			},
+			"affectedByWorld" : true,
+			"checkInSurface" : true,
+		},
+		"timer" :
+		{
+			"lifeTime": 10,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : true,
+				"HP" : 999999,
+				"attack" : 15.0,
+				"defense" : 999999,
+				"weight" : 60,
+				"denyLockOn" : true,
+				"isLockHP": true,
+				"canTriggerBullet" : false,
+			},
+		},
+		// 子弹线性移动
+		"move" :
+		{
+			"$type" : "ConfigParabolaBulletMove",
+			"speed" : 10,
+			"angleOffHor" : 45,
+			"gravityOfAcceleration" : 20,
+			"syncToRemote" : true,
+			"updateAngle" : 
+			{
+				"$type": "ConfigBulletMoveAngleByVelocity",
+			},
+			"correction" : 
+			{
+				"$type":"ConfigParabolaBulletMoveCorrection",
+				"deviation": 1.5,
+				"fixAngleOfVer": 15.0,
+				"minSpeed": 4.0,
+				"maxSpeed": 24.0,
+			},
+		},
+		// 子弹参数
+		"gadget" :
+		{
+			"$type" : "ConfigBulletPattern",
+			"collision" : 
+			{
+				"targetType" : "Enemy",
+				"triggerType" : "TriggerOnce",
+			},
+			"triggerActions" :
+			[
+				{
+					"$type" : "ConfigGadgetTriggerAbility",
+					"abilityName" : "Brute_Shield_RockSlime_Explode",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "RockSlime_Explode",
+				"abilityName" : "Brute_Shield_RockSlime_Explode"
+			},
+		],
+	},
+}

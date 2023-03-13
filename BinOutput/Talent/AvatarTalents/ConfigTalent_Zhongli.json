@@ -1,0 +1,186 @@
+{
+	"Zhongli_Constellation_1":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "Avatar_Zhongli_PrimoPillar",
+			"talentParam": "PillarFever",
+		},
+	],
+	"Zhongli_Constellation_2":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "Avatar_Zhongli_GeoOrder",
+			"talentParam": "GeoOrderASMaxShield",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_GeoOrder",
+			"paramSpecial" : "Radius",
+			"paramDelta" : 1.5,
+		},
+	],
+	"Zhongli_Constellation_3":
+	[
+		{
+			"$type": "AddTalentExtraLevel",
+			"talentType": "AvatarSkill",
+			"talentIndex": 2,
+			"extraLevel": 3,
+		},
+	],
+	"Zhongli_Constellation_4":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "Avatar_Zhongli_RockShield",
+			"talentParam": "ExtraShieldLevel",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_RockShield",
+			"paramSpecial" : "ShieldMaxLevel",
+			"paramDelta" : 1,
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_GeoOrder",
+			"paramSpecial" : "ShieldMaxLevel",
+			"paramDelta" : 1,
+		},
+	],
+	"Zhongli_Constellation_5":
+	[
+		{
+			"$type": "AddTalentExtraLevel",
+			"talentType": "AvatarSkill",
+			"talentIndex": 9,
+			"extraLevel": 3,
+		},
+	],
+	"Zhongli_Constellation_6":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "Avatar_Zhongli_RockShield",
+			"talentParam": "ShieldWithHeal",
+		},
+	],
+	"Zhongli_CoreSkill":
+	[
+		{
+			"$type": "AddAbility",
+			"abilityName": "Avatar_Zhongli_RockFever",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_RockFever",
+			"paramSpecial" : "DPRatio",
+			"paramDelta" : "%1",
+		},
+	],
+	"Zhongli_PermanentSkill_1":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "SkillObj_Zhongli_PrimoPillar",
+			"talentParam": "RockResonance",
+		},
+	],
+	"Zhongli_PermanentSkill_2":
+	[
+		{
+			"$type" : "UnlockTalentParam",
+			"abilityName": "Avatar_Zhongli_RockShield",
+			"talentParam": "RockSacrificeEnergy",
+		},
+	],
+	"Zhongli_SkillUpgrade_1":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_NormalAttack",
+			"paramSpecial" : "Attack01",
+			"paramDelta" : "%1",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_NormalAttack",
+			"paramSpecial" : "Attack02",
+			"paramDelta" : "%2",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_NormalAttack",
+			"paramSpecial" : "Attack03",
+			"paramDelta" : "%3",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_NormalAttack",
+			"paramSpecial" : "Attack04",
+			"paramDelta" : "%4",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "SkillObj_Zhongli_Attack05",
+			"paramSpecial" : "Attack05",
+			"paramDelta" : "%5",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_NormalAttack",
+			"paramSpecial" : "Attack06",
+			"paramDelta" : "%6",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "SkillObj_Zhongli_ExtraAttack",
+			"paramSpecial" : "ExtraAttack",
+			"paramDelta" : "%7",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_ExtraAttack",
+			"paramSpecial" : "ExtraAttack_Pole_Stamina_Cost",
+			"paramDelta" : "%8",
+		},
+	],
+	"Zhongli_SkillUpgrade_2":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "SkillObj_Zhongli_PrimoPillar",
+			"paramSpecial" : "PillarDamage1",
+			"paramDelta" : "%1",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "SkillObj_Zhongli_PrimoPillar",
+			"paramSpecial" : "PillarDamage2",
+			"paramDelta" : "%2",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_RockShield",
+			"paramSpecial" : "ShieldBaseDuability",
+			"paramDelta" : "%4",
+		},
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_RockShield",
+			"paramSpecial" : "ShieldLevelDuability",
+			"paramDelta" : "%5",
+		},
+	],
+	"Zhongli_SkillUpgrade_3":
+	[
+		{
+			"$type" : "ModifyAbility",
+			"abilityName" : "Avatar_Zhongli_GeoOrder",
+			"paramSpecial" : "Damage",
+			"paramDelta" : "%1",
+		},
+	],
+},

@@ -1,0 +1,946 @@
+[
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 事件脚印
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_ElementTrack",
+			"onAdded": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"ElementTrack",
+					"target": "Self",
+				}
+			],
+			"modifiers":
+			{
+				"ElementTrack":
+				{
+					"elementType": "Grass",
+					"elementDurability": 50,
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_ElementFootprint_Wind01",
+						},
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_ElementFootprint_Wind02",
+						},
+					],
+					"onKill":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"ElementTrack",
+							"target": "Self",
+						}
+					]
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//  定标
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_TargetPoint",
+			"onAdded": 
+			[
+				{
+					"$type":"AttachEffect",
+					"effectPattern": "Eff_Quest_SiteInteract_Event",
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 事件特殊——鸭子进食点
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_DuckEat",
+			"onAdded": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"DuckEat",
+					"target": "Self",
+				}
+			],
+			"modifiers":
+			{
+				"DuckEat":
+				{
+					"duration": 30,
+					"onAdded": 
+				[
+					{
+						"$type": "BroadcastNeuronStimulate",
+						"neuronName": "SURROUND",
+						"stimulate": true,
+						"range": 30.0,
+					},
+				],
+				"onKill":
+				[
+					{
+						"$type": "BroadcastNeuronStimulate",
+						"neuronName": "SURROUND",
+						"stimulate": false,
+						"range": 30.0,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "BroadcastNeuronStimulate",
+						"neuronName": "SURROUND",
+						"stimulate": false,
+						"range": 30.0,
+					},
+				],
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 任务——找猫玩法
+//
+/////////////////////////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Event_Fish",
+		"onAdded": 
+		[
+			{
+				"$type":"ApplyModifier",
+				"modifierName":"fishModify",
+				"target": "Self",
+			}
+		],
+		"modifiers":
+		{
+			"DisappearTimer" :
+			{
+				"duration": 2,
+				"onAdded":
+				[
+					{
+						"$type": "StartDither",
+						"duration": 3,
+					},
+				],
+				"onRemoved":
+				[
+					{
+						"$type": "SetAnimatorBool",
+						"boolID": "Disappear",
+						"value": true,
+					},
+					{
+						"$type": "KillSelf",
+						"banDrop": true,
+						"banExp": true,
+
+					},
+				],
+			},
+			"fishModify":
+			{
+				"duration": 12,
+				"onAdded": 
+			[
+				{
+					"$type": "BroadcastNeuronStimulate",
+					"neuronName": "SURROUND",
+					"stimulate": true,
+					"range": 30.0,
+				},
+			],
+			"onKill":
+			[
+				{
+					"$type": "BroadcastNeuronStimulate",
+					"neuronName": "SURROUND",
+					"stimulate": false,
+					"range": 30.0,
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"DisappearTimer",
+					"target": "Self",
+				}
+			],
+			"onRemoved":
+			[
+				{
+					"$type": "BroadcastNeuronStimulate",
+					"neuronName": "SURROUND",
+					"stimulate": false,
+					"range": 30.0,
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"DisappearTimer",
+					"target": "Self",
+				}
+			],
+			},
+		},
+	},
+},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 路障 05
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_RoadBlock05",
+			"onAdded":
+			[
+				{
+					//自定义反应时的动态攻击盒类型
+					//1表示shpere
+					//2表示box
+					//3表示circle
+					"$type": "AddGlobalValue",
+					"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 2,
+					"minValue": 2,
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"RoadBlock_Burning",
+				},
+			],
+			"modifiers": 
+			{
+				"RoadBlock_Burning":
+				{
+					"elementType": "Grass",
+					"elementDurability": 30,
+					"isElementDurabilityMutable": false,
+					"onKill":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Burning_Effect",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "DoActionByEventMixin",
+							"type": "Current",
+							"onAbilityStateAdded": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type" : "AttachModifier",
+											"modifierName" : "Burning_Effect",
+										},
+									],
+								}
+							],
+							"onAbilityStateRemoved": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type" : "RemoveModifier",
+											"modifierName" : "Burning_Effect",
+										},
+									],
+								}
+							],
+						},
+					],
+				
+				},
+				"Burning_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern" : "Eff_Element_Burning",
+						},
+					],
+				},		
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 路障
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_RoadBlock",
+			"onAdded":
+			[
+				{
+					//自定义反应时的动态攻击盒类型
+					//1表示shpere
+					//2表示box
+					//3表示circle
+					"$type": "AddGlobalValue",
+					"key": "_CUSTOM_ATTACK_SHAPE_TYPE",
+					"value": 2,
+					"useLimitRange": true,
+					"maxValue": 2,
+					"minValue": 2,
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Normal",
+				},
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"RoadBlock_Burning",
+				},
+			],
+			"modifiers": 
+			{
+				"RoadBlock_Burning":
+				{
+					"elementType": "Grass",
+					"elementDurability": 30,
+					"isElementDurabilityMutable": false,
+					"onKill":
+					[
+						{
+							"$type":"RemoveModifier",
+							"modifierName":"Burning_Effect",
+						},
+					],
+					"modifierMixins":
+					[
+						{
+							"$type": "DoActionByEventMixin",
+							"type": "Current",
+							"onAbilityStateAdded": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type" : "AttachModifier",
+											"modifierName" : "Burning_Effect",
+										},
+									],
+								}
+							],
+							"onAbilityStateRemoved": 
+							[
+								{
+									"abilityState": "ElementBurning",
+									"actions":
+									[
+										{
+											"$type" : "RemoveModifier",
+											"modifierName" : "Burning_Effect",
+										},
+									],
+								}
+							],
+						},
+					],
+				
+				},
+				"Burning_Effect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern" : "Eff_Element_Burning",
+						},
+					],
+				},
+				"Normal":
+				{
+					"onKill":
+					[
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Hili_House_03_Destory",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "attachPoint1",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Hili_House_03_Destory",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "attachPoint2",
+							},
+						},
+						{
+							"$type": "FireEffect",
+							"effectPattern": "Eff_Hili_House_03_Destory",
+							"born":
+							{
+								"$type": "ConfigBornByAttachPoint",
+								"attachPointName": "attachPoint3",
+							},
+						},
+					],
+				},			
+			},
+		},
+	},
+		{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_RoadBlock02_Attack",
+			"onAbilityStart":
+			[
+				{
+					"$type" : "DamageByAttackValue",
+					"target": "Target",
+					"attackInfo":
+					{
+						"attackTag": "_Bramble_Attack",
+						"attackProperty":   
+						{
+							"damagePercentage": 1,
+							"elementType" : "Grass",
+							"elementDurability" : 10,
+							"strikeType": "Default",
+							"ignoreLevelDiff": true,
+							"enBreak": 100,
+						},
+						"hitPattern": 
+						{
+							"onHitEffectName": "",
+			          		"hitLevel": "Heavy",
+			          		"hitImpulseX": 800,
+			          		"hitImpulseY": 0,
+			          		"reboundRatio": 0,
+			          		"canBeDefenceHalt": false,
+			          		"hitHaltTime": 0.0,
+			          		"hitHaltTimeScale": 0.01,
+			          		"muteHitText": false,
+						},	
+					},
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 不动小车
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_StableCart",
+			"onAdded":
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Normal",
+				},
+			],
+			"modifiers": 
+			{
+				"Normal":
+				{
+					"onBeingHit":
+					[
+						
+					],
+				},			
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// 可莉封印圈
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_Kelee_Seal",
+			"abilityMixins":
+			[
+				{
+					"$type": "AttachToGadgetStateMixin",
+					"gadgetState": 201,
+					"modifierName": "FireEffect",
+				},
+			],
+			"modifiers": 
+			{
+				"FireEffect":
+				{
+					"onAdded":
+					[
+						{
+							"$type": "AttachEffect",
+							"effectPattern" : "Eff_Stage_SealBorder03",
+						},
+					],
+				},			
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////////////////////////////////
+//
+// 赌石，生成不同的石头
+//
+/////////////////////////////////////////////////////////////////////////////////////
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Quest_GamblingRockCreate_1",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 0,
+				"modifierName": "Default",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "Destroy",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 203,
+				"modifierName": "ShowGamblingRock",
+			},
+
+		],
+		"modifiers": 
+		{
+			"Default":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "CreateGadget",//随机角度创建石头
+						"gadgetID": 70710045,
+						"byServer": true,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"direction":
+							{
+								"$type": "ConfigBornDirectionType",
+								"randomAngleHor": 180,
+								"randomAngleVer": 70,
+							}
+						}
+					},
+				],
+			},
+
+			"ShowGamblingRock":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ExecuteGadgetLua",
+						"param1": 204,
+						"otherTargets": 
+						{
+				            "$type": "SelectTargetsByChildren",
+				            "configID": 70710045,
+				        },
+					},
+				],
+			},
+			"Destroy":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type":"SelectTargetsByChildren",
+							"configID":70710045,
+							"sortType":"Reversed"
+						}
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Quest_GamblingRockCreate_2",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 0,
+				"modifierName": "Default",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "Destroy",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 203,
+				"modifierName": "ShowGamblingRock",
+			},
+
+		],
+		"modifiers": 
+		{
+			"Default":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "CreateGadget",//随机角度创建石头
+						"gadgetID": 70710046,
+						"byServer": true,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"direction":
+							{
+								"$type": "ConfigBornDirectionType",
+								"randomAngleHor": 180,
+								"randomAngleVer": 70,
+							}
+						}
+					},
+				],
+			},
+
+			"ShowGamblingRock":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ExecuteGadgetLua",
+						"param1": 204,
+						"otherTargets": 
+						{
+				            "$type": "SelectTargetsByChildren",
+				            "configID": 70710046,
+				        },
+					},
+				],
+			},
+
+			"Destroy":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type":"SelectTargetsByChildren",
+							"configID":70710046,
+							"sortType":"Reversed"
+						}
+					},
+				],
+			},
+		},
+	},
+},
+{
+	"Default": 
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "SceneObj_Quest_GamblingRockCreate_3",
+		"abilityMixins":
+		[
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 0,
+				"modifierName": "Default",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 201,
+				"modifierName": "Destroy",
+			},
+			{
+				"$type": "AttachToGadgetStateMixin",
+				"gadgetState": 203,
+				"modifierName": "ShowGamblingRock",
+			},
+
+		],
+		"modifiers": 
+		{
+			"Default":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "CreateGadget",//随机角度创建石头
+						"gadgetID": 70710047,
+						"byServer": true,
+						"lifeByOwnerIsAlive": true,
+						"born":
+						{
+							"$type":"ConfigBornBySelf",
+							"direction":
+							{
+								"$type": "ConfigBornDirectionType",
+								"randomAngleHor": 180,
+								"randomAngleVer": 70,
+							}
+						}
+					},
+				],
+			},
+
+			"ShowGamblingRock":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "ExecuteGadgetLua",
+						"param1": 204,
+						"otherTargets": 
+						{
+				            "$type": "SelectTargetsByChildren",
+				            "configID": 70710047,
+				        },
+					},
+				],
+			},
+
+			"Destroy":
+			{
+				"onAdded":
+				[
+					{
+						"$type": "KillGadget",
+						"gadgetInfo":
+						{
+							"$type":"SelectTargetsByChildren",
+							"configID":70710047,
+							"sortType":"Reversed"
+						}
+					},
+				],
+			},
+		},
+	},
+},
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//  污渍
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	{
+		"Default": 
+		{
+			"$type": "ConfigAbility",
+			"abilityName": "SceneObj_Event_Stain",
+			"onAdded": 
+			[
+				{
+					"$type":"ApplyModifier",
+					"modifierName":"Default",
+					"target": "Self",
+				}
+			],
+			"modifiers":
+			{
+				"Default":
+				{
+					"onKill":
+					[
+						{
+							"$type": "SendEffectTrigger",
+							"parameter" : "NoDirty",
+							"effectPattern":"Eff_SceneObj_GroundDirty_01",
+						},
+					],
+					"onBeingHit":
+					[	
+						{
+							"$type": "AddGlobalValue",
+							"key": "_WIND_HIT_COUNT",
+							"value": 1,
+							"useLimitRange": true,
+							"maxValue": 3,
+							"minValue": 0,
+							"predicates":
+							[
+								{
+	  								"$type" : "ByHitElement",
+	 								"element" : "Wind",
+	   							},
+							],
+						},
+						{
+							"$type": "SendEffectTrigger",
+							"parameter" : "HalfDirty",
+							"effectPattern":"Eff_SceneObj_GroundDirty_01",
+							"predicates" :
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_WIND_HIT_COUNT",
+									"value": 1,
+									"compareType": "Equal",
+								},
+							],
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern": "Eff_SceneObj_GroundDirty_Blow",
+							"predicates":
+							[
+								{
+	  								"$type" : "ByHitElement",
+	 								"element" : "Wind",
+	   							},
+							],
+						},
+						{
+							"$type":"ApplyModifier",
+							"modifierName":"CameraFog",
+							"predicates":
+							[
+								{
+	  								"$type" : "ByHitElement",
+	 								"element" : "Wind",
+	   							},
+							],
+						},
+						{
+							"$type":"FireEffect",
+							"effectPattern": "Eff_SceneObj_GroundDirty_Wash",
+							"predicates":
+							[
+								{
+	  								"$type" : "ByHitElement",
+	 								"element" : "Water",
+	   							},
+							],
+						},
+						{
+							"$type":"KillSelf",
+							"predicates":
+							[
+								{
+	  								"$type" : "ByHitElement",
+	 								"element" : "Water",
+	   							},
+							],
+						},
+						{
+							"$type":"KillSelf",
+							"predicates":
+							[
+								{
+									"$type": "ByTargetGlobalValue",
+									"key": "_WIND_HIT_COUNT",
+									"value": 3,
+									"compareType": "Equal",
+								},
+							],
+						},
+					],
+					"onAdded":
+					[
+						{
+							"$type":"AttachEffect",
+							"effectPattern": "Eff_SceneObj_GroundDirty_01",
+						},
+					],
+				},
+				"CameraFog":
+				{
+					"duration": 1.5,
+					"onAdded":
+					[
+						{
+							"$type": "DungeonFogEffects",
+							"enable": true,
+							"cameraFogEffectName": "Eff_SceneObj_GroundDirty_ScreenEff",
+							"playerFogEffectName": "",
+							"localOffset" :
+							{
+								"x" : 0,
+								"y" : 0,
+								"z" : 0,
+							},
+						},
+					],
+					"onRemoved":
+					[
+						{
+							"$type": "DungeonFogEffects",
+							"enable": false,
+							"cameraFogEffectName": "Eff_SceneObj_GroundDirty_ScreenEff",
+							"playerFogEffectName": "",
+							"localOffset" :
+							{
+								"x" : 0,
+								"y" : 0,
+								"z" : 0,
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+]

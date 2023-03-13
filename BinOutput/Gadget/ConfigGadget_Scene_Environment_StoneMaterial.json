@@ -1,0 +1,771 @@
+{
+////////////////////////////////////////////
+//
+//石柱
+//
+////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePillar" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Normal",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StonePillar",
+
+				"abilityName" : "SceneObj_Environment_Rock_StonePillar"
+			},
+		],
+	},
+
+/////////////////////////////////////////
+//
+//石墙
+//
+///////////////////////////////////////////
+	"SceneObj_Environment_Rock_StoneWall" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 5.0,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Normal",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StoneWall",
+
+				"abilityName" : "SceneObj_Environment_Rock_StoneWall"
+			},
+		],
+	},
+
+/////////////////////////////////////////////////
+//
+//碎石堆
+//
+////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePile" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Normal",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.3,
+				"dieForceDisappearTime": 0.3,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StonePile",
+
+				"abilityName" : "SceneObj_Environment_Rock_StonePile"
+			},
+		],
+	},
+/////////////////////////////////////
+//
+//石块
+//
+//////////////////////////////////////////
+	"SceneObj_Environment_Rock_Stone" :
+	{
+		"$type" : "ConfigGadget",
+		"common":
+		{
+			"mass": 50,
+		},
+		//战斗参数
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 8000,
+				"attack" : 100,
+				"defense" : 0,
+				"weight" : 80,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : false,
+			},
+		},
+		//移动参数
+		"move" :
+		{
+			"$type" : "ConfigRigidbodyMove",
+			"velocityForce":
+			{
+				"includeForces": ["RetreatType","RetreatAirType","WindZoneType"],
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_Stone",
+
+				"abilityName" : "SceneObj_Environment_Rock_Stone"
+			},
+		],
+	},
+		/////////////////////////////////////////////////////////////////
+//
+//	石柱_不可攀爬_不可破坏
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePillar_Unclimbable_UnDestroyable" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 1.0,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Normal",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	石堆_大世界
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePileWorld" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 4.6,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Grand",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StonePileWorld",
+
+				"abilityName" : "SceneObj_Environment_Rock_StonePileWorld"
+			},
+		],
+	},
+	/////////////////////////////////////////////////////////////////
+//
+//	拦路小石堆_大世界
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePileWorld01" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 1.5,
+				"z": 0,
+			},
+			"radiusOffset": 4.6,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Grand",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StonePileWorld01",
+
+				"abilityName" : "SceneObj_Environment_Rock_StonePileWorld01"
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	侵蚀石柱
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Broken_StonePile" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 10,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Ani_Test_Gear_BrkStonePile_Dwon": ["BrkStonePile_Dwon"],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Broken_StonePile",
+
+				"abilityName" : "SceneObj_Environment_Broken_StonePile"
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	岩桥
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_RockHashi" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 10,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	断裂石柱地城
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StonePileDungeon" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 3,
+				"z": 0,
+			},
+			"radiusOffset": 4.6,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Grand",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StonePileDungeon",
+
+				"abilityName" : "SceneObj_Environment_Rock_StonePileDungeon"
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+//	断裂石墙地城
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Environment_Rock_StoneStackDungeon" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"billboard":
+		{
+			"$type" : "ConfigCombatBillboard",
+			"offset":
+			{
+				"x": 0,
+				"y": 2,
+				"z": 0,
+			},
+			"radiusOffset": 4.6,
+			"enableSelfAdapt": false,
+			"showDistance": 24,
+			"showHPBar": true,
+			"size": "Grand",
+			"shieldBarOnly" : true,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 0,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible":false,
+				"isLockHP":true,
+				"denyLockOn" : false,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+				"normalPri": 0.3,	//lockLevel = 1
+				"combatPri": 0.1,	//lockLevel = 1
+				"rangeScale": 0.3,	//lockLevel = 1
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 0.1,
+				"dieForceDisappearTime": 0.1,
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Environment_Rock_StoneStackDungeon",
+
+				"abilityName" : "SceneObj_Environment_Rock_StoneStackDungeon"
+			},
+		],
+	},
+//////////////////////////////////////////////
+//
+//  岩浮板
+//
+//////////////////////////////////////////////
+	"SceneObj_Environment_Rock_FlyFloor" :
+	{
+		"$type" : "ConfigGadget",
+		"hasModel": true,
+		"combat" :
+		{
+			"property":
+			{
+				"HP" : 200,
+				"attack" : 10,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : true,
+				"canTriggerBullet" : true,
+				"ignorePurgeRate": true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : true,
+				"muteAllHitText" : false,
+			},
+			"die" :
+			{
+				"hasAnimatorDie": true,
+				"dieEndTime": 0,
+				"dieForceDisappearTime": 0,
+			},
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Destroy": ["HideCollider"],
+						},
+					},
+				},
+			},
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "Ability_01",
+
+				"abilityName" : "SceneObj_Environment_Rock_FlyFloor",
+			},
+		],	
+	},
+},

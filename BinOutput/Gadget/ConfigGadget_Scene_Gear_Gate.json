@@ -1,0 +1,864 @@
+{
+/////////////////////////////////////////////////////////////////
+//
+// 神庙
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_Temple01" :
+	{
+		"$type" : "ConfigGadget",
+		"uiInteract":
+		{
+			"gadgetUIBtnCfgPath": "TEST/TEST_Chest_Btn",
+			"uiName": "UI_TEMPLE01_QTE_TITLE"
+		},
+		"intee":
+		{
+			"$type" : "ConfigIntee",
+			"triggerRadius": 6,
+		},
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+
+				//Default时可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": true,
+					"gadgetState": "Default",
+				},
+				//201时不可以交互
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "GearStart",
+				},
+				//203时不可以交互 
+				{
+					"$type": "ConfigGadgetStateEnableGadgetIntee",
+					"enable": false,
+					"gadgetState": "GearAction1",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Gate_Temple01",
+				"abilityName": "SceneObj_Gear_Gate_Temple01",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 神庙02 雷纹
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_Temple02_Electric" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Electric",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Electric",
+					"gadgetState": "GearStart",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Gate_Temple02_Electric",
+				"abilityName": "SceneObj_Gear_Gate_Temple02_Electric",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 神庙02 岩纹
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_Temple02_Rock" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Rock",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Rock",
+					"gadgetState": "GearStart",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Gate_Temple02_Rock",
+				"abilityName": "SceneObj_Gear_Gate_Temple02_Rock",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 神庙02 风纹
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_Temple02_Wind" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 0,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Wind",
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSendEffectTrigger",
+					"parameter": "gadgetState",
+					"type": "Int",
+					"value": 201,
+					"effectPattern": "Eff_SceneObj_Gear_Temple_02_Wind",
+					"gadgetState": "GearStart",
+				},
+			],
+		},
+		"abilities":
+		[
+			{
+				"abilityID": "SceneObj_Gear_Gate_Temple02_Wind",
+				"abilityName": "SceneObj_Gear_Gate_Temple02_Wind",
+			},
+		],
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 地城大门
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_DungeonGate01" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+	},
+
+/////////////////////////////////////////////////////////////////
+//
+// 芭芭拉地城大门
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_DungeonGate02" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Audio_SceneObj_Gear_DungeonGate02_Close"],
+							"Gate_Open": ["Gear_Gate02_Open","Audio_SceneObj_Gear_DungeonGate02_Open"],
+							"Gate_Lock": [],
+							"Gate_Unlock": [],
+						},
+					},
+				},
+			},
+		},
+	},
+
+/////////////////////////////////////////////////////////////////
+//
+// 芭芭拉地城小门
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_DungeonGate03" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Audio_SceneObj_Gear_DungeonGate03_Close"],
+							"Gate_Open": ["Gear_Gate03_Open","Audio_SceneObj_Gear_DungeonGate03_Open"],
+							"Gate_Lock": [],
+							"Gate_Unlock": [],
+						},
+					},
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 地城大门04
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_DungeonGate04" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "gadgetState",
+					"syncState": true,
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type": "ConfigNormalStateLayer",
+				"stateIDs":
+				{
+					"All":
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Idle": [],
+							"Active": ["Audio_SceneObj_Gear_Gate_DungeonGate04_Open"],
+							"Opened": [],
+							"Closing": ["Audio_SceneObj_Gear_Gate_DungeonGate04_Close"],
+						},
+					},
+				},
+			},
+		},
+	},
+/////////////////////////////////////////////////////////////////
+//
+// 升降铁栅栏
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_IronFence" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Eff_IronFence_Down","Audio_SceneObj_IronFence_Close"],
+							"Gate_Open": ["Eff_IronFence_Up","Audio_SceneObj_IronFence_Open"],
+						},
+					},
+				},
+			},
+		},
+	},
+		/////////////////////////////////////////////////////////////////
+//
+// 横向机关大门
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_PfDungeon_Door02" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : false,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Audio_SceneObj_Gear_PFDungeon_Door02_Close"],
+							"Gate_Open": ["Audio_SceneObj_Gear_PFDungeon_Door02_Open"],
+						},
+					},
+				},
+			},
+		},
+	},
+	/////////////////////////////////////////////////////////////////
+//
+// 升降木栅栏
+//
+/////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_HiliSleepingGroup02" :
+	{
+		"$type" : "ConfigGadget",
+		"combat" :
+		{
+			"property":
+			{
+				"useCreatorProperty" : false,
+				"HP" : 99999,
+				"attack" : 200,
+				"defense" : 0,
+				"weight" : 50,
+				"isInvincible": false,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : false,
+				"canTriggerBullet" : true,
+			},
+			"beHit" :
+			{
+				"hitBloodEffect" : "",
+				"hitAutoRedirect": false,
+				"muteAllHit" : false,
+				"muteAllHitEffect" : false,
+				"muteAllHitText" : true,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "GearStop",
+				},
+			],
+		},
+		"stateLayers":
+		{
+			"defaultLayer":
+			{
+				"$type" : "ConfigNormalStateLayer",
+				"stateIDs" :
+				{
+					"All" :
+					{
+						"$type": "ConfigNormalStateIDInfo",
+						"animatorStates":
+						{
+							"Gate_Close": ["Eff_IronFence_Down","Audio_SceneObj_IronFence_Close"],
+							"Gate_Open": ["Eff_IronFence_Up","Audio_SceneObj_IronFence_Open"],
+						},
+					},
+				},
+			},
+		},
+	},
+////////////////////////////////////////////////////////////////////
+//
+// 圆形封印圈（带碰撞）
+//
+////////////////////////////////////////////////////////////////////
+	"SceneObj_Gear_Gate_Seal_Ring" :
+	{
+		"$type" : "ConfigGadget",
+		"common":
+		{
+			"viewSize": 10,
+		},
+		"combat":
+		{
+			"property":
+			{
+				"HP" : 99999,
+				"isLockHP":true,
+				"endure":99,
+				"denyLockOn" : true,
+				"isGhostToAllied" : true,
+				"isGhostToEnemy" : true,
+			},
+			"die" :
+			{
+				"dieEndTime" : 4,
+				"dieForceDisappearTime": 4,
+			},
+		},
+		"gadgetAction":
+		{
+			"gadgetStateActionList":
+			[
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 0,
+					"gadgetState": "Default",
+				},
+				{
+					"$type": "ConfigGadgetStateSetAnimInt",
+					"intID": "GadgetState",
+					"value": 201,
+					"gadgetState": "GearStart",
+				},
+			],
+		},
+	},
+},

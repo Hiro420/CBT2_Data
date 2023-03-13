@@ -1,0 +1,291 @@
+[
+////////////////////////////////////////////////////////////////
+//
+//  SetPose
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_DogPrick_SitDown",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetPoseInt",
+				"intID": "ActionState",
+				"value": 1,
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_DogPrick_Prone",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetPoseInt",
+				"intID": "ActionState",
+				"value": 2,
+			},
+		],
+	},
+},
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_DogPrick_StandUp",
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetPoseInt",
+				"intID": "ActionState",
+				"value": 0,
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  Reset CD
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_DogPrick_AIStateInitial",
+		"onAdded":
+		[
+			{
+				"$type": "AttachModifier",
+				"modifierName": "UNIQUE_Invincible",
+				"target": "Self",
+			},
+			{
+				"$type": "AttachModifier",
+				"modifierName": "DenyLockOn",
+				"target": "Self",
+			},
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceListID": 11001,
+            },
+		],
+		"modifiers":
+		{
+			"UNIQUE_Invincible" :
+			{
+				"isUnique":true,
+				"state": "Invincible",
+			},
+			"DenyLockOn" :
+			{
+				"state": "DenyLockOn",
+			},
+		},
+		"abilityMixins":
+		[
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["Turn"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.2,
+				"angularSpeed": 90,
+				"attackTrigger" : "",
+				"attackDistance" : 1.5,
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [1],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [101, 102, 103],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [101],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [111, 112, 113],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [2],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [201, 202, 203, 204],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [201],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [211, 212, 213, 214, 215],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [3],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [301],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByPoseIDMixin",
+				"poseIDs": [301],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [311],
+					},
+				],
+			},
+			{
+				"$type": "DoActionByAnimatorStateIDMixin",
+				"stateIDs": ["Standby"],
+				"enterActions":
+				[
+					{
+						"$type": "ResetAISkillInitialCD",
+						"skillIDs": [111],
+					},
+				],
+			},
+		],
+	},
+},
+////////////////////////////////////////////////////////////////
+//
+//  BeHit
+//
+////////////////////////////////////////////////////////////////
+{
+	"Default":
+	{
+		"$type": "ConfigAbility",
+		"abilityName": "Animal_DogPrick_BeHit",
+		"abilityMixins":
+		[
+			{
+				"$type" : "AttachToPoseIDMixin",
+				"poseIDs": [1,2,3,101,201,301],
+				"modifierName" : "BeHitDetect",
+			},
+			{
+				"$type": "AttachToAnimatorStateIDMixin",
+				"stateIDs": ["Disappear"],
+				"modifierName": "Disappear",
+			},
+			{
+				"$type": "SteerAttackMixin",
+				"steerStateIDs": ["Bark"],
+				"startNormalizedTime": 0.0,
+				"endNormalizedTime": 0.5,
+				"angularSpeed": 30,
+				"attackTrigger" : "",
+				"attackDistance" : 1.5,
+			},
+		],
+		"onAbilityStart":
+		[
+			{
+				"$type": "SetAnimatorBool",
+				"boolID": "FleeState",
+				"value": true,
+			},
+		],
+		"modifiers":
+		{
+			"BeHitDetect" :
+			{
+				"onBeingHit":
+				[
+					{
+						"$type": "Predicated",
+						"target": "Target",
+						"targetPredicates":
+						[
+							{
+								"$type" : "ByEntityTypes",
+								"entityTypes" : ["Avatar","Monster","Gadget","Bullet"],
+							},
+						],
+						"successActions":
+						[
+							{
+								"$type": "SetPoseBool",
+								"boolID": "FleeHasTarget",
+								"value": true,
+							},
+							{
+								"$type": "SetAnimatorTrigger",
+								"triggerID": "BeHitTrigger",
+							},
+						],
+						"failActions":
+						[
+							{
+								"$type": "SetPoseBool",
+								"boolID": "FleeNoTarget",
+								"value": true,
+							},
+							{
+								"$type": "SetAnimatorBool",
+								"boolID": "FleeState",
+								"value": true,
+							},
+						],
+					},
+					{
+						"$type": "SetPoseInt",
+						"intID": "ActionState",
+						"value": 0,
+					},
+				],
+			},
+			"Disappear" :
+			{
+				"onAdded":
+				[
+					{
+						"$type": "StartDither",
+						"duration": 3,
+					},
+					{
+						"$type":"KillSelf",
+						"banDrop": true,
+						"banExp": true,
+						"killSelfType": "Disappear",
+						"duration": 2.5,
+					},
+				],
+			},
+		},
+	},
+},
+]

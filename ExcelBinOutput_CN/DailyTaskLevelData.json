@@ -1,0 +1,98 @@
+[
+    {
+        "ID": 1,
+        "MinPlayerLevel": 1,
+        "MaxPlayerLevel": 5,
+        "难度等级": 0,
+        "积分DropId": 203000000,
+        "积分预览RewardId": 2001
+    },
+    {
+        "ID": 2,
+        "MinPlayerLevel": 6,
+        "MaxPlayerLevel": 10,
+        "难度等级": 5,
+        "积分DropId": 203000200,
+        "积分预览RewardId": 2002
+    },
+    {
+        "ID": 3,
+        "MinPlayerLevel": 11,
+        "MaxPlayerLevel": 15,
+        "难度等级": 12,
+        "积分DropId": 203000400,
+        "积分预览RewardId": 2003
+    },
+    {
+        "ID": 4,
+        "MinPlayerLevel": 16,
+        "MaxPlayerLevel": 20,
+        "难度等级": 18,
+        "积分DropId": 203000600,
+        "积分预览RewardId": 2004
+    },
+    {
+        "ID": 5,
+        "MinPlayerLevel": 21,
+        "MaxPlayerLevel": 25,
+        "难度等级": 21,
+        "积分DropId": 203000800,
+        "积分预览RewardId": 2005
+    },
+    {
+        "ID": 6,
+        "MinPlayerLevel": 26,
+        "MaxPlayerLevel": 30,
+        "难度等级": 27,
+        "积分DropId": 203000900,
+        "积分预览RewardId": 2006
+    },
+    {
+        "ID": 7,
+        "MinPlayerLevel": 31,
+        "MaxPlayerLevel": 35,
+        "难度等级": 33,
+        "积分DropId": 203001000,
+        "积分预览RewardId": 2007
+    },
+    {
+        "ID": 8,
+        "MinPlayerLevel": 36,
+        "MaxPlayerLevel": 40,
+        "难度等级": 33,
+        "积分DropId": 203001100,
+        "积分预览RewardId": 2008
+    },
+    {
+        "ID": 9,
+        "MinPlayerLevel": 41,
+        "MaxPlayerLevel": 45,
+        "难度等级": 33,
+        "积分DropId": 203001200,
+        "积分预览RewardId": 2009
+    },
+    {
+        "ID": 10,
+        "MinPlayerLevel": 46,
+        "MaxPlayerLevel": 50,
+        "难度等级": 35,
+        "积分DropId": 203001300,
+        "积分预览RewardId": 2010
+    },
+    {
+        "ID": 11,
+        "MinPlayerLevel": 51,
+        "MaxPlayerLevel": 55,
+        "难度等级": 31,
+        "积分DropId": 203001400,
+        "积分预览RewardId": 2011
+    },
+    {
+        "ID": 12,
+        "MinPlayerLevel": 56,
+        "MaxPlayerLevel": 60,
+        "难度等级": 29,
+        "积分DropId": 203001500,
+        "积分预览RewardId": 2012
+    }
+]

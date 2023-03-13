@@ -1,0 +1,3077 @@
+{
+	"$type": "ConfigAvatar",
+	"common":
+	{
+		"effectAttachShape":
+		{
+			"$type": "ConfigEffectAttachSkinnedMesh",
+			"mesh": "EffectMesh"
+		},
+		"mass": 10.0,
+		"affectedByWorld": true,
+		"checkInSurface": true,
+		"effectGroups":
+		[
+			"AvatarSkill_Diluc_Effects"
+		],
+		"consoleEffectGroups":
+		[
+			"AvatarSkill_Diluc_Effects"
+		],
+		"avatarHeight": 1.8422,
+		"avatarModelHeight": 1.84,
+		"height": 1.85,
+		"modelHeight": 1.85
+	},
+	"headControl":
+	{
+		"$type": "ConfigHeadControl",
+		"useHeadControl": true,
+		"animStates":
+		[
+			"NormalStandby",
+			"NormalMove/WalkToRun",
+			"NormalMove/Walk",
+			"NormalMove/RunToWalk",
+			"NormalMove/Run",
+			"NormalMove/RunToIdle",
+			"NormalMove/WalkToIdle",
+			"NormalMove/RunningTurn",
+			"NormalMove/SprintToRun",
+			"NormalMove/SprintToIdle",
+			"Sprint",
+			"Climb/ClimbIdle",
+			"Ladder/LadderIdle",
+			"Swim/SwimIdle",
+			"NormalStandbyWeapon",
+			"NormalMoveWeapon/WalkToRunWeapon",
+			"NormalMoveWeapon/WalkWeapon",
+			"NormalMoveWeapon/RunToWalkWeapon",
+			"NormalMoveWeapon/RunWeapon",
+			"NormalMoveWeapon/RunToIdleWeapon",
+			"NormalMoveWeapon/WalkToIdleWeapon",
+			"NormalMoveWeapon/RunningTurnWeapon"
+		]
+	},
+	"equipController":
+	{
+		"attachPoints":
+		{
+			"equip01": "WeaponR",
+			"equip02": "WeaponL"
+		},
+		"sheathPoint": "WeaponBackPut",
+		"dissolveSheathFadeDelay": 0.075,
+		"dissolveSheathFadeTime": 2.1,
+		"patternSheathFadeDelay": 0.075,
+		"patternSheathFadeTime": 2.1
+	},
+	"specialPoint":
+	{
+		"elementAbsorb": "PRIVATE_Pendant",
+		"elementPendant": "PRIVATE_Pendant"
+	},
+	"bindEmotions":
+	[
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_01",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_02",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_03",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Fight_Attack_04",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_ExtraAttack1",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_ExtraAttack2",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_ExtraAttackBS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Razor_Fight_Attack_ExtraAttackAS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_01",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_02",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_03",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_01AS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_02AS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Skill_FireBlade_03AS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Normal",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Diluc_Show_01",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_RelicShow_BS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_RelicShow_Loop",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_RelicShow_AS",
+		"Cutscene/ShortDialog/Cs_Emo_Avatar_Simple_Common_Set/Cs_Emo_Avatar_Common_Normal"
+	],
+	"combat":
+	{
+		"property":
+		{
+			"weight": 75,
+			"lockWeightYaxisThreshold": 2,
+			"lockWeightYaxisParam": 0.2,
+			"lockShape": "CircleLockEnemyClose",
+			"endureType": "Avatar_Claymore",
+			"endureShake": 0
+		},
+		"beHit":
+		{
+			"hitBloodEffect": "",
+			"muteAllHit": false,
+			"muteAllHitEffect": false,
+			"muteAllHitText": false
+		},
+		"die":
+		{
+			"hasAnimatorDie": true,
+			"muteAllShaderDieEff": false,
+			"dieShaderData": "AvatarDie",
+			"dieDisappearEffect": "Eff_Death_Avatar_Common",
+			"dieEndTime": 3.0,
+			"dieForceDisappearTime": 5.0,
+			"useRagDoll": true,
+			"ragDollDieEndTimeDelay": 0.4
+		},
+		"animEvents":
+		{
+			"ATK01":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackCircle",
+					"triggerType": "TriggerNoRepeat",
+					"height": 1.8,
+					"fanAngle": 300.0,
+					"radius": 2,
+					"radiusRatio": 0.0,
+					"detectDirection": "Counterclockwise",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.5
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "NormalAttack_01",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 0.65,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"overrideByWeapon": true,
+						"attackType": "Melee",
+						"enBreak": 74.75
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Heavy",
+						"hitImpulseX": 200,
+						"hitImpulseY": 0,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.1,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": false,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.24,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 1,
+							"y": 0.4,
+							"z": 0
+						}
+					}
+				}
+			},
+			"ATK02":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackBox",
+					"triggerType": "TriggerNoRepeat",
+					"size":
+					{
+						"x": 2,
+						"y": 2,
+						"z": 3
+					},
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset":
+						{
+							"x": 0,
+							"y": 1,
+							"z": -1
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "NormalAttack_02",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 0.65,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"overrideByWeapon": true,
+						"attackType": "Melee",
+						"enBreak": 74.75
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Heavy",
+						"hitImpulseX": 200,
+						"hitImpulseY": 0,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.09,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": false,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.24,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": -0.1,
+							"y": -1,
+							"z": 0
+						}
+					}
+				}
+			},
+			"ATK03":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackCircle",
+					"triggerType": "TriggerNoRepeat",
+					"height": 1.5,
+					"fanAngle": 300.0,
+					"radius": 2,
+					"radiusRatio": 0.0,
+					"detectDirection": "Clockwise",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.5
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "NormalAttack_03",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 0.73,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"overrideByWeapon": true,
+						"attackType": "Melee",
+						"enBreak": 83.95
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Heavy",
+						"hitImpulseX": 200,
+						"hitImpulseY": 0,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.09,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": false,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.24,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": -1,
+							"y": 0,
+							"z": 0
+						}
+					}
+				}
+			},
+			"ATK04":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackBox",
+					"triggerType": "TriggerNoRepeat",
+					"size":
+					{
+						"x": 2,
+						"y": 2,
+						"z": 3
+					},
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset":
+						{
+							"x": 0,
+							"y": 1,
+							"z": -0.5
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "NormalAttack_04",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 0.93,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"overrideByWeapon": true,
+						"attackType": "Melee",
+						"enBreak": 106.95
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Air",
+						"hitImpulseX": 655,
+						"hitImpulseY": 800,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.12,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": true,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.48,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 0,
+							"y": 1,
+							"z": 0
+						}
+					}
+				}
+			},
+			"ExtraAttack1":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackCircle",
+					"triggerType": "TriggerNoRepeat",
+					"height": 1.5,
+					"fanAngle": 360.0,
+					"radius": 3,
+					"radiusRatio": 0.0,
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.3
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "ExtraAttack",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 0.8,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"enBreak": 60,
+						"overrideByWeapon": true,
+						"attackType": "Melee"
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Heavy",
+						"hitImpulseX": 200,
+						"hitImpulseY": 0,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.03,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": false,
+					"cameraShake":
+					{
+						"shakeType": "Center",
+						"shakeRange": 0.12,
+						"shakeTime": 0.08,
+						"shakeDistance": 30
+					}
+				}
+			},
+			"ExtraAttack2":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackCircle",
+					"triggerType": "TriggerNoRepeat",
+					"height": 1.5,
+					"fanAngle": 360.0,
+					"radius": 3.5,
+					"radiusRatio": 0.0,
+					"detectDirection": "Clockwise",
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "ExtraAttack",
+					"attenuationTag": "NormalAttack",
+					"attackProperty":
+					{
+						"damagePercentage": 1.8,
+						"strikeType": "Blunt",
+						"elementDurability": 25,
+						"enBreak": 120,
+						"overrideByWeapon": true,
+						"attackType": "Melee"
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "default",
+						"hitLevel": "Air",
+						"hitImpulseX": 655,
+						"hitImpulseY": 800,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.15,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": false,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.48,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 1,
+							"y": 0,
+							"z": 0
+						}
+					}
+				}
+			},
+			"FB01":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackBox",
+					"triggerType": "TriggerNoRepeat",
+					"size":
+					{
+						"x": 3,
+						"y": 2,
+						"z": 3
+					},
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset":
+						{
+							"x": 0,
+							"y": 0.7,
+							"z": 0
+						}
+					},
+					"massiveAttackRatio": 0.8
+				},
+				"attackInfo":
+				{
+					"attackTag": "Elemental_Art",
+					"attackProperty":
+					{
+						"damagePercentage": 2,
+						"strikeType": "Blunt",
+						"attackType": "Melee",
+						"elementType": "Fire",
+						"elementDurability": 25,
+						"elementRank": 1.5,
+						"enBreak": 120
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "Eff_Diluc_FireBlade_Hit_01",
+						"hitLevel": "Air",
+						"hitImpulseX": 360,
+						"hitImpulseY": 380,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.12,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": true,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.48,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 0,
+							"y": 1,
+							"z": 0
+						}
+					}
+				}
+			},
+			"FB02":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackCircle",
+					"triggerType": "TriggerNoRepeat",
+					"height": 2,
+					"fanAngle": 300,
+					"radius": 2.0,
+					"radiusRatio": 0.0,
+					"born":
+					{
+						"$type": "ConfigBornBySelf",
+						"offset":
+						{
+							"x": 0.0,
+							"y": 0.0,
+							"z": 1.2
+						}
+					}
+				},
+				"attackInfo":
+				{
+					"attackTag": "Elemental_Art",
+					"attackProperty":
+					{
+						"damagePercentage": 2,
+						"strikeType": "Blunt",
+						"attackType": "Melee",
+						"elementType": "Fire",
+						"elementDurability": 25,
+						"elementRank": 1.5,
+						"enBreak": 120
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "Eff_Diluc_FireBlade_Hit_01",
+						"hitLevel": "Air",
+						"hitImpulseX": 360,
+						"hitImpulseY": 650,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.12,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": true,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.48,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 1,
+							"y": -0.6,
+							"z": 0
+						}
+					}
+				}
+			},
+			"FB03":
+			{
+				"attackPattern":
+				{
+					"$type": "ConfigAttackBox",
+					"triggerType": "TriggerNoRepeat",
+					"size":
+					{
+						"x": 3.5,
+						"y": 2,
+						"z": 4
+					},
+					"born":
+					{
+						"$type": "ConfigBornByTarget",
+						"offset":
+						{
+							"x": 0,
+							"y": 0.7,
+							"z": 0
+						}
+					},
+					"massiveAttackRatio": 0.8
+				},
+				"attackInfo":
+				{
+					"attackTag": "Elemental_Art",
+					"attackProperty":
+					{
+						"damagePercentage": 2.5,
+						"strikeType": "Blunt",
+						"attackType": "Melee",
+						"elementType": "Fire",
+						"elementDurability": 25,
+						"elementRank": 1.5,
+						"enBreak": 120
+					},
+					"hitPattern":
+					{
+						"onHitEffectName": "Eff_Diluc_FireBlade_Hit_01",
+						"hitLevel": "Air",
+						"hitImpulseX": 360,
+						"hitImpulseY": 720,
+						"reboundRatio": 0,
+						"canBeDefenceHalt": true,
+						"hitHaltTime": 0.16,
+						"hitHaltTimeScale": 0.01,
+						"muteHitText": false
+					},
+					"forceCameraShake": true,
+					"cameraShake":
+					{
+						"shakeType": "CustomVector",
+						"shakeRange": 0.48,
+						"shakeTime": 0.12,
+						"shakeDistance": 30,
+						"shakeDir":
+						{
+							"x": 0,
+							"y": 1,
+							"z": 0
+						}
+					}
+				}
+			}
+		}
+	},
+	"stateLayers":
+	{
+		"defaultLayer":
+		{
+			"$type": "ConfigNormalStateLayer",
+			"stateIDs":
+			{
+				"NormalStandby":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Standby": []
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"NormalMove":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"WalkToRun":
+						[
+							"Audio_Male_WalkToRun",
+							"Audio_Male_WalkToRun_Diluc"
+						],
+						"Walk":
+						[
+							"Ani_WalkSprint01",
+							"Audio_Male_Walk",
+							"WalkStepOnWater",
+							"Audio_Male_Walk_Diluc"
+						],
+						"RunToWalk":
+						[
+							"Audio_Male_RunToWalk",
+							"Audio_Male_RunToWalk_Diluc"
+						],
+						"Run":
+						[
+							"Ani_Run01",
+							"Audio_Male_Run",
+							"Audio_Male_Run_Diluc"
+						],
+						"RunToIdle":
+						[
+							"Audio_Male_RunToIdle",
+							"Audio_Male_RunToIdle_Diluc"
+						],
+						"WalkToIdle":
+						[
+							"Audio_Male_WalkToIdle",
+							"Audio_Male_WalkToIdle_Diluc"
+						],
+						"RunningTurn": [],
+						"SprintToRun":
+						[
+							"Audio_Male_SprintToRun",
+							"Audio_Male_SprintToRun_Diluc"
+						],
+						"SprintToIdle":
+						[
+							"Audio_Male_SprintToIdle",
+							"Audio_Male_SprintToIdle_Diluc"
+						],
+						"FallOnGround":
+						[
+							"Audio_Male_FallOnGround",
+							"Audio_Male_FallOnGround_Diluc"
+						],
+						"FallOnGroundLit":
+						[
+							"Audio_Male_FallOnGroundLit",
+							"Audio_Male_FallOnGroundLit_Diluc"
+						],
+						"FallToGroundRun":
+						[
+							"Audio_Male_FallToGroundRun",
+							"Audio_Male_FallToGroundRun_Diluc"
+						],
+						"FallToGroundRunHard":
+						[
+							"Audio_Male_FallToGroundRunHard"
+						],
+						"FallToGroundSprint":
+						[
+							"Audio_Male_FallToGroundSprint"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 1.0,
+					"sheatheOnStart": true
+				},
+				"SprintBS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SprintBS":
+						[
+							"Audio_Male_RunToSprint",
+							"SprintBS_Invincible",
+							"Audio_Male_SprintBS_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"canDoSkill": true,
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.3,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Sprint":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Sprint":
+						[
+							"Ani_WalkSprint01",
+							"Audio_Male_Sprint",
+							"Audio_Male_Sprint_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 1.0,
+					"sheatheOnStart": true
+				},
+				"Climb":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ClimbMove0":
+						[
+							"ClimbStep",
+							"Audio_Male_Climb",
+							"Audio_Male_ClimbMove1_Diluc"
+						],
+						"ClimbMove1":
+						[
+							"ClimbStep",
+							"Audio_Male_Climb",
+							"Audio_Male_ClimbMove1_Diluc"
+						],
+						"ClimbIdle": [],
+						"ClimbJump":
+						[
+							"Audio_Male_ClimbDash",
+							"Audio_Male_ClimbJump_Diluc"
+						],
+						"JumpUpWallForStandby":
+						[
+							"Audio_Male_JumpUpWallStandby",
+							"Audio_Male_JumpUpWallForStandby_Diluc"
+						],
+						"Standby2ClimbB":
+						[
+							"Audio_Male_Standby2ClimbB",
+							"Audio_Male_Standby2ClimbB_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Climb",
+					"sheatheOnStart": true
+				},
+				"ClimbTransient":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpWallReady": [],
+						"Standby2ClimbA":
+						[
+							"Audio_Male_Standby2ClimbA",
+							"Audio_Male_Standby2ClimbA_Diluc"
+						],
+						"Upstairs":
+						[
+							"Audio_Male_Upstairs",
+							"Audio_Male_Upstairs_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Ladder":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"LadderMove0": [],
+						"LadderMove1": [],
+						"LadderIdle": [],
+						"LadderSlip": [],
+						"LadderSlipStop": [],
+						"Standby2Ladder": []
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Ladder",
+					"sheatheOnStart": true
+				},
+				"Slip":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SlipLit":
+						[
+							"Audio_Male_SlipLit",
+							"Audio_Male_SlipLit_Diluc"
+						],
+						"SlipFaceWall":
+						[
+							"Audio_Male_SlipFaceWall_Diluc"
+						],
+						"SlipBackWall":
+						[
+							"Audio_Male_SlipBackWall_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"Swim":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SwimIdle":
+						[
+							"Audio_Male_SwimIdle"
+						],
+						"SwimMove":
+						[
+							"SwimStep",
+							"Audio_Male_SwimMove"
+						],
+						"SwimDash":
+						[
+							"Audio_Male_SwimDash",
+							"Avatar_Male_SwimDash_Hand_Effect"
+						],
+						"SwimJumpToWater":
+						[
+							"Audio_Male_SwimJumpToWater"
+						]
+					},
+					"moveType": "normalMove",
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Swim",
+					"sheatheOnStart": true
+				},
+				"Fly":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Fly":
+						[
+							"Audio_Male_Fly_Diluc"
+						],
+						"FlyStart":
+						[
+							"Audio_Male_FlyStart",
+							"FlyStart_Weapon",
+							"Audio_Male_FlyStart_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Fly",
+					"sheatheOnStart": true
+				},
+				"Jump":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Jump":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						],
+						"JumpForRun":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						],
+						"JumpForWalk":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						],
+						"JumpForSprint":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Jump",
+					"sheatheOnStart": true
+				},
+				"Fall":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpOffWall":
+						[
+							"Audio_Male_Jump"
+						],
+						"SwimJump":
+						[
+							"Audio_Male_SwimJump",
+							"Audio_Male_SwimJump_Diluc"
+						],
+						"SwimJumpDrop": [],
+						"DropDown":
+						[
+							"Audio_Male_DropDown",
+							"Audio_Male_DropDown_Diluc"
+						],
+						"DropDownLit": [],
+						"WalkDropDownLit": []
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"sheatheOnStart": true
+				},
+				"NormalStandbyWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyWeapon": []
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"WalkToRunWeapon":
+						[
+							"Audio_Male_WalkToRun",
+							"Audio_Male_WalkToRun_Diluc"
+						],
+						"WalkWeapon":
+						[
+							"Audio_Male_Walk",
+							"Audio_Male_Walk_Diluc"
+						],
+						"RunToWalkWeapon":
+						[
+							"Audio_Male_RunToWalk",
+							"Audio_Male_RunToWalk_Diluc"
+						],
+						"RunWeapon":
+						[
+							"Audio_Male_Run",
+							"Audio_Male_Run_Diluc"
+						],
+						"RunToIdleWeapon":
+						[
+							"Audio_Male_RunToIdleWeapon_Diluc"
+						],
+						"WalkToIdleWeapon":
+						[
+							"Audio_Male_WalkToIdleWeapon_Diluc"
+						],
+						"RunningTurnWeapon": [],
+						"FallOnGroundWeapon":
+						[
+							"Audio_Male_FallOnGround",
+							"Audio_Male_FallOnGround_Diluc"
+						],
+						"FallOnGroundLitWeapon":
+						[
+							"Audio_Male_FallOnGroundLit",
+							"Audio_Male_FallOnGroundLit_Diluc"
+						],
+						"FallOnGroundMiddleWeapon":
+						[
+							"Audio_Male_FallOnGroundMiddle",
+							"Audio_Male_FallOnGroundMiddle_Diluc"
+						],
+						"FallToGroundRunWeapon":
+						[
+							"Audio_Male_FallToGroundRun",
+							"Audio_Male_FallToGroundRun_Diluc"
+						],
+						"FallToGroundRunHardWeapon":
+						[
+							"Audio_Male_FallToGroundRunHard"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeaponPutaway":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"WalkPutaway":
+						[
+							"Male_Claymore_Putaway_Walk",
+							"Audio_Male_Claymore_WalkPutAway",
+							"Audio_Male_Walk_Diluc"
+						],
+						"RunPutaway":
+						[
+							"Male_Claymore_Putaway_Run",
+							"Audio_Male_Claymore_RunPutAway",
+							"Audio_Male_Run_Diluc"
+						],
+						"RunToSprintWeapon":
+						[
+							"Male_Claymore_Putaway_Sprint",
+							"Audio_Male_Claymore_RunToSprintWeapon"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeaponStandByPutaway":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyPutaway":
+						[
+							"Male_Claymore_Putaway_Standby",
+							"Audio_Male_Claymore_StandbyPutAway",
+							"Audio_Male_StandbyPutaway_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"equipReattach":
+					[
+						{
+							"equip": "equip01",
+							"targetPoint": "WeaponR2",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"battouOnStart": true
+				},
+				"NormalMoveWeaponOver":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyPutawayOver": [],
+						"WalkPutawayOver":
+						[
+							"Audio_Male_Walk_Diluc"
+						],
+						"RunPutawayOver":
+						[
+							"Audio_Male_Run_Diluc"
+						],
+						"RunToSprintWeaponOver": []
+					},
+					"moveType": "normalMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 2.0,
+					"sheatheOnStart": true
+				},
+				"JumpWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"JumpWeapon":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						],
+						"JumpForRunWeapon":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						],
+						"JumpForWalkWeapon":
+						[
+							"Audio_Male_Jump",
+							"Audio_Male_Jump_Diluc"
+						]
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Jump",
+					"battouOnStart": true
+				},
+				"FallWeapon":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"DropDownWeapon":
+						[
+							"Audio_Male_DropDown_Diluc"
+						],
+						"DropDownLitWeapon": [],
+						"WalkDropDownLitWeapon": []
+					},
+					"moveType": "normalMove",
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"DoSkill"
+					],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseAirSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"battouOnStart": true
+				},
+				"BeHit":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_L":
+						[
+							"Audio_Male_Hit_L",
+							"Audio_Male_Hit_L_Diluc"
+						],
+						"Hit_H":
+						[
+							"Audio_Male_Hit_H",
+							"Audio_Male_Hit_H_Diluc"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatBeHit",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit",
+						"HitAir2HitDrop"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true
+				},
+				"HitThrow":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_Throw_Ground":
+						[
+							"BeHitAir_Weapon",
+							"Audio_Male_HitThrowGround",
+							"Audio_Male_Hit_Throw_Ground_Diluc"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatBeHit",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit",
+						"HitAir2HitDrop"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"sheatheOnStart": true
+				},
+				"BeHitAir":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Hit_Throw":
+						[
+							"Audio_Male_Hit_Throw",
+							"BeHitAir_Weapon",
+							"Audio_Male_Hit_Throw_Diluc"
+						],
+						"Hit_ThrowAir":
+						[
+							"Audio_Male_DropDown",
+							"BeHitAir_Weapon"
+						],
+						"Struggle":
+						[
+							"BeHitAir_Weapon",
+							"Audio_Male_DropDown_Diluc"
+						]
+					},
+					"moveType": "combatAir",
+					"cameraType": "combatBeHit",
+					"actionPanelState": "CombatAir",
+					"jumpCancelEnd": 0.0,
+					"resetAnimatorTriggerOnEnter":
+					[
+						"BeHit"
+					],
+					"resetAnimatorTriggerOnExit":
+					[
+						"DoSkill"
+					],
+					"setAnimatorBoolean": [],
+					"sheatheOnStart": true
+				},
+				"Die":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FallDie":
+						[
+							"Audio_Male_Death"
+						],
+						"NormalDie":
+						[
+							"Die",
+							"Audio_Male_Death",
+							"Audio_Male_NormalDie_Diluc"
+						],
+						"SwimDie":
+						[
+							"Swim_Die",
+							"Audio_Male_SwimDie"
+						],
+						"HitGroundDie":
+						[
+							"Die",
+							"Audio_Male_Death",
+							"Audio_Male_NormalDie_Diluc"
+						]
+					}
+				},
+				"Die_RagDoll":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"NormalDie_AS": [],
+						"FallDie_AS": []
+					},
+					"enableRagDoll": true
+				},
+				"Attack01_BS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack01_BS":
+						[
+							"Diluc_Attack01_BS"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack01":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack01":
+						[
+							"Diluc_Attack01",
+							"Audio_Male_Diluc_Attack01",
+							"Emo_Male_Claymore_Diluc_NormalAttack01",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack02":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack02":
+						[
+							"Diluc_Attack02",
+							"Audio_Male_Diluc_Attack02",
+							"Emo_Male_Claymore_Diluc_NormalAttack02",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack03":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack03":
+						[
+							"Diluc_Attack03",
+							"Audio_Male_Diluc_Attack03",
+							"Emo_Male_Claymore_Diluc_NormalAttack03",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Attack04":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"Attack04":
+						[
+							"Diluc_Attack04",
+							"Audio_Male_Diluc_Attack04",
+							"Emo_Male_Claymore_Diluc_NormalAttack04",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"ExtraAttack":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack":
+						[
+							"Diluc_ExtraAttack",
+							"Audio_Male_Diluc_ExtraAttack",
+							"Emo_Male_Claymore_Diluc_ExtraAttackBS",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": false,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true
+				},
+				"ExtraAttack1":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack1":
+						[
+							"Diluc_ExtraAttack1",
+							"Audio_Male_Diluc_ExtraAttack1",
+							"Emo_Male_Claymore_Diluc_ExtraAttack1",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": false,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"equipReattach":
+					[
+						{
+							"equip": "equip01",
+							"targetPoint": "WeaponL",
+							"normalizeStart": 0.8,
+							"normalizeEnd": 0.99
+						}
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true
+				},
+				"ExtraAttack2":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack2":
+						[
+							"Diluc_ExtraAttack2",
+							"Audio_Male_Diluc_ExtraAttack3",
+							"Emo_Male_Claymore_Diluc_ExtraAttack2",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": false,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true
+				},
+				"ExtraAttack3":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"ExtraAttack3":
+						[
+							"Diluc_ExtraAttack3",
+							"Audio_Male_Diluc_ExtraAttack4",
+							"Emo_Male_Claymore_Diluc_ExtraAttackAS",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"FireBlade1":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade1":
+						[
+							"FireBlade1",
+							"Audio_Male_Diluc_FireBlade1",
+							"Emo_Male_Claymore_Diluc_FireBlade_01",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"jumpCancelStart": 0,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"battouOnStart": true
+				},
+				"FireBlade1A":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade1A":
+						[
+							"FireBlade1A",
+							"Emo_Male_Claymore_Diluc_FireBlade_01AS",
+							"Audio_Male_Diluc_FireBlade1A"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"jumpCancelStart": 0,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"FireBlade2":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade2":
+						[
+							"FireBlade2",
+							"Audio_Male_Diluc_FireBlade2",
+							"Emo_Male_Claymore_Diluc_FireBlade_02",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"battouOnStart": true
+				},
+				"FireBlade2A":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade2A":
+						[
+							"FireBlade2A",
+							"Emo_Male_Claymore_Diluc_FireBlade_02AS",
+							"Audio_Male_Diluc_FireBlade2A"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"jumpCancelStart": 0.0,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"FireBlade3":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade3":
+						[
+							"FireBlade3",
+							"Audio_Male_Diluc_FireBlade3",
+							"Emo_Male_Claymore_Diluc_FireBlade_03",
+							"Interaction_Bad"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"canDoSkill": true,
+					"addEndure": 0.6,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"battouOnStart": true
+				},
+				"FireBlade3A":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireBlade3A":
+						[
+							"FireBlade3A",
+							"Emo_Male_Claymore_Diluc_FireBlade_03AS",
+							"Audio_Male_Diluc_FireBlade3A"
+						]
+					},
+					"moveType": "combatMove",
+					"cameraType": "combatNormal",
+					"jumpCancelStart": 0.0,
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0.1,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"FireCross":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireCross":
+						[
+							"FireCross",
+							"Audio_Male_Diluc_FireCross"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": false,
+					"canChangeAvatar": [],
+					"addEndure": 0,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit"
+					],
+					"setAnimatorBoolean": [],
+					"battouOnStart": true,
+					"jumpCancelEnd": 0.0,
+					"jumpCancelStart": 0.75,
+					"sprintCancelEnd": 0.0,
+					"sprintCancelStart": 0.75
+				},
+				"FireCross_AS":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"FireCross_AS":
+						[
+							"FireCross_AS",
+							"Audio_Male_Diluc_FireCross_AS"
+						]
+					},
+					"moveType": "combatMove",
+					"canDoSkill": true,
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit":
+					[
+						"BeHit",
+						"DoSkill",
+						"Jump"
+					],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanCancelSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						},
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"battouOnStart": true
+				},
+				"Sit":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SitDown":
+						[
+							"Audio_Girl_SitDown",
+							"Audio_Male_Sit_Diluc"
+						],
+						"SitLoop": [],
+						"SitUp":
+						[
+							"Audio_Girl_SitDown",
+							"Audio_Male_Sit_Diluc"
+						]
+					},
+					"moveType": "performMove",
+					"canDoSkill": false,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Perform",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"SitB":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"SitBDown":
+						[
+							"Audio_Girl_SitDown",
+							"Audio_Male_Sit_Diluc"
+						],
+						"SitBLoop": [],
+						"SitBUp":
+						[
+							"Audio_Girl_SitDown",
+							"Audio_Male_Sit_Diluc"
+						]
+					},
+					"moveType": "performMove",
+					"canDoSkill": false,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean": [],
+					"actionPanelState": "Perform",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				},
+				"StandbyShow":
+				{
+					"$type": "ConfigAvatarStateIDInfo",
+					"animatorStates":
+					{
+						"StandbyVoice":
+						[
+							"Audio_Male_StandbyVoice"
+						],
+						"StandbyShow_01":
+						[
+							"Emo_Avatar_Diluc_Show_01",
+							"Audio_Male_StandbyShow_01_Diluc"
+						],
+						"StandbyShow_02":
+						[
+							"Manekin_Diluc_Show02"
+						]
+					},
+					"moveType": "performMove",
+					"canChangeAvatar":
+					[
+						{
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"canDoSkill": true,
+					"resetAnimatorTriggerOnEnter": [],
+					"resetAnimatorTriggerOnExit": [],
+					"setAnimatorBoolean":
+					[
+						{
+							"name": "&CanUseSkill",
+							"normalizeStart": 0.0,
+							"normalizeEnd": 1.0
+						}
+					],
+					"actionPanelState": "Normal",
+					"massRatio": 100.0,
+					"sheatheOnStart": true
+				}
+			}
+		}
+	},
+	"abilities":
+	[
+		{
+			"abilityID": "Avatar_Diluc_FireCrossCamera",
+			"abilityName": "Avatar_Diluc_FireCrossCamera"
+		},
+		{
+			"abilityID": "Avatar_Diluc_ExtraAttack_CycleEffect",
+			"abilityName": "Avatar_Diluc_ExtraAttack_CycleEffect"
+		},
+		{
+			"abilityID": "Avatar_Diluc_ExtraAttack",
+			"abilityName": "Avatar_Diluc_ExtraAttack"
+		},
+		{
+			"abilityID": "Avatar_Diluc_FireCross_Explode",
+			"abilityName": "Avatar_Diluc_FireCross_Explode"
+		},
+		{
+			"abilityID": "Avatar_Diluc_Fire_Blade",
+			"abilityName": "Avatar_Diluc_Fire_Blade"
+		},
+		{
+			"abilityID": "Avatar_Diluc_Fire_BladeSet1",
+			"abilityName": "Avatar_Diluc_Fire_BladeSet1"
+		},
+		{
+			"abilityID": "Avatar_Diluc_Fire_BladeSet2",
+			"abilityName": "Avatar_Diluc_Fire_BladeSet2"
+		},
+		{
+			"abilityID": "Avatar_Diluc_Fire_BladeSet3",
+			"abilityName": "Avatar_Diluc_Fire_BladeSet3"
+		},
+		{
+			"abilityID": "Avatar_Diluc_AfterFireBladeCountDown",
+			"abilityName": "Avatar_Diluc_AfterFireBladeCountDown"
+		},
+		{
+			"abilityID": "Avatar_Diluc_FireCross",
+			"abilityName": "Avatar_Diluc_FireCross"
+		},
+		{
+			"abilityID": "Avatar_Diluc_FireCross_Push1",
+			"abilityName": "Avatar_Diluc_FireCross_Push1"
+		},
+		{
+			"abilityID": "Avatar_Diluc_FireCross_Strike",
+			"abilityName": "Avatar_Diluc_FireCross_Strike"
+		},
+		{
+			"abilityID": "Avatar_Diluc_Fire_Enchantment",
+			"abilityName": "Avatar_Diluc_Fire_Enhancement"
+		},
+		{
+			"abilityID": "SprintBS_Invincible",
+			"abilityName": "Avatar_SprintBS_Invincible"
+		},
+		{
+			"abilityID": "ShakeGauge",
+			"abilityName": "Avatar_BeHit_Gauge"
+		},
+		{
+			"abilityID": "Freeze_Duration_Reducer",
+			"abilityName": "Avatar_Freeze_Duration_Reducer"
+		}
+	],
+	"audio":
+	{
+		"$type": "ConfigAvatarAudio",
+		"animAudio":
+		{
+			"onTransitionOut":
+			[
+				{
+					"currentStateName": "StandbyPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "StandbyPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_diluc_claymore_attackEnd"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "WalkPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "RunPutaway",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_1HSword_lady_putAwayStandby"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimJumpDrop",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_drop"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimJump",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_drop"
+					},
+					"otherStateNames":
+					[
+						"SwimJumpDrop"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "SwimJump",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_dive"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "FlyStart",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownLit",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDown",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "WalkDropDownLit",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "Jump",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForWalk",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForRun",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForSprint",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForWalkWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "JumpForRunWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "DropDownLitWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land_climb"
+					},
+					"otherStateNames":
+					[
+						"ClimbIdle",
+						"ClimbMove0",
+						"ClimbMove1",
+						"ClimbJump"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "SwimMove",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "FireBlade1",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_diluc_fireBlade01"
+					},
+					"otherStateNames":
+					[
+						"FireBlade1A"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "FireBlade2",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_diluc_fireBlade02"
+					},
+					"otherStateNames":
+					[
+						"FireBlade2A"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "FireBlade3",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_diluc_fireBlade03"
+					},
+					"otherStateNames":
+					[
+						"FireBlade3A"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "ExtraAttack1",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_claymore_male_extraAtk"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "ExtraAttack2",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_claymore_male_extraAtk"
+					},
+					"otherStateNames":
+					[
+						"ExtraAttack1",
+						"ExtraAttack3"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "ExtraAttack3",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_weapon_claymore_male_extraAtk"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Standby",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_diluc_coat_light"
+					},
+					"otherStateNames":
+					[
+						"Walk",
+						"Run"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "Standby",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_foley_flutter_light"
+					},
+					"otherStateNames":
+					[
+						"Walk",
+						"Run"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "StandbyWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_diluc_coat_light"
+					},
+					"otherStateNames":
+					[
+						"WalkWeapon",
+						"RunWeapon"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "StandbyWeapon",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_foley_flutter_light"
+					},
+					"otherStateNames":
+					[
+						"WalkWeapon",
+						"RunWeapon"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "SlipFaceWall",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SlipBackWall",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SlipFaceWall",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_drop"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SlipBackWall",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_drop"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "FireCross",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_diluc_fireCross_cast"
+					},
+					"otherStateNames":
+					[
+						"FireCross_AS"
+					],
+					"usage": "Except"
+				},
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			],
+			"onTransitionIn":
+			[
+				{
+					"currentStateName": "NormalDie",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_land"
+					},
+					"otherStateNames":
+					[
+						"FallOnGround"
+					],
+					"usage": "InSet"
+				},
+				{
+					"currentStateName": "ExtraAttack1",
+					"audioEvent":
+					{
+						"text": "Play_sfx_weapon_claymore_male_extraAtk02"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SprintBS",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_diluc_coat_heavy"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SprintBS",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_foley_flutter_heavy"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimJumpToWater",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_swim_dive"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "SwimDash",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_swim_dash"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Standby",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			],
+			"recurrentSpeeches":
+			{
+				"Standby":
+				{
+					"start":
+					{
+						"upper": 60.0,
+						"lower": 50.0
+					},
+					"interval":
+					{
+						"upper": 30.0,
+						"lower": 40.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Walk":
+				{
+					"start":
+					{
+						"upper": 16.0,
+						"lower": 13.0
+					},
+					"interval":
+					{
+						"upper": 14.0,
+						"lower": 10.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Run":
+				{
+					"start":
+					{
+						"upper": 13.0,
+						"lower": 9.0
+					},
+					"interval":
+					{
+						"upper": 11.0,
+						"lower": 8.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				},
+				"Sprint":
+				{
+					"start":
+					{
+						"upper": 12.0,
+						"lower": 7.0
+					},
+					"interval":
+					{
+						"upper": 9.0,
+						"lower": 6.0
+					},
+					"eventName":
+					{
+						"text": ""
+					}
+				}
+			}
+		},
+		"moveStateAudio":
+		{
+			"onStateBegin":
+			[
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Air",
+					"audioEvent":
+					{
+						"text": "Play_sfx_char_drop"
+					},
+					"otherStateNames":
+					[
+						"Fly"
+					],
+					"usage": "InSet"
+				}
+			],
+			"onStateEnd":
+			[
+				{
+					"currentStateName": "Fly",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_fly"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				},
+				{
+					"currentStateName": "Air",
+					"audioEvent":
+					{
+						"text": "Stop_sfx_char_drop"
+					},
+					"otherStateNames": [],
+					"usage": "Any"
+				}
+			]
+		},
+		"voiceSwitch":
+		{
+			"text": "Switch_Diluc"
+		},
+		"bodyTypeSwitch":
+		{
+			"text": "Switch_Male"
+		},
+		"listenerLiftup": 1.5,
+		"surfaceProberLiftup": 1.5
+	},
+	"moveStateEffect":
+	{
+		"footprint":
+		{
+			"surfaces":
+			[
+				"Snow",
+				"Dirt",
+				"Sand"
+			],
+			"effectPatternName": "Eff_Chacter_Footprint"
+		}
+	},
+	"perform":
+	{
+		"standby":
+		{
+			"minTime": 10,
+			"maxTime": 20,
+			"performIDs":
+			[
+				201,
+				200
+			]
+		}
+	}
+}
