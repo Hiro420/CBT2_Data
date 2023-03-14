@@ -10,7 +10,7 @@
 			"Boar_RushAtk_Attack",
 			"Animal_Boar_Disappear",
 			"Animal_Boar_Small_ToRun",
-			"Animal_Boar_Small_ToWander",
+			"Animal_Boar_Small_ToWander"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Cat":
 		[
@@ -21,11 +21,11 @@
 			"Animal_Cat_BeHit",
 			"Animal_Cat_CautiousRunning",
 			"Animal_Cat_TurnToSurround",
-			"Animal_Cat_OutOfSurround",
+			"Animal_Cat_OutOfSurround"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Common":
 		[
-			"Animal_Common_Initial",
+			"Animal_Common_Initial"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Crane":
 		[
@@ -37,7 +37,7 @@
 			"Animal_Crane_ToIdle",
 			"Animal_Crane_Disappear",
 			"Animal_Crane_FlyEffect",
-			"Animal_Crane_Scared",
+			"Animal_Crane_Scared"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_DogPrick":
 		[
@@ -45,7 +45,7 @@
 			"Animal_DogPrick_Prone",
 			"Animal_DogPrick_StandUp",
 			"Animal_DogPrick_AIStateInitial",
-			"Animal_DogPrick_BeHit",
+			"Animal_DogPrick_BeHit"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Fox":
 		[
@@ -54,17 +54,17 @@
 			"Animal_Fox_GetUp",
 			"Animal_Fox_GetDown",
 			"Animal_Fox_Disappear",
-			"Animal_Fox_AwareTigger",
+			"Animal_Fox_AwareTigger"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Marten":
 		[
 			"Animal_Marten_Disappear",
 			"Animal_Marten_ToWander",
-			"Animal_Marten_ToIdle",
+			"Animal_Marten_ToIdle"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Mole_Test":
 		[
-			"Animal_Mole_DropMora",
+			"Animal_Mole_DropMora"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Pigeon":
 		[
@@ -75,7 +75,7 @@
 			"Animal_Pigeon_ToWander",
 			"Animal_Pigeon_ToIdle",
 			"Animal_Pigeon_Disappear",
-			"Animal_Pigeon_FlyEffect",
+			"Animal_Pigeon_FlyEffect"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Squirrel":
 		[
@@ -83,7 +83,7 @@
 			"Animal_Squirrel_IntoWander",
 			"Animal_Squirrel_IntoIdle",
 			"Animal_Squirrel_Random",
-			"Animal_Squirrel_Disappear",
+			"Animal_Squirrel_Disappear"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Thoarder_Weasel_01":
 		[
@@ -93,7 +93,7 @@
 			"Animal_Thoarder_Weasel_Flee",
 			"Animal_Thoarder_Weasel_ToWander",
 			"Animal_Thoarder_Weasel_ToIdle",
-			"Animal_Thoarder_Weasel_State",
+			"Animal_Thoarder_Weasel_State"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Tit":
 		[
@@ -103,7 +103,7 @@
 			"Animal_Tit_FlyUp",
 			"Animal_Tit_ToWander",
 			"Animal_Tit_ToIdle",
-			"Animal_Tit_Disappear",
+			"Animal_Tit_Disappear"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Animal_Wigeon":
 		[
@@ -115,16 +115,16 @@
 			"Animal_Wigeon_ToIdle",
 			"Animal_Wigeon_Flee",
 			"Animal_Wigeon_Disappear",
-			"Animal_Wigeon_FlyEffect",
+			"Animal_Wigeon_FlyEffect"
 		],
 		"Data/_JsonOutput/Ability/Temp/AnimalAbilities/ConfigAbility_Task_Animal_Hunt":
 		[
-			"Task_Animal_Hunt",
+			"Task_Animal_Hunt"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_AllDefault":
 		[
 			"Avatar_DefaultAbility_VisionReplaceDieInvincible",
-			"Avatar_DefaultAbility_AvartarInShaderChange",
+			"Avatar_DefaultAbility_AvartarInShaderChange"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Ambor":
 		[
@@ -165,7 +165,7 @@
 			"Avatar_Ambor_AirShoot",
 			"Avatar_Ambor_ChangeMainSkill",
 			"Avatar_Ambor_ProudSkill_21",
-			"Avatar_Ambor_Talent_ReduceFlyStamina",
+			"Avatar_Ambor_Talent_ReduceFlyStamina"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Aquaria":
 		[
@@ -193,7 +193,7 @@
 			"Avatar_Aquaria_IceVirus",
 			"Avatar_Aquaria_IceVirus_Bullet",
 			"Avatar_Aquaria_IceVirus_Bullet_Material",
-			"Avatar_Aquaria_WindBlink",
+			"Avatar_Aquaria_WindBlink"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Ayaka":
 		[
@@ -230,7 +230,7 @@
 			"Avatar_Ayaka_Talent_IceDance",
 			"Avatar_Ayaka_Talent_HyouShin",
 			"Avatar_Ayaka_Talent_EbbAndFlow",
-			"Avatar_Ayaka_NormalAttack_DamageHandler",
+			"Avatar_Ayaka_NormalAttack_DamageHandler"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Barbara":
 		[
@@ -255,7 +255,7 @@
 			"Avatar_Barbara_ReBorn",
 			"Avatar_Barbara_ReBornEffect_01",
 			"Avatar_Barbara_ReBornEffect_02",
-			"Avatar_Barbara_Constellation_4",
+			"Avatar_Barbara_Constellation_4"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Beidou":
 		[
@@ -269,7 +269,7 @@
 			"Avatar_Beidou_Swim",
 			"Avatar_Beidou_Talent_Wet",
 			"Avatar_Beidou_Talent_ElectricAdd",
-			"Avatar_Beidou_ProudSkill_Tresure",
+			"Avatar_Beidou_ProudSkill_Tresure"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Bennett":
 		[
@@ -287,7 +287,7 @@
 			"Avatar_Bennett_ElementalBurst",
 			"Avatar_Bennett_ElementalBurst_Gadget",
 			"Avatar_Bennett_NormalAttackDamage",
-			"Avatar_Bennett_Talent_Capacitor",
+			"Avatar_Bennett_Talent_Capacitor"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Chongyun":
 		[
@@ -302,7 +302,7 @@
 			"Avatar_Chongyun_SoulUnleash_PushBack",
 			"Avatar_Chongyun_SoulUnleash_Summon",
 			"Avatar_Chongyun_SoulUnleash_Hit",
-			"Avatar_Chongyun_SoulUnleash_Damage",
+			"Avatar_Chongyun_SoulUnleash_Damage"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Common":
 		[
@@ -312,7 +312,7 @@
 			"Avatar_Girl_Catalyst_HitFallToGround_Hide",
 			"Avatar_Bow_Aim_EmoController",
 			"Avatar_RockGadget_Summon_Detect",
-			"RocketGadget_WeightRatio",
+			"RocketGadget_WeightRatio"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Diluc":
 		[
@@ -340,7 +340,7 @@
 			"Avatar_Diluc_AfterFireBlade",
 			"Avatar_Diluc_AfterFireBladeCountDown",
 			"Avatar_Diluc_NextFireBlade1",
-			"Avatar_Diluc_NextFireBlade2",
+			"Avatar_Diluc_NextFireBlade2"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Fischl":
 		[
@@ -386,7 +386,7 @@
 			"Avatar_Fischl_Talent_C_Hit",
 			"Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_01",
 			"Avatar_Fischl_Skill_S_Crow_AutoAttack_Hit_02",
-			"Avatar_Fischl_Skill_S_Crow_AutoAttack_Talent_Hit",
+			"Avatar_Fischl_Skill_S_Crow_AutoAttack_Talent_Hit"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Ganyu":
 		[
@@ -406,7 +406,7 @@
 			"Avatar_Ganyu_ShootArrow_Enchanted_Ice_3",
 			"SkillObj_AimingArrow_FissionAgent_1",
 			"SkillObj_AimingArrow_FissionAgent_2",
-			"Bullet_Ganyu_ShootArrow",
+			"Bullet_Ganyu_ShootArrow"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Kaeya":
 		[
@@ -421,7 +421,7 @@
 			"Avatar_Keaya_IceHeartTrigger",
 			"Avatar_Keaya_IceShield",
 			"Avatar_Kaeya_ElementalBurst_DamageHandler",
-			"Avatar_KeayaAttack_Blink",
+			"Avatar_KeayaAttack_Blink"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Kate":
 		[
@@ -433,7 +433,7 @@
 			"Avatar_Kate_ThunderFall",
 			"Avatar_Kate_PierceLightning",
 			"Avatar_Kate_ThrowingBomb",
-			"Avatar_Venti_WindBlade_Test",
+			"Avatar_Venti_WindBlade_Test"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Kevin":
 		[
@@ -449,7 +449,7 @@
 			"Avatar_Kevin_Taunt",
 			"Avatar_Kevin_RockImpact",
 			"Avatar_Kevin_RockShield",
-			"Avatar_Kevin_RockShield_Trigger",
+			"Avatar_Kevin_RockShield_Trigger"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Klee":
 		[
@@ -488,7 +488,7 @@
 			"Avatar_Klee_Constellation_1",
 			"Avatar_Klee_PermanentSkill_1",
 			"Avatar_Klee_PermanentSkill_2",
-			"Avatar_Klee_CoreSkill",
+			"Avatar_Klee_CoreSkill"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Lisa":
 		[
@@ -519,7 +519,7 @@
 			"Avatar_Lisa_PierceLightning_Ball_Attack",
 			"Avatar_Lisa_PierceLightning_Ball_FX",
 			"PierceLightning_Ball_Bullet_Material",
-			"Avatar_Lisa_Captain",
+			"Avatar_Lisa_Captain"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Ningguang":
 		[
@@ -564,7 +564,7 @@
 			"Avatar_Ningguang_Constellation_Bullet_1_Material",
 			"Avatar_Ningguang_Constellation_Bullet_2_Material",
 			"Avatar_Ningguang_Constellation_Bullet_3_Material",
-			"Avatar_Ningguang_SkillUpgrade_3",
+			"Avatar_Ningguang_SkillUpgrade_3"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Noel":
 		[
@@ -573,7 +573,7 @@
 			"Avatar_Noel_Skill_E",
 			"Avatar_Noel_ProudSkill_NormalAttack_DamageHandler",
 			"Avatar_Noel_ProudSkill_21",
-			"Avatar_Noel_ProudSkill_22",
+			"Avatar_Noel_ProudSkill_22"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Player_Common":
 		[
@@ -592,7 +592,7 @@
 			"Avatar_PlayerBoy_CreateFindCatThrow",
 			"Avatar_Player_CamCtrl",
 			"Avatar_Player_FlyingBomber",
-			"AmborFlyBullet_Explode",
+			"AmborFlyBullet_Explode"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Player_Rock":
 		[
@@ -610,7 +610,7 @@
 			"Avatar_Player_RockTide_Barrier_Appear",
 			"Avatar_Player_RockTide_Barrier",
 			"Avatar_Player_Rock_Avalanche",
-			"Avatar_Player_Rock_Climber",
+			"Avatar_Player_Rock_Climber"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Player_Wind":
 		[
@@ -631,7 +631,7 @@
 			"Avatar_Player_Wind_Arashi_Bullet",
 			"Avatar_Player_Wind_Arashi_Bullet_Material",
 			"Avatar_Player_Wind_DvalinPulse",
-			"Avatar_Player_Wind_HowlingBlade",
+			"Avatar_Player_Wind_HowlingBlade"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Prototype":
 		[
@@ -649,7 +649,7 @@
 			"Avatar_Prototype_Attack04",
 			"Avatar_Prototype_Attack04B",
 			"Avatar_Prototype_Attack05",
-			"Avatar_Prototype_Attack_Extra",
+			"Avatar_Prototype_Attack_Extra"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Qin":
 		[
@@ -673,11 +673,11 @@
 			"Avatar_Qin_TeamSpeedWhenGetElementBall",
 			"Avatar_Qin_NormalAttackDamage",
 			"Avatar_Qin_MengdeTeam",
-			"Avatar_Qin_AutoDefend",
+			"Avatar_Qin_AutoDefend"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Qiqi":
 		[
-			"Avatar_Qiqi_ExtraAttack",
+			"Avatar_Qiqi_ExtraAttack"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Razor":
 		[
@@ -699,7 +699,7 @@
 			"Avatar_Razor_Talent_ArcaneFeast",
 			"Avatar_Razor_Talent_OverPower",
 			"Avatar_Razor_DashStaminaReduction",
-			"Avatar_Razor_NormalAttack_DamageHandler",
+			"Avatar_Razor_NormalAttack_DamageHandler"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_RuoxinTest":
 		[
@@ -738,14 +738,14 @@
 			"Avatar_Tartaglia_AquariaBlade_CameraController",
 			"Avatar_Tartaglia_CoreTalent",
 			"Avatar_Tartaglia_ShowWeaponOn",
-			"Avatar_Tartaglia_ShowWeaponOff",
+			"Avatar_Tartaglia_ShowWeaponOff"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_TestXXX":
 		[
 			"Avatar_TestXXX_ExtraAttack",
 			"Avatar_TestXXX_Normalattackball",
 			"Avatar_TestXXX_NormalattackElement",
-			"Avatar_TestXXX_IceShield_Impact",
+			"Avatar_TestXXX_IceShield_Impact"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Venti":
 		[
@@ -783,7 +783,7 @@
 			"Venti_KageBunshinShoot",
 			"Avatar_Venti_Talnet_ShootArrow_Enchanted_Wind",
 			"Avatar_Venti_Talnet_ShootArrow_Enchanted_WithoutWind",
-			"Avatar_Venti_WindField",
+			"Avatar_Venti_WindField"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Weapon":
 		[
@@ -795,7 +795,7 @@
 			"Avatar_Weapon_Pole",
 			"Avatar_Weapon_Catalyst",
 			"Avatar_Weapon_Ball",
-			"Avatar_Weapon_Bow",
+			"Avatar_Weapon_Bow"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_WhiteBox":
 		[
@@ -803,7 +803,7 @@
 			"Frost_Orb_Bullet_Material",
 			"WhiteBox_FPS_Mode",
 			"WhiteBox_RockJack",
-			"WhiteBox_RockJack_Bullet",
+			"WhiteBox_RockJack_Bullet"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Xiangling":
 		[
@@ -831,7 +831,7 @@
 			"Avatar_Xiangling_TalentBombGadget",
 			"Avatar_XiangLing_ProudSkill_31",
 			"Avatar_Xiangling_ProudSkill_22",
-			"Avatar_Xiangling_Show01_RandomEffect",
+			"Avatar_Xiangling_Show01_RandomEffect"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Xiao":
 		[
@@ -849,7 +849,7 @@
 			"Avatar_Xiao_NormalAttack_DamageHandler",
 			"Avatar_Xiao_CoreSkill",
 			"Avatar_Xiao_Talent_LowHP_DefenceUp",
-			"Avatar_Xiao_FallingDamageReduction",
+			"Avatar_Xiao_FallingDamageReduction"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Xingqiu":
 		[
@@ -873,7 +873,7 @@
 			"Avatar_Xingqiu_DamageHandler",
 			"Avatar_Xingqiu_Talent_LetItDown",
 			"Avatar_Xingqiu_Talent_GoldenRing",
-			"Avatar_Xingqiu_Talent_OneMoreChance",
+			"Avatar_Xingqiu_Talent_OneMoreChance"
 		],
 		"Data/_JsonOutput/Ability/Temp/AvatarAbilities/ConfigAbility_Avatar_Zhongli":
 		[
@@ -888,12 +888,12 @@
 			"Avatar_Zhongli_HideWeaponControl",
 			"Avatar_Zhongli_NormalAttack",
 			"SkillObj_Zhongli_Attack05",
-			"SkillObj_Zhongli_ExtraAttack",
+			"SkillObj_Zhongli_ExtraAttack"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Amber":
 		[
 			"WaterAmber_Mist",
-			"WindAmberField",
+			"WindAmberField"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Element":
 		[
@@ -923,7 +923,7 @@
 			"ElementAbility_Swirl_Fire",
 			"ElementAbility_Swirl_Electric",
 			"ElementAbility_Swirl_Water",
-			"ElementAbility_Swirl_Ice",
+			"ElementAbility_Swirl_Ice"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_FireGadget":
 		[
@@ -931,7 +931,7 @@
 			"DropLight_Bullet",
 			"DropLight_Crash",
 			"DropLight_Crash02",
-			"GearWater_Interact",
+			"GearWater_Interact"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Gear":
 		[
@@ -944,11 +944,11 @@
 			"Test_Rotation_Interact",
 			"Test_Rotation_Attack",
 			"Test_Rotation02_Interact",
-			"WindDevice01_Interact",
+			"WindDevice01_Interact"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_GrassGadget":
 		[
-			"Oil_Interact",
+			"Oil_Interact"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_InteractGadget":
 		[
@@ -981,7 +981,7 @@
 			"SceneAbility_Superconductor_Alter",
 			"SceneAbility_Burning_Alter",
 			"SceneAbility_Freeze_Alter",
-			"SceneAbility_Monster_GenerateElemBall",
+			"SceneAbility_Monster_GenerateElemBall"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_LevelBuff":
 		[
@@ -1037,12 +1037,12 @@
 			"LevelEntity_AttackUp_Lv3",
 			"LevelEntity_ChargeEfficiencyDown",
 			"LevelEntity_BluntAttackUp",
-			"LevelEntity_ElementBeHurtDamageDown_All",
+			"LevelEntity_ElementBeHurtDamageDown_All"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Paimon":
 		[
 			"Gadget_Guide_Paimon_Disappear",
-			"Gadget_Guide_Paimon_Eff",
+			"Gadget_Guide_Paimon_Eff"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Scene_Weather":
 		[
@@ -1070,7 +1070,7 @@
 			"Team_Element_Evn_Fire",
 			"Team_Element_Evn_Ice",
 			"Team_Element_Evn_Water",
-			"Team_Element_Evn_Rock",
+			"Team_Element_Evn_Rock"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Team":
 		[
@@ -1081,16 +1081,16 @@
 			"Team_Talent_FallingDamageReduction",
 			"Team_Talent_DashStaminaReduction",
 			"Team_WindSeedSpawner_Manager",
-			"WindSeed_Bullet_Manager",
+			"WindSeed_Bullet_Manager"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_Watcher":
 		[
-			"LevelAbility_Combat_Watcher",
+			"LevelAbility_Combat_Watcher"
 		],
 		"Data/_JsonOutput/Ability/Temp/ConfigAbility_WaterGadget":
 		[
 			"Raining",
-			"Test_KapokFlower_Interact",
+			"Test_KapokFlower_Interact"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Relic":
 		[
@@ -1137,7 +1137,7 @@
 			"Test_Actor_ElemReactBurnDelta",
 			"Test_Actor_ElemReactFreezeDelta",
 			"Test_Actor_ElemReactSteamDelta",
-			"Test_Actor_ElemReactMeltDelta",
+			"Test_Actor_ElemReactMeltDelta"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Bow":
 		[
@@ -1161,7 +1161,7 @@
 			"Weapon_Bow_RiseElementDMGWhenEnergyMax",
 			"Weapon_Bow_RiseUltimateSkillDMGonAvatarIn",
 			"Weapon_Bow_ReduceEnemySubHurtonBranchAttack",
-			"Weapon_Bow_AttacktUpAfterReaction",
+			"Weapon_Bow_AttacktUpAfterReaction"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Catalyst":
 		[
@@ -1186,7 +1186,7 @@
 			"Weapon_Catalyst_Legend_Dvalin",
 			"Weapon_Catalyst_Legend_Dvalin_WindBall",
 			"Weapon_Catalyst_Arcane_Bullet",
-			"Weapon_Catalyst_Legend_Fourwinds",
+			"Weapon_Catalyst_Legend_Fourwinds"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Claymore":
 		[
@@ -1211,7 +1211,7 @@
 			"Weapon_AttackWave_Bullet",
 			"Weapon_AttackWave_Bullet_Material",
 			"Weapon_Claymore_Legend_Wolfmound",
-			"Weapon_Claymore_Legend_Widsith",
+			"Weapon_Claymore_Legend_Widsith"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Common":
 		[
@@ -1232,7 +1232,7 @@
 			"Weapon_AttractField",
 			"Weapon_Common_HealFieldWhenKill",
 			"Weapon_HealField",
-			"Weapon_Common_DamageUp",
+			"Weapon_Common_DamageUp"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Pole":
 		[
@@ -1248,7 +1248,7 @@
 			"Weapon_Pole_DamageUpToAllElement",
 			"Weapon_Pole_AttackUpAndSkillDamageUp",
 			"Weapon_Pole_AttacktUpAfterReaction",
-			"Weapon_Pole_DamageUpToEnemy",
+			"Weapon_Pole_DamageUpToEnemy"
 		],
 		"Data/_JsonOutput/Ability/Temp/EquipAbilities/ConfigAbility_Weapon_Sword":
 		[
@@ -1270,19 +1270,19 @@
 			"Weapon_Sword_AttackGainFullDamgeUpBuff",
 			"Weapon_Sword_IgnoreDefense",
 			"Weapon_Sword_Legend_Falcon",
-			"Weapon_Sword_Legend_Dvalin",
+			"Weapon_Sword_Legend_Dvalin"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Activity":
 		[
 			"SceneObj_Activity_UseLamp",
-			"SceneObj_Activity_Lamp_Bullet",
+			"SceneObj_Activity_Lamp_Bullet"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Amber":
 		[
 			"SceneObj_Amber_GoldenAmber",
 			"SceneObj_Amber_RockAmberBroken",
 			"SceneObj_Amber_WaterAmberBroken",
-			"SceneObj_Amber_WindAmberBroken",
+			"SceneObj_Amber_WindAmberBroken"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Chest":
 		[
@@ -1299,7 +1299,7 @@
 			"Fountain_Frozen",
 			"SceneObj_Chest_Drop",
 			"SceneObj_Chest_Hero_Treasure",
-			"SceneObj_Chest_Empty",
+			"SceneObj_Chest_Empty"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_CombatInteraction":
 		[
@@ -1307,7 +1307,7 @@
 			"SceneObj_CombatInteraction_Test_BombBox",
 			"SceneObj_CombatInteraction_Test_BombBox01",
 			"SceneObj_CombatInteraction_ElementSmoke",
-			"SceneObj_CombatInteraction_ElectricFlora",
+			"SceneObj_CombatInteraction_ElectricFlora"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_Collision":
 		[
@@ -1321,7 +1321,7 @@
 			"SceneObj_Environment_Collision_World_Barrier_XS_Attack",
 			"SceneObj_Environment_Collision_IceWall",
 			"SceneObj_Environment_Collision_IceWall02",
-			"SceneObj_Environment_Collision_IcePile",
+			"SceneObj_Environment_Collision_IcePile"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_FireMaterial":
 		[
@@ -1331,19 +1331,19 @@
 			"SceneObj_Environment_FireMaterial_Torch01_Interact",
 			"SceneObj_Environment_FireMaterial_BornFires_Interact",
 			"SceneObj_Environment_FireMaterial_CookingPot_Interact",
-			"SceneObj_Environment_FireMaterial_CookingPot_NoLight",
+			"SceneObj_Environment_FireMaterial_CookingPot_NoLight"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_GrassMaterial":
 		[
 			"SceneObj_Environment_GrassMaterial_LeaveStacks_Interact",
 			"SceneObj_Environment_GrassMaterial_LeafBlanket_Interact",
 			"SceneObj_Environment_GrassMaterial_GrassStacks_Interact",
-			"SceneObj_Environment_GrassMaterial_LeafBlanket02_Interact",
+			"SceneObj_Environment_GrassMaterial_LeafBlanket02_Interact"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_Other":
 		[
 			"SceneObj_Environment_Field_30",
-			"SceneObj_Environment_Other_AreaGuardian",
+			"SceneObj_Environment_Other_AreaGuardian"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_StoneMaterial":
 		[
@@ -1356,11 +1356,11 @@
 			"SceneObj_Environment_Broken_StonePile",
 			"SceneObj_Environment_Rock_StonePileDungeon",
 			"SceneObj_Environment_Rock_StoneStackDungeon",
-			"SceneObj_Environment_Rock_FlyFloor",
+			"SceneObj_Environment_Rock_FlyFloor"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_WaterMaterial":
 		[
-			"SceneObj_Environment_WaterMaterial_PoisonAttack",
+			"SceneObj_Environment_WaterMaterial_PoisonAttack"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_WindField":
 		[
@@ -1386,7 +1386,7 @@
 			"Element_WindFragment",
 			"Element_WindFragment_Controller",
 			"Element_WindSeed_Controller",
-			"Element_WindCream",
+			"Element_WindCream"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Environment_WoodenMaterial":
 		[
@@ -1397,7 +1397,7 @@
 			"SceneObj_Environment_WoodenMaterial_BrambleWorld_Interact",
 			"SceneObj_Environment_WoodenMaterial_BrambleWorld_Attack",
 			"SceneObj_Item_Moving_Trap_Attack",
-			"SceneObj_Environment_WoodenMaterial_GinSengTree",
+			"SceneObj_Environment_WoodenMaterial_GinSengTree"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Event":
 		[
@@ -1413,18 +1413,18 @@
 			"SceneObj_Quest_GamblingRockCreate_1",
 			"SceneObj_Quest_GamblingRockCreate_2",
 			"SceneObj_Quest_GamblingRockCreate_3",
-			"SceneObj_Event_Stain",
+			"SceneObj_Event_Stain"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gadget_Common":
 		[
-			"Scene_RockGadget_Summon_Detect",
+			"Scene_RockGadget_Summon_Detect"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gate":
 		[
 			"SceneObj_Gear_Gate_Temple01",
 			"SceneObj_Gear_Gate_Temple02_Electric",
 			"SceneObj_Gear_Gate_Temple02_Rock",
-			"SceneObj_Gear_Gate_Temple02_Wind",
+			"SceneObj_Gear_Gate_Temple02_Wind"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gather":
 		[
@@ -1453,7 +1453,7 @@
 			"SceneObj_Gather_ImitationMonster",
 			"SceneObj_Gather_GamblingRock_Broken_Eff",
 			"SceneObj_Gather_GamblingRock_Gather_Eff",
-			"SceneObj_Gather_GamblingRock",
+			"SceneObj_Gather_GamblingRock"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_BadmintonShootor":
 		[
@@ -1461,7 +1461,7 @@
 			"SceneObj_Gear_Other_ElementCube_Bullet_Crash",
 			"SceneObj_Gear_Other_Badminton_Bullet_Crash",
 			"SceneObj_Gear_Other_Badminton_Border",
-			"SceneObj_Gear_Other_Badminton_Camera_Dummy",
+			"SceneObj_Gear_Other_Badminton_Camera_Dummy"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_Combat":
 		[
@@ -1499,7 +1499,7 @@
 			"SceneObj_Gear_Combat_Piranha",
 			"SceneObj_Gear_Combat_Piranha_Crash",
 			"SceneObj_Gear_Combat_Piranha_End",
-			"SceneObj_Gear_Combat_Xiangling_IceGear_Controller",
+			"SceneObj_Gear_Combat_Xiangling_IceGear_Controller"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_ElemField":
 		[
@@ -1507,7 +1507,7 @@
 			"SceneObj_Gear_ElementField_IceController",
 			"SceneObj_Gear_ElementField_ElectricController",
 			"SceneObj_Gear_ElementField_WaterController",
-			"SceneObj_Gear_ElementField_Bullet",
+			"SceneObj_Gear_ElementField_Bullet"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_ElemForce":
 		[
@@ -1524,7 +1524,7 @@
 			"SceneObj_Gear_GrassWind",
 			"SceneObj_Gear_GrassWind_Bullet",
 			"SceneObj_Gear_GrassWind_Bullet02",
-			"SceneObj_Gear_GrassWind_Bullet03",
+			"SceneObj_Gear_GrassWind_Bullet03"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_Operator":
 		[
@@ -1554,7 +1554,7 @@
 			"SceneObj_Gear_Operator_GrassTablet",
 			"SceneObj_Gear_Operator_RockTablet",
 			"SceneObj_Gear_Operator_WindTablet",
-			"SceneObj_Gear_Operator_BlankTablet",
+			"SceneObj_Gear_Operator_BlankTablet"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_Other":
 		[
@@ -1636,7 +1636,7 @@
 			"SceneObj_Gear_Other_RuinsTreasure",
 			"SceneObj_Gear_Other_XianglingDungeon_Controller",
 			"Dvalin_S04_DisableRebornPoint",
-			"SceneObj_Gear_Other_Dvalin_Controller",
+			"SceneObj_Gear_Other_Dvalin_Controller"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Gear_Platform":
 		[
@@ -1652,14 +1652,14 @@
 			"SceneObj_Gear_Platform_Bubble",
 			"SceneObj_Gear_Platform_MoveStone",
 			"SceneObj_Gear_WhiteBox_Weight",
-			"SceneObj_Gear_Platform_Jigsaw",
+			"SceneObj_Gear_Platform_Jigsaw"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Seal":
 		[
 			"Test_LightLock_Seal",
 			"Test_LightLock_Point",
 			"Test_LightLock_Bullet",
-			"Test_LightLock_Seal_Logic",
+			"Test_LightLock_Seal_Logic"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Scene_Test_WhiteBox":
 		[
@@ -1677,17 +1677,17 @@
 			"SceneObj_Test_WhiteBox_ThornWall_Attack",
 			"Test_WhiteBox_ElectricWater_Interact",
 			"Test_WhiteBox_Airflow_Grass_Interact",
-			"Test_Chest_ShootingStar",
+			"Test_Chest_ShootingStar"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Task_FreezeBoar":
 		[
-			"SceneObj_Task_FreezeBoar",
+			"SceneObj_Task_FreezeBoar"
 		],
 		"Data/_JsonOutput/Ability/Temp/GadgetAbilities/ConfigAbility_Task_Trap":
 		[
 			"Task_HuntTrap_GlobalValue",
 			"SceneObj_Task_TrapHunter",
-			"Trap_Hunt_Attack",
+			"Trap_Hunt_Attack"
 		],
 		"Data/_JsonOutput/Ability/Temp/ItemAbilities":
 		[
@@ -1725,7 +1725,7 @@
 			"ReHP_Ins&Con_Dungeon",
 			"Atk_HitHeadBox_Dungeon",
 			"Suport_ResetCDWhenSkillHit_Dungeon",
-			"Atk_State_Dungeon_1",
+			"Atk_State_Dungeon_1"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Abyss_Fire":
 		[
@@ -1772,7 +1772,7 @@
 			"Abyss_Fire_FireEnergy",
 			"Abyss_Fire_FireEnergy_Surround",
 			"Abyss_Fire_FireEnergy_Damage",
-			"Abyss_Fire_AnimationSteer",
+			"Abyss_Fire_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Abyss_Ice":
 		[
@@ -1814,7 +1814,7 @@
 			"Abyss_Ice_SurroundCone_04",
 			"Abyss_Ice_SurroundCone_Collide",
 			"Abyss_Ice_SurroundCone_Explode",
-			"Abyss_Ice_AnimationSteer",
+			"Abyss_Ice_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Abyss_Water":
 		[
@@ -1856,14 +1856,14 @@
 			"Abyss_Water_Bubble_Explode",
 			"Abyss_Water_Bubble_Surround",
 			"Abyss_Water_Bubble_Still",
-			"Abyss_Water_AnimationSteer",
+			"Abyss_Water_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Brute":
 		[
 			"Brute_None_EmojiBubble",
 			"Brute_None_Turn",
 			"Brute_None_Alert",
-			"Brute_None_RushAttack",
+			"Brute_None_RushAttack"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Brute_Axe":
 		[
@@ -1884,7 +1884,7 @@
 			"Brute_Axe_ThrowFireSlime_Fire",
 			"Brute_Axe_ThrowFireSlime_None",
 			"Brute_Axe_FireSlime_Explode",
-			"Brute_Axe_FireSlime_Fire",
+			"Brute_Axe_FireSlime_Fire"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Brute_Shield":
 		[
@@ -1902,7 +1902,7 @@
 			"Brute_Shield_PickUpAndCreate",
 			"Brute_Shield_RemoveGrassSlime",
 			"Brute_Shield_CrashSlime",
-			"Brute_Shield_CreateGrassShield",
+			"Brute_Shield_CreateGrassShield"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Cicin_Thunder_01":
 		[
@@ -1924,14 +1924,14 @@
 			"Monster_Cicin_Element",
 			"Monster_Cicin_TriggerOwnerDodge",
 			"Monster_Cicin_ThunderEnergy",
-			"Monster_Cicin_ThunderEnergyAS",
+			"Monster_Cicin_ThunderEnergyAS"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Cicin_Water_01":
 		[
 			"Monster_Cicin_Water_NormalAtk",
 			"Monster_Cicin_WaterBall_Hit",
 			"Monster_Cicin_WaterBall_Effect",
-			"Monster_Cicin_Water_CommonEffect",
+			"Monster_Cicin_Water_CommonEffect"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Common":
 		[
@@ -1945,7 +1945,7 @@
 			"Monster_Common_WindMuteHurt",
 			"Monster_Common_IceMuteHurt",
 			"Monster_Common_RockMuteHurt",
-			"Monster_Common_PhysicalMuteHurt",
+			"Monster_Common_PhysicalMuteHurt"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Defender_None":
 		[
@@ -1984,16 +1984,16 @@
 			"Defender_None_ReturnToBorn",
 			"Defender_None_GearControl",
 			"Defender_None_HeadControl",
-			"Defender_None_Passive_Absolute_Defense",
+			"Defender_None_Passive_Absolute_Defense"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Defender_None_Reject":
 		[
-			"Monster_Defender_None_IntervalReject",
+			"Monster_Defender_None_IntervalReject"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Dvalin_S00":
 		[
 			"Dvalin_S00_StateController",
-			"Dvalin_S00_ResetSkyBox",
+			"Dvalin_S00_ResetSkyBox"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Dvalin_S01":
 		[
@@ -2028,7 +2028,7 @@
 			"Dvalin_S01_BulletEmitter_TriggerBullet",
 			"Dvalin_S01_BulletEmitter_Process_TriggerBullet",
 			"Dvalin_S01_EnergyBullet_Damage",
-			"Dvalin_S01_TrackBullet_Damage",
+			"Dvalin_S01_TrackBullet_Damage"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Dvalin_S04":
 		[
@@ -2095,7 +2095,7 @@
 			"Dvalin_S04_AvatarExitCameraShot",
 			"Dvalin_S04_LockDummy",
 			"Dvalin_S04_AirFlow",
-			"Dvalin_S04_AvatarFlyingCamera",
+			"Dvalin_S04_AvatarFlyingCamera"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Effigy_Electric":
 		[
@@ -2157,7 +2157,7 @@
 			"Monster_Effigy_Electric_Blink",
 			"Monster_Effigy_Electric_BlinkAS",
 			"Monster_Effigy_Electric_MultiAtk_LastAtk",
-			"Monster_Eggify_Electric_Steer",
+			"Monster_Eggify_Electric_Steer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Effigy_Rock":
 		[
@@ -2212,7 +2212,7 @@
 			"Monster_Effigy_Rock_Weak",
 			"Monster_Effigy_Rock_ForceBlink",
 			"Monster_Effigy_Rock_RandomBlink",
-			"Monster_Effigy_Rock_Steer",
+			"Monster_Effigy_Rock_Steer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Effigy_Wind":
 		[
@@ -2281,7 +2281,7 @@
 			"Effigy_WindBlade_Hit",
 			"Monster_Effigy_Wind_RandomMove",
 			"Monster_Effigy_Wind_RandomMoveStart",
-			"Monster_Effigy_Wind_Steer",
+			"Monster_Effigy_Wind_Steer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Elemental_Electric":
 		[
@@ -2300,7 +2300,7 @@
 			"Elemental_Electric_SetRebornPose",
 			"Elemental_Electric_ThunderRush",
 			"Elemental_Electric_RandomWalk",
-			"Elemental_ElectircRebornPart_ElementShield",
+			"Elemental_ElectircRebornPart_ElementShield"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Elemental_Wind":
 		[
@@ -2318,7 +2318,7 @@
 			"Elemental_Wind_EarthWrath_Over",
 			"Elemental_Wind_EarthWrath_Area",
 			"Elemental_Wind_EarthWrath_Burst",
-			"Elemental_Wind_AirflowField_Create",
+			"Elemental_Wind_AirflowField_Create"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_EliteAffix":
 		[
@@ -2326,7 +2326,7 @@
 			"MonsterEliteAffix_Defence_Enhance",
 			"MonsterEliteAffix_Agility_Enhance",
 			"MonsterEliteAffix_Support_Enhance",
-			"MonsterEliteAffix_AgilityEnhance_Abyss_Plugin",
+			"MonsterEliteAffix_AgilityEnhance_Abyss_Plugin"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Fatuus_Fire_01":
 		[
@@ -2360,7 +2360,7 @@
 			"Monster_Fatuus_Fire_01_CastSkill_StateCheck",
 			"Monster_Fatuus_Fire_01_FootPrintRight",
 			"Monster_Fatuus_Fire_01_FootPrintLeft",
-			"Monster_Fatuus_Fire_01_AnimationSteer",
+			"Monster_Fatuus_Fire_01_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Fatuus_Summoner_01":
 		[
@@ -2397,7 +2397,7 @@
 			"Fatuus_Summoner_Random2_Timer",
 			"Fatuus_Summoner_BurstAtk_LHandEffect",
 			"Fatuus_Summoner_BurstAtk_RHandEffect",
-			"Monster_Fatuus_Summoner_Steer",
+			"Monster_Fatuus_Summoner_Steer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Formathr_None":
 		[
@@ -2433,7 +2433,7 @@
 			"Monster_Formathr_None_DiveAtk",
 			"Monster_Formathr_None_AnimationSteer",
 			"Monster_Formathr_None_DieEffect",
-			"Monster_Formathr_None_Die",
+			"Monster_Formathr_None_Die"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Common":
 		[
@@ -2465,16 +2465,16 @@
 			"Hili_None_SpecialsState_Weapon",
 			"Hili_None_SpecialsState_HideWeapon",
 			"Hili_None_SpecialsState_AIStateInitial",
-			"Hili_None_Passive_Absolute_Defense",
+			"Hili_None_Passive_Absolute_Defense"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Defender":
 		[
-			"Hili_Defender_ShieldRush",
+			"Hili_Defender_ShieldRush"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Electric":
 		[
 			"Hili_Electric_ShootArrow_WithRandom",
-			"Hili_Electric_Arrow_Damage",
+			"Hili_Electric_Arrow_Damage"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Fire":
 		[
@@ -2499,7 +2499,7 @@
 			"Hili_Fire_SlimeThrow_HitScene",
 			"Hili_Fire_SlimeThrow_LightUpShader",
 			"Hili_Fire_BombTurn",
-			"Hili_Fire_Rush_Turn",
+			"Hili_Fire_Rush_Turn"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Grass":
 		[
@@ -2509,12 +2509,12 @@
 			"Hili_Grass_PlantGrasping_Element",
 			"Hili_Grass_Heal",
 			"MonEquip_WoodenClub_Grass_Effect",
-			"Hili_Grass_PlantSteer",
+			"Hili_Grass_PlantSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_Ice":
 		[
 			"Hili_Ice_ShootArrow_WithRandom",
-			"Hili_Ice_Arrow_Damage",
+			"Hili_Ice_Arrow_Damage"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_None":
 		[
@@ -2528,16 +2528,16 @@
 			"Hili_None_ThrowPebble_Shield_Effect",
 			"Hili_None_ThrowPebble_Shield",
 			"Hili_None_ThrowPebble_Loop",
-			"Hili_None_EmojiBubble",
+			"Hili_None_EmojiBubble"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_None_Resist":
 		[
 			"Monster_Hili_None_PhysicResist",
-			"Monster_Hili_None_ElementResist",
+			"Monster_Hili_None_ElementResist"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Hili_None_Whirl":
 		[
-			"Hili_None_WhirlRush",
+			"Hili_None_WhirlRush"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_LiYue_Sergeant_Male_01":
 		[
@@ -2548,7 +2548,7 @@
 			"Human_Male_Pole_WaitState",
 			"Human_Male_Pole_SetSurroundPosition",
 			"Monster_Millelith_TurnToOrdered",
-			"Monster_Millelith_OutOfOrdered",
+			"Monster_Millelith_OutOfOrdered"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_LiYue_Sergeant_Male_02":
 		[
@@ -2561,7 +2561,7 @@
 			"Monster_Millelith_SurroundAttack_AttackdOrder",
 			"Monster_Millelith_SetSurroundPoint",
 			"Monster_Millelith_SelectSoldiers",
-			"Monster_Millelith_SurroundAttackOrganizing",
+			"Monster_Millelith_SurroundAttackOrganizing"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_LiYue_Sergeant_Male_Common":
 		[
@@ -2573,7 +2573,7 @@
 			"Human_Male_Pole_WildSlam_RushMove02",
 			"Human_Male_Pole_WildSlam_RushMove03",
 			"Monster_Millelith_Pole_Male_AuxWeaponTrans",
-			"Monster_Millelith_EndureModifier",
+			"Monster_Millelith_EndureModifier"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_LupiBoreas":
 		[
@@ -2639,7 +2639,7 @@
 			"LupiBoreas_Stamp_Wind",
 			"LupiBoreas_StampAtk_Wind_Damage",
 			"LupiBoreas_Shock_Ice",
-			"LupiBoreas_Shock_Wind",
+			"LupiBoreas_Shock_Wind"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Mimik_Common":
 		[
@@ -2648,7 +2648,7 @@
 		[
 			"Monster_Mimik_FruitManager",
 			"Monster_Mimik_ReduceFruit",
-			"Monster_Mimik_AddFruit",
+			"Monster_Mimik_AddFruit"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Shaman_Grass":
 		[
@@ -2666,7 +2666,7 @@
 			"Monster_Shaman_Grass_EscapeState",
 			"Monster_Shaman_Grass_AnimationSteer",
 			"Monster_Shaman_Grass_WeaponElementEffect",
-			"Monster_Shaman_Grass_WeaponInit",
+			"Monster_Shaman_Grass_WeaponInit"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Shaman_Rock":
 		[
@@ -2675,11 +2675,11 @@
 			"Shaman_RockPillar_Element",
 			"Monster_Shaman_Rock_EscapeState",
 			"Shaman_Rock_AnimationSteer",
-			"Monster_Shaman_Rock_SupportAttack",
+			"Monster_Shaman_Rock_SupportAttack"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Shaman_Test_01":
 		[
-			"Monster_Shaman_Test_FireBullet",
+			"Monster_Shaman_Test_FireBullet"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Shaman_Water":
 		[
@@ -2693,7 +2693,7 @@
 			"Monster_Shaman_Water_EscapeState",
 			"Shaman_Water_AnimationSteer",
 			"Monster_Shaman_Water_WeaponElementEffect",
-			"Monster_Shaman_Water_WeaponInit",
+			"Monster_Shaman_Water_WeaponInit"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Shaman_Wind":
 		[
@@ -2709,7 +2709,7 @@
 			"Monster_Shaman_Wind_EscapeState",
 			"Monster_Shaman_Wind_AnimationSteer",
 			"Monster_Shaman_Wind_WeaponElementEffect",
-			"Monster_Shaman_Wind_WeaponInit",
+			"Monster_Shaman_Wind_WeaponInit"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Electric":
 		[
@@ -2722,7 +2722,7 @@
 			"Slime_Electric_JumpGround_castShadow",
 			"Slime_Electric_JumpGround_Alert",
 			"Slime_Electric_JumpGround_Attack",
-			"Slime_Electric_AnimationSteer",
+			"Slime_Electric_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Fire":
 		[
@@ -2745,7 +2745,7 @@
 			"Slime_Fire_FireBall_Explode",
 			"Slime_Fire_02_AnimationSteer",
 			"Slime_Fire_03_AnimationSteer",
-			"Slime_Fire_02_TutorialGlobalValue",
+			"Slime_Fire_02_TutorialGlobalValue"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Grass":
 		[
@@ -2772,7 +2772,7 @@
 			"Slime_Grass_JumpGround_Alert",
 			"Slime_Grass_JumpGround_Attack",
 			"Slime_Grass_02_AnimationSteer",
-			"Slime_Grass_03_AnimationSteer",
+			"Slime_Grass_03_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Ice":
 		[
@@ -2789,7 +2789,7 @@
 			"Slime_Ice_BlowAtk",
 			"Slime_Ice_Fog",
 			"Slime_Ice_02_AnimationSteer",
-			"Slime_Ice_03_AnimationSteer",
+			"Slime_Ice_03_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Immune":
 		[
@@ -2805,7 +2805,7 @@
 			"Slime_Fire_Immune_FireBall_Explode",
 			"Slime_Fire_Immune_FireBall_RebornAsRigidBody",
 			"Slime_Fire_Immune_FireBall_RigidBody",
-			"Slime_Fire_Immune_JumpGround_Attack",
+			"Slime_Fire_Immune_JumpGround_Attack"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Rock":
 		[
@@ -2819,7 +2819,7 @@
 			"Slime_Rock_RockThrow",
 			"Slime_Rock_RockThrow_Loop",
 			"Slime_Rock_RockThrow_Explode",
-			"Slime_Rock_AnimationSteer",
+			"Slime_Rock_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Water":
 		[
@@ -2840,7 +2840,7 @@
 			"Slime_Water_Bubble_Float_Loop",
 			"Slime_Water_Bubble_Explode",
 			"Slime_Water_Bubble_Surround",
-			"Slime_Water_AnimationSteer",
+			"Slime_Water_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Wind":
 		[
@@ -2862,11 +2862,11 @@
 			"Slime_Wind_AirAtk",
 			"Slime_Wind_AirAtk_Explode",
 			"Slime_Wind_03_JumpAttack",
-			"Slime_Wind_AnimationSteer",
+			"Slime_Wind_AnimationSteer"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Slime_Wind_Swirl":
 		[
-			"Slime_Wind_Swirl",
+			"Slime_Wind_Swirl"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Thoarder_Common":
 		[
@@ -2889,7 +2889,7 @@
 			"Thoarder_Bomb_Explode",
 			"Thoarder_MolotovCocktail_Loop",
 			"Thoarder_MolotovCocktail_Explode",
-			"Thoarder_ThrowingKnife_Effect",
+			"Thoarder_ThrowingKnife_Effect"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Thoarder_Female_Hatchet":
 		[
@@ -2898,7 +2898,7 @@
 			"Thoarder_Female_Hatchet_JumpAttack_RushMove01",
 			"Thoarder_Female_Hatchet_JumpAttack_RushMove02",
 			"Thoarder_Female_Hatchet_Throw_Effect",
-			"Thoarder_Female_Hatchet_Throw",
+			"Thoarder_Female_Hatchet_Throw"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Thoarder_Male_Crossbow":
 		[
@@ -2909,7 +2909,7 @@
 			"Monster_Thoarder_Male_Crossbow_FireEnchanted_End",
 			"Thoarder_Male_Crossbow_Dodge",
 			"Thoarder_Male_Crossbow_DodgeShootCDManager",
-			"Thoarder_Male_Crossbow_DodgeShootCDManager_ByPose",
+			"Thoarder_Male_Crossbow_DodgeShootCDManager_ByPose"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Thoarder_Male_NoWeapon":
 		[
@@ -2919,7 +2919,7 @@
 			"Thoarder_Male_NoWeapon_ThrowBomb",
 			"Thoarder_Male_NoWeapon_ThrowBomb_BombManager",
 			"Thoarder_Male_NoWeapon_ThrowMolotovCocktail",
-			"Thoarder_Male_NoWeapon_ThrowMolotovCocktail_MolotovManager",
+			"Thoarder_Male_NoWeapon_ThrowMolotovCocktail_MolotovManager"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Thoarder_Male_Shovel":
 		[
@@ -2930,7 +2930,7 @@
 			"Monster_Thoarder_Male_Shovel_WildSlam_Loop",
 			"Monster_Thoarder_Male_Shovel_WildSlam_RushEffect",
 			"Monster_Thoarder_Male_Shovel_WildSlam_RushMove01",
-			"Monster_Thoarder_Male_Shovel_AuxWeaponTrans",
+			"Monster_Thoarder_Male_Shovel_AuxWeaponTrans"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_Monster_Weapon":
 		[
@@ -2955,7 +2955,7 @@
 			"MonEquip_Crossbow_01_SetGlobalValue",
 			"MonEquip_Shield_02_SetGlobalValue",
 			"MonEquip_Torch_02_SetGlobalValue",
-			"MonEquip_Axe_01_SetGlobalValue",
+			"MonEquip_Axe_01_SetGlobalValue"
 		],
 		"Data/_JsonOutput/Ability/Temp/MonsterAbilities/ConfigAbility_MonsterAffix":
 		[
@@ -3043,7 +3043,7 @@
 			"MonsterPowerUp_Amplifier_Fire",
 			"MonsterPowerUp_Amplifier_Ice",
 			"MonsterPowerUp_Amplifier_Electric",
-			"MonsterAffix_Dvalin_S04_FirstSight",
+			"MonsterAffix_Dvalin_S04_FirstSight"
 		],
 		"Data/_JsonOutput/Ability/Temp/TempAbilities":
 		[
@@ -3116,7 +3116,7 @@
 			"AmborTaskEffect",
 			"LisaCompassEffect",
 			"LisaBookEffect",
-			"XiangmoyinGuideEffect",
+			"XiangmoyinGuideEffect"
 		],
 		"Data/_JsonOutput/Ability/Temp/TempAbilities2":
 		[
@@ -3124,18 +3124,18 @@
 			"TestHitHeavy",
 			"TestHitLight",
 			"TestHitShake",
-			"TestRock",
+			"TestRock"
 		],
 		"Data/_JsonOutput/Ability/Temp/TempGearGadgetAbilities":
 		[
 			"Gadget_Gear_Spray_Fire_Test",
 			"Gadget_Gear_Spray_Fire_Single_Test",
 			"Gadget_Gear_Spray_Ice_Single_Test",
-			"Gear_Electric_ElectricBall_Loop",
+			"Gear_Electric_ElectricBall_Loop"
 		],
 		"Data/_JsonOutput/Ability/Temp/TempInteractiveGadgetAbilities":
 		[
-			"Test_OreIron_Interact",
-		],
+			"Test_OreIron_Interact"
+		]
 	}
 }
