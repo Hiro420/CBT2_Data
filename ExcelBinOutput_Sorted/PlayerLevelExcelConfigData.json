@@ -1,0 +1,422 @@
+[
+    {
+        "level": 1,
+        "exp": 380,
+        "rewardId": "",
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 2,
+        "exp": 490,
+        "rewardId": 200002,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 3,
+        "exp": 610,
+        "rewardId": 200003,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 4,
+        "exp": 730,
+        "rewardId": 200004,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 5,
+        "exp": 840,
+        "rewardId": 200005,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 6,
+        "exp": 960,
+        "rewardId": 200006,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 7,
+        "exp": 1070,
+        "rewardId": 200007,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 8,
+        "exp": 1190,
+        "rewardId": 200008,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 9,
+        "exp": 1300,
+        "rewardId": 200009,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 10,
+        "exp": 1420,
+        "rewardId": 200010,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 11,
+        "exp": 1530,
+        "rewardId": 200011,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 12,
+        "exp": 1650,
+        "rewardId": 200012,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 13,
+        "exp": 1760,
+        "rewardId": 200013,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 14,
+        "exp": 1880,
+        "rewardId": 200014,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 15,
+        "exp": 1990,
+        "rewardId": 200015,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 16,
+        "exp": 2370,
+        "rewardId": 200016,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 17,
+        "exp": 2500,
+        "rewardId": 200017,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 18,
+        "exp": 2630,
+        "rewardId": 200018,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 19,
+        "exp": 2760,
+        "rewardId": 200019,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 20,
+        "exp": 2890,
+        "rewardId": 200020,
+        "expeditionLimitAdd": "",
+        "levelLockId": 2
+    },
+    {
+        "level": 21,
+        "exp": 3430,
+        "rewardId": 200021,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 22,
+        "exp": 3720,
+        "rewardId": 200022,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 23,
+        "exp": 4000,
+        "rewardId": 200023,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 24,
+        "exp": 4290,
+        "rewardId": 200024,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 25,
+        "exp": 4580,
+        "rewardId": 200025,
+        "expeditionLimitAdd": "",
+        "levelLockId": 3
+    },
+    {
+        "level": 26,
+        "exp": 4870,
+        "rewardId": 200026,
+        "expeditionLimitAdd": 1,
+        "levelLockId": ""
+    },
+    {
+        "level": 27,
+        "exp": 5160,
+        "rewardId": 200027,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 28,
+        "exp": 5440,
+        "rewardId": 200028,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 29,
+        "exp": 5730,
+        "rewardId": 200029,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 30,
+        "exp": 6020,
+        "rewardId": 200030,
+        "expeditionLimitAdd": "",
+        "levelLockId": 4
+    },
+    {
+        "level": 31,
+        "exp": 6310,
+        "rewardId": 200031,
+        "expeditionLimitAdd": 1,
+        "levelLockId": ""
+    },
+    {
+        "level": 32,
+        "exp": 6600,
+        "rewardId": 200032,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 33,
+        "exp": 6880,
+        "rewardId": 200033,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 34,
+        "exp": 7170,
+        "rewardId": 200034,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 35,
+        "exp": 7460,
+        "rewardId": 200035,
+        "expeditionLimitAdd": "",
+        "levelLockId": 5
+    },
+    {
+        "level": 36,
+        "exp": 7750,
+        "rewardId": 200036,
+        "expeditionLimitAdd": 1,
+        "levelLockId": ""
+    },
+    {
+        "level": 37,
+        "exp": 8040,
+        "rewardId": 200037,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 38,
+        "exp": 8320,
+        "rewardId": 200038,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 39,
+        "exp": 8610,
+        "rewardId": 200039,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 40,
+        "exp": 8900,
+        "rewardId": 200040,
+        "expeditionLimitAdd": "",
+        "levelLockId": 6
+    },
+    {
+        "level": 41,
+        "exp": 9360,
+        "rewardId": 200041,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 42,
+        "exp": 10080,
+        "rewardId": 200042,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 43,
+        "exp": 10800,
+        "rewardId": 200043,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 44,
+        "exp": 11520,
+        "rewardId": 200044,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 45,
+        "exp": 12240,
+        "rewardId": 200045,
+        "expeditionLimitAdd": "",
+        "levelLockId": 7
+    },
+    {
+        "level": 46,
+        "exp": 12960,
+        "rewardId": 200046,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 47,
+        "exp": 13680,
+        "rewardId": 200047,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 48,
+        "exp": 14400,
+        "rewardId": 200048,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 49,
+        "exp": 15120,
+        "rewardId": 200049,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 50,
+        "exp": 15840,
+        "rewardId": 200050,
+        "expeditionLimitAdd": "",
+        "levelLockId": 8
+    },
+    {
+        "level": 51,
+        "exp": 16560,
+        "rewardId": 200051,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 52,
+        "exp": 17280,
+        "rewardId": 200052,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 53,
+        "exp": 18000,
+        "rewardId": 200053,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 54,
+        "exp": 18720,
+        "rewardId": 200054,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 55,
+        "exp": 19440,
+        "rewardId": 200055,
+        "expeditionLimitAdd": "",
+        "levelLockId": 9
+    },
+    {
+        "level": 56,
+        "exp": 20160,
+        "rewardId": 200056,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 57,
+        "exp": 20880,
+        "rewardId": 200057,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 58,
+        "exp": 21600,
+        "rewardId": 200058,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 59,
+        "exp": 22320,
+        "rewardId": 200059,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    },
+    {
+        "level": 60,
+        "exp": 0,
+        "rewardId": 200060,
+        "expeditionLimitAdd": "",
+        "levelLockId": ""
+    }
+]

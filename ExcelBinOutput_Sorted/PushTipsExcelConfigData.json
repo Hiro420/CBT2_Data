@@ -1,0 +1,308 @@
+[
+    {
+        "pushTipsId": 1001,
+        "watcherId": 1001,
+        "rewardId": 300001,
+        "tutorialId": 300
+    },
+    {
+        "pushTipsId": 1002,
+        "watcherId": 1002,
+        "rewardId": 300001,
+        "tutorialId": 303
+    },
+    {
+        "pushTipsId": 1003,
+        "watcherId": 1003,
+        "rewardId": 300001,
+        "tutorialId": 304
+    },
+    {
+        "pushTipsId": 1004,
+        "watcherId": 1004,
+        "rewardId": 300001,
+        "tutorialId": 305
+    },
+    {
+        "pushTipsId": 1005,
+        "watcherId": 1005,
+        "rewardId": 300001,
+        "tutorialId": 306
+    },
+    {
+        "pushTipsId": 1006,
+        "watcherId": 1006,
+        "rewardId": 300001,
+        "tutorialId": 307
+    },
+    {
+        "pushTipsId": 1007,
+        "watcherId": 1007,
+        "rewardId": 300001,
+        "tutorialId": 308
+    },
+    {
+        "pushTipsId": 1008,
+        "watcherId": 1008,
+        "rewardId": 300001,
+        "tutorialId": 309
+    },
+    {
+        "pushTipsId": 1009,
+        "watcherId": 1009,
+        "rewardId": 300001,
+        "tutorialId": 311
+    },
+    {
+        "pushTipsId": 1010,
+        "watcherId": 1010,
+        "rewardId": 300001,
+        "tutorialId": 313
+    },
+    {
+        "pushTipsId": 1011,
+        "watcherId": 1011,
+        "rewardId": 300001,
+        "tutorialId": 314
+    },
+    {
+        "pushTipsId": 1012,
+        "watcherId": 1012,
+        "rewardId": 300001,
+        "tutorialId": 315
+    },
+    {
+        "pushTipsId": 1013,
+        "watcherId": 1013,
+        "rewardId": 300001,
+        "tutorialId": 316
+    },
+    {
+        "pushTipsId": 1014,
+        "watcherId": 1014,
+        "rewardId": 300001,
+        "tutorialId": 317
+    },
+    {
+        "pushTipsId": 1015,
+        "watcherId": 1015,
+        "rewardId": 300001,
+        "tutorialId": 318
+    },
+    {
+        "pushTipsId": 1016,
+        "watcherId": 1016,
+        "rewardId": 300001,
+        "tutorialId": 319
+    },
+    {
+        "pushTipsId": 1018,
+        "watcherId": 1018,
+        "rewardId": 300001,
+        "tutorialId": 325
+    },
+    {
+        "pushTipsId": 1019,
+        "watcherId": 1019,
+        "rewardId": 300001,
+        "tutorialId": 326
+    },
+    {
+        "pushTipsId": 1020,
+        "watcherId": 1020,
+        "rewardId": 300001,
+        "tutorialId": 327
+    },
+    {
+        "pushTipsId": 1021,
+        "watcherId": 1021,
+        "rewardId": 300001,
+        "tutorialId": 328
+    },
+    {
+        "pushTipsId": 1022,
+        "watcherId": 1022,
+        "rewardId": 300001,
+        "tutorialId": 329
+    },
+    {
+        "pushTipsId": 1023,
+        "watcherId": 1023,
+        "rewardId": 300001,
+        "tutorialId": 330
+    },
+    {
+        "pushTipsId": 1025,
+        "watcherId": 1025,
+        "rewardId": 300001,
+        "tutorialId": 332
+    },
+    {
+        "pushTipsId": 1026,
+        "watcherId": 1026,
+        "rewardId": 300001,
+        "tutorialId": 333
+    },
+    {
+        "pushTipsId": 1027,
+        "watcherId": 1027,
+        "rewardId": 300001,
+        "tutorialId": 320
+    },
+    {
+        "pushTipsId": 1028,
+        "watcherId": 1028,
+        "rewardId": 300001,
+        "tutorialId": 310
+    },
+    {
+        "pushTipsId": 1029,
+        "watcherId": 1029,
+        "rewardId": 300001,
+        "tutorialId": 312
+    },
+    {
+        "pushTipsId": 1030,
+        "watcherId": 1030,
+        "rewardId": 300001,
+        "tutorialId": 335
+    },
+    {
+        "pushTipsId": 1031,
+        "watcherId": 1031,
+        "rewardId": 300001,
+        "tutorialId": 336
+    },
+    {
+        "pushTipsId": 1032,
+        "watcherId": 1032,
+        "rewardId": 300001,
+        "tutorialId": 337
+    },
+    {
+        "pushTipsId": 2009,
+        "watcherId": 2009,
+        "rewardId": 300001,
+        "tutorialId": 117
+    },
+    {
+        "pushTipsId": 2015,
+        "watcherId": 2015,
+        "rewardId": 300001,
+        "tutorialId": 128
+    },
+    {
+        "pushTipsId": 2016,
+        "watcherId": 2016,
+        "rewardId": 300001,
+        "tutorialId": 148
+    },
+    {
+        "pushTipsId": 2019,
+        "watcherId": 2019,
+        "rewardId": 300001,
+        "tutorialId": 139
+    },
+    {
+        "pushTipsId": 2027,
+        "watcherId": 2027,
+        "rewardId": 300001,
+        "tutorialId": 146
+    },
+    {
+        "pushTipsId": 2032,
+        "watcherId": 2032,
+        "rewardId": 300001,
+        "tutorialId": 130
+    },
+    {
+        "pushTipsId": 2033,
+        "watcherId": 2033,
+        "rewardId": 300001,
+        "tutorialId": 131
+    },
+    {
+        "pushTipsId": 2034,
+        "watcherId": 2034,
+        "rewardId": 300001,
+        "tutorialId": 132
+    },
+    {
+        "pushTipsId": 2035,
+        "watcherId": 2035,
+        "rewardId": 300001,
+        "tutorialId": 136
+    },
+    {
+        "pushTipsId": 2036,
+        "watcherId": 2036,
+        "rewardId": 300001,
+        "tutorialId": 236
+    },
+    {
+        "pushTipsId": 2039,
+        "watcherId": 2039,
+        "rewardId": 300001,
+        "tutorialId": 239
+    },
+    {
+        "pushTipsId": 2042,
+        "watcherId": 2042,
+        "rewardId": 300001,
+        "tutorialId": 242
+    },
+    {
+        "pushTipsId": 2043,
+        "watcherId": 2043,
+        "rewardId": 300001,
+        "tutorialId": 243
+    },
+    {
+        "pushTipsId": 2044,
+        "watcherId": 2044,
+        "rewardId": 300001,
+        "tutorialId": 248
+    },
+    {
+        "pushTipsId": 2045,
+        "watcherId": 2045,
+        "rewardId": 300001,
+        "tutorialId": 249
+    },
+    {
+        "pushTipsId": 2046,
+        "watcherId": 2046,
+        "rewardId": 300001,
+        "tutorialId": 250
+    },
+    {
+        "pushTipsId": 3001,
+        "watcherId": 3001,
+        "rewardId": 300001,
+        "tutorialId": 400
+    },
+    {
+        "pushTipsId": 3002,
+        "watcherId": 3009,
+        "rewardId": 300001,
+        "tutorialId": 251
+    },
+    {
+        "pushTipsId": 3003,
+        "watcherId": 3010,
+        "rewardId": 300001,
+        "tutorialId": 255
+    },
+    {
+        "pushTipsId": 4001,
+        "watcherId": 4001,
+        "rewardId": 300001,
+        "tutorialId": 500
+    },
+    {
+        "pushTipsId": 4002,
+        "watcherId": 4002,
+        "rewardId": 300001,
+        "tutorialId": 501
+    }
+]

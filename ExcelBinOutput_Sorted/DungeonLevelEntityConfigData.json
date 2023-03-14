@@ -1,0 +1,762 @@
+[
+    {
+        "id": 1,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 2,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 3,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 4,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "id": 5,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 6,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "id": 7,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Grass"
+    },
+    {
+        "id": 8,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "id": 9,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Electric"
+    },
+    {
+        "id": 10,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Fire"
+    },
+    {
+        "id": 11,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Wind"
+    },
+    {
+        "id": 12,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Ice"
+    },
+    {
+        "id": 13,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Water"
+    },
+    {
+        "id": 14,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Grass"
+    },
+    {
+        "id": 15,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Rock"
+    },
+    {
+        "id": 16,
+        "levelConfigName": "LevelEntity_Heal_Down"
+    },
+    {
+        "id": 17,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "id": 18,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "id": 19,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Wind"
+    },
+    {
+        "id": 20,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "id": 21,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Water"
+    },
+    {
+        "id": 22,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Grass"
+    },
+    {
+        "id": 23,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Rock"
+    },
+    {
+        "id": 24,
+        "levelConfigName": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "id": 25,
+        "levelConfigName": "LevelEntity_RangeAttackDamageUp"
+    },
+    {
+        "id": 26,
+        "levelConfigName": "LevelEntity_MaleAddHurt"
+    },
+    {
+        "id": 27,
+        "levelConfigName": "LevelEntity_FemaleAddHurt"
+    },
+    {
+        "id": 28,
+        "levelConfigName": "LevelEntity_SwordAddHurt"
+    },
+    {
+        "id": 29,
+        "levelConfigName": "LevelEntity_ClaymoreAddHurt"
+    },
+    {
+        "id": 30,
+        "levelConfigName": "LevelEntity_PoleAddHurt"
+    },
+    {
+        "id": 31,
+        "levelConfigName": "LevelEntity_CatalystAddHurt"
+    },
+    {
+        "id": 32,
+        "levelConfigName": "LevelEntity_BowAddHurt"
+    },
+    {
+        "id": 33,
+        "levelConfigName": "LevelEntity_AvatarDot_Fire"
+    },
+    {
+        "id": 34,
+        "levelConfigName": "LevelEntity_AvatarDot_Electric"
+    },
+    {
+        "id": 35,
+        "levelConfigName": "LevelEntity_AvatarDot_Water"
+    },
+    {
+        "id": 36,
+        "levelConfigName": "LevelEntity_AvatarDot_Ice"
+    },
+    {
+        "id": 37,
+        "levelConfigName": "LevelEntity_AvatarDot_Wind"
+    },
+    {
+        "id": 38,
+        "levelConfigName": "LevelEntity_AvatarDot_Rock"
+    },
+    {
+        "id": 39,
+        "levelConfigName": "LevelEntity_AvatarDot_Grass"
+    },
+    {
+        "id": 40,
+        "levelConfigName": "LevelEntity_RandomThunder"
+    },
+    {
+        "id": 41,
+        "levelConfigName": "Level_Electric_Test"
+    },
+    {
+        "id": 42,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 43,
+        "levelConfigName": "Level_Superconductor_Test"
+    },
+    {
+        "id": 44,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 45,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 46,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 47,
+        "levelConfigName": "Level_Burning_Test"
+    },
+    {
+        "id": 48,
+        "levelConfigName": "Level_Swril_Test"
+    },
+    {
+        "id": 49,
+        "levelConfigName": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "id": 50,
+        "levelConfigName": "LevelEntity_Avatar_CriticalHurtUp"
+    },
+    {
+        "id": 51,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 52,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 53,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 54,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 55,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 56,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 57,
+        "levelConfigName": "LevelEntity_Avatar_ChargeEfficiencyDown"
+    },
+    {
+        "id": 58,
+        "levelConfigName": "LevelEntity_GenerateElemBall"
+    },
+    {
+        "id": 59,
+        "levelConfigName": "LevelEntity_Monster_ElementBeHurtDamageDown_All"
+    },
+    {
+        "id": 60,
+        "levelConfigName": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "id": 1000,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1000,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "id": 1000,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1001,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1001,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "id": 1001,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1002,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1002,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "id": 1002,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "id": 1003,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1003,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "id": 1003,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1004,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1004,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "id": 1004,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "id": 1005,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1005,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "id": 1005,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Grass"
+    },
+    {
+        "id": 1006,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1006,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "id": 1006,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "id": 1007,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Electric"
+    },
+    {
+        "id": 1007,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1007,
+        "levelConfigName": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "id": 1008,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Fire"
+    },
+    {
+        "id": 1008,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1008,
+        "levelConfigName": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "id": 1009,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageDown_Ice"
+    },
+    {
+        "id": 1009,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1009,
+        "levelConfigName": "LevelEntity_RangeAttackDamageUp"
+    },
+    {
+        "id": 1010,
+        "levelConfigName": "LevelEntity_Heal_Down"
+    },
+    {
+        "id": 1010,
+        "levelConfigName": "LevelEntity_MeleeAttackDamageUp"
+    },
+    {
+        "id": 1010,
+        "levelConfigName": "LevelEntity_BowAddHurt"
+    },
+    {
+        "id": 1100,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1101,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1102,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1102,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 1103,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1103,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Electric"
+    },
+    {
+        "id": 1104,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1104,
+        "levelConfigName": "Level_Burning_Test"
+    },
+    {
+        "id": 1105,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1105,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 1106,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1106,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1107,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1108,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1108,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1109,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1109,
+        "levelConfigName": "Level_Swril_Test"
+    },
+    {
+        "id": 1110,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1110,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1111,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1111,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1112,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1112,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1113,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1113,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1114,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Ice"
+    },
+    {
+        "id": 1114,
+        "levelConfigName": "Level_Superconductor_Test"
+    },
+    {
+        "id": 1115,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1115,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1116,
+        "levelConfigName": "Level_Superconductor_Test"
+    },
+    {
+        "id": 1116,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1117,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1117,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1118,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1118,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1119,
+        "levelConfigName": "Level_Electric_Test"
+    },
+    {
+        "id": 1119,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1120,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1121,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 1121,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1122,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 1122,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1122,
+        "levelConfigName": "LevelEntity_ElementBeHurtDamageUp_Fire"
+    },
+    {
+        "id": 1123,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1123,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1124,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1124,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "id": 1125,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1126,
+        "levelConfigName": "Level_Avatar_DefenseDown"
+    },
+    {
+        "id": 1126,
+        "levelConfigName": "Level_Swril_Test"
+    },
+    {
+        "id": 1127,
+        "levelConfigName": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "id": 1127,
+        "levelConfigName": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "id": 1128,
+        "levelConfigName": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "id": 1128,
+        "levelConfigName": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "id": 1129,
+        "levelConfigName": "LevelEntity_PhysicalAddHurt"
+    },
+    {
+        "id": 1129,
+        "levelConfigName": "LevelEntity_Avatar_CriticalUp"
+    },
+    {
+        "id": 1130,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1131,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1131,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1132,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1133,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1134,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1135,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1135,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1136,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1137,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1137,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1138,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1139,
+        "levelConfigName": "LevelEntity_Monster_HpUp"
+    },
+    {
+        "id": 1139,
+        "levelConfigName": "LevelEntity_Monster_AttackUp"
+    },
+    {
+        "id": 1140,
+        "levelConfigName": "Level_Swril_Test"
+    },
+    {
+        "id": 1140,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Wind"
+    },
+    {
+        "id": 1141,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1141,
+        "levelConfigName": "Level_Electric_Test"
+    },
+    {
+        "id": 1142,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Rock"
+    },
+    {
+        "id": 1142,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1142,
+        "levelConfigName": "LevelEntity_ClaymoreAddHurt"
+    },
+    {
+        "id": 1143,
+        "levelConfigName": "Level_Stream_Test"
+    },
+    {
+        "id": 1143,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Water"
+    },
+    {
+        "id": 1143,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1144,
+        "levelConfigName": "Level_Superconductor_Test"
+    },
+    {
+        "id": 1144,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1144,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1150,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1150,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1151,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1151,
+        "levelConfigName": "Level_Freeze_Test"
+    },
+    {
+        "id": 1152,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1152,
+        "levelConfigName": "Level_Electric_Test"
+    },
+    {
+        "id": 1153,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1153,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Ice"
+    },
+    {
+        "id": 1153,
+        "levelConfigName": "Level_Melt_Test"
+    },
+    {
+        "id": 1154,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Fire"
+    },
+    {
+        "id": 1154,
+        "levelConfigName": "LevelEntity_ElementAddHurt_Electric"
+    },
+    {
+        "id": 1154,
+        "levelConfigName": "Level_Explode_Test"
+    },
+    {
+        "id": 1155,
+        "levelConfigName": "LevelEntity_Avatar_CriticalHurtUp"
+    },
+    {
+        "id": 1156,
+        "levelConfigName": "LevelEntity_PhysicalAddHurt"
+    }
+]

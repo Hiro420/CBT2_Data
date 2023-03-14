@@ -1,0 +1,1577 @@
+[
+    {
+        "id": 1001,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1002,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1003,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1004,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1005,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "Level_Sneak",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [
+            10000005,
+            10000007
+        ],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 1006,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1008,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1009,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1011,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1013,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "Level_Sneak",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [
+            10000005,
+            10000007
+        ],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 1015,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Sneak",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [
+            10000005,
+            10000007
+        ],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 1016,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1017,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1018,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1019,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1023,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1024,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1030,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "Level_Sneak",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 1031,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 1,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "Level_BigWorld",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 2,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "Level_BigWorld",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 3,
+        "type": "SCENE_WORLD",
+        "levelEntityConfig": "Level_BigWorld",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20000,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20005,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20006,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20007,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20008,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20009,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20010,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20011,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20012,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20013,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20014,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20015,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20016,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20017,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Dvalin_S01",
+        "entityAppearSorted": 1,
+        "specifiedAvatarList": [
+            10000005,
+            10000007
+        ],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 20018,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Dvalin_S04",
+        "entityAppearSorted": 1,
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20019,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20020,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Dvalin_S00",
+        "entityAppearSorted": 1,
+        "specifiedAvatarList": [
+            10000005,
+            10000007
+        ],
+        "maxSpecifiedAvatarNum": 1
+    },
+    {
+        "id": 20022,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20023,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20024,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20025,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Dvalin_S04_Recycle",
+        "entityAppearSorted": 1,
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20026,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20027,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 20031,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30001,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30100,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30101,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30102,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30103,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30104,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30200,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30201,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30202,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30203,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30204,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30300,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30301,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30302,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30303,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30304,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30400,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30401,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30402,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30403,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30404,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30500,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30501,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30502,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30503,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30504,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30600,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30601,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30602,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30603,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30604,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30700,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30701,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30702,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30703,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30704,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30800,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30801,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30802,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30803,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30804,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30900,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30901,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30902,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30903,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 30904,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31000,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31001,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31002,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31003,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31004,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31100,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31101,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31102,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31103,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31104,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31200,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31201,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31202,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31203,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 31204,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40001,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40002,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40003,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40004,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40005,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40006,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40007,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40008,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40009,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40010,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40012,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40013,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40014,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40100,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40101,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40102,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40103,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Fire",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40200,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40201,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40202,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40203,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Ice",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40300,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40301,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40302,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40303,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Water",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40400,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40401,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40402,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40403,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40404,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40405,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40406,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40407,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Electric",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40500,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40501,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40502,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40503,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Explode_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40504,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40505,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40506,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40507,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40508,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40509,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Swril_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40510,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Freeze_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40511,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40512,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40513,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40600,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Superconductor_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40601,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40602,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Superconductor_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40603,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Freeze_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40604,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Explode_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40605,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Electric_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40606,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40607,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Stream_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40608,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40609,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40610,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40611,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40612,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Swril_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40613,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40614,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40615,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40616,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40700,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40701,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40702,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 40703,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50000,
+        "type": "SCENE_ROOM",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50002,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Cold",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50003,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50004,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50005,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50006,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50007,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_ClimbTest1",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50008,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50009,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50010,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50011,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Explode_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50012,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Swril_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50013,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "Level_Melt_Test",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50014,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50015,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50016,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50017,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50018,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50019,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "TestLevel_Element_Evn_Rock",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    },
+    {
+        "id": 50020,
+        "type": "SCENE_DUNGEON",
+        "levelEntityConfig": "",
+        "entityAppearSorted": "",
+        "specifiedAvatarList": [],
+        "maxSpecifiedAvatarNum": ""
+    }
+]

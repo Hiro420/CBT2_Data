@@ -1,0 +1,232 @@
+[
+    {
+        "id": 1,
+        "cityId": 1,
+        "monsterId": 23030101,
+        "groupId": "133001229,133002243,133003412,133004217",
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112026,
+            112027,
+            112028
+        ]
+    },
+    {
+        "id": 2,
+        "cityId": 1,
+        "monsterId": 22010201,
+        "groupId": 133003095,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112020,
+            112021,
+            112022
+        ]
+    },
+    {
+        "id": 3,
+        "cityId": 1,
+        "monsterId": 24010101,
+        "groupId": "133003151,133003317,133004131,133007059,133007041",
+        "infoId": "boss_exist",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112023,
+            112024,
+            112025
+        ]
+    },
+    {
+        "id": 4,
+        "cityId": 1,
+        "monsterId": 21020101,
+        "groupId": "133001100,133001090,133001108,133003315,133003097,133004018,133007145,133007201",
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112014,
+            112015,
+            112016
+        ]
+    },
+    {
+        "id": 5,
+        "cityId": 1,
+        "monsterId": 20040101,
+        "groupId": 133001313,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113002,
+            104121,
+            104122,
+            104123,
+            104124,
+            104141,
+            104142,
+            104143,
+            104144
+        ]
+    },
+    {
+        "id": 6,
+        "cityId": 1,
+        "monsterId": 29020102,
+        "groupId": 133002259,
+        "infoId": "boss_exist",
+        "unlockParentQuestId": 454,
+        "rewardIdList": [
+            113006,
+            113007,
+            113008,
+            104111,
+            104112,
+            104113,
+            104114,
+            104161,
+            104162,
+            104163,
+            104164,
+            104171,
+            104172,
+            104173,
+            104174
+        ]
+    },
+    {
+        "id": 7,
+        "cityId": 1,
+        "monsterId": 20040201,
+        "groupId": 133003482,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113001,
+            104151,
+            104152,
+            104153,
+            104154,
+            104111,
+            104112,
+            104113,
+            104114
+        ]
+    },
+    {
+        "id": 8,
+        "cityId": 1,
+        "monsterId": 20040301,
+        "groupId": 133002271,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113009,
+            104171,
+            104172,
+            104173,
+            104174,
+            104161,
+            104162,
+            104163,
+            104164
+        ]
+    },
+    {
+        "id": 9,
+        "cityId": 2,
+        "monsterId": 20040101,
+        "groupId": 133104394,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113002,
+            104121,
+            104122,
+            104123,
+            104124,
+            104141,
+            104142,
+            104143,
+            104144
+        ]
+    },
+    {
+        "id": 10,
+        "cityId": 2,
+        "monsterId": 20040201,
+        "groupId": 133102006,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113001,
+            104151,
+            104152,
+            104153,
+            104154,
+            104111,
+            104112,
+            104113,
+            104114
+        ]
+    },
+    {
+        "id": 11,
+        "cityId": 2,
+        "monsterId": 20040301,
+        "groupId": 133108020,
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            113009,
+            104171,
+            104172,
+            104173,
+            104174,
+            104161,
+            104162,
+            104163,
+            104164
+        ]
+    },
+    {
+        "id": 12,
+        "cityId": 2,
+        "monsterId": 21020301,
+        "groupId": "133103169,133102498,133102485,133103328,133104482,133104266,133104363,133104393,133104351,133104294,133104304",
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112014,
+            112015,
+            112016
+        ]
+    },
+    {
+        "id": 13,
+        "cityId": 2,
+        "monsterId": 23020101,
+        "groupId": "133104438,133102523,133104268,133105259",
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112029,
+            112030,
+            112031
+        ]
+    },
+    {
+        "id": 14,
+        "cityId": 2,
+        "monsterId": 24010201,
+        "groupId": "133108019,133103201,133103325,133103200,133103076,133104439,133105219,133106087,133108019",
+        "infoId": "",
+        "unlockParentQuestId": "",
+        "rewardIdList": [
+            112023,
+            112024,
+            112025
+        ]
+    }
+]

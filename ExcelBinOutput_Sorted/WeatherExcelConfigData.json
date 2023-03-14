@@ -1,0 +1,292 @@
+[
+    {
+        "areaID": 1,
+        "gadgetID": 70020001,
+        "isDefaultValid": true,
+        "templateName": "Weather_Sunny",
+        "priority": 100,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2,
+        "gadgetID": 70020002,
+        "isDefaultValid": true,
+        "templateName": "Weather_WindDragon",
+        "priority": 100,
+        "profileName": "Data/Environment/WindDragonEnviroArea",
+        "defaultClimate": "CLIMATE_CLOUDY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 3,
+        "gadgetID": 70020003,
+        "isDefaultValid": false,
+        "templateName": "Weather_MengDeInStorm",
+        "priority": 100,
+        "profileName": "Data/Environment/MengDeInStorm",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 4,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 100,
+        "profileName": "Data/Environment/Enviro_MengDeWolfBoss",
+        "defaultClimate": "CLIMATE_CLOUDY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 1000,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 5,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1001,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1002,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1003,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1004,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1005,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 50,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1006,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_City",
+        "priority": 25,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 1007,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_WindDragon",
+        "priority": 2000,
+        "profileName": "Data/Environment/WindDragonEnviroArea",
+        "defaultClimate": "CLIMATE_CLOUDY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2000,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 5,
+        "profileName": "Data/Environment/LiyueAreaDefault02",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2001,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "priority": 100,
+        "profileName": "Data/Environment/LiYueAreaQingCeVilla",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2002,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/LiyueAreaDefault02",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2003,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/LiyueAreaDefault02",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2004,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_StoneNeedles",
+        "priority": 10,
+        "profileName": "Data/Environment/LiYueAreaStoneNeedles",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2005,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_City",
+        "priority": 10,
+        "profileName": "Data/Environment/LiyueAreaDefault02_City",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2006,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Foggy",
+        "priority": 50,
+        "profileName": "Data/Environment/LiyueAreaDefault02",
+        "defaultClimate": "CLIMATE_MIST",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2007,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Sunny",
+        "priority": 50,
+        "profileName": "Data/Environment/LiyueLandLakeMaze",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2008,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 10,
+        "profileName": "Data/Environment/LiyueAreaLiShaCountrySide",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2009,
+        "gadgetID": "",
+        "isDefaultValid": false,
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "priority": 100,
+        "profileName": "Data/Environment/LiyueAreaDefault02",
+        "defaultClimate": "CLIMATE_MIST",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2010,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "priority": 50,
+        "profileName": "Data/Environment/LiYueAreaQingCeVilla",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": false
+    },
+    {
+        "areaID": 2011,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 50,
+        "profileName": "Data/Environment/LiYueAreaBeachMine",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2012,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Sunny",
+        "priority": 100,
+        "profileName": "Data/Environment/LiyueAreaBlackForest",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 2013,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Sunny",
+        "priority": 100,
+        "profileName": "Data/Environment/LiyueAreaSaltOfGround",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 90001,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_ThunderStorm",
+        "priority": 50,
+        "profileName": "Data/Environment/MengdeAreaDefault03",
+        "defaultClimate": "CLIMATE_THUNDESTORM",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 3000,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 50,
+        "profileName": "Data/Environment/Level/Level_XianglingPlotLevel01_EnviroArea",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    },
+    {
+        "areaID": 3001,
+        "gadgetID": "",
+        "isDefaultValid": true,
+        "templateName": "Weather_Standard",
+        "priority": 50,
+        "profileName": "Data/Environment/Level/Level_XianglingPlotLevel01_EnviroArea_1",
+        "defaultClimate": "CLIMATE_SUNNY",
+        "isUseDefault": true
+    }
+]

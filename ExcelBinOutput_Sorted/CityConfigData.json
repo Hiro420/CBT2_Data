@@ -1,0 +1,34 @@
+[
+    {
+        "cityId": 1,
+        "sceneId": 3,
+        "areaIdVec": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "cityName": "Mondstadt",
+        "mapPosX": 700,
+        "mapPosY": 2300,
+        "openState": "OPEN_ADVENTURE_MANUAL_CITY_MENGDE",
+        "cityGoddnessName": "Statues of The Seven - Anemo",
+        "cityGoddnessDesc": "A monumental stone statue that watches over Mondstadt. Legends say it was sculpted in the image of the Anemo Archon. \"Seeds brought by the wind will grow over time.\" The statue silently anticipates the arrival of a noble soul, while thousand winds of time will soon unfold a new story..."
+    },
+    {
+        "cityId": 2,
+        "sceneId": 3,
+        "areaIdVec": [
+            5,
+            6,
+            7,
+            8
+        ],
+        "cityName": "Liyue",
+        "mapPosX": -500,
+        "mapPosY": 1100,
+        "openState": "OPEN_ADVENTURE_MANUAL_CITY_LIYUE",
+        "cityGoddnessName": "Statues of The Seven - Geo",
+        "cityGoddnessDesc": "A monumental stone statue that watches over Liyue. Legends say it was sculpted in the image of the Geo Archon. Despite its bustling harbor which attracts many traders, Liyue's history is one of enduring stability, just like this statue."
+    }
+]

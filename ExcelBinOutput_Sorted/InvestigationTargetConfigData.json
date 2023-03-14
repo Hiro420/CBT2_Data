@@ -1,0 +1,182 @@
+[
+    {
+        "questId": 6000001,
+        "investigationId": 10001,
+        "rewardId": 451011
+    },
+    {
+        "questId": 6000101,
+        "investigationId": 10001,
+        "rewardId": 451012
+    },
+    {
+        "questId": 6000201,
+        "investigationId": 10001,
+        "rewardId": 451013
+    },
+    {
+        "questId": 6000301,
+        "investigationId": 10001,
+        "rewardId": 451014
+    },
+    {
+        "questId": 6010101,
+        "investigationId": 10002,
+        "rewardId": 451021
+    },
+    {
+        "questId": 6010201,
+        "investigationId": 10002,
+        "rewardId": 451022
+    },
+    {
+        "questId": 6010301,
+        "investigationId": 10002,
+        "rewardId": 451023
+    },
+    {
+        "questId": 6010401,
+        "investigationId": 10002,
+        "rewardId": 451024
+    },
+    {
+        "questId": 6010501,
+        "investigationId": 10002,
+        "rewardId": 451025
+    },
+    {
+        "questId": 6010601,
+        "investigationId": 10002,
+        "rewardId": 451026
+    },
+    {
+        "questId": 6020101,
+        "investigationId": 10003,
+        "rewardId": 451031
+    },
+    {
+        "questId": 6020201,
+        "investigationId": 10003,
+        "rewardId": 451032
+    },
+    {
+        "questId": 6020301,
+        "investigationId": 10003,
+        "rewardId": 451033
+    },
+    {
+        "questId": 6020401,
+        "investigationId": 10003,
+        "rewardId": 451034
+    },
+    {
+        "questId": 6020501,
+        "investigationId": 10003,
+        "rewardId": 451035
+    },
+    {
+        "questId": 6020601,
+        "investigationId": 10003,
+        "rewardId": 451036
+    },
+    {
+        "questId": 6020801,
+        "investigationId": 10003,
+        "rewardId": 451037
+    },
+    {
+        "questId": 6020901,
+        "investigationId": 10003,
+        "rewardId": 451038
+    },
+    {
+        "questId": 6100001,
+        "investigationId": 11001,
+        "rewardId": 451111
+    },
+    {
+        "questId": 6100101,
+        "investigationId": 11001,
+        "rewardId": 451112
+    },
+    {
+        "questId": 6100201,
+        "investigationId": 11001,
+        "rewardId": 451113
+    },
+    {
+        "questId": 6100301,
+        "investigationId": 11001,
+        "rewardId": 451114
+    },
+    {
+        "questId": 6110101,
+        "investigationId": 11002,
+        "rewardId": 451121
+    },
+    {
+        "questId": 6110201,
+        "investigationId": 11002,
+        "rewardId": 451122
+    },
+    {
+        "questId": 6110301,
+        "investigationId": 11002,
+        "rewardId": 451123
+    },
+    {
+        "questId": 6110401,
+        "investigationId": 11002,
+        "rewardId": 451124
+    },
+    {
+        "questId": 6110501,
+        "investigationId": 11002,
+        "rewardId": 451125
+    },
+    {
+        "questId": 6110601,
+        "investigationId": 11002,
+        "rewardId": 451126
+    },
+    {
+        "questId": 6120101,
+        "investigationId": 11003,
+        "rewardId": 451131
+    },
+    {
+        "questId": 6120201,
+        "investigationId": 11003,
+        "rewardId": 451132
+    },
+    {
+        "questId": 6120301,
+        "investigationId": 11003,
+        "rewardId": 451133
+    },
+    {
+        "questId": 6120401,
+        "investigationId": 11003,
+        "rewardId": 451134
+    },
+    {
+        "questId": 6120501,
+        "investigationId": 11003,
+        "rewardId": 451135
+    },
+    {
+        "questId": 6120601,
+        "investigationId": 11003,
+        "rewardId": 451136
+    },
+    {
+        "questId": 6120701,
+        "investigationId": 11003,
+        "rewardId": 451137
+    },
+    {
+        "questId": 6120801,
+        "investigationId": 11003,
+        "rewardId": 451138
+    }
+]

@@ -1,0 +1,94 @@
+[
+    {
+        "id": 1,
+        "path": "TEST/TEST_Chest_CutSence"
+    },
+    {
+        "id": 2,
+        "path": "TEST/TEST_GoddessLvUp_CutSence"
+    },
+    {
+        "id": 3,
+        "path": "Scene_CutScene/Cs_Scene_GoddessUpgrade_01"
+    },
+    {
+        "id": 4,
+        "path": "Scene_CutScene/Cs_Scene_DungeonGate_01"
+    },
+    {
+        "id": 5,
+        "path": "Scene_CutScene/Cs_Scene_DungeonGate_02"
+    },
+    {
+        "id": 6,
+        "path": "Scene_CutScene/Cs_Scene_GoddessActive"
+    },
+    {
+        "id": 7,
+        "path": "Scene_CutScene/Cs_Scene_GoddessUpgradeDefault"
+    },
+    {
+        "id": 8,
+        "path": "Scene_CutScene/Cs_Scene_DragonNestSealGate"
+    },
+    {
+        "id": 9,
+        "path": "Scene_CutScene/Cs_MDAQ501_SwordBreak01"
+    },
+    {
+        "id": 200201,
+        "path": "Scene_CutScene/Cs_MDAQ071_DvalinCombat2"
+    },
+    {
+        "id": 10,
+        "path": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen01"
+    },
+    {
+        "id": 11,
+        "path": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen02"
+    },
+    {
+        "id": 12,
+        "path": "Scene_CutScene/Cs_MDAQ501_DvalinSealOpen03"
+    },
+    {
+        "id": 13,
+        "path": "Scene_CutScene/Cs_RecyclableDungeon_GetReward"
+    },
+    {
+        "id": 2101401,
+        "path": "Scene_CutScene/Cs_LYIQ21014_LiYueShow"
+    },
+    {
+        "id": 133104440,
+        "path": "Scene_CutScene/Cs_Scene_LY_TripleCampSeals"
+    },
+    {
+        "id": 133104488,
+        "path": "Scene_CutScene/Cs_Scene_LY_CalcifPoolDungeonUnlock"
+    },
+    {
+        "id": 133103334,
+        "path": "Scene_CutScene/Cs_Scene_LY_StoneNiddlesRiseField"
+    },
+    {
+        "id": 310301001,
+        "path": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_01"
+    },
+    {
+        "id": 310301002,
+        "path": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_02"
+    },
+    {
+        "id": 310301003,
+        "path": "Scene_CutScene/Cs_Scene_LY_GuShiTaiPuzzle_03"
+    },
+    {
+        "id": 310301501,
+        "path": "Scene_CutScene/Cs_Scene_JueYunJianTempleUnlock"
+    },
+    {
+        "id": 310624801,
+        "path": "Scene_CutScene/Cs_Scene_LY_DunYuLingPuzzle"
+    }
+]

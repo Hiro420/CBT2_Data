@@ -1,0 +1,44 @@
+[
+    {
+        "id": 10001,
+        "cityId": 1,
+        "nextInvestigationIdList": 10002,
+        "unlockOpenStateType": 1101,
+        "rewardId": 450001
+    },
+    {
+        "id": 10002,
+        "cityId": 1,
+        "nextInvestigationIdList": 10003,
+        "unlockOpenStateType": "",
+        "rewardId": 450002
+    },
+    {
+        "id": 10003,
+        "cityId": 1,
+        "nextInvestigationIdList": "",
+        "unlockOpenStateType": "",
+        "rewardId": 450003
+    },
+    {
+        "id": 11001,
+        "cityId": 2,
+        "nextInvestigationIdList": 11002,
+        "unlockOpenStateType": 1102,
+        "rewardId": 450011
+    },
+    {
+        "id": 11002,
+        "cityId": 2,
+        "nextInvestigationIdList": 11003,
+        "unlockOpenStateType": "",
+        "rewardId": 450012
+    },
+    {
+        "id": 11003,
+        "cityId": 2,
+        "nextInvestigationIdList": "",
+        "unlockOpenStateType": "",
+        "rewardId": 450013
+    }
+]

@@ -1,0 +1,638 @@
+[
+    {
+        "id": 1,
+        "reliquaryId": 20002,
+        "level": 1,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": ""
+    },
+    {
+        "id": 2,
+        "reliquaryId": 20004,
+        "level": 1,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": ""
+    },
+    {
+        "id": 11,
+        "reliquaryId": 52211,
+        "level": 4,
+        "promoteLevel": "",
+        "mainPropId": 15003,
+        "appendPropList": [
+            101032,
+            101062,
+            101022
+        ]
+    },
+    {
+        "id": 12,
+        "reliquaryId": 52221,
+        "level": 4,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            101032,
+            101062,
+            101022
+        ]
+    },
+    {
+        "id": 13,
+        "reliquaryId": 52231,
+        "level": 4,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            101032,
+            101062,
+            101022
+        ]
+    },
+    {
+        "id": 14,
+        "reliquaryId": 52241,
+        "level": 4,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            101032,
+            101062,
+            101052
+        ]
+    },
+    {
+        "id": 15,
+        "reliquaryId": 52251,
+        "level": 4,
+        "promoteLevel": "",
+        "mainPropId": 10001,
+        "appendPropList": [
+            101032,
+            101062,
+            101052
+        ]
+    },
+    {
+        "id": 21,
+        "reliquaryId": 52311,
+        "level": 6,
+        "promoteLevel": "",
+        "mainPropId": 15003,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 22,
+        "reliquaryId": 52321,
+        "level": 6,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 23,
+        "reliquaryId": 52331,
+        "level": 6,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 24,
+        "reliquaryId": 52341,
+        "level": 6,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 25,
+        "reliquaryId": 52351,
+        "level": 6,
+        "promoteLevel": "",
+        "mainPropId": 10001,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 31,
+        "reliquaryId": 52311,
+        "level": 10,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 32,
+        "reliquaryId": 52321,
+        "level": 10,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 33,
+        "reliquaryId": 52331,
+        "level": 10,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 34,
+        "reliquaryId": 52341,
+        "level": 10,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 35,
+        "reliquaryId": 52351,
+        "level": 10,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 41,
+        "reliquaryId": 52312,
+        "level": 12,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 42,
+        "reliquaryId": 52322,
+        "level": 12,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 43,
+        "reliquaryId": 52332,
+        "level": 12,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 44,
+        "reliquaryId": 52342,
+        "level": 12,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 45,
+        "reliquaryId": 52352,
+        "level": 12,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 51,
+        "reliquaryId": 52412,
+        "level": 14,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 52,
+        "reliquaryId": 52422,
+        "level": 14,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 53,
+        "reliquaryId": 52432,
+        "level": 14,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 54,
+        "reliquaryId": 52442,
+        "level": 14,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 55,
+        "reliquaryId": 52452,
+        "level": 14,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 61,
+        "reliquaryId": 52413,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 62,
+        "reliquaryId": 52423,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 63,
+        "reliquaryId": 52433,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 64,
+        "reliquaryId": 52443,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 65,
+        "reliquaryId": 52453,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 71,
+        "reliquaryId": 52513,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 72,
+        "reliquaryId": 52523,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 73,
+        "reliquaryId": 52533,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 74,
+        "reliquaryId": 52543,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 75,
+        "reliquaryId": 52553,
+        "level": 16,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 81,
+        "reliquaryId": 52514,
+        "level": 18,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 82,
+        "reliquaryId": 52524,
+        "level": 18,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 83,
+        "reliquaryId": 52534,
+        "level": 18,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 84,
+        "reliquaryId": 52544,
+        "level": 18,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 85,
+        "reliquaryId": 52554,
+        "level": 18,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 91,
+        "reliquaryId": 52514,
+        "level": 20,
+        "promoteLevel": "",
+        "mainPropId": 15004,
+        "appendPropList": [
+            201023,
+            201033,
+            201033,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 92,
+        "reliquaryId": 52524,
+        "level": 20,
+        "promoteLevel": "",
+        "mainPropId": 12001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 93,
+        "reliquaryId": 52534,
+        "level": 20,
+        "promoteLevel": "",
+        "mainPropId": 13007,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 94,
+        "reliquaryId": 52544,
+        "level": 20,
+        "promoteLevel": "",
+        "mainPropId": 14001,
+        "appendPropList": [
+            201233,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    },
+    {
+        "id": 95,
+        "reliquaryId": 52554,
+        "level": 20,
+        "promoteLevel": "",
+        "mainPropId": 10002,
+        "appendPropList": [
+            201023,
+            201063,
+            201063,
+            201203,
+            201033
+        ]
+    }
+]
