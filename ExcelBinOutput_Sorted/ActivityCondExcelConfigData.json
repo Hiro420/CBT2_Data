@@ -1,0 +1,202 @@
+[
+    {
+        "CondId": 10011,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 1,
+                "param": [
+                    0
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10012,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 3,
+                "param": [
+                    59
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10013,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 1,
+                "param": [
+                    1
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10014,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 1,
+                "param": [
+                    2
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10015,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 1,
+                "param": [
+                    3
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10016,
+        "ActivityId": 1001,
+        "activatedByDefault": 1,
+        "condComb": 1,
+        "cond": [
+            {
+                "type": 1,
+                "param": [
+                    4
+                ]
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10017,
+        "ActivityId": 1001,
+        "activatedByDefault": 0,
+        "cond": [
+            {
+                "param": []
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10018,
+        "ActivityId": 1001,
+        "activatedByDefault": 0,
+        "cond": [
+            {
+                "param": []
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10019,
+        "ActivityId": 1001,
+        "activatedByDefault": 0,
+        "cond": [
+            {
+                "param": []
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10020,
+        "ActivityId": 1001,
+        "activatedByDefault": 0,
+        "cond": [
+            {
+                "param": []
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    },
+    {
+        "CondId": 10021,
+        "ActivityId": 1001,
+        "activatedByDefault": 0,
+        "cond": [
+            {
+                "param": []
+            },
+            {
+                "param": []
+            },
+            {
+                "param": []
+            }
+        ]
+    }
+]

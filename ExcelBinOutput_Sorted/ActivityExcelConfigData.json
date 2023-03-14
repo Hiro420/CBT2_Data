@@ -1,0 +1,22 @@
+[
+    {
+        "ActivityId": 1001,
+        "Type": 1,
+        "DestroyItem": [
+            {
+                "ItemId": [
+                    200001,
+                    200002,
+                    200003,
+                    200004
+                ]
+            },
+            {
+                "ItemId": []
+            }
+        ],
+        "ActivityDrop": 20005,
+        "ActivityReward": 10011,
+        "IsLoadTerrain": 1
+    }
+]
