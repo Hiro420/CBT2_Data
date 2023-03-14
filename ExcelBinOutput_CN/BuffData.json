@@ -1,0 +1,1284 @@
+[
+    {
+        "ID": "1",
+        "组ID": "1",
+        "持续时间": "180",
+        "自身叠加类型": "0",
+        "Ability名称": "Item_Food_Attack",
+        "Modifier名称": "AttackModifier"
+    },
+    {
+        "ID": "2",
+        "组ID": "1",
+        "持续时间": "180",
+        "自身叠加类型": "0",
+        "Ability名称": "Item_Food_Defence",
+        "Modifier名称": "DefenceModifier"
+    },
+    {
+        "ID": "3",
+        "组ID": "2",
+        "持续时间": "180",
+        "自身叠加类型": "0",
+        "Ability名称": "Item_Food_MaxHP",
+        "Modifier名称": "MaxHPModifier"
+    },
+    {
+        "ID": "100101",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv1_1"
+    },
+    {
+        "ID": "100102",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv1_2"
+    },
+    {
+        "ID": "100103",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv1_3"
+    },
+    {
+        "ID": "100104",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv1_4"
+    },
+    {
+        "ID": "100201",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv2_1"
+    },
+    {
+        "ID": "100202",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv2_2"
+    },
+    {
+        "ID": "100203",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv2_3"
+    },
+    {
+        "ID": "100204",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv2_4"
+    },
+    {
+        "ID": "100301",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv3_1"
+    },
+    {
+        "ID": "100302",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv3_2"
+    },
+    {
+        "ID": "100303",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv3_3"
+    },
+    {
+        "ID": "100304",
+        "组ID": "10",
+        "持续时间": "31",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv3_4"
+    },
+    {
+        "ID": "105101",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv51_1"
+    },
+    {
+        "ID": "105102",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv51_2"
+    },
+    {
+        "ID": "105103",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv51_3"
+    },
+    {
+        "ID": "105104",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv51_4"
+    },
+    {
+        "ID": "105201",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv52_1"
+    },
+    {
+        "ID": "105202",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv52_2"
+    },
+    {
+        "ID": "105203",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv52_3"
+    },
+    {
+        "ID": "105204",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv52_4"
+    },
+    {
+        "ID": "105301",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv53_1"
+    },
+    {
+        "ID": "105302",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv53_2"
+    },
+    {
+        "ID": "105303",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv53_3"
+    },
+    {
+        "ID": "105304",
+        "组ID": "10",
+        "持续时间": "0",
+        "自身叠加类型": "ReHP_Ins&Con",
+        "Ability名称": "ReHP_Ins&Con_Modifier_lv53_4"
+    },
+    {
+        "ID": "110101",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv1_1"
+    },
+    {
+        "ID": "110102",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv1_2"
+    },
+    {
+        "ID": "110103",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv1_3"
+    },
+    {
+        "ID": "110104",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv1_4"
+    },
+    {
+        "ID": "110201",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "110202",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "110203",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "110204",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv2_4"
+    },
+    {
+        "ID": "110301",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv3_1"
+    },
+    {
+        "ID": "110302",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv3_2"
+    },
+    {
+        "ID": "110303",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv3_3"
+    },
+    {
+        "ID": "110304",
+        "组ID": "11",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv3_4"
+    },
+    {
+        "ID": "120101",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv1_1"
+    },
+    {
+        "ID": "120102",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv1_2"
+    },
+    {
+        "ID": "120103",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv1_3"
+    },
+    {
+        "ID": "120104",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv1_4"
+    },
+    {
+        "ID": "120201",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "120202",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "120203",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "120204",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv2_4"
+    },
+    {
+        "ID": "120301",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv3_1"
+    },
+    {
+        "ID": "120302",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv3_2"
+    },
+    {
+        "ID": "120303",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv3_3"
+    },
+    {
+        "ID": "120304",
+        "组ID": "12",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv3_4"
+    },
+    {
+        "ID": "140201",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "140202",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "140203",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "140301",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv3_1"
+    },
+    {
+        "ID": "140302",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv3_2"
+    },
+    {
+        "ID": "140303",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv3_3"
+    },
+    {
+        "ID": "140304",
+        "组ID": "14",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv3_4"
+    },
+    {
+        "ID": "200101",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv1_1"
+    },
+    {
+        "ID": "200102",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv1_2"
+    },
+    {
+        "ID": "200103",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv1_3"
+    },
+    {
+        "ID": "200104",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv1_4"
+    },
+    {
+        "ID": "200201",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv2_1"
+    },
+    {
+        "ID": "200202",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv2_2"
+    },
+    {
+        "ID": "200203",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv2_3"
+    },
+    {
+        "ID": "200204",
+        "组ID": "20",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "revive_buff",
+        "Modifier名称": "revive_buff_Modifier_lv2_4"
+    },
+    {
+        "ID": "200301",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv3_1"
+    },
+    {
+        "ID": "200302",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv3_2"
+    },
+    {
+        "ID": "200303",
+        "组ID": "20",
+        "持续时间": "0",
+        "自身叠加类型": "revive_buff",
+        "Ability名称": "revive_buff_Modifier_lv3_3"
+    },
+    {
+        "ID": "150301",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Fly_lv3_1",
+        "Modifier名称": "Stamina_Fly_Modifier_lv3_1"
+    },
+    {
+        "ID": "150302",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Fly_lv3_2",
+        "Modifier名称": "Stamina_Fly_Modifier_lv3_2"
+    },
+    {
+        "ID": "150303",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Fly_lv3_3",
+        "Modifier名称": "Stamina_Fly_Modifier_lv3_3"
+    },
+    {
+        "ID": "150311",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Climb_lv3_1",
+        "Modifier名称": "Stamina_Climb_Modifier_lv3_1"
+    },
+    {
+        "ID": "150312",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Climb_lv3_2",
+        "Modifier名称": "Stamina_Climb_Modifier_lv3_2"
+    },
+    {
+        "ID": "150313",
+        "组ID": "15",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Climb_lv3_3",
+        "Modifier名称": "Stamina_Climb_Modifier_lv3_3"
+    },
+    {
+        "ID": "160201",
+        "组ID": "16",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Physical_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "160202",
+        "组ID": "16",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Physical_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "160203",
+        "组ID": "16",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Physical_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "170201",
+        "组ID": "17",
+        "持续时间": "60",
+        "自身叠加类型": "0",
+        "Ability名称": "MoveSpeed_lv2_1",
+        "Modifier名称": "MoveSpeed_Modifier_lv2_1"
+    },
+    {
+        "ID": "130101",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Fire"
+    },
+    {
+        "ID": "130102",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Water"
+    },
+    {
+        "ID": "130103",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Ice"
+    },
+    {
+        "ID": "130104",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Wind"
+    },
+    {
+        "ID": "130105",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Elec"
+    },
+    {
+        "ID": "130106",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Rock"
+    },
+    {
+        "ID": "130107",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Def_Team",
+        "Modifier名称": "Element_Def_Grass"
+    },
+    {
+        "ID": "135101",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Fire"
+    },
+    {
+        "ID": "135102",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Water"
+    },
+    {
+        "ID": "135103",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Ice"
+    },
+    {
+        "ID": "135104",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Wind"
+    },
+    {
+        "ID": "135105",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Elec"
+    },
+    {
+        "ID": "135106",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Rock"
+    },
+    {
+        "ID": "135107",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Element_Atk_Team",
+        "Modifier名称": "Element_Atk_Grass"
+    },
+    {
+        "ID": "130121",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Element_lv2_1",
+        "Modifier名称": "Def_Element_Modifier_lv1_1"
+    },
+    {
+        "ID": "130122",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Element_lv2_1",
+        "Modifier名称": "Def_Element_Modifier_lv1_2"
+    },
+    {
+        "ID": "130123",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Element_lv2_1",
+        "Modifier名称": "Def_Element_Modifier_lv1_3"
+    },
+    {
+        "ID": "130124",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Element_lv2_1",
+        "Modifier名称": "Def_Element_Modifier_lv2_1"
+    },
+    {
+        "ID": "980101",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Item_Food_Attack",
+        "Modifier名称": "AttackModifier"
+    },
+    {
+        "ID": "980102",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Physical_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "980103",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Team",
+        "Modifier名称": "Atk_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "980104",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Critical_Team",
+        "Modifier名称": "Critical_Team_Modifier_lv3_4"
+    },
+    {
+        "ID": "980201",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Item_Food_Defence",
+        "Modifier名称": "DefenceModifier"
+    },
+    {
+        "ID": "980202",
+        "组ID": "98",
+        "持续时间": "600",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Team",
+        "Modifier名称": "Def_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "980301",
+        "组ID": "98",
+        "持续时间": "30",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv1_1"
+    },
+    {
+        "ID": "980302",
+        "组ID": "98",
+        "持续时间": "30",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv2_1"
+    },
+    {
+        "ID": "980303",
+        "组ID": "98",
+        "持续时间": "30",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con",
+        "Modifier名称": "ReHP_Ins&Con_Modifier_lv3_1"
+    },
+    {
+        "ID": "970101",
+        "组ID": "70",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Atk_Dungeon_Ratio"
+    },
+    {
+        "ID": "970102",
+        "组ID": "71",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Atk_Dungeon_Delta"
+    },
+    {
+        "ID": "970103",
+        "组ID": "72",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Critical_Dungeon"
+    },
+    {
+        "ID": "970104",
+        "组ID": "73",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "PhyAdd_Dungeon_Delta"
+    },
+    {
+        "ID": "970105",
+        "组ID": "74",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "ElemMastery_Dungeon_Delta"
+    },
+    {
+        "ID": "970106",
+        "组ID": "75",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "ChargeEfficiency_Dungeon_Delta"
+    },
+    {
+        "ID": "970201",
+        "组ID": "76",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Def_Dungeon_Ratio"
+    },
+    {
+        "ID": "970202",
+        "组ID": "77",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Def_Dungeon_Delta"
+    },
+    {
+        "ID": "970203",
+        "组ID": "78",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Fire"
+    },
+    {
+        "ID": "970204",
+        "组ID": "79",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Water"
+    },
+    {
+        "ID": "970205",
+        "组ID": "80",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Ice"
+    },
+    {
+        "ID": "970206",
+        "组ID": "81",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Wind"
+    },
+    {
+        "ID": "970207",
+        "组ID": "82",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Elec"
+    },
+    {
+        "ID": "970208",
+        "组ID": "83",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Rock"
+    },
+    {
+        "ID": "970209",
+        "组ID": "84",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_Grass"
+    },
+    {
+        "ID": "970210",
+        "组ID": "85",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Element_Dungeon_Def_All"
+    },
+    {
+        "ID": "970211",
+        "组ID": "86",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "PhySub_Dungeon_Delta"
+    },
+    {
+        "ID": "970212",
+        "组ID": "87",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "MaxHP_Dungeon_Ratio"
+    },
+    {
+        "ID": "970301",
+        "组ID": "88",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Sprint_Dungeon",
+        "Modifier名称": "Stamina_Sprint_Dungeon_1"
+    },
+    {
+        "ID": "970401",
+        "组ID": "89",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "MoveSpeed_Dungeon",
+        "Modifier名称": "MoveSpeed_Dungeon_1"
+    },
+    {
+        "ID": "970501",
+        "组ID": "90",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con_Dungeon",
+        "Modifier名称": "ReHP_Ins&Con_Dungeon_1"
+    },
+    {
+        "ID": "970502",
+        "组ID": "91",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con_Dungeon",
+        "Modifier名称": "ReHP_Ins&Con_Dungeon_2"
+    },
+    {
+        "ID": "970503",
+        "组ID": "92",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "ReHP_Ins&Con_Dungeon",
+        "Modifier名称": "ReHP_Ins&Con_Dungeon_3"
+    },
+    {
+        "ID": "970504",
+        "组ID": "93",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Element_Art_Dungeon_Ratio"
+    },
+    {
+        "ID": "970505",
+        "组ID": "94",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "NormalAttack_Dungeon_Ratio"
+    },
+    {
+        "ID": "970506",
+        "组ID": "95",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "Heal_Dungeon_Ratio"
+    },
+    {
+        "ID": "970507",
+        "组ID": "96",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Elemental_Burst_Dungeon_Ratio"
+    },
+    {
+        "ID": "970508",
+        "组ID": "97",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Sprint_Attack_Ratio"
+    },
+    {
+        "ID": "970509",
+        "组ID": "98",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_FeatureTag_Dungeon",
+        "Modifier名称": "Atk_FeatureTag_Dungeon_1"
+    },
+    {
+        "ID": "970510",
+        "组ID": "99",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_WeaponType_Dungeon",
+        "Modifier名称": "Atk_WeaponType_Dungeon_1"
+    },
+    {
+        "ID": "970511",
+        "组ID": "100",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Atk_HighHP_Dungeon"
+    },
+    {
+        "ID": "970512",
+        "组ID": "101",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "Atk_LowHP_Dungeon"
+    },
+    {
+        "ID": "970513",
+        "组ID": "102",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_State_Dungeon_1",
+        "Modifier名称": "Atk_State_Dungeon_1"
+    },
+    {
+        "ID": "970514",
+        "组ID": "103",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_HitHeadBox_Dungeon",
+        "Modifier名称": "Atk_HitBox_Dungeon"
+    },
+    {
+        "ID": "970515",
+        "组ID": "104",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Atk_Dungeon",
+        "Modifier名称": "AtkUp_DefDown_Dungeon"
+    },
+    {
+        "ID": "970516",
+        "组ID": "105",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "SubHurt_Dungeon_Delta"
+    },
+    {
+        "ID": "970517",
+        "组ID": "106",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Def_HighHP_Dungeon"
+    },
+    {
+        "ID": "970518",
+        "组ID": "107",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Def_Dungeon",
+        "Modifier名称": "Def_LowHP_Dungeon"
+    },
+    {
+        "ID": "970519",
+        "组ID": "108",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "KillHealHp_Dungeon_Ratio"
+    },
+    {
+        "ID": "970520",
+        "组ID": "109",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "KillGetBuff_Dungeon_1"
+    },
+    {
+        "ID": "970521",
+        "组ID": "110",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "AttackSpeed_Dungeon"
+    },
+    {
+        "ID": "970522",
+        "组ID": "111",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Suport_ResetCDWhenSkillHit_Dungeon",
+        "Modifier名称": "ResetCDWhenSkillHit_Dungeon"
+    },
+    {
+        "ID": "970523",
+        "组ID": "112",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "UltimateSkillHealHp_Dungeon"
+    },
+    {
+        "ID": "970524",
+        "组ID": "113",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "ResetCDWhenKill_Dungeon"
+    },
+    {
+        "ID": "970525",
+        "组ID": "114",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "Stamina_ExtraAttack_Dungeon"
+    },
+    {
+        "ID": "970526",
+        "组ID": "115",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Stamina_Sprint_Dungeon",
+        "Modifier名称": "Stamina_Sprint_Dungeon_1"
+    },
+    {
+        "ID": "970527",
+        "组ID": "116",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "SkillCD_Dungeon_Ratio"
+    },
+    {
+        "ID": "970528",
+        "组ID": "117",
+        "持续时间": "3000000",
+        "自身叠加类型": "0",
+        "Ability名称": "Support_Dungeon",
+        "Modifier名称": "SkillCD_Dungeon_Ratio"
+    },
+    {
+        "ID": "139901",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Elec_Team",
+        "Modifier名称": "Elec_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "139902",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Elec_Team",
+        "Modifier名称": "Elec_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "139903",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Elec_Team",
+        "Modifier名称": "Elec_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "139904",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Fire_Team",
+        "Modifier名称": "Fire_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "139905",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Fire_Team",
+        "Modifier名称": "Fire_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "139906",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Fire_Team",
+        "Modifier名称": "Fire_Team_Modifier_lv2_3"
+    },
+    {
+        "ID": "139907",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Water_Team",
+        "Modifier名称": "Water_Team_Modifier_lv2_1"
+    },
+    {
+        "ID": "139908",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Water_Team",
+        "Modifier名称": "Water_Team_Modifier_lv2_2"
+    },
+    {
+        "ID": "139909",
+        "组ID": "13",
+        "持续时间": "300",
+        "自身叠加类型": "0",
+        "Ability名称": "Water_Team",
+        "Modifier名称": "Water_Team_Modifier_lv2_3"
+    }
+]

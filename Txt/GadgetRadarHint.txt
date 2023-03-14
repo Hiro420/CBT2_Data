@@ -1,0 +1,2 @@
+RadarType	描述	半径	特效	图标	音效
+1	风元素结晶雷达提示	80	Eff_UI_Mark_WindCrystal	UI_MarkWindCrystal	Play_ui_feedback_windCrystal_appear

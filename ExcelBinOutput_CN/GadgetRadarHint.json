@@ -1,0 +1,10 @@
+[
+    {
+        "RadarType": "1",
+        "描述": "风元素结晶雷达提示",
+        "半径": "80",
+        "特效": "Eff_UI_Mark_WindCrystal",
+        "图标": "UI_MarkWindCrystal",
+        "音效": "Play_ui_feedback_windCrystal_appear"
+    }
+]
