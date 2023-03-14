@@ -1,0 +1,87 @@
+[
+    {
+        "ID": 1,
+        "contentType": 8,
+        "reward": 1
+    },
+    {
+        "ID": 2,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 3,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 4,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 5,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 6,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 7,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 8,
+        "contentType": 1,
+        "reward": 1
+    },
+    {
+        "ID": 9,
+        "contentType": 3,
+        "reward": 1
+    },
+    {
+        "ID": 10,
+        "contentType": 2,
+        "reward": 1
+    },
+    {
+        "ID": 11,
+        "contentType": 2,
+        "reward": 1
+    },
+    {
+        "ID": 12,
+        "contentType": 4,
+        "reward": 1
+    },
+    {
+        "ID": 13,
+        "contentType": 2,
+        "reward": 1
+    },
+    {
+        "ID": 14,
+        "contentType": 2,
+        "reward": 1
+    },
+    {
+        "ID": 15,
+        "contentType": 3,
+        "reward": 1
+    },
+    {
+        "ID": 16,
+        "contentType": 3,
+        "reward": 1
+    },
+    {
+        "ID": 17,
+        "contentType": 2,
+        "reward": 1
+    }
+]

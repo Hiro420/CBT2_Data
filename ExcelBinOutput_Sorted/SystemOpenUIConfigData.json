@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "text_name_Name": "Pray",
+        "iconPath": "Ui_SystemOpenIcon_Gacha",
+        "text_name_Desc": "Prayer has been unlocked. Pray to the stars of this world to get different characters and weapons",
+        "tutorialId": ""
+    },
+    {
+        "id": 2,
+        "text_name_Name": "Sea Lantern Festival",
+        "iconPath": "Ui_SystemOpenIcon_SeaLampGiving",
+        "text_name_Desc": "Liyue is preparing for a grand festival. Amidst the jubilation and celebration, it is also full of new opportunities. Please take part in it",
+        "tutorialId": ""
+    },
+    {
+        "id": 3,
+        "text_name_Name": "Deep Spiral · Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Obscurae",
+        "text_name_Desc": "Deep into the dangerous deep spiral, challenge your limits, and win the hidden treasures",
+        "tutorialId": ""
+    },
+    {
+        "id": 4,
+        "text_name_Name": "Blessed Secret Realm·Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Domain",
+        "text_name_Desc": "Accept the challenge of the Holy Realm and win holy relics with powerful attributes and unique effects",
+        "tutorialId": ""
+    },
+    {
+        "id": 5,
+        "text_name_Name": "Gold Hidden Realm·Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Domain",
+        "text_name_Desc": "Accept the challenge of the gold hidden realm and win the considerable wealth in it",
+        "tutorialId": ""
+    },
+    {
+        "id": 6,
+        "text_name_Name": "Proficient in Secret Realm·Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Domain",
+        "text_name_Desc": "Accept the challenge of mastering the secret realm and win valuable materials that can improve the character's talent level",
+        "tutorialId": ""
+    },
+    {
+        "id": 7,
+        "text_name_Name": "Apocalypse Mystery·Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Domain",
+        "text_name_Desc": "Accept the challenge of revealing the secret realm and win props that can greatly improve the character's experience",
+        "tutorialId": ""
+    },
+    {
+        "id": 8,
+        "text_name_Name": "Finding Realm of Martial Arts·Unlock",
+        "iconPath": "Ui_SystemOpenIcon_Domain",
+        "text_name_Desc": "Accept the challenge of the secret realm of martial arts and get rare props that can bring breakthroughs to weapons",
+        "tutorialId": ""
+    },
+    {
+        "id": 9,
+        "text_name_Name": "Multiplayer · Unlock",
+        "iconPath": "Ui_SystemOpenIcon_MultiPlayer",
+        "text_name_Desc": "The passage between the worlds has been opened. Join other people's worlds, or welcome travelers from other worlds, let's take an adventure together",
+        "tutorialId": ""
+    }
+]

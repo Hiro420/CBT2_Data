@@ -1,0 +1,107 @@
+[
+    {
+        "id": 1,
+        "PropPer": [
+            {
+                "PropType": 12,
+                "PropValue": [
+                    0.5,
+                    1,
+                    1.5
+                ]
+            },
+            {
+                "PropType": 13,
+                "PropValue": [
+                    0.1,
+                    0.25,
+                    0.4
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "PropPer": [
+            {
+                "PropType": 12,
+                "PropValue": [
+                    0.5,
+                    1,
+                    1.5
+                ]
+            },
+            {
+                "PropType": 13,
+                "PropValue": [
+                    0.1,
+                    0.25,
+                    0.4
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "PropPer": [
+            {
+                "PropType": 12,
+                "PropValue": [
+                    0.5,
+                    1,
+                    1.5
+                ]
+            },
+            {
+                "PropType": 13,
+                "PropValue": [
+                    0.1,
+                    0.25,
+                    0.4
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "PropPer": [
+            {
+                "PropType": 12,
+                "PropValue": [
+                    0.5,
+                    1,
+                    1.5
+                ]
+            },
+            {
+                "PropType": 13,
+                "PropValue": [
+                    0.1,
+                    0.25,
+                    0.4
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "PropPer": [
+            {
+                "PropType": 12,
+                "PropValue": [
+                    0.5,
+                    1,
+                    1.5
+                ]
+            },
+            {
+                "PropType": 13,
+                "PropValue": [
+                    0.1,
+                    0.25,
+                    0.4
+                ]
+            }
+        ]
+    }
+]
