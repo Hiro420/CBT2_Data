@@ -1,0 +1,720 @@
+[
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "1",
+        "sunnyProb": "50",
+        "cloudyProb": "25",
+        "rainProb": "2",
+        "thunderstormProb": "1",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "2",
+        "sunnyProb": "40",
+        "cloudyProb": "60",
+        "rainProb": "4",
+        "thunderstormProb": "4",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "3",
+        "sunnyProb": "20",
+        "cloudyProb": "20",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "4",
+        "sunnyProb": "20",
+        "cloudyProb": "30",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Standard",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "1",
+        "sunnyProb": "30",
+        "cloudyProb": "40",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "50",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "2",
+        "sunnyProb": "40",
+        "cloudyProb": "30",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "60",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "5",
+        "sunnyProb": "30",
+        "cloudyProb": "30",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "60",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Tundra",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_WindDragon",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_MengDeInStorm",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Rainy",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "100",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "1",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "2",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "3",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "4",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "5",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Sunny",
+        "weatherType": "6",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_Foggy",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "1",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "2",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "3",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "4",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "5",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_City",
+        "weatherType": "6",
+        "sunnyProb": "100",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_ThunderStorm",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "100",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "1",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "2",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "3",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "4",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_StoneNeedles",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "1",
+        "sunnyProb": "50",
+        "cloudyProb": "25",
+        "rainProb": "2",
+        "thunderstormProb": "1",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "2",
+        "sunnyProb": "40",
+        "cloudyProb": "60",
+        "rainProb": "4",
+        "thunderstormProb": "4",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "3",
+        "sunnyProb": "20",
+        "cloudyProb": "20",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "4",
+        "sunnyProb": "20",
+        "cloudyProb": "30",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaQingCeVilla",
+        "weatherType": "6",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "1",
+        "sunnyProb": "75",
+        "cloudyProb": "25",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "2",
+        "sunnyProb": "20",
+        "cloudyProb": "60",
+        "rainProb": "7",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "100"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "3",
+        "sunnyProb": "20",
+        "cloudyProb": "20",
+        "rainProb": "40",
+        "thunderstormProb": "20",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "4",
+        "sunnyProb": "20",
+        "cloudyProb": "30",
+        "rainProb": "5",
+        "thunderstormProb": "30",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "5",
+        "sunnyProb": "0",
+        "cloudyProb": "0",
+        "rainProb": "0",
+        "thunderstormProb": "0",
+        "snowProb": "0",
+        "mistProb": "0"
+    },
+    {
+        "templateName": "Weather_LiYueAreaYaoGuangTan",
+        "weatherType": "6",
+        "sunnyProb": "30",
+        "cloudyProb": "20",
+        "rainProb": "4",
+        "thunderstormProb": "1",
+        "snowProb": "0",
+        "mistProb": "0"
+    }
+]

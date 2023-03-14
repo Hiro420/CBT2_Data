@@ -1,0 +1,55 @@
+[
+    {
+        "id": "1",
+        "unlockMainQuestId": "0",
+        "playerLevelUpperLimit": "20"
+    },
+    {
+        "id": "2",
+        "unlockMainQuestId": "20",
+        "playerLevelUpperLimit": "1",
+        "worldLevel": "25"
+    },
+    {
+        "id": "3",
+        "unlockMainQuestId": "25001",
+        "playerLevelUpperLimit": "2",
+        "worldLevel": "30"
+    },
+    {
+        "id": "4",
+        "unlockMainQuestId": "30",
+        "playerLevelUpperLimit": "3",
+        "worldLevel": "35"
+    },
+    {
+        "id": "5",
+        "unlockMainQuestId": "25005",
+        "playerLevelUpperLimit": "4",
+        "worldLevel": "40"
+    },
+    {
+        "id": "6",
+        "unlockMainQuestId": "40",
+        "playerLevelUpperLimit": "5",
+        "worldLevel": "45"
+    },
+    {
+        "id": "7",
+        "unlockMainQuestId": "25009",
+        "playerLevelUpperLimit": "6",
+        "worldLevel": "50"
+    },
+    {
+        "id": "8",
+        "unlockMainQuestId": "50",
+        "playerLevelUpperLimit": "7",
+        "worldLevel": "55"
+    },
+    {
+        "id": "9",
+        "unlockMainQuestId": "55",
+        "playerLevelUpperLimit": "8",
+        "worldLevel": "60"
+    }
+]

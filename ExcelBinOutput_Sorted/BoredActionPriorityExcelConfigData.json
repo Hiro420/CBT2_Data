@@ -1,0 +1,14 @@
+[
+    {
+        "actionType": "1",
+        "weight": "50"
+    },
+    {
+        "actionType": "2",
+        "weight": "0"
+    },
+    {
+        "actionType": "3",
+        "weight": "0"
+    }
+]

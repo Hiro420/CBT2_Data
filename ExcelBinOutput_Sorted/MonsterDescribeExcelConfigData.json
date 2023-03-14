@@ -1,0 +1,282 @@
+[
+    {
+        "id": "1001",
+        "monsterId": "20010101",
+        "desc": "Test_史莱姆-草-中",
+        "name": "UI_MonsterIcon_Slime_Grass_02",
+        "优先级": "4",
+        "跳转界面ID": "125"
+    },
+    {
+        "id": "1002",
+        "monsterId": "20010201",
+        "desc": "Test_史莱姆-草-大",
+        "name": "UI_MonsterIcon_Slime_Grass_03",
+        "优先级": "4",
+        "跳转界面ID": "124"
+    },
+    {
+        "id": "1004",
+        "monsterId": "20010302",
+        "desc": "Test_史莱姆-风-中-新手",
+        "name": "UI_MonsterIcon_Slime_Wind_02",
+        "优先级": "4",
+        "跳转界面ID": "120"
+    },
+    {
+        "id": "1005",
+        "monsterId": "20010401",
+        "desc": "Test_史莱姆-风-大",
+        "name": "UI_MonsterIcon_Slime_Wind_03",
+        "优先级": "4",
+        "跳转界面ID": "119"
+    },
+    {
+        "id": "1006",
+        "monsterId": "20010501",
+        "desc": "Release_史莱姆-电-中",
+        "name": "UI_MonsterIcon_Slime_Electric_02",
+        "优先级": "4",
+        "跳转界面ID": "123"
+    },
+    {
+        "id": "1007",
+        "monsterId": "20010601",
+        "desc": "Release_史莱姆-电-大",
+        "name": "UI_MonsterIcon_Slime_Electric_03",
+        "优先级": "4",
+        "跳转界面ID": "122"
+    },
+    {
+        "id": "1008",
+        "monsterId": "20010701",
+        "desc": "Release_史莱姆-电-大-正",
+        "name": "UI_MonsterIcon_Slime_Electric_03_Positive",
+        "优先级": "4",
+        "跳转界面ID": "121"
+    },
+    {
+        "id": "1009",
+        "monsterId": "20010801",
+        "desc": "Release_史莱姆-冰-中",
+        "name": "UI_MonsterIcon_Slime_Ice_02",
+        "优先级": "4",
+        "跳转界面ID": "118"
+    },
+    {
+        "id": "1010",
+        "monsterId": "20010901",
+        "desc": "Release_史莱姆-冰-大",
+        "name": "UI_MonsterIcon_Slime_Ice_03",
+        "优先级": "4",
+        "跳转界面ID": "117"
+    },
+    {
+        "id": "1011",
+        "monsterId": "20011001",
+        "desc": "Release_史莱姆-水-中",
+        "name": "UI_MonsterIcon_Slime_Water_02",
+        "优先级": "4",
+        "跳转界面ID": "116"
+    },
+    {
+        "id": "1012",
+        "monsterId": "20011101",
+        "desc": "Release_史莱姆-水-大",
+        "name": "UI_MonsterIcon_Slime_Water_03",
+        "优先级": "4",
+        "跳转界面ID": "115"
+    },
+    {
+        "id": "1013",
+        "monsterId": "20011201",
+        "desc": "Release_史莱姆-火-中",
+        "name": "UI_MonsterIcon_Slime_Fire_02",
+        "优先级": "4",
+        "跳转界面ID": "127"
+    },
+    {
+        "id": "1014",
+        "monsterId": "20011301",
+        "desc": "Release_史莱姆-火-大",
+        "name": "UI_MonsterIcon_Slime_Fire_03",
+        "优先级": "4",
+        "跳转界面ID": "126"
+    },
+    {
+        "id": "1015",
+        "monsterId": "20011401",
+        "desc": "Release_史莱姆-岩-中",
+        "name": "UI_MonsterIcon_Slime_Rock_02",
+        "优先级": "4",
+        "跳转界面ID": "129"
+    },
+    {
+        "id": "1016",
+        "monsterId": "20011501",
+        "desc": "Release_史莱姆-岩-大",
+        "name": "UI_MonsterIcon_Slime_Rock_03",
+        "优先级": "4",
+        "跳转界面ID": "128"
+    },
+    {
+        "id": "1017",
+        "monsterId": "20020101",
+        "desc": "Release_元素球-风",
+        "name": "UI_MonsterIcon_Elemental_Wind_01",
+        "优先级": "4",
+        "跳转界面ID": "148"
+    },
+    {
+        "id": "1018",
+        "monsterId": "21010101",
+        "desc": "Release_丘丘-无-空手",
+        "name": "UI_MonsterIcon_Hili_None_01",
+        "优先级": "4",
+        "跳转界面ID": "137"
+    },
+    {
+        "id": "1019",
+        "monsterId": "21010201",
+        "desc": "Release_丘丘-无-近战",
+        "name": "UI_MonsterIcon_Hili_None_01",
+        "优先级": "4",
+        "跳转界面ID": "138"
+    },
+    {
+        "id": "1020",
+        "monsterId": "21010301",
+        "desc": "Release_丘丘-无-小盾",
+        "name": "UI_MonsterIcon_Hili_None_01",
+        "优先级": "4",
+        "跳转界面ID": "139"
+    },
+    {
+        "id": "1021",
+        "monsterId": "21010401",
+        "desc": "Release_丘丘-无-远程",
+        "name": "UI_MonsterIcon_Hili_None_01",
+        "优先级": "4",
+        "跳转界面ID": "142"
+    },
+    {
+        "id": "1022",
+        "monsterId": "21010501",
+        "desc": "Test_丘丘-火-远程",
+        "name": "UI_MonsterIcon_Hili_Fire_Range",
+        "优先级": "4",
+        "跳转界面ID": "143"
+    },
+    {
+        "id": "1023",
+        "monsterId": "21010601",
+        "desc": "Test_丘丘-火-炸弹",
+        "name": "UI_MonsterIcon_Hili_Fire_Range",
+        "优先级": "4",
+        "跳转界面ID": "140"
+    },
+    {
+        "id": "1024",
+        "monsterId": "21010701",
+        "desc": "Test_丘丘-火-冲刺",
+        "name": "UI_MonsterIcon_Hili_Fire_Range",
+        "优先级": "4",
+        "跳转界面ID": "141"
+    },
+    {
+        "id": "1025",
+        "monsterId": "21010901",
+        "desc": "Test_丘丘-冰-远程",
+        "name": "UI_MonsterIcon_Hili_Ice_Range",
+        "优先级": "4",
+        "跳转界面ID": "144"
+    },
+    {
+        "id": "1026",
+        "monsterId": "21011001",
+        "desc": "Test_丘丘-电-远程",
+        "name": "UI_MonsterIcon_Hili_Electric_Range",
+        "优先级": "4",
+        "跳转界面ID": "145"
+    },
+    {
+        "id": "1027",
+        "monsterId": "21011101",
+        "desc": "Test_丘丘-草-近战",
+        "name": "UI_ItemIcon_100006",
+        "优先级": "4",
+        "跳转界面ID": "106"
+    },
+    {
+        "id": "1028",
+        "monsterId": "21020101",
+        "desc": "Release_暴徒-无-巨盾",
+        "name": "UI_MonsterIcon_Brute_None_01",
+        "优先级": "4",
+        "跳转界面ID": "146"
+    },
+    {
+        "id": "1029",
+        "monsterId": "21020201",
+        "desc": "Release_暴徒-无-火斧",
+        "name": "UI_MonsterIcon_Brute_None_01",
+        "优先级": "4",
+        "跳转界面ID": "147"
+    },
+    {
+        "id": "1030",
+        "monsterId": "21030101",
+        "desc": "Test_丘丘萨满-水",
+        "name": "UI_MonsterIcon_Shaman_Water_01",
+        "优先级": "4",
+        "跳转界面ID": "133"
+    },
+    {
+        "id": "1031",
+        "monsterId": "21030201",
+        "desc": "Test_丘丘萨满-草",
+        "name": "UI_MonsterIcon_Shaman_Grass_01",
+        "优先级": "4",
+        "跳转界面ID": "134"
+    },
+    {
+        "id": "1032",
+        "monsterId": "21030301",
+        "desc": "Test_丘丘萨满-风",
+        "name": "UI_MonsterIcon_Shaman_Wind_01",
+        "优先级": "4",
+        "跳转界面ID": "135"
+    },
+    {
+        "id": "1033",
+        "monsterId": "22010101",
+        "desc": "Release_深渊巫师-火",
+        "name": "UI_MonsterIcon_Abyss_Fire_01",
+        "优先级": "4",
+        "跳转界面ID": "130"
+    },
+    {
+        "id": "1034",
+        "monsterId": "22010201",
+        "desc": "Release_深渊巫师-冰",
+        "name": "UI_MonsterIcon_Abyss_Ice_01",
+        "优先级": "4",
+        "跳转界面ID": "131"
+    },
+    {
+        "id": "1035",
+        "monsterId": "22010301",
+        "desc": "Release_深渊巫师-水",
+        "name": "UI_MonsterIcon_Abyss_Water_01",
+        "优先级": "4",
+        "跳转界面ID": "132"
+    },
+    {
+        "id": "1036",
+        "monsterId": "24010101",
+        "desc": "Release_遗迹守卫-无",
+        "name": "UI_MonsterIcon_Defender_Noner_01",
+        "优先级": "4",
+        "跳转界面ID": "136"
+    }
+]
